@@ -5,7 +5,7 @@
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
-var tb_pathToImage = "js/thickbox/images/loadingAnimation.gif";
+var tb_pathToImage = "http://localhost/yiisns/js/thickbox/images/loadingAnimation.gif";
 
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 
@@ -52,7 +52,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 		}
 
 		if(caption===null){caption="";}
-		$("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");//add loader to the page
+		$("body").append("<div id='TB_load'></div>");//add loader to the page
 		$('#TB_load').show();//show loader
 
 		var baseURL;
@@ -207,8 +207,11 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 						$("#TB_window").append("<div id='TB_ajaxContent' class='TB_modal' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px;'></div>");
 						}
 					}else{//this means the window is already up, we are just loading new content via ajax
+						//在thickbox弹出框重新刷出一个thickbox会出现设定宽度高度 edit by biner 2010-01-16
+						/*
 						$("#TB_ajaxContent")[0].style.width = ajaxContentW +"px";
 						$("#TB_ajaxContent")[0].style.height = ajaxContentH +"px";
+						*/
 						$("#TB_ajaxContent")[0].scrollTop = 0;
 						$("#TB_ajaxWindowTitle").html(caption);
 					}
@@ -280,6 +283,7 @@ function tb_remove() {
 }
 
 function tb_position() {
+//弹出thickbox为自适应 edit by biner 2010-01-16
 var boxWidth = $("#TB_window").width();
 if(boxWidth > TB_WIDTH)
 {

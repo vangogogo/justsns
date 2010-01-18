@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/reg.css" />
 	<div class="RegBox">
-		<p class="alR cGray2">已经注册的用户请 <a href="__URL__/login">登录</a></p>
+		<p class="alR cGray2">已经注册的用户请 <?php echo CHtml::link('登录',array('/site/login'))?></p>
 		<h1 class="cBlue">注册：完善你的个人信息，加入{$site_opts.site_name}</h1>
 		<p class="cGray">{$site_opts.site_name}是帮助你与朋友、同事、同学、家人保持更紧密联系的真实社交平台，在这里你可以及时了解他们的最新动态；结识更多的新朋友</p>
 <style>
@@ -66,7 +66,7 @@
 				<li>
 					<div class="cl">设置登录密码：<em>*</em></div>
 					<div class="cc">
-						<?php echo $CS->activeTextField($form,'password',array('class'=>'t_input')); ?>
+						<?php echo $CS->activePasswordField($form,'password',array('class'=>'t_input')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">
@@ -87,7 +87,7 @@
 				<li>
 					<div class="cl">再输入一遍密码：<em>*</em></div>
 					<div class="cc">
-						<?php echo $CS->activeTextField($form,'repassword',array('class'=>'t_input')); ?>
+						<?php echo $CS->activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">
@@ -168,7 +168,7 @@
 					<input type="hidden" name="ts_areaval" id="ts_areaval"/>
 						<?php echo $CS->activeTextField($form,'area',array('class'=>'t_input','style'=>"width:165px;float:left;")); ?>
 
-						<input alt="<?php echo Yii::app()->createUrl('/site/getArea',array('level'=>'init'));?>" title="选择地区" type="button" class="btn_b thickbox" value="选择地区" level='2' selectArea="true" style="float:left; margin-left:5px;" areatype="areaval" >
+						<input alt="<?php echo Yii::app()->createUrl('/site/getArea',array('pid'=>'0'));?>" title="选择地区" type="button" class="btn_b thickbox" value="选择地区" level='2' selectArea="true" style="float:left; margin-left:5px;" areatype="areaval" >
 					</div>
 					<div class="cr">
 						<div class="success hidden">

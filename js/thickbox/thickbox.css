@@ -16,10 +16,13 @@
 }
 
 #TB_window a:link {color: #666666;}
+/*
 #TB_window a:visited {color: #fff;}
+*/
 #TB_window a:hover {color: #000;}
 #TB_window a:active {color: #666666;}
 #TB_window a:focus{color: #666666;}
+#TB_window #TB_closeWindowButton {color:#f00}
 
 /* ----------------------------------------------------------------------------------------------------------------*/
 /* ---------->>> thickbox settings <<<-----------------------------------------------------------------------------*/
