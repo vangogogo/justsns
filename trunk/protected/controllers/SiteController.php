@@ -177,35 +177,25 @@ class SiteController extends Controller
 		}
 		*/
 		$list = array();
-		
-		$list = area::model()->getlist();
-		$pid = Yii::app()->request->getParam('pid');
-		$arrPid = explode(',',$pid);
-		$level  =  Yii::app()->request->getParam('level');
-		$arealevel  =  Yii::app()->request->getParam('arealevel');
 		$init = $arealevel = '0';
 		
-		if($level=='init'){
-			$init = 1;
-		}else{
-			if(is_array($arrPid)){
-				unset($arrPid[0]);
-				foreach ($arrPid as $v){
-					if($list[$v]['child']){
-						$list = $list[$v]['child'];
-					}
-				}
-			}
-		}
 		
+		
+		$pid = Yii::app()->request->getParam('pid');
+
+		$list = area::model()->getlist();
+
+		$arrPid = explode(',',$pid);
+
+		$level  =  Yii::app()->request->getParam('level');
+		$arealevel  = $level+1;
 
 		$data = array(
 			'list' => $list,
-			'init' => $init,
 			'arrPid' => $arrPid,
-			'areaLevel' => $arealevel,
+			'arealevel' => $arealevel,
 		);
-		
+
 		
 		if (Yii::app()->request->isAjaxRequest){
 

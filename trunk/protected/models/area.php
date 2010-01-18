@@ -67,9 +67,11 @@ class area extends CActiveRecord
 	
 	public function getList($pid='0') {
 		//数据缓存
-		$list = '';
+		$key = 'area'.$pid;
+		$list = Yii::app()->cache->get($key);
 		if(empty($list)){
 			$list = $this->MakeTree($pid);
+			Yii::app()->cache->set($key,$list);
 		}
 		return $list;
 	}	

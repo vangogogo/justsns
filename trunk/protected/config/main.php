@@ -49,8 +49,8 @@ return array(
 		*/
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-            'errorAction'=>'site/error',
-        ),
+			'errorAction'=>'site/error',
+		),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -72,7 +72,10 @@ return array(
 				*/
 			),
 		),
-		
+		'cache'=>array(
+			'class'=>'system.caching.CFileCache',
+			'directoryLevel'=>'2',
+		),
 		'authManager'=>array(
 			// The type of Manager (Database)
 			'class'=>'CDbAuthManager',
@@ -86,23 +89,23 @@ return array(
 			'itemChildTable'=>'auth_item_child',
 		),
 
-		        // url 
-        'urlManager'=>array(
-            // the URL format. It must be either 'path' or 'get'.
-            // path: index.php/controller/action/attribute/value
-            // get: index.php?r=controller/action&attribute=value
-            'urlFormat'=>'path',
-            // show www.example.com/index.php/controller/action 
-            // or just www.example.com/controller/action
-            'showScriptName' => true,
-            // rules to redirect a specific url to the controller you want
-            // see: http://www.yiiframework.com/doc/guide/topics.url
-            'rules'=>array(
-                // www.example.com/home instead of www.example.com/site/index
-                'home'=>'site/index',
-                'post/<id:\d+>'=>'post/show',
-            ),
-        ),
+				// url 
+		'urlManager'=>array(
+			// the URL format. It must be either 'path' or 'get'.
+			// path: index.php/controller/action/attribute/value
+			// get: index.php?r=controller/action&attribute=value
+			'urlFormat'=>'path',
+			// show www.example.com/index.php/controller/action 
+			// or just www.example.com/controller/action
+			'showScriptName' => true,
+			// rules to redirect a specific url to the controller you want
+			// see: http://www.yiiframework.com/doc/guide/topics.url
+			'rules'=>array(
+				// www.example.com/home instead of www.example.com/site/index
+				'home'=>'site/index',
+				'post/<id:\d+>'=>'post/show',
+			),
+		),
 		//验证模块
 		'jformvalidate' => array (
 			'class' => 'application.extensions.jformvalidate.EJFValidate'
