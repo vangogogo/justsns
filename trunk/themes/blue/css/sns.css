@@ -27,6 +27,9 @@ a {color:#005FAB;text-decoration:none;}
 #header #mainmenu ul li .msg_top a { display: block; background-image: url(../images/msg.gif); background-repeat: no-repeat; background-position: right 0px; height: 20px; padding-right: 10px; text-decoration: none; line-height: 17px; float: left; color: #F00; white-space: nowrap; }
 #header #mainmenu ul li.on .msg_top { background-image: url(../images/msg.gif); background-repeat: no-repeat; background-position: 0px 0px; display: block; height: 20px; text-align: center; line-height: 16px; padding-left: 8px; color: #cc0000; text-decoration: none; position: absolute; top:-2px; left:70px; float: left; }
 
+#header #nav_sub { position:absolute; white-space:nowrap; color:#D5ECFF; right:10px; top:15px; }
+#header #nav_sub a { color:#D5ECFF; }
+
 /* 内容部分样式 */
 #content { text-align: left; margin-right: auto; margin-left: auto; clear: both; border-right-width: 1px; border-bottom-width: 1px; border-bottom-style: solid; border-right-color: #D1D1D1; border-bottom-color: #D1D1D1; background-image: url(../images/app_bg.gif); background-repeat: repeat-y; background-position: left 0px; border-right-style: solid; }
 .cc { width: 560px; float: left; }
