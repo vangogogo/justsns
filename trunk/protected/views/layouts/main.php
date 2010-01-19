@@ -39,18 +39,28 @@
 					array('label'=>'Home', 'url'=>array('/site/index')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 				),
 			)); ?>
 		</div><!-- mainmenu -->
-			
+		<div id="nav_sub">
+			<?php if(Yii::app()->user->isGuest) {?>
+				<?php echo CHtml::link('注册',array('/site/reg'));?> ┆ 
+				<?php echo CHtml::link('登陆',array('/site/login'));?> ┆ 
+				<?php echo CHtml::link('帮助',array('/site/help'));?>
+			<?php }else{?>
+				<?php echo CHtml::link('管理',array('/admin'));?> ┆ 
+				<?php echo CHtml::link('邀请',array('/invite'));?> ┆ 
+				<?php echo CHtml::link('账号',array('/account'));?> ┆ 
+				<?php echo CHtml::link('资料',array('/info'));?> ┆ 
+				<?php echo CHtml::link('退出',array('/site/logout'));?>
+			<?php }?>
+		</div>
 	</div><!-- header -->
 
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.
+		Copyright &copy; <?php echo date('Y'); ?> by LockPHP.
 		All Rights Reserved.
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
