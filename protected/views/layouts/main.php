@@ -3,28 +3,29 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-
+<?php echo CGoogleApi::init(); ?>
+ 
+<?php echo CHtml::script(
+    CGoogleApi::load('jquery','1.3.2') . "\n" .
+    CGoogleApi::load('jquery.ajaxqueue.js') . "\n" .
+    CGoogleApi::load('jquery.metadata.js')
+); ?>	
 <?php
+//colorbox
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.js');
+Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.css');
+// blueprint CSS framework
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/screen.css','screen, projection');
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/print.css','print');
 
-
-	//colorbox
-	Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.js');
-	Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.css');
-	// blueprint CSS framework
-	Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/screen.css','screen, projection');
-	Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/print.css','print');
-	
-	Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/public.css');
-	Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/form.css');
-	Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
-?>
-
-
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
-	
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/public.css');
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/form.css');
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
+?>	
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/ie.css" media="screen, projection" />
+<![endif]-->
 </head>
 
 <body>
