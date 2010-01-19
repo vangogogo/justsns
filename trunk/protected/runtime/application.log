@@ -19,3 +19,59 @@ Stack trace:
 #16 /home/biner/htdocs/yiisns/protected/yiic.php(7): require_once()
 #17 /home/biner/htdocs/yiisns/protected/yiic(4): require_once()
 REQUEST_URI=/index.php
+2010/01/19 13:35:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "account".' in /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php:324
+Stack trace:
+#0 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(120): CWebApplication->runController('account')
+#1 /home/biner/htdocs/yii1.1/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /home/biner/htdocs/yiisns/index.php(11): CApplication->run()
+#3 {main} REQUEST_URI=/yiisns/index.php/account
+2010/01/19 13:35:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "{$app.icon}".' in /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php:324
+Stack trace:
+#0 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(120): CWebApplication->runController('{$app.icon}')
+#1 /home/biner/htdocs/yii1.1/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /home/biner/htdocs/yiisns/index.php(11): CApplication->run()
+#3 {main} REQUEST_URI=/yiisns/index.php/%7B$app.icon%7D
+2010/01/19 14:20:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "account".' in /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php:324
+Stack trace:
+#0 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(120): CWebApplication->runController('account')
+#1 /home/biner/htdocs/yii1.1/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /home/biner/htdocs/yiisns/index.php(11): CApplication->run()
+#3 {main} REQUEST_URI=/yiisns/index.php/account
+2010/01/19 14:20:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "{$app.icon}".' in /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php:324
+Stack trace:
+#0 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(120): CWebApplication->runController('{$app.icon}')
+#1 /home/biner/htdocs/yii1.1/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /home/biner/htdocs/yiisns/index.php(11): CApplication->run()
+#3 {main} REQUEST_URI=/yiisns/index.php/%7B$app.icon%7D
+2010/01/19 16:49:45 [error] [exception.CException] exception 'CException' with message 'AccountController 无法找到请求的视图 "index".' in /home/biner/htdocs/yii1.1/framework/web/CController.php:741
+Stack trace:
+#0 /home/biner/htdocs/yii1.1/framework/web/CController.php(671): CController->renderPartial('index', NULL, true)
+#1 /home/biner/htdocs/yiisns/protected/controllers/AccountController.php(13): CController->render('index')
+#2 /home/biner/htdocs/yii1.1/framework/web/actions/CInlineAction.php(32): AccountController->actionIndex()
+#3 /home/biner/htdocs/yii1.1/framework/web/CController.php(300): CInlineAction->run()
+#4 /home/biner/htdocs/yii1.1/framework/web/CController.php(278): CController->runAction(Object(CInlineAction))
+#5 /home/biner/htdocs/yii1.1/framework/web/CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(320): CController->run('')
+#7 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(120): CWebApplication->runController('account')
+#8 /home/biner/htdocs/yii1.1/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#9 /home/biner/htdocs/yiisns/index.php(11): CApplication->run()
+#10 {main} REQUEST_URI=/yiisns/index.php/account
+2010/01/19 16:51:26 [error] [exception.CException] exception 'CException' with message 'AccountController 无法找到请求的视图 "index".' in /home/biner/htdocs/yii1.1/framework/web/CController.php:741
+Stack trace:
+#0 /home/biner/htdocs/yii1.1/framework/web/CController.php(671): CController->renderPartial('index', NULL, true)
+#1 /home/biner/htdocs/yiisns/protected/controllers/AccountController.php(13): CController->render('index')
+#2 /home/biner/htdocs/yii1.1/framework/web/actions/CInlineAction.php(32): AccountController->actionIndex()
+#3 /home/biner/htdocs/yii1.1/framework/web/CController.php(300): CInlineAction->run()
+#4 /home/biner/htdocs/yii1.1/framework/web/CController.php(278): CController->runAction(Object(CInlineAction))
+#5 /home/biner/htdocs/yii1.1/framework/web/CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(320): CController->run('')
+#7 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(120): CWebApplication->runController('account')
+#8 /home/biner/htdocs/yii1.1/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#9 /home/biner/htdocs/yiisns/index.php(11): CApplication->run()
+#10 {main} REQUEST_URI=/yiisns/index.php/account
+2010/01/19 16:52:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "{$app.icon}".' in /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php:324
+Stack trace:
+#0 /home/biner/htdocs/yii1.1/framework/web/CWebApplication.php(120): CWebApplication->runController('{$app.icon}')
+#1 /home/biner/htdocs/yii1.1/framework/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /home/biner/htdocs/yiisns/index.php(11): CApplication->run()
+#3 {main} REQUEST_URI=/yiisns/index.php/%7B$app.icon%7D
