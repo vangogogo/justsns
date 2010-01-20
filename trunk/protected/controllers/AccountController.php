@@ -8,15 +8,48 @@ class AccountController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$form=new user();
+		$form->scenario = 'modify';
+		if(!empty($_POST['user']))
+		{
+			$attributes = $_POST['user'];
+			$form->attributes = $attributes;
+			$form->validate();
+
+			$uid = Yii::app()->user->id;
+			$user = user::model()->findByPk($uid);
+			if(md5($attributes['oldpassword']) != $user->password)
+			{
+				$form->addError('oldpassword', '旧密码错误');
+			}
+			else 
+			{
+				$user->password = $attributes['password'];
+				$user->save();
+				//弹出提示框
+			}			
+		}
+		$data = array(
+			'form' => $form,
+		);
+		$this->render('index',$data);
 	}
-	
+
 	public function actionAccount()
 	{
-
-		$this->render('account');
+		$form=new user();
+		$form->scenario = 'account';
+		if(!empty($_POST['user']))
+		{
+			$attributes = $_POST['user'];
+			$form->attributes = $attributes;
+			$form->validate();
+			
+		}
+		$data = array(
+			'form' => $form,
+		);
+		$this->render('account',$data);
 	}
 		
 	public function actionSecurity()

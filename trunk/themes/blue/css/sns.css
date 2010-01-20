@@ -1,7 +1,8 @@
 a {color:#005FAB;text-decoration:none;}
 .container {width:1000px;}
 .column1 #content{background:none;padding:20px;border-left:1px solid #D1D1D1}
-
+.error_info {display:none;}
+.cc .invalid {background:#FBE6F2;border:1px solid #D893A1;color:#996633;}
 
 #header { height:40px; width:1000px; text-align:left; position:relative; margin-right: auto; margin-left: auto; background-image: url(../images/header_bg.gif); background-repeat: repeat-x; background-position: 0px 0px; background-color: #1f73bb; }
 #header #logo { float:left; position:absolute; top:0px; left:0px; font-weight:700; font-size:28px;}
@@ -215,3 +216,126 @@ a {color:#005FAB;text-decoration:none;}
 .pop_box ul li img{ border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; height: 16px; width: 16px; }
 /* 心情回复 */ 
 .bg_huifu { background-image: url(../images/bg_huifu.gif); background-repeat: no-repeat; background-position: left top; padding-top: 5px; }
+/*
+注册样式
+*/
+.right{float:right}
+
+.RegBox {
+	width: 740px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 15px;
+	padding-right: 20px;
+	padding-bottom: 15px;
+	padding-left: 20px;
+	background-color: #FFF;
+	border: 1px solid #D1D1D1;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: left;
+}
+.RegBox h1 {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 35px;
+	margin: 0px;
+	padding: 0px;
+}
+.RegBox p {
+	padding: 0px;
+	margin: 0px;
+}
+.RegBox ul {
+	width: 100%;
+	border-top:1px solid #ccc;
+	margin-top: 30px;
+	padding-top: 30px;
+}
+
+.jsvform ul li {
+	width: 100%;
+	clear: both;
+	float: none;
+	overflow: visible;
+	margin-top: 8px;
+}
+.jsvform ul li .cl {
+	float: left;
+	width: 15%;
+	text-align: right;
+	line-height: 20px;
+	color: #666666;
+}
+.jsvform ul li .cl em {
+	color: #FF0000;
+	font-size: 12px;
+	display: inline-block;
+	width: 10px;
+	text-align: center;
+}
+.jsvform ul li .cc {
+	width: 37%;
+	float: left;
+	line-height: 20px;
+}
+
+.jsvform ul li .cc a { text-decoration: underline; }
+.jsvform ul li .cc .city {
+	top: 23px;
+	left: 0px;
+	background-color: #FFFFFF;
+	width: 400px;
+	border: 1px solid #CCCCCC;
+}
+.jsvform ul li .cc .city a { }
+.jsvform ul li .cr {
+	width: 48%;
+	float: left;
+	line-height: 20px;
+}
+.jsvform ul li .r2{
+	width: 50%;
+	line-height: 20px;
+	float: right;
+}
+.jsvform ul li .cr .img{}
+.jsvform ul li .cr .clue,.jsvform ul li .r2 .clue {
+	background: url(../images/clue.gif)  no-repeat 0px top;
+	width: 300px;
+	left: 20px;
+	top: -8px;
+	position: absolute;
+}
+.jsvform ul li .cr .clue p,.jsvform ul li .r2 .clue p {
+	padding:10px 5px 5px 15px;margin:0;
+}
+.jsvform ul li .cr .clue .clue_btm,.jsvform ul li .r2 .clue .clue_btm {
+	background: url(../images/clue.gif) no-repeat 0px bottom;
+	height: 5px;
+	display: block;
+}
+.btn_reg { line-height: 35px; background-image: url(../images/btn_4.gif); height: 35px; width: 159px; background-repeat: no-repeat; background-position: 0px 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; }
+
+.text_1{
+	border:1px solid #BDC7D8;
+	font-size:14px;
+	height:22px;
+	line-height: 24px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+}
+
+.text_2{
+	border:1px solid #005FAB;
+	height:22px;
+	font-size:14px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	line-height: 24px;
+	font-weight: bold;
+	margin: 0px;
+	padding: 0px;
+}

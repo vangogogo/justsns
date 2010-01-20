@@ -6,6 +6,8 @@ class user extends CActiveRecord
 	public $repassword;
 	public $rememberMe;
 	public $area;
+	
+	public $oldpassword;
 	/**
 	 * The followings are the available columns in table 'user':
 	 * @var integer $id
@@ -60,12 +62,14 @@ class user extends CActiveRecord
 			array('email','email'),
 			
 			array('password', 'length', 'max'=>50, 'min'=>6, 'on' => 'reg'),
-
-
+			//修改密码
+			array('password,repassword,oldpassword','required', 'on' => 'modify'),
+			array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify'),
+			//修改email			
 			array('password,repassword,email,username,sex,verifyCode,area','required', 'on' => 'reg'),
 			array('username', 'checkUsername', 'on'=>'reg'),
-			array('email', 'checkEmail', 'on'=>'reg'),
-			array('repassword', 'compare', 'compareAttribute'=>'password', 'on' => 'reg','message' => '必须与密码一致'),
+			array('email', 'checkEmail', 'on'=>'reg,account'),
+			array('repassword', 'compare', 'compareAttribute'=>'password', 'on' => 'reg,modify','message' => '两次输入的密码不一样，请重输！'),
 		    array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd'),'on'=>'reg'),
 		    
 		    //ajax验证
@@ -84,7 +88,9 @@ class user extends CActiveRecord
 				'messages' => array(
 					'remote' => '{attribute} already exist'
 				)
-			),			
+			),
+			
+			
 		);
 	}
 
@@ -126,8 +132,17 @@ class user extends CActiveRecord
 			'verifyCode' => '验证码',
 			'repassword' => '重复密码',
 			'rememberMe' => '记住密码',
+			'oldpassword' => '旧密码',
 			'area' => '居住地址',
 		);
+	}
+	
+	/**
+	 * 保存密码前md5
+	 */
+	public function beforeSave() {
+		$this->password = md5($this->password);
+		return true;
 	}
 	
 	/**
