@@ -3,11 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-<?php echo CGoogleApi::init(); ?>
- 
-<?php echo CHtml::script(
-    CGoogleApi::load('jquery','1.3.2')
-); ?>	
+
 <?php
 //colorbox
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.js');
