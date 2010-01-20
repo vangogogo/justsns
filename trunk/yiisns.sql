@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2010 年 01 月 15 日 11:20
+-- 生成日期: 2010 年 01 月 20 日 10:34
 -- 服务器版本: 5.1.37
 -- PHP 版本: 5.3.0
 
@@ -5158,6 +5158,44 @@ INSERT INTO `hope_thread` (`tid`, `topicid`, `class_id`, `eventid`, `subject`, `
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `login_record`
+--
+
+CREATE TABLE IF NOT EXISTS `login_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `login_ip` varchar(15) DEFAULT NULL,
+  `login_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+
+--
+-- 转存表中的数据 `login_record`
+--
+
+INSERT INTO `login_record` (`id`, `uid`, `login_ip`, `login_time`) VALUES
+(1, 1, '127.0.0.1', 1262919175),
+(2, NULL, 'unknown', 1260770264),
+(3, 1, '127.0.0.1', 1262918362),
+(4, 1, '127.0.0.1', 1262919375),
+(5, 1, 'unknown', 1262749586),
+(6, 2, 'unknown', 1262749723),
+(7, 1, '127.0.0.1', 1262827788),
+(8, 1, '127.0.0.1', 1262836878),
+(9, 1, '127.0.0.1', 1262855565),
+(10, 1, '127.0.0.1', 1262921185),
+(11, 1, '127.0.0.1', 1263533092),
+(12, 1, '127.0.0.1', 1263783619),
+(13, 1, '127.0.0.1', 1263868395),
+(14, 1, '127.0.0.1', 1263958588),
+(15, 1, '127.0.0.1', 1263966644),
+(16, 1, '127.0.0.1', 1263968833),
+(17, 1, '127.0.0.1', 1263973429),
+(18, 1, '127.0.0.1', 1263974317);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `photo`
 --
 
@@ -5291,15 +5329,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `score` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `user`
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `username`, `handle`, `sex`, `birthday`, `blood_type`, `current_province`, `current_city`, `current_area`, `admin_level`, `commend`, `active`, `ctime`, `identity`, `score`) VALUES
-(1, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '管理员', NULL, '1', NULL, NULL, NULL, NULL, NULL, '1', 0, 1, 1260770048, 1, 1000),
-(2, 'huanghuibin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '黄大', NULL, '1', NULL, NULL, '1963', '2074', NULL, '0', NULL, 1, 1260770264, 1, 0);
+(1, 'admin@admin.com', 'f402195e81465ffb02ffdb894e6e2aa6', '管理员', NULL, '1', NULL, NULL, NULL, NULL, NULL, '1', 0, 1, 1260770048, 1, 1000),
+(2, 'huanghuibin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '黄大', NULL, '1', NULL, NULL, '1963', '2074', NULL, '0', NULL, 1, 1260770264, 1, 0),
+(3, 'dfas@good.com', 'xmdasd', 'fddf', NULL, '0', NULL, NULL, NULL, NULL, NULL, '0', NULL, 0, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5339,6 +5378,87 @@ CREATE TABLE IF NOT EXISTS `user_online` (
 -- 转存表中的数据 `user_online`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user_score`
+--
+
+CREATE TABLE IF NOT EXISTS `user_score` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `info` varchar(255) DEFAULT NULL,
+  `action` varchar(50) DEFAULT NULL,
+  `type` varchar(20) NOT NULL DEFAULT 'score',
+  `number` int(3) DEFAULT NULL,
+  `cTime` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
+
+--
+-- 转存表中的数据 `user_score`
+--
+
+INSERT INTO `user_score` (`id`, `uid`, `info`, `action`, `type`, `number`, `cTime`) VALUES
+(1, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1260770061),
+(2, 1, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1260770284),
+(3, 1, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1260770284),
+(4, 2, '访问他人空间增加了2经验', 'visit_space', 'experience', 2, 1260770284),
+(5, 2, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1260771815),
+(6, 2, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1260771815),
+(7, 1, '访问他人空间增加了2经验', 'visit_space', 'experience', 2, 1260771815),
+(8, 2, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1260772665),
+(9, 2, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1260772665),
+(10, 1, '访问他人空间增加了2经验', 'visit_space', 'experience', 2, 1260772665),
+(11, 1, '发表博客增加了5积分', 'add_blog', 'score', 5, 1261033225),
+(12, 1, '发表博客增加了5经验', 'add_blog', 'experience', 5, 1261033225),
+(13, 1, '发表博客增加了5积分', 'add_blog', 'score', 5, 1261033329),
+(14, 1, '发表博客增加了5经验', 'add_blog', 'experience', 5, 1261033329),
+(15, 1, '群组创建减少了2积分', 'group_create', 'score', -2, 1261033391),
+(16, 1, '群组发布话题减少了2积分', 'group_topic_add', 'score', -2, 1261033453),
+(17, 1, '群组发布话题减少了2积分', 'group_topic_add', 'score', -2, 1261040927),
+(18, 1, '群组话题取消精华减少了2积分', 'group_topic_cancel_dist', 'score', -2, 1261041138),
+(19, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1262679125),
+(20, 2, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1262681511),
+(21, 2, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1262681511),
+(22, 1, '访问他人空间增加了2经验', 'visit_space', 'experience', 2, 1262681511),
+(23, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1262749587),
+(24, 2, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1262749624),
+(25, 2, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1262749624),
+(26, 1, '访问他人空间增加了2经验', 'visit_space', 'experience', 2, 1262749624),
+(27, 2, '用户登录增加了1经验', 'user_login', 'experience', 1, 1262749723),
+(28, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1262827788),
+(29, 1, '发起投票增加了20积分', 'creat_vote', 'score', 20, 1262828895),
+(30, 1, '发起投票增加了20经验', 'creat_vote', 'experience', 20, 1262828895),
+(31, 1, '参与投票增加了1积分', 'join_vote', 'score', 1, 1262828929),
+(32, 1, '参与投票增加了5经验', 'join_vote', 'experience', 5, 1262828929),
+(33, 1, '投票被参与增加了1积分', 'joined_vote', 'score', 1, 1262828929),
+(34, 1, '投票被参与增加了1经验', 'joined_vote', 'experience', 1, 1262828929),
+(35, 1, '发布心情增加了1积分', 'add_mini', 'score', 1, 1262831743),
+(36, 1, '发布心情增加了2经验', 'add_mini', 'experience', 2, 1262831743),
+(37, 1, '发起分享增加了5积分', 'add_share', 'score', 5, 1262831945),
+(38, 1, '发起分享增加了5经验', 'add_share', 'experience', 5, 1262831945),
+(39, 1, '被分享增加了10积分', 'shared', 'score', 10, 1262831945),
+(40, 1, '被分享增加了10经验', 'shared', 'experience', 10, 1262831945),
+(41, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1262836878),
+(42, 2, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1262844551),
+(43, 2, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1262844551),
+(44, 1, '访问他人空间增加了2经验', 'visit_space', 'experience', 2, 1262844551),
+(45, 2, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1262844562),
+(46, 2, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1262844562),
+(47, 1, '访问他人空间增加了2经验', 'visit_space', 'experience', 2, 1262844562),
+(48, 1, '发表博客增加了5积分', 'add_blog', 'score', 5, 1262847051),
+(49, 1, '发表博客增加了5经验', 'add_blog', 'experience', 5, 1262847051),
+(50, 1, '群组图片上传增加了2积分', 'group_photo_upload', 'score', 2, 1262847094),
+(51, 1, '群组图片上传增加了2积分', 'group_photo_upload', 'score', 2, 1262848006),
+(52, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1262855565),
+(53, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1262921185),
+(54, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1263533092),
+(55, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1263783619),
+(56, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1263868395),
+(57, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1263958588),
+(58, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1263965598);
 
 -- --------------------------------------------------------
 
