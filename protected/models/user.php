@@ -65,15 +65,17 @@ class user extends CActiveRecord
 			//修改密码
 			array('password,repassword,oldpassword','required', 'on' => 'modify'),
 			array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify'),
-			//修改email			
+			//修改email
+			array('email','required', 'on' => 'account'),
+			
 			array('password,repassword,email,username,sex,verifyCode,area','required', 'on' => 'reg'),
-			array('username', 'checkUsername', 'on'=>'reg'),
-			array('email', 'checkEmail', 'on'=>'reg,account'),
+			array('username', 'checkUsername'),
+			array('email', 'checkEmail'),
 			array('repassword', 'compare', 'compareAttribute'=>'password', 'on' => 'reg,modify','message' => '两次输入的密码不一样，请重输！'),
-		    array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd'),'on'=>'reg'),
+		    array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd'),'on'=>'reg,account'),
 		    
 		    //ajax验证
-			array('username', 'application.extensions.jformvalidate.ECustomJsValidator' ,'on' => 'reg',
+			array('username', 'application.extensions.jformvalidate.ECustomJsValidator' ,
 				'rules'    => array(
 					'remote' => Yii::app()->createUrl('/site/checkUsername'),
 				),
@@ -81,7 +83,7 @@ class user extends CActiveRecord
 					'remote' => '{attribute} already exist'
 				)
 			),
-			array('email', 'application.extensions.jformvalidate.ECustomJsValidator' ,'on' => 'reg',
+			array('email', 'application.extensions.jformvalidate.ECustomJsValidator' ,
 				'rules'    => array(
 					'remote' => Yii::app()->createUrl('/site/checkEmail'),
 				),
