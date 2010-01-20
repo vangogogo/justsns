@@ -6,9 +6,7 @@
 <?php echo CGoogleApi::init(); ?>
  
 <?php echo CHtml::script(
-    CGoogleApi::load('jquery','1.3.2') . "\n" .
-    CGoogleApi::load('jquery.ajaxqueue.js') . "\n" .
-    CGoogleApi::load('jquery.metadata.js')
+    CGoogleApi::load('jquery','1.3.2')
 ); ?>	
 <?php
 //colorbox
