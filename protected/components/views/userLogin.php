@@ -24,8 +24,8 @@
 	<?php endif; ?>
 
 	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'username'); ?>
-		<?php echo CHtml::activeTextField($model,'username'); ?>
+		<?php echo CHtml::activeLabelEx($model,'email'); ?>
+		<?php echo CHtml::activeTextField($model,'email'); ?>
 	</div>
 
 	<div class="row">
