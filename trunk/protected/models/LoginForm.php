@@ -11,6 +11,7 @@ class LoginForm extends CFormModel
 	public $password;
 	public $rememberMe;
 	public $verifyCode;
+	public $email;
 	/**
 	 * Declares the validation rules.
 	 * The rules state that username and password are required,
@@ -20,7 +21,8 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('username, password', 'required'),
+			//array('username, password', 'required'),
+			array('email, password', 'required'),
 			//验证码
 			//array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd')),
 			// password needs to be authenticated
@@ -53,7 +55,8 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())  // we only want to authenticate when no input errors
 		{
-			$identity=new UserIdentity($this->username,$this->password);
+			//$identity=new UserIdentity($this->username,$this->password);
+			$identity=new UserIdentity($this->email,$this->password);
 			$identity->authenticate();
 			switch($identity->errorCode)
 			{
@@ -62,8 +65,8 @@ class LoginForm extends CFormModel
 					Yii::app()->user->login($identity,$duration);
 					break;
 				case UserIdentity::ERROR_USERNAME_INVALID:
-					$this->addError('username','用户名错误.');
-					break;
+					$this->addError('email','邮箱错误.');
+					break;				
 				default: // UserIdentity::ERROR_PASSWORD_INVALID
 					$this->addError('password','密码错误.');
 					break;

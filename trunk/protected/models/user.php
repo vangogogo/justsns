@@ -138,7 +138,7 @@ class user extends CActiveRecord
 		$error_msg = '';
 		if($user->count('username=:username', array(':username'=>$this->username)) > 0) {
 			$error_msg = 'username already exist';
-			
+			$this->addError('email',$error_msg);
 			return false;
 		}
 		else 
@@ -154,7 +154,7 @@ class user extends CActiveRecord
 	 */
 	public function checkEmail() {
 		$user = self::model();
-		if($user->count('username=:email', array(':email'=>$this->email)) > 0) {
+		if($user->count('email=:email', array(':email'=>$this->email)) > 0) {
 			$error_msg = 'email already exist';
 			$this->addError('email',$error_msg);
 			return false;
