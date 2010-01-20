@@ -70,6 +70,23 @@ class AccountController extends Controller
 		    'thisLoginInfo' => $pLoginRecord[0],	
 		);
 		$this->render('security',$data);
+	}
+	
+	public function actionScore()
+	{
+		$form=new user();
+		$data = array(
+			'form' => $form,
+		);
+		$this->render('score',$data);
+	}
 
+	public function actionFaq()
+	{
+		$form=new user();
+		$data = array(
+			'form' => $form,
+		);
+		$this->render('faq',$data);
 	}
 }

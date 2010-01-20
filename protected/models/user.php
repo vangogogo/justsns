@@ -66,13 +66,13 @@ class user extends CActiveRecord
 			array('password,repassword,oldpassword','required', 'on' => 'modify'),
 			array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify'),
 			//修改email
-			array('email','required', 'on' => 'account'),
+			array('email,verifyCode','required', 'on' => 'account'),
 			
 			array('password,repassword,email,username,sex,verifyCode,area','required', 'on' => 'reg'),
 			array('username', 'checkUsername'),
 			array('email', 'checkEmail'),
 			array('repassword', 'compare', 'compareAttribute'=>'password', 'on' => 'reg,modify','message' => '两次输入的密码不一样，请重输！'),
-		    array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd'),'on'=>'reg,account'),
+		    array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd')),
 		    
 		    //ajax验证
 			array('username', 'application.extensions.jformvalidate.ECustomJsValidator' ,
