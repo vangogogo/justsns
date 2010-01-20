@@ -27,7 +27,7 @@
 			'errorPlacement' => 'function(error, element) {element.parents("li").find("div.error_info").show(); var error_label = element.parent("div").next("div").find(".clue p");error.appendTo(error_label);}',
 			//正确显示
 			'success'=>'function(label) { label.parents("div.error_info").hide().prev(".success").show();}',
-			'keyup' 				=> true,
+			'keyup' 				=> false,
 			'focusout' 				=> true,
 			
 			'highlight' 			=> '
