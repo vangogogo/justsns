@@ -31,14 +31,17 @@ class UserIdentity extends CUserIdentity
 
 			//$this->setState('role', '管理员');
 			//保存登录记录
-			/*
-			$arr = array(
-				'lastLoginTime' => date('Y-m-d H:i:s'),
-				'lastLoginIp' => Yii::app()->request->userHostAddress,
-			);
 
-			$user->saveAttributes($arr);
-			*/
+			$arr = array(
+				'uid' => $user->id,
+				'login_time' => strtotime('NOW'),
+				'login_ip' => Yii::app()->request->userHostAddress,
+			);
+			$model = new LoginRecord();
+			$model->attributes = $arr;
+			$model->save();
+			//LoginRecord::model()->saveAttributes($arr);
+
             $this->errorCode=self::ERROR_NONE;
 		}
 		return !$this->errorCode;
