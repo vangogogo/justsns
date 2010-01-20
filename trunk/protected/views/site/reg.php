@@ -1,16 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/reg.css" />
-	<div class="RegBox">
-		<p class="alR cGray2">已经注册的用户请 <?php echo CHtml::link('登录',array('/site/login'))?></p>
-		<h1 class="cBlue">注册：完善你的个人信息，加入{$site_opts.site_name}</h1>
-		<p class="cGray">{$site_opts.site_name}是帮助你与朋友、同事、同学、家人保持更紧密联系的真实社交平台，在这里你可以及时了解他们的最新动态；结识更多的新朋友</p>
-<style>
-	.error_info {display:none;}
-	.cc .invalid {
-		background:#FBE6F2 none repeat scroll 0 0;
-		border:1px solid #D893A1;
-		color:#996633;
-	}
-</style>
 <?php
 		$CS=Yii::app()->jformvalidate;
 		echo $CS->beginForm(); 
@@ -40,6 +27,11 @@
 		));
 		
 ?>
+	<div class="RegBox jsvform">
+		<p class="alR cGray2">已经注册的用户请 <?php echo CHtml::link('登录',array('/site/login'))?></p>
+		<h1 class="cBlue">注册：完善你的个人信息，加入{$site_opts.site_name}</h1>
+		<p class="cGray">{$site_opts.site_name}是帮助你与朋友、同事、同学、家人保持更紧密联系的真实社交平台，在这里你可以及时了解他们的最新动态；结识更多的新朋友</p>
+
 
 <?php echo CHtml::errorSummary($form);?>
 			<input type="hidden" name="code" value="{$code}">
@@ -227,5 +219,5 @@
 					<div class="c"></div>
 				</li>
 			</ul>
-<?php echo $CS->endForm(); ?>
-	</div>
+
+	</div><?php echo $CS->endForm(); ?>
