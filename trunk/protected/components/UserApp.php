@@ -7,6 +7,10 @@ class UserApp extends CPortlet
 
 	protected function renderContent()
 	{
-		$this->render('userApp');
+		$apps = App::model()->findAll();
+		$data = array(
+			'apps' => $apps
+		);
+		$this->render('userApp',$data);
 	}
 }

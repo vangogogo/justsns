@@ -55,7 +55,7 @@ class user extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('commend, active, ctime, identity, score', 'numerical', 'integerOnly'=>true),
-			array('email, username, handle, birthday, current_province, current_city, current_area, admin_level', 'length', 'max'=>255),
+			array('email, username, handle, birthyear,birthmonth,birthday, current_province, current_city, current_area, admin_level', 'length', 'max'=>255),
 			
 			array('blood_type', 'length', 'max'=>5),
 			
@@ -67,6 +67,8 @@ class user extends CActiveRecord
 			array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify'),
 			//修改email
 			array('email,verifyCode','required', 'on' => 'account'),
+			//基本资料
+			array('username','required', 'on' => 'base'),
 			
 			array('password,repassword,email,username,sex,verifyCode,area','required', 'on' => 'reg'),
 			array('username', 'checkUsername'),
@@ -107,6 +109,17 @@ class user extends CActiveRecord
 		);
 	}
 
+	public function getBloodTypes()
+	{
+		return array(
+			'O型' => 'O型',
+			'A型' => 'A型',
+			'B型' => 'B型',
+			'AB型' => 'AB型',
+			'稀有血型' => '稀有血型'
+		);
+		
+	}
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -119,6 +132,8 @@ class user extends CActiveRecord
 			'username' => '用户名',
 			'handle' => 'Handle',
 			'sex' => '性别',
+			'birthyear' => '年份',
+			'birthmonth' => '月份',
 			'birthday' => '生日',
 			'blood_type' => '血型',
 			'current_province' => '省份',
