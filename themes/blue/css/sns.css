@@ -1,8 +1,18 @@
+@charset "utf-8";
+/*
+SNS样式
+*/
 a {color:#005FAB;text-decoration:none;}
 .container {width:1000px;}
 .column1 #content{background:none;padding:20px;border-left:1px solid #D1D1D1}
 .error_info {display:none;}
 .cc .invalid {background:#FBE6F2;border:1px solid #D893A1;color:#996633;}
+
+textarea, input, select {
+border:1px solid #DDDDDD;
+line-height:16px;
+padding:3px 2px;
+}
 
 #header { height:40px; width:1000px; text-align:left; position:relative; margin-right: auto; margin-left: auto; background-image: url(../images/header_bg.gif); background-repeat: repeat-x; background-position: 0px 0px; background-color: #1f73bb; }
 #header #logo { float:left; position:absolute; top:0px; left:0px; font-weight:700; font-size:28px;}
@@ -68,7 +78,7 @@ a {color:#005FAB;text-decoration:none;}
 .page_title h2 { font-size:14px; color:#000000; font-weight:bold; line-height:25px; float:left; height:25px; margin-bottom:10px; clear:both }
 .data { clear: both; }
 .data ul { padding: 0px; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; }
-.data ul li { clear: both; overflow: hidden; width: 100%; line-height: 24px; margin-top: 10px; }
+.data ul li { clear: both; overflow: hidden; width: 100%; line-height: 24px; margin: 5px 0; }
 /* TAB */
 .tab-menu { background-image:url(../images/tab_line_bg.gif); background-repeat:repeat-x; background-position:0px bottom; clear:both; height: 35px; width: 100%; overflow: visible; white-space: nowrap; }
 .tab-menu ul { margin-left: 10px; height: 27px; padding-top:8px; }
@@ -258,13 +268,14 @@ a {color:#005FAB;text-decoration:none;}
 	clear: both;
 	float: none;
 	overflow: visible;
-	margin-top: 8px;
+	margin: 5px 0;
+	padding: 3px 0;
 }
 .jsvform ul li .cl {
 	float: left;
 	width: 15%;
 	text-align: right;
-	line-height: 20px;
+	line-height: 24px;
 	color: #666666;
 }
 .jsvform ul li .cl em {

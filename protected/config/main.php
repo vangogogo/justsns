@@ -5,6 +5,7 @@ require('DatabaseConfig.php');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+$path=dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'..';
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Yii TEST',
@@ -21,6 +22,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'application.extensions.jformvalidate.*', //our extension
+		'application.extensions.CUplodifyWidget.*',
 		//'application.extensions.yiidebugtb.*', //our extension
 
 	),
@@ -152,10 +154,10 @@ return array(
 		),
 	
 		'blog'=>array(
-			"title"=>'我的博客',
+			"layout"=>"application.views.layouts.main",
 		),
 		'admin'=>array(
-			"title"=>'后台系统',
+			"layout"=>"application.views.layouts.main",
 		),
 		'user'=>array(
 			"layout"=>"application.views.layouts.main",
@@ -176,5 +178,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-	),
+		'upload_dir'=>'/yiisns/uploads/images/',
+		'uploadPath'=>$path.'/uploads/images/'
+	),	
 );
