@@ -56,6 +56,7 @@ class InfoController extends Controller
 
 	public function actionFace()
 	{
+	
 		$form=new user();
 		$data = array(
 			'form' => $form,
@@ -190,9 +191,8 @@ class InfoController extends Controller
 
 	//获取上传路径
 	function getfilepath($fileext, $mkdir=false, $upload_dir = '') {
-
-
 		$filepath = Yii::app()->user->id.'_'.time().'.'.$fileext;
+		//Yii::log($filepath,'error');
 		$name1 = gmdate('Ym');
 		$name2 = gmdate('j');
 
