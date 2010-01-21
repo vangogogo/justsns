@@ -135,25 +135,25 @@
 				<li>
 					<div class="cl">出生日期：</div>
 					<div class="cc">
-						<select name="birthday_year">
-							<?php for($i=1930;$i<=2009;$i++){?>
-								<option value="<?php echo $i;?>" <?php if($i == 1980) echo 'selected'; ?> ><?php echo $i;?></option>
-							<?php }?>
-						</select>年 
-						<select name="birthday_month" id="birthday_month">
-							<?php for($i=1;$i<=12;$i++){ ?>
-								<option value="<?php echo $i;?>"><?php echo $i;?></option>
-							<?php } ?>
-						</select>月 
-						<select name="birthday_day" id="birthday_day">
-							<?php for($i=1;$i<=31;$i++){ ?>
-								<option value="<?php echo $i;?>"><?php echo $i;?></option>
-							<?php } ?>
-						</select>日												
+						<?php
+							for($i=1930;$i<=2009;$i++){
+								$years[$i] = $i;
+							}
+							for($i=1;$i<=12;$i++){
+								$months[$i] = $i;
+							}
+							for($i=1;$i<=31;$i++){
+								$days[$i] = $i;
+							}										
+						?>
+				<?php echo $CS->activeDropDownList($form,'birthyear',$years,array('empty'=>'')); ?>年 
+				<?php echo $CS->activeDropDownList($form,'birthmonth',$months,array('empty'=>'')); ?>月 
+				<?php echo $CS->activeDropDownList($form,'birthday',$days,array('empty'=>'')); ?>日													
 					</div>
 					<div class="c"></div>
 					
 				</li>
+				
 				<li>
 					 <div class="cl">居住城市：</div>
 					<div class="cc">
