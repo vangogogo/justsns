@@ -102,6 +102,7 @@ class InfoController extends Controller
 				}
 			
 				//获取目录
+				$filepath = Yii::app()->user->id.'_'.time().'.'.$fileext;
 				if(!$filepath = $this->getfilepath($fileext, true)) {
 					$msg = 'unable_to_create_upload_directory_server';
 				}
