@@ -5,6 +5,9 @@
 	<meta name="language" content="en" />
 
 <?php
+
+Yii::app()->clientScript->registerCoreScript('jquery');
+Yii::app()->getClientScript()->registerScriptFile('js/jquery-ui-1.7.2.custom.min.js');
 //colorbox
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.js');
 Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.css');
@@ -13,7 +16,6 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/scree
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/print.css','print');
 
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/public.css');
-Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/form.css');
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
 ?>	
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
