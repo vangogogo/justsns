@@ -41,7 +41,7 @@ class LoginForm extends CFormModel
 			'userid' => 'Userid',
 			'username' => '用户名',
 			'password' => '密　码',
-			'email' => '邮箱',
+			'email' => '邮　箱',
 			'profile' => '用户信息',
 			'rememberMe'=>'下次自动登录(保持30天)',
 		);
