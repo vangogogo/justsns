@@ -49,19 +49,25 @@ $(document).ready(function() {
 			<?php 
 			
 			$friend_item = array(
-				array('label'=>'我的好友', 'url'=>array('/site/index')),
-				array('label'=>'好友屏蔽', 'url'=>array('/site/page')),
-				array('label'=>'访问脚印', 'url'=>array('/site/contact')),
-				array('label'=>'查找朋友', 'url'=>array('/site/page')),
-				array('label'=>'邀请好友', 'url'=>array('/site/contact')),					
+				array('label'=>'我的好友', 'url'=>array('/friend/index')),
+				array('label'=>'好友屏蔽', 'url'=>array('/friend/ping')),
+				array('label'=>'访问脚印', 'url'=>array('/friend/track')),
+				array('label'=>'查找朋友', 'url'=>array('/friend/find')),
+				array('label'=>'邀请好友', 'url'=>array('/friend/invite')),
 			);
-			
+			$notice_item = array(
+				array('label'=>'短消息', 'url'=>array('/site/index')),
+				array('label'=>'系统通知', 'url'=>array('/site/page')),
+				array('label'=>'好友请求', 'url'=>array('/site/contact')),
+				array('label'=>'留言板', 'url'=>array('/site/page')),
+			);
 		$this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
 					array('label'=>'首页', 'url'=>array('/site/index')),
 					array('label'=>'个人空间', 'url'=>array('/site/page', 'view'=>'about')),
-					array('label'=>'Contact', 'url'=>array('/site/contact')),
 					array('label'=>'好友', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
+					array('label'=>'随便看看', 'url'=>array('/site/contact')),
+					array('label'=>'信息', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $notice_item),
 				),
 				'submenuHtmlOptions'=>array('class'=>'dropmenu'),
 			)); ?>

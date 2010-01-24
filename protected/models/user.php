@@ -224,5 +224,24 @@ class user extends CActiveRecord
 			$model->attributes = $attribute;
 			$model->save();
 		}	
+	}
+
+	/**
+	 * 获得用户心情
+	 */	
+	public function getUserMini()
+	{
+		$mini = '天天好心情';
+		return $mini;
+	}
+	
+	/**
+	 * 获得用户头像
+	 */	
+	public function getUserFace($uid,$type = 'small')
+	{
+		if(empty($uid))
+			$uid = $this->id;
+		return $mini;
 	}		
 }

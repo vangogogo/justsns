@@ -28,7 +28,7 @@ padding:3px 2px;
 #header #mainmenu ul li a.fb14 { color:#FFFFFF; white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
 #header #mainmenu ul li a { color:#FFFFFF; white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
 #header #mainmenu ul li .dropmenu { visibility: hidden; z-index: 9000; top: 30px; left: -2px; position: absolute; width: 110px; }
-#header #mainmenu ul li .dropmenu li{  }
+#header #mainmenu ul li .dropmenu li{ width:100%; }
 #header #mainmenu ul li.on .ico_arrow { background-image:url(../images/ico_arrow.gif); background-repeat:no-repeat; background-position:45px center; }
 #header #mainmenu ul li.on .dropmenu { background: #FFF url(../images/dropmenu_bg.gif) no-repeat left top; z-index: 9000; top: 30px; left: -2px; position: absolute; width: 110px; text-align: left; padding-bottom: 5px; border-top-width: 0px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #6bafd4; border-right-color: #6bafd4; border-bottom-color: #6bafd4; border-left-color: #6bafd4; visibility: visible; font-size: 12px; }
 #header #mainmenu ul li.on .dropmenu a { line-height: 20px; font-size: 12px; background-color:#fff; font-weight: normal; display: block; margin: 5px 5px 0px; padding: 0px 0px 0px 10px;color:#005FAB;; }
@@ -227,6 +227,7 @@ padding:3px 2px;
 .pop_box ul li img{ border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; height: 16px; width: 16px; }
 /* 心情回复 */ 
 .bg_huifu { background-image: url(../images/bg_huifu.gif); background-repeat: no-repeat; background-position: left top; padding-top: 5px; }
+.gd { border:1px solid #C6DDEE;height:100px;line-height:25px;overflow:auto;padding:5px;width:353px;}
 /*
 注册样式
 */

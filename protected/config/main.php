@@ -166,9 +166,6 @@ return array(
 		'group'=>array(
 			'layout'=>'application.views.layouts.main',
 		),
-		'friend'=>array(
-			'layout'=>'application.views.layouts.main',
-		),
 		'greeting'=>array(
 			'layout'=>'application.views.layouts.main',
 		),
