@@ -106,6 +106,7 @@ class user extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+
 		);
 	}
 
@@ -238,10 +239,13 @@ class user extends CActiveRecord
 	/**
 	 * 获得用户头像
 	 */	
-	public function getUserFace($uid,$type = 'small')
+	public function getUserFace($uid = '',$type = 'middle')
 	{
 		if(empty($uid))
 			$uid = $this->id;
-		return $mini;
+		$uid = 1;
+		$image = Yii::app()->params['upload_dir'].'userface/'.$uid.'_'.$type.'_face.jpg';
+
+		return $image;
 	}		
 }
