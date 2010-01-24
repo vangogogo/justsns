@@ -28,9 +28,10 @@ padding:3px 2px;
 #header #mainmenu ul li a.fb14 { color:#FFFFFF; white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
 #header #mainmenu ul li a { color:#FFFFFF; white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
 #header #mainmenu ul li .dropmenu { visibility: hidden; z-index: 9000; top: 30px; left: -2px; position: absolute; width: 110px; }
+#header #mainmenu ul li .dropmenu li{  }
 #header #mainmenu ul li.on .ico_arrow { background-image:url(../images/ico_arrow.gif); background-repeat:no-repeat; background-position:45px center; }
 #header #mainmenu ul li.on .dropmenu { background: #FFF url(../images/dropmenu_bg.gif) no-repeat left top; z-index: 9000; top: 30px; left: -2px; position: absolute; width: 110px; text-align: left; padding-bottom: 5px; border-top-width: 0px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #6bafd4; border-right-color: #6bafd4; border-bottom-color: #6bafd4; border-left-color: #6bafd4; visibility: visible; font-size: 12px; }
-#header #mainmenu ul li.on .dropmenu a { line-height: 20px; font-size: 12px; background-color:#fff; font-weight: normal; display: block; margin: 5px 5px 0px; padding: 0px 0px 0px 10px; }
+#header #mainmenu ul li.on .dropmenu a { line-height: 20px; font-size: 12px; background-color:#fff; font-weight: normal; display: block; margin: 5px 5px 0px; padding: 0px 0px 0px 10px;color:#005FAB;; }
 #header #mainmenu ul li.on .dropmenu a:hover { background-color: #E8F7FF; text-decoration: none; color: #005FAB; }
 #header #mainmenu_sub { position:absolute; white-space:nowrap; color:#D5ECFF; right:10px; top:15px; }
 #header #mainmenu_sub a { color:#D5ECFF; }
