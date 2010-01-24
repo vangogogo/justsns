@@ -25,18 +25,45 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.c
 </head>
 
 <body>
+<script>
+$(document).ready(function() { 
+	$('.dropmenu').parents('li').hover(
+		function() {
+			$(this).addClass("on");
+			$(this).children('a').addClass("fb14");
+		},
+		function() {
+			$(this).removeClass("on");
+			$(this).children('a').addClass("fb14");
+		}
+	); 
+	
+}); 
 
+</script>
 <div class="container" id="page">
 
 	<div id="header">
 		<div id="logo" class="span-4"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 		<div id="mainmenu" class="span-21 last">
-			<?php $this->widget('zii.widgets.CMenu',array(
+			<?php 
+			
+			$friend_item = array(
+				array('label'=>'我的好友', 'url'=>array('/site/index')),
+				array('label'=>'好友屏蔽', 'url'=>array('/site/page')),
+				array('label'=>'访问脚印', 'url'=>array('/site/contact')),
+				array('label'=>'查找朋友', 'url'=>array('/site/page')),
+				array('label'=>'邀请好友', 'url'=>array('/site/contact')),					
+			);
+			
+		$this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
-					array('label'=>'Home', 'url'=>array('/site/index')),
-					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+					array('label'=>'首页', 'url'=>array('/site/index')),
+					array('label'=>'个人空间', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
+					array('label'=>'好友', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
 				),
+				'submenuHtmlOptions'=>array('class'=>'dropmenu'),
 			)); ?>
 		</div><!-- mainmenu -->
 		<div id="nav_sub">

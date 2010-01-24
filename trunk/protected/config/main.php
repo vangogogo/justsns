@@ -23,6 +23,7 @@ return array(
 		'application.components.*',
 		'application.extensions.jformvalidate.*', //our extension
 		'application.extensions.CUplodifyWidget.*',
+		'application.extensions.CDropDownMenu.*', //our extension
 		'application.extensions.yiidebugtb.*', //our extension
 
 	),
