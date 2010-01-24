@@ -18,8 +18,15 @@
 	<ul style="padding: 0px;margin: 10px auto 0px auto;">
 		<?php foreach($friends as $friend){?>
 			<li class="btmlineD li pb10 pt5" id="fri_<?php echo $friend['id']?>" >
-				<div class="left" style="width:70px;"><span class="headpic50">
-						<a href="__APP__/space/{$user.fuid}"  class="tips" rel="__TS__/Index/userInfo/uid/{$user['fuid']}"><img src="{$user.fuid|getUserFace='middle'}" /></a></span></a></div>
+				<div class="left" style="width:70px;">
+					<span class="headpic50">
+					
+						
+					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$friend['id']));?>"  class="tips" rel="__TS__/Index/userInfo/uid/{$user['fuid']}">
+						<img src="<?php echo $friend->getUserFace();?>" />
+					</a>
+					</span>
+				</div>
 				<div class="left" style="width:450px; margin-right:50px;">
 					<p class="lh20">
 						<?php echo CHtml::link($friend['username'],array('/space/','uid'=>$friend['id']),array('id'=>'fname_'.$friend['id']));?>
