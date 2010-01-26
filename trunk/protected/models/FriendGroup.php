@@ -35,8 +35,10 @@ class FriendGroup extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('uid', 'numerical', 'integerOnly'=>true),
-			array('uid', 'required'),			
+			array('uid', 'required'),
 			array('name', 'length', 'max'=>255),
+			
+			array('name','required', 'on' => 'add'),
 		);
 	}
 

@@ -50,11 +50,13 @@ class Friend extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
+		$fbg = FriendBelongGroup::model()->tableName() ;
 		return array(
 			'user'=>array(self::BELONGS_TO, 'user', 'fuid'),
-			'group' => array(self::HAS_MANY, 'FriendBelongGroup', 'uid', 'condition'=>'group.gid=:gid AND group.fuid=friend.fuid', 'joinType'=>'INNER JOIN',
-
-			),									
+			'group' => array(self::HAS_MANY, 'FriendBelongGroup', 'uid', 
+				'condition'=>'group.gid=:gid AND group.fuid=friend.fuid', 
+				'joinType'=>'INNER JOIN',
+			),
 		);
 	}
 

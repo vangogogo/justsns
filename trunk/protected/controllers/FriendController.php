@@ -23,30 +23,23 @@ class FriendController extends Controller
 			$is_me = true;
 		}
 
-		
+		$model = new Friend();
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='id';
-		$criteria->condition="uid=:uid";
+		$criteria->condition="t.uid=:uid";
 		$criteria->params=array(':uid'=>Yii::app()->user->id);
 
-		if(empty($gid))
+
+		if(!empty($gid))
 		{
-			$criteria->addCondition('status= 1');
-			$model = new Friend();
-		}
-		else
-		{
+			$criteria->join = "left join friend_belong_group on friend_belong_group.uid = t.uid ";
 			$criteria->addCondition('gid='.$gid);
-			$model = new FriendBelongGroup();
+	
 		}
-
-
+		
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
-
-
-		
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
@@ -90,7 +83,7 @@ class FriendController extends Controller
 	{
 		
 		$criteria=new CDbCriteria;
-		$criteria->condition = 'uid=:uid OR uid = 0';
+		$criteria->condition = '(uid=:uid OR uid = 0) AND id != 1';
 		$criteria->params = array(':uid'=>Yii::app()->user->id);
 		$friendGroup = FriendGroup::model()->findAll($criteria);
 		if(empty($friendGroup))
@@ -118,30 +111,31 @@ class FriendController extends Controller
 			}
 		}
 
-		if(isset($_POST))
+		if(!empty($_POST))
 		{
 
-
-			foreach($_POST['FriendBelongGroup'] as $gid)
+			if(!empty($_POST['FriendBelongGroup']))
 			{
-				//已经存在则剔除
-				if(in_array($gid,$frienBelongdGroup))
+				foreach($_POST['FriendBelongGroup'] as $gid)
 				{
-					unset($frienBelongdGroup[$gid]);
-				}
-				else
-				{
-					$attributes = array(
-						'uid' => Yii::app()->user->id,
-						'fuid' => $fuid,
-						'gid' => $gid,
-					);
-					$model=new FriendBelongGroup;
-					$model->attributes=$attributes;
-					$model->save();
+					//已经存在则剔除
+					if(in_array($gid,$frienBelongdGroup))
+					{
+						unset($frienBelongdGroup[$gid]);
+					}
+					else
+					{
+						$attributes = array(
+							'uid' => Yii::app()->user->id,
+							'fuid' => $fuid,
+							'gid' => $gid,
+						);
+						$model=new FriendBelongGroup;
+						$model->attributes=$attributes;
+						$model->save();
+					}
 				}
 			}
-
 			if(!empty($frienBelongdGroup))
 			{
 				foreach($frienBelongdGroup as $gid)
@@ -439,7 +433,7 @@ class FriendController extends Controller
 	//分组功能
 	public function actionAddGroup() {
 		$model=new FriendGroup;
-
+		$model->scenario = 'add';
 		if(isset($_POST['FriendGroup']))
 		{
 			$model->attributes=$_POST['FriendGroup'];
@@ -456,7 +450,7 @@ class FriendController extends Controller
 		
 		
 		if(Yii::app()->request->isAjaxRequest) {
-			$this->renderPartial('friendGroup',$data);
+			$this->renderPartial('friendGroup',$data,'',TRUE,TRUE);
 		}else{
 			$this->render('friendGroup',$data);
 		}
