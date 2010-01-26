@@ -2,16 +2,7 @@
     include('_top.php');
 ?>
 <div class="sidebar pt10">
-	<div class="FSort">
-		<div class="tit">
-			<a class="f12px fn right mr5" href="javascript:addGroup()">添加分组</a>
-			好友分组
-		</div>
-		<ul id="f_group">
-			<li class="on"><a href="http://localhost/thinksns/index.php?s=/Friend/index">所有好友(2)</a></li>
-			<li id="fli_1"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/1">未分组(0)</a></li>
-		<div class="btm"></div>
-	</div>
+	<?php if(!Yii::app()->user->isGuest) $this->widget('WFriendGroup'); ?>
 </div>
 
 <div class="FList"><!-- 我的好友 begin  -->
