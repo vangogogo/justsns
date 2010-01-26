@@ -201,7 +201,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			}else{// not an iframe, ajax
 					if($("#TB_window").css("display") != "block"){
 						if(params['modal'] != "true"){//ajax no modal
-						$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton'>关闭</a> </div></div><div id='TB_ajaxContent'></div>");
+						$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><a href='#' id='TB_closeWindowButton' title='Close'>关闭</a> </div></div><div id='TB_ajaxContent'></div>");
 						}else{//ajax modal
 						$("#TB_overlay").unbind();
 						$("#TB_window").append("<div id='TB_ajaxContent' class='TB_modal' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px;'></div>");
