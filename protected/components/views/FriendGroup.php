@@ -11,10 +11,9 @@
 		<?php foreach($groups as $group){?>
 		<li<?php if($group['id']==$_GET['gid']) echo ' class="on"';?>>
 			<?php echo CHtml::link($group['name'].'('.Friend::model()->getFriendNumber('',$group['id']).')',array('/friend/index','gid'=>$group['id']));?>
+			<?php if($group['uid'] != 0) echo CHtml::link('删除',array('/friend/delGroup','gid'=>$group['id']),array('class'=>'thickbox'));?>
 		</li>
-		<?php }?>
-		<li id="fli_1"><a href="http://localhost/thinksns/index.php?s=/Friend/index/gid/1">未分组(0)</a></li>
-		
+		<?php }?>		
 	</ul>
 	<?php }?>
 	<div class="btm"></div>
