@@ -118,7 +118,7 @@ class FriendController extends Controller
 			}
 		}
 
-		if(isset($_POST['FriendBelongGroup']))
+		if(isset($_POST))
 		{
 
 
@@ -222,7 +222,7 @@ class FriendController extends Controller
 		if(isset($_POST['Friend']))
 		{
 			if($model->delete())
-				$this->redirect(array('list'));
+				$this->redirect(array('index'));
 		}		
 		
 		$data = array(
@@ -461,4 +461,41 @@ class FriendController extends Controller
 			$this->render('friendGroup',$data);
 		}
 	}
+	
+	/**
+	 * 好友删除，需要将对应的好友字段删除
+	 */
+	public function actionDelGroup()
+	{
+		$model=new FriendGroup;
+		
+		$uid = Yii::app()->user->id;
+		$gid = Yii::app()->request->getParam('gid');
+
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'uid=:uid AND id=:gid';
+		$criteria->params = array(':uid'=>$uid,':gid'=>$gid);
+		$model = $model->find($criteria);
+
+		if(empty($model))
+		{
+			throw new CHttpException(404,'不是你的分组.');
+		}
+		
+		if(isset($_POST['FriendGroup']))
+		{
+			if($model->delete())
+				$this->redirect(array('index'));
+		}		
+		
+		$data = array(
+			'model' => $model,
+		);
+		
+		if(Yii::app()->request->isAjaxRequest) {
+			$this->renderPartial('deleteGroup',$data);
+		}else{
+			$this->render('deleteGroup',$data);
+		}
+	}	
 }
