@@ -18,30 +18,40 @@ class FriendController extends Controller
 		$gid = Yii::app()->request->getParam('gid');
 		$uid = Yii::app()->request->getParam('uid');
 		if($uid) {
-				$is_me = ($this->mid == $uid);
+			$is_me = ($this->mid == $uid);
 		}else {
-				$is_me = true;
+			$is_me = true;
 		}
 
+		
 		 //初始化
 		$criteria=new CDbCriteria;
-		$criteria->order='dateline';
-		$criteria->condition="uid=:uid AND status = 1";
+		$criteria->order='id';
+		$criteria->condition="uid=:uid";
 		$criteria->params=array(':uid'=>Yii::app()->user->id);
 
-		if(!empty($gid))
+		if(empty($gid))
+		{
+			$criteria->addCondition('status= 1');
+			$model = new Friend();
+		}
+		else
 		{
 			$criteria->addCondition('gid='.$gid);
+			$model = new FriendBelongGroup();
 		}
 
-		//取得数据总数,分页显示
-		$total = Friend::model()->count($criteria);
 
+		//取得数据总数,分页显示
+		$total = $model->count($criteria);
+
+
+		
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$friend_list = Friend::model()->with('user')->findAll($criteria);
+		$friend_list = $model->with('user')->findAll($criteria);
 		//好友信息,获取好友记录等等
 		$friends = array();
 		if(!empty($friend_list))
@@ -426,4 +436,29 @@ class FriendController extends Controller
 		echo Friend::model()->getFriendNumber(Yii::app()->user->id,$gid);
 	}
 	
+	//分组功能
+	public function actionAddGroup() {
+		$model=new FriendGroup;
+
+		if(isset($_POST['FriendGroup']))
+		{
+			$model->attributes=$_POST['FriendGroup'];
+			
+			if($model->save())
+			{
+				$this->redirect(array('index'));
+			}
+
+		}
+		$data = array(
+			'model' => $model,
+		);
+		
+		
+		if(Yii::app()->request->isAjaxRequest) {
+			$this->renderPartial('friendGroup',$data);
+		}else{
+			$this->render('friendGroup',$data);
+		}
+	}
 }

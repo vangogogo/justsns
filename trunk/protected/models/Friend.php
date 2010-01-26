@@ -145,8 +145,12 @@ class Friend extends CActiveRecord
 	/**
 	 * 好友数
 	 */	
-	public function getFriendNumber($uid,$gid = 0)
+	public function getFriendNumber($uid = '',$gid = 0)
 	{
+		if(empty($uid))
+		{
+			$uid = Yii::app()->user->id;
+		}
 		$criteria=new CDbCriteria;
 		$criteria->condition = 'uid=:uid ';
 		$criteria->params = array(':uid'=>$uid);

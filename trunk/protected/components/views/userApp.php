@@ -5,7 +5,10 @@
 		<ul>
 			<?php foreach($apps as $app){?>
 			<li>
-				<?php echo CHtml::link($app['name'],array('/'.$app['enname']),array('class'=>'a14'))?>
+				<?php 
+				$icon = CHtml::image(Yii::app()->theme->baseUrl.'/images/apps/'.$app['icon'],$app['name']);
+				
+			echo CHtml::link($icon.$app['name'],array('/'.$app['enname']),array('class'=>'a14'))?>
 				<?php if(!empty($app["add_name"])) {?>
 					<span>
 						<?php echo CHtml::link($app['add_name'],array('/'.$app['enname'].'/create'))?>					
