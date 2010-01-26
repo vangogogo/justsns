@@ -1,13 +1,11 @@
-<div class="grid_20">
 <?php echo CHtml::beginForm(); ?>
 	<?php echo CHtml::activeHiddenField($model,'fuid');?>
 	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td height="22">将<?php echo $model->fusername?>从我的好友中删除？</td>
-		</tr>
-		<tr>
-			<td align="right"  height="25"><input name="" type="image" src="images/system/submit.gif" /></td>
+			<td height="22">确定解除和<?php echo $model->fusername?>的好友关系吗？？</td>
 		</tr>
 	</table>
+<div id="f_button" class="btm">
+		<input type="submit" value="提 交" class="btn_b" name="input" />
+</div>	
 <?php echo CHtml::endForm(); ?> 
-</div>

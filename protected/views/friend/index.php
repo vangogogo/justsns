@@ -23,7 +23,7 @@
 					
 						
 					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$friend['id']));?>"  class="tips" rel="__TS__/Index/userInfo/uid/{$user['fuid']}">
-						<img src="<?php echo $friend->getUserFace();?>" />
+						<img src="<?php echo $friend['face'];?>" />
 					</a>
 					</span>
 				</div>
@@ -35,7 +35,7 @@
 					<p class="cGray2 lh20">分组：
 						<?php echo CHtml::link('分组',array('/friend/group','id'=>$friend['id']),array('class'=>'thickbox','title'=>'修改好友分组'))?>
 					</p>
-					<p class="cGray2 lh20"><span class="wn">心情：</span>{$user.fuid|getUserMini}</p>
+					<p class="cGray2 lh20"><span class="wn">心情：</span><?php echo $friend['mini'];?></p>
 				</div>
 				<div class="left" style="width:60px;">
 					<p class="lh20">

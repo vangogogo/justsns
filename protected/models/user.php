@@ -106,6 +106,7 @@ class user extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'mini'=>array(self::HAS_ONE, 'mini', 'uid', 'order' => 'ctime DESC'),
 
 		);
 	}
@@ -232,8 +233,15 @@ class user extends CActiveRecord
 	 */	
 	public function getUserMini()
 	{
-		$mini = '天天好心情';
-		return $mini;
+		$model = new mini();
+		$uid = $this->id;
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime DESC';
+		$criteria->condition="uid=:uid";
+		$criteria->params=array(':uid'=>$uid);
+
+		$mini = $model->find($criteria);
+		return $mini['content'];
 	}
 	
 	/**
@@ -247,5 +255,13 @@ class user extends CActiveRecord
 		$image = Yii::app()->params['upload_dir'].'userface/'.$uid.'_'.$type.'_face.jpg';
 
 		return $image;
-	}		
+	}
+	
+	public function getUserInfo()
+	{
+		$arr = $this->attributes;
+		$arr['mini'] = $this->getUserMini();
+		$arr['face'] = $this->getUserFace();
+		return $arr;
+	}
 }
