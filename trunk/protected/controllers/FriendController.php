@@ -36,6 +36,7 @@ class FriendController extends Controller
 
 		//取得数据总数,分页显示
 		$total = Friend::model()->count($criteria);
+
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
@@ -49,7 +50,7 @@ class FriendController extends Controller
 			{
 				$user = $value->user;
 				if(!empty($user))
-					$friends[$key] = $user;
+					$friends[$key] = $user->getUserInfo();
 			}
 		}
 
@@ -196,12 +197,13 @@ class FriendController extends Controller
 		$model=new Friend;
 		
 		$uid = Yii::app()->user->id;
-		$fuid = Yii::app()->request->getParam('id');
+		$fuid = Yii::app()->request->getParam('uid');
 
 		$criteria=new CDbCriteria;
 		$criteria->condition = 'uid=:uid AND fuid=:fuid';
 		$criteria->params = array(':uid'=>$uid,':fuid'=>$fuid);
 		$model = Friend::model()->find($criteria);
+
 		if(empty($model))
 		{
 			throw new CHttpException(404,'不是好友.');
@@ -351,7 +353,7 @@ class FriendController extends Controller
 		foreach($friends as $key=>$value) {
 				$out[$key]["fUid"] = $value["fuid"];
 				$out[$key]["friendUserName"] = $value["fusername"];
-				$out[$key]["friendHeadPic"] = '';
+				$out[$key]["friendHeadPic"] = $value->getUserFace();
 		}
 
 
@@ -401,7 +403,7 @@ class FriendController extends Controller
 		foreach($friends as $key=>$value) {
 				$out[$key]["fUid"] = $value["fuid"];
 				$out[$key]["friendUserName"] = $value["fusername"];
-				$out[$key]["friendHeadPic"] = '';// getUserFace($v["fuid"])
+				$out[$key]["friendHeadPic"] = $value->getUserFace();
 		}
 
 		echo '('.CJSON::encode($out).')';

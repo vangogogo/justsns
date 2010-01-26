@@ -1,4 +1,3 @@
-
 <?php echo CHtml::beginForm(); ?>
 <div style="overflow-x: hidden; overflow-y: scroll;" id="gid" class="gd">
 <?php if(!empty($friendGroup)) { ?>
