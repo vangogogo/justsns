@@ -30,10 +30,10 @@
 			selectType:"multiple",
 
 
-			ajaxUrl: "<?php echo Yii::app()->createUrl('friend/friend/ajax')?>",
-			ajaxLoadAllUrl: "<?php echo Yii::app()->createUrl('friend/friend/getAllFriends')?>",
-			ajaxGetCountUrl: "<?php echo Yii::app()->createUrl('friend/friend/getCountUrl')?>",
-			ajaxGetFriendTypeUrl: "<?php echo Yii::app()->createUrl('friend/friend/getFriendType')?>",
+			ajaxUrl: "<?php echo Yii::app()->createUrl('/friend/ajax')?>",
+			ajaxLoadAllUrl: "<?php echo Yii::app()->createUrl('/friend/getAllFriends')?>",
+			ajaxGetCountUrl: "<?php echo Yii::app()->createUrl('/friend/getCountUrl')?>",
+			ajaxGetFriendTypeUrl: "<?php echo Yii::app()->createUrl('/friend/getFriendType')?>",
 			selectCallBack:function(fid, name, image) {
 				alert("您选择的好友ID为"+fid);
 				this.setDropDownListHide();

@@ -3,7 +3,7 @@
 <?php if(!empty($friendGroup)) { ?>
 	<?php if(is_array($friendGroup)) { foreach($friendGroup as $key => $value) { ?>
 		<div style="width: 50%; float: left; height: 25px;">
-      		<input name="FriendBelongGroup[<?php echo $value->id?>]" type="checkbox" value="<?php echo $value->id?>" <?php if(in_array($value->id,$frienBelongdGroup)) echo 'checked="true"'?>/><label style="width:160px"><?php echo $value->name?></label>
+      		<input id="FriendBelongGroup_<?php echo $value->id?>" name="FriendBelongGroup[<?php echo $value->id?>]" type="checkbox" value="<?php echo $value->id?>" <?php if(in_array($value->id,$frienBelongdGroup)) echo 'checked="true"'?>/><label for="FriendBelongGroup_<?php echo $value->id?>" style="width:160px"><?php echo $value->name?></label>
 		</div>
 	<?php } } ?>  
 <?php } ?>
