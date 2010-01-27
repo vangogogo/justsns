@@ -26,11 +26,6 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.c
 
 <body>
 <?php
-	$message = array(
-		'content' => 'Thank you for test YIISNS.',
-		'class' => 'good',
-	);
-	Yii::app()->user->setFlash('Emessage',$message);
 	if(Yii::app()->user->hasFlash('Emessage')){
 		$message = Yii::app()->user->getFlash('Emessage');
 		$this->widget('application.extensions.messagecenter.EMessageCenter',array('message'=>$message['content'],'class'=>$message['class']));

@@ -302,6 +302,15 @@ class FriendController extends Controller
 	}	
 	
 	/**
+	 * 用户屏蔽
+	 */
+	public function actionPing()
+	{
+		$data = array();
+		$this->render('ping',$data);
+	}
+	
+	/**
 	 * 用户列表
 	 */
 	public function actionFind()
@@ -357,7 +366,9 @@ class FriendController extends Controller
 		foreach($friends as $key=>$value) {
 				$out[$key]["fUid"] = $value["fuid"];
 				$out[$key]["friendUserName"] = $value["fusername"];
-				$out[$key]["friendHeadPic"] = $value->getUserFace();
+				$user = $value->user;
+				if(!empty($user))
+					$out[$key]["friendHeadPic"] = $user->getUserFace();
 		}
 
 
@@ -377,7 +388,7 @@ class FriendController extends Controller
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='dateline';
-		$criteria->condition="friend.uid=:uid AND status = 1";
+		$criteria->condition="t.uid=:uid AND status = 1";
 		$criteria->params=array(':uid'=>Yii::app()->user->id);
 		
 		$withOption=array('user');
@@ -388,26 +399,26 @@ class FriendController extends Controller
 			//去除AR，手动LEFT JOIN
 			$tablename = FriendBelongGroup::model()->tableName();
 			$modelname = Friend::model()->tableName();
-			$criteria->join = "LEFT JOIN {$tablename} ON {$tablename}.uid = {$modelname}.uid AND {$tablename}.fuid = {$modelname}.fuid";
+			$criteria->join = "LEFT JOIN {$tablename} ON {$tablename}.uid = t.uid AND {$tablename}.fuid = t.fuid";
 			$criteria->addCondition('gid='.$gid);
+		}
 
-			$total=Friend::model()->count($criteria);
-		}
-		else
-		{
-			$total=Friend::model()->count($criteria);
-		}
+		$total=$model->count($criteria);
+
 
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$friends=Friend::model()->with($withOption)->together()->findAll($criteria);
+		$friends=$model->with($withOption)->together()->findAll($criteria);
 		
 		foreach($friends as $key=>$value) {
+				$user = $value->user;
 				$out[$key]["fUid"] = $value["fuid"];
 				$out[$key]["friendUserName"] = $value["fusername"];
-				$out[$key]["friendHeadPic"] = $value->getUserFace();
+				$user = $value->user;
+				if(!empty($user))
+					$out[$key]["friendHeadPic"] = $user->getUserFace();
 		}
 
 		echo '('.CJSON::encode($out).')';

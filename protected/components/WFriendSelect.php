@@ -3,7 +3,7 @@
  * MainMenu is a widget displaying main menu items.
  *
  */
-class FriendSelect extends CWidget
+class WFriendSelect extends CWidget
 {
 	public $items=array();
 
