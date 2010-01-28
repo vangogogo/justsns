@@ -247,13 +247,28 @@ class user extends CActiveRecord
 	/**
 	 * 获得用户头像
 	 */	
-	public function getUserFace($uid = '',$type = 'middle')
+	public function getUserFace($uid = '',$size = 'middle')
 	{
+		$size = in_array($size, array('big', 'middle', 'small',"yuan")) ? $size : 'middle';
 		if(empty($uid))
 			$uid = $this->id;
 		$uid = 1;
-		$image = Yii::app()->params['upload_dir'].'userface/'.$uid.'_'.$type.'_face.jpg';
+		$path = Yii::app()->params['upload_dir'].'userface/';
+		$image = $path.$uid.'_'.$size.'_face.jpg';
 
+	    if(!file_exists($face_file)) {
+	        $info =  $api->user_getInfo($uid,"sex");
+	        if( $info['sex'] ) {
+	            return Yii::app()->theme->baseUrl."/images/pic2.gif";
+	        }else {
+	            return Yii::app()->theme->baseUrl."/images/pic1.gif";
+	        }
+	
+	    }else {
+	        $face_path2 = getFaceUrl($uid);
+	    }
+    		
+		
 		return $image;
 	}
 	
