@@ -166,7 +166,7 @@ return array(
 		'group'=>array(
 			'layout'=>'application.views.layouts.main',
 		),
-		'greeting'=>array(
+		'gift'=>array(
 			'layout'=>'application.views.layouts.main',
 		),
 	),
