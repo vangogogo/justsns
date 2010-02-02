@@ -13,7 +13,7 @@
 					<span class="headpic50">
 					
 						
-					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$friend['id']));?>"  class="tips" rel="__TS__/Index/userInfo/uid/{$user['fuid']}">
+					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$friend['id']));?>"  class="tips">
 						<img src="<?php echo $friend['face'];?>" />
 					</a>
 					</span>

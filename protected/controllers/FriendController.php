@@ -35,7 +35,6 @@ class FriendController extends Controller
 		{
 			$criteria->join = "left join friend_belong_group on friend_belong_group.uid = t.uid ";
 			$criteria->addCondition('gid='.$gid);
-	
 		}
 		
 		//取得数据总数,分页显示
