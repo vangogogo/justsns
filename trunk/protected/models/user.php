@@ -74,11 +74,11 @@ class user extends CActiveRecord
 			array('username', 'checkUsername'),
 			array('email', 'checkEmail'),
 			array('repassword', 'compare', 'compareAttribute'=>'password', 'on' => 'reg,modify','message' => '两次输入的密码不一样，请重输！'),
-		    array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd')),
-		    
-		    //ajax验证
+			array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd')),
+			
+			//ajax验证
 			array('username', 'application.extensions.jformvalidate.ECustomJsValidator' ,
-				'rules'    => array(
+				'rules'	=> array(
 					'remote' => Yii::app()->createUrl('/site/checkUsername'),
 				),
 				'messages' => array(
@@ -86,7 +86,7 @@ class user extends CActiveRecord
 				)
 			),
 			array('email', 'application.extensions.jformvalidate.ECustomJsValidator' ,
-				'rules'    => array(
+				'rules'	=> array(
 					'remote' => Yii::app()->createUrl('/site/checkEmail'),
 				),
 				'messages' => array(
@@ -253,23 +253,25 @@ class user extends CActiveRecord
 		if(empty($uid))
 			$uid = $this->id;
 		$uid = 1;
-		$path = Yii::app()->params['upload_dir'].'userface/';
+		$path = Yii::app()->params['uploadPath'].'userface/';
 		$image = $path.$uid.'_'.$size.'_face.jpg';
 
-	    if(!file_exists($face_file)) {
-	        $info =  $api->user_getInfo($uid,"sex");
-	        if( $info['sex'] ) {
-	            return Yii::app()->theme->baseUrl."/images/pic2.gif";
-	        }else {
-	            return Yii::app()->theme->baseUrl."/images/pic1.gif";
-	        }
+		if(!file_exists($image)) {
+			//男或女
+			//$info =  $api->user_getInfo($uid,"sex");
+			$info = $this->attributes;
+			if( $info['sex'] ) {
+				return Yii::app()->theme->baseUrl."/images/pic2.gif";
+			}else {
+				return Yii::app()->theme->baseUrl."/images/pic1.gif";
+			}
 	
-	    }else {
-	        $face_path2 = getFaceUrl($uid);
-	    }
-    		
+		}else {
+			$url = Yii::app()->params['upload_dir'].'userface/';
+			$image = $url.$uid.'_'.$size.'_face.jpg';
+			return $image;
+		}		
 		
-		return $image;
 	}
 	
 	public function getUserInfo()
