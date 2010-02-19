@@ -17,9 +17,11 @@ class FriendController extends Controller
 	{
 		$gid = Yii::app()->request->getParam('gid');
 		$uid = Yii::app()->request->getParam('uid');
-		if($uid) {
+		
+		if(!empty($uid)) {
 			$is_me = ($this->mid == $uid);
 		}else {
+			$uid = $this->mid;
 			$is_me = true;
 		}
 
@@ -28,8 +30,7 @@ class FriendController extends Controller
 		$criteria=new CDbCriteria;
 		$criteria->order='id';
 		$criteria->condition="t.uid=:uid";
-		$criteria->params=array(':uid'=>Yii::app()->user->id);
-
+		$criteria->params=array(':uid'=>$uid);
 
 		if(!empty($gid))
 		{
@@ -80,7 +81,22 @@ class FriendController extends Controller
 	 */
 	public function actionGroup()
 	{
-		
+		//检查是否好友
+		$uid = Yii::app()->user->id;
+		$fuid = Yii::app()->request->getParam('uid');
+
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'uid=:uid AND fuid=:fuid';
+		$criteria->params = array(':uid'=>$uid,':fuid'=>$fuid);
+		$model = Friend::model()->find($criteria);
+
+		if(empty($model))
+		{
+			//throw new CHttpException(404,'不是好友.');
+			echo '不是好友';
+			exit;
+		}	
+				
 		$criteria=new CDbCriteria;
 		$criteria->condition = '(uid=:uid OR uid = 0) AND id != 1';
 		$criteria->params = array(':uid'=>Yii::app()->user->id);
@@ -90,10 +106,8 @@ class FriendController extends Controller
 			//没有分组,先添加分组
 			//$this->redirect(array('group/create'));
 		}
-		
-		$fuid = Yii::app()->request->getParam('id');			
-		//检查是否好友
-		//尚未
+
+
 		
 		//好友所属的分组
 		$model=new FriendBelongGroup;

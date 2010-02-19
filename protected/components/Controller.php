@@ -12,8 +12,11 @@ class Controller extends CController
 	 */
 	public $breadcrumbs=array();
 	
+	public $mid = 0;
+	
 	public function init()
 	{
+		$this->mid = Yii::app()->user->id;
 		if(!Yii::app()->user->isGuest)
 		{
 			$this->layout='column2';

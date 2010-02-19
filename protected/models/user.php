@@ -281,4 +281,24 @@ class user extends CActiveRecord
 		$arr['face'] = $this->getUserFace();
 		return $arr;
 	}
+	
+	public function getUserName($uid = '')
+	{
+		if(!empty($this->username))
+		{
+			$user = $this;
+		}
+		else
+		{
+			$user = user::model()->findByPk($uid);
+		}
+		
+		return $user->username;
+	}
+	
+	public function getUserGroupIcon()
+	{
+		$GroupIcon = 'text';
+		return $GroupIcon;
+	}
 }

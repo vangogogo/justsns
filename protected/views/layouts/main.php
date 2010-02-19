@@ -70,7 +70,7 @@ $(document).ready(function() {
 		$this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
 					array('label'=>'首页', 'url'=>array('/site/index')),
-					array('label'=>'个人空间', 'url'=>array('/site/page', 'view'=>'about')),
+					array('label'=>'个人空间', 'url'=>array('/space', 'uid'=>Yii::app()->user->id)),
 					array('label'=>'好友', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
 					array('label'=>'随便看看', 'url'=>array('/site/contact')),
 					array('label'=>'信息', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $notice_item),
