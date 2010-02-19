@@ -1,5 +1,5 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
-<include file="../Public/home_right" />
+<?php include('right.php');?>
 
 <div class="cc">
 	<div class="user_info"><!-- 用户资料 begin  -->
@@ -15,7 +15,7 @@
 						echo CHtml::link('修改资料',array('/info'),array('title'=>'修改资料'));
 					}elseif($mid){ 
 						echo CHtml::link('详细资料',array('/space/detail','uid'=>$uid),array('title'=>'详细资料'));
-						echo CHtml::link('给{$show_sex}留言',array('/space/detail','uid'=>$uid),array('title'=>'给{$show_sex}留言'));
+						echo CHtml::link('给TA留言',array('/space/detail','uid'=>$uid),array('title'=>'给TA留言'));
 					
 						if($is_friend){
 							echo CHtml::link('发短消息',array('/space/detail','uid'=>$uid),array('title'=>'发短消息'));
@@ -29,7 +29,7 @@
 		</div>
 		<div class="Linfo">
 			<div class="info">
-				<h2 id="host_name">{$uid|getUserName} {$uid|getUserGroupIcon}</h2>
+				<h2 id="host_name"><?php echo user::model()->getUserName($uid).' ';echo user::model()->getUserGroupIcon();?></h2>
 				<h2 id="my_name" style="display:none">{$my_name}</h2>
 				<?php 
 						if($mid != $uid){
@@ -59,12 +59,11 @@
 	<!--用户应用-->
 	<div class="system_info">
 		<?php if(!empty($user_apps)) foreach($user_appas as $vo){?>
-		<volist name="user_apps" id="vo">
 			<?php $app_num = isset( $apps_num[$vo['enname']] )?$apps_num[$vo['enname']]:0;
 $vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
 				 if(empty($vo['uid_url'])) continue;
 			 ?>
-			<span><img src="{$vo.icon}" /><a href="{$vo.uid_url}{$uid}">{$app_num}个{$vo.name}</a></span>
+			<span><img src="<?php echo $vo.icon;?>}" /><a href="{$vo.uid_url}{$uid}">{$app_num}个{$vo.name}</a></span>
 		<?php }?>
 	</div>
 	<!--用户应用end-->
@@ -168,6 +167,4 @@ $vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
 	<?php } ?> <!--隐私控制end-->
 
 </div>
-
-
 <div class="c"></div>

@@ -24,7 +24,12 @@
 					</p>
 
 					<p class="cGray2 lh20">分组：
-						<?php echo CHtml::link('分组',array('/friend/group','id'=>$friend['id']),array('class'=>'thickbox','title'=>'修改好友分组'))?>
+						<?php 
+						if($is_me){
+							echo CHtml::link('分组',array('/friend/group','id'=>$friend['id']),array('class'=>'thickbox','title'=>'修改好友分组'));
+						}
+						else echo CHtml::encode('分组');
+						?>
 					</p>
 					<p class="cGray2 lh20"><span class="wn">心情：</span><?php echo $friend['mini'];?></p>
 				</div>
@@ -35,8 +40,9 @@
 					<p class="lh20">
 						<?php echo CHtml::link('发送短信',array('/notice/write','uid'=>$friend['id']));?>
 					</p>
+					
 					<p class="lh20">
-						<?php echo CHtml::link('解除关系',array('/friend/delete','uid'=>$friend['id']),array('class'=>'thickbox'));?>
+						<?php if($is_me) echo CHtml::link('解除关系',array('/friend/delete','uid'=>$friend['id']),array('class'=>'thickbox'));?>
 					</p>
 				</div>
 				<div class="c"></div>
