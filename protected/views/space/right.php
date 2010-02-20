@@ -18,7 +18,9 @@
 			<div class="UserList">
 				<div class="tit">
 				  <?php if( MODULE_NAME == 'Home' || $uid == $mid ){ ?>
-					<span class="right"><a href="__APP__/Friend/track" class="cGray2">&gt;&gt;更多</a></span>
+					<span class="right">
+						<?php echo CHtml::link('>>更多',array('friend/track','uid'=>$uid),array('class'=>'cGray2'));?>
+					</span>
 					<?php } ?>
 					最近来访<span>（{$visitor_num}）</span></div>
 				<div class="ListBox">
@@ -38,7 +40,7 @@
 
 
 	<?php } ?>
-	<?php if(MODULE_NAME == "Home"){ ?>
+
 	<div class="UserList">
 		<div class="tit"><span class="right"></span>你可能认识的人</div>
 		<div class="ListBox">
@@ -53,12 +55,12 @@
 		</div>
 		<div class="btm"></div>
 	</div>
-	<?php } ?>
+
 	<div class="UserList">
 		<div class="tit"><?php if(!isset($space_privacy) || $space_privacy){ ?><span class="right">
 		<?php echo CHtml::link('>>更多',array('friend/index','uid'=>$uid),array('class'=>'cGray2'));?>
 
-		</span><?php } ?>我的好友</div>
+		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</div>
 		<div class="ListBox">
 			<ul>
 				<?php foreach($friend_list as $user){?>

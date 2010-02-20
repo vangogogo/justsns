@@ -75,7 +75,9 @@ class FriendController extends Controller
 		$this->render('index',$data);
 	}
 	
-	
+	/**
+	 * 好友分组，多选
+	 */
 	/**
 	 * 好友分组，多选
 	 */

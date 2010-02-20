@@ -106,7 +106,9 @@ class user extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mini'=>array(self::HAS_ONE, 'mini', 'uid', 'order' => 'ctime DESC'),
+			'mini'=>array(self::HAS_ONE, 'mini', 'uid', 'order' => 't.ctime DESC'),
+			'apps'=>array(self::MANY_MANY, 'App', 'app_user(appid,uid)','order'=>'appid '),
+
 
 		);
 	}
@@ -252,7 +254,6 @@ class user extends CActiveRecord
 		$size = in_array($size, array('big', 'middle', 'small',"yuan")) ? $size : 'middle';
 		if(empty($uid))
 			$uid = $this->id;
-		$uid = 1;
 		$path = Yii::app()->params['uploadPath'].'userface/';
 		$image = $path.$uid.'_'.$size.'_face.jpg';
 
@@ -298,7 +299,20 @@ class user extends CActiveRecord
 	
 	public function getUserGroupIcon()
 	{
-		$GroupIcon = 'text';
+		$GroupIcon = 'UserGroupIcon';
 		return $GroupIcon;
+	}
+	
+	public function getUserApps($num = '')
+	{
+		$model = new App();
+		$criteria = new CDbCriteria;
+		if(!empty($num))
+		{
+			$criteria->limit = $num;
+		}
+		var_dump($this->apps);
+		return $this->apps;
+		
 	}
 }
