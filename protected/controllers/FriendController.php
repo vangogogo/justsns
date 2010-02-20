@@ -76,8 +76,13 @@ class FriendController extends Controller
 	}
 	
 	/**
-	 * 好友分组，多选
+	 * 好友访问记录
 	 */
+	public function actionTrack()
+	{
+		$this->render('index',$data);
+	}
+	
 	/**
 	 * 好友分组，多选
 	 */
