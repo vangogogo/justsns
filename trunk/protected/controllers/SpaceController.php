@@ -8,13 +8,48 @@ class SpaceController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$form=new user();
-		$form->scenario = 'modify';
-
 		$uid = Yii::app()->request->getParam('uid');
-		$mid = Yii::app()->user->id;
+		//用户信息
+		$owner = user::model()->with(array('mini'))->findByPk($uid);
 		
-		$may_users = $u_fris = array();
+		//8个应用
+		$apps = App::model()->findAll();
+
+		//应用的计数
+		//$apps_num = $this->api->space_getCount($this->uid);
+		$apps_num = array();
+		
+		//是否自己的空间
+		$mid = Yii::app()->user->id;
+		if($uid == $mid)
+		{
+			$is_me = true;
+		}
+		
+		$may_users = array();
+		
+		//空间主人的好友
+		$friend_list = $this->getUserFriends($uid);
+		
+		
+		
+		$data = array(
+			'owner'=>$owner,
+			'is_me'=>$is_me,
+			'apps'=>$apps,
+			'apps_num'=>$apps_num,
+		
+			'uid' => $uid,
+			'mid' => $mid,
+			'may_users' => $may_users,
+			'visitors' => $visitors,
+			'friend_list' => $friend_list,
+		);
+		$this->render('index',$data);
+	}
+	
+	private function getUserFriends($uid) {
+		$friends = array();
 		
 		$model = new Friend();
 		 //初始化
@@ -31,19 +66,11 @@ class SpaceController extends Controller
 		{
 			foreach($friend_list as $key => $value)
 			{
-				$user = $value->user;
-				if(!empty($user))
-					$friends[$key] = $user->getUserInfo();
+				$fri_user = $value->user;
+				if(!empty($fri_user))
+					$friends[$key] = $fri_user->getUserInfo();
 			}
 		}
-		
-		$data = array(
-			'form' => $form,
-			'uid' => $uid,
-			'mid' => $mid,
-			'may_users' => $may_users,
-			'friend_list' => $friends
-		);
-		$this->render('index',$data);
-	}
+		return $friends;
+	}	
 }

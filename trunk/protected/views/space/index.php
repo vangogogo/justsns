@@ -4,8 +4,8 @@
 <div class="cc">
 	<div class="user_info"><!-- 用户资料 begin  -->
 		<div class="user_img">
-			<div class="img" id="host_face"><img src="<?php echo user::model()->getUserFace($uid,'middle');?>" /></div>
-			<div id="my_face" style="display:none"><img src="<?php echo user::model()->getUserFace($mid,'small');?>" /></div>
+			<div class="img" id="host_face"><img src="<?php echo $owner->getUserFace($uid,'middle');?>" /></div>
+			<div id="my_face" style="display:none"><img src="<?php echo $owner->getUserFace($mid,'small');?>" /></div>
 			<div class="menu bg01">
 				<?php
 					if($uid == $mid){ 
@@ -29,16 +29,16 @@
 		</div>
 		<div class="Linfo">
 			<div class="info">
-				<h2 id="host_name"><?php echo user::model()->getUserName($uid).' ';echo user::model()->getUserGroupIcon();?></h2>
-				<h2 id="my_name" style="display:none">{$my_name}</h2>
-				<?php 
-						if($mid != $uid){
-						$href = "__ROOT__/apps/mini/index.php?s=/Index/friends/uid/".$the_mini['uid'];
-						}else{
-						$href = "__ROOT__/apps/mini/index.php?s=/Index/my";
-						}
-				 ?>
-				<?php if($space_privacy){ ?><p><span>{$the_mini.content}</span><span><em>{$the_mini.cTime|friendlyDate}</em></span><span><a href="{$href}">更多</a></span></p><?php } ?>
+				<h2 id="host_name"><?php echo $owner->getUserName($uid).' ';echo user::model()->getUserGroupIcon();?></h2>
+				<h2 id="my_name" style="display:none"><?php echo $owner->getUserName()?></h2>
+				<?php if($space_privacy OR 1){ ?>
+					<p>
+						<span>
+							<?php echo $owner->mini->content;?></span><span><em><?php echo date('Y-m-d H:i',$owner->mini->ctime);?></em></span><span>
+							<?php echo CHtml::link('更多',array('/mini/index','uid'=>$uid));?>
+						</span>
+					</p>
+				<?php } ?>
 
 				<?php if($space_privacy){ ?>	 <!--隐私控制-->
 				<ul>
@@ -58,12 +58,15 @@
 	</div><!-- 用户资料 end  -->
 	<!--用户应用-->
 	<div class="system_info">
-		<?php if(!empty($user_apps)) foreach($user_appas as $vo){?>
+		<?php if(!empty($apps)) foreach($apps as $vo){?>
 			<?php $app_num = isset( $apps_num[$vo['enname']] )?$apps_num[$vo['enname']]:0;
 $vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
 				 if(empty($vo['uid_url'])) continue;
 			 ?>
-			<span><img src="<?php echo $vo.icon;?>}" /><a href="{$vo.uid_url}{$uid}">{$app_num}个{$vo.name}</a></span>
+			<span>
+				<?php echo CHtml::image(Yii::app()->theme->baseUrl.'/images/apps/'.$vo['icon'],$vo['name']);?>
+				<?php echo CHtml::link('XX个'.$vo['name'],array('/'.$app['enname']))?>
+			</span>
 		<?php }?>
 	</div>
 	<!--用户应用end-->
