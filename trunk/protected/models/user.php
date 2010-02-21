@@ -311,8 +311,32 @@ class user extends CActiveRecord
 		{
 			$criteria->limit = $num;
 		}
-		var_dump($this->apps);
 		return $this->apps;
+	}
+	
+	public function getUserFriends($uid) {
+		$friends = array();
 		
+		$model = new Friend();
+		 //初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='id';
+		$criteria->condition="t.uid=:uid";
+		$criteria->params=array(':uid'=>$uid);
+		$criteria->limit = 9;
+		//获取数据集
+		$friend_list = $model->with('user')->findAll($criteria);
+		//好友信息,获取好友记录等等
+		$friends = array();
+		if(!empty($friend_list))
+		{
+			foreach($friend_list as $key => $value)
+			{
+				$fri_user = $value->user;
+				if(!empty($fri_user))
+					$friends[$key] = $fri_user->getUserInfo();
+			}
+		}
+		return $friends;
 	}
 }
