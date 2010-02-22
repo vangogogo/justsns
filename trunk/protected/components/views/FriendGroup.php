@@ -6,12 +6,12 @@
 	<?php if(!empty($groups)){?>
 	<ul id="f_group">
 		<li<?php if(empty($_GET['gid'])) echo ' class="on"';?>>
-			<?php echo CHtml::link('所有好友('.Friend::model()->getFriendNumber().')',array("/$url/index"));?>
+			<?php echo CHtml::link('所有好友('.Friend::model()->getFriendNumber().')',array("/$this->url/index"));?>
 		</li>
 		<?php foreach($groups as $group){?>
 		<li<?php if($group['id']==$_GET['gid']) echo ' class="on"';?>>
 			<?php echo CHtml::link($group['name'].'('.Friend::model()->getFriendNumber('',$group['id']).')',array("/$url/index",'gid'=>$group['id']));?>
-			<?php if($group['uid'] != 0 AND $url == 'friend') echo CHtml::link('删除',array("/$url/delGroup",'gid'=>$group['id']),array('class'=>'thickbox'));?>
+			<?php if($group['uid'] != 0 AND $this->url == 'friend') echo CHtml::link('删除',array("/$this->url/delGroup",'gid'=>$group['id']),array('class'=>'thickbox'));?>
 		</li>
 		<?php }?>
 	</ul>

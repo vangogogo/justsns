@@ -26,6 +26,7 @@ class AccountController extends Controller
 			{
 				$user->password = $attributes['password'];
 				$user->save();
+				$this->refresh();
 				//弹出提示框
 			}			
 		}
