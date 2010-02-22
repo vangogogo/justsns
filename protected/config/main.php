@@ -11,7 +11,8 @@ return array(
 	'name'=>'Yii TEST',
 
 	'timeZone' => 'Asia/Shanghai',
-	'sourceLanguage'=>'zh_cn',
+	//'sourceLanguage'=>'zh_cn',
+	'language'=>'zh_cn',
 	
 	'theme' => 'blue',
 	// preloading 'log' component
