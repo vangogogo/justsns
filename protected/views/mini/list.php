@@ -9,13 +9,13 @@
 	</div>
 	<div class="c2 bg_ico_arrow">
 		<div class="MC bg01">
-			<h4><a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>"><strong><?php echo $vo['name']?></strong></a><span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>|<span><a href="<?php echo $this->createUrl('/mini/friends',array('uid'=>$vo['uid']));?>"><?php echo Yii::t('c', 'more');?></a></span></h4>
+			<h4><a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>"><strong><?php echo $vo['name']?></strong></a><span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>|<span><a href="<?php echo $this->createUrl('/mini/friends',array('uid'=>$vo['uid']));?>"><?php echo Yii::t('sns', 'more');?></a></span></h4>
 			<p class="WB">
 				<?php echo $vo['content'];?>
 				<?php if( isset( $vo['replay'] ) && 2 < $vo['replay_numbel'] ){ ?>
 					<a id="closeReplay<?php echo $vo['id']?>" href="###" onclick="closeReplay(<?php echo $vo['id']?>,<?php echo $vo['uid']?>)">收起回复</a>
 				<?php }else{?>
-					<a href="javascript:replay('false',<?php echo $vo['id']?>)"><?php echo Yii::t('c', 'reply');?></a>
+					<a href="javascript:replay('false',<?php echo $vo['id']?>)"><?php echo Yii::t('sns', 'reply');?></a>
 				<?php }?>
 			</p>
 		</div>

@@ -15,7 +15,8 @@ class mini extends CActiveRecord
 	 * @var integer $replay_numbel
 	 * @var integer $feedId
 	 */
-
+	public $time;
+	public $count;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -79,7 +80,43 @@ class mini extends CActiveRecord
 			'feedId' => 'Feed',
 		);
 	}
-
+	/**
+	 * getData
+	 * 处理归档查询的时间格式
+	 * @param string $date 200903这样格式的参数
+	 * @static
+	 * @access protected
+	 * @return void
+	 */	
+	private function getMonthData($date)
+	{
+		//echo $date."<br/>";
+		$year = $date[0].$date[1].$date[2].$date[3];
+		$month = $date[4].$date[5];
+		$start = mktime(0,0,0,$month,1,$year);
+		$end   = mktime(0,0,0,$month+1,1,$year);
+		return array( $start,$end );
+	}
+	
+	/**
+	 * fileAway 
+	 * 归档查询
+	 *
+	 * @param string|array $findTime 查询时间。
+	 * @param mixed $condition 查询条件
+	 * @param Model $object 查询对象
+	 * @param mixed $limit 查询limit
+	 * @access public
+	 * @return void
+	 */
+	public function fileAway($findTime,$criteria){
+		$time = $this->getMonthData($findTime);
+		$start = $time[0];
+		$end = $time[1];
+		$condition = "$start < ctime AND ctime < $end";
+		$criteria->addCondition($condition);
+		return $criteria;
+	}
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

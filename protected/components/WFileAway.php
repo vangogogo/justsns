@@ -14,16 +14,14 @@ class WFileAway extends CWidget
 
 
 		
-$data['tableName'] = 'mini';
+		$data['tableName'] = 'mini';
+		$data['limit'] = 6;
+		
+		$date = date('Ym',time());
+		$date = self::paramData( $date,$data['limit'],$data['tableName']);
 
-		$date = date( 'Ym',time() );
-		if( !isset($data['limit']) ){
-			$date = self::paramData( $date,6,$data['tableName']);
-		}else{
-			$date = self::paramData( $date,$data['limit'],$data['tableName']);
-		}
 
-		$data['date'] = $date;
+		$data['date_list'] = $date;
 		$data['alldate'] = '全部时间';
 
 		$this->render('WFileAway',$data);
@@ -60,32 +58,93 @@ $data['tableName'] = 'mini';
 			$where = implode( ' AND ',$where )." AND ";
 		}
 		
-		//$dao = D( 'Smile' );
-		//循环得到年月列表
-		for( $i = 0; $i<$limit;$i++ ){
-			$timestmp_temp	= $timestmp-( $i*28*24*60*60 );
-			$key			  = date( 'Ym',$timestmp_temp );
-			$date			 = date( 'Y年m月',$timestmp_temp );
-			$time  = $this->getData( $key );
+		$model = $tableName::model();
+		$tableName = $model->tableName();
+		$criteria=new CDbCriteria;
+		$criteria->order = 'ctime';
+		$criteria->condition = 'uid = :uid';
+		$criteria->params = array(':uid'=>Yii::app()->user->id);
+		$oldest = $model->find();
+		$oldest_ctime = $oldest->ctime;
+		
+		$oldest_month = date('Ym',$oldest->ctime);
+		$month_arr = $this->getMonthArray($oldest_month,$date,6);
+		
+		
+		foreach($month_arr as $key)
+		{
+			$time  = $this->getMonthData($key);
 			$sql[] = "select '{$key}' as `time`,count(1) as count from  {$tableName} where {$where} ctime BETWEEN {$time[0]} AND {$time[1]}";
-			$limit_time[$key]['content'] = $date;
-
-			////获得记录数
-			//if( $result = $object->fileAwayCount($key,$condition) ){
-				//$limit_time[$key]['count'] = $result[0]['count(*)'];
-			//}else{
-				//$limit_time[$key]['count'] = 0;
-			//}
+			$limit_time[$key]['content'] = $key;
 		}
+
 		$sql = implode( ' union all ',$sql );
-		//$result = $dao->query( $sql );
+
+		$result = $model->findAllBySql( $sql );
 		if(!empty($result))
 		{
+
 			foreach ( $result as $value ){
 				$limit_time[$value['time']]['count'] = $value['count'];
+				
+				if($limit_time[$value['time']]['count'] == 0)
+				{
+					//unset($limit_time[$value['time']]);
+				}
 			}
 		}
+
 		return $limit_time;
+	}
+	
+	/**
+	 * getMonthArray
+	 * 获得两个年月之间的月份数组
+	 * @param string $findTime 200903这样格式的参数
+	 * @static
+	 * @access protected
+	 * @return void
+	 */
+	private function getMonthArray($start_month,$end_month,$limit = 0)
+	{
+		$month_arr = array();
+
+		if(!empty($limit))
+		{
+			$start_month = strtotime('-'.$limit.' month');
+			$start_month = date("Ym",$start_month);
+		}
+		while($start_month < $end_month)
+		{
+			$date = $end_month;
+			$year = $date[0].$date[1].$date[2].$date[3];
+			$month = $date[4].$date[5];
+			$prev_month_timestmp = mktime(0,0,0,$month-1,1,$year);
+			$prev_month = date("Ym",$prev_month_timestmp);
+			if($start_month <= $prev_month)
+			{
+				$month_arr[] = $end_month;
+			}
+			$end_month = $prev_month;
+		}
+		return $month_arr;
+	}
+	/**
+	 * getData
+	 * 处理归档查询的时间格式
+	 * @param string $date 200903这样格式的参数
+	 * @static
+	 * @access protected
+	 * @return void
+	 */
+	private function getMonthData($date)
+	{
+		//echo $date."<br/>";
+		$year = $date[0].$date[1].$date[2].$date[3];
+		$month = $date[4].$date[5];
+		$start = mktime(0,0,0,$month,1,$year);
+		$end   = mktime(0,0,0,$month+1,1,$year);
+		return array( $start,$end );
 	}
 	/**
 	 * getData
