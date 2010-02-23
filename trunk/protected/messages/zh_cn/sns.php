@@ -3,6 +3,8 @@ return array (
 	'fileaway'=> '文件归档',
 	'alldate'	  => '所有日期',
     'mini'=>'心情',
+	'more'=>'更多',
+	'reply'=>'回复',
 
 
 	'Site Manage' 	=> '网站管理',
