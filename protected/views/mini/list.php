@@ -1,5 +1,5 @@
 <?php if(!empty($mini_list)) foreach($mini_list as $vo){?>
-<div class="Fli" id="Fli{$vo['id']}">
+<div class="Fli" id="Fli<?php echo $vo['id'];?>">
 	<div class="c1">
 		<span class="headpic50">
 			<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>"  class="tips">
@@ -8,8 +8,30 @@
 		</span>
 	</div>
 	<div class="c2 bg_ico_arrow">
-		<div class="MC bg01">
-			<h4><a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>"><strong><?php echo $vo['name']?></strong></a><span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>|<span><a href="<?php echo $this->createUrl('/mini/friends',array('uid'=>$vo['uid']));?>"><?php echo Yii::t('sns', 'more');?></a></span></h4>
+		<div class="MC bg01" id="MCG<?php echo $vo['id'];?>">
+			<?php if($is_delete OR 1){?>
+				<h4 class="lh20">
+					<span class="right mt5">
+						<a id="d-<?php echo $vo['id'];?>" class="del" title="删除" href="javascript:deleteMini(<?php echo $vo['id'];?>)" style="display:none;">删除</a>
+					</span>
+					<span class="left">
+						<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>">
+							<strong><?php echo $vo['name'];?></strong>
+						</a>
+						<span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>
+					</span>
+				</h4>
+			<?php }else{?>
+				<h4 class="lh20">
+					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>">
+						<strong><?php echo $vo['name']?></strong>
+					</a>
+					<span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>|
+					<span>
+						<?php echo CHtml::link('更多',array('/mini/friends','uid'=>$vo['uid']));?>				
+					</span>
+				</h4>
+			<?php }?>
 			<p class="WB">
 				<?php echo $vo['content'];?>
 				<?php if( isset( $vo['replay'] ) && 2 < $vo['replay_numbel'] ){ ?>
@@ -20,7 +42,7 @@
 			</p>
 		</div>
 		{:W('Replay',$vo['replay'])}
-	</div>
+	</div>	
 	<div class="c"></div>
 </div>
 <?php }?>
