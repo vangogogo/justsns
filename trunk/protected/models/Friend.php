@@ -96,7 +96,7 @@ class Friend extends CActiveRecord
 			$this->status = 0;
 		}
 		return true;
-	}	
+	}
 		
 	/**
 	 * 好友添加

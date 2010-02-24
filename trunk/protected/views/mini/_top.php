@@ -2,8 +2,19 @@
 <div class=page_title> <!-- page_title begin -->
 	<div class="tit"><img src="/yiisns/themes/blue/images/apps/ico_app04.gif" class="img" /><?php echo Yii::t('sns', 'mini');?></div>
 	<?php if($this->action->id == 'my'){?>
+	<?php Yii::app()->getClientScript()->registerScriptFile('js/mini.js');?>
+	<script type="text/javascript" charset="utf-8">
+		var mini_zishu = 140;
+		var doAddMini_url = "<?php echo $this->createUrl('/mini/doAddMini');?>";
+		var doDeleteMini_url = "<?php echo $this->createUrl('/mini/doDeleteMini');?>";
+		var doReplyMini_url = "<?php echo $this->createUrl('/mini/doReplyMini');?>";
+	</script>	
 	<div class="status_editor">
-	<div style="float:left; width:100%" class="lh25"><span class="f14px fn cGray" id="mini-content">{$content}</span><span class="cGray2 fn f12px ml10" id="mini-time">{$cTime|friendlyDate}</span><span class="f12px fn ml5"><a href="__URL__/my">{%more}</a></span></div>
+		<div style="float:left; width:100%" class="lh25">
+			<span class="f14px fn cGray" id="mini-content"><?php echo $mini->content?></span>
+			<span class="cGray2 fn f12px ml10" id="mini-time"><?php echo date('Y-m-d',$mini->ctime);?></span>
+			<span class="f12px fn ml5"><a href="<?php echo $this->createUrl('/mini/my');?>">更多心情</a></span>
+		</div>
 		<!-- <div class="jishuan"><span id='mini-count'></span></div> -->
 		<div class="status_edit"><!-- 心情状态页显示编辑框 -->
 		  <div>
@@ -11,16 +22,15 @@
 		  </div>
 		  <div class="phiz_box">
 		  <div class="phiz" style="display:none;top: 0px;left: 0px;">
-			<php>foreach ( $ico_list as $value){
-			  $i++;</php>
+			<?php if(!empty($icon_list)) foreach($icon_list as $i =>$value){?>
 			<div class="ico_link">
-			  <img onclick="insert(this,{$i});" title="{$value.title}" emotion="{$value.emotion}" src="__PUBLIC__/images/biaoqing/{$site_opts.ico_type}/{$value.filename}"/>
+			  <img onclick="insert(this,<?php echo $i?>);" title="<?php echo $value->title?>" emotion="<?php echo $value->emotion?>" src="<?php echo Yii::app()->request->baseUrl.'/images/biaoqing/mini/'.$value->filename?>"/>
 			</div>
-			<php>}</php>
+			<?php }?>
 		</div>
 		</div>
 		</div>
-		<div class="left pt5 pl5"><input type="submit" class="btn_big" onclick="doAdd()" value="{%add}" /></div>
+		<div class="left pt5 pl5"><input type="submit" class="btn_big" onclick="doAdd()" value="发布" /></div>
 		<div class="c" ></div>
 	</div>
 	<?php }?>

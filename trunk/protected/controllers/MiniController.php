@@ -56,7 +56,46 @@ class MiniController extends Controller
 		$criteria->order='ctime DESC';
 		$criteria->condition="uid=:uid";
 		$criteria->params=array(':uid'=>$uid);
+		
+		$mini = $model->find($criteria);
+		
+		$icon_list = smile::model()->findAll();
 
+		$date = Yii::app()->request->getQuery('date');
+		if(!empty($date))
+		{	
+			$criteria = $model->fileaway($date,$criteria);
+		}
+		
+		//取得数据总数,分页显示
+		$total = $model->count($criteria);
+		$pages=new CPagination($total);
+		$pages->pageSize=self::PAGE_SIZE;
+		$pages->applyLimit($criteria);
+		//获取数据集
+		$mini_list = $model->findAll($criteria);
+
+		$data = array(
+			'mini_list'=> $mini_list,
+			'pages'=> $pages,
+			'mini'=> $mini,
+			'icon_list' =>$icon_list,
+		);
+
+		$this->render('my',$data);
+	}
+	
+	/**
+	 * 我的心情
+	 */
+	public function actionAll()
+	{
+		$uid = Yii::app()->user->id;
+		
+		$model = new mini();
+		 //初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime DESC';
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))
 		{	
@@ -76,9 +115,9 @@ class MiniController extends Controller
 			'pages'=> $pages,
 		);
 
-		$this->render('index',$data);
+		$this->render('my',$data);
 	}
-	
+		
 	/**
 	 * 好友的心情
 	 */
@@ -124,6 +163,43 @@ class MiniController extends Controller
 		);
 
 		
-		$this->render('index',$data);
+		$this->render('my',$data);
+	}	
+	
+	public function actionDoAddMini(){
+		$content = Yii::app()->request->getPost('content');
+		if( empty($content) ){
+			echo -1;
+			return false;
+		}
+		$model = new mini();
+		//TODO 检测空白输入
+		$model->content = $content;
+		$add = $model->save();
+
+		if( $add ){
+			echo $content;
+		}else{
+			echo -1;
+		}
+	}
+
+	/**
+	 * doDeleteMini
+	 * 删除mini
+	 * @access public
+	 * @return void
+	 */
+	public function doDeleteMini(  ){
+		$id = Yii::app()->request->getPost('id');
+		$model = new mini();
+		//TODO 检测空白输入
+		$mini = $model->findByPk($id);
+
+		if( $mini->delete()){
+			echo 1;
+		}else{
+			echo -1;
+		}
 	}	
 }
