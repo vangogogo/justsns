@@ -51,7 +51,7 @@ $(document).ready(function(){
 function deleteMini( id ){
     Confirm({message:'是否删除此心情',handler:function(button){
       if ( 'ok' == button ){
-        $.post( doDeleteMini,{id:id},function( text ){
+        $.post(doDeleteMini_url,{id:id},function( text ){
               if( text == 1 ){
                   $( '#Fli'+id ).remove();
               }else{
@@ -212,7 +212,7 @@ function getFilePath( num ){
 
 function showMore( id,uid ){
   $( '#showMore'+id ).html("loading........");
-  $.post( getReplay,{id:id,uid:uid},function( text ){
+  $.post(getReplay_url,{id:id,uid:uid},function( text ){
       if( text != -1 ){
            var result = JSON.parse(text);
             var newReplay = replaceReplay( result.OddReplay );
@@ -247,7 +247,7 @@ function replayComment( appid , more,mid ){
   //如果留言数大于2。则要加载隐藏的留言信息
   if( more && 'true' == showmore){
       //ajax发送
-      $.post( doAddReplay,{toUid:touid,content:content,id:appid,more:showmore,mid:mid,page:page,js_token:js_token},function( txt ){
+      $.post(doAddReplay_url,{toUid:touid,content:content,id:appid,more:showmore,mid:mid,page:page,js_token:js_token},function( txt ){
             if( txt != -1 ){
             var result = JSON.parse(txt);
             var newReplay = replaceReplay( result.newReplay );
@@ -273,7 +273,7 @@ function replayComment( appid , more,mid ){
 
   }else{
     //只需要直接返回新的回复html格式就可以
-    $.post( doAddReplay,{toUid:touid,content:content,id:appid,more:showmore,mid:mid,page:page,js_token:js_token},function( txt ){
+    $.post(doAddReplay_url,{toUid:touid,content:content,id:appid,more:showmore,mid:mid,page:page,js_token:js_token},function( txt ){
       if( txt != -1 ){
               var result = JSON.parse(txt);
               newReplay = replaceReplay( result );
@@ -309,7 +309,7 @@ function deleteComment( id,appid,where,uid ){
       if ( 'ok' == button ){
       if( where ){
       //加载全部
-      $.post(getReplay,{id:appid,uid:uid},function( text ){
+      $.post(getReplay_url,{id:appid,uid:uid},function( text ){
         if( text != -1 ){
         var result = JSON.parse(text);
         var newReplay = replaceReplay( result.OddReplay );
@@ -328,7 +328,7 @@ function deleteComment( id,appid,where,uid ){
         }
         });
       }
-    $.post( doDeleteReplay,{id:id,appid:appid},function( txt ){
+    $.post(doDeleteReplay_url,{id:id,appid:appid},function( txt ){
       if( txt != -1 ){
         if( where == 'first' ){
             $( '#first'+appid ).remove();
@@ -372,7 +372,7 @@ var openReplay = true;
 function closeReplay( appid,uid ){
   //获取回复数
   if( openReplay ){
-    $.post(APP+"/Index/getReplayCount/",{id:appid},function(count){
+    $.post(getReplayCount_url,{id:appid},function(count){
         if( count != -1 ){
           $( '#closeReplay'+appid ).text(count);
         }else{
@@ -389,7 +389,7 @@ function closeReplay( appid,uid ){
           openReplay = false;
       }else{
             //加载全部
-            $.post(getReplay,{id:appid,uid:uid},function( text ){
+            $.post(getReplay_url,{id:appid,uid:uid},function( text ){
             if( text != -1 ){
                  var result = JSON.parse(text);
                   var newReplay = replaceReplay( result.OddReplay );

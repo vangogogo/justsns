@@ -2,12 +2,16 @@
 <div class=page_title> <!-- page_title begin -->
 	<div class="tit"><img src="/yiisns/themes/blue/images/apps/ico_app04.gif" class="img" /><?php echo Yii::t('sns', 'mini');?></div>
 	<?php if($this->action->id == 'my'){?>
+	
 	<?php Yii::app()->getClientScript()->registerScriptFile('js/mini.js');?>
 	<script type="text/javascript" charset="utf-8">
 		var mini_zishu = 140;
-		var doAddMini_url = "<?php echo $this->createUrl('/mini/doAddMini');?>";
-		var doDeleteMini_url = "<?php echo $this->createUrl('/mini/doDeleteMini');?>";
-		var doReplyMini_url = "<?php echo $this->createUrl('/mini/doReplyMini');?>";
+		<?php 
+			$array=array('doAddMini','doDeleteMini','getReplay','getReplayCount','doReplyMini','doAddReplay','doDeleteReplay');
+			foreach($array as $action){
+		?>
+		var <?php echo $action;?>_url = "<?php echo $this->createUrl('/mini/'.$action);?>";
+		<?php }?>
 	</script>	
 	<div class="status_editor">
 		<div style="float:left; width:100%" class="lh25">

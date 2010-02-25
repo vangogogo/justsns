@@ -3,11 +3,26 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+<script type="text/javascript">
+<!--
+	//指定当前组模块URL地址
+	var	URL			=	'/thinksns/index.php?s=/Index';
+	var	APP			=	'/thinksns/index.php?s=';
+	var	PUBLIC		=	'http://localhost/thinksns/public';
+	var	ROOT		=	'http://localhost/thinksns';
+	var TS			=	'http://localhost/thinksns/index.php?s=';
+	var MID			=	'0';
+	var NEED_LOGIN	=	'0';
+	var expire		=	'3600';
+	var TPIS		=	'0';
+//-->
+</script>
 
 <?php
 
 Yii::app()->clientScript->registerCoreScript('jquery');
 Yii::app()->getClientScript()->registerScriptFile('js/jquery-ui-1.7.2.custom.min.js');
+Yii::app()->getClientScript()->registerScriptFile('js/ts_common.js');
 //colorbox
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.js');
 Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.css');
