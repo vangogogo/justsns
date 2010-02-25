@@ -13,7 +13,7 @@ return array(
 	'timeZone' => 'Asia/Shanghai',
 	//'sourceLanguage'=>'zh_cn',
 	'language'=>'zh_cn',
-	
+
 	'theme' => 'blue',
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -67,13 +67,12 @@ return array(
 				array(
 					'class'=>'CWebLogRoute',
 				),
-				
+				*/
 				array( // configuration for the toolbar
 				  'class'=>'XWebDebugRouter',
 				  'config'=>'alignLeft, opaque, runInDebug, fixedPos, collapsed, yamlStyle',
 				  'levels'=>'error, warning, trace, profile, info',
 				),
-				*/
 			),
 		),
 		'cache'=>array(
@@ -93,13 +92,13 @@ return array(
 			'itemChildTable'=>'auth_item_child',
 		),
 
-				// url 
+				// url
 		'urlManager'=>array(
 			// the URL format. It must be either 'path' or 'get'.
 			// path: index.php/controller/action/attribute/value
 			// get: index.php?r=controller/action&attribute=value
 			//'urlFormat'=>'path',
-			// show www.example.com/index.php/controller/action 
+			// show www.example.com/index.php/controller/action
 			// or just www.example.com/controller/action
 			'showScriptName' => true,
 			// rules to redirect a specific url to the controller you want
@@ -134,11 +133,11 @@ return array(
 			"pageSize"=>20,
 			// The name of the super user
 			"superUser" =>"Authority",
-			
+
 			"layout"=>"application.modules.admin.views.layouts.main",
 			"imagesPack"=>"tango",
-			
-			
+
+
 			// The always allowed actions
 			"alwaysAllowed"=>array(
 			'SiteLogin','SiteLogout','SiteIndex','SiteAdmin',
@@ -154,7 +153,7 @@ return array(
 			//Display text next to the icons or not
 			"iconText"=>true,
 		),
-	
+
 		'blog'=>array(
 			"layout"=>"application.views.layouts.main",
 		),
@@ -171,7 +170,7 @@ return array(
 			'layout'=>'application.views.layouts.main',
 		),
 	),
-	
+
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
@@ -179,5 +178,5 @@ return array(
 		'adminEmail'=>'webmaster@example.com',
 		'upload_dir'=>'/yiisns/uploads/images/',
 		'uploadPath'=>$path.'/uploads/images/'
-	),	
+	),
 );
