@@ -61,10 +61,11 @@ class user extends CActiveRecord
 			
 			array('email','email'),
 			
-			array('password', 'length', 'max'=>50, 'min'=>6, 'on' => 'reg'),
+			array('password', 'length', 'max'=>50, 'min'=>6, 'on' => 'reg', 'message' => '密码由6-16个英文字母、数字或特殊字符组成'),
 			//修改密码
 			array('password,repassword,oldpassword','required', 'on' => 'modify'),
-			array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify'),
+			array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify','message' => '密码由6-16个英文字母、数字或特殊字符组成'),
+
 			//修改email
 			array('email,verifyCode','required', 'on' => 'account'),
 			//基本资料
