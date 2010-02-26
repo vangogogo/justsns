@@ -8,7 +8,7 @@
 		<ul>
 			<li>
 				<div style="width: 15%;" class="left alR">登录时间：</div>
-				<div style="width: 85%;" class="left cGray2"><?php echo date('Y年m月d日 H:i:s',$lastLoginInfo['login_time']);?><br/>
+				<div style="width: 85%;" class="left cGray2"><?php echo friendlyDate('Y年m月d日 H:i:s',$lastLoginInfo['login_time']);?><br/>
 				</div>
 				<div class="left cGray2"></div>
 			</li>
@@ -31,7 +31,7 @@
 		<ul>
 			<li>
 				<div style="width: 15%;" class="left alR">登录时间：</div>
-				<div style="width: 85%;" class="left cGray2"><?php echo date('Y年m月d日 H:i:s',$thisLoginInfo['login_time']);?><br/>
+				<div style="width: 85%;" class="left cGray2"><?php echo friendlyDate('Y年m月d日 H:i:s',$thisLoginInfo['login_time']);?><br/>
 				</div>
 				<div class="left cGray2"></div>
 			</li>
@@ -47,7 +47,7 @@
 				<div style="width: 15%;" class="left alR"> </div>
 				<div style="width: 85%;" class="left"></div>
 			</li>
-		</ul> 
+		</ul>
 		<?php }?>
 	</div>
 
