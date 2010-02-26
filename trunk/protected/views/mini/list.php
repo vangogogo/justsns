@@ -18,7 +18,7 @@
 						<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>">
 							<strong><?php echo $vo['name'];?></strong>
 						</a>
-						<span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>
+						<span class="time"><?php echo friendlyDate('Y-m-d H:s',$vo['ctime'])?></span>
 					</span>
 				</h4>
 			<?php }else{?>
@@ -26,9 +26,9 @@
 					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>">
 						<strong><?php echo $vo['name']?></strong>
 					</a>
-					<span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>|
+					<span class="time"><?php echo friendlyDate('Y-m-d H:s',$vo['ctime'])?></span>|
 					<span>
-						<?php echo CHtml::link('更多',array('/mini/friends','uid'=>$vo['uid']));?>				
+						<?php echo CHtml::link('更多',array('/mini/friends','uid'=>$vo['uid']));?>
 					</span>
 				</h4>
 			<?php }?>
@@ -42,7 +42,7 @@
 			</p>
 		</div>
 		{:W('Replay',$vo['replay'])}
-	</div>	
+	</div>
 	<div class="c"></div>
 </div>
 <?php }?>

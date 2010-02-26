@@ -8,20 +8,20 @@
 			<div id="my_face" style="display:none"><img src="<?php echo $owner->getUserFace($mid,'small');?>" /></div>
 			<div class="menu bg01">
 				<?php
-					if($uid == $mid){ 
+					if($uid == $mid){
 						echo CHtml::link('更改头像',array('/info/face'),array('title'=>'更改头像'));
 						echo CHtml::link('隐私设置',array('/privacy'),array('title'=>'隐私设置'));
 						echo CHtml::link('修改账号',array('/account'),array('title'=>'修改账号'));
 						echo CHtml::link('修改资料',array('/info'),array('title'=>'修改资料'));
-					}elseif($mid){ 
+					}elseif($mid){
 						echo CHtml::link('详细资料',array('/space/detail','uid'=>$uid),array('title'=>'详细资料'));
 						echo CHtml::link('给TA留言',array('/space/detail','uid'=>$uid),array('title'=>'给TA留言'));
-					
+
 						if($is_friend){
 							echo CHtml::link('发短消息',array('/space/detail','uid'=>$uid),array('title'=>'发短消息'));
 						}else{
 							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友'));
-						}	
+						}
 					}
 				?>
 				<div class="c"></div>
@@ -34,7 +34,7 @@
 				<?php if($space_privacy OR 1){ ?>
 					<p>
 						<span>
-							<?php echo $owner->mini->content;?></span><span><em><?php echo date('Y-m-d H:i',$owner->mini->ctime);?></em></span><span>
+							<?php echo $owner->mini->content;?></span><span><em><?php echo friendlyDate('Y-m-d H:i',$owner->mini->ctime);?></em></span><span>
 							<?php echo CHtml::link('更多',array('/mini/index','uid'=>$uid));?>
 						</span>
 					</p>

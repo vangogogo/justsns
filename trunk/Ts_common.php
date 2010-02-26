@@ -1,5 +1,5 @@
 <?php
-function friendlyDate($sTime,$type = 'normal',$alt = 'false') {
+function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') {
     if(!$sTime) {
         return '';
     }
@@ -19,11 +19,11 @@ function friendlyDate($sTime,$type = 'normal',$alt = 'false') {
         }elseif($dYear==0) {
             return date("m-d H:i",$sTime);
         }else {
-            return date("y-m-d H:i",$sTime);
+            return date($show,$sTime);
         }
     //full: Y-m-d , H:i:s
     }elseif($type=='full') {
-        return date("y-m-d H:i",$sTime);
+        return date($show,$sTime);
     }elseif($type=='month') {
         return date("m-d H:i",$sTime);
     }else {
@@ -34,9 +34,9 @@ function friendlyDate($sTime,$type = 'normal',$alt = 'false') {
         }elseif( $dTime >= 3600 && $dDay == 0  ) {
             return intval($dTime/3600)."小时前";
         }elseif($dYear==0) {
-            return date("y-m-d H:i",$sTime);
+            return date($show,$sTime);
         }else {
-            return date("y-m-d H:i",$sTime);
+            return date($show,$sTime);
         }
     }
 }
@@ -1296,7 +1296,7 @@ function isOnlineIcon($uid) {
  * @param Integer $uid
  * @param int     $appId;
  * @return boolen
- * 
+ *
  */
 function isAddApp($appName='',$uid='0',$appId=0){
 	$api = new TS_API();
