@@ -73,7 +73,7 @@ class MiniController extends Controller
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$mini_list = $model->findAll($criteria);
+		$mini_list = $model->with(array('reply'))->findAll($criteria);
 
 		$data = array(
 			'mini_list'=> $mini_list,
