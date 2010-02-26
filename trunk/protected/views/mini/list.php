@@ -41,7 +41,7 @@
 				<?php }?>
 			</p>
 		</div>
-		{:W('Replay',$vo['replay'])}
+		<?php $this->Widget('WReply',array('reply'=>$vo->reply,'uid'=>$vo->uid,'id'=>$vo->id));?>
 	</div>
 	<div class="c"></div>
 </div>

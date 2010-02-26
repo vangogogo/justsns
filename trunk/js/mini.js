@@ -160,7 +160,7 @@ function doAdd(){
 
 }
 function replayShow(_this){
-        _this.attr( 'style',"height:50px; line-height:18px; width:325px;" );
+        _this.attr( 'style',"height:50px; line-height:25px; width:325px;" );
         //_this.removeClass();
         id = _this.attr( 'id' ).substring(5);
 
@@ -187,6 +187,7 @@ function replay( uid,mini_id ){
   $( '.inputReplay' ).blur();
   touid = uid;
   var obj = $( '#input'+mini_id );
+  alert(obj.html());
   replayShow(obj) ;
   if( uid != "false" ){
     old_con = obj.val();
