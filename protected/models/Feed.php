@@ -126,12 +126,12 @@ class Feed extends CActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
 		$criteria->limit = 9;
-		if(!empty($uid))
+		if(!empty($uid) AND $uid != 'undefined')
 		{
 			$condition = 't.uid = '.$uid;
 			$criteria->addCondition($condition);
 		}
-		if(!empty($type))
+		if(!empty($type) AND $type != 'undefined')
 		{
 			$condition = 't.type = '.$type;
 			$criteria->addCondition($condition);

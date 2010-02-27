@@ -1,12 +1,40 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/index.css');?>
 <?php include('right.php');?>
+<script>
+$(document).ready(function() { 
+	
+	$('.feed_item').click(function() {
+		var _this = $(this);
+		type = $(this).attr("type");
+		var who = $('#who').val();
+		
+		var loading = '<div align="center" style="padding-top:50px"><img src="'+ROOT+'/images/loading_blue_big.gif"></div>';
+		$("#feed_content").html(loading);
 
+
+
+		
+		$("#feed_content").load(APP+"site/feed",{type:type,user:who},function(txt){
+			$('.feed_item').removeClass("on");
+			_this.addClass("on");
+			
+			if(!txt){
+				$("#feed_more").hide();
+				$("#feed_content").html("<div style='font-size:20px;padding-top:20px' align='center'>暂无相关动态...</div>");
+			}
+		});
+
+	});
+
+}); 
+
+</script>
 <div class="cc">
 	<div class="user_info"><!-- 用户资料 begin  -->
 
 		<div class="user_img">
 			<span id="my_face"><img src="<?php echo $owner->getUserFace($uid,'middle');?>?<?php echo time();?>" /></span>
-			<a href="__APP__/Info/face" class="a" title="更换头像">更换头像</a>
+			<?php echo CHtml::link('更换头像',array('/info/face'),array('title'=>'更换头像','class'=>'a'));?>
 		</div>
 
 		<div class="Linfo">
@@ -36,9 +64,9 @@
 	<div class="tab-menu"><!-- 切换标签 begin  -->
 		<div class="right" style="display:none;"><img src="../Public/images/ico_shezhi.gif" /> <a href="#">设置</a></div>
 		<ul>
-			<li class="feed_item on"><a href="javascript:void(0)" class="feed_item" rel="all" id="feed_all_item"><span>全部动态</span></a></li>
+			<li class="feed_item on" type="0"><a href="javascript:void(0)" id="feed_all_item"><span>全部动态</span></a></li>
 			<?php foreach($apps as $app){?>
-			<li class="feed_item"><a href="javascript:void(0)" rel="<?php echo $app['id']?>"><span><?php echo $app['name'];?></span></a></li>
+			<li class="feed_item" type="<?php echo $app['id']?>"><a href="javascript:void(0)" rel="<?php echo $app['id']?>"><span><?php echo $app['name'];?></span></a></li>
 			<?php }?>
 		</ul>
 	</div><!-- 切换标签 end  -->
@@ -47,9 +75,7 @@
 		<div class="FList" id="feed_content">
 
 
-		</div>
-
-		
+		</div>		
 		<div class="alR lh35">
 			<a href="###" id='getMoreFeed' class="U">点击查看更多...</a>
 		</div>

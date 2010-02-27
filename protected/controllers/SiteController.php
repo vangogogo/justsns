@@ -24,7 +24,7 @@ class SiteController extends Controller
 	}
 	public function actionIndex()
 	{
-		$this->render('index');
+		$this->redirect(array('site/home'));
 	}
 	/**
 	 * This is the default 'index' action that is invoked
@@ -86,7 +86,7 @@ class SiteController extends Controller
 		$data = array(
 			'feeds'=>$feeds,
 		);
-		//$this->render('feed',$data);
+		$this->renderPartial('feed',$data,'',false);
 
 	}
 	
