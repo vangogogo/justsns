@@ -77,7 +77,7 @@
 					</span>
 				</div>
 				<div class="left" style="width:90%">
-					<h3><div class="right alR"><div class="left"><em><?php echo friendlyDate('Y-m-d H:i',$notify->ctime);?></em></div><div class="left"><a href="javascript:del_notify(<?php echo $notify->id;?>)" class="del" style=" margin:4px 0 0 0;">删除</a></div></div><strong><?php echo $notify->type;?></strong></h3>
+					<h3><div class="right alR"><div class="left"><em><?php echo friendlyDate('Y-m-d H:i',$notify->ctime);?></em></div><div class="left"><a href="javascript:del_notify(<?php echo $notify->id;?>)" class="del">删除</a></div></div><strong><?php echo $notify->type;?></strong></h3>
 				<div>
 				<div class="right alR">
 						<!-- TIP -->
@@ -100,9 +100,9 @@
 					<div class="lh35" style="margin-top:10px;">
 						<lt name="notify.new" value="2">
 						<?php if($notify['type'] == "add_friend"){?>
-						<a href="javascript:agreeFri({$notify.url},<?php echo $notify->id;?>);">同意</a> | <a href="javascript:ignoreFri({$notify.url},<?php echo $notify->id;?>);">忽略</a>
+						<a href="javascript:agreeFri(<?php echo $notify->url;?>,<?php echo $notify->id;?>);">同意</a> | <a href="javascript:ignoreFri(<?php echo $notify->url;?>,<?php echo $notify->id;?>);">忽略</a>
 						<?php }elseif($notify['type'] == "agree_friend"){?>
-						<a href="javascript:set_group({$notify.authorid},<?php echo $notify->id;?>)">设置好友分组</a>
+						<a href="javascript:set_group(<?php echo $notify->authorid;?>,<?php echo $notify->id;?>)">设置好友分组</a>
 						<?php }elseif($notify["url"]){?>
 						<a href="{$notify.url}">去看看</a>
 						<?php }?>
