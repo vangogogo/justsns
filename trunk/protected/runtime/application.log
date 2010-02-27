@@ -2345,3 +2345,71 @@ Stack trace:
 #3 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
 #4 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
 #5 {main} REQUEST_URI=/yiisns/index.php?r=notify/outbox
+2010/02/27 19:51:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "photo".' in E:\xampp\htdocs\framework\web\CWebApplication.php:324
+Stack trace:
+#0 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('photo')
+#1 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#2 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#3 {main} REQUEST_URI=/yiisns/index.php?r=photo
+2010/02/27 19:51:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "photo".' in E:\xampp\htdocs\framework\web\CWebApplication.php:324
+Stack trace:
+#0 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('photo')
+#1 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#2 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#3 {main} REQUEST_URI=/yiisns/index.php?r=photo
+2010/02/27 19:57:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "send" 动作.' in E:\xampp\htdocs\framework\web\CController.php:439
+Stack trace:
+#0 E:\xampp\htdocs\framework\web\CController.php(262): CController->missingAction('send')
+#1 E:\xampp\htdocs\framework\web\CWebApplication.php(320): CController->run('send')
+#2 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('notify/send')
+#3 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#4 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#5 {main} REQUEST_URI=/yiisns/index.php?r=notify/send
+2010/02/27 20:05:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "send" 动作.' in E:\xampp\htdocs\framework\web\CController.php:439
+Stack trace:
+#0 E:\xampp\htdocs\framework\web\CController.php(262): CController->missingAction('send')
+#1 E:\xampp\htdocs\framework\web\CWebApplication.php(320): CController->run('send')
+#2 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('notify/send')
+#3 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#4 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#5 {main} REQUEST_URI=/yiisns/index.php?r=notify/send
+2010/02/27 20:10:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "send" 动作.' in E:\xampp\htdocs\framework\web\CController.php:439
+Stack trace:
+#0 E:\xampp\htdocs\framework\web\CController.php(262): CController->missingAction('send')
+#1 E:\xampp\htdocs\framework\web\CWebApplication.php(320): CController->run('send')
+#2 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('notify/send')
+#3 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#4 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#5 {main} REQUEST_URI=/yiisns/index.php?r=notify/send
+2010/02/27 20:12:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "send" 动作.' in E:\xampp\htdocs\framework\web\CController.php:439
+Stack trace:
+#0 E:\xampp\htdocs\framework\web\CController.php(262): CController->missingAction('send')
+#1 E:\xampp\htdocs\framework\web\CWebApplication.php(320): CController->run('send')
+#2 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('notify/send')
+#3 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#4 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#5 {main} REQUEST_URI=/yiisns/index.php?r=notify/send
+2010/02/27 20:29:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message '请选择好友.' in E:\xampp\htdocs\yiisns\protected\controllers\NotifyController.php:131
+Stack trace:
+#0 E:\xampp\htdocs\framework\web\actions\CInlineAction.php(32): NotifyController->actionWrite()
+#1 E:\xampp\htdocs\framework\web\CController.php(300): CInlineAction->run()
+#2 E:\xampp\htdocs\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#3 E:\xampp\htdocs\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 E:\xampp\htdocs\framework\web\CWebApplication.php(320): CController->run('write')
+#5 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('notify/write')
+#6 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#7 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#8 {main} REQUEST_URI=/yiisns/index.php?r=notify/write
+2010/02/27 20:29:17 [error] [exception.CException] exception 'CException' with message '属性 "Msg.toUserid" 未被定义.' in E:\xampp\htdocs\framework\base\CComponent.php:173
+Stack trace:
+#0 E:\xampp\htdocs\framework\db\ar\CActiveRecord.php(122): CComponent->__set('toUserid', '2')
+#1 E:\xampp\htdocs\yiisns\protected\controllers\NotifyController.php(138): CActiveRecord->__set('toUserid', '2')
+#2 E:\xampp\htdocs\framework\web\actions\CInlineAction.php(32): NotifyController->actionWrite()
+#3 E:\xampp\htdocs\framework\web\CController.php(300): CInlineAction->run()
+#4 E:\xampp\htdocs\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
+#5 E:\xampp\htdocs\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 E:\xampp\htdocs\framework\web\CWebApplication.php(320): CController->run('write')
+#7 E:\xampp\htdocs\framework\web\CWebApplication.php(120): CWebApplication->runController('notify/write')
+#8 E:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
+#9 E:\xampp\htdocs\yiisns\index.php(12): CApplication->run()
+#10 {main} REQUEST_URI=/yiisns/index.php?r=notify/write
