@@ -33,23 +33,26 @@
 								<?php  }?>
 							</td>
 							<td width="70" class="btmline">
-								<a href="__APP__/space/<?php echo $msg->fromUserId?>">
-									<img src="<?php echo $msg->fromUserId?>" width="50" height="50" />
+								<a href="<?php echo $this->createUrl('/space/',array('uid'=>$msg->fromUserId));?>"  class="tips">
+									<img src="<?php echo $user->getUserFace($msg->fromUserId);?>" width="50" height="50"  />
 								</a>
 							</td>
 							<td width="184" class="btmline">
-								<a href="__APP__/space/{$msg->fromUserId}">{$msg->fromUserId|getUserName}</a><br />
+								<a href="<?php echo $this->createUrl('/space/',array('uid'=>$msg->fromUserId));?>">
+									<?php echo $user->getUserName($msg->fromUserId);?>
+								</a>							
+								<br />
 								<?php echo friendlyDate('Y-m-d H:i:s',$msg->ctime);?>
 							</td>
 							<td width="473" class="btmline">
 	
 								<?php if($msg["is_read"] == 0) {?>
-								  <strong><a href="__URL__/msg/t/inbox/lid/{$msg['id']}/id/<?php if($msg['replyMsgId'] == 0){ echo $msg['id']; }else{ echo $msg['replyMsgId']; } ?> ">{$msg->subject}</a> <br />
-									  {$msg->content}
+								  <strong><a href="__URL__/msg/t/inbox/lid/{$msg['id']}/id/<?php if($msg['replyMsgId'] == 0){ echo $msg['id']; }else{ echo $msg['replyMsgId']; } ?> "><?php echo $msg->subject;?></a> <br />
+									  <?php echo $msg->content;?>
 								  <a href="#nogo"></a></strong></td>
 								<?php  }else{ ?>
-								  <a href="__URL__/msg/t/inbox/lid/{$msg['id']}/id/<?php if($msg['replyMsgId'] == 0){ echo $msg['id']; }else{ echo $msg['replyMsgId']; } ?> ">{$msg->subject}</a> <br />
-									  {$msg->content}
+								  <a href="__URL__/msg/t/inbox/lid/{$msg['id']}/id/<?php if($msg['replyMsgId'] == 0){ echo $msg['id']; }else{ echo $msg['replyMsgId']; } ?> "><?php echo $msg->subject;?></a> <br />
+									  <?php echo $msg->content;?>
 								  <a href="#nogo"></a></td>
 								<?php  }?>
 								<!--未读的加粗显示-->

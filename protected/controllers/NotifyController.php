@@ -52,7 +52,7 @@ class NotifyController extends Controller
 	public function actionInbox()
 	{
 		$msgs = array();
-		
+		$user = new user();
 		
 		$uid = Yii::app()->user->id;
 		$model = new Msg();
@@ -74,6 +74,7 @@ class NotifyController extends Controller
 		
 		$data = array(
 			'msgs'=>$msgs,
+			'user'=>$user,
 		);
 		$this->render('inbox',$data);
 	}
