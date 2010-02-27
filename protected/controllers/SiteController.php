@@ -22,18 +22,74 @@ class SiteController extends Controller
 			),
 		);
 	}
-
+	public function actionIndex()
+	{
+		$this->render('index');
+	}
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionIndex()
+	public function actionHome()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
-	}
+		
+		$uid = Yii::app()->user->id;
+		//用户信息
+		$owner = user::model()->with(array('mini'))->findByPk($uid);
+		
+		//8个应用
+		$apps = App::model()->findAll();
 
+		//应用的计数
+		//$apps_num = $this->api->space_getCount($this->uid);
+		$apps_num = array();
+		
+		//是否自己的空间
+		$mid = Yii::app()->user->id;
+		if($uid == $mid)
+		{
+			$is_me = true;
+		}
+		
+		$may_users = array();
+		
+		//空间主人的好友
+		$friend_list = $owner->getUserFriends($uid);
+
+		$data = array(
+			'owner'=>$owner,
+			'is_me'=>$is_me,
+			'apps'=>$apps,
+			'apps_num'=>$apps_num,
+		
+			'uid' => $uid,
+			'mid' => $mid,
+			'may_users' => $may_users,
+			'visitors' => $visitors,
+			'friend_list' => $friend_list,
+		);
+		$this->render('index',$data);
+	}
+	
+	/**
+	 * Feed ajax 读取
+	 */
+	public function actionFeed()
+	{
+		$type = Yii::app()->request->getParam('type');
+		$uid = Yii::app()->request->getParam('uid');
+		
+		$feeds = array();
+		$model = new Feed();
+		$feeds = $model->getFeeds($uid,$type,$page,$opts);
+		
+		$data = array(
+			'feeds'=>$feeds,
+		);
+		//$this->render('feed',$data);
+
+	}
+	
 	/**
 	 * This is the action to handle external exceptions.
 	 */

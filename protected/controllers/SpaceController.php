@@ -29,10 +29,8 @@ class SpaceController extends Controller
 		$may_users = array();
 		
 		//空间主人的好友
-		$friend_list = $this->getUserFriends($uid);
-		
-		
-		
+		$friend_list = $owner->getUserFriends($uid);
+
 		$data = array(
 			'owner'=>$owner,
 			'is_me'=>$is_me,
@@ -47,30 +45,4 @@ class SpaceController extends Controller
 		);
 		$this->render('index',$data);
 	}
-	
-	private function getUserFriends($uid) {
-		$friends = array();
-		
-		$model = new Friend();
-		 //初始化
-		$criteria=new CDbCriteria;
-		$criteria->order='id';
-		$criteria->condition="t.uid=:uid";
-		$criteria->params=array(':uid'=>$uid);
-		$criteria->limit = 9;
-		//获取数据集
-		$friend_list = $model->with('user')->findAll($criteria);
-		//好友信息,获取好友记录等等
-		$friends = array();
-		if(!empty($friend_list))
-		{
-			foreach($friend_list as $key => $value)
-			{
-				$fri_user = $value->user;
-				if(!empty($fri_user))
-					$friends[$key] = $fri_user->getUserInfo();
-			}
-		}
-		return $friends;
-	}	
 }
