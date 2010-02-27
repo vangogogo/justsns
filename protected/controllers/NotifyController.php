@@ -82,7 +82,7 @@ class NotifyController extends Controller
 	public function actionOutbox()
 	{
 		$msgs = array();
-		
+		$user = new user();
 		
 		$uid = Yii::app()->user->id;
 		$model = new Msg();
@@ -104,7 +104,48 @@ class NotifyController extends Controller
 		
 		$data = array(
 			'msgs'=>$msgs,
+			'user'=>$user,
 		);
 		$this->render('inbox',$data);
 	}	
+	
+	public function actionWrite()
+	{
+		$uid = Yii::app()->request->getQuery('uid');
+        if($uid){
+        	$user = new user();
+            $toUserFace = $user->getUserFace($uid);
+            $toUserName = $user->getUserName($uid);
+        }
+        $mid = Yii::app()->user->id;
+        
+        $model = new Msg();
+        
+		if(isset($_POST['Msg']))
+		{
+			$friend_ids = $_POST['friend_ids'];
+			
+			if(empty($friend_ids))
+			{
+				//请选择好友
+				throw new CHttpException(404,'请选择好友.');
+			}
+			//先对某个用户发送问候
+			foreach($friend_ids as $toUserid)
+			{
+				$model=new Msg();
+				$model->attributes=$_POST['Msg'];
+				$model->toUserId = $toUserid;
+				$model->fromUserId = $mid;
+				$model->save();
+			}
+
+
+		}
+		$data = array(
+			'toUserFace'=>$toUserFace,
+			'toUserName'=>$toUserName,
+		);
+		$this->render('write',$data);
+	}		
 }
