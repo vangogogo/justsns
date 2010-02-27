@@ -44,6 +44,7 @@
 	<div class="UserList">
 		<div class="tit"><span class="right"></span>你可能认识的人</div>
 		<div class="ListBox">
+			<?php if(!empty($may)){ ?>
 			<ul>
 				<?php foreach($may_users as $user){?>
 					<li>
@@ -52,16 +53,19 @@
 					</li>
 				<?php }?>
 			</ul>
+			<?php }?>
 		</div>
 		<div class="btm"></div>
 	</div>
 
+	
 	<div class="UserList">
 		<div class="tit"><?php if(!isset($space_privacy) || $space_privacy){ ?><span class="right">
 		<?php echo CHtml::link('>>更多',array('friend/index','uid'=>$uid),array('class'=>'cGray2'));?>
 
 		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</div>
 		<div class="ListBox">
+			<?php if(!empty($friend_list)){ ?>
 			<ul>
 				<?php foreach($friend_list as $user){?>
 					<li>
@@ -77,6 +81,7 @@
 					</li>
 				<?php }?>
 			</ul>
+			<?php }?>
 		</div>
 		<div class="btm"></div>
 	</div>

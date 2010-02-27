@@ -15,7 +15,7 @@
 .user_info .Linfo .info p { font-size: 12px; padding: 0px; width: 430px; display: block; overflow: hidden; color:#666; margin-top: 10px; margin-right: 0; margin-bottom: 0px; margin-left: 0; }
 .user_info .Linfo .info p span { margin-right:10px }
 .user_info .Linfo .edit_box { }
-.user_info .Linfo .edit_box .status_edit { background-repeat:no-repeat; background-position:0px 0px; text-align:left; width:350px; margin:0px; padding:0px; background-image:url(../images/status_edit_bg.gif); top: 0px; height: 44px; float: left; }
+.user_info .Linfo .status_edit { background-repeat:no-repeat; background-position:0px 0px; text-align:left; width:350px; margin:0px; padding:0px; background-image:url(../images/status_edit_bg.gif); top: 0px; height: 44px; float: left; }
 .user_info .Linfo .status_edit #mb-hint { }
 .user_info .Linfo .status_edit textarea { font-size:12px; line-height:16px; border-top-width:0px; border-right-width:0px; border-bottom-width:0px; border-left-width:0px; border-top-style:none; border-right-style:none; border-bottom-style:none; border-left-style:none; padding:0px; width:97%; height:30px; text-align:left; overflow: hidden; margin-top: 10px; margin-right: 0px; margin-bottom: 0px; margin-left: 5px; }
 .user_info .Linfo .status_edit .btn_big { }

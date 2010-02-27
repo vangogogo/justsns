@@ -57,8 +57,15 @@ $(document).ready(function() {
 			$(this).removeClass("on");
 			$(this).children('a').addClass("fb14");
 		}
-	); 
+	);
 	
+	$('.feed_item').click(
+			function() {
+				$('.feed_item').removeClass("on");
+				$(this).addClass("on");
+			}
+		);
+
 }); 
 
 </script>
