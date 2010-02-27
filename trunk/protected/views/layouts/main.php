@@ -6,11 +6,11 @@
 <script type="text/javascript">
 <!--
 	//指定当前组模块URL地址
-	var	URL			=	'/thinksns/index.php?s=/Index';
-	var	APP			=	'/thinksns/index.php?s=';
-	var	PUBLIC		=	'http://localhost/thinksns/public';
-	var	ROOT		=	'http://localhost/thinksns';
-	var TS			=	'http://localhost/thinksns/index.php?s=';
+	var	URL			=	'/yiisns/index.php?r=/Index';
+	var	APP			=	'/yiisns/index.php?r=';
+	var	PUBLIC		=	'http://localhost/yiisns/public';
+	var	ROOT		=	'http://localhost/yiisns';
+	var TS			=	'http://localhost/yiisns/index.php?r=';
 	var MID			=	'0';
 	var NEED_LOGIN	=	'0';
 	var expire		=	'3600';
@@ -58,14 +58,6 @@ $(document).ready(function() {
 			$(this).children('a').addClass("fb14");
 		}
 	);
-	
-	$('.feed_item').click(
-			function() {
-				$('.feed_item').removeClass("on");
-				$(this).addClass("on");
-			}
-		);
-
 }); 
 
 </script>
@@ -84,9 +76,9 @@ $(document).ready(function() {
 				array('label'=>'邀请好友', 'url'=>array('/friend/invite')),
 			);
 			$notice_item = array(
-				array('label'=>'短消息', 'url'=>array('/site/index')),
-				array('label'=>'系统通知', 'url'=>array('/site/page')),
-				array('label'=>'好友请求', 'url'=>array('/site/contact')),
+				array('label'=>'短消息', 'url'=>array('/notify/inbox')),
+				array('label'=>'系统通知', 'url'=>array('/notify/index','type'=>'system')),
+				array('label'=>'好友请求', 'url'=>array('/notify/index','type'=>'friend')),
 				array('label'=>'留言板', 'url'=>array('/site/page')),
 			);
 		$this->widget('zii.widgets.CMenu',array(
