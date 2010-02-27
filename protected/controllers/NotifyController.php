@@ -17,7 +17,7 @@ class NotifyController extends Controller
 		$model = new Notify();
 		 //初始化
 		$criteria=new CDbCriteria;
-		$criteria->order='id';
+		$criteria->order='ctime';
 		$criteria->condition="t.uid=:uid";
 		$criteria->params=array(':uid'=>$uid);
 		
@@ -48,4 +48,62 @@ class NotifyController extends Controller
 		);
 		$this->render('index',$data);
 	}
+	
+	public function actionInbox()
+	{
+		$msgs = array();
+		
+		
+		$uid = Yii::app()->user->id;
+		$model = new Msg();
+		 //初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime';
+		$criteria->condition="t.toUserId =:uid";
+		$criteria->params=array(':uid'=>$uid);
+
+
+		//取得数据总数,分页显示
+		$total = $model->count($criteria);
+		$pages=new CPagination($total);
+		$pages->pageSize=20;
+		$pages->applyLimit($criteria);		
+		//获取数据集
+		$msgs = $model->findAll($criteria);
+
+		
+		$data = array(
+			'msgs'=>$msgs,
+		);
+		$this->render('inbox',$data);
+	}
+	
+	public function actionOutbox()
+	{
+		$msgs = array();
+		
+		
+		$uid = Yii::app()->user->id;
+		$model = new Msg();
+		 //初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime';
+		$criteria->condition="t.fromUserId =:uid";
+		$criteria->params=array(':uid'=>$uid);
+
+
+		//取得数据总数,分页显示
+		$total = $model->count($criteria);
+		$pages=new CPagination($total);
+		$pages->pageSize=20;
+		$pages->applyLimit($criteria);		
+		//获取数据集
+		$msgs = $model->findAll($criteria);
+
+		
+		$data = array(
+			'msgs'=>$msgs,
+		);
+		$this->render('inbox',$data);
+	}	
 }
