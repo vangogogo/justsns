@@ -14,6 +14,7 @@ class UserIdentity extends CUserIdentity
 	 * Authenticates a user.
 	 * @return boolean whether authentication succeeds.
 	 */
+	
 	public function authenticate()
 	{
 		//$user=user::model()->find('LOWER(username)=?',array(strtolower($this->username)));
@@ -46,7 +47,47 @@ class UserIdentity extends CUserIdentity
 		}
 		return !$this->errorCode;
 	}
+	
+	public function authenticateUC()
+	{
+		
+			//通过接口判断登录帐号的正确性，返回值为数组
+		list($uid, $username, $password, $email) = uc_user_login($this->username, $this->password);
+	
+		setcookie('Example_auth', '', -86400);
+		if($uid > 0) {
+			//用户登陆成功，设置 Cookie，加密直接用 uc_authcode 函数，用户使用自己的函数
+			setcookie('Example_auth', uc_authcode($uid."\t".$username, 'ENCODE'));
+			//生成同步登录的代码
+			$ucsynlogin = uc_user_synlogin($uid);
+			
+			$user=user::model()->findByPk($uid);
+			$this->_id=$user->id;
 
+			$this->setState('email', $user->email);
+
+			//$this->setState('role', '管理员');
+			//保存登录记录
+
+			$arr = array(
+				'uid' => $user->id,
+				'login_time' => strtotime('NOW'),
+				'login_ip' => Yii::app()->request->userHostAddress,
+			);
+			$model = new LoginRecord();
+			$model->attributes = $arr;
+			$model->save();
+
+			$this->errorCode=self::ERROR_NONE;
+		} elseif($uid == -1) {
+			$this->errorCode=self::ERROR_USERNAME_INVALID;
+		} elseif($uid == -2) {
+			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+		}
+			
+
+		return !$this->errorCode;
+	}	
 	/**
 	 * @return integer the ID of the user record
 	 */
