@@ -22,15 +22,15 @@ class SiteController extends Controller
 			),
 		);
 	}
-	public function actionIndex2()
+	public function actionIndex()
 	{
-		$this->redirect(array('site/home'));
+		$this->render('index',$data);
 	}
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionIndex()
+	public function actionHome()
 	{
 		
 		$uid = Yii::app()->user->id;
@@ -68,7 +68,7 @@ class SiteController extends Controller
 			'visitors' => $visitors,
 			'friend_list' => $friend_list,
 		);
-		$this->render('index',$data);
+		$this->render('home',$data);
 	}
 	
 	/**
