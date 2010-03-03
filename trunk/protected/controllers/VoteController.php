@@ -73,10 +73,10 @@ class VoteController extends Controller
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$mini_list = $model->findAll($criteria);
+		$list = $model->findAll($criteria);
 
 		$data = array(
-			'mini_list'=> $mini_list,
+			'list'=> $list,
 			'pages'=> $pages,
 			'mini'=> $mini,
 			'icon_list' =>$icon_list,

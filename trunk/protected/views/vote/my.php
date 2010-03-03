@@ -8,7 +8,7 @@
 	<div class="FList"><!-- 好友心情 begin  -->
 		<?php
 			//加载心情列表
-			//$this->renderPartial('list',array('mini_list'=>$mini_list,'pages'=>$pages));
+			$this->renderPartial('list',array('list'=>$list,'pages'=>$pages));
 		?>
 	</div><!-- 好友心情 end  -->
 </div>
