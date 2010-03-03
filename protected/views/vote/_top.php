@@ -1,10 +1,6 @@
-<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/mood.css');?>
+<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/poll.css');?>
 <div class=page_title> <!-- page_title begin -->
 	<div class="tit"><img src="/yiisns/themes/blue/images/apps/ico_app04.gif" class="img" />投票</div>
-	<?php if($this->action->id == 'my')
-		$this->widget('WMini');
-	?>
-
 	<div class="c"></div>
 </div><!-- page_title end -->
 <!-- 切换标签 begin  -->
