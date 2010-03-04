@@ -165,41 +165,29 @@ class VoteController extends Controller
 
 		$this->render('my',$data);
 	}
-
-	public function actionDoAddMini(){
-		$content = Yii::app()->request->getPost('content');
-		if( empty($content) ){
-			echo -1;
-			return false;
-		}
+	
+	public function actionShow()
+	{
+		$id = Yii::app()->request->getQuery('id');
+		$mid = Yii::app()->user->id;
 		$model = new Vote();
-		//TODO 检测空白输入
-		$model->content = $content;
-		$add = $model->save();
-
-		if( $add ){
-			echo $content;
-		}else{
-			echo -1;
+		$vote = $model->findByPk($id);
+		if(empty($vote))
+		{
+			
 		}
-	}
-
-	/**
-	 * doDeleteMini
-	 * 删除mini
-	 * @access public
-	 * @return void
-	 */
-	public function doDeleteMini(  ){
-		$id = Yii::app()->request->getPost('id');
-		$model = new Vote();
-		//TODO 检测空白输入
-		$mini = $model->findByPk($id);
-
-		if( $mini->delete()){
-			echo 1;
-		}else{
-			echo -1;
-		}
+		
+		//投票记录
+		$vote_log = $poll->log;
+		//投票项
+		$vote_options = $poll->option;
+		
+		$data = array(
+			'vote'=> $vote,
+			'pages'=> $pages,
+			'mid'=>$mid,
+		);
+		
+		$this->render('show',$data);
 	}
 }
