@@ -72,6 +72,10 @@ class Vote extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            //投票选项
+            'option'=>array(self::HAS_MANY, 'VoteOption', 'vid'),
+            //投票记录
+            'log'=>array(self::HAS_MANY, 'VoteUser', 'vid'),		
 		);
 	}
 
