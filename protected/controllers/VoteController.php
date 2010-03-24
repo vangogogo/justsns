@@ -190,4 +190,16 @@ class VoteController extends Controller
 		
 		$this->render('show',$data);
 	}
+
+	public function actionCreate()
+	{
+		$model = new Vote();
+
+		$data = array(
+			'vote'=> $vote,
+			'mid'=>$mid,
+		);
+		
+		$this->render('create',$data);
+	}
 }
