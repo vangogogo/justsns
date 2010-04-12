@@ -76,7 +76,7 @@
 		
   <div class="pollBox">
   	<div class="LogList">
-		<form method="post" action="__URL__/add" onsubmit="return check_vote() ">
+		<?php echo CHtml::beginForm('','POST',array('onsubmit'=>'return check_vote() '));?>
   		<ul>
 	   	  <li>
 		  		<div class="left alR" style="width: 15%;">投票主题：</div>
@@ -275,7 +275,7 @@
 		  </li>
 
    		</ul>
-		</form>
+		<?php echo CHtml::endForm(); ?>
 	  </div> <!-- LogList end  -->
   </div>
   
