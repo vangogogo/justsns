@@ -21,7 +21,7 @@
 				array('label'=>'<span>好友的投票</span>', 'url'=>array('/vote/index')),
 				array('label'=>'<span>我的投票</span>', 'url'=>array('/vote/my')),
 				array('label'=>'<span>大家的投票</span>', 'url'=>array('/vote/all')),
-				array('label'=>'<span><div class="ico_add">&nbsp;</div>发起投票</span>', 'url'=>array('/vote/add')),
+				array('label'=>'<span><div class="ico_add">&nbsp;</div>发起投票</span>', 'url'=>array('/vote/create')),
 			);
 		}
 		else
