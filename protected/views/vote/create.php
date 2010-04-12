@@ -33,22 +33,19 @@
 					alert("投票主题不能为空!");
 					return false;
 				}
-				alert("123");
 				var flag = 0;
 				$(".vote_opt").each(function (i) {
 					if($.trim($(this).val())) flag++;									
 				})
 				if(flag<2){
-					Alert("至少填写2个选项!");
+					alert("至少填写2个选项!");
 					return false;
 				}
-				alert("456");
 				var type = $( '#type' ).val();
 				if( type > flag-1 ){
-				  Alert( '投票选项不得少于可选选项限数' ) ;
+				  alert( '投票选项不得少于可选选项限数' ) ;
 				  return false;
 				}
-				alert("fdsfds");
 			}
 
 			flag = 1;
