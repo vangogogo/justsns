@@ -194,7 +194,12 @@ class VoteController extends Controller
 	public function actionCreate()
 	{
 		$model = new Vote();
+		
+		if(!empty($_POST['test']))
+		{
 
+
+		}
 		$data = array(
 			'vote'=> $vote,
 			'mid'=>$mid,
