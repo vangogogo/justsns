@@ -22,7 +22,9 @@ class GroupTopic extends CActiveRecord
 	 * @var integer $is_del
 	 * @var string $attach
 	 */
-
+	const STATUS_DRAFT=1;
+	const STATUS_PUBLISHED=2;
+	const STATUS_ARCHIVED=3;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -66,6 +68,9 @@ class GroupTopic extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'author' => array(self::BELONGS_TO, 'user', 'uid'),
+			'comments' => array(self::HAS_MANY, 'GroupPost', 'tid', 'condition'=>'comments.status= 1', 'order'=>'comments.ctime DESC'),
+			'commentCount' => array(self::STAT, 'GroupPost', 'tid', 'condition'=>'group_post.status= 1'),
 		);
 	}
 

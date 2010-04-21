@@ -59,17 +59,19 @@ class TopicController extends Controller
 	 */
 	 public function actionShow()
 	{
+
 		$model = new GroupTopic();
 		$id = Yii::app()->request->getQuery('id');
 		$topic = $model->findByPk($model);
 
 		//不存在则提示..访问内容不存在.
+		$comments = $topic->comments;
 
 		$data = array(
 			'topic'=>$topic,
-
-
+			'comments'=>$comments,
 		);
+
 		$this->render('show',$data);
 	}
 }
