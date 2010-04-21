@@ -107,6 +107,8 @@ return array(
 				// www.example.com/home instead of www.example.com/site/index
 				'home'=>'site/index',
 				'post/<id:\d+>'=>'post/show',
+
+				'group/topic/<cate_id:\d+>'=>'group/topic/show/<cate_id:\d+>',
 			),
 		),
 		//验证模块
@@ -164,7 +166,7 @@ return array(
 			"layout"=>"application.views.layouts.main",
 		),
 		'group'=>array(
-			'layout'=>'application.views.layouts.main',
+			"layout"=>"application.views.layouts.main",
 		),
 		'gift'=>array(
 			'layout'=>'application.views.layouts.main',
