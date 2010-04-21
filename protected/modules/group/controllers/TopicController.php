@@ -58,24 +58,22 @@ class TopicController extends Controller
 	/**
 	 * 话题内容
 	 */
-	 public function actionShow()
+	 public function actionView()
 	{
-		$topic = $this->loadModel();
+		$topic = $this->loadTopic();
+		$comment=$this->newComment($post);
 
 		//不存在则提示..访问内容不存在.
-		
-
 		$data = array(
 			'topic'=>$topic,
 		);
-
-		$this->render('show',$data);
+		$this->render('view',$data);
 	}
 
 	/**
 	 * 读取话题
 	 */
-	public function loadModel()
+	public function loadTopic()
 	{
 		if($this->_model===null)
 		{
@@ -88,5 +86,29 @@ class TopicController extends Controller
 				throw new CHttpException(404,'访问内容不存在.');
 		}
 		return $this->_model;
+	}
+
+	/**
+	 * 增加话题回复
+	 */
+	protected function newComment($post)
+	{
+		$comment=new Comment;
+		if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
+		{
+			echo CActiveForm::validate($comment);
+			Yii::app()->end();
+		}
+		if(isset($_POST['Comment']))
+		{
+			$comment->attributes=$_POST['Comment'];
+			if($post->addComment($comment))
+			{
+				if($comment->status==Comment::STATUS_PENDING)
+					Yii::app()->user->setFlash('commentSubmitted','Thank you for your comment. Your comment will be posted once it is approved.');
+				$this->refresh();
+			}
+		}
+		return $comment;
 	}
 }
