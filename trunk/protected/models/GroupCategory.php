@@ -65,11 +65,11 @@ class GroupCategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'title' => 'Title',
-			'type' => 'Type',
-			'pid' => 'Pid',
+			'title' => '名称',
+			'type' => '类型',
+			'pid' => '父类',
 			'module' => 'Module',
-			'desc' => 'Desc',
+			'desc' => '介绍',
 		);
 	}
 
