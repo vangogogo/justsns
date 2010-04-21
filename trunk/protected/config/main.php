@@ -108,7 +108,7 @@ return array(
 				'home'=>'site/index',
 				'post/<id:\d+>'=>'post/show',
 
-				'group/topic/<cate_id:\d+>'=>'group/topic/show/<cate_id:\d+>',
+				'group/topic/<id:\d+>'=>'group/topic/show',
 			),
 		),
 		//验证模块
