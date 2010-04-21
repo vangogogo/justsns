@@ -71,17 +71,17 @@ class GroupPost extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'gid' => 'Gid',
-			'uid' => 'Uid',
-			'tid' => 'Tid',
-			'content' => 'Content',
+			'gid' => '小组编号',
+			'uid' => '作者编号',
+			'tid' => '主题编号',
+			'content' => '内容',
 			'ip' => 'Ip',
-			'istopic' => 'Istopic',
-			'ctime' => 'Ctime',
-			'status' => 'Status',
+			'istopic' => '是否主题',
+			'ctime' => '添加时间',
+			'status' => '状态',
 			'quote' => 'Quote',
-			'is_del' => 'Is Del',
-			'attach' => 'Attach',
+			'is_del' => '是否删除',
+			'attach' => '附件',
 		);
 	}
 

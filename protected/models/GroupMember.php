@@ -67,14 +67,14 @@ class GroupMember extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'gid' => 'Gid',
-			'uid' => 'Uid',
-			'name' => 'Name',
-			'reason' => 'Reason',
-			'status' => 'Status',
-			'level' => 'Level',
-			'ctime' => 'Ctime',
-			'mtime' => 'Mtime',
+			'gid' => '小组id',
+			'uid' => '用户id',
+			'name' => '用户名',
+			'reason' => '加入理由',
+			'status' => '状态',
+			'level' => '等级',
+			'ctime' => '添加时间',
+			'mtime' => '确认时间',
 		);
 	}
 

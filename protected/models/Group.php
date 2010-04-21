@@ -90,17 +90,17 @@ class Group extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'uid' => 'Uid',
-			'name' => 'Name',
-			'intro' => 'Intro',
+			'id' => '编号',
+			'uid' => '创建者',
+			'name' => '群组名',
+			'intro' => '概况',
 			'logo' => 'Logo',
-			'announce' => 'Announce',
-			'cid0' => 'Cid0',
-			'cid1' => 'Cid1',
-			'membercount' => 'Membercount',
-			'threadcount' => 'Threadcount',
-			'postcount' => 'Postcount',
+			'announce' => '公告',
+			'cid0' => '分类1',
+			'cid1' => '分类2',
+			'membercount' => '成员数',
+			'threadcount' => '话题数',
+			'postcount' => '回复数',
 			'type' => 'Type',
 			'need_invite' => 'Need Invite',
 			'need_verify' => 'Need Verify',
@@ -116,11 +116,11 @@ class Group extends CActiveRecord
 			'invitepriv' => 'Invitepriv',
 			'createalbumpriv' => 'Createalbumpriv',
 			'uploadpicpriv' => 'Uploadpicpriv',
-			'ctime' => 'Ctime',
-			'mtime' => 'Mtime',
-			'status' => 'Status',
+			'ctime' => '添加时间',
+			'mtime' => '确认时间',
+			'status' => '状态',
 			'isrecom' => 'Isrecom',
-			'is_del' => 'Is Del',
+			'is_del' => '是否删除',
 		);
 	}
 
