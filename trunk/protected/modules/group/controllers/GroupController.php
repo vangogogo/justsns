@@ -8,25 +8,6 @@ class GroupController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$uid = Yii::app()->request->getParam('uid');
-		//用户信息
-		$owner = user::model()->with(array('mini'))->findByPk($uid);
-		
-		//8个应用
-		$apps = App::model()->findAll();
-
-		//应用的计数
-		//$apps_num = $this->api->space_getCount($this->uid);
-		$apps_num = array();
-		
-		//是否自己的空间
-		$mid = Yii::app()->user->id;
-		if($uid == $mid)
-		{
-			$is_me = true;
-		}
-		
-		$may_users = array();
 		
 		//空间主人的好友
 		$friend_list = $owner->getUserFriends($uid);
@@ -76,4 +57,5 @@ class GroupController extends Controller
 		);
 		$this->render('my',$data);	
 	}
+
 }
