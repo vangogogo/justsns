@@ -97,7 +97,7 @@ return array(
 			// the URL format. It must be either 'path' or 'get'.
 			// path: index.php/controller/action/attribute/value
 			// get: index.php?r=controller/action&attribute=value
-			'urlFormat'=>'path',
+			//'urlFormat'=>'path',
 			// show www.example.com/index.php/controller/action
 			// or just www.example.com/controller/action
 			'showScriptName' => false,

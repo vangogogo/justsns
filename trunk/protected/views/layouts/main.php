@@ -3,21 +3,20 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-<script type="text/javascript">
-<!--
-	//指定当前组模块URL地址
-	var	URL			=	'/yiisns/index.php?r=/Index';
-	var	APP			=	'/yiisns/index.php?r=';
-	var	PUBLIC		=	'http://localhost/yiisns/public';
-	var	ROOT		=	'http://localhost/yiisns';
-	var TS			=	'http://localhost/yiisns/index.php?r=';
-	var MID			=	'0';
-	var NEED_LOGIN	=	'0';
-	var expire		=	'3600';
-	var TPIS		=	'0';
-//-->
-</script>
-
+	<script type="text/javascript">
+	<!--
+		//指定当前组模块URL地址
+		var	URL			=	'/yiisns/index.php?r=/Index';
+		var	APP			=	'/yiisns/';
+		var	PUBLIC		=	'http://localhost/yiisns/public';
+		var	ROOT		=	'http://localhost/yiisns';
+		var TS			=	'http://localhost/yiisns/index.php?r=';
+		var MID			=	'0';
+		var NEED_LOGIN	=	'0';
+		var expire		=	'3600';
+		var TPIS		=	'0';
+	//-->
+	</script>
 <?php
 
 Yii::app()->clientScript->registerCoreScript('jquery');
@@ -40,6 +39,8 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.c
 </head>
 
 <body>
+	<?php var_dump(Yii::app()->urlManager);?>
+
 <?php
 	if(Yii::app()->user->hasFlash('Emessage')){
 		$message = Yii::app()->user->getFlash('Emessage');
