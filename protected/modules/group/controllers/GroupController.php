@@ -9,21 +9,6 @@ class GroupController extends Controller
 	public function actionIndex()
 	{
 		
-		//空间主人的好友
-		$friend_list = $owner->getUserFriends($uid);
-
-		$data = array(
-			'owner'=>$owner,
-			'is_me'=>$is_me,
-			'apps'=>$apps,
-			'apps_num'=>$apps_num,
-		
-			'uid' => $uid,
-			'mid' => $mid,
-			'may_users' => $may_users,
-			'visitors' => $visitors,
-			'friend_list' => $friend_list,
-		);
 		$this->render('index',$data);
 	}
 
