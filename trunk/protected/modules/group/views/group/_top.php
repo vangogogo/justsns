@@ -1,4 +1,4 @@
-<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/mood.css');?>
+<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group.css');?>
 <div class=page_title> <!-- page_title begin -->
 	<div class="left" style="width:100px;">
 		<span class="pic80"><img src="__ROOT__/thumb.php?w=80&h=80&url={$groupinfo['logo']|get_photo_url}"/></span>
