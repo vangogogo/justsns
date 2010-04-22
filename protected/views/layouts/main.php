@@ -39,8 +39,6 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.c
 </head>
 
 <body>
-	<?php var_dump(Yii::app()->urlManager);?>
-
 <?php
 	if(Yii::app()->user->hasFlash('Emessage')){
 		$message = Yii::app()->user->getFlash('Emessage');
