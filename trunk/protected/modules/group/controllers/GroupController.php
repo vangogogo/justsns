@@ -3,13 +3,12 @@
 class GroupController extends Controller
 {
 	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
+	 * 小组首页
 	 */
-	public function actionIndex()
+	public function actionView()
 	{
 		
-		$this->render('index',$data);
+		$this->render('view',$data);
 	}
 
 	/**

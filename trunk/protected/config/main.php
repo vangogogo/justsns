@@ -109,6 +109,8 @@ return array(
 				'post/<id:\d+>'=>'post/show',
 
 				'group/topic/<id:\d+>'=>'group/topic/view',
+				'group/<id:\d+>'=>'group/group/view',
+
 			),
 		),
 		//验证模块
