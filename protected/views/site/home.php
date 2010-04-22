@@ -13,8 +13,8 @@ $(document).ready(function() {
 
 
 
-		
-		$("#feed_content").load(APP+"site/feed",{type:type,user:who},function(txt){
+		var _url = '<?php echo $this->createUrl('site/feed');?>';
+		$("#feed_content").load(_url,{type:type,user:who},function(txt){
 			$('.feed_item').removeClass("on");
 			_this.addClass("on");
 			
