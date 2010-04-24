@@ -2,13 +2,39 @@
 
 class GroupController extends Controller
 {
+	private $_model;
+
 	/**
 	 * 小组首页
 	 */
 	public function actionView()
 	{
+		$id = Yii::app()->request->getQuery('id');
+		$model =  new Group();
+		$group = $this->loadGroup();
 		
+		$data = array(
+			'group'=>$group,	
+		);
 		$this->render('view',$data);
+	}
+
+	/**
+	 * 读取小组
+	 */
+	public function loadGroup()
+	{
+		if($this->_model===null)
+		{
+			if(isset($_GET['id']))
+			{
+				$condition='status=1';
+				$this->_model=Group::model()->findByPk($_GET['id'], $condition);
+			}
+			if($this->_model===null)
+				throw new CHttpException(404,'访问内容不存在.');
+		}
+		return $this->_model;
 	}
 
 	/**
