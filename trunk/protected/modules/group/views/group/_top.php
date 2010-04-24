@@ -4,11 +4,11 @@
 		<span class="pic80"><img src="__ROOT__/thumb.php?w=80&h=80&url={$groupinfo['logo']|get_photo_url}"/></span>
 	</div>
 	<div class="left" style="width:580px;">
-		<h2>{$groupinfo['name']}</h2>
-		<p><strong>成员：</strong>{$groupinfo['membercount']}人   <if condition=" $groupinfo['need_verify'] "> <if condition=" $isadmin "><strong>等待审核成员：</strong>{$gid|getApplyCount}人</if></if>         </p>
+		<h2><?php echo $group['name']?></h2>
+		<p><strong>成员：</strong><?php echo $group['membercount']?>人   <if condition=" $groupinfo['need_verify'] "> <if condition=" $isadmin "><strong>等待审核成员：</strong>{$gid|getApplyCount}人</if></if>         </p>
 		
-		<p><strong>创建：</strong>{$groupinfo['ctime']|friendlyDate}</p>
-		<p><strong>介绍：</strong>{$groupinfo['intro']}</p>
+		<p><strong>创建：</strong><?php echo friendlyDate('Y-m-d H:i:s',$group['ctime'])?></p>
+		<p><strong>介绍：</strong><?php echo $group['intro']?></p>
 		
 	</div>
 	<div class="rmenu left" style="width:150px;">
@@ -56,14 +56,14 @@
 			$is_me = true;
 		}
 
-
 		if($is_me)
 		{
 			$items =array(
-				array('label'=>'<span>群首页</span>', 'url'=>array('/group/friend')),
-				array('label'=>'<span>群话题</span>', 'url'=>array('/group/my')),
+				array('label'=>'<span>群首页</span>', 'url'=>array('/group/friend','id'=>$gid)),
+				array('label'=>'<span>群话题</span>', 'url'=>array('/group/topic','id'=>$gid)),
 				array('label'=>'<span>群相册</span>', 'url'=>array('/group/all')),
 				array('label'=>'<span>群文件</span>', 'url'=>array('/group/top')),
+				array('label'=>'<span>成员</span>', 'url'=>array('/group/top')),
 				array('label'=>'<span><div class="ico_add">&nbsp;</div>发表话题</span>', 'url'=>array('/group/create')),
 				array('label'=>'<span><div class="ico_add">&nbsp;</div>新建群组</span>', 'url'=>array('/group/create')),
 
@@ -81,7 +81,5 @@
 		'activeCssClass'=>'on',
 		'encodeLabel'=>false,
 		));
-
-
 	?>
 </div>
