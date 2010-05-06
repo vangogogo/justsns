@@ -58,7 +58,9 @@ class WFileAway extends CWidget
 			$where = implode( ' AND ',$where )." AND ";
 		}
 		
-		$model = $tableName::model();
+		//$model = $tableName::model();
+		$model = call_user_func(array($tableName, 'model'));
+		
 		$tableName = $model->tableName();
 		$criteria=new CDbCriteria;
 		$criteria->order = 'ctime';
