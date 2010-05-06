@@ -70,6 +70,10 @@ class Group extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, uid, name, intro, logo, announce, cid0, cid1, membercount, threadcount, postcount, type, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'safe', 'on'=>'search'),
+			
+			array('name,type,cid0','required', 'on' => 'create'),
+			array('name', 'checkGroupName', 'on'=> 'create'),
+			
 		);
 	}
 
@@ -124,6 +128,23 @@ class Group extends CActiveRecord
 		);
 	}
 
+	/**
+	 * 检查群组名是否存在
+	 */
+	public function checkGroupName() {
+		$model = self::model();
+		$error_msg = '';
+		if($model->count('name=:name', array(':name'=>$this->name)) > 0) {
+			$error_msg = 'name already exist';
+			$this->addError('email',$error_msg);
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
+	}
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

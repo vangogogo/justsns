@@ -1,5 +1,5 @@
 <?php
-    include('_top.php');
+	include('_top.php');
 ?>
 <?php
 		$CS=Yii::app()->jformvalidate;

@@ -1,8 +1,9 @@
 <?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group.css');?>
+
 <div class=page_title> <!-- page_title begin -->
-	<div class="left" style="width:100px;">
-		<span class="pic80"><img src="__ROOT__/thumb.php?w=80&h=80&url={$groupinfo['logo']|get_photo_url}"/></span>
-	</div>
+	<div class="tit"><img src="/yiisns/themes/blue/images/apps/ico_app05.gif" class="img" /><?php echo Yii::t('sns', 'group');?></div>
+
+	<?php if(!empty($group)){?>
 	<div class="left" style="width:580px;">
 		<h2><?php echo $group['name']?></h2>
 		<p><strong>成员：</strong><?php echo $group['membercount']?>人   <if condition=" $groupinfo['need_verify'] "> <if condition=" $isadmin "><strong>等待审核成员：</strong>{$gid|getApplyCount}人</if></if>         </p>
@@ -42,6 +43,8 @@
 		<php>}</php>
 		</if>
 	  </div>
+
+	<?php }?>
 	<div class="c"></div>
 </div><!-- page_title end -->
 <!-- 切换标签 begin  -->
