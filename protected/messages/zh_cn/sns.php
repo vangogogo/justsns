@@ -200,6 +200,7 @@ return array (
 	'bloodTypes' => '血型',
 
 	//群组
+	'group' => '小组',
 	'intro' => '介绍',
 	'announce' => '公告',
 	'content' => '内容',

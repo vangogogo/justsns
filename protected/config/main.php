@@ -67,12 +67,13 @@ return array(
 				array(
 					'class'=>'CWebLogRoute',
 				),
-				*/
+				
 				array( // configuration for the toolbar
 				  'class'=>'XWebDebugRouter',
 				  'config'=>'alignLeft, opaque, runInDebug, fixedPos, collapsed, yamlStyle',
 				  'levels'=>'error, warning, trace, profile, info',
 				),
+				*/
 			),
 		),
 		'cache'=>array(
@@ -110,6 +111,7 @@ return array(
 
 				'group/topic/<id:\d+>'=>'group/topic/view',
 				'group/<id:\d+>'=>'group/group/view',
+				'group/create'=>'group/default/create',
 
 			),
 		),
@@ -121,6 +123,10 @@ return array(
 
 	// application modules
 	'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'yiidev',
+        ),
 		'srbac'=>array(
 			// Your application's user class (default: User)
 			"userclass"=>"user",
@@ -169,6 +175,7 @@ return array(
 		),
 		'group'=>array(
 			"layout"=>"application.views.layouts.main",
+			//"defaultController"=>"group"
 		),
 		'gift'=>array(
 			'layout'=>'application.views.layouts.main',

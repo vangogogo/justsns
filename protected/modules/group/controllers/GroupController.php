@@ -4,6 +4,16 @@ class GroupController extends Controller
 {
 	private $_model;
 
+	public $defaultAction = 'my';
+	/**
+	 * 小组首页
+	 */
+	public function actionIndex()
+	{
+		echo "index";
+		$this->render('index',$data);
+	}
+	
 	/**
 	 * 小组首页
 	 */
@@ -67,5 +77,6 @@ class GroupController extends Controller
 		);
 		$this->render('my',$data);	
 	}
+
 
 }
