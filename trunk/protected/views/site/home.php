@@ -62,7 +62,7 @@ $(document).ready(function() {
 	</div>
 	<!--用户应用end-->
 	<div class="tab-menu"><!-- 切换标签 begin  -->
-		<div class="right" style="display:none;"><img src="../Public/images/ico_shezhi.gif" /> <a href="#">设置</a></div>
+		<div class="right" style="display:none;"><img src="<?php echo Yii::app()->request->baseUrl;?>/images/ico_shezhi.gif" /> <a href="#">设置</a></div>
 		<ul>
 			<li class="feed_item on" type="0"><a href="javascript:void(0)" id="feed_all_item"><span>全部动态</span></a></li>
 			<?php foreach($apps as $app){?>
