@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2010 年 01 月 20 日 10:34
--- 服务器版本: 5.1.37
--- PHP 版本: 5.3.0
+-- 生成日期: 2010 年 05 月 06 日 09:36
+-- 服务器版本: 5.1.41
+-- PHP 版本: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -64,21 +64,21 @@ CREATE TABLE IF NOT EXISTS `app` (
   `canvas_url` varchar(255) DEFAULT NULL,
   `type` tinyint(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='应用列表' AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='应用列表' AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `app`
 --
 
 INSERT INTO `app` (`id`, `name`, `enname`, `icon`, `url`, `url_exp`, `url_admin`, `uid_url`, `add_url`, `add_name`, `author`, `description`, `order2`, `place`, `status`, `canvas_url`, `type`) VALUES
-(3, '心情', 'mini', 'http://{APP_URL}/appinfo/ico_app04.gif', 'http://{APPS_URL}/mini', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/Index/friends/uid/', '', '', 'sam', '心情', 5, 0, 0, '', NULL),
-(4, '日志', 'blog', 'http://{APP_URL}/appinfo/ico_app01.gif', 'http://{APPS_URL}/blog', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/Index/personal/uid/', 'http://{APP_URL}/index.php?s=/Index/addBlog', '发表', 'sam', '想分享你的文章给你的好友么，快来记录日志吧', 1, 0, 0, '', NULL),
-(10, '相册', 'photo', 'http://{APP_URL}/appinfo/ico_app02.gif', 'http://{APPS_URL}/photo', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/Index/photos/uid/', 'http://{APP_URL}/index.php?s=/Upload/flash', '上传', 'sam', '分享你的图片给好友吧', 4, 0, 0, '', NULL),
-(11, '分享', 'share', 'http://{APP_URL}/appinfo/ico_app_share.gif', 'http://{APPS_URL}/share', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/Index/personal/uid/', '', '', 'wxh', '分享视频，网址，图片', 2, 0, 0, '', NULL),
-(12, '群组', 'group', 'http://{APP_URL}/appinfo/ico_app05.gif', 'http://{APPS_URL}/group', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/SomeOne/index/uid/', '', '', 'shg', '创建你自己群组，邀请三五好友，讨论你们感兴趣的话题吧', 7, 0, 0, '', NULL),
-(13, '投票', 'vote', 'http://{APP_URL}/appinfo/ico_app06.gif', 'http://{APPS_URL}/vote', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/Index/personal/uid/', 'http://{APP_URL}/index.php?s=/Index/addPoll', '发起', 'sam', '投票', 6, 0, 0, '', NULL),
-(14, '活动', 'event', 'http://{APP_URL}/appinfo/ico_app07.gif', 'http://{APPS_URL}/event', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/Index/personal/uid/', 'http://{APP_URL}/index.php?s=/Index/addEvent', '发起', 'sam', '想组织你的站内好友一起来活动么，快快来参与吧！', 8, 0, 0, '', NULL),
-(17, '礼物', 'gift', 'http://{APP_URL}/appinfo/ico_apply.gif', 'http://{APPS_URL}/gift', 'index.php?s=', 'http://{APP_URL}/index.php?s=Admin', 'http://{APP_URL}/index.php?s=/Index/personal/uid/', '', '', '水上人', '礼物', 1, 0, 0, NULL, NULL);
+(1, '心情', 'mini', 'ico_app04.gif', '/mini', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/friends/uid/', '', '', 'sam', '心情', 5, 0, 0, '', NULL),
+(2, '日志', 'blog', 'ico_app01.gif', '/blog', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/personal/uid/', '/index.php?s=/Index/addBlog', '发表', 'sam', '想分享你的文章给你的好友么，快来记录日志吧', 1, 0, 0, '', NULL),
+(3, '相册', 'photo', 'ico_app02.gif', '/photo', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/photos/uid/', '/index.php?s=/Upload/flash', '上传', 'sam', '分享你的图片给好友吧', 4, 0, 0, '', NULL),
+(4, '分享', 'share', 'ico_app_share.gif', '/share', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/personal/uid/', '', '', 'wxh', '分享视频，网址，图片', 2, 0, 0, '', NULL),
+(5, '群组', 'group', 'ico_app05.gif', '/group', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/SomeOne/index/uid/', '', '', 'shg', '创建你自己群组，邀请三五好友，讨论你们感兴趣的话题吧', 7, 0, 0, '', NULL),
+(6, '投票', 'vote', 'ico_app06.gif', '/vote', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/personal/uid/', '/index.php?s=/Index/addPoll', '发起', 'sam', '投票', 6, 0, 0, '', NULL),
+(7, '活动', 'event', 'ico_app07.gif', '/event', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/personal/uid/', '/index.php?s=/Index/addEvent', '发起', 'sam', '想组织你的站内好友一起来活动么，快快来参与吧！', 8, 0, 0, '', NULL),
+(8, '礼物', 'gift', 'ico_apply.gif', '/gift', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/personal/uid/', '', '', '水上人', '礼物', 1, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3751,190 +3751,32 @@ INSERT INTO `click_user` (`uid`, `username`, `id`, `idtype`, `clickid`, `datelin
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cms_content`
---
-
-CREATE TABLE IF NOT EXISTS `cms_content` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cate_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `desc` text,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `tag` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='cms书' AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `cms_content`
---
-
-INSERT INTO `cms_content` (`id`, `cate_id`, `title`, `desc`, `datetime`, `tag`) VALUES
-(1, 1, '聆听风声', '', '2009-11-04 10:25:22', '');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `cms_content_day`
---
-
-CREATE TABLE IF NOT EXISTS `cms_content_day` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content_id` int(11) NOT NULL,
-  `daily` text NOT NULL,
-  `month` int(11) NOT NULL,
-  `day` int(11) NOT NULL,
-  `datetime` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- 转存表中的数据 `cms_content_day`
---
-
-INSERT INTO `cms_content_day` (`id`, `content_id`, `daily`, `month`, `day`, `datetime`) VALUES
-(1, 1, '本报讯 (记者林其玲)昨天有媒体报道招聘网站智联招聘上一财年亏1.5亿元，CEO刘浩因为业绩不佳，被迫“下课”。智联招聘方面表示，“刘浩是主动请辞”，“董事会是肯定刘浩业绩的”。\r\n智联持续亏损\r\n据媒体报道，智联招聘的最大股东澳大利亚seek前天公布上一财年报告。财报显示，由于智联招聘的亏损，使seek产生了1725.4万澳元的税后亏损额。“如此计算，智联招聘本身的亏损约1.5亿多人民币。”而seek公司今年3月公布的一份财报显示，智联招聘2008年的亏损额约1.7亿元人民币。\r\n上月刘浩接受记者采访时表示，“现在还不是赚钱的时候，市场份额才是目的。”业内人士认为，这可能是刘浩跟股东和高层意见不一致的导火索。不过智联招聘公关强调，刘浩辞职是个人原因，智联招聘“如果亏损，肯定是战略性亏损”。\r\n三招聘龙头仅前程无忧盈利\r\n本月初，中华英才的母公司Monster发布第二季度财报显示，中华英才网也处于亏损状态。而去年中华英才网的亏损额高达1.75亿元人民币。其前总裁张建国也于今年年初离职。\r\n目前国内三家龙头招聘网站中，只有前程无忧保持盈利，其第二季度净利润比去年同期增长7.78%。\r\n- 相关\r\n“网络招聘行业或生变”\r\n据易观国际最新的市场检测数据，前程无忧目前占有国内26.3%的市场份额，而英才网和智联分别占有22.4%、15.3%。易观国际分析师表示，中华英才有可能抢占市场份额。业内人士表示，网络招聘行业格局可能将会发生变化。\r\n据悉，英才和智联上半年都在新业务上进行尝试，企业在战略上也有调整。英才网今年推出开发简历助手业务，希望从注册用户数上追赶51job，而智联招聘也于6月推出简历增强显示的增值业务服务，并成立培训咨询服务公司。 ', 11, 1, 0),
-(2, 1, '', 11, 2, 0),
-(3, 1, 'intro_doing.gif', 11, 7, 0),
-(4, 1, '', 11, 3, 0),
-(5, 1, '<input type="hidden" name="r" value="<?\r\n<input type="hidden" name="class_id" value="<?=$class_id?>">', 1, 2, 0),
-(6, 1, '这里写内容\r\n', 11, 5, 0),
-(7, 1, '11月4日\r\n', 11, 4, 0),
-(8, 1, '<p>\r\n	<span style="color: rgb(0, 128, 128);">1111111111111111</span></p>\r\n', 11, 11, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `cms_expert`
---
-
-CREATE TABLE IF NOT EXISTS `cms_expert` (
-  `id` mediumint(8) NOT NULL AUTO_INCREMENT COMMENT '自动增长id',
-  `name` varchar(255) NOT NULL COMMENT '专家名',
-  `cate_id` tinyint(1) NOT NULL,
-  `descript` text NOT NULL COMMENT '专家描述',
-  `pic` varchar(255) NOT NULL COMMENT '专家相片',
-  `url` varchar(255) NOT NULL COMMENT '专家链接',
-  `top` tinyint(1) NOT NULL COMMENT '置顶',
-  `sort` tinyint(1) NOT NULL COMMENT '排序',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='专家专栏表' AUTO_INCREMENT=11 ;
-
---
--- 转存表中的数据 `cms_expert`
---
-
-INSERT INTO `cms_expert` (`id`, `name`, `cate_id`, `descript`, `pic`, `url`, `top`, `sort`) VALUES
-(10, '武装', 1, '盟爱心理咨询师', '/uploads/images/%E6%AD%A6%E8%A3%85.jpg', 'http://www.hopejy.cn/?1125', 0, 1),
-(9, '孙翱飞', 1, '盟爱教育机构创办人', '/uploads/images/%E5%AD%99%E7%BF%B1%E9%A3%9E.jpg', 'http://www.hopejy.cn/?1124', 1, 1),
-(8, '何张沛然', 1, '盟爱教育机构资深讲师', '/uploads/images/%E4%BD%95%E5%BC%A0%E6%B2%9B%E7%84%B6.jpg', 'http://www.hopejy.cn/?1122', 1, 1);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `cms_myshow`
---
-
-CREATE TABLE IF NOT EXISTS `cms_myshow` (
-  `showid` int(11) NOT NULL AUTO_INCREMENT,
-  `cate_id` int(11) NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `title` varchar(255) NOT NULL,
-  `descript` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
-  `start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `idtype` varchar(15) DEFAULT NULL,
-  `id` mediumint(8) DEFAULT NULL,
-  `hits` int(11) NOT NULL,
-  `top` tinyint(1) NOT NULL,
-  `digest` tinyint(1) NOT NULL,
-  `state` tinyint(1) NOT NULL,
-  PRIMARY KEY (`showid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='推荐图片' AUTO_INCREMENT=39 ;
-
---
--- 转存表中的数据 `cms_myshow`
---
-
-INSERT INTO `cms_myshow` (`showid`, `cate_id`, `create_time`, `title`, `descript`, `url`, `icon`, `sort`, `start_date`, `end_date`, `idtype`, `id`, `hits`, `top`, `digest`, `state`) VALUES
-(1, 2, '2009-11-12 09:12:20', '珠海从小学到高中12年全免费！深圳家长有什么反应呢？', '教育在深圳是个难题，外来人口多，学生户籍复杂，基础差,民办学校多。但我们的经济实力却是全国最强的，能否适时在某个时候推出一项振奋人心的民生大政策啊。我想说的是', 'http://www.hopejy.cn/space.php?uid=26&do=thread&id=264', '/uploads/images/ajax-loading.gif', 10, '2009-12-18 00:00:00', '2011-01-01 00:00:00', NULL, NULL, 0, 1, 0, 0),
-(3, 2, '2009-12-02 08:47:37', '任志强:目前未出现房价泡沫', '目前未出现房价泡沫,目前未出现房价泡沫,目前未出现房价泡沫,目前未出现房价泡沫,目前未出现房价泡沫,目前未出现.........', 'http://localhost/uchome/hope.php?r=thread/show&tid=71&class_id=1', '', NULL, '2009-12-01 00:00:00', '2009-12-03 00:00:00', NULL, NULL, 0, 1, 0, 0),
-(4, 1, '2009-12-03 10:11:55', '图片推荐1', '', '', '/uploads/images/01.jpg', NULL, '2009-12-03 00:00:00', '2009-12-12 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(5, 3, '2009-12-03 10:12:58', '大家来评价评价深圳这个城市怎么样', '　大家来评价评价深圳这个城市怎么样？有人说遍地是机会，有人说想在这里生存很难，请问你是怎么看你生活的这个城市？', 'http://www.hopejy.cn/space.php?do=mtag&tagid=30', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(6, 4, '2009-12-03 14:02:22', '反对经济复苏', '谁是下一个迪拜', 'http://www.hopejy.cn/space.php?uid=22&do=blog&id=183', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(7, 4, '2009-12-03 14:02:40', '话疯狂的实验--读<疯狂实验史>', '人类的求知欲，无论何时何地，无论什么样的人，搜有通过自己的方式了解未知世界的愿望。', 'http://www.hopejy.cn/space.php?uid=1&do=thread&id=262', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(9, 3, '2009-12-03 10:12:58', '25岁后的女人', '当你过了25岁，或者正踏在青春的尾巴上的时候，千万不要再天真地以为你还如18岁般青秀可人，请记住，你已经过了那个可以洒脱地说“只在乎曾经拥有，不在乎天长地久”的妙龄。 ', 'http://www.hopejy.cn/space.php?uid=5&do=thread&id=232', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(10, 3, '2009-12-03 10:12:58', '女儿写作文速度超慢,酷爱电脑,不知咋办?', '小孩子迷上了电脑，怎么办？', 'http://www.hopejy.cn/space.php?uid=26&do=thread&id=268', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(11, 3, '2009-12-03 10:12:58', '讨论,发烧时是否洗澡就能物理降温了', '物理降温', 'http://www.hopejy.cn/space.php?uid=254&do=thread&id=267', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(12, 3, '2009-12-03 10:12:58', '儿子尿床怎么办？', '儿子尿床怎么办？', 'http://www.hopejy.cn/space.php?uid=254&do=thread&id=265', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(13, 3, '2009-12-03 10:12:58', '你家孩子打甲流感疫苗了吗？', '你家孩子打甲流感疫苗了吗？', 'http://www.hopejy.cn/space.php?uid=254&do=thread&id=259', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(14, 3, '2009-12-03 10:12:58', '给宝宝止咳的简单方法，不用吃药打针宝', '给宝宝止咳的简单方法，不用吃药打针宝', 'http://www.hopejy.cn/space.php?uid=26&do=thread&id=249', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(15, 3, '2009-12-03 10:12:58', '孩子的自学能力差怎么办?', '孩子的自学能力差怎么办?', 'http://www.hopejy.cn/space.php?uid=26&do=thread&id=248', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(16, 3, '2009-12-03 10:12:58', '你愿意要一个什么样的孩子', '你愿意要一个什么样的孩子', 'http://www.hopejy.cn/space.php?uid=254&do=thread&id=260', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(17, 3, '2009-12-03 10:12:58', '宝宝的问题，我要怎么回答才好？', '宝宝的问题，我要怎么回答才好？', 'http://www.hopejy.cn/space.php?uid=254&do=thread&id=263', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(18, 3, '2009-12-03 10:12:58', '轻轻的我唱首歌', '轻轻的我唱首歌', '321', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(19, 3, '2009-12-03 10:12:58', '轻轻的我唱首歌', '轻轻的我唱首歌', '321', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(20, 3, '2009-12-03 10:12:58', '怎样给孩子戒除网瘾啊!!', '怎样给孩子戒除网瘾啊!!', 'http://www.hopejy.cn/space.php?uid=26&do=thread&id=247', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(21, 3, '2009-12-03 10:12:58', '上课老走神怎么办？', '上课老走神怎么办？', 'http://www.hopejy.cn/space.php?uid=254&do=thread&id=261', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 1),
-(22, 1, '2009-12-04 15:38:25', '图片推荐2', '', '#', '/uploads/images/02.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(23, 1, '2009-12-04 15:38:47', '图片推荐3', '', '#', '/uploads/images/03.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(24, 1, '2009-12-08 13:37:02', '图片推荐4', '✿', '', '/uploads/images/04.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(25, 1, '2009-12-08 13:37:31', '图片推荐5', '❤', '', '/uploads/images/05.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(26, 5, '2009-12-08 13:49:30', '我眼里的“成功”', '每个人的经历不一样，所以眼里的成功也不一样。你眼里的成功是什么呢？', 'http://www.hopejy.cn/space.php?uid=22&do=blog&id=184', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(27, 5, '2009-12-08 13:50:39', '給領導的TP心靈管理10戒', 'TP10戒', 'http://www.hopejy.cn/space.php?uid=272&do=blog&id=142', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(28, 5, '2009-12-08 13:51:08', '給領導的TP心靈管理10修', 'TP10修', 'http://www.hopejy.cn/space.php?uid=272&do=blog&id=143', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(29, 5, '2009-12-08 13:52:41', '感动VS惭愧', '感动就在一瞬间，惭愧却永无消除', 'http://www.hopejy.cn/space.php?uid=22&do=blog&id=182', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(30, 5, '2009-12-08 13:54:13', '请努力做这样的“母亲”', '做母亲也是一门很大的人生学问', 'http://www.hopejy.cn/space.php?uid=22&do=blog&id=150', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(31, 5, '2009-12-08 13:55:31', '我的心事，我的烦恼', '我的心事，我的烦恼，只有自己最懂', 'http://www.hopejy.cn/space.php?uid=918&do=blog&id=171', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(32, 5, '2009-12-08 13:56:18', '有的时候', '有的时候，自己常常会突发奇想', 'http://www.hopejy.cn/space.php?uid=918&do=blog&id=166', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(33, 4, '2009-12-08 14:25:10', '《蜗居》100句。血淋淋的经典', '100经典蜗居语录', 'http://www.hopejy.cn/space.php?uid=15&do=blog&id=185', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(34, 4, '2009-12-08 14:26:50', '电视剧《蜗居》引热议：嫁给爱情，还是嫁给生活？', '你愿意嫁给爱情还是生活？', 'http://www.hopejy.cn/space.php?uid=15&do=blog&id=186', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(35, 4, '2009-12-08 14:30:37', '[唠家常]你是《蜗居》中的谁？', '你像其中的哪个角色呢？', 'http://www.hopejy.cn/space.php?uid=15&do=blog&id=187', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(36, 4, '2009-12-14 09:35:57', '浅谈如何培养学生自己修改作文', '在作文教学中，引导学生自改作文是一个很重要的环节，一定要改变“老师改，学生看”的传统观念，', 'http://www.hopejy.cn/space.php?uid=280&do=thread&id=203', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0),
-(37, 4, '2009-12-14 09:37:59', '您对中小学生恋爱有什么看法?责任在谁,是学校还是家长?', '说说您的看法', 'http://www.hopejy.cn/space.php?uid=26&do=thread&id=114', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, 0, 0, 0, 0);
-
--- --------------------------------------------------------
-
---
 -- 表的结构 `comment`
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `rid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '评论id',
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
-  `id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '模块id',
-  `idtype` varchar(20) NOT NULL DEFAULT '' COMMENT '回复的模块',
-  `authorid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(15) NOT NULL DEFAULT '',
-  `ip` varchar(20) NOT NULL DEFAULT '' COMMENT 'ip',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '时间',
-  `message` text NOT NULL COMMENT '内容',
-  `magicflicker` tinyint(1) NOT NULL DEFAULT '0' COMMENT '魔法道具',
-  PRIMARY KEY (`rid`),
-  KEY `authorid` (`authorid`,`idtype`),
-  KEY `id` (`id`,`idtype`,`dateline`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='评论表' AUTO_INCREMENT=26 ;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` char(15) DEFAULT NULL,
+  `appid` int(11) DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `comment` text,
+  `ctime` int(10) DEFAULT NULL,
+  `toId` int(11) NOT NULL DEFAULT '0',
+  `status` int(1) DEFAULT '0',
+  `quietly` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`),
+  KEY `appid` (`appid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `comment`
 --
 
-INSERT INTO `comment` (`rid`, `uid`, `id`, `idtype`, `authorid`, `author`, `ip`, `dateline`, `message`, `magicflicker`) VALUES
-(1, 1, 2, 'pid', 1, 'he21cn', '127.0.0.1', 1253153437, '<img src="image/face/8.gif" class="face">', 0),
-(2, 1, 5, 'pid', 1, 'he21cn', '127.0.0.1', 1253236467, '我要评论', 0),
-(20, 1, 3, 'noticeid', 911, 'hope00000062', '192.168.1.3', 1257302352, '<div class="quote"><span class="q"><b>hope00000917</b>: <img src="image/face/1.gif" class="face">不明白</span></div><img src="image/face/24.gif" class="face">不明白就问', 0),
-(21, 1, 2, 'noticeid', 911, 'hope00000062', '192.168.1.3', 1258338642, '<img src="image/face/3.gif" class="face">', 0),
-(15, 1, 3, 'noticeid', 917, 'hope00000917', '192.168.1.3', 1257301734, '<img src="image/face/12.gif" class="face">', 0),
-(14, 1, 2, 'noticeid', 917, 'hope00000917', '192.168.1.3', 1257301723, '<img src="image/face/24.gif" class="face">', 0),
-(13, 1, 2, 'noticeid', 917, 'hope00000917', '192.168.1.3', 1257301679, '<img src="image/face/5.gif" class="face">', 0),
-(12, 1, 3, 'noticeid', 917, 'hope00000917', '192.168.1.3', 1257301670, '<img src="image/face/11.gif" class="face"><img src="image/face/19.gif" class="face"><img src="image/face/20.gif" class="face">', 0),
-(11, 1, 3, 'noticeid', 917, 'hope00000917', '192.168.1.3', 1257301588, '<img src="image/face/1.gif" class="face">不明白', 0),
-(22, 1, 2, 'noticeid', 911, 'hope00000062', '192.168.1.3', 1258338646, '<img src="image/face/3.gif" class="face">', 0),
-(23, 1, 2, 'noticeid', 911, 'hope00000062', '192.168.1.3', 1258338649, '<img src="image/face/3.gif" class="face">', 0),
-(24, 1, 3, 'noticeid', 911, 'hope00000062', '192.168.1.3', 1258423959, '<img src="image/face/24.gif" class="face"> 什么意思?', 0),
-(25, 1, 2, 'noticeid', 911, 'hope00000062', '192.168.1.3', 1258424515, '<img src="image/face/12.gif" class="face">', 0);
+INSERT INTO `comment` (`id`, `type`, `appid`, `name`, `uid`, `comment`, `ctime`, `toId`, `status`, `quietly`) VALUES
+(1, 'mini', 10, '管理员', 1, '9999', 1267100241, 0, 0, 0),
+(2, 'mini', 10, '管理员', 1, '54', 1267100308, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -4286,8 +4128,10 @@ CREATE TABLE IF NOT EXISTS `friend` (
 --
 
 INSERT INTO `friend` (`uid`, `fuid`, `fusername`, `status`, `note`, `dateline`) VALUES
-(1, 3, 'demo', 1, '', 1260928276),
-(3, 1, 'admin', 1, 'tes', 0);
+(1, 2, 'demo', 1, '', 1260928276),
+(2, 1, 'admin', 1, 'tes', 0),
+(2, 3, '测试', 1, '1', 0),
+(3, 2, '测试2', 1, '2', 0);
 
 -- --------------------------------------------------------
 
@@ -4306,6 +4150,12 @@ CREATE TABLE IF NOT EXISTS `friend_belong_group` (
 -- 转存表中的数据 `friend_belong_group`
 --
 
+INSERT INTO `friend_belong_group` (`uid`, `fuid`, `gid`) VALUES
+(1, 3, 6),
+(1, 3, 4),
+(1, 1, 8),
+(1, 1, 6),
+(1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -4318,7 +4168,7 @@ CREATE TABLE IF NOT EXISTS `friend_group` (
   `uid` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='个人好友分组列表' AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='个人好友分组列表' AUTO_INCREMENT=17 ;
 
 --
 -- 转存表中的数据 `friend_group`
@@ -4743,421 +4593,6 @@ INSERT INTO `group_topic` (`id`, `gid`, `uid`, `name`, `title`, `viewcount`, `po
 -- --------------------------------------------------------
 
 --
--- 表的结构 `hope_homework`
---
-
-CREATE TABLE IF NOT EXISTS `hope_homework` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `class_id` mediumint(8) DEFAULT NULL,
-  `subject_id` mediumint(8) unsigned NOT NULL,
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `username` char(15) NOT NULL DEFAULT '',
-  `message` text NOT NULL,
-  `viewnum` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `replynum` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `date` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='在线作业表' AUTO_INCREMENT=56 ;
-
---
--- 转存表中的数据 `hope_homework`
---
-
-INSERT INTO `hope_homework` (`id`, `class_id`, `subject_id`, `uid`, `username`, `message`, `viewnum`, `replynum`, `hot`, `dateline`, `date`) VALUES
-(1, 65, 15, 1, 'he21cn', '发大水', 0, 0, 0, 1256003936, '2009-10-19'),
-(3, 37, 1, 1, 'he21cn', '第二期小学教师继续教育提高班网络作业\r\n\r\n请结合教学实际，谈谈你的教育体会。（可在两题中任选一题回答）\r\n\r\n一、在参与式活动中，当“学生害怕暴露自己的想法”时，教师该如何应对？\r\n\r\n二、在参与式活动中，教师担心“自己没有尽职，学生没有学到东西”，教师\r\n    该如何进行心理调整？\r\n\r\n要求：\r\n\r\n在完成作业时，首先要注明：姓名、学校、学号及所要回答的问题题目。', 39, 0, 0, 1256025122, '2009-10-20'),
-(10, 40, 1, 911, 'hope00000062', '作业内容作业内容作业内容', 0, 0, 0, 1256526583, '2009-10-26'),
-(11, 37, 1, 911, 'hope00000062', '第二期小学教师继续教育提高班网络作业 请结合教学实际，谈谈你的教育体会。（可在两题中任选一题回答） 一、在参与式活动中，当“学生害怕暴露自己的想法”时，教师该如何应对？ 二、在参与式活动中，教师担心“自己没有尽职，学生没有学到东西”，教师 该如何进行心理调整？ 要求： 在完成作业时，首先要注明：姓名、学校、学号及所要回答的问题题目。', 0, 0, 0, 1256527085, '2009-10-26'),
-(28, 60, 15, 1, 'he21cn', '\r\nThe Definitive Guide to Yii\r\n\r\n    * 开始\r\n          o Yii是什么\r\n          o 安装\r\n          o 创建第一个Yii应用\r\n    * 基本概念\r\n          o 模型-视图-控制器 (MVC)\r\n          o 入口脚本\r\n          o 应用\r\n          o 控制器\r\n          o 模型\r\n          o 视图\r\n          o 部件\r\n          o 路径假名和命名空间\r\n          o 惯例\r\n          o 开发流程\r\n    * 使用表单\r\n          o 概述\r\n          o 创建模型\r\n          o 创建动作\r\n          o 创建表单\r\n          o 收集表格输入\r\n    * 使用数据库\r\n          o 概述\r\n          o 数据库存储对象\r\n          o Active Record\r\n          o 关联Active Record\r\n    * 缓存\r\n          o 概述\r\n          o 数据缓存\r\n          o 片段缓存\r\n          o 页面缓存\r\n          o 动态内容\r\n    * 扩展Yii\r\n          o 概述\r\n          o 使用扩展\r\n          o 创建扩展\r\n          o 使用第三方类库\r\n    * 专题\r\n          o URL管理\r\n          o 验证和授权\r\n          o 皮肤\r\n          o 日志\r\n          o 错误处理\r\n          o Web Service\r\n          o 国际化\r\n          o 模板引擎\r\n          o 命令行应用\r\n          o 安全措施\r\n          o 性能调整\r\n\r\nHome » Documentation » The Definite Guide to Yii » 皮肤\r\n  Also available in these languages:\r\nDeutschEnglishEspañolFrançaisBahasa Indonesia日本語polskiPortuguêsRomâniaРусскийsvenska简体中文\r\nTheming(主题)\r\n\r\nTheming是一个在Web应用程序里定制网页外观的系统方式。通过采用一个新的主题，网页应用程序的整体外观可以立即和戏剧性的改变。\r\n\r\n在Yii，每个主题由一个目录代表，包含view文件，layout文件和相关的资源文件，如图片， CSS文件， JavaScript文件等。主题的名字就是他的目录名字。全部主题都放在在同一目录WebRoot/themes下 。在任何时候，只有一个主题可以被激活。\r\n\r\n    提示：默认的主题根目录WebRoot/themes可被配置成其他的。只需要配置themeManager应用部件的属性basePath和baseUrl为你所要的值。\r\n\r\n要激活一个主题，设置Web应用程序的属性theme为你所要的名字。可以在application configuration中配置或者在执行过程中在控制器的动作里面修改。', 0, 0, 0, 1256715868, '2009-10-28'),
-(6, 65, 15, 1, 'he21cn', '发生发生', 0, 0, 0, 1256029003, '2009-10-20'),
-(8, 40, 1, 911, 'hope00000062', '朗读课本', 0, 0, 0, 1256173624, '2009-10-22'),
-(9, 37, 1, 1, 'he21cn', '第二期小学教师继续教育提高班网络作业\r\n\r\n请结合教学实际，谈谈你的教育体会。（可在两题中任选一题回答）\r\n\r\n一、在参与式活动中，当“学生害怕暴露自己的想法”时，教师该如何应对？\r\n\r\n二、在参与式活动中，教师担心“自己没有尽职，学生没有学到东西”，教师\r\n    该如何进行心理调整？\r\n\r\n要求：\r\n\r\n在完成作业时，首先要注明：姓名、学校、学号及所要回答的问题题目。', 0, 0, 0, 1256181002, '2009-10-22'),
-(16, 66, 5, 1, 'he21cn', 'werere', 0, 0, 0, 1256605187, '2009-10-28'),
-(13, 40, 1, 911, 'hope00000062', '写一篇小作文', 0, 0, 0, 1256535939, '2009-10-26'),
-(14, 38, 1, 911, 'hope00000062', '写一篇小作文', 0, 0, 0, 1256535939, '2009-10-26'),
-(15, 37, 1, 911, 'hope00000062', '写一篇小作文', 0, 0, 0, 1256535939, '2009-10-26'),
-(30, 66, 5, 1, 'he21cn', '到佛挡杀佛', 0, 0, 0, 1256720662, '2009-10-28'),
-(18, 40, 1, 911, 'hope00000062', '预习课文.', 0, 0, 0, 1256709671, '2009-10-28'),
-(19, 40, 1, 911, 'hope00000062', '预习课文.', 0, 0, 0, 1256709671, '2009-10-28'),
-(20, 37, 1, 911, 'hope00000062', '语文作业是:读写、背诵今天所教的内容。', 0, 0, 0, 1256709898, '2009-10-28'),
-(51, 60, 15, 1, 'he21cn', 'fdas', 0, 0, 0, 1260839239, '2009-12-15'),
-(52, 65, 15, 1, 'he21cn', 'fdas', 0, 0, 0, 1260839239, '2009-12-15'),
-(22, 60, 15, 1, 'he21cn', '321312', 0, 0, 0, 1256712676, '2009-10-28'),
-(23, 65, 15, 1, 'he21cn', '321312', 0, 0, 0, 1256712676, '2009-10-28'),
-(24, 60, 15, 1, 'he21cn', '321312', 0, 0, 0, 1256712725, '2009-10-28'),
-(25, 65, 15, 1, 'he21cn', '321312', 0, 0, 0, 1256712725, '2009-10-28'),
-(26, 37, 1, 1, 'he21cn', '地方放', 0, 0, 0, 1256712746, '2009-10-28'),
-(27, 37, 1, 1, 'he21cn', '地方放', 0, 0, 0, 1256712776, '2009-10-28'),
-(29, 65, 15, 1, 'he21cn', '\r\nThe Definitive Guide to Yii\r\n\r\n    * 开始\r\n          o Yii是什么\r\n          o 安装\r\n          o 创建第一个Yii应用\r\n    * 基本概念\r\n          o 模型-视图-控制器 (MVC)\r\n          o 入口脚本\r\n          o 应用\r\n          o 控制器\r\n          o 模型\r\n          o 视图\r\n          o 部件\r\n          o 路径假名和命名空间\r\n          o 惯例\r\n          o 开发流程\r\n    * 使用表单\r\n          o 概述\r\n          o 创建模型\r\n          o 创建动作\r\n          o 创建表单\r\n          o 收集表格输入\r\n    * 使用数据库\r\n          o 概述\r\n          o 数据库存储对象\r\n          o Active Record\r\n          o 关联Active Record\r\n    * 缓存\r\n          o 概述\r\n          o 数据缓存\r\n          o 片段缓存\r\n          o 页面缓存\r\n          o 动态内容\r\n    * 扩展Yii\r\n          o 概述\r\n          o 使用扩展\r\n          o 创建扩展\r\n          o 使用第三方类库\r\n    * 专题\r\n          o URL管理\r\n          o 验证和授权\r\n          o 皮肤\r\n          o 日志\r\n          o 错误处理\r\n          o Web Service\r\n          o 国际化\r\n          o 模板引擎\r\n          o 命令行应用\r\n          o 安全措施\r\n          o 性能调整\r\n\r\nHome » Documentation » The Definite Guide to Yii » 皮肤\r\n  Also available in these languages:\r\nDeutschEnglishEspañolFrançaisBahasa Indonesia日本語polskiPortuguêsRomâniaРусскийsvenska简体中文\r\nTheming(主题)\r\n\r\nTheming是一个在Web应用程序里定制网页外观的系统方式。通过采用一个新的主题，网页应用程序的整体外观可以立即和戏剧性的改变。\r\n\r\n在Yii，每个主题由一个目录代表，包含view文件，layout文件和相关的资源文件，如图片， CSS文件， JavaScript文件等。主题的名字就是他的目录名字。全部主题都放在在同一目录WebRoot/themes下 。在任何时候，只有一个主题可以被激活。\r\n\r\n    提示：默认的主题根目录WebRoot/themes可被配置成其他的。只需要配置themeManager应用部件的属性basePath和baseUrl为你所要的值。\r\n\r\n要激活一个主题，设置Web应用程序的属性theme为你所要的名字。可以在application configuration中配置或者在执行过程中在控制器的动作里面修改。', 0, 0, 0, 1256715868, '2009-10-28'),
-(31, 37, 20, 911, 'hope00000062', '把今天的表现情况填入到习惯表中,看自己成功完成了哪些事情', 0, 0, 0, 1257232268, '2009-11-03'),
-(32, 37, 3, 911, 'hope00000062', '后很久很久看看', 0, 0, 0, 1257235171, '2009-11-03'),
-(33, 381, 3, 911, 'hope00000062', '后很久很久看看', 0, 0, 0, 1257235171, '2009-11-03'),
-(34, 374, 3, 911, 'hope00000062', '后很久很久看看', 0, 0, 0, 1257235171, '2009-11-03'),
-(35, 37, 1, 1, 'he21cn', 'gfdgdsfdas', 0, 0, 0, 1257235573, '2009-11-03'),
-(36, 37, 1, 1, 'he21cn', 'sdsd', 0, 0, 0, 1257258508, '2009-11-03'),
-(50, 37, 20, 911, 'hope00000062', '天气冷了,注意保暖!', 0, 0, 0, 1258508224, '2009-11-18'),
-(44, 37, 1, 1, 'he21cn', 'dsfa', 0, 0, 0, 1257407386, '2009-11-05'),
-(39, 381, 3, 911, 'hope00000062', 'hghhkjliertytt', 0, 0, 0, 1257302730, '2009-11-04'),
-(40, 374, 3, 911, 'hope00000062', 'hghhkjliertytt', 0, 0, 0, 1257302730, '2009-11-04'),
-(42, 381, 3, 911, 'hope00000062', 'fghkjgsretr', 0, 0, 0, 1257302974, '2009-11-04'),
-(43, 374, 3, 911, 'hope00000062', 'fghkjgsretr', 0, 0, 0, 1257302974, '2009-11-04'),
-(49, 37, 1, 1, 'he21cn', 'fsdafasd', 0, 0, 0, 1258425047, '2009-11-17'),
-(46, 37, 1, 1, 'he21cn', 'fdasfdas', 0, 0, 0, 1257493401, '2009-11-06'),
-(47, 66, 5, 1, 'he21cn', 'fasfas ', 0, 0, 0, 1257493835, '2009-11-02'),
-(54, 370, 1, 1094, 'teacher', 'fghhhjjk', 0, 0, 0, 1260861402, '2009-12-15'),
-(55, 370, 1, 1094, 'teacher', 'sdgklknmvbjhkhkhfjhjh', 0, 0, 0, 1260943998, '2009-12-16');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `hope_job`
---
-
-CREATE TABLE IF NOT EXISTS `hope_job` (
-  `jobid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `class_id` mediumint(8) DEFAULT NULL,
-  `subject_id` mediumint(8) unsigned NOT NULL,
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `username` char(15) NOT NULL DEFAULT '',
-  `subject` char(80) NOT NULL DEFAULT '',
-  `message` text NOT NULL,
-  `viewnum` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `replynum` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `noreply` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`jobid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- 转存表中的数据 `hope_job`
---
-
-INSERT INTO `hope_job` (`jobid`, `class_id`, `subject_id`, `uid`, `username`, `subject`, `message`, `viewnum`, `replynum`, `hot`, `dateline`, `noreply`) VALUES
-(1, 37, 3, 1, 'he21cn', '新作业', '作业内容:抄课文,P100-P101一次', 11, 0, 0, 1255589431, 0),
-(2, 37, 5, 1, 'he21cn', '复习', '<DIV>复习今天所教的几个英文单词,</DIV>', 7, 0, 0, 1255935827, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `hope_mtag`
---
-
-CREATE TABLE IF NOT EXISTS `hope_mtag` (
-  `class_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '班级id',
-  `school_id` smallint(6) NOT NULL DEFAULT '0' COMMENT '学校id',
-  `threadnum` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '话题数量',
-  `postnum` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '回复数量',
-  `close` tinyint(1) NOT NULL DEFAULT '0' COMMENT '关闭群组',
-  `announcement` varchar(255) NOT NULL DEFAULT '' COMMENT '公告',
-  `pic` varchar(150) NOT NULL DEFAULT '' COMMENT '图片',
-  `closeapply` tinyint(1) NOT NULL DEFAULT '0' COMMENT '关闭回复',
-  `noview` tinyint(1) NOT NULL DEFAULT '0' COMMENT '限制浏览',
-  `noreply` tinyint(1) NOT NULL DEFAULT '0' COMMENT '限制回复',
-  `nothread` tinyint(1) NOT NULL DEFAULT '0' COMMENT '限制发表',
-  `moderator` varchar(255) NOT NULL DEFAULT '',
-  `recommend` tinyint(1) NOT NULL DEFAULT '0' COMMENT '推荐班级',
-  PRIMARY KEY (`class_id`),
-  KEY `threadnum` (`threadnum`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='班级群组表' AUTO_INCREMENT=3 ;
-
---
--- 转存表中的数据 `hope_mtag`
---
-
-INSERT INTO `hope_mtag` (`class_id`, `school_id`, `threadnum`, `postnum`, `close`, `announcement`, `pic`, `closeapply`, `noview`, `noreply`, `nothread`, `moderator`, `recommend`) VALUES
-(1, 1, 7, 39, 0, '放大时间', '', 0, 0, 0, 0, '', 0),
-(2, 1, 0, 0, 0, '这个班级的公告', '', 0, 0, 0, 0, '', 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `hope_notice`
---
-
-CREATE TABLE IF NOT EXISTS `hope_notice` (
-  `noticeid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `class_id` mediumint(8) DEFAULT NULL,
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `username` char(15) NOT NULL DEFAULT '',
-  `subject` char(80) NOT NULL DEFAULT '',
-  `message` text NOT NULL,
-  `viewnum` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `replynum` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `noreply` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`noticeid`),
-  KEY `uid` (`uid`,`dateline`),
-  KEY `topicid` (`dateline`),
-  KEY `dateline` (`dateline`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- 转存表中的数据 `hope_notice`
---
-
-INSERT INTO `hope_notice` (`noticeid`, `class_id`, `uid`, `username`, `subject`, `message`, `viewnum`, `replynum`, `hot`, `dateline`, `noreply`) VALUES
-(1, 1, 1, 'he21cn', 'gonggao 共熬', '发生', 10, 0, 0, 1253167155, 0),
-(2, 37, 1, 'he21cn', '特色他', '特色他', 25, 6, 0, 1260841542, 0),
-(3, 37, 1, 'he21cn', '321321', '312312发撒发撒', 26, 5, 0, 1256713227, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `hope_post`
---
-
-CREATE TABLE IF NOT EXISTS `hope_post` (
-  `pid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `class_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '班级id',
-  `tid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `username` varchar(15) NOT NULL DEFAULT '',
-  `ip` varchar(20) NOT NULL DEFAULT '',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `message` text NOT NULL,
-  `pic` varchar(255) NOT NULL DEFAULT '',
-  `isthread` tinyint(1) NOT NULL DEFAULT '0',
-  `hotuser` text NOT NULL,
-  PRIMARY KEY (`pid`),
-  KEY `tid` (`tid`,`dateline`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=132 ;
-
---
--- 转存表中的数据 `hope_post`
---
-
-INSERT INTO `hope_post` (`pid`, `class_id`, `tid`, `uid`, `username`, `ip`, `dateline`, `message`, `pic`, `isthread`, `hotuser`) VALUES
-(88, 1, 71, 1, 'he21cn', '127.0.0.1', 1253173141, '大家来看看吧', '', 1, '0'),
-(89, 1, 71, 1, 'he21cn', '127.0.0.1', 1253175010, '广东省223', '', 0, '0'),
-(90, 1, 71, 1, 'he21cn', '127.0.0.1', 1253175099, '发大水3322', '', 0, '0'),
-(99, 2, 67, 61, 'wing', '192.168.1.105', 1253606409, '12122121', '', 0, '0'),
-(100, 1, 71, 61, 'wing', '192.168.1.105', 1253606553, '122121', '', 0, '0'),
-(95, 1, 71, 3, 'test2', '127.0.0.1', 1253176081, '<div class="quote"><span class="q"><b>he21cn</b>: 认识</span></div>和规范化的', '', 0, '0'),
-(96, 1, 71, 3, 'test2', '127.0.0.1', 1253176081, '<div class="quote"><span class="q"><b>he21cn</b>: 认识</span></div>和规范化的', '', 0, '0'),
-(2, 1, 2, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日04:07  广州日报\r \r \r \r 泳装模特兼艳舞女郎加丝敏-菲奥里\r \r \r 已经自杀的真人秀明星瑞恩-亚历山大-詹金斯\r \r \r<br/>本报讯 上周，28岁的泳装模特兼艳舞女郎加丝敏·菲奥里的尸体在美国加利福尼亚州的布鲁纳公园里的一个行李箱中被发现，凶手为阻碍警方确认死者身份，将受害者的牙齿拔除，并砍掉手指，不过因死者生前曾做过隆胸手术，警方最终通过她的乳房植入物才确认了她的身份，并确认死者是被人掐死后弃尸。\r \r<br/>之后经过警方的排查，菲奥里的前夫、真人秀明星瑞恩·亚历山大·詹金斯成为本案最大嫌疑人，当时他已逃去了自己的家乡加拿大。美国联邦执法局悬赏25000美元通缉詹金斯，警方认为詹金斯带走了大量的钱款，用于离开美国。\r \r<br/>据报道，某酒店监控录像显示菲奥里和詹金斯一起抵达酒店，但是只有詹金斯一人离开。他离开时带着手提箱，而那个手提箱可能就是藏有菲奥里尸体的箱子。\r \r<br/>然而，令案情峰回路转的是，日前，瑞恩·亚历山大·詹金斯被发现死于加拿大的一家汽车旅馆内。加拿大皇家骑警警官邓肯·庞德接受《温哥华周日报》采访时说，詹金斯看起来是“结束了自己的生命。”唯一的解释只能是畏罪自杀了。\r \r<br/>詹金斯与菲奥里今年3月结婚，但婚姻仅维持到了5月，詹金斯曾对菲奥里施行过家庭暴力。\r \r<br/>据悉，詹金斯曾参加某真人秀节目《Megan Wants a Millionaire》，报称他是加拿大卡尔加里的投资银行家。他在他的家乡卡尔加里曾有过案底，他在2007年1月因为故意伤人而被判缓刑15个月。(星星)\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(3, 1, 3, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日01:02  汉网-长江日报 \r<br/>本报讯 (记者万建辉)今晚是七夕夜，武汉一群网友相约偕恋人在武大举办活动，优胜者领养萤火虫一只。萤火虫从何而来？网友说，是找萤火虫养殖专业户扬帆买的。\r \r<br/>28岁的杨帆，2005年毕业于华中科技大学计算机系。当年与女友吵架，杨帆抓了一只萤火虫，让她破涕为笑。一直在寻找创业机会的杨帆灵光一现，何不饲养萤火虫，恋人的需求就是一个永不枯竭的大市场。\r \r<br/>2007年6月，杨帆的首批萤火虫开卖，至今销售额70余万元。他在汉川租下20亩地，聘用3名专职养殖人员，每年投入近10万元。\r \r<br/>“总共2.7万只萤火虫，22日前全部订完，七夕期间的销售额相当于平时一个月。”杨帆说，这段时间电话打爆了，客户来自深圳、成都、云南、乌鲁木齐，情侣、酒吧、婚庆公司、景区和农家乐公司都有。武汉网友24日才打电话过来，他只好从其他客户那里每家减几只，给他们凑了50只。\r \r<br/>城里人见了萤火虫，老人、小孩都会激动得不得了。杨帆说，近一个月，汉口江滩和中山公园的摊贩们才联系他进货，萤火虫生意是先应远，后应近。\r \r<br/>杨帆介绍，萤火虫售出后不吃不喝有一周的存活期，卖给外地客户一般空运，用可透气的塑料瓶装起来，里面放些树枝叶，可喷水，不能积水。\r \r<br/>杨帆说，目前国内没有成型的陆生萤火虫饲养技术，主要是自己摸索出来的，一部分技术来自国外，通过电子邮件咨询外国专家。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(4, 1, 4, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日03:07  现代快报 \r \r \r \r 高铭远和儿子。\r \r \r 　  \r \r<br/>眼看各个学校都要开学了，但他决心带着13岁儿子走遍全国。因此，高铭远给13岁的儿子办理了一年的休学。他认为，这种经历带给孩子的远比课堂要多。\r \r<br/>儿子休学一年随父亲走遍全国\r \r<br/>高铭远，1971年生，在大庆油田工作，曾经当过5年教师。“读万卷书，不如行万里路”，高铭远认为“90后”的孩子不知道什么是挫折，不懂得珍惜幸福生活，在孩子们眼中，得到一切都是理所当然的。于是他毅然决定到儿子的学校为儿子申请休学一年，带着13岁的儿子一起踏上全国之旅，希望以此能让孩子有所改变。他的计划是：从大庆出发途经黑龙江，吉林，辽宁，内蒙古，河北，山西，陕西，最后抵达西藏。\r \r<br/>高铭远曾患有严重的肝硬化，住院10个月，在住院期间，自己调节，研究了一个方法，他认为，这趟旅程，不仅是对疾病的挑战，也是对自我的挑战。\r \r<br/>2009年8月9日，高铭远带着儿子迈出了全国之旅的第一步，途经松原，长春，长白山，丹东，辽阳等地。“每到一个省会城市，我都想和媒体联系一下。”高铭远说，大庆市一家媒体曾经报道过高铭远的事迹。\r \r<br/>住最便宜的旅馆吃简单的饭菜\r \r<br/>“我们是8月22日下午到沈阳的，这里住店比较贵，在招待所住一晚要花60元。”高先生说，“我们到故宫了，可是没有进去，只是在门口转了转，拍了些照片留念。我们一路走来，资金也是一个很重要的问题，不能到每个地方都参观景点，有的时候只是在住宿的旅馆附近转一转。”\r \r<br/>高先生说，半个多月来，孩子有了明显的变化，懂得节约了，在花钱方面很节省。在饭馆吃饭时，最常吃的是饺子，孩子说，吃饺子饭菜都有，不用再另外点菜了，还可以省钱。在这之前，孩子根本意识不到节约是个什么概念。\r \r<br/>全国之旅会让孩子终生难忘\r \r<br/>儿子是大庆第一中学的学生，9月开学上初二，“我特意为他办了一年休学，等这次全国之旅结束后，回来从初一重念，孩子本身是提前一年上的学，这样对他的影响不会太大。”高铭远认为，儿童青少年时期是成长中的重要阶段，之所以休学一年，是利用这个重要时期做远比学习文化知识更重要的事。“我相信，这次全国之旅一定会让孩子终生难忘。”\r \r<br/>高铭远说，在这次出行中，孩子坚持每天写日记。一有时间，还会把随身带来的文化课本拿出来学习。“家里人很支持我。从表面上看，只有我和儿子两个人走，事实上，是全家人一起行动，没有家人的支持，这件事肯定做不了。孩子每天都会和妈妈通电话。”\r \r<br/>高铭远表示，这次全国之旅还有另外一个目的，就是要到全国各地中医大学拜访专家。他强调，“我自己本身不是医生，希望与各地专家探讨肝病康复方面的问题。同时，他希望在接下来的旅程中能与各地学校取得联系，到那里为教师讲讲健康方面知识。”\r \r<br/>教育专家各抒己见\r \r<br/>沈阳市政府督学、教育专家于永昌表示，不赞成孩子父亲的做法，父亲把自己的情趣强加到了孩子身上，“读万卷书，不如行万里路”，这条路不一定非得这么走。他还表示，父亲的动机和创意是好的，只是现在做这件事不太合适，让孩子休学一年去做这种事，于永昌认为没有意义。\r \r<br/>沈阳师范大学教育经济与管理研究所所长、博士生导师孙绵涛教授则对孩子父亲的做法，表示可以理解。孙教授说，在学校学习书本知识固然重要，前往祖国大好河山，了解各地的人文气息，通过非书本知识学习，对孩子成长也是很有益处的。孩子应该受到全面的教育，不能从单一角度分析问题。据《辽沈晚报》\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(5, 1, 5, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月25日23:55  现代金报 \r<br/>金报讯 (记者 蒋振凤 实习生 潜雄斌 摄影 贾磊) 最近，东方论坛有家长发帖“强悍班主任老师，求求你放过我们的孩子”。帖子一出，立刻吸引不少网友的眼光，连日来，有不少网友看了帖子后，对其中谈到的班主任老师表示不满。记者看到，家长帖子中写了上千字的内容，主要从师德、业务和变相体罚学生等几方面，反映了宁波市实验小学三年级一名女班主任不适合担当此职务，要求学校在新学期更换班主任。 \r \r<br/>记者了解到，发帖家长有两位。帖子发出后第二天，该校领导曾对全班30名学生进行家访。昨天，记者分别从发帖家长和海曙区教育局看到了两份内容截然相反的联名信。一份说班主任是好老师，另一份则说是个差老师。到底哪份联名信反映的是真实情况，部分家长所提意见学校能否接受？记者对此进行了调查。\r \r<br/>家长网上列举班主任八大问题\r \r<br/>简单归纳了帖子的内容，主要列举了班主任的八大问题：一、经常骂女同学是十三点，骂男同学是木头。 二、 教育能力欠缺，反怪家长无能。三、变相体罚学生，学生无所适从， 一旦发火，就让全班孩子站着听课，一站就是整节课。到下课时间也不让孩子们喝水，上厕所，为此，还有三年级的孩子因为憋不住而把裤子尿湿的事情发生。四、宁要抄袭作文，打击学生自尊。五、抄默作业重复、思想品德教育、写字课程靠边 。六、挑拨家长与其它任课教师感情；七、 目中无人，狂妄自大 ，老师曾经口出狂言：对我不满，有本事就去告，看领导帮谁？八、 没有公正、公平，事事随心所欲 。就是这样的一位班主任，调进该校从未带班至三年级以上，现在种种迹象表明她要继续带孩子们，家长们真是又急又愁。\r \r<br/>家长坦言：不是逼不得已，我们也不会发帖\r \r<br/>经过多方联系，记者找到了网络发帖的其中一位家长A女士。面对帖子，A女士坦率地告诉记者，这确实是她自己和另外一位家长B女士一起发的。\r \r<br/>A女士对于帖子上的问题，一直强调以上统统属实，并没有夸大的成份。并告诉记者帖子上所说，王老师教养欠佳的行为曾发生在不少学生身上。A女士举了一个例子，说有一次学校布置了一个看图写话的作业，图的原意可能是包饺子，但是由于图是黑白打印的，十分不清晰，很多小孩子都写成了做水果拼盘。这时A女士的女儿告诉记者，当时老师就发脾气骂，你们都是瞎子吗，难道你们的爸爸妈妈也是瞎子吗？A女士告诉记者，老师也是人，不是圣人，发火发脾气是可以理解的，但是这样子骂孩子已经不对了，连同我们家长也一起骂进去，我们也是有尊严的。A女士告诉记者，当时小孩回家来跟她说的时候就十分恼火了。从那次开始，A女士就要求女儿以后在学校无论是好事还是坏事回家后必须要告诉自己。\r \r<br/>几次犯下低级错误，真的是教学能力有问题吗？\r \r<br/>谈到王老师的教学能力，A女士叫女儿拿来了这个学期的暑期作业，在暑期作业上，记者看到一道填空题：(百)年树木 *(十)年树人=各有(千)秋，记者问到这不是做错了吗。后来记者在别的学生的作业本里也发现了同样答案。A女士的女儿告诉记者，7月31号的时候，学生都要求返校，这些已经核对过答案了，是正确答案，全班都是这样的。\r \r<br/>A女士还告诉记者，在女儿上二年级下学期的时候，单位测试的试卷上有一道是非题：我国有56个少数民族。这道题应该判断是错。当时自己以为是老师改错了，在女儿带回来的试卷上也进行了批注，很委婉地告诉老师这道题目改错了。没想到第二天王老师竟然打来电话责问，称自己是对的，语气十分不好听，但是王老师后来也就轻描淡写地承认了自己的错误，说，这道题目全年级都错了，后来还请教了高年级的老师。A女士说，这是不是很滑稽，这种最基础的问题，还全年级都不知道？\r \r<br/>学生集体罚站，一个女生竟然尿了裤子？\r \r<br/>对于帖子上，王老师让学生罚站，学生因为憋不住而把裤子尿湿的事情，A女士说，这个事情不是发生在自己女儿身上，是发生在另外一个女学生身上的。A女士的女儿告诉记者，尿裤子的同学因为是女孩子，怕羞还不敢说，裤子就一直是湿着的。A女士说，这都三年级了，又是一个女孩子，这样的事情发生，还真担心会对孩子以后有影响。\r \r<br/>A女士的女儿最后告诉记者，班主任很凶，经常会拿着笔盒打我们的头。\r \r<br/>记者随即采访到另外一个发帖的家长B女士，记者也反复求证了A女士说过的话。B女士递给记者一张八人的联名信，也都认为这个班主任不适合担当现在的位置。A女士告诉记者，有不少家长要求换班主任，因为顾虑多，又不敢签字。\r \r<br/>采访中的几位家长表示，他们只要求学校召开一次家长会，让家长公开不记名投票，公平公正地决定班主任换与否？\r \r<br/>据了解，该贴7月13日发出后，7月14日，宁波市实验小学立即采取行动，相关领导带着几个老师分几路对三年级302班30名学生进行了家访。走访结果如何？帖子内容是否属实？部分家长提出的这个要求学校是否能够接受？带着一系列的问题，昨天下午记者来到了宁波市实验小学。\r \r<br/>班主任回应：我说女同学十三点，是有原因的\r \r<br/>据家长反映，7月14日参与走访家长的学校领导除几位老师外，还有学校的一位副校长陈霞和教导处的工作人员。记者在学校门口电话联系上陈霞，表明来意后，陈霞说，马上去海曙区教育局开会，采访要先和海曙区教育局打招呼。到了海曙区教育局后，记者打了多个电话，还是没有约到该校领导和当事老师进行采访。在海曙区教育局局长徐健的帮助下，当事人王老师打来电话。解释了帖子中部分内容。\r \r<br/>“我说女同学十三点，是有原因的，曾有家长反映，班里有学生看黄色诗歌，我不知道是谁，最后查出来是个女同学，我就问她了；骂男同学是木头，是因为有个小朋友一直学不好，我着急，就那样说他，但是后来家长跟我讲过后，我就改正了！”\r \r<br/>对于家长反映”教育能力欠缺“，王老师说，“我国有56个少数民族，其实这是以前的事情了，也和家长解释过了，当时是整个年级都出现了笔误。随后，王老师不愿意谈太多，只是要求记者去采访学校领导。\r \r<br/>副校长陈霞一只推说没有时间，而不接受采访，记者等到教育部门的会议结束，陈霞表示要回家中料理孩子，没有时间接受采访。\r \r<br/>教育局：没有收到家长投诉\r \r<br/>记者来到海曙区教育局局长办公室。记者表明来意后，徐健局长放下手头工作，给记者拿出了一打装订整齐的资料，打开后，记者发现，都是与该帖子内容有关的资料。其中，一份是2009年7月24日302班的部分家长签名，但内容与发帖家长手中所持联名信截然相反。还有一份，标有“附二部分家访记录”，内容是对23位家长的家访记录，都表示王老师工作负责。\r \r<br/>徐健局长强调，网络上发帖家长对老师有意见可以到学校或者是教育局反映情况，如果家长反映到这里，教育局一定会调查这件事情，但是，家长一直没有来到这里投诉，这件事情，还是学校上报上来的。所以教育部门并没有对这件事情进行调查。\r \r<br/>这名班主任到底如何？事关30个家庭的孩子教育问题，希望教育部门能够认真调查调查。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(6, 1, 6, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日02:27  东方早报 \r<br/>东方早报记者 陈静思 发自北京\r \r<br/>央视新址大火事件过去已逾半年。针对这起大火的渎职侵权调查，目前已延伸至工程的经济问题。\r \r<br/>昨天，早报记者从相关部门获悉此案的最新进展：目前已有更多涉及此案人员被相关方面控制。其中，第一批涉案人员正在被移送起诉，第二批仍处于侦查阶段。\r \r<br/>有知情人士昨天对早报记者称，“越来越多的人被抓起来了”。早报记者昨天从相关部门了解到，随着央视新址大火案调查的进一步深入，工程监管部门部分相关人员也被列为调查对象。知情人士称，被调查者中包括北京市建委人员，以及承揽央视新址工程B标段(即北配楼)的北京城建集团一名项目负责人。\r \r<br/>今年2月9日，即元宵夜的20时27分，北京市朝阳区东三环中央电视台新址园区在建的附属文化中心大楼工地发生火灾，造成1名消防人员遇难，7人受伤。\r \r<br/>大火发生后，原央视新址办主任徐威等4名央视新址办员工被警方带走接受调查，徐威随后被刑事拘留。之后，央视新址办包括原副主任王世荣、综合业务处副处长邓炯慧、工程处副处长胡德斌、技术处副处长耿晓卫等十余人因牵涉央视大火案先后被刑事拘留。3月13日，徐威等12人被北京检方正式批捕，罪名均为涉嫌危险物品肇事罪。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(7, 1, 0, 1, 'he21cn', '127.0.0.1', 1251357714, '原文网址 www.fanfucn.com\r \r 武汉市国土资源和房产管理局无视辖下大面积耕地被破坏 \r \r \r \r 作者：葛树春 伍爱国  来源：中国反腐维权网、民间舆论监督联盟  \r \r --无征地手续“征地” 补偿款仅为12000元/亩 还要3年付清\r \r （民间舆论监督联盟法制周末网讯 作者 葛树春 伍爱国） 武汉市经济技术开发区建于1991 年 5 月, 1993 年4月经国务院批准为国家级经济技术开发区。2008 年10月武汉市经济技术开发区军山街新团村却被该一公司以村民自治的名义拆迁，属于村民的集体土地将被以12000元/亩的价格征用，武汉市经济技术开发区相关负责人却声称这拆迁征地是新团村民自治。。 \r \r \r \r （征地人为新团村的《征地协议》）\r \r 新团村村民解为国一家是新团村此次拆迁征地的受害者之一，在拆迁方拿不出任何关于拆迁合法手续的情况下，解家刚刚修建起来的2 层楼房被迫拆除，解家近5.8 亩的耕地在没有同意被征用的情况下被强行推为平地。 \r \r 如在武汉市经济技术开发区承包土地用于兴建厂房等建设，每亩地要向有关部门缴纳价格不菲的地租，而一份征地人为新团村的《征地协议》显示：武汉经济技术开发区军山街道办有内部征地文件，新团村所征用的土地价格仅为 12000 元一亩，征地款还要分3 年付清。！ \r \r \r \r (武汉经济技术开发区新团村被毁的耕地)\r \r 我国土地管理法规定，征收基本农田必须由国务院批准，征用国务院批准之外的土地应由省、自治区、直辖市人民政府批准。土地利用总体规划经依法批准后人民政府应当在本行政区域内予以公告。暂且不说武汉市经济技术开发区军山街道办新团村有无权利实施征地行为，即便其有征地权，但有无得到任何政府部门的批准？武汉经济技术开发区军山街道办新团村更未遵守我国《土地管理法》中所规定的、征收耕地的补偿费用包括土地补偿费、安置补助费以及地上附着物和青苗的补偿费。征收耕地的土地补偿费，为该耕地被征收前 3 年平均年产值的 6 至 10 倍。至于国土资源部印发的《关于完善征地补偿安置制度的指导意见》中土地补偿费和安置补助费合计按 30 倍计算，占用基本农田的，征地补偿按当地人民政府公布的最高补偿标准执行。武汉市经济技术开发区军山街道办新团村更是没有执行！ \r \r 2009 年 4 月，武汉市经济技术开发区一工作人员声称发生在新团村的拆迁征地行为是村民自治行为。“如果全中国都把非法拆迁征地行为统称为自治行为，那还要《土地管理法》《城市房屋拆迁管理条例》做什么？” 一位被非法征地村民气愤地说！ \r \r 现今的武汉市经济技术开发区军山街道办新团村，村民们原有的房屋已经被拆除，属于村民的耕地已经被数十辆挖土机夷为平地。解为国一家为此多次上告至有关部门，但至今无果。 \r \r \r \r （武汉市国土资源与房产管理局下发的糊涂答复）\r \r 众所周知非法征地、破坏耕地是刑事犯罪，面对解为国一家的多次举报，武汉市国土资源和房产管理局竟然在对举报人的信访答复中写到：没有发现发生在武汉市经济技术开发区军山街道办新团村的非法征地破坏耕地行为有违法之处。 \r \r 如果不是解为国一家亲历自己的耕地被非法夷为平地，谁会多次到有关部门上告非法征地破坏农田一事？如果不是武汉市国土资源和房产管理局尸位素餐，武汉市经济技术开发区新团村的非法征地、破坏耕地行为怎能不被查处？ \r \r 面对中国反腐维权网的向湖北各领导的举报，曾有武汉经济技术开发区负责人声称开发区军山街道办新团村并不存在征地行为，推地是在为老百姓翻地。 \r \r \r \r 但是，铁的事实就在面前，征地人为军山街道办新团村委会的公章在那里，详细的征地方案在那里，更为铁的事实是原武汉市经济技术开发区军山街道办新团村村民所用有的耕地早已被夷为平地，懂农作物生长原理的人一看便知道，由于原来的耕地被夷为平地导致耕地中的土壤耕作层被破坏，已失去粮食综合生产能力，这就是在非法征地，这就是在破坏耕地，无需任何人狡辩，事实就在眼前！ \r \r 我国刑法第三百四十二条 : “违反土地管理法规，非法占用耕地、林地等农用地，改变被占用土地用途，数量较大，造成耕地、林地等农用地大量毁坏的，处五年以下有期徒刑或者拘役，并处或者单处罚金。”  最高人民法院《关于审理破坏土地资源刑事案件具体应用法律若干问题的解释》规定，非法占用耕地“数量较大”，是指非法占用基本农田 5 亩以上或者非法占用基本农田以外的耕地 10 亩以上。 \r \r \r \r （在耕地上施工 没有违法？）\r \r 仅武汉经济技术开发区新团村民解为国一家被铲平的耕地就有5.8亩，粗略的统计一下整个新团村被破坏的耕地应达数百亩，如果按一个人非法破坏10 亩判刑，那么新团村的非法征地、破坏耕地行为一定能够判刑几十个人！ \r \r 遗憾的是，解为国一家从 2008 年底便开始四处上告新团村非法拆迁征地这一行为，但国土资源局给谢家的答复却是经调查没有发现新团村有违法行为。甚至武汉市国土资源和房产管理局局长在收到中国反腐维权网所撰写的长达7 页的举报信后，曾有武汉市国土资源和房产管理局工作人员和解为国一家取得联系，声称武汉市经济技术开发区的征地行为和武汉市国土资源和房产管理局没有关系。 \r \r 武汉市国土资源和房产管理局 好比一只捉老鼠的猫，武汉市经济技术开发区新团村好比一只老鼠，当猫不捉老鼠的时候可想而知老鼠会怎样一个胆大妄为 我们不禁质疑，是什么原因 武汉市国土资源和房产管理局 如此漠视其辖下非法征地破坏耕地，又是什么原因让 武汉市国土资源和房产管理局 面对武汉市经济技术开发区军山街道办新团村 的非法征地破坏耕地行为坐视不管。“不知道它们（ 武汉市国土资源和房产管理局 ）成天都在干什么，我们新团村那么多耕地在没有手续的情况下被铲平，它们（武汉市国土资源和房产管理局）居然说它们（武汉市经济技术开发区）没有违法！真不知道它们（ 武汉市国土资源和房产管理局 ）的人有没有亲自到新团村实地来考察一下！”一新团村民如是说！ \r \r 根据武汉市国土资源和房产管理局所下发武汉市经济技术开发区军山街道办新团村没有违法的信访答复，解为国一家根据法律规定强烈要求追究武汉市国土资源和房产管理局相关人员玩忽职守罪。而我国法律规定，土地行政主管部门的工作人员玩忽职守、滥用职权、徇私舞弊，构成犯罪的要依法追究刑事责任；同时中国反腐维权网也建议武汉市国土资源和房产管理局学习一下《土地管理法》以及我国关于土地方面的政策法规，因为现在不是什么“指鹿为马”的时代。 \r \r 民间舆论监督联盟中国反腐维权网顺便提醒一句，终日尸位素餐颠倒是非置事实于不顾只会遭到纳税人乃至国人的唾弃！\r \r \r \r 湖北省国土资源厅法规处告诉举报人：如认为自己权益受到侵犯可向公安机关报案\r \r 民间舆论监督联盟中国反腐维权网除对武汉市国土资源和房产管理局无视辖下武汉市经济技术开发区内的非法征地破坏耕地行为表示惊愕外，还将联合民间舆论监督联盟全面披露武汉市国土资源和房产管理局 无视辖下非法征地大面积破坏耕地和其 尸位素餐的不作为。最后披露武汉市经济技术开发区军山街道办新团村所发生的非法拆迁低价补偿、非法征地低价补偿事件！欢迎全世界媒体关注！ （葛树春 伍爱国）\r \r 相关链接：\r \r 中华人民共和国土地管理法\r \r 河南桐柏县一镇政府非法征地农民24亩良田被毁\r \r 山西太原村委主任非法占地300亩被判刑\r \r 青年发帖举报家乡违法征地遭跨省追捕\r  \r \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(8, 1, 7, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日 14:25人民网 \r \r 无法按照承诺在6月底开服的魔兽世界，于6月30日23点多推出战网绑定，以安抚焦急等待开服的玩家。玩家只要提供帐号名和原邮箱等资料即可以绑定战网帐号。这样简便的操作给部分玩家带来了方便，但是却存在极大的安全漏洞，尤其是对于购买游戏帐号的玩家，卖家只要利用曾经的帐号资料抢先进行绑带，即可找回已经售出的游戏帐号。据了解，已有倒卖帐号的商家利用该漏洞找回了相当多的游戏帐号，并继续进行倒卖骗钱，一时间卖号骗子泛滥成灾。\r \r 截止到8月21日，已有上百位Wower向315消费电子投诉网（www.315ts.net）反映了帐号被骗问题，投诉量还在不断增加中。接到投诉后，315TS工作人员均第一时间将投诉情况反馈给了网易，但至截稿时止，网易仍然没有就此事作任何答复和处理。\r \r 玩家经历:账号被卖家利用漏洞找回\r \r 上海的张先生向315TS反映，2007年他通过网上交易购得魔兽世界的游戏帐号，当时号内角色为45级，经过苦心经营，角色到了70级，并获得顶级装备，其中花费了无数的心血和精力，玩魔兽也成了他工作之余最大的生活乐趣。该帐号从购买到6月7日魔兽世界更换代理停服时，一直无事。\r \r 但在网易战网重新开始绑定后，张先生于7月10日登陆战网，通过密保等程序绑定帐号时，却发现该帐号已被人恶意绑定。张先生第一时间根据现有资料申请找回帐号，并成功找回帐号，当时他隐约觉得提交旧的邮箱、密报和手机绑定会让卖号商家利用，但因为帐号已经顺利找回，心情比较愉快，也就没有太在意了。\r \r 期间游戏帐号没什么异常，不过绑定邮箱收到了一封密码修改确认信，张先生知道这是盗号者在尝试修改自己的密码，没有确认。\r \r 7月25日，张先生意外发现，自己的游戏帐号再次被人恶意绑定，进行了无数次申诉，结果均是资料不正确无法通过，张先生这时感到了问题的严重，禁不住质问网易:为什么自己的游戏帐号在九城运营时被保护得很好，但到了网易手里却被人抢走？\r \r 随后，张先生发现自己的游戏帐号已在淘宝被挂牌出售，通过无间道式的聊天后他得知，该卖家已经通过同样的方式恶意绑定了数百账号，目前这些账号暂不出售，要等开服后进入游戏确认里面的装备情况和虚拟游戏币数量后再定价销售，不过已经有很多人预定了账号。卖家得意洋洋的告诉张先生，这次多亏了网易，要是以前，找回这么多游戏账号是不可能的。\r \r 魔兽世界内测交易量飙升骗子泛滥\r \r 7月30日，魔兽世界开始内测，5173、淘宝上的魔兽世界交易开始活跃起来，据5173的交易统计数据显示，魔兽世界每周交易量开始升到了前三位，其中帐号交易为数众多。8月份以来，315TS陆续接到玩家的投诉，反映自己在5173或淘宝上购买的魔兽世界游戏账号被卖家恶意找回，致使钱财两空。\r \r 8月18日，黑龙江的郑先生在5173上购买了一个魔兽世界的游戏帐号，买后郑先生第一时间修改了战网的邮箱密码。8月19日中午，正在游戏时突然掉线，再次登陆提示密码错误，不明白怎么回事的郑先生联系网易客服才得知是账号被恶意找回。\r \r 湖北的朱先生也是魔兽战网漏洞的受害者之一，他在5173购买了魔兽世界账号进入游戏后，有玩家告诉他，前不久他也在5173买过此号，但没几天就被找回去了，这个卖家已经通过该方式骗了很多人。\r \r 类似的投诉案例在315TS上不枚胜举，可见这并非个案，而是非常严重问题，此事该如何处理，网易真该好好反思一下。\r \r 玩家针对此类纠纷的建议处理方案\r \r 对于网易魔兽世界的账号绑定系统，初步设定需要提供账号名、密码、原邮箱及密保等设定，张先生认为还是比较合理的，但是在账号纠纷处理时就出现了漏洞。\r \r 现在网易对待账号纠纷是这样处理:申诉账号不用填当前绑定邮箱，只需提供账号资料，提供资料详细者就成了账号归属者；如果资料相同，客服答复是按提交的先后顺序，先到先得。这样就意味着卖家可以利用时间点，抢先把账号申诉回来。\r \r 而前魔兽世界运营商九城处理账号纠纷是根据当前绑定邮箱和手机，鉴于游戏账号是购买的，无法修改身份证，故修改邮箱和手机绑定是交易成功的前提，以确保不让不诚信卖家找回账号。为什么网易没有采取同样的方式来处理账号纠纷呢？\r \r 对此，张先生建议网易处理账号纠纷时，以第九城市移交给网易魔兽世界工作组时的最终注册资料为准，并提出以下解决方案:\r \r 1、使用注册邮箱进行绑定。\r \r 原因:原第九城市的注册邮箱认证是需要前邮箱的确认，这是帐号网上交易成功的重要依据。\r \r 2、使用原第九城市的密保卡进行确认 须填原密保序列号。\r \r 原因:这是原第九城市的重要保密措施。盗号者能盗走密保码但盗不走序列号，因为平时使用不需要序列号。\r \r 3、使用原第九城市的绑定手机，如无手机绑定的账号会有双重密码。\r \r 原因:手机绑定是第九城市帐号安全的重要保证，第一时间可以锁号改密码，无须上网，用此功能的人比较多。\r \r 4、使用原第九城市的注册身份证发送复印件（网络中称“附件”）。\r \r 原因:不管是帐号是买卖的还是自己的，发送注册身份证复印件是解决纠纷的重要依据。\r \r 鉴于纠纷账号在7月30日开服后会流入市场，并可能再次被卖家找回，以便继续牟利，故建议网易将争议账号先行冻结，直至解决方案出台，以避免更多的无辜玩家蒙受损失。\r \r 网易不予回应安全问题 没有精力处理投诉\r \r 从7月2日产生第一宗关于战网绑定问题的投诉后，315消费电子投诉网工作人员就陆续将接到的投诉反馈给网易客服部，但是一直没有接到对方的任何回复，而据玩家反馈，网易也没有任何的回访电话和处理措施。自7月8日以来，315TS就没有再接到网易有关投诉的处理回复。\r \r 针对网易不处理投诉一事，315TS工作人员联系网易客服部相关负责人罗小姐，其建议315TS直接与公关部经理梁小姐沟通。公关部梁小姐表示，因投诉量太大，已经没有那么多的人手和精力处理。\r \r 而对于目前众多玩家反馈的战网安全性问题，尽管315TS工作人员多次督促网易尽快处理，但遗憾的是，网易方面没有任何回应。（315消费电子投诉网 剑秋桐）\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(9, 1, 8, 1, 'he21cn', '127.0.0.1', 1251357714, '决定写这篇帖子的时候心情很是沉重，面对这样一个法制健全的国家，我们众多被筑诚嘉信骗过的租房群体，竟然不知道该如何投诉你，我们尝试过110，3.15、北京7日节目、消费者协会、北京房地产交易网站等等手段投诉，均没有取得好的成效，有的以不是自己的职权范围不予理睬，有的呢，做做表面的文章，可是这个黑中介，还在继续行骗，更过的被害人群加人到抵抗黑中介联盟的QQ群里面【11678828】。我之所以选择把这个帖子放在天涯社区，是希望这个开放的平台能让我们的呼声传出去，我希望有关部门能出面整治他们。\r \r       我记得群里面有个被这个黑中介10几个业务人员围攻，威胁要打她的女孩，她曾经在群里面哭诉的说道：“我那天就想我要是新加坡人多好都笑话明星转国籍 我是没条件 否则我决不作中国人太没人权了。”听到这句话的时候我心里很痛，这个话语可能偏于激动，但是事实情况是我们究竟怎样才能维权？？？？？？\r \r        筑诚嘉信前身：筑诚嘉信的前身是长丰康盛，这个公司之前也被投诉过N多次，大家可以百度一下，看看他们的信誉，之前租给一个公司一套房子当宿舍，结果煤气泄露造成7个或8个？员工死亡，也由于信誉很差影响生意，再被罚款之后就改成现在的名字。试问相关的部门，没有审批程序吗，他们还有资格继续办中介公司吗？真是法制的悲哀-------\r \r       以下是我在网上搜集的一些证据，因为篇幅的原因，只罗列了一些，大家可以在网上搜索下我到底说的是真是假。我希望通过天涯网的宣传，把这个事情搞大，在中国好像只有事情恶化之后才会有相关的部门出来办理，如果还是解决不了问题，我就大家一个借鉴吧，让更过的租户免于上当---------\r \r \r \r \r 抵抗黑中介联盟群空间里面的投诉帖子\r \r Cwinq 2009-08-18 09:23:47 1楼 投訴公司：筑誠佳信\r 姓名：Cwinq\r 電話：151****0233\r 事由：各种理由克扣押金(墙壁让全部重新刷下，房子要全部打扫，竟然收取500多的费用。)，霸王条款，不按他们公司规定就不给退钱。\r 有無依據：他们不敢自己写克扣押金的理由，让一个小员工写的。 合同和押金条我都有照片。\r \r \r 闷 2009-08-18 09:33:11 2楼 投訴公司：筑誠佳信\r 網名:闷\r 電話：136****3071\r 事由：租房期间骚扰(天天打电话骚扰，为了就是想我搬出去，不要押金和房租）叫保洁来清理别人房屋，竟然收我的钱（合租）。还有折旧费，合同没写。\r 有無依據：有合同押金条\r \r 凌冰寒雪 2009-08-18 09:35:16 3楼 投訴公司：筑誠佳信\r 姓名：zhz\r 電話：158****0893\r 事由：扣我一半押金，说是保洁费\r 有無依據：因为钱不多，押金条、钥匙、合同都没给他们\r \r \r 京城浪子 2009-08-21 14:39:50 4楼 投訴公司：筑誠嘉信\r 網名：京城浪子\r 電話：134****0208\r 事由：该公司以墙壁要粉刷、更换设施、保洁等等理由扣除我的押金（房子是贴墙纸的，根本不需要粉刷，而且房东与筑诚嘉信的签约已到期并不再续约）。而这些收费项目并没有在合同中出现，房东也明确表示过这些不是房客的问题，不需要索赔。按他们的算法，我1200元的押金所剩无几。\r 有無依據：有合同和押金收据\r \r \r 百度搜索筑诚嘉信结果：\r \r 筑诚嘉信就是黑中介,它们无理由克扣客户的房租以及押金,还收取客户不需要承担的费用,有线费,卫生费.希望客户不要相信这样的黑中介.他们以低价从房主手里接过来房子,然后以高价租给客户. 收取有线费,卫生费. 你中途退房会以任何理由扣除你的转租合同费,房屋清洁费,甚至是物品磨损费等........ 甚至不退还你的房租及押金. 修理工修理东西会以低价购买物品,依次充好,来收客户高价格，有些东西修好连一个星期都用不到，你的押金将倍这样退不出来，收取你物品磨损费，刷墙费，保洁费，如果坏个东西将具额赔付，有些东西一拉来就是坏的，他不会出钱给你修，而是说你弄坏的，最后讹诈你很多钱，没准最后算的你押金没有了不说，还要倒给他钱！基本上就是和他们没理可以讲！最郁闷的不是钱怎么样了，而是你住的不顺心不舒心，就是明知道他敲诈你钱，还得给他！大家请小心，最好别租他们的房子，都是惨痛的教训！\r \r 我于2008年6月和北京筑诚嘉信房产公司签的一年租房合同，一年到合同正常到期，我们去退房要押金（650），可中介以地脏为由，扣我们每家500块钱保洁费（里面一共住了五家），合同上没写关于保洁费的任何事项，但他们就是不退\r \r \r 我也是筑成嘉信的受害者，筑成嘉信有个专门办理退钱退押金的部门，你不是想退押金吗，去安贞桥北，金瓯大厦417吧，那有一群人等着你呢，里面一群凶神恶煞的人等着你，主管性郭，有个自称姓焦的经理，凡是进去退押金的，张口就骂，爱谁谁，爱上哪告上哪告，你手里有合同，有押金条，有什么都不好使，人家就不退，你房子坏了房东可以证明没坏原来就那样，那也不好使，用人家筑诚嘉信的话讲你少TM在我面前提房东，房东多个jb，房东我见多了，你TM找房东，你跟他要钱去，你房子里的有水费，电费煤气费，你想和中介公司结清，不可能，用人家筑成嘉信的话讲你剩水电费，谁他妈让你们往里存的，谁他妈让你存你找谁【IP为 219.232.*.* 的网友】 发表日期：2009-8-25 21:24:21\r \r \r 我是去08年8月份在筑诚嘉信租的房子，今年8月19号房子到期，我8月18号去办理退房及退押金，结果筑诚嘉信以财会不在为由拒绝支付我们押金1700元，我询问财会什么时候能回来，他们说22号要我们在过去一趟，我们去了之后他们又找出各种各样不合理的理由拒绝支付我们押金。黑中介靠骗人为生【IP为 219.232.*.* 的网友】 发表日期：2009-8-22 21:24:28\r \r \r 筑诚嘉信老板我见过，是个大胖子，带条挺粗的金链子，我看他就是黑社会头子，还有一个黑胖子，张子就骂人，还有一帮社会上的无赖流氓，还是找打黑办吧，！咱们惹不起他们呀！【IP为 219.232.*.* 的网友】 发表日期：2009-8-10 22:23:46\r \r 我也是我们是被压了1650元，退得时候只给650那1000不给气氛！！【IP为 219.232.*.* 的网友】发表日期：2009-8-4 16:50:29\r \r \r \r  对这个公司就是很恶心，业务员的素质野蛮差的！大家下次租房子可要注意了选好中介！没有客户看他们怎么生存【IP为 219.232.*.* 的网友】 发表日期：2009-7-29 11:53:20\r \r \r 1、租房子的时候说我要承担卫生费，小区里面是按人收的，每人每月七块钱，按一年交，共收了84块钱。实际上我租的合同就不够一年，他们就说不够一年走的时候再退，而且所有人都着要交。可是实际上，同房间里另外的两家都没有收此项费用\r \r 2、住进去没有几个月，有一天下班回家，遇到有人在门口敲门，说是小区里收卫生费的，我说我交给中介了，他说他们不管，中介没给他钱。我顺便问了卫生费怎么收，他们说按家，一户一年36块钱！我们的房子里面住了五个人，中介竟然收了我84孩说是按人算！后来我给打电话，几经周折电话里同意他们去收卫生费的办公室交钱去。结果前几天听隔壁的女孩子说，中介没有交钱，那些人又上门要卫生费了，她就先垫付了。因为又想向我们收别的钱，就说到时候把这钱再退给他。\r \r 3、我们住的房子卫生间好像是有些渗水，楼下和隔壁都找过好多次了，这次实在是逃不过了就说修，但是费用要我们出一半。说是在我们住的期间坏的。实际上卫生间在我们搬进去以前就漏国水，据说当时因为费用高，没有彻底的修。而且现在漏水其实也不是刚刚漏，很可能在我们搬进去以前水多了就洇的。而且态度极其差，叫嚣我们不交钱就要我们搬走，总押金里面口维修费！租房子的时候却说维修都是他们管。而且合同上押金只是用来保证我们不损坏自己租住的房间内的设施的，公共区域的水管或者地面有问题是房屋质量或者说正常老化，或者干脆就是原来就没修好？又不是我们弄坏的，凭什么让我们出钱？难道房子住久了老化也要我们再负一份折旧费吗？\r \r 而且需要提出的是中介两边忽悠，做防水什么的费用都没有明确，就打印出来共同付费的协议要我们签，只写了他们公司的名字没盖章，让我们先签字。而且跟我们说别的家都签了，同意付费了，跟别的家又说我们同意付费了！欺诈！\r \r 4、卫生间的马桶盖从我看房子的时候就是坏的，上厕所特别不方便。当时和他们说，他们就说过两天就修，结果到现在都没修！冰箱贮藏室能结出很厚的冰来，而且灯从来都不亮。我都没用过！\r \r \r 筑诚嘉信这个黑中介！受过骗的和不想再受骗的请进！\r 北京筑诚嘉信这个黑中介，大家一定要注意了。不要从他家租房子，押金都不退的，明目张胆的扣钱！大家从网上搜一搜就知道是他们的一贯作风了。\r 家具以次充好，房租到期的时候说是你弄坏的，高价让你赔。而且还管你要钱刷房子，还要扣保洁费！它才不管你进去的时候没有给你做保洁，其实再往外租的时候也不会真的做保洁，或者花那么多钱做。因为我住进去的时候比我走的时候还要脏。合同上也没有写押金是要包括保洁费的！而且很张狂的说：我就是要扣，你甭跟我说合同！真是气死了！\r 按照他们的算法，你的押金不仅退不回去，还要倒给他们钱呢！\r \r 很多人都是很气愤，但是一个人的力量去跟他们讲理讲不起，也耗不起那时间，就不了了之了。可是我实在是气不过！\r \r 受过同样遭遇的进来说说你们的情况啊！我们不能老让他们这么欺负人！不能老让他们再害别人！让更多的人知道，租房子的时候一定要小心，千万不要和他们租房子了！！！！！！\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0');
-INSERT INTO `hope_post` (`pid`, `class_id`, `tid`, `uid`, `username`, `ip`, `dateline`, `message`, `pic`, `isthread`, `hotuser`) VALUES
-(10, 1, 9, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日11:21  深圳晚报 \r<br/>月经是女性必然经历的生理现象，每个月总有那么几天，痛经就如同魔咒一样缠绕着部分女性，都给她们的生活带来诸多不便，很多人甚至会因为痛经影响生活、学习和工作。妇科专家们说，痛经有级数之分，二级以上痛经有可能是身体疾病的警报。那么，你的痛经到了几级？\r \r<br/>【痛经级数自测】\r \r<br/>1、腹痛难忍2分\r \r<br/>2、腹痛明显1分\r \r<br/>3、坐卧不宁2分\r \r<br/>4、休克4分\r \r<br/>5、面色苍白1分\r \r<br/>6、冷汗淋漓2分\r \r<br/>7、四肢厥冷2分\r \r<br/>8、需卧床休息2分\r \r<br/>9、影响工作学习2分\r \r<br/>10、伴腰部酸痛1分\r \r<br/>11、伴恶心呕吐1分\r \r<br/>12、伴肛门坠胀1分\r \r<br/>13、用一般止痛措施疼痛暂缓1分\r \r<br/>14、用一般止痛措施不缓解 2分\r \r<br/>15、疼痛一天以内1分\r \r<br/>16、疼痛期每增1天加2分\r \r<br/>自测结果\r \r<br/>轻度一级\r \r<br/>中度二级重度三级\r \r<br/>轻度一级：积分为0－4分。此类疼痛可通过心理、饮食的调节缓解，适当饮用姜茶、红糖水、玫瑰花茶，将可达到缓解疼痛的作用。\r \r<br/>中度二级\r \r<br/>中度二级：积分为4－10分。此类疼痛可适当选择药物治疗，采用温和有效的中药对身体进行调理是一种很健康的方式。中医学在原发性痛经方面积累了丰富的治疗经验，可请医师开中药方子进行长期调理。\r \r<br/>重度三级\r \r<br/>重度三级：积分为10－20分。拉响警钟，目前的生理疼痛已经达到了严重的程度。对于年轻女孩而言，重度生理疼痛不仅影响学习，对身体发育也有严重影响。对于成熟的女性而言，重度生理疼痛有可能诱发不孕症、盆腔炎、子宫内膜异位症等妇科疾病。应及时到医院查明引起痛经的原因，在医师指导下进行治疗。\r \r<br/>专家提示\r \r<br/>二级、三级痛经请及时就诊\r \r<br/>痛经时，会发生下腹部胀痛、冷痛、刺痛、隐痛、坠痛、痉挛性疼痛等，严重者疼痛会延至腰背部，甚至涉及大腿及足部。同时，可能发生乳房胀痛、肛门坠胀、胸闷烦躁、悲伤易怒、心惊失眠、头痛头晕、恶心呕吐、胃痛腹泻、倦怠乏力、四肢冰凉、冷汗淋漓、虚脱昏厥等症状。\r \r<br/>一级痛经为小腹疼痛明显，伴腰部酸痛，但能坚持工作，无全身症状。这类痛经人数占到总数的45.73%；二级痛经为小腹疼痛难忍，伴腰部酸痛、恶心呕吐，用止痛措施能使疼痛暂缓，约占痛经总数的40.72%；三级痛经为小腹疼痛难忍，严重影响工作学习和日常生活，必须卧床休息，患者常会有腰部酸痛、冷汗淋漓、呕吐腹泻或肛门坠胀等症状，采用止痛措施无明显缓解。约占痛经总数的13.55%。\r \r<br/>深圳阳光医院妇科专家提醒，如果您的痛经程度达到二级以上，请及时到医院就诊。此外，无论身体是否已触及疼痛的警戒线，都应随时调整自己的不良情绪，使自己从容的面对生活压力，是减少生理疼痛的必要环节。\r \r<br/>八成女性受痛经困扰\r \r<br/>对于女性来说，月经是特有的生理现象。健康女性平均一生会有400次月经，按照每次5天来算，她们一生中有五年半的时间是在生理期度过的，在这些日子里，超过八成的女性会受到痛经的困扰。\r \r<br/>“痛经现象十分普遍，近些年我国痛经发病率不断上升，大概是10年前的2－3倍。”深圳阳光医院妇科主任曾月翠医师介绍，从初潮青少年到绝经期妇女，都会出现不同程度的痛经。\r \r<br/>此外，痛经会严重影响女性生活，英国牛津大学妇科专家也在科学成就年会上指出：“痛经女性中3／4人因此无法正常工作。”\r \r<br/>医学上将痛经分原发性和继发性两种。经过详细妇科临床检查未能发现盆腔器官有明显异常的，称原发性痛经，也称功能性痛经。继发性痛经则指生殖器官有明显病变，如子宫内膜异位症、盆腔炎、肿瘤等的患者。继发性痛经应格外引起痛经患者注意。\r \r<br/>治痛经首选中西医结合疗法\r \r<br/>“痛经人数越来越多，与现代生活方式有很大关系。”曾主任分析，许多女性长期处于巨大的工作压力下，体内激素分泌受到影响，加上辐射、失眠、作息不规律以及滥用抗生素、饮酒、吸烟等因素，痛经就很容易发生了。“无论痛经程度如何，一定要先查明原因，排除器质性病变。”曾主任强调，在此基础上，通过中西药结合疗法来改善痛经。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(11, 1, 10, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日11:13   健康时报 \r<br/>肌肉也能够产生热量。但是由于女性比男性肌肉含量少，不易产生热量，因此女性的体温一般比男性的体温低。\r \r<br/>热量本来可以随着血液被输送到手脚，但是由于手脚处于肢体末端，在热量送达之前就冷却下来了，而且在全身都感觉寒冷的时候，如果向手脚输送过多的血液，相应地，也就有过多的血液被冷却以后流回心脏，因此心脏就不会发出指令向手脚输送大量的血液，于是手脚的毛细血管就会收缩变细。这样，身体中心所产生的热量就更难输送到手脚，手脚也因此始终处于冰冷状态。\r \r<br/>要解决手脚冰凉这个问题，首先要好好给对寒冷反应敏锐的腰部保暖，这样有助于保持全身的温度，有助于心脏发出指令向手脚输送更多的血液和热量。这样手脚温度也就高起来了。特别是在经期，血液都集中在腹部，手脚更容易感觉冰冷。让腰部充分保暖既可以温暖手脚，又可以预防痛经，可谓一举两得。\r \r<br/>在寒冬的户外，手脚冰冷的时候，可以将两臂从后向前摆动。这样在离心力的作用下，可以使血液和热量大量输送到手脚。手冷的时候，可以通过温暖上臂的后方部位来获得热量。\r \r<br/>除去夏天的柏油路，其他季节的地面温度都要低于脚部的温度。所以要预防脚底寒冷，要在鞋子上下点工夫。正确选择鞋子的质地和袜子的材料都可以有效温暖你的足部。容易脚冷的人，要注意不能让膝盖后面着凉。血液是通过大腿、膝关节、小腿抵达脚尖的。在这条“线路”中，膝关节后方的脚弯皮下脂肪最少，而且血管距离体表最近，血液容易冷却。\r \r<br/>因此选择保温性能好的内衣、护膝等，可以预防脚冷。与寒冷时候不自觉双手抱臂相同，我们在寒冷的时候习惯屈膝蹲下来，这是因为我们的身体自然地想要避免热量在通过膝盖时冷却下来。\r \r<br/>这里还要告诫各位女同胞，洗澡虽然是件舒服的事，但是洗完以后体温马上下降，也不能大意。最好的方法是洗澡的时候，把水温调至微暖，泡久一点就可以了。这是因为，如果水温高于42℃，出浴以后可能会感觉体温比入浴前的体温还要低。所以40℃以下的水温是最适宜的。\r \r<br/>使用入浴剂也能让手脚保温。能够保温的入浴剂是一些入水就溶化的颗粒，它的成分会在皮肤表面形成薄薄的一个保护层，防止体内热量散发出去，所以人就会感觉温暖，而且能够持续较长的时间。很多人都有这种体验，泡温泉以后，身体很长时间都不会感觉发冷。这就是温泉中的某些成分在起作用。入浴剂的成分与温泉水的成分相似，所以可以起到保温的作用。入浴剂除了粉末状的，还有颗粒状的。颗粒状的入浴剂遇水会形成二氧化碳的泡沫。这些二氧化碳会刺激皮肤，促进血液循环，所以很适合在疲劳的时候使用。\r \r<br/>洗完澡睡觉的时候，要穿上可以使脖子和腰部保暖的睡衣。为了防止热量从脖子和肩膀逸出，高领睡衣等都是很好的选择。\r \r<br/>还有，如果腰部着了凉，全身就会感觉寒冷，输送到手脚的血液也会减少，脚就会变凉，脚部觉得凉就睡不好。所以可以穿上袜子，在腰部贴上暖宝宝，或者多穿衣服，睡觉时身体温度升高，就可以保证睡眠质量了。(福田千晶)\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(12, 1, 11, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日02:35  华龙网-重庆晚报 \r \r \r \r 再继续上你就是有网瘾了！\r \r \r<br/>每周上网40小时以上就可认为是网瘾，有望在年内出台的网瘾诊治标准，初步对网瘾作出这样的界定。消息一出， 网络一片哗然，各行各业的网友纷纷贴出工作时间表反驳，表示“无网络无工作”，按照40个小时算，很多上班一族均“被网瘾”了。专家称，上网的时间并不能全面表示“入网”多深，是不是网瘾，更应该参照网络对上网者身体的损害表现。\r \r<br/>办公族几乎都有网瘾？\r \r<br/>26岁的小胡是市内某广告公司文员，她每天的工作就是通过网络与众多客户进行交流，以及相互发送文件、图片等广告资料。\r \r<br/>“每周上网40小时以上即可认为是网瘾，那我们办公室的人基本上都得算有网瘾了。”小胡说，同事们都是通过网络进行商务初步谈判或沟通，每天除了上班8小时要面对电脑外，有时甚至还要加班至深夜，回家后，不少同事还要通过网络看电影等，“那我们这些办公一族不都有网瘾了哟？”\r \r<br/>许宏是市内某知名网站网络编辑，每天，她的工作就是通过网络选取相关信息发布，并通过网络开展系列活动，“我每天上网时间起码在10小时以上，按照界定标准，我已经有严重网瘾了。”\r \r<br/>同时，网站维护人员、IT工程师等行业人士也认为，自己的工作就是每天与网络打交道，按照网瘾界定标准，他们也统统无情“被网瘾”了，他们都认为这一标准太过牵强。\r \r<br/>IT人士可否申请工伤？\r \r<br/>专家“40小时网瘾”的标准，遭到了网友的板砖“袭击”。有网友给出工作时间表，40/7=5.71,上班族通常的上班时间从上午8时30分到下午5时，除了吃饭几乎都在电脑前，下班回家后开电脑到睡觉。“我并不想上网，但工作必须上网，下班后不知道能干啥，吃喝玩乐都要钱啊，只好在家上网，看来我是被网瘾了！”网友套用最流行的语句感叹称，“哥其实上的不是网，是寂寞。”\r \r<br/>北京网友“kangkae”觉得，根据时间来判断网瘾本来就是一个错误，不晓得又是哪个“砖家”发明的。“我觉得是不是网瘾要看身体的表现，标准参照毒瘾。”网友“额配”戏称，“吸烟有害健康，为什么就没个烟瘾标准呢？”\r \r<br/>苏州网友“fireyu”表示，这个标准“很好，很强大。IT业的所有人，都是网瘾患者”。“作为一个网络工作者，每天工作超过10小时，是否可以申请工伤？”\r \r<br/>记者昨日随机采访了公务员、IT人士、企业上班族等不同人群，绝大部分受访者都表示，如今已是网络时代，无论是工作还是生活，谁都离不开网络。\r \r<br/>有网瘾到底怎么算？\r \r<br/>早在去年8月，由北京军区总医院制订《网络成瘾诊断标准》，首次提出网络成瘾跟赌博成瘾和酒精成瘾一样都是精神疾病。“每周上网40小时以上即网瘾”，虽然没再提“网瘾是精神疾病”的概念，但负责该标准制订的两家单位悉数为精神卫生研究机构。其中意味，倒也鲜明。\r \r<br/>“真正的网瘾，应该是为满足自身快感、欲望，离开网络就难受、心烦意乱、坐立不安，就急于接触网络的一种心理状态。”重医附一院心理卫生中心主任蒙华庆认为，如果上网者有不可控制的上网欲望，不论时间长短，都可以判定为有网瘾。蒙主任接触过一个四岁的小患者，小患者迷恋上QQ玩种菜、偷菜游戏，每天都哭着闹着、时时惦记要上网，虽然每天上网时间不足两小时，但同样被他判定为有网瘾。\r \r<br/>如果是因为生活、工作等情况必须接触网络，蒙主任则认为即便时间再长，也不能界定为有网瘾。“40小时这一界定标准，显然缺乏说服力。”\r \r<br/>蒙主任估计，按照即将出台的网瘾界定标准，将有八成上网者将无辜“被网瘾”。\r \r<br/>精彩评论\r \r<br/>■我们已经进入“被时代”，这不我们又给“被网瘾”进去了！\r \r<br/>■40小时标准一出台，戒网瘾中心可是从此走上致富路了。全国有这么多“被网瘾”——也就是“被精神病”了的人，这是多大的一个市场。可以想像，中国目前有多少人或机构在立等着网瘾标准出台，然后一哄而上地抢钱？\r \r<br/>■这年头不缺标准，连洗脚都有标准，可既然要搞标准，就不能只由专家说了算！\r \r<br/>如何预防上网成瘾\r \r<br/>空间阻断法：电脑等上网设备不要放在卧室等容易获得地方(卧室)，应放在客厅等公共空间，便于对青少年进行控制。\r \r<br/>时间阻断法：为孩子制定上网时间，一般一天或者连续上网时间不超过2小时，长时间上网会对腰、下肢的血液循环、视力、大脑功能都会受到影响。\r \r<br/>外来物阻断法：用闹钟提醒上网时间、做卡片(警示上网危害)提醒，随时告诫上网成瘾的危害、控制自己上网时间。\r \r<br/>内容阻断法：对特定类型的网站(成人网站、不健康网站)坚决进行抵制和过滤。\r \r<br/>你如何看待“被网瘾”现象？您认为40小时的标准是否妥当？敬请登录本报网站www.cqwb.com.cn或致电本报热线966988发表看法。\r \r<br/>记者 王德利  郭娟 制图\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(13, 1, 12, 1, 'he21cn', '127.0.0.1', 1251357714, '劳人护[1985]6号对审批提前退休工种标准和注意事项做了如下规定： \r （1）从事井下、高空、高温、特别繁重体力劳动或者其他有害身体健康工作的工人，无论现在或过去从事这类工作，凡符合下列条件之一者，均可以按照《国务院关于工人退休、退职的暂行办法》中的规定办法提前退休：①从事高空和特别繁重体力劳动工作累计满10年的；②从事井下高温工作累计满9年的；③从事其他害身体健康工作累计满8年的。 \r \r （2）高温作业，应当符合GB4200-84《高温作业分级》标准中第四级；繁重体力劳动作业，应当符合GB3869-83《体力劳动强度分级》标准中的第四级；高空作业，应当符合GB3608-83《高处作业分级》标准中的第二级，并经常在5米以上的高处作业，无立足点或牢固立足点，确有堕落危险的。 \r （3）常年在海拔3500米以上高原地区和常年在摄氏零度以下的冷库、生产车间等低温场所工作的工人退休时，可以参照从事井下、高温作业工人的有关规定办理；常年在海拔4500米以上高山、高原地区工作的工人退休时，可以参照从事其他有害身体健康工作工人的规定办理。 \r 具体到你的情况：从事两种以上特殊工种时间是可以合并计算的。 \r 马尔康高原海拔若在3500米以上（需满8年），加上从事高温工作7年（需满9年）。合并换算后可以55岁退休。 \r \r \r 关于严格特殊工种提前退休问题的通知 \r 各有关单位： \r 为了加强对企业从事特殊工种职工提前退休工作的管理，规范企业及职工办理退休行为，保持退休政策的连续性，维护社会稳定，促进经济发展，缩小养老保险金收支矛盾。现就我县从事特殊工种职工提前退休工作有关问题通知如下： \r \r 一、对达到特殊工种提前退休年龄且符合从事特殊工种年限（特繁满10年、高温高空满9年、有毒有害满8年）的职工，可以从达到特殊工种提前退休年龄与正常退休年龄之间的任何一年办理提前退休。并非绝对比正常退休提前5年。 \r \r 二、要严格对档案及特殊工种的审核。对按特殊工种提前退休的，一律以原始档案记载为准，对档案记载不清、有涂改现象和特殊工种年限原创文秘网站:文秘知音不符合规定要求的一律不予办理。同时要对特殊工种范围进行严格审核，对国家没有列入特殊工种范围的工种不得按特殊工种呈报提前退休。 \r \r 三、对因转产、工作调动、企业改制等原因脱离特殊工种岗位5年以上的人员，在达到国家规定从事特殊工种提前退休年龄时，如果本人身体健康能坚持正常工作的，原则上不再按特殊工种提前退休。但是确因从事特殊工种而影响身体健康，现在难以坚持正常工作的，经本人申请，县劳动医务鉴定委员会鉴定为大部分丧失劳动能力的，方可按特殊工种办理提前退休。但不再增发月指数化平均缴费工资。 \r \r 四、对生产经营正常，职工按时发放工资且有缴费能力而不缴纳养老保险金的单位，暂停办理特殊工种提前退休工作，防止谁退休给谁缴费的现象，关闭、停产的特困企业职工办理特殊工种提前退休，要将应退休人员所欠保险费补缴后方可办理。 \r \r 五、今后各单位办理职工退休，要由劳资人员办理，对退休审批表要按规定要求填写清楚、全面，对个人携带档案及退休审批表填写不清、不全的，一律不予审批。 \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(14, 1, 13, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日13:56  新华网 \r<br/>新华网长春8月26日电 (记者王小鹏) 记者从26日在长春召开的全国18城市老年大学第10次工作研讨会上了解到，今年是我国进入老龄化10周年。随着新中国的同龄人步入老年，我国将出现第一次老年人口增长高峰。\r \r<br/>全国老龄委办公室副主任吴玉韶介绍说，我国正开始进入人口老龄化快速发展期，老年人口由年均增加311万人发展到年均800万人。\r \r<br/>吴玉韶说，伴随快速增加的老年人口，高龄老人和失能老人也大幅增加。同时，随着第一代独生子女家长进入老年，我国已开始进入少子老龄化的新阶段。据介绍，目前我国城市空巢家庭已达到49.7%，农村空巢和类空巢家庭也达到48.9%。\r \r<br/>吴玉韶表示，随着人口老龄化的加剧，今后要进一步加强老年教育。目前，全国已有老年大学和老年学校3.6万多所，在校学员达410多万人。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(15, 1, 14, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日00:52  燕赵都市报 \r<br/>燕赵都市报冀东版记者刘超 通讯员刘如涛\r \r<br/>两男子酒后驾车将人撞伤，见被撞者躺在汽车的前操作台，肇事者不但未施救，反而将被撞者推下车。没想到，被撞者却被卡在汽车前保险杠上，肇事者将其拖行近3公里后才掉在了路上。被撞者因伤势过重死亡。8月22日上午，经乐亭县人民检察院批准，乐亭警方对涉嫌故意杀人的两名犯罪嫌疑人执行逮捕。\r \r<br/>7月15日晚9时许，滦南县胡各庄派出所接到群众报案，称辖区寺上村内，一路过的红色昌河牌面包车掉下一个人，伤势十分严重。派出所民警立刻驱车赶到寺上村，现场见一40多岁的男子躺在村内新寨至胡各庄的公路上，衣服破碎不堪，浑身血肉模糊。民警介绍，当时这名男子胳膊动了一下，大口大口喘气，生命垂危。民警立即拨打120，当救护车赶到时，男子却因伤势过重，心脏停止了跳动。\r \r<br/>经调查，被撞身亡的男子是乐亭县古河乡44岁的男子何风（化名）。而肇事者则是乐亭县大相各庄乡的阿安（化名）和阿猛（化名）。\r \r<br/>7月15日晚8时许，何风从新寨镇姐姐家骑自行车走小路往家赶。一辆红色昌河牌面包车从身后驶来，径直向他撞去。\r \r<br/>据了解，肇事的红色昌河牌面包车上是阿安和阿猛，7月15日，阿安带着阿猛去滦南办事，中午在饭店喝了白酒。晚上，他俩又到新寨镇上，与几个朋友吃烧烤，在朋友劝说下，他俩又喝了啤酒。返回家时，坐在副驾驶座上的阿猛不一会儿便昏昏欲睡。\r \r<br/>突然“嘭”的一声，阿猛睁开眼时，竟看见控制台上横卧着一个人，车上挡风玻璃粉碎。他摸了一下脸，脸被玻璃扎破了，粘了一手血。\r \r<br/>这时，阿安、阿猛猛然意识到撞人了。然而，两人并没将伤者送医，而是用手将控制台上的人推了下去，随后开车向滦南方向逃逸。\r \r<br/>何风被推下控制台后，没有掉在地上，而是大腿别在了车前保险杠里。面包车一路拖带着何风跨过乐亭县界，直到5.8里外的滦南县寺上村才掉下来。\r \r<br/>这时，阿安、阿猛仍没停车，还是向西继续逃逸。又跑了30多里，到了大富各庄车里没油了，才将车抛至一废品收购点附近。他俩不敢回家，当夜在滦南住旅馆躲藏起来。\r \r<br/>乐亭警方接到报案后，连夜组织精干警力上案，并很快锁定了犯罪嫌疑人阿安和阿猛。7月18日，迫于压力，阿安、阿猛向警方投案。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(16, 1, 15, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日00:13   南方农村报 \r<br/>南方农村报8月27日报道：  营业仅三月，敛财竟千万，广东省惠州苏尔电器有限公司(以下简称苏尔公司)“一举”成为了家电业的焦点企业。\r \r<br/>8月1日，苏尔公司在未结清供应商货款及员工工资的情况下，公司高层、仓管、财务、货物等集体“人间蒸发”。8月2日开始，陆续得到消息的供应商纷至沓来，“骂娘声”不绝于耳！截至8月25日，被骗的供应商有60多家，金额高达1000多万元。\r \r<br/>6000方厂房打动供货商\r \r<br/>“这是诈骗！”8月24日，潮州铭维电子厂翁厂长义愤填膺。苏尔公司老板“走佬”后，他供应给苏尔的48万元货物，很有可能打水漂。\r \r<br/>铭维电子厂是家电企业的供应商，主要从事接插线和接插件生产。据翁厂长介绍，他与苏尔公司的业务往来始于今年6月初。6月8日，苏尔公司的采购经理赵玉芝找到他，提出想购买一批接插线。由于是第一次和对方打交道，他留了个心眼，没有立即答应，而是提出先到苏尔公司考察，“赵玉芝很爽快的答应了”。\r \r<br/>6月9日，翁厂长来到苏尔公司，近6000平方米的厂房，几百个工人工作的场景，让他顿时放松了警惕。随后，赵玉芝还向他出示了公司的营业执照、注册登记证，翁厂长认定这是一家规模不小的正规公司。\r \r<br/>接下来，双方的合作顺理成章。6月10日，铭维电子厂向苏尔公司供出了第一批货，价值7万元。随后，供货量逐渐加大，直到8月1日苏尔公司老板出逃那天，铭维电子厂还在向其供货。\r \r<br/>直到8月3日，翁厂长才意识到不对劲。这天，他接到了托运公司的电话，对方称其8月1日发出的货，没有人去取。翁厂长赶紧拨打赵玉芝的电话，已关机，其办公电话也没有人接。而按照常理，采购人员不会轻易关机，况且那天又不是周末。他预感到大事不妙：很有可能被骗了！\r \r<br/>8月4日，翁厂长心急火燎地赶到苏尔公司，发现已是人去楼空，厂门口贴着两张苏尔公司员工的大字报：要求拍卖公司设备结算工资。可怕的预感变成了现实，翁厂长欲哭无泪！他随后赶到惠城区公安局报案，发现公安局办公室挤了20多个人，一打听，全是被苏尔公司骗货的各地供应商。\r \r<br/>直到此时，他才知道苏尔公司的厂房是租来的，至今还拖欠着房东20多万元的房租。几百个工人的工资也没有结清，而苏尔公司老板注册营业执照时用的是假身份证。\r \r<br/>逃跑当天与供应商对账\r \r<br/>苏尔公司位于惠州市小金口青塘村大树岭，注册成立时间为2009年5月7日，主要做家用电器、鼠标、显视器等产品。\r \r<br/>短短三月，苏尔公司竟让广州、深圳、东莞等地的供应商损失千万。事后，供应商仔细回想，觉得这是一场蓄谋已久的骗局：苏尔公司先以其实力很强的表象骗取供应商的信任，在供应商供货后，约定一个时间清款，以稳住供应商，而其却在此之前出逃。\r \r<br/>深圳绕成电子公司张经理告诉南方农村报记者，他是在考察苏尔后，相信苏尔的实力，才向其供货，但他在8月1日发现，苏尔公司的所有电话都无人接听，白白损失了30多万元货款。\r \r<br/>“苏尔公司在‘钓鱼上钩’之后，不断要货，而为了稳住供应商，承诺在某日清款。”东莞盈华电子公司供了5万元货给苏尔，该公司李经理分析，苏尔公司在迷惑供应商之后，继而采用缓兵计。他表示，苏尔公司向他承诺8月6日清款，8月1号还特地传来了对账单，以致当他8月3日听到其老板卷款逃跑的消息时，还不敢相信。\r \r<br/>据南方农村报记者了解，深圳绕成电子公司、潮州铭维电子厂也都接到了苏尔公司的清款承诺，但苏尔公司高层一干人等，却在8月1日集体消失。\r \r<br/>“这完全就是一场阴谋！”8月25日，通过盈华电子公司李经理，南方农村报记者联系上苏尔公司原采购员王娜(化名)。8月1日，王娜接到苏尔公司老板的电话，通知其第二天不用上班。她感觉事有蹊跷，第二天赶到公司，发现老板已经逃跑。\r \r<br/>据王娜介绍，苏尔公司的业务上涨速度快得“离奇”，6月份进货200多万元，到7月份攀升至500万元，但事发前仅结过一笔小货款。她由于不知道公司具体的销售状况，因此一直被蒙在鼓里。现在想来，“他们目的很明显，就是想骗货！”\r \r<br/>供货次月清款被钻漏洞\r \r<br/>据惠州惠城区公安分局经侦大队工作人员介绍，事发至今，报案的供货商已达60多家，涉案金额近1000万元。而苏尔公司遗留下来的二手流水线机械，其价值不足5万元，目前已被封存。\r \r<br/>而据惠州当地媒体报道，苏尔公司诈骗案并不是个例。在此之前，惠州市今年已发生两起类似的诈骗案，手段如出一辙：骗子公司老板用假身份证注册相关证件，开厂三个月左右后，诈骗供货商的货款逃跑。\r \r<br/>由于骗子公司策划周密，上述两起案件至今还未侦破。这让供应商们觉得追回货款的希望非常渺茫。\r \r<br/>为何不断地出现供应商被骗事件？先供一个月的货，下月才清款，放心吗？面对南方农村报记者的问题，供应商们都报以无奈的叹息。\r \r<br/>盈华电子的李经理表示，电子行业内，企业之间的交易基本是月结，7月份供的货，要到8月份清款，供应商也没有办法。况且，现在经济形势不好，“有单大家都抢着接”。\r \r<br/>不过他表示，以后将加倍小心。除了去工厂实地查看之外，还要通过一些旁敲侧击的方法辨别骗子公司。\r \r<br/>潮州铭维电子厂翁厂长表示，事实上，供应商都还比较谨慎，在供货前都会去厂家考察，但终究是“防不胜防”！惠州鸿鑫电子公司与苏尔公司仅一路之隔，其被这位“邻居”在眼皮底下骗走了27万元的货。而该公司业务员曾到工商局查过苏尔公司的营业执照，也向派出所调查过苏尔公司是否有案底，但最终还是被骗了！\r \r<br/>经过这一系列诈骗案的“洗礼”，供应商们表示，对于刚合作的公司，今后肯定会降低每月的供货量。“即使被骗，也不会损失这么惨重。”深圳绕成电子公司张经理说。(来源：南方农村报)\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(17, 1, 16, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日01:09  新文化报 \r<br/>■新闻回放：\r \r<br/>延吉一对白手起家的37岁夫妇原本感情很好，在丈夫中了500万大奖后却发生争执。先是妻子美花（化名）起诉离婚，后来撤诉，再是丈夫金光（化名）起诉离婚。2008年，延吉市法院在美花无法找到的情况下判决二人离婚，儿子归男方，认定美花带走300万现金属于转移财产，判决男方获得共同财产的80%。随后美花不服判决，申请再审。\r \r<br/>本报延吉讯（记者杨威）“没有钱时我俩过得还行，这飞来的500万就是飞来横祸啊。”丈夫金光说。\r \r<br/>算一算，夫妻俩自从2007年春节中了500万后，当年4月女方起诉离婚到现在，离婚官司打了两年多还在继续。双方的贸易公司早已解散，均处在待业状态。\r \r<br/>女方再次提出上诉\r \r<br/>8月12日，延吉市法院向金光和美花发出再审后的判决书：判决二人离婚，认定美花在不通知丈夫去向的情况下取走300万存款属于转移财产，判定美花少分共同财产，最终判决“六四分”，即“男六女四”，5岁的儿子归女方抚养，男方每月给付抚养费500元直至孩子满18周岁。判决后，女方不服，于昨天最后一天上诉日提出上诉。\r \r<br/>女方认为，自己带走300万元到境外投资属于双方共同投资行为，男方不该毫不知情。当时双方处于冷战状态，男方特意选择这一时间到法院提出离婚，令她无法到庭参加诉讼，使她戴上“转移财产”的帽子，这不公平，她要求双方均分财产。\r \r<br/>法院认定女方转移财产\r \r<br/>此次判决法院认为，女方取走300万如此大额存款时没有与男方联系、协商，投资前后也没有告知男方，该行为应认定为夫妻离婚时，一方转移共同财产，因此在分割财产时，女方应该少分或者不分。\r \r<br/>此次判决法院对女方的权利给予了更多关照，判决女方获得共同财产的40%。算起来，双方共同存款380万元，4处房产和一辆轿车估价在50万元以上，加上女方退回的15万元保险金，去掉共同债务16万，女方比第一次审理多分得80多万元。\r \r<br/>法院认为，双方都争取孩子的抚养权，但谁也不能证明谁比另一方更有优势，考虑到孩子只有5周岁并且一直由女方抚养的原因，将孩子判给女方。\r \r<br/>男方曾吞下50万元收条\r \r<br/>有意思的是，在该案第一次判决之后，双方在延吉市法院执行局见面，在执行法官主持下准备分割财产时，还发生了这样一幕：当美花拿出一份由金光亲手写的50万元收条交给执行法官，法官正在看时，金光突然从法官手中抢过来，将收条吞到肚子里！\r \r<br/>第二次开庭庭审，法官询问金光为什么要吞收条。金光含糊其辞没有说什么。法官于是表示，情况属实，即使你吞掉了收条，但是有执行法官作证，这50万还是算你收到了。金光当庭表示，那就算吧。\r \r<br/>事后接受记者采访时，金光说，自己根本没有收到50万，那时妻子刚回来，他想挽留二人的婚姻，特意写了这个收条，想以此向妻子表示诚意，但是到了后来，他后悔了。\r \r<br/>■新闻链接\r \r<br/>中500万后的离婚案不少\r \r<br/>■2007年4月，上海一对夫妻中了500万体彩大奖后，妻子到法院起诉离婚，称丈夫总怀疑她有外遇并打她，而男方认为女方把钱藏起来自己花，自己却只能靠微薄工资度日。开始男方坚决不同意离婚，后来法庭调解时男方忽然要求立即离婚，说是怕老婆把钱都花没了。\r \r<br/>■2007年9月，一重庆到广东打工的男子中奖500万之后企图瞒着妻子私吞巨奖，被妻子得知后告到法庭要求离婚并分割财产。后经法院调解，双方重归于好。\r \r<br/>■2008年9月，河南某报报道一24岁女子向记者投诉，丈夫中奖500万后不告诉她，还要和她离婚，只给3万元抚养费，原因是嫌她太懒。\r \r<br/>《中了500万 夫妻离了婚》续\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(18, 1, 17, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日00:29  汉网-武汉晚报 \r<br/>本报讯 (记者 翁晓波) 大学新生上学，除爷爷奶奶、父母、小姨、舅舅舅妈接送外，还携带着包括衣服、被子、零食、电脑等整整十大箱子行李。这是前日晚上，记者在汉口火车站见到的情景。\r \r<br/>张敏(化名)是十堰市人，家族里兄弟姐妹中，就她一个女孩。打小就是众人眼里的“宝贝”。今年高考，她考上武汉科技学院，因为是家族中第一个大学生，全家人都非常开心。\r \r<br/>马上就要开学了，张敏决定提前几天到武汉，在武汉的舅舅家住几天。两天前，全家人都在给她准备行李：妈妈怕学校的被子不厚，专门给她带了3床厚被子；爸爸为了奖励她考上大学，给他买了一个笔记本电脑；平时穿的衣服全部要带上，春夏秋冬还要重新买几套备用；亲戚送的“好记星”、MP3等都得带上；爷爷奶奶从超市购回5大袋家乡的零食，生怕她在武汉饮食不习惯；哥哥弟弟们还给她买了很多玩具，她专门选了一个大号的玩具熊带着；平时喜欢看的书，也专门安排箱子带着……两天收拾下来，所带的东西足足装了十个箱子。\r \r<br/>前日一早，爷爷奶奶、爸爸妈妈及小姨就和张敏一起，浩浩荡荡来到武汉。晚上汽车达到武汉，舅舅舅妈早就在下车点迎接了。一家人打了三辆的士才勉强挤进去。\r \r<br/>记者问张敏：“你带这么多东西，在学校里放在哪里啊？”她不假思索回答：“我也不知道，反正他们给我装了这么多。”\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(19, 1, 18, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月26日 09:55  新闻晨报\r \r \r \r □捏造“胡斌替身”谣言者被拘，引发网民热议。\r \r \r<br/>晨报记者 姜 鹏\r \r \r<br/>前一段时间，网络上关于杭州“5·7”交通肇事案出庭被告人胡斌是“替身”的议论沸沸扬扬，最后经杭州司法机关出面澄清才平息了质疑。\r \r<br/>昨日，晨报记者从湖北鄂州警方证实，湖北省鄂州市无业人员熊忠俊被指利用网络捏造、散布杭州“5·7”交通肇事案出庭被告人胡斌是“替身”谣言，日前被行政拘留10天。\r \r<br/>不过，网友对于警方的这一作法又起质疑，认为属“因言获罪”。专家表示，警察拘留网民应谨慎，建议尽快出台司法解释，明晰正当言论与造谣的区别。\r \r<br/>散布者：\r \r<br/>曾任某杂志驻深圳记者\r \r<br/>7月20日，杭州“5·7”交通肇事案一审判决，出现在庭审现场的胡斌比案发时明显发胖，而且戴上黑框眼镜，看上去判若两人。21日，熊忠俊以“刘逸明”名义在网上发布《荒唐，受审的飙车案主犯“胡斌”竟是替身》一帖说：“让人吃惊的是，受审的‘胡斌’竟是一个替身，中国媒体在广传有关消息的时候，竟然都没看出来，实在是可悲。”随后，杭州司法部门接受媒体采访时称：“这些猜测纯属无稽之谈，毫无事实根据。”\r \r<br/>24日，刘逸明再发表《上庭受审的“胡斌”铁定是替身》一帖，对法院“无稽之谈”的说法再次予以质疑，“不能不说是现代版的指鹿为马。”\r \r<br/>从7月23日至8月2日，熊忠俊共发表8篇帖子，公布各种胡斌使用替身的“证据”，认为司法机关和媒体作假包庇。\r \r<br/>鄂州市公安机关认为，熊忠俊利用互联网捏造、散布“胡斌替身”谣言，引发网民猜疑，误导公众舆论，扰乱公共秩序，已构成违反治安管理行为。对上述违法行为，熊忠俊供认不讳。鄂州市公安机关根据《中华人民共和国治安管理处罚法》第25条之规定，于2009年8月21日对熊忠俊作出行政拘留10天的处罚。\r \r<br/>晨报记者多方求证获悉，熊忠俊1980年出生于湖北鄂州，爱好文学，笔名“刘逸明”，曾担任一家杂志社驻深圳记者，为多家媒体撰稿。\r \r<br/>晨报记者还获悉了一段熊忠俊被拘留前一天的QQ聊天记录，称“当天他被湖北警察传唤，涉嫌罪名是造谣”。熊忠俊承认“我发过怀疑胡斌找替身的文章”，但他否认自己“首发”该帖。\r \r<br/>在天涯网站上，“刘逸明”属于“全面封杀”用户，最后一次上站是8月21日。自今年4月注册以来，网友“刘逸明”发帖50余篇，其中大多数是评论和质疑内容。网 友：\r \r<br/>非凭空捏造，属合理质疑\r \r<br/>网友“刘逸明”被拘的消息一经传出，立即引发其他网友的热议。一位网友表示难以接受，认为“刘逸明”通过对比前后两张有明显区别的胡斌照片，怀疑胡斌使用替身属于合理质疑，而非凭空捏造了一个事实，“刘逸明”被拘属于“因言获罪”。不过，也有网友认为“这(熊忠俊的发帖)明显不是怀疑，而是造谣”。对此，天涯网总编辑胡彬接受晨报记者采访时对警方拘留熊忠俊的举动有些不解，“抓网民，应当慎重。”胡彬表示，网友“刘逸明”在多家网站多次发帖“胡斌有替身”，确有干扰、散布之嫌，但不能认定属造谣。“按照这种逻辑，警方先前发布车速70码，亦属于造谣。”\r \r<br/>针对网友“因言获罪”的担忧，胡彬介绍说，当前互联网讨论秩序亟待规范，应当从规范网友讨论和加强站方管理两方面着手，建立一个理性、文明、友好的言论环境。\r \r<br/>有网友怀疑天涯网站泄露了熊忠俊的个人资料。胡彬表示，经内部调查，网站并未泄露相关信息，而此次警方也未要求天涯网站提供相关信息。\r \r<br/>专家：\r \r<br/>应明确言论和谣言区别\r \r<br/>近年来，因网络发帖造谣而被拘留的案例呈现高发态势。\r \r<br/>北京大学法学院教授张千帆表示，我国法律对言论与谣言的区别并未有明确的界定，以至于对谣言案认定显得比较随意，时常引发争议。张千帆认为，最高司法机关应借助该类案件的频频发生尽快制定一些司法解释，既保护公民言论自由，又明确质疑言论和造谣的边界，从而减少对言论的误判或矫枉过正。\r \r<br/>张千帆表示，从监督和推动政府部门工作的角度，政府部门应该善待网友言论。如果失实言论没有造成危害或严重后果，应谨慎对言论者采取拘留或处罚措施。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(20, 1, 19, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日03:20  华龙网-重庆晚报\r \r \r 赵本山这次被“纵容”？ \r \r \r<br/>广电总局一纸限制方言剧的禁令，让方言剧的生存空间越来越小。将于本月30日重庆卫视开播的电视剧《挪个地方要得不》就不得不出资数十万元，两度对电视剧的配音进行调整。在接受记者采访时，该剧制片人兼主演赵亮对广电总局的新规定很有异议，他表示：“广电总局规定，在上星卫视黄金时段播出的电视剧中，方言的比例只能占到30%—40%，但却把东北剧撇开，模糊规定称不能完全使用东北话，可以使用东北的一些口语。”这样的规定对于重庆等南方的方言剧很不公平。\r \r<br/>现状\r \r<br/>方言也分地域对待 四川话很受伤\r \r<br/>代表作《挪个地方要得不》\r \r<br/>重庆卫视宣布赵亮、王迅、媛凤主演的城乡统筹轻喜剧《挪个地方要得不》，将采用普通话版本，这让许多观众颇为失望，一些观众致电本报记者：“最喜欢的就是媛凤闹喳喳的感觉，改成普通话，可能就没意思了。”对此，制片人赵亮很无奈，“广电总局的规定在那里，要上卫星就不能全用方言。”\r \r<br/>陕北话很郁闷\r \r<br/>代表作：《苍天》\r \r<br/>近段时间在央视热播的电视剧《苍天》，在剧中大量使用陕北话，在得到观众“很有亲切感”的认同之外，也受到了“广电总局的禁令到底是不是一纸空文”的质疑。昨日，记者联系上该剧主演王学圻，面对质疑，王学圻很委屈。\r \r<br/>他告诉记者，其实原来版本中的陕北方言比现在多很多，剧中群众所说的话都是陕北方言，但广电总局和央视都不允许播，后来只好重新配音，仅有一些口语使用方言。王学圻也证实了赵亮的说法，方言在剧中比例不能超过30%—40%。\r \r<br/>东北话很得意\r \r<br/>代表作：《乡村爱情3》\r \r<br/>与前面两部剧的遭遇相比，《乡村爱情3》就没有遇到这样的问题，该剧传出的最新消息是已经锁定央视春节档播出。不但剧中使用东北方言不受限制，而广电总局的另一项“限播电视剧续集”的规定也在该剧中失效。赵本山明确表示：“《乡村爱情3》不会改名。”\r \r<br/>潜规则\r \r<br/>南方方言敌不过北方方言\r \r<br/>赵本山让东北话大行其道为了剧能播，只能多花钱\r \r<br/>赵亮给记者举了一个例子，一部南方方言的电视剧和东北方言的电视剧竞争在央视一套播出，南方方言的电视剧会明显处于劣势，“也许在央视眼中，东北话的普及程度要比南方方言高，而东北方言更接近普通话吧。”\r \r<br/>赵本山让东北话大行其道\r \r<br/>而一位不愿透露姓名的制片人，则把东北话在央视大行其道的原因归结到赵本山身上，“其实大家可以关注一下，能在央视播出的东北剧，大多都有赵本山的份，央视播东北话其实是给赵本山面子。”这位制片人的说法未免有一些偏激，不过有一个细节却值得关注，在央视播出的《清凌凌的水蓝莹莹的天》中，自导自演的潘长江，放弃了东北话，改用普通话。\r \r<br/>为了剧能播，只能多花钱\r \r<br/>为了能让剧上星，赵亮调整了两次配音方案，他寻找到一个妥协的方式，在剧中主要使用普通话，但王迅等人物还是保留四川话，“在规定之内，最大限度上使用方言。”而这让他的投资成本增加了30万元。“能不能不上星，坚持用方言？”赵亮的答案是否定的，他表示，如果只在地方台播，他根本就收不回成本。\r \r<br/>王学圻也同样很无奈，他反问记者：“你想想，本来陕北话说得很亲切，突然要改成对着铁话筒说普通话(后期配音)，能有什么好效果。”首席记者 巫天旭\r \r<br/>观点\r \r<br/>重庆话能不能上央视？广电总局：只能适量用\r \r<br/>作为广电总局审片委员，周星对于广电总局的禁令有比较详细的了解。他介绍，方言禁令的出台，其实是在方言剧泛滥成风的前提下进行了限制。周星认为，既然国家规定了将普通话作为大众推广语言，在央视、卫星台上播出的电视剧，就应该以普通话为基准，但允许在剧中穿插少量的方言来展示地方风情。因此不管是东北话、重庆话都只能适量的使用，广电总局出台的这一禁令并无不妥之处。\r \r<br/>事实是，从1980年开始，四川话连续剧能上央视的，只有《傻儿师长》、《山城棒棒军》、《王保长歪传》不多的几部，并且都是在央视一套之外。\r \r<br/>重庆导演：改改就能用\r \r<br/>而长期拍摄普通话电视剧的重庆导演鄢光宗，则有另外一番解读。他表示，自己曾针对东北话在央视受欢迎，重庆话不受待见的现象进行过研究。他有一个比较深的感受，东北话在观众能听懂的前提下，能够传递出诙谐、幽默。同时，如果说话是“技”的话，东北演员可谓有“技”还有“艺”。而重庆方言则缺乏必要的提炼，在情感的表达上不够细腻，同时重庆演员太依托重庆话本身的魅力，而这种语言在脱离了当地的语言背景之后，很难被人接受。“重庆话不是不能用，而是需要改动之后再用。”\r \r<br/>方言剧制片人：看菜吃饭\r \r<br/>作为方言剧制片人的代表，赵亮希望广电总局不搞“一刀切”。有一些电视剧，用普通话表达会有问题，比如《山城棒棒军》，脱离了特殊语境，很难达到预期的效果。而像《挪个地方要得不》这部剧而言，普通话或方言对剧的精彩程度影响并不大，因为该剧的故事性比较强，喜剧的效果是通过剧情来表达，而不是完全依托于语言。“看菜吃饭，具体情况具体分析。”\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0');
-INSERT INTO `hope_post` (`pid`, `class_id`, `tid`, `uid`, `username`, `ip`, `dateline`, `message`, `pic`, `isthread`, `hotuser`) VALUES
-(21, 1, 20, 1, 'he21cn', '127.0.0.1', 1251357714, '2009-08-27 05:58:37　来源: 四川新闻网-成都商报(成都)\r \r 成都商报8月27日报道 昨日，一篇向著名歌唱家蒋大为追债的帖子引起了网友的热议。帖子中称蒋大为在2003年向当时的朋友兼经纪人姚曼借款90万元，并写下借条，但是蒋大为并未如期归还这笔钱，随后姚曼于2004年将蒋大为告上法庭，蒋大为却反诉姚曼欺诈，此案由北京市公安局刑侦总队展开调查，然而，案子却从此没了下文。\r \r 昨日，姚曼告诉本报记者，网上的帖子是她发的，原因是当年和蒋大为的90万元欠款官司时隔6年仍然没有任何进展，警方没有拿出任何调查结果，蒋大为也从未还过她钱，实在没办法了，她才“网上追债”。之后，记者联系上蒋大为的弟弟，他表示，借款一事根本就不存在。\r \r 网上发帖：蒋大为赖账6年\r \r 网上的帖子称：以《在那桃花盛开的地方》等歌曲享誉国内外的著名歌唱家蒋大为在6年前欠下了90万元的巨债，至今也未归还，其间借款人曾经提起诉讼，蒋大为却以种种方法“赖掉”了还款，并反诉借款人姚曼“胁迫”其写下借条，涉嫌敲诈。这篇长长的帖子中还贴出了大量与案件相关的文件，包括2004年7月21日北京市公安局刑侦总队向海淀区人民法院发出的编号为京公刑侦发字(2004)34号的函件、蒋大为的借条原件扫描图、海淀区人民法院民事裁定书等。\r \r 记者注意到，有大量网友跟帖，称其为“网络追债”，有网友称：“看来‘名人效应’不仅在商业演出圈管用，在其他地方也能‘通吃’，要不然怎么有凭有据的借款案最后就能不了了之？”也有网友质疑事件背后的隐情和发帖人的身份，还有网友调侃为“在那逃债盛行的地方”。\r \r 事件背后：案件石沉大海\r \r 昨日，姚曼向本报记者承认，网上的帖子正是她发的：“我没有其他办法了，6年了，我就是想要个说法”。\r \r 早在2006年，这个借款官司就曾因为姚曼两次上门要债而名声大噪。那个时候，姚曼和蒋大为已经认识多年了。1998年，姚曼在蒋大为的邀请下，开始与他合作做演出。姚曼通过父亲的关系为蒋大为组织了一些演出并接拍了一些广告，相当于经纪人的角色。2003年的年初，她个人拿出90万元现金准备组织一场演出，后来因为种种原因取消了。于是，她就把这笔钱存放在了蒋大为的家中，也就是帖子中借条上的时间2003年3月20日，内容是“今借姚曼人民币玖拾万元整，于2003年10月底前还清”，落款人是蒋大为。 但是蒋大为不但没有还款，还和姚曼的关系闹僵了。姚曼在2004年元旦过后将蒋大为起诉至北京海淀法院。2004年3月，蒋大为提出反诉，称借条是姚曼在地下车库以“非法胁迫”手段迫使他写下的。同时，他声称姚曼以非法手段虚构借贷关系，侵占了他124万元，足以抵消90万元的欠款。\r \r 时隔几天，也就是2004年3月15日，北京市公安局刑事侦查总队向海淀区人民法院发出了“关于请海淀区人民法院协助工作的函”，称2003年11月，刑侦总队已经受理了姚曼涉嫌敲诈蒋大为一案，将作为刑事案件立案侦查。为保证侦查过程顺利进行，要求法院做好保密工作，并妥善处理姚曼一案件。随后，海淀区人民法院向姚曼发出了民事裁定书，称中止此案诉讼。\r \r “我就这样成了犯罪嫌疑人，而且一当就当到现在”，姚曼昨日说，可是在这几年中，并没有警方来调查过她这个“犯罪嫌疑人”，案件也石沉大海，再无结果。\r \r 事到如今：双方各执一词\r \r 昨日，蒋大为没有接听本报记者的电话，蒋大为的弟弟称蒋大为目前在国内，但是不方便接电话：“关于此事，没什么好说的，去问公安局和法院吧，现在是以法律为准绳。”他称借款一事并不存在。而北京市公安局刑侦总队的值班警官则表示，案件的时间太久了，不确定此案是否还在调查中，需要核实之后告知。\r \r 姚曼称，今年年初，蒋大为还通过中间人找过她，希望少还一些钱，50万元左右还拿得出来，但被其拒绝，“他在我面前从未否认过这笔欠款的存在，可就是想通过其他途径赖掉。” (本文来源：成都商报 )\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(22, 1, 21, 1, 'he21cn', '127.0.0.1', 1251357714, '2009-08-26 18:17:33　来源: 网易娱乐专稿\r \r \r \r 刘德华到香港后前往公司。\r \r \r \r 刘德华不回应是否结婚。\r \r \r \r \r \r 刘德华上楼往公司。\r \r \r \r 网易娱乐8月26日独家报道 昨日(8月25日)晚上十时多和朱丽倩十指紧扣返港的华仔。于翌日十四时二十分坐着保姆车，从加多利山寓所驶出，前往他的公司——华仔天地安建中心。大约十四时四十五分，华仔在五至六名保安的保护下下车，途中有记者提问“公开关系后是否轻松很多？”“对粉丝的责怪有否感到压力”和“是否会在不久将来会和朱丽倩到大马举行婚礼”等问题。对此，头带cap帽的华仔并没有回应记者任何提问，目无表情地走入大厦。\r \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(23, 1, 22, 1, 'he21cn', '127.0.0.1', 1251357714, '2009-08-27 01:17:36　来源: 中国新闻网(北京)\r 中国新闻网8月27日报道 经过连续数月的快速攀升，上海房价创下历史新高。房价的急速上涨使得地方政府此前的护盘心态出现变化，上海正通过大手笔的推地及二十六日起连续开工建设三个大型居住区等增加供应量的做法来平抑房价。\r \r 最新公布的、分别反映新房和二手房价格走势的中房上海指数和上海二手房指数显示，七月份的上海房价创出历史新高。\r \r 七月中房上海综合指数为二一二七点，较上月上涨百分之四点七三。其中住宅指数为二0四五点，较上月上涨九十九点，环比涨幅百分之五点零九，刷新了历史纪录，与今年二月份房价低位时相比，上涨了百分之十点二，与去年同期相比上涨了百分之三点二三。\r \r 七月的上海二手房价格指数为二四二七点，较六月上升二十九点，环比涨幅百分之一点二一，同样一举跃上历史最高点。全市五十六个控制点板块均出现上涨，无一下跌。\r \r 郊区楼盘价格频频破万。相关报道称，除远郊崇明县外，上海已进入“万元”房价时代。大幅上涨的房价已成为社会热点，也引起政府高官高度关注。\r \r 中共上海市委书记俞正声七月份对媒体谈及上海房价时表示，“我觉得房价高”，将“增加供给量”。\r \r 最近一周来，上海出现新一轮的推地热潮。市规划和国土资源管理局接连发布的六十一、六十二、六十三号公告共推地十一块，总面积达四十五点八三公顷。其中居住用地占了相当比例。\r \r 同时，今年第九号土地出让预公告，拟出让闵行大型居住社区浦江基地鲁汇A、B块两个地块，共出让土地十七点一三公顷。这两个地块同属于今年确定的大型居住社区项目。\r \r 在大手笔推地的同时，上海市十五个大型居住区建设取得突破性进展。继六月下旬江桥基地启动以来，首批六个基地中的浦江、周康航和曹路三大基地从今天起三天内先后开工。规划显示，六大基地建设用地面积约十九点三三平方公里，其中居住用地面积约十点七七平方公里，规划居住人口约五十二万人。\r \r 上海市市长韩正上周的公开表态为以上的政府行为作了注解：“上海房价已过高，我们必须防止房价上涨过快，政府应该采取措施，有效控制房地产市场增长速度。”他表示，上海市政府下半年将增加可供房地产开发的土地供应量，并加快建设面向低收入家庭的经济适用房。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(24, 1, 23, 1, 'he21cn', '127.0.0.1', 1251357714, '2009-08-27 08:05:56　来源: 新京报\r \r \r \r 智联招聘前CEO刘浩 \r  \r \r \r<br/>本报讯 (记者林其玲)昨天有媒体报道招聘网站智联招聘上一财年亏1.5亿元，CEO刘浩因为业绩不佳，被迫“下课”。智联招聘方面表示，“刘浩是主动请辞”，“董事会是肯定刘浩业绩的”。\r \r<br/>智联持续亏损\r \r<br/>据媒体报道，智联招聘的最大股东澳大利亚seek前天公布上一财年报告。财报显示，由于智联招聘的亏损，使seek产生了1725.4万澳元的税后亏损额。“如此计算，智联招聘本身的亏损约1.5亿多人民币。”而seek公司今年3月公布的一份财报显示，智联招聘2008年的亏损额约1.7亿元人民币。\r \r<br/>上月刘浩接受记者采访时表示，“现在还不是赚钱的时候，市场份额才是目的。”业内人士认为，这可能是刘浩跟股东和高层意见不一致的导火索。不过智联招聘公关强调，刘浩辞职是个人原因，智联招聘“如果亏损，肯定是战略性亏损”。\r \r<br/>三招聘龙头仅前程无忧盈利\r \r<br/>本月初，中华英才的母公司Monster发布第二季度财报显示，中华英才网也处于亏损状态。而去年中华英才网的亏损额高达1.75亿元人民币。其前总裁张建国也于今年年初离职。\r \r<br/>目前国内三家龙头招聘网站中，只有前程无忧保持盈利，其第二季度净利润比去年同期增长7.78%。\r \r<br/>- 相关\r \r<br/>“网络招聘行业或生变”\r \r<br/>据易观国际最新的市场检测数据，前程无忧目前占有国内26.3%的市场份额，而英才网和智联分别占有22.4%、15.3%。易观国际分析师表示，中华英才有可能抢占市场份额。业内人士表示，网络招聘行业格局可能将会发生变化。\r \r<br/>据悉，英才和智联上半年都在新业务上进行尝试，企业在战略上也有调整。英才网今年推出开发简历助手业务，希望从注册用户数上追赶51job，而智联招聘也于6月推出简历增强显示的增值业务服务，并成立培训咨询服务公司。 \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(25, 1, 24, 1, 'he21cn', '127.0.0.1', 1251357714, '2009-08-27 07:53:33　来源: 新京报\r \r 10年来1330位中国富豪中49位“生变”，其中17人获刑，3人待宣判 \r \r \r<br/>- 关注焦点\r \r<br/>一向乐于挖掘中国富豪的胡润，昨日正式发布了《胡润百富榜-中国富豪特别报告》。\r \r<br/>据这份报告披露，10年来登陆胡润百富榜、财富令人艳羡的1330位中国富豪们，有49位发生了各种变故，其中17人获刑入狱，3人待宣判。包括牟其中、唐万新、顾雏军、周正毅等名噪一时的人物。\r \r<br/>昨日，胡润研究院发布的《胡润百富榜-中国富豪特别报告》，罗列了1999年至2008年10年间，上过胡润百富榜的1330位企业家出“问题”的名单。\r \r<br/>48位变故富豪补充为49位\r \r<br/>根据报告，10年来，1330位上榜富豪中曾发生变故的有49位(其中一同上榜的兄弟及夫妻均算一位)。这里的“变故”包括，被判刑、等待宣判，正在或者曾经被调查过，下落不明(或在国外)或者去世。\r \r<br/>其中，已经判刑或者等待被判刑的分别有17人和3人，这20名“归宿”明了的企业家，被称作“问题富豪”，占据了胡润榜单上榜1330位富豪的1.4%。\r \r<br/>此前，有媒体报道变故富豪是48位。昨日，胡润研究院相关负责人表示，在48位变故表单制作完成后，发现漏掉了已经去世的中发电气董事长南民，后补充成49位。\r \r<br/>获刑富豪最高被判无期\r \r<br/>报告中详细列出49位变故富豪的资料，资料来源多为公开信息。其中很多名字虽然近年几乎被人们遗忘，但他们都曾名噪一时。\r \r<br/>17名被判刑的问题富豪包括：南德集团牟其中被判无期徒刑后改判18年，缔造格林柯尔系的顾雏军被判10年有期徒刑，操纵证券交易价格的德隆系掌门人唐万新被判8年徒刑，行贿、挪用资金的上海农凯集团周正毅两次被判19年徒刑。\r \r<br/>17人中，明伦集团周益明因合同欺诈量刑最高，终审被判无期徒刑。\r \r<br/>胡润称富豪落马情况复杂\r \r<br/>“对这些问题富豪，很难归纳他们出现问题的共性。”胡润表示，“富豪落马其实还是一个比较复杂、多层次的事件，把一切归因于个人道德不合适，但转到中国经济这一背景下又有些太形而上。但大部分企业都在失去创始人的情况下，度过了危机，存活下来。”\r \r<br/>纵观这些富豪触及的问题，多包括挪用资金、诈骗、行贿等等。胡润表示，在过去中国企业的经营环境中，“第一桶金”是很难拿到的，并不像今天一样融资渠道很多，可以直接找风投。在现在政策体制已经有所改善的环境下，富豪们就没有了犯此类错误的托辞，企业家原罪理论对现在的富豪们不适用。\r \r<br/>胡润否认百富榜为“杀猪榜”\r \r<br/>胡润一直否认自己的百富榜为“杀猪榜”，但这份“问题富豪”名单中，一些企业家确实为胡润榜单的常客。\r \r<br/>在正在被调查的10位富豪中，包括黄光裕、黄俊钦兄弟、东星航空兰世立、中信泰富荣智健等7人连续4次以上登上胡润百富榜。\r \r<br/>胡润对此表示，自己一手打造的榜单，与这些富豪的命运没有直接关联，“10年来98.6%的民营企业家都带领着企业健康发展，这个出问题的比例很低，在中国经济高速发展的十年，没有一个人出问题才不正常”。\r \r<br/>- 对话\r \r<br/>胡润：黄光裕仍会上榜\r \r<br/>认为错误跟财务没关系，称此次报告是以数据回击“杀猪榜”质疑\r \r<br/>高调发布“百富榜”10年的英国人胡润，为什么要发布《中国富豪特别报告》？胡润接受本报记者采访，谈了他对榜单以及对中国富豪的看法。\r \r<br/>很多人对企业家态度不公平\r \r<br/>新京报：为何此次改变了“挖掘”富豪的工作，晒出了10年来“问题富豪”的名单？这样的报告你希望告诉人们什么？\r \r<br/>胡润：很多人对待企业家的态度是不公平的，认为他们有财富，就一定出问题。\r \r<br/>但是我们的报告数据显示，98.6%的企业家在中国经济高速发展的近10年都带领企业健康的成长。尽管一些企业家因为自身和环境的原因出了“问题”，但是民营企业家对中国经济的贡献不能抹煞。\r \r<br/>此外，有人一直认为胡润百富榜是“杀猪榜”，我们一直没有回应，但是现在以这种数据报告的方式来证明，让很多质疑之人没有话说。\r \r<br/>新京报：黄光裕等“问题富豪”还会登上你的富豪榜吗？这样的“问题富豪”继续上榜会不会影响榜单的社会形象？\r \r<br/>胡润：当然会上榜。黄光裕遭调查的问题仍旧没有结论，我们以创维董事局主席黄宏生为例，他出现过问题服刑6年并已经出狱，由于他们一直对企业持有股份，依旧是富豪。错误跟财务没关系。\r \r<br/>应关注有学习价值的企业家\r \r<br/>新京报：你的团队制作榜单调研的数据基础是什么，这样的调研是否权威？\r \r<br/>胡润：2000年9月，当我们把计算出的任正非的财富数字及相关信息传真到华为公司后，收到了华为发的一张律师函。10年来，我们收到的律师函很多，我没有数过。但是我们的数据都是来自公开数据，如上市公司披露的信息，所以没有问题。\r \r<br/>新京报：很多人并不喜欢你的榜单，认为你在借此平台“把富豪当商品卖”，你怎么看？\r \r<br/>胡润：这个蛮难回答的。事实是一些上榜富豪对我的榜单也很感兴趣，甚至有些上榜的人在人前炫耀得有点夸张。\r \r<br/>其实，富豪本身就是明星，关注的人很多，除了我的富豪榜单外，就像我在机场看到的，到处都是关于他们的书。关注这些人，可以通过这些企业家的故事，了解行业的故事，了解到中国社会的变迁。这些人也引导、启迪很多人的思路。很多人的故事是很了不得的，我们应该去关注身边这些有学习价值的企业家，大家不能永远去学比尔·盖茨，很无聊的。\r \r<br/>采写/本报记者 张晓蕊 \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(26, 1, 25, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日 09:00　来源：中国新闻网\r \r \r 准新娘陈韵如红礼服上停满蝴蝶，准新郎颜志达挽着她赶紧拍照，因为十分钟后礼服上的蝴蝶就要飞走了。 台湾联合报图 \r \r 　中新网8月27日电 10月举行婚礼的准新娘陈韵如，26日试穿一款“蝴蝶礼服”，红色低胸礼服上，“停”着30多只活体蝴蝶，远望彷佛蝴蝶彩绘图。不过，十分钟后，缎面礼服上动也不动的蝴蝶突然展翅飞舞，惊艳全场。 \r \r<br/>据台湾联合报报道，新娘礼服上贴满水晶、亮片不稀奇，但这种活跳跳的蝴蝶当装饰且能飞舞，的确很耀眼。\r \r<br/>新郎颜志达为实现承诺，问到女友工作的度假村，总经理答应，活蝴蝶先以纸张包起来，冰在7℃低温2小时，让蝴蝶类似冬眠般昏睡，再取出“贴”在礼服上，蝴蝶则是利用冰冻的水气贴在衣服上。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(27, 1, 26, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日 09:17　来源：青岛新闻网　\r \r<br/>糊涂母亲培养儿子做“老鸨”\r \r<br/>案发后，母子俩双双被捕\r \r<br/>为了自己的事业能够后继有人，浴室负责人陈梅非让儿子跟着她学习。儿子果然不负众望，不但按照母亲的意愿好好学习，还拉来了众多同学好友，以一对一谈恋爱的名义控制住小姐，让小姐们一心一意为他们卖命。\r \r<br/>儿子成“老鸨”，未来儿媳当小姐 \r \r<br/>陈梅今年46岁，去年12月，在南京以每年5万元的价格租下了一个店面开浴场。表面上，陈梅的浴场是做正经生意的，但是深谙赚钱之道的陈梅还是在里面安了小姐提供服务。浴场开业后，生意不错，陈梅便将中专毕业的儿子吴海叫回来帮忙，意在培养他当接班人。\r \r<br/>在母亲的一番教导下，吴海对母亲的安排欣然接受。而因为浴场的生意一直不错，所以小姐很缺，陈梅便盯上了儿子几年前就开始谈恋爱的小红，在母亲的说服下，吴海欣然同意。而小红在“老公”和“婆婆”的双面夹击下，也答应下来。\r \r<br/>浴室和小姐实行的是分成制度，一般来讲，一次生意后，浴室就和小姐四六分成或者三七分成。而小红考虑到是为自家人卖命，干起活来格外卖力，她在里面呆了一个月左右，就赚了3700元。后来因为哥哥要结婚，小红回家了。不过，小红的事，却让吴海发现了里面的一个商机。\r \r<br/>原来，吴海和母亲都觉得，如果浴室里的小姐能和他们找来的一些朋友谈恋爱，那么朋友不但能起到看管小姐的作用，还能让小姐更加卖力干活。\r \r<br/>打定主意后，吴海就给自己的同学和朋友打电话，让他们到浴场来上班。而那些朋友来了后，吴海就把来龙去脉和对方说明，这些人都是好吃懒做的主，一听既有钱赚又有女朋友可以谈，马上答应下来。\r \r<br/>于是，那些朋友纷纷追求浴室里的小姐们，有些人追求不到后，甚至将自己的女朋友哄骗到浴室里卖淫。还有人更加夸张，不但找来了自己的女朋友卖淫，连自己的姐姐也被他带过来做小姐。\r \r<br/>这样的方式一成功，小姐们自然更加听话了，浴室的生意也更上一层楼。有人在落网后交代，基本上每天都有三四十个嫖客到浴室里找小姐。\r \r<br/>防范警察，他们用上高科技\r \r<br/>这伙人组织卖淫这件事，很快被警方盯上，而他们察觉后，也马上行动起来，搞来了几部对讲机，让一些小伙子在浴室外围来回巡逻，一旦发现有什么风吹草动，就立即和在店里守候的吴海联系。而吴海则拉响警报：浴室包间里的红灯马上转换成白灯。小姐们早就被他们培训过，一收到消息，立即穿上衣服和客人规规矩矩。\r \r<br/>虽然他们极力防范，但是警方还是找到证据于今年7月将他们一举抓获。而警方从目前查获的单据来看，陈梅等人组织卖淫所获得的非法收入达2万元。\r \r<br/>面对审问，陈梅一开始并不承认自己的违法行为，口口声声表示自己是正当的浴室经营，直到警方拿出确凿的证据，陈梅这才低下头，交代了所有事情。\r \r<br/>日前，陈梅和儿子等几人因涉嫌组织卖淫罪和协助组织卖淫罪被浦口区检察院批捕。\r \r<br/>(文中人物系化名)(通讯员 吴峰 记者 李梦雅) \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(28, 1, 27, 1, 'he21cn', '127.0.0.1', 1251357714, '09:20:28千龙网\r<br/>今年以来，网络上开始出现一些以“门”命名的色情视频，并通过社区、论坛等方式广泛传播，不过更令人惊讶的是，已经有证据显示这些“门”视频似乎并不全是网友在“无意”之中泄露到网络上的。 \r \r<br/>26日，杀毒软件360安全卫士相关专家表示，此类偷拍或自拍色情视频在网上流传有明显人为推广痕迹，而商业黑客正是幕后黑手。360分析认为，黑客用木马从当事人电脑中盗取视频后再传播的可能性极大，目的是散播木马获取利益。 \r \r<br/>色情视频链接暗藏病毒 \r<br/>近来网上以“门”命名的各类色情视频层出不穷，这些偷拍或自拍视频一经传到网上，就被迅速转载到各大社区和论坛，相关词汇随即成为炙手可热的搜索词汇。然而，在与这些热词相关的网页、BT种子、在线视频等内容中，却大量暗藏着各种木马病毒。 \r \r<br/>360安全中心杀毒软件专家表示，目前已经先后在多家论坛、博客中，发现“门”事件有明显的人为推广痕迹。主要表现为：这类“门”信息发布的地点比较固定，而不同的“门”相关“挂马网页”又都指向同一木马下载地址，夹带着相同种群的盗号木马及后门程序。 \r \r<br/>本月20日，网络安全服务商美国赛门铁克公司公布了“2009年夏季最肮脏网站名单”。结果显示，100个“最脏”网站中有48个使用了色情内容引诱人们掉入电脑病毒陷阱。而据360安全中心公布的同类调查数据显示，国内“挂马攻击”危害TOP20网站全部为色情网站。 \r \r<br/>国内色情网站“十站九毒” \r<br/>据360网络安全专家介绍，为了牟取利益，目前色情网站大都放弃了极易留下犯罪线索的会员收费制，开始投身木马产业链，充当起出卖访问者电脑安全的“流量商”角色。以近日央视《焦点访谈》曝光的“妹妹五月天”色情网站为例，该站长在网站“挂马”向商业黑客收取“人头费”，短短5个月就敛财10万余元，而黑客利用木马盗号窃取的财富显然远不止这个数。 \r \r<br/>360网络安全专家表示，“挂马”已经成为色情网站最主要的收入来源，国内色情网站“十站九毒”一点都不夸张，网友们一定要远离这类危险网站。当然，色情网站有时还会利用聊天软件或社交网站散布链接，导致很多网友无意间就点开了色情网页。（记者 杨汛）\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(29, 1, 28, 1, 'he21cn', '127.0.0.1', 1251357714, '2009-08-27 09:41:52　来源: 中国新闻网\r \r \r 妈妈指刘德华当时劈腿。\r \r 中新网8月27日电 刘德华以十指紧扣高调“手法”让朱丽倩正名。前女友喻可欣献“淡淡的祝福”，但喻妈妈跳出来说：“华仔和喻可欣那时还在谈恋爱，是朱丽倩介入，而且追得很紧。” \r \r 台湾“中国时报”报道，喻妈妈指刘德华当时劈腿(脚踏两只船)，喻可欣还因此跟他大吵：“要她就不要我，要我就不要她！”接着就闹分手。喻可欣多年来放不下这段情，喻妈妈不舍也不甘，对刘德华终于认了朱丽倩，她还说，不管当初是怎么抢的，朱丽倩也算熬出头了。 \r \r 喻可欣和刘德华分手后，身体状况时好时坏，两年前还得了肺结核，所幸是非开放性(不会传染)，为了治疗，她几乎不出门。她之前接受访问时透露，专心研读佛经，曾用易经替自己算命，“易经上说，等他结婚后，我就解套了。”\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(30, 1, 29, 1, 'he21cn', '127.0.0.1', 1251357714, '2009-08-27 02:42:27　来源: 京华时报(北京)\r \r \r 刘德华25日与绯闻女友朱丽倩十指紧扣返回香港。\r \r 京华时报8月27日报道 刘德华25日与绯闻女友朱丽倩十指紧扣返回香港。在机场被问及是否会在百日内结婚时，华仔首度开腔回应：“不是，所有的事情不会再讲，我不会多作解释”。华仔又在个人网站留言，他感谢媒体的包容眷顾，并对歌迷们为他遮风挡雨“万二分感谢。”此外，昨日朱丽倩家族的一位生意伙伴爆料称，其实华仔与朱丽倩两人早就结婚了。 \r \r “我带她回家休息”\r \r 据香港媒体报道，华仔与朱丽倩于25日晚10时半左右飞抵香港。虽然现场集结过百媒体记者及粉丝，但戴着口罩的华仔与朱丽倩，依然手牵手步出闸口。华仔为保护朱丽倩免被人群撞倒，更是腾出另一只手揽着她。二人寸步不离，表现恩爱。\r \r 面对记者的追访，华仔只礼貌地表示：“多谢传媒关心。”有记者追问华仔与朱丽倩会否于朱父逝世一百日内结婚，华仔终打破沉默首度开腔回应：“不是，所有的事情不会再讲，我不会多作解释，给点时间我等我带她回家里休息，搞到大家这样不好意思。”在华仔接受访问期间，朱丽倩一直低着头做其背后女人。\r \r “万二分”谢歌迷\r \r 昨天，华仔在个人网站留言，他感谢媒体的包容眷顾，对在机场引发的混乱表示歉意，还特别提及歌迷们无私无悔为他遮风挡雨，表示“万二分感谢。”\r \r 留言中，刘德华上来就是“让很多关心我的人都挂心了。”他说，在两地机场都引起了一些混乱，影响了不少旅客和工作人员，十分抱歉。随后，他提到媒体，“其实素来对我格外包容眷顾，感受到大家对我的爱护，你们这次也都辛苦了。”接着，刘德华在谈到歌迷时则表示“早已深受感动”。他说：“看到大家对我的爱更是无私无悔……容老大衷心说句，万二分感谢。”\r \r 两人被爆早已结婚\r \r 朱丽倩家族的一位生意伙伴昨天爆料称，其实华仔与朱丽倩两人早已结婚。\r \r 据报道，爆料人Byren一家和朱丽倩家族有生意往来。“我家和他们家(朱家)算是世交，偶尔会一起聚会，所以他们的事情基本上都知道。”Byren告诉记者，作为天王巨星，刘德华之所以迟迟不公开与朱丽倩的婚姻，是希望保护个人隐私。早在刘德华当红之时，他就公开过一次恋情，不仅许多歌迷难以接受，广告商也十分不满，女方也受到很大影响。所以，当刘德华与朱丽倩开始恋情，到最后结婚，他都保持高度神秘，不仅对外否认，也从不携手出行。Byren猜测，婚讯不公开的原因，还是考虑到个人隐私，不愿意私生活受媒体的“监督”。\r \r 另外，Byren还透露，在马来西亚，几乎所有人都知道刘德华是朱家的女婿，但是没有人会去对外面的人说。只是最近朱父去世刘德华表现“太差”，居民们才纷纷表示不满。综合《厦门商报》等消息\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(31, 1, 30, 1, 'he21cn', '127.0.0.1', 1251357714, '2009年08月27日 10:51:12 　来源：广州日报 \r \r     消费陷阱 \r     如今，手机市场的“高仿之风”越刮越猛，高仿手机卖得也越来越火，但是出现的消费纠纷也越来越多，不少奸商利用这种手机谋取暴利。 \r \r     有的消费者虽知道是高仿机，低价购买后没用几天故障就频频出现，维修无门，几百元相当于扔进了水里；还有一些消费者被不法厂商蒙骗，花了正品的价格却买了部高仿机，欲哭无泪。 \r \r<br/>诱惑：真机4000多元仿机400元 \r \r     所谓高仿机，就是高度仿造的手机，实质上就是无视知识产权的假冒手机。这些高仿机几乎和真机一样，做到了难以分辨的程度，连开机时的声音、开机后的界面都和正规品牌手机一样。有些高仿机甚至还能输入验证序列码。 \r \r     这类手机受到市场热捧也有一定原因，不少消费者对原版的高价觉得难以企及却又喜欢这款手机的外观；还有的消费者为了在朋友面前炫耀，乐意花上几百元去“显摆”，还有些学生或者追求高性价比的用户也会选择此类机型。 \r \r     高仿机所仿效的主要对象是售价高昂的大品牌高端手机、奢侈手机、天价手机，特别是新上市的旗舰机型；其次则是大品牌销量十分大的中端价位手机。记者在电脑城、大沙头等手机市场看到，这些高仿机价格低得惊人，比如三星伯爵手机、苹果iphone以及诺基亚N96等高档手机，真品价格多在4000~6000元，而这些手机的“仿真版”却只有几百元。 \r \r     陷阱：外观不错操作很差很难保修 \r \r     虽然说姜太公钓鱼，愿者上钩。且不评价高仿手机涉嫌侵犯知识产权问题，消费者抱着一种明知而为之的心态去购买，固然不值得提倡。但从保护消费者利益看，所谓高仿手机其实有很多消费陷阱，消费者购买后也并非能用得舒心。\r \r      其一，质量差很多。很多高仿机吹嘘自己能1：1高度仿真，但实际并非如此。虽然外观差不多，但手机的做工以及操作系统比真品其实要差很多。某消费者王先生花500元购买了一款“山寨”版苹果iphone手机。购买当天，王先生并未开机试用，待回到家后，他便发现手机音乐播放器无法使用，耳机也听不到声音，而且手机的原配电池使用不到1小时就自动关机了。 \r \r     其二，很难保修。这类手机在保修期内一旦出现性能故障，很难享受“三包“服务。大多数消费者购买时已经知其为“三无产品”，心头虽有疑虑，但经不住销售商“可退可换、保修3个月或半年”等口头承诺，也就忽视了售后服务问题。但实际上多是空头支票，许多高仿机的保修期最多承诺保修3个月，有的不到承诺的期限就找不到人了，售后还是要自己处理。 \r \r     其三，被骗话费。很多高仿手机内置了恶意扣费软件，手机也会像电脑一样，沦为黑客控制的“肉鸡”。不法厂商往手机芯片上植入了一些扣费程序后，他们就可以像黑客一样，通过GPRS网络让手机用户每月扣费消费。 \r \r     一些不法商家甚至会是以蒙骗的方式直接把高仿机当作真品卖。据记者了解，这些手机仿冒程度达到了95%以上，不但外形一模一样，就连功能表等操作界面都一样，如果不是行家，还真很难分辨出来。 \r \r     为了蒙蔽消费者，有的商家还会玩弄“偷梁换柱”的把戏，消费者挑选试用的时候是真机，而付款后拿来的却是高仿机。 \r \r<br/>鉴别 \r \r     真手机“天衣无缝” \r \r     假手机接缝松动 \r \r     看做工。比如外壳的各个接缝处。真品手机的各处接缝间隙均是十分均匀，而且不会出现松动的情况。仿真手机的间隙开口显得比较大，而且用手轻轻按压就会感到有松动的迹象。还比如外壳工艺处理上，真品手机一般光泽度极好，烤漆面均匀光滑，手感细腻。而仿真手机则漆面不均匀，手感有毛刺，外壳的某些部位还出现了轻微的锈迹。\r \r     仿真品的铭牌印刷得比较粗糙，字体笔画不均匀，质量较次。 \r \r     摸键盘。手感方面，仿真手机的按键大多不能很好地保持在同一平面之上，而且手感也显得比较生涩，手感极差，不仅难以定位，而且很容易发生错误操作。而真手机就较少出现这些问题。 \r \r     听声音。真品手机一般声音很纯，没有任何杂音，而不好的高仿机则是声音很大，没有那么纯，感觉有杂音，容易出现破音。 \r \r     装软件。如果是智能手机，可以临时用一个免签名的软件(如Ucweb)在机子里安装一下，不能成功安装则是高仿机，不支持Java下载的也是仿真机。如果验证非智能手机，安装软件不好办的话，那就安装主题，一般的高仿机基本上不能安装主题。 \r \r     配件不能忽视。配件也是高仿的，比如诺基亚电池，真品的防伪标签颜色偏红，立体感十足，其字体非常清晰。而仿制品的镭射标签则偏绿色，立体感较差，其上的小字体模糊不清。（薛松） \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(32, 1, 31, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-26 00:06:00　来源: 网易娱乐专稿\r \r \r 刘德华与朱丽倩十指紧扣。 \r \r \r 刘德华牵着朱丽倩冲破记者的围堵。\r  \r  \r 刘德华与朱丽倩返回香港遭遇多家媒体围堵。\r   \r  \r 刘德华始终用身体护住朱丽倩。 \r \r \r 网易娱乐8月25日讯 25日晚上大约六时，刘德华从大马机场返回香港，在十时三十五分左右，华仔抵达香港机场，身边更拖住朱丽倩，两人都同样地穿白色衣服，两人手上都带上不少彿珠。 \r \r 大批传媒早已在场等候。华仔一出现，大批记者立刻一拥而上。造成很大的混乱，更有记者跌倒，一路上华仔不断和记者道歉。但华仔全程和丽倩十指紧扣，亦十分体贴，全程对佳人做足保护，怕记者们会和她有碰撞。而丽倩则全程护肚，身形亦有小许发胖，引人有孕的疑问。 \r \r 有记者问到华仔是否公开恋情时，华仔并未有正面回应，但看来华仔今次在公开场合和丽倩十指紧扣出现，间接地承应了两人的关系。记者问到丽倩心情有否回覆时，她就小鸟依人地靠紧在华仔身边，一声不响。华仔道：“没有特别想讲的，多谢大家对的关心，你们喜欢怎么想就怎么想，我也不打算解释那么多，现在我想先带她回家休息，以后会跟大家再说。” \r \r 刘德华背后的女人朱丽倩丧父，其亲朱金城享年73岁。朱家寓所坐落马来西亚的高尚住宅区Bukit Jalil（武吉加里尔），朱父病逝的消息传出后，大批传媒到朱家守候。 \r \r 被认定是“大马女婿”的刘德华陪朱丽倩返马来西亚奔丧。不过，华仔至朱父的丧礼举行期间也没有公开露面。 \r \r 连日来刘德华逃过了近百传媒的追访，千方百计不让传媒拍到他与朱丽倩在女方父亲朱金城的丧礼上现身，但二人终于在昨晨“岳父”的头七拜祭仪式上露面。 \r \r 华仔与朱丽倩二十多年的关系扑朔迷离，两人由1986年认识相恋，朱丽倩成为华仔背后的隐形女人后，两人的恋情低调处理20多年，并无合照。曾经在1992年传两人秘密结婚，1996年生女，虽然华仔一直否认，但两人的关系已是公开秘密。今年2月，两人在大马被摄下“世纪合照”，当时有传华仔正准备于朱丽倩43岁的生日正式结婚，但消息曝光后，婚事再度搁置。 (本文来源：网易娱乐专稿 )\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(33, 1, 32, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日04:07  广州日报\r \r \r \r 泳装模特兼艳舞女郎加丝敏-菲奥里\r \r \r 已经自杀的真人秀明星瑞恩-亚历山大-詹金斯\r \r \r<br/>本报讯 上周，28岁的泳装模特兼艳舞女郎加丝敏·菲奥里的尸体在美国加利福尼亚州的布鲁纳公园里的一个行李箱中被发现，凶手为阻碍警方确认死者身份，将受害者的牙齿拔除，并砍掉手指，不过因死者生前曾做过隆胸手术，警方最终通过她的乳房植入物才确认了她的身份，并确认死者是被人掐死后弃尸。\r \r<br/>之后经过警方的排查，菲奥里的前夫、真人秀明星瑞恩·亚历山大·詹金斯成为本案最大嫌疑人，当时他已逃去了自己的家乡加拿大。美国联邦执法局悬赏25000美元通缉詹金斯，警方认为詹金斯带走了大量的钱款，用于离开美国。\r \r<br/>据报道，某酒店监控录像显示菲奥里和詹金斯一起抵达酒店，但是只有詹金斯一人离开。他离开时带着手提箱，而那个手提箱可能就是藏有菲奥里尸体的箱子。\r \r<br/>然而，令案情峰回路转的是，日前，瑞恩·亚历山大·詹金斯被发现死于加拿大的一家汽车旅馆内。加拿大皇家骑警警官邓肯·庞德接受《温哥华周日报》采访时说，詹金斯看起来是“结束了自己的生命。”唯一的解释只能是畏罪自杀了。\r \r<br/>詹金斯与菲奥里今年3月结婚，但婚姻仅维持到了5月，詹金斯曾对菲奥里施行过家庭暴力。\r \r<br/>据悉，詹金斯曾参加某真人秀节目《Megan Wants a Millionaire》，报称他是加拿大卡尔加里的投资银行家。他在他的家乡卡尔加里曾有过案底，他在2007年1月因为故意伤人而被判缓刑15个月。(星星)\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(34, 1, 33, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日01:02  汉网-长江日报 \r<br/>本报讯 (记者万建辉)今晚是七夕夜，武汉一群网友相约偕恋人在武大举办活动，优胜者领养萤火虫一只。萤火虫从何而来？网友说，是找萤火虫养殖专业户扬帆买的。\r \r<br/>28岁的杨帆，2005年毕业于华中科技大学计算机系。当年与女友吵架，杨帆抓了一只萤火虫，让她破涕为笑。一直在寻找创业机会的杨帆灵光一现，何不饲养萤火虫，恋人的需求就是一个永不枯竭的大市场。\r \r<br/>2007年6月，杨帆的首批萤火虫开卖，至今销售额70余万元。他在汉川租下20亩地，聘用3名专职养殖人员，每年投入近10万元。\r \r<br/>“总共2.7万只萤火虫，22日前全部订完，七夕期间的销售额相当于平时一个月。”杨帆说，这段时间电话打爆了，客户来自深圳、成都、云南、乌鲁木齐，情侣、酒吧、婚庆公司、景区和农家乐公司都有。武汉网友24日才打电话过来，他只好从其他客户那里每家减几只，给他们凑了50只。\r \r<br/>城里人见了萤火虫，老人、小孩都会激动得不得了。杨帆说，近一个月，汉口江滩和中山公园的摊贩们才联系他进货，萤火虫生意是先应远，后应近。\r \r<br/>杨帆介绍，萤火虫售出后不吃不喝有一周的存活期，卖给外地客户一般空运，用可透气的塑料瓶装起来，里面放些树枝叶，可喷水，不能积水。\r \r<br/>杨帆说，目前国内没有成型的陆生萤火虫饲养技术，主要是自己摸索出来的，一部分技术来自国外，通过电子邮件咨询外国专家。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(35, 1, 34, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日03:07  现代快报 \r \r \r \r 高铭远和儿子。\r \r \r 　  \r \r<br/>眼看各个学校都要开学了，但他决心带着13岁儿子走遍全国。因此，高铭远给13岁的儿子办理了一年的休学。他认为，这种经历带给孩子的远比课堂要多。\r \r<br/>儿子休学一年随父亲走遍全国\r \r<br/>高铭远，1971年生，在大庆油田工作，曾经当过5年教师。“读万卷书，不如行万里路”，高铭远认为“90后”的孩子不知道什么是挫折，不懂得珍惜幸福生活，在孩子们眼中，得到一切都是理所当然的。于是他毅然决定到儿子的学校为儿子申请休学一年，带着13岁的儿子一起踏上全国之旅，希望以此能让孩子有所改变。他的计划是：从大庆出发途经黑龙江，吉林，辽宁，内蒙古，河北，山西，陕西，最后抵达西藏。\r \r<br/>高铭远曾患有严重的肝硬化，住院10个月，在住院期间，自己调节，研究了一个方法，他认为，这趟旅程，不仅是对疾病的挑战，也是对自我的挑战。\r \r<br/>2009年8月9日，高铭远带着儿子迈出了全国之旅的第一步，途经松原，长春，长白山，丹东，辽阳等地。“每到一个省会城市，我都想和媒体联系一下。”高铭远说，大庆市一家媒体曾经报道过高铭远的事迹。\r \r<br/>住最便宜的旅馆吃简单的饭菜\r \r<br/>“我们是8月22日下午到沈阳的，这里住店比较贵，在招待所住一晚要花60元。”高先生说，“我们到故宫了，可是没有进去，只是在门口转了转，拍了些照片留念。我们一路走来，资金也是一个很重要的问题，不能到每个地方都参观景点，有的时候只是在住宿的旅馆附近转一转。”\r \r<br/>高先生说，半个多月来，孩子有了明显的变化，懂得节约了，在花钱方面很节省。在饭馆吃饭时，最常吃的是饺子，孩子说，吃饺子饭菜都有，不用再另外点菜了，还可以省钱。在这之前，孩子根本意识不到节约是个什么概念。\r \r<br/>全国之旅会让孩子终生难忘\r \r<br/>儿子是大庆第一中学的学生，9月开学上初二，“我特意为他办了一年休学，等这次全国之旅结束后，回来从初一重念，孩子本身是提前一年上的学，这样对他的影响不会太大。”高铭远认为，儿童青少年时期是成长中的重要阶段，之所以休学一年，是利用这个重要时期做远比学习文化知识更重要的事。“我相信，这次全国之旅一定会让孩子终生难忘。”\r \r<br/>高铭远说，在这次出行中，孩子坚持每天写日记。一有时间，还会把随身带来的文化课本拿出来学习。“家里人很支持我。从表面上看，只有我和儿子两个人走，事实上，是全家人一起行动，没有家人的支持，这件事肯定做不了。孩子每天都会和妈妈通电话。”\r \r<br/>高铭远表示，这次全国之旅还有另外一个目的，就是要到全国各地中医大学拜访专家。他强调，“我自己本身不是医生，希望与各地专家探讨肝病康复方面的问题。同时，他希望在接下来的旅程中能与各地学校取得联系，到那里为教师讲讲健康方面知识。”\r \r<br/>教育专家各抒己见\r \r<br/>沈阳市政府督学、教育专家于永昌表示，不赞成孩子父亲的做法，父亲把自己的情趣强加到了孩子身上，“读万卷书，不如行万里路”，这条路不一定非得这么走。他还表示，父亲的动机和创意是好的，只是现在做这件事不太合适，让孩子休学一年去做这种事，于永昌认为没有意义。\r \r<br/>沈阳师范大学教育经济与管理研究所所长、博士生导师孙绵涛教授则对孩子父亲的做法，表示可以理解。孙教授说，在学校学习书本知识固然重要，前往祖国大好河山，了解各地的人文气息，通过非书本知识学习，对孩子成长也是很有益处的。孩子应该受到全面的教育，不能从单一角度分析问题。据《辽沈晚报》\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0');
-INSERT INTO `hope_post` (`pid`, `class_id`, `tid`, `uid`, `username`, `ip`, `dateline`, `message`, `pic`, `isthread`, `hotuser`) VALUES
-(36, 1, 35, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月25日23:55  现代金报 \r<br/>金报讯 (记者 蒋振凤 实习生 潜雄斌 摄影 贾磊) 最近，东方论坛有家长发帖“强悍班主任老师，求求你放过我们的孩子”。帖子一出，立刻吸引不少网友的眼光，连日来，有不少网友看了帖子后，对其中谈到的班主任老师表示不满。记者看到，家长帖子中写了上千字的内容，主要从师德、业务和变相体罚学生等几方面，反映了宁波市实验小学三年级一名女班主任不适合担当此职务，要求学校在新学期更换班主任。 \r \r<br/>记者了解到，发帖家长有两位。帖子发出后第二天，该校领导曾对全班30名学生进行家访。昨天，记者分别从发帖家长和海曙区教育局看到了两份内容截然相反的联名信。一份说班主任是好老师，另一份则说是个差老师。到底哪份联名信反映的是真实情况，部分家长所提意见学校能否接受？记者对此进行了调查。\r \r<br/>家长网上列举班主任八大问题\r \r<br/>简单归纳了帖子的内容，主要列举了班主任的八大问题：一、经常骂女同学是十三点，骂男同学是木头。 二、 教育能力欠缺，反怪家长无能。三、变相体罚学生，学生无所适从， 一旦发火，就让全班孩子站着听课，一站就是整节课。到下课时间也不让孩子们喝水，上厕所，为此，还有三年级的孩子因为憋不住而把裤子尿湿的事情发生。四、宁要抄袭作文，打击学生自尊。五、抄默作业重复、思想品德教育、写字课程靠边 。六、挑拨家长与其它任课教师感情；七、 目中无人，狂妄自大 ，老师曾经口出狂言：对我不满，有本事就去告，看领导帮谁？八、 没有公正、公平，事事随心所欲 。就是这样的一位班主任，调进该校从未带班至三年级以上，现在种种迹象表明她要继续带孩子们，家长们真是又急又愁。\r \r<br/>家长坦言：不是逼不得已，我们也不会发帖\r \r<br/>经过多方联系，记者找到了网络发帖的其中一位家长A女士。面对帖子，A女士坦率地告诉记者，这确实是她自己和另外一位家长B女士一起发的。\r \r<br/>A女士对于帖子上的问题，一直强调以上统统属实，并没有夸大的成份。并告诉记者帖子上所说，王老师教养欠佳的行为曾发生在不少学生身上。A女士举了一个例子，说有一次学校布置了一个看图写话的作业，图的原意可能是包饺子，但是由于图是黑白打印的，十分不清晰，很多小孩子都写成了做水果拼盘。这时A女士的女儿告诉记者，当时老师就发脾气骂，你们都是瞎子吗，难道你们的爸爸妈妈也是瞎子吗？A女士告诉记者，老师也是人，不是圣人，发火发脾气是可以理解的，但是这样子骂孩子已经不对了，连同我们家长也一起骂进去，我们也是有尊严的。A女士告诉记者，当时小孩回家来跟她说的时候就十分恼火了。从那次开始，A女士就要求女儿以后在学校无论是好事还是坏事回家后必须要告诉自己。\r \r<br/>几次犯下低级错误，真的是教学能力有问题吗？\r \r<br/>谈到王老师的教学能力，A女士叫女儿拿来了这个学期的暑期作业，在暑期作业上，记者看到一道填空题：(百)年树木 *(十)年树人=各有(千)秋，记者问到这不是做错了吗。后来记者在别的学生的作业本里也发现了同样答案。A女士的女儿告诉记者，7月31号的时候，学生都要求返校，这些已经核对过答案了，是正确答案，全班都是这样的。\r \r<br/>A女士还告诉记者，在女儿上二年级下学期的时候，单位测试的试卷上有一道是非题：我国有56个少数民族。这道题应该判断是错。当时自己以为是老师改错了，在女儿带回来的试卷上也进行了批注，很委婉地告诉老师这道题目改错了。没想到第二天王老师竟然打来电话责问，称自己是对的，语气十分不好听，但是王老师后来也就轻描淡写地承认了自己的错误，说，这道题目全年级都错了，后来还请教了高年级的老师。A女士说，这是不是很滑稽，这种最基础的问题，还全年级都不知道？\r \r<br/>学生集体罚站，一个女生竟然尿了裤子？\r \r<br/>对于帖子上，王老师让学生罚站，学生因为憋不住而把裤子尿湿的事情，A女士说，这个事情不是发生在自己女儿身上，是发生在另外一个女学生身上的。A女士的女儿告诉记者，尿裤子的同学因为是女孩子，怕羞还不敢说，裤子就一直是湿着的。A女士说，这都三年级了，又是一个女孩子，这样的事情发生，还真担心会对孩子以后有影响。\r \r<br/>A女士的女儿最后告诉记者，班主任很凶，经常会拿着笔盒打我们的头。\r \r<br/>记者随即采访到另外一个发帖的家长B女士，记者也反复求证了A女士说过的话。B女士递给记者一张八人的联名信，也都认为这个班主任不适合担当现在的位置。A女士告诉记者，有不少家长要求换班主任，因为顾虑多，又不敢签字。\r \r<br/>采访中的几位家长表示，他们只要求学校召开一次家长会，让家长公开不记名投票，公平公正地决定班主任换与否？\r \r<br/>据了解，该贴7月13日发出后，7月14日，宁波市实验小学立即采取行动，相关领导带着几个老师分几路对三年级302班30名学生进行了家访。走访结果如何？帖子内容是否属实？部分家长提出的这个要求学校是否能够接受？带着一系列的问题，昨天下午记者来到了宁波市实验小学。\r \r<br/>班主任回应：我说女同学十三点，是有原因的\r \r<br/>据家长反映，7月14日参与走访家长的学校领导除几位老师外，还有学校的一位副校长陈霞和教导处的工作人员。记者在学校门口电话联系上陈霞，表明来意后，陈霞说，马上去海曙区教育局开会，采访要先和海曙区教育局打招呼。到了海曙区教育局后，记者打了多个电话，还是没有约到该校领导和当事老师进行采访。在海曙区教育局局长徐健的帮助下，当事人王老师打来电话。解释了帖子中部分内容。\r \r<br/>“我说女同学十三点，是有原因的，曾有家长反映，班里有学生看黄色诗歌，我不知道是谁，最后查出来是个女同学，我就问她了；骂男同学是木头，是因为有个小朋友一直学不好，我着急，就那样说他，但是后来家长跟我讲过后，我就改正了！”\r \r<br/>对于家长反映”教育能力欠缺“，王老师说，“我国有56个少数民族，其实这是以前的事情了，也和家长解释过了，当时是整个年级都出现了笔误。随后，王老师不愿意谈太多，只是要求记者去采访学校领导。\r \r<br/>副校长陈霞一只推说没有时间，而不接受采访，记者等到教育部门的会议结束，陈霞表示要回家中料理孩子，没有时间接受采访。\r \r<br/>教育局：没有收到家长投诉\r \r<br/>记者来到海曙区教育局局长办公室。记者表明来意后，徐健局长放下手头工作，给记者拿出了一打装订整齐的资料，打开后，记者发现，都是与该帖子内容有关的资料。其中，一份是2009年7月24日302班的部分家长签名，但内容与发帖家长手中所持联名信截然相反。还有一份，标有“附二部分家访记录”，内容是对23位家长的家访记录，都表示王老师工作负责。\r \r<br/>徐健局长强调，网络上发帖家长对老师有意见可以到学校或者是教育局反映情况，如果家长反映到这里，教育局一定会调查这件事情，但是，家长一直没有来到这里投诉，这件事情，还是学校上报上来的。所以教育部门并没有对这件事情进行调查。\r \r<br/>这名班主任到底如何？事关30个家庭的孩子教育问题，希望教育部门能够认真调查调查。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(37, 1, 36, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日02:27  东方早报 \r<br/>东方早报记者 陈静思 发自北京\r \r<br/>央视新址大火事件过去已逾半年。针对这起大火的渎职侵权调查，目前已延伸至工程的经济问题。\r \r<br/>昨天，早报记者从相关部门获悉此案的最新进展：目前已有更多涉及此案人员被相关方面控制。其中，第一批涉案人员正在被移送起诉，第二批仍处于侦查阶段。\r \r<br/>有知情人士昨天对早报记者称，“越来越多的人被抓起来了”。早报记者昨天从相关部门了解到，随着央视新址大火案调查的进一步深入，工程监管部门部分相关人员也被列为调查对象。知情人士称，被调查者中包括北京市建委人员，以及承揽央视新址工程B标段(即北配楼)的北京城建集团一名项目负责人。\r \r<br/>今年2月9日，即元宵夜的20时27分，北京市朝阳区东三环中央电视台新址园区在建的附属文化中心大楼工地发生火灾，造成1名消防人员遇难，7人受伤。\r \r<br/>大火发生后，原央视新址办主任徐威等4名央视新址办员工被警方带走接受调查，徐威随后被刑事拘留。之后，央视新址办包括原副主任王世荣、综合业务处副处长邓炯慧、工程处副处长胡德斌、技术处副处长耿晓卫等十余人因牵涉央视大火案先后被刑事拘留。3月13日，徐威等12人被北京检方正式批捕，罪名均为涉嫌危险物品肇事罪。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(38, 1, 0, 1, 'he21cn', '127.0.0.1', 1251357730, '原文网址 www.fanfucn.com\r \r 武汉市国土资源和房产管理局无视辖下大面积耕地被破坏 \r \r \r \r 作者：葛树春 伍爱国  来源：中国反腐维权网、民间舆论监督联盟  \r \r --无征地手续“征地” 补偿款仅为12000元/亩 还要3年付清\r \r （民间舆论监督联盟法制周末网讯 作者 葛树春 伍爱国） 武汉市经济技术开发区建于1991 年 5 月, 1993 年4月经国务院批准为国家级经济技术开发区。2008 年10月武汉市经济技术开发区军山街新团村却被该一公司以村民自治的名义拆迁，属于村民的集体土地将被以12000元/亩的价格征用，武汉市经济技术开发区相关负责人却声称这拆迁征地是新团村民自治。。 \r \r \r \r （征地人为新团村的《征地协议》）\r \r 新团村村民解为国一家是新团村此次拆迁征地的受害者之一，在拆迁方拿不出任何关于拆迁合法手续的情况下，解家刚刚修建起来的2 层楼房被迫拆除，解家近5.8 亩的耕地在没有同意被征用的情况下被强行推为平地。 \r \r 如在武汉市经济技术开发区承包土地用于兴建厂房等建设，每亩地要向有关部门缴纳价格不菲的地租，而一份征地人为新团村的《征地协议》显示：武汉经济技术开发区军山街道办有内部征地文件，新团村所征用的土地价格仅为 12000 元一亩，征地款还要分3 年付清。！ \r \r \r \r (武汉经济技术开发区新团村被毁的耕地)\r \r 我国土地管理法规定，征收基本农田必须由国务院批准，征用国务院批准之外的土地应由省、自治区、直辖市人民政府批准。土地利用总体规划经依法批准后人民政府应当在本行政区域内予以公告。暂且不说武汉市经济技术开发区军山街道办新团村有无权利实施征地行为，即便其有征地权，但有无得到任何政府部门的批准？武汉经济技术开发区军山街道办新团村更未遵守我国《土地管理法》中所规定的、征收耕地的补偿费用包括土地补偿费、安置补助费以及地上附着物和青苗的补偿费。征收耕地的土地补偿费，为该耕地被征收前 3 年平均年产值的 6 至 10 倍。至于国土资源部印发的《关于完善征地补偿安置制度的指导意见》中土地补偿费和安置补助费合计按 30 倍计算，占用基本农田的，征地补偿按当地人民政府公布的最高补偿标准执行。武汉市经济技术开发区军山街道办新团村更是没有执行！ \r \r 2009 年 4 月，武汉市经济技术开发区一工作人员声称发生在新团村的拆迁征地行为是村民自治行为。“如果全中国都把非法拆迁征地行为统称为自治行为，那还要《土地管理法》《城市房屋拆迁管理条例》做什么？” 一位被非法征地村民气愤地说！ \r \r 现今的武汉市经济技术开发区军山街道办新团村，村民们原有的房屋已经被拆除，属于村民的耕地已经被数十辆挖土机夷为平地。解为国一家为此多次上告至有关部门，但至今无果。 \r \r \r \r （武汉市国土资源与房产管理局下发的糊涂答复）\r \r 众所周知非法征地、破坏耕地是刑事犯罪，面对解为国一家的多次举报，武汉市国土资源和房产管理局竟然在对举报人的信访答复中写到：没有发现发生在武汉市经济技术开发区军山街道办新团村的非法征地破坏耕地行为有违法之处。 \r \r 如果不是解为国一家亲历自己的耕地被非法夷为平地，谁会多次到有关部门上告非法征地破坏农田一事？如果不是武汉市国土资源和房产管理局尸位素餐，武汉市经济技术开发区新团村的非法征地、破坏耕地行为怎能不被查处？ \r \r 面对中国反腐维权网的向湖北各领导的举报，曾有武汉经济技术开发区负责人声称开发区军山街道办新团村并不存在征地行为，推地是在为老百姓翻地。 \r \r \r \r 但是，铁的事实就在面前，征地人为军山街道办新团村委会的公章在那里，详细的征地方案在那里，更为铁的事实是原武汉市经济技术开发区军山街道办新团村村民所用有的耕地早已被夷为平地，懂农作物生长原理的人一看便知道，由于原来的耕地被夷为平地导致耕地中的土壤耕作层被破坏，已失去粮食综合生产能力，这就是在非法征地，这就是在破坏耕地，无需任何人狡辩，事实就在眼前！ \r \r 我国刑法第三百四十二条 : “违反土地管理法规，非法占用耕地、林地等农用地，改变被占用土地用途，数量较大，造成耕地、林地等农用地大量毁坏的，处五年以下有期徒刑或者拘役，并处或者单处罚金。”  最高人民法院《关于审理破坏土地资源刑事案件具体应用法律若干问题的解释》规定，非法占用耕地“数量较大”，是指非法占用基本农田 5 亩以上或者非法占用基本农田以外的耕地 10 亩以上。 \r \r \r \r （在耕地上施工 没有违法？）\r \r 仅武汉经济技术开发区新团村民解为国一家被铲平的耕地就有5.8亩，粗略的统计一下整个新团村被破坏的耕地应达数百亩，如果按一个人非法破坏10 亩判刑，那么新团村的非法征地、破坏耕地行为一定能够判刑几十个人！ \r \r 遗憾的是，解为国一家从 2008 年底便开始四处上告新团村非法拆迁征地这一行为，但国土资源局给谢家的答复却是经调查没有发现新团村有违法行为。甚至武汉市国土资源和房产管理局局长在收到中国反腐维权网所撰写的长达7 页的举报信后，曾有武汉市国土资源和房产管理局工作人员和解为国一家取得联系，声称武汉市经济技术开发区的征地行为和武汉市国土资源和房产管理局没有关系。 \r \r 武汉市国土资源和房产管理局 好比一只捉老鼠的猫，武汉市经济技术开发区新团村好比一只老鼠，当猫不捉老鼠的时候可想而知老鼠会怎样一个胆大妄为 我们不禁质疑，是什么原因 武汉市国土资源和房产管理局 如此漠视其辖下非法征地破坏耕地，又是什么原因让 武汉市国土资源和房产管理局 面对武汉市经济技术开发区军山街道办新团村 的非法征地破坏耕地行为坐视不管。“不知道它们（ 武汉市国土资源和房产管理局 ）成天都在干什么，我们新团村那么多耕地在没有手续的情况下被铲平，它们（武汉市国土资源和房产管理局）居然说它们（武汉市经济技术开发区）没有违法！真不知道它们（ 武汉市国土资源和房产管理局 ）的人有没有亲自到新团村实地来考察一下！”一新团村民如是说！ \r \r 根据武汉市国土资源和房产管理局所下发武汉市经济技术开发区军山街道办新团村没有违法的信访答复，解为国一家根据法律规定强烈要求追究武汉市国土资源和房产管理局相关人员玩忽职守罪。而我国法律规定，土地行政主管部门的工作人员玩忽职守、滥用职权、徇私舞弊，构成犯罪的要依法追究刑事责任；同时中国反腐维权网也建议武汉市国土资源和房产管理局学习一下《土地管理法》以及我国关于土地方面的政策法规，因为现在不是什么“指鹿为马”的时代。 \r \r 民间舆论监督联盟中国反腐维权网顺便提醒一句，终日尸位素餐颠倒是非置事实于不顾只会遭到纳税人乃至国人的唾弃！\r \r \r \r 湖北省国土资源厅法规处告诉举报人：如认为自己权益受到侵犯可向公安机关报案\r \r 民间舆论监督联盟中国反腐维权网除对武汉市国土资源和房产管理局无视辖下武汉市经济技术开发区内的非法征地破坏耕地行为表示惊愕外，还将联合民间舆论监督联盟全面披露武汉市国土资源和房产管理局 无视辖下非法征地大面积破坏耕地和其 尸位素餐的不作为。最后披露武汉市经济技术开发区军山街道办新团村所发生的非法拆迁低价补偿、非法征地低价补偿事件！欢迎全世界媒体关注！ （葛树春 伍爱国）\r \r 相关链接：\r \r 中华人民共和国土地管理法\r \r 河南桐柏县一镇政府非法征地农民24亩良田被毁\r \r 山西太原村委主任非法占地300亩被判刑\r \r 青年发帖举报家乡违法征地遭跨省追捕\r  \r \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(39, 1, 37, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日 14:25人民网 \r \r 无法按照承诺在6月底开服的魔兽世界，于6月30日23点多推出战网绑定，以安抚焦急等待开服的玩家。玩家只要提供帐号名和原邮箱等资料即可以绑定战网帐号。这样简便的操作给部分玩家带来了方便，但是却存在极大的安全漏洞，尤其是对于购买游戏帐号的玩家，卖家只要利用曾经的帐号资料抢先进行绑带，即可找回已经售出的游戏帐号。据了解，已有倒卖帐号的商家利用该漏洞找回了相当多的游戏帐号，并继续进行倒卖骗钱，一时间卖号骗子泛滥成灾。\r \r 截止到8月21日，已有上百位Wower向315消费电子投诉网（www.315ts.net）反映了帐号被骗问题，投诉量还在不断增加中。接到投诉后，315TS工作人员均第一时间将投诉情况反馈给了网易，但至截稿时止，网易仍然没有就此事作任何答复和处理。\r \r 玩家经历:账号被卖家利用漏洞找回\r \r 上海的张先生向315TS反映，2007年他通过网上交易购得魔兽世界的游戏帐号，当时号内角色为45级，经过苦心经营，角色到了70级，并获得顶级装备，其中花费了无数的心血和精力，玩魔兽也成了他工作之余最大的生活乐趣。该帐号从购买到6月7日魔兽世界更换代理停服时，一直无事。\r \r 但在网易战网重新开始绑定后，张先生于7月10日登陆战网，通过密保等程序绑定帐号时，却发现该帐号已被人恶意绑定。张先生第一时间根据现有资料申请找回帐号，并成功找回帐号，当时他隐约觉得提交旧的邮箱、密报和手机绑定会让卖号商家利用，但因为帐号已经顺利找回，心情比较愉快，也就没有太在意了。\r \r 期间游戏帐号没什么异常，不过绑定邮箱收到了一封密码修改确认信，张先生知道这是盗号者在尝试修改自己的密码，没有确认。\r \r 7月25日，张先生意外发现，自己的游戏帐号再次被人恶意绑定，进行了无数次申诉，结果均是资料不正确无法通过，张先生这时感到了问题的严重，禁不住质问网易:为什么自己的游戏帐号在九城运营时被保护得很好，但到了网易手里却被人抢走？\r \r 随后，张先生发现自己的游戏帐号已在淘宝被挂牌出售，通过无间道式的聊天后他得知，该卖家已经通过同样的方式恶意绑定了数百账号，目前这些账号暂不出售，要等开服后进入游戏确认里面的装备情况和虚拟游戏币数量后再定价销售，不过已经有很多人预定了账号。卖家得意洋洋的告诉张先生，这次多亏了网易，要是以前，找回这么多游戏账号是不可能的。\r \r 魔兽世界内测交易量飙升骗子泛滥\r \r 7月30日，魔兽世界开始内测，5173、淘宝上的魔兽世界交易开始活跃起来，据5173的交易统计数据显示，魔兽世界每周交易量开始升到了前三位，其中帐号交易为数众多。8月份以来，315TS陆续接到玩家的投诉，反映自己在5173或淘宝上购买的魔兽世界游戏账号被卖家恶意找回，致使钱财两空。\r \r 8月18日，黑龙江的郑先生在5173上购买了一个魔兽世界的游戏帐号，买后郑先生第一时间修改了战网的邮箱密码。8月19日中午，正在游戏时突然掉线，再次登陆提示密码错误，不明白怎么回事的郑先生联系网易客服才得知是账号被恶意找回。\r \r 湖北的朱先生也是魔兽战网漏洞的受害者之一，他在5173购买了魔兽世界账号进入游戏后，有玩家告诉他，前不久他也在5173买过此号，但没几天就被找回去了，这个卖家已经通过该方式骗了很多人。\r \r 类似的投诉案例在315TS上不枚胜举，可见这并非个案，而是非常严重问题，此事该如何处理，网易真该好好反思一下。\r \r 玩家针对此类纠纷的建议处理方案\r \r 对于网易魔兽世界的账号绑定系统，初步设定需要提供账号名、密码、原邮箱及密保等设定，张先生认为还是比较合理的，但是在账号纠纷处理时就出现了漏洞。\r \r 现在网易对待账号纠纷是这样处理:申诉账号不用填当前绑定邮箱，只需提供账号资料，提供资料详细者就成了账号归属者；如果资料相同，客服答复是按提交的先后顺序，先到先得。这样就意味着卖家可以利用时间点，抢先把账号申诉回来。\r \r 而前魔兽世界运营商九城处理账号纠纷是根据当前绑定邮箱和手机，鉴于游戏账号是购买的，无法修改身份证，故修改邮箱和手机绑定是交易成功的前提，以确保不让不诚信卖家找回账号。为什么网易没有采取同样的方式来处理账号纠纷呢？\r \r 对此，张先生建议网易处理账号纠纷时，以第九城市移交给网易魔兽世界工作组时的最终注册资料为准，并提出以下解决方案:\r \r 1、使用注册邮箱进行绑定。\r \r 原因:原第九城市的注册邮箱认证是需要前邮箱的确认，这是帐号网上交易成功的重要依据。\r \r 2、使用原第九城市的密保卡进行确认 须填原密保序列号。\r \r 原因:这是原第九城市的重要保密措施。盗号者能盗走密保码但盗不走序列号，因为平时使用不需要序列号。\r \r 3、使用原第九城市的绑定手机，如无手机绑定的账号会有双重密码。\r \r 原因:手机绑定是第九城市帐号安全的重要保证，第一时间可以锁号改密码，无须上网，用此功能的人比较多。\r \r 4、使用原第九城市的注册身份证发送复印件（网络中称“附件”）。\r \r 原因:不管是帐号是买卖的还是自己的，发送注册身份证复印件是解决纠纷的重要依据。\r \r 鉴于纠纷账号在7月30日开服后会流入市场，并可能再次被卖家找回，以便继续牟利，故建议网易将争议账号先行冻结，直至解决方案出台，以避免更多的无辜玩家蒙受损失。\r \r 网易不予回应安全问题 没有精力处理投诉\r \r 从7月2日产生第一宗关于战网绑定问题的投诉后，315消费电子投诉网工作人员就陆续将接到的投诉反馈给网易客服部，但是一直没有接到对方的任何回复，而据玩家反馈，网易也没有任何的回访电话和处理措施。自7月8日以来，315TS就没有再接到网易有关投诉的处理回复。\r \r 针对网易不处理投诉一事，315TS工作人员联系网易客服部相关负责人罗小姐，其建议315TS直接与公关部经理梁小姐沟通。公关部梁小姐表示，因投诉量太大，已经没有那么多的人手和精力处理。\r \r 而对于目前众多玩家反馈的战网安全性问题，尽管315TS工作人员多次督促网易尽快处理，但遗憾的是，网易方面没有任何回应。（315消费电子投诉网 剑秋桐）\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(40, 1, 38, 1, 'he21cn', '127.0.0.1', 1251357730, '决定写这篇帖子的时候心情很是沉重，面对这样一个法制健全的国家，我们众多被筑诚嘉信骗过的租房群体，竟然不知道该如何投诉你，我们尝试过110，3.15、北京7日节目、消费者协会、北京房地产交易网站等等手段投诉，均没有取得好的成效，有的以不是自己的职权范围不予理睬，有的呢，做做表面的文章，可是这个黑中介，还在继续行骗，更过的被害人群加人到抵抗黑中介联盟的QQ群里面【11678828】。我之所以选择把这个帖子放在天涯社区，是希望这个开放的平台能让我们的呼声传出去，我希望有关部门能出面整治他们。\r \r       我记得群里面有个被这个黑中介10几个业务人员围攻，威胁要打她的女孩，她曾经在群里面哭诉的说道：“我那天就想我要是新加坡人多好都笑话明星转国籍 我是没条件 否则我决不作中国人太没人权了。”听到这句话的时候我心里很痛，这个话语可能偏于激动，但是事实情况是我们究竟怎样才能维权？？？？？？\r \r        筑诚嘉信前身：筑诚嘉信的前身是长丰康盛，这个公司之前也被投诉过N多次，大家可以百度一下，看看他们的信誉，之前租给一个公司一套房子当宿舍，结果煤气泄露造成7个或8个？员工死亡，也由于信誉很差影响生意，再被罚款之后就改成现在的名字。试问相关的部门，没有审批程序吗，他们还有资格继续办中介公司吗？真是法制的悲哀-------\r \r       以下是我在网上搜集的一些证据，因为篇幅的原因，只罗列了一些，大家可以在网上搜索下我到底说的是真是假。我希望通过天涯网的宣传，把这个事情搞大，在中国好像只有事情恶化之后才会有相关的部门出来办理，如果还是解决不了问题，我就大家一个借鉴吧，让更过的租户免于上当---------\r \r \r \r \r 抵抗黑中介联盟群空间里面的投诉帖子\r \r Cwinq 2009-08-18 09:23:47 1楼 投訴公司：筑誠佳信\r 姓名：Cwinq\r 電話：151****0233\r 事由：各种理由克扣押金(墙壁让全部重新刷下，房子要全部打扫，竟然收取500多的费用。)，霸王条款，不按他们公司规定就不给退钱。\r 有無依據：他们不敢自己写克扣押金的理由，让一个小员工写的。 合同和押金条我都有照片。\r \r \r 闷 2009-08-18 09:33:11 2楼 投訴公司：筑誠佳信\r 網名:闷\r 電話：136****3071\r 事由：租房期间骚扰(天天打电话骚扰，为了就是想我搬出去，不要押金和房租）叫保洁来清理别人房屋，竟然收我的钱（合租）。还有折旧费，合同没写。\r 有無依據：有合同押金条\r \r 凌冰寒雪 2009-08-18 09:35:16 3楼 投訴公司：筑誠佳信\r 姓名：zhz\r 電話：158****0893\r 事由：扣我一半押金，说是保洁费\r 有無依據：因为钱不多，押金条、钥匙、合同都没给他们\r \r \r 京城浪子 2009-08-21 14:39:50 4楼 投訴公司：筑誠嘉信\r 網名：京城浪子\r 電話：134****0208\r 事由：该公司以墙壁要粉刷、更换设施、保洁等等理由扣除我的押金（房子是贴墙纸的，根本不需要粉刷，而且房东与筑诚嘉信的签约已到期并不再续约）。而这些收费项目并没有在合同中出现，房东也明确表示过这些不是房客的问题，不需要索赔。按他们的算法，我1200元的押金所剩无几。\r 有無依據：有合同和押金收据\r \r \r 百度搜索筑诚嘉信结果：\r \r 筑诚嘉信就是黑中介,它们无理由克扣客户的房租以及押金,还收取客户不需要承担的费用,有线费,卫生费.希望客户不要相信这样的黑中介.他们以低价从房主手里接过来房子,然后以高价租给客户. 收取有线费,卫生费. 你中途退房会以任何理由扣除你的转租合同费,房屋清洁费,甚至是物品磨损费等........ 甚至不退还你的房租及押金. 修理工修理东西会以低价购买物品,依次充好,来收客户高价格，有些东西修好连一个星期都用不到，你的押金将倍这样退不出来，收取你物品磨损费，刷墙费，保洁费，如果坏个东西将具额赔付，有些东西一拉来就是坏的，他不会出钱给你修，而是说你弄坏的，最后讹诈你很多钱，没准最后算的你押金没有了不说，还要倒给他钱！基本上就是和他们没理可以讲！最郁闷的不是钱怎么样了，而是你住的不顺心不舒心，就是明知道他敲诈你钱，还得给他！大家请小心，最好别租他们的房子，都是惨痛的教训！\r \r 我于2008年6月和北京筑诚嘉信房产公司签的一年租房合同，一年到合同正常到期，我们去退房要押金（650），可中介以地脏为由，扣我们每家500块钱保洁费（里面一共住了五家），合同上没写关于保洁费的任何事项，但他们就是不退\r \r \r 我也是筑成嘉信的受害者，筑成嘉信有个专门办理退钱退押金的部门，你不是想退押金吗，去安贞桥北，金瓯大厦417吧，那有一群人等着你呢，里面一群凶神恶煞的人等着你，主管性郭，有个自称姓焦的经理，凡是进去退押金的，张口就骂，爱谁谁，爱上哪告上哪告，你手里有合同，有押金条，有什么都不好使，人家就不退，你房子坏了房东可以证明没坏原来就那样，那也不好使，用人家筑诚嘉信的话讲你少TM在我面前提房东，房东多个jb，房东我见多了，你TM找房东，你跟他要钱去，你房子里的有水费，电费煤气费，你想和中介公司结清，不可能，用人家筑成嘉信的话讲你剩水电费，谁他妈让你们往里存的，谁他妈让你存你找谁【IP为 219.232.*.* 的网友】 发表日期：2009-8-25 21:24:21\r \r \r 我是去08年8月份在筑诚嘉信租的房子，今年8月19号房子到期，我8月18号去办理退房及退押金，结果筑诚嘉信以财会不在为由拒绝支付我们押金1700元，我询问财会什么时候能回来，他们说22号要我们在过去一趟，我们去了之后他们又找出各种各样不合理的理由拒绝支付我们押金。黑中介靠骗人为生【IP为 219.232.*.* 的网友】 发表日期：2009-8-22 21:24:28\r \r \r 筑诚嘉信老板我见过，是个大胖子，带条挺粗的金链子，我看他就是黑社会头子，还有一个黑胖子，张子就骂人，还有一帮社会上的无赖流氓，还是找打黑办吧，！咱们惹不起他们呀！【IP为 219.232.*.* 的网友】 发表日期：2009-8-10 22:23:46\r \r 我也是我们是被压了1650元，退得时候只给650那1000不给气氛！！【IP为 219.232.*.* 的网友】发表日期：2009-8-4 16:50:29\r \r \r \r  对这个公司就是很恶心，业务员的素质野蛮差的！大家下次租房子可要注意了选好中介！没有客户看他们怎么生存【IP为 219.232.*.* 的网友】 发表日期：2009-7-29 11:53:20\r \r \r 1、租房子的时候说我要承担卫生费，小区里面是按人收的，每人每月七块钱，按一年交，共收了84块钱。实际上我租的合同就不够一年，他们就说不够一年走的时候再退，而且所有人都着要交。可是实际上，同房间里另外的两家都没有收此项费用\r \r 2、住进去没有几个月，有一天下班回家，遇到有人在门口敲门，说是小区里收卫生费的，我说我交给中介了，他说他们不管，中介没给他钱。我顺便问了卫生费怎么收，他们说按家，一户一年36块钱！我们的房子里面住了五个人，中介竟然收了我84孩说是按人算！后来我给打电话，几经周折电话里同意他们去收卫生费的办公室交钱去。结果前几天听隔壁的女孩子说，中介没有交钱，那些人又上门要卫生费了，她就先垫付了。因为又想向我们收别的钱，就说到时候把这钱再退给他。\r \r 3、我们住的房子卫生间好像是有些渗水，楼下和隔壁都找过好多次了，这次实在是逃不过了就说修，但是费用要我们出一半。说是在我们住的期间坏的。实际上卫生间在我们搬进去以前就漏国水，据说当时因为费用高，没有彻底的修。而且现在漏水其实也不是刚刚漏，很可能在我们搬进去以前水多了就洇的。而且态度极其差，叫嚣我们不交钱就要我们搬走，总押金里面口维修费！租房子的时候却说维修都是他们管。而且合同上押金只是用来保证我们不损坏自己租住的房间内的设施的，公共区域的水管或者地面有问题是房屋质量或者说正常老化，或者干脆就是原来就没修好？又不是我们弄坏的，凭什么让我们出钱？难道房子住久了老化也要我们再负一份折旧费吗？\r \r 而且需要提出的是中介两边忽悠，做防水什么的费用都没有明确，就打印出来共同付费的协议要我们签，只写了他们公司的名字没盖章，让我们先签字。而且跟我们说别的家都签了，同意付费了，跟别的家又说我们同意付费了！欺诈！\r \r 4、卫生间的马桶盖从我看房子的时候就是坏的，上厕所特别不方便。当时和他们说，他们就说过两天就修，结果到现在都没修！冰箱贮藏室能结出很厚的冰来，而且灯从来都不亮。我都没用过！\r \r \r 筑诚嘉信这个黑中介！受过骗的和不想再受骗的请进！\r 北京筑诚嘉信这个黑中介，大家一定要注意了。不要从他家租房子，押金都不退的，明目张胆的扣钱！大家从网上搜一搜就知道是他们的一贯作风了。\r 家具以次充好，房租到期的时候说是你弄坏的，高价让你赔。而且还管你要钱刷房子，还要扣保洁费！它才不管你进去的时候没有给你做保洁，其实再往外租的时候也不会真的做保洁，或者花那么多钱做。因为我住进去的时候比我走的时候还要脏。合同上也没有写押金是要包括保洁费的！而且很张狂的说：我就是要扣，你甭跟我说合同！真是气死了！\r 按照他们的算法，你的押金不仅退不回去，还要倒给他们钱呢！\r \r 很多人都是很气愤，但是一个人的力量去跟他们讲理讲不起，也耗不起那时间，就不了了之了。可是我实在是气不过！\r \r 受过同样遭遇的进来说说你们的情况啊！我们不能老让他们这么欺负人！不能老让他们再害别人！让更多的人知道，租房子的时候一定要小心，千万不要和他们租房子了！！！！！！\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(41, 1, 39, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日11:21  深圳晚报 \r<br/>月经是女性必然经历的生理现象，每个月总有那么几天，痛经就如同魔咒一样缠绕着部分女性，都给她们的生活带来诸多不便，很多人甚至会因为痛经影响生活、学习和工作。妇科专家们说，痛经有级数之分，二级以上痛经有可能是身体疾病的警报。那么，你的痛经到了几级？\r \r<br/>【痛经级数自测】\r \r<br/>1、腹痛难忍2分\r \r<br/>2、腹痛明显1分\r \r<br/>3、坐卧不宁2分\r \r<br/>4、休克4分\r \r<br/>5、面色苍白1分\r \r<br/>6、冷汗淋漓2分\r \r<br/>7、四肢厥冷2分\r \r<br/>8、需卧床休息2分\r \r<br/>9、影响工作学习2分\r \r<br/>10、伴腰部酸痛1分\r \r<br/>11、伴恶心呕吐1分\r \r<br/>12、伴肛门坠胀1分\r \r<br/>13、用一般止痛措施疼痛暂缓1分\r \r<br/>14、用一般止痛措施不缓解 2分\r \r<br/>15、疼痛一天以内1分\r \r<br/>16、疼痛期每增1天加2分\r \r<br/>自测结果\r \r<br/>轻度一级\r \r<br/>中度二级重度三级\r \r<br/>轻度一级：积分为0－4分。此类疼痛可通过心理、饮食的调节缓解，适当饮用姜茶、红糖水、玫瑰花茶，将可达到缓解疼痛的作用。\r \r<br/>中度二级\r \r<br/>中度二级：积分为4－10分。此类疼痛可适当选择药物治疗，采用温和有效的中药对身体进行调理是一种很健康的方式。中医学在原发性痛经方面积累了丰富的治疗经验，可请医师开中药方子进行长期调理。\r \r<br/>重度三级\r \r<br/>重度三级：积分为10－20分。拉响警钟，目前的生理疼痛已经达到了严重的程度。对于年轻女孩而言，重度生理疼痛不仅影响学习，对身体发育也有严重影响。对于成熟的女性而言，重度生理疼痛有可能诱发不孕症、盆腔炎、子宫内膜异位症等妇科疾病。应及时到医院查明引起痛经的原因，在医师指导下进行治疗。\r \r<br/>专家提示\r \r<br/>二级、三级痛经请及时就诊\r \r<br/>痛经时，会发生下腹部胀痛、冷痛、刺痛、隐痛、坠痛、痉挛性疼痛等，严重者疼痛会延至腰背部，甚至涉及大腿及足部。同时，可能发生乳房胀痛、肛门坠胀、胸闷烦躁、悲伤易怒、心惊失眠、头痛头晕、恶心呕吐、胃痛腹泻、倦怠乏力、四肢冰凉、冷汗淋漓、虚脱昏厥等症状。\r \r<br/>一级痛经为小腹疼痛明显，伴腰部酸痛，但能坚持工作，无全身症状。这类痛经人数占到总数的45.73%；二级痛经为小腹疼痛难忍，伴腰部酸痛、恶心呕吐，用止痛措施能使疼痛暂缓，约占痛经总数的40.72%；三级痛经为小腹疼痛难忍，严重影响工作学习和日常生活，必须卧床休息，患者常会有腰部酸痛、冷汗淋漓、呕吐腹泻或肛门坠胀等症状，采用止痛措施无明显缓解。约占痛经总数的13.55%。\r \r<br/>深圳阳光医院妇科专家提醒，如果您的痛经程度达到二级以上，请及时到医院就诊。此外，无论身体是否已触及疼痛的警戒线，都应随时调整自己的不良情绪，使自己从容的面对生活压力，是减少生理疼痛的必要环节。\r \r<br/>八成女性受痛经困扰\r \r<br/>对于女性来说，月经是特有的生理现象。健康女性平均一生会有400次月经，按照每次5天来算，她们一生中有五年半的时间是在生理期度过的，在这些日子里，超过八成的女性会受到痛经的困扰。\r \r<br/>“痛经现象十分普遍，近些年我国痛经发病率不断上升，大概是10年前的2－3倍。”深圳阳光医院妇科主任曾月翠医师介绍，从初潮青少年到绝经期妇女，都会出现不同程度的痛经。\r \r<br/>此外，痛经会严重影响女性生活，英国牛津大学妇科专家也在科学成就年会上指出：“痛经女性中3／4人因此无法正常工作。”\r \r<br/>医学上将痛经分原发性和继发性两种。经过详细妇科临床检查未能发现盆腔器官有明显异常的，称原发性痛经，也称功能性痛经。继发性痛经则指生殖器官有明显病变，如子宫内膜异位症、盆腔炎、肿瘤等的患者。继发性痛经应格外引起痛经患者注意。\r \r<br/>治痛经首选中西医结合疗法\r \r<br/>“痛经人数越来越多，与现代生活方式有很大关系。”曾主任分析，许多女性长期处于巨大的工作压力下，体内激素分泌受到影响，加上辐射、失眠、作息不规律以及滥用抗生素、饮酒、吸烟等因素，痛经就很容易发生了。“无论痛经程度如何，一定要先查明原因，排除器质性病变。”曾主任强调，在此基础上，通过中西药结合疗法来改善痛经。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(42, 1, 40, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日11:13   健康时报 \r<br/>肌肉也能够产生热量。但是由于女性比男性肌肉含量少，不易产生热量，因此女性的体温一般比男性的体温低。\r \r<br/>热量本来可以随着血液被输送到手脚，但是由于手脚处于肢体末端，在热量送达之前就冷却下来了，而且在全身都感觉寒冷的时候，如果向手脚输送过多的血液，相应地，也就有过多的血液被冷却以后流回心脏，因此心脏就不会发出指令向手脚输送大量的血液，于是手脚的毛细血管就会收缩变细。这样，身体中心所产生的热量就更难输送到手脚，手脚也因此始终处于冰冷状态。\r \r<br/>要解决手脚冰凉这个问题，首先要好好给对寒冷反应敏锐的腰部保暖，这样有助于保持全身的温度，有助于心脏发出指令向手脚输送更多的血液和热量。这样手脚温度也就高起来了。特别是在经期，血液都集中在腹部，手脚更容易感觉冰冷。让腰部充分保暖既可以温暖手脚，又可以预防痛经，可谓一举两得。\r \r<br/>在寒冬的户外，手脚冰冷的时候，可以将两臂从后向前摆动。这样在离心力的作用下，可以使血液和热量大量输送到手脚。手冷的时候，可以通过温暖上臂的后方部位来获得热量。\r \r<br/>除去夏天的柏油路，其他季节的地面温度都要低于脚部的温度。所以要预防脚底寒冷，要在鞋子上下点工夫。正确选择鞋子的质地和袜子的材料都可以有效温暖你的足部。容易脚冷的人，要注意不能让膝盖后面着凉。血液是通过大腿、膝关节、小腿抵达脚尖的。在这条“线路”中，膝关节后方的脚弯皮下脂肪最少，而且血管距离体表最近，血液容易冷却。\r \r<br/>因此选择保温性能好的内衣、护膝等，可以预防脚冷。与寒冷时候不自觉双手抱臂相同，我们在寒冷的时候习惯屈膝蹲下来，这是因为我们的身体自然地想要避免热量在通过膝盖时冷却下来。\r \r<br/>这里还要告诫各位女同胞，洗澡虽然是件舒服的事，但是洗完以后体温马上下降，也不能大意。最好的方法是洗澡的时候，把水温调至微暖，泡久一点就可以了。这是因为，如果水温高于42℃，出浴以后可能会感觉体温比入浴前的体温还要低。所以40℃以下的水温是最适宜的。\r \r<br/>使用入浴剂也能让手脚保温。能够保温的入浴剂是一些入水就溶化的颗粒，它的成分会在皮肤表面形成薄薄的一个保护层，防止体内热量散发出去，所以人就会感觉温暖，而且能够持续较长的时间。很多人都有这种体验，泡温泉以后，身体很长时间都不会感觉发冷。这就是温泉中的某些成分在起作用。入浴剂的成分与温泉水的成分相似，所以可以起到保温的作用。入浴剂除了粉末状的，还有颗粒状的。颗粒状的入浴剂遇水会形成二氧化碳的泡沫。这些二氧化碳会刺激皮肤，促进血液循环，所以很适合在疲劳的时候使用。\r \r<br/>洗完澡睡觉的时候，要穿上可以使脖子和腰部保暖的睡衣。为了防止热量从脖子和肩膀逸出，高领睡衣等都是很好的选择。\r \r<br/>还有，如果腰部着了凉，全身就会感觉寒冷，输送到手脚的血液也会减少，脚就会变凉，脚部觉得凉就睡不好。所以可以穿上袜子，在腰部贴上暖宝宝，或者多穿衣服，睡觉时身体温度升高，就可以保证睡眠质量了。(福田千晶)\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0');
-INSERT INTO `hope_post` (`pid`, `class_id`, `tid`, `uid`, `username`, `ip`, `dateline`, `message`, `pic`, `isthread`, `hotuser`) VALUES
-(43, 1, 41, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月27日02:35  华龙网-重庆晚报 \r \r \r \r 再继续上你就是有网瘾了！\r \r \r<br/>每周上网40小时以上就可认为是网瘾，有望在年内出台的网瘾诊治标准，初步对网瘾作出这样的界定。消息一出， 网络一片哗然，各行各业的网友纷纷贴出工作时间表反驳，表示“无网络无工作”，按照40个小时算，很多上班一族均“被网瘾”了。专家称，上网的时间并不能全面表示“入网”多深，是不是网瘾，更应该参照网络对上网者身体的损害表现。\r \r<br/>办公族几乎都有网瘾？\r \r<br/>26岁的小胡是市内某广告公司文员，她每天的工作就是通过网络与众多客户进行交流，以及相互发送文件、图片等广告资料。\r \r<br/>“每周上网40小时以上即可认为是网瘾，那我们办公室的人基本上都得算有网瘾了。”小胡说，同事们都是通过网络进行商务初步谈判或沟通，每天除了上班8小时要面对电脑外，有时甚至还要加班至深夜，回家后，不少同事还要通过网络看电影等，“那我们这些办公一族不都有网瘾了哟？”\r \r<br/>许宏是市内某知名网站网络编辑，每天，她的工作就是通过网络选取相关信息发布，并通过网络开展系列活动，“我每天上网时间起码在10小时以上，按照界定标准，我已经有严重网瘾了。”\r \r<br/>同时，网站维护人员、IT工程师等行业人士也认为，自己的工作就是每天与网络打交道，按照网瘾界定标准，他们也统统无情“被网瘾”了，他们都认为这一标准太过牵强。\r \r<br/>IT人士可否申请工伤？\r \r<br/>专家“40小时网瘾”的标准，遭到了网友的板砖“袭击”。有网友给出工作时间表，40/7=5.71,上班族通常的上班时间从上午8时30分到下午5时，除了吃饭几乎都在电脑前，下班回家后开电脑到睡觉。“我并不想上网，但工作必须上网，下班后不知道能干啥，吃喝玩乐都要钱啊，只好在家上网，看来我是被网瘾了！”网友套用最流行的语句感叹称，“哥其实上的不是网，是寂寞。”\r \r<br/>北京网友“kangkae”觉得，根据时间来判断网瘾本来就是一个错误，不晓得又是哪个“砖家”发明的。“我觉得是不是网瘾要看身体的表现，标准参照毒瘾。”网友“额配”戏称，“吸烟有害健康，为什么就没个烟瘾标准呢？”\r \r<br/>苏州网友“fireyu”表示，这个标准“很好，很强大。IT业的所有人，都是网瘾患者”。“作为一个网络工作者，每天工作超过10小时，是否可以申请工伤？”\r \r<br/>记者昨日随机采访了公务员、IT人士、企业上班族等不同人群，绝大部分受访者都表示，如今已是网络时代，无论是工作还是生活，谁都离不开网络。\r \r<br/>有网瘾到底怎么算？\r \r<br/>早在去年8月，由北京军区总医院制订《网络成瘾诊断标准》，首次提出网络成瘾跟赌博成瘾和酒精成瘾一样都是精神疾病。“每周上网40小时以上即网瘾”，虽然没再提“网瘾是精神疾病”的概念，但负责该标准制订的两家单位悉数为精神卫生研究机构。其中意味，倒也鲜明。\r \r<br/>“真正的网瘾，应该是为满足自身快感、欲望，离开网络就难受、心烦意乱、坐立不安，就急于接触网络的一种心理状态。”重医附一院心理卫生中心主任蒙华庆认为，如果上网者有不可控制的上网欲望，不论时间长短，都可以判定为有网瘾。蒙主任接触过一个四岁的小患者，小患者迷恋上QQ玩种菜、偷菜游戏，每天都哭着闹着、时时惦记要上网，虽然每天上网时间不足两小时，但同样被他判定为有网瘾。\r \r<br/>如果是因为生活、工作等情况必须接触网络，蒙主任则认为即便时间再长，也不能界定为有网瘾。“40小时这一界定标准，显然缺乏说服力。”\r \r<br/>蒙主任估计，按照即将出台的网瘾界定标准，将有八成上网者将无辜“被网瘾”。\r \r<br/>精彩评论\r \r<br/>■我们已经进入“被时代”，这不我们又给“被网瘾”进去了！\r \r<br/>■40小时标准一出台，戒网瘾中心可是从此走上致富路了。全国有这么多“被网瘾”——也就是“被精神病”了的人，这是多大的一个市场。可以想像，中国目前有多少人或机构在立等着网瘾标准出台，然后一哄而上地抢钱？\r \r<br/>■这年头不缺标准，连洗脚都有标准，可既然要搞标准，就不能只由专家说了算！\r \r<br/>如何预防上网成瘾\r \r<br/>空间阻断法：电脑等上网设备不要放在卧室等容易获得地方(卧室)，应放在客厅等公共空间，便于对青少年进行控制。\r \r<br/>时间阻断法：为孩子制定上网时间，一般一天或者连续上网时间不超过2小时，长时间上网会对腰、下肢的血液循环、视力、大脑功能都会受到影响。\r \r<br/>外来物阻断法：用闹钟提醒上网时间、做卡片(警示上网危害)提醒，随时告诫上网成瘾的危害、控制自己上网时间。\r \r<br/>内容阻断法：对特定类型的网站(成人网站、不健康网站)坚决进行抵制和过滤。\r \r<br/>你如何看待“被网瘾”现象？您认为40小时的标准是否妥当？敬请登录本报网站www.cqwb.com.cn或致电本报热线966988发表看法。\r \r<br/>记者 王德利  郭娟 制图\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(47, 1, 45, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月27日00:13   南方农村报 \r<br/>南方农村报8月27日报道：  营业仅三月，敛财竟千万，广东省惠州苏尔电器有限公司(以下简称苏尔公司)“一举”成为了家电业的焦点企业。\r \r<br/>8月1日，苏尔公司在未结清供应商货款及员工工资的情况下，公司高层、仓管、财务、货物等集体“人间蒸发”。8月2日开始，陆续得到消息的供应商纷至沓来，“骂娘声”不绝于耳！截至8月25日，被骗的供应商有60多家，金额高达1000多万元。\r \r<br/>6000方厂房打动供货商\r \r<br/>“这是诈骗！”8月24日，潮州铭维电子厂翁厂长义愤填膺。苏尔公司老板“走佬”后，他供应给苏尔的48万元货物，很有可能打水漂。\r \r<br/>铭维电子厂是家电企业的供应商，主要从事接插线和接插件生产。据翁厂长介绍，他与苏尔公司的业务往来始于今年6月初。6月8日，苏尔公司的采购经理赵玉芝找到他，提出想购买一批接插线。由于是第一次和对方打交道，他留了个心眼，没有立即答应，而是提出先到苏尔公司考察，“赵玉芝很爽快的答应了”。\r \r<br/>6月9日，翁厂长来到苏尔公司，近6000平方米的厂房，几百个工人工作的场景，让他顿时放松了警惕。随后，赵玉芝还向他出示了公司的营业执照、注册登记证，翁厂长认定这是一家规模不小的正规公司。\r \r<br/>接下来，双方的合作顺理成章。6月10日，铭维电子厂向苏尔公司供出了第一批货，价值7万元。随后，供货量逐渐加大，直到8月1日苏尔公司老板出逃那天，铭维电子厂还在向其供货。\r \r<br/>直到8月3日，翁厂长才意识到不对劲。这天，他接到了托运公司的电话，对方称其8月1日发出的货，没有人去取。翁厂长赶紧拨打赵玉芝的电话，已关机，其办公电话也没有人接。而按照常理，采购人员不会轻易关机，况且那天又不是周末。他预感到大事不妙：很有可能被骗了！\r \r<br/>8月4日，翁厂长心急火燎地赶到苏尔公司，发现已是人去楼空，厂门口贴着两张苏尔公司员工的大字报：要求拍卖公司设备结算工资。可怕的预感变成了现实，翁厂长欲哭无泪！他随后赶到惠城区公安局报案，发现公安局办公室挤了20多个人，一打听，全是被苏尔公司骗货的各地供应商。\r \r<br/>直到此时，他才知道苏尔公司的厂房是租来的，至今还拖欠着房东20多万元的房租。几百个工人的工资也没有结清，而苏尔公司老板注册营业执照时用的是假身份证。\r \r<br/>逃跑当天与供应商对账\r \r<br/>苏尔公司位于惠州市小金口青塘村大树岭，注册成立时间为2009年5月7日，主要做家用电器、鼠标、显视器等产品。\r \r<br/>短短三月，苏尔公司竟让广州、深圳、东莞等地的供应商损失千万。事后，供应商仔细回想，觉得这是一场蓄谋已久的骗局：苏尔公司先以其实力很强的表象骗取供应商的信任，在供应商供货后，约定一个时间清款，以稳住供应商，而其却在此之前出逃。\r \r<br/>深圳绕成电子公司张经理告诉南方农村报记者，他是在考察苏尔后，相信苏尔的实力，才向其供货，但他在8月1日发现，苏尔公司的所有电话都无人接听，白白损失了30多万元货款。\r \r<br/>“苏尔公司在‘钓鱼上钩’之后，不断要货，而为了稳住供应商，承诺在某日清款。”东莞盈华电子公司供了5万元货给苏尔，该公司李经理分析，苏尔公司在迷惑供应商之后，继而采用缓兵计。他表示，苏尔公司向他承诺8月6日清款，8月1号还特地传来了对账单，以致当他8月3日听到其老板卷款逃跑的消息时，还不敢相信。\r \r<br/>据南方农村报记者了解，深圳绕成电子公司、潮州铭维电子厂也都接到了苏尔公司的清款承诺，但苏尔公司高层一干人等，却在8月1日集体消失。\r \r<br/>“这完全就是一场阴谋！”8月25日，通过盈华电子公司李经理，南方农村报记者联系上苏尔公司原采购员王娜(化名)。8月1日，王娜接到苏尔公司老板的电话，通知其第二天不用上班。她感觉事有蹊跷，第二天赶到公司，发现老板已经逃跑。\r \r<br/>据王娜介绍，苏尔公司的业务上涨速度快得“离奇”，6月份进货200多万元，到7月份攀升至500万元，但事发前仅结过一笔小货款。她由于不知道公司具体的销售状况，因此一直被蒙在鼓里。现在想来，“他们目的很明显，就是想骗货！”\r \r<br/>供货次月清款被钻漏洞\r \r<br/>据惠州惠城区公安分局经侦大队工作人员介绍，事发至今，报案的供货商已达60多家，涉案金额近1000万元。而苏尔公司遗留下来的二手流水线机械，其价值不足5万元，目前已被封存。\r \r<br/>而据惠州当地媒体报道，苏尔公司诈骗案并不是个例。在此之前，惠州市今年已发生两起类似的诈骗案，手段如出一辙：骗子公司老板用假身份证注册相关证件，开厂三个月左右后，诈骗供货商的货款逃跑。\r \r<br/>由于骗子公司策划周密，上述两起案件至今还未侦破。这让供应商们觉得追回货款的希望非常渺茫。\r \r<br/>为何不断地出现供应商被骗事件？先供一个月的货，下月才清款，放心吗？面对南方农村报记者的问题，供应商们都报以无奈的叹息。\r \r<br/>盈华电子的李经理表示，电子行业内，企业之间的交易基本是月结，7月份供的货，要到8月份清款，供应商也没有办法。况且，现在经济形势不好，“有单大家都抢着接”。\r \r<br/>不过他表示，以后将加倍小心。除了去工厂实地查看之外，还要通过一些旁敲侧击的方法辨别骗子公司。\r \r<br/>潮州铭维电子厂翁厂长表示，事实上，供应商都还比较谨慎，在供货前都会去厂家考察，但终究是“防不胜防”！惠州鸿鑫电子公司与苏尔公司仅一路之隔，其被这位“邻居”在眼皮底下骗走了27万元的货。而该公司业务员曾到工商局查过苏尔公司的营业执照，也向派出所调查过苏尔公司是否有案底，但最终还是被骗了！\r \r<br/>经过这一系列诈骗案的“洗礼”，供应商们表示，对于刚合作的公司，今后肯定会降低每月的供货量。“即使被骗，也不会损失这么惨重。”深圳绕成电子公司张经理说。(来源：南方农村报)\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(48, 1, 46, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月27日01:09  新文化报 \r<br/>■新闻回放：\r \r<br/>延吉一对白手起家的37岁夫妇原本感情很好，在丈夫中了500万大奖后却发生争执。先是妻子美花（化名）起诉离婚，后来撤诉，再是丈夫金光（化名）起诉离婚。2008年，延吉市法院在美花无法找到的情况下判决二人离婚，儿子归男方，认定美花带走300万现金属于转移财产，判决男方获得共同财产的80%。随后美花不服判决，申请再审。\r \r<br/>本报延吉讯（记者杨威）“没有钱时我俩过得还行，这飞来的500万就是飞来横祸啊。”丈夫金光说。\r \r<br/>算一算，夫妻俩自从2007年春节中了500万后，当年4月女方起诉离婚到现在，离婚官司打了两年多还在继续。双方的贸易公司早已解散，均处在待业状态。\r \r<br/>女方再次提出上诉\r \r<br/>8月12日，延吉市法院向金光和美花发出再审后的判决书：判决二人离婚，认定美花在不通知丈夫去向的情况下取走300万存款属于转移财产，判定美花少分共同财产，最终判决“六四分”，即“男六女四”，5岁的儿子归女方抚养，男方每月给付抚养费500元直至孩子满18周岁。判决后，女方不服，于昨天最后一天上诉日提出上诉。\r \r<br/>女方认为，自己带走300万元到境外投资属于双方共同投资行为，男方不该毫不知情。当时双方处于冷战状态，男方特意选择这一时间到法院提出离婚，令她无法到庭参加诉讼，使她戴上“转移财产”的帽子，这不公平，她要求双方均分财产。\r \r<br/>法院认定女方转移财产\r \r<br/>此次判决法院认为，女方取走300万如此大额存款时没有与男方联系、协商，投资前后也没有告知男方，该行为应认定为夫妻离婚时，一方转移共同财产，因此在分割财产时，女方应该少分或者不分。\r \r<br/>此次判决法院对女方的权利给予了更多关照，判决女方获得共同财产的40%。算起来，双方共同存款380万元，4处房产和一辆轿车估价在50万元以上，加上女方退回的15万元保险金，去掉共同债务16万，女方比第一次审理多分得80多万元。\r \r<br/>法院认为，双方都争取孩子的抚养权，但谁也不能证明谁比另一方更有优势，考虑到孩子只有5周岁并且一直由女方抚养的原因，将孩子判给女方。\r \r<br/>男方曾吞下50万元收条\r \r<br/>有意思的是，在该案第一次判决之后，双方在延吉市法院执行局见面，在执行法官主持下准备分割财产时，还发生了这样一幕：当美花拿出一份由金光亲手写的50万元收条交给执行法官，法官正在看时，金光突然从法官手中抢过来，将收条吞到肚子里！\r \r<br/>第二次开庭庭审，法官询问金光为什么要吞收条。金光含糊其辞没有说什么。法官于是表示，情况属实，即使你吞掉了收条，但是有执行法官作证，这50万还是算你收到了。金光当庭表示，那就算吧。\r \r<br/>事后接受记者采访时，金光说，自己根本没有收到50万，那时妻子刚回来，他想挽留二人的婚姻，特意写了这个收条，想以此向妻子表示诚意，但是到了后来，他后悔了。\r \r<br/>■新闻链接\r \r<br/>中500万后的离婚案不少\r \r<br/>■2007年4月，上海一对夫妻中了500万体彩大奖后，妻子到法院起诉离婚，称丈夫总怀疑她有外遇并打她，而男方认为女方把钱藏起来自己花，自己却只能靠微薄工资度日。开始男方坚决不同意离婚，后来法庭调解时男方忽然要求立即离婚，说是怕老婆把钱都花没了。\r \r<br/>■2007年9月，一重庆到广东打工的男子中奖500万之后企图瞒着妻子私吞巨奖，被妻子得知后告到法庭要求离婚并分割财产。后经法院调解，双方重归于好。\r \r<br/>■2008年9月，河南某报报道一24岁女子向记者投诉，丈夫中奖500万后不告诉她，还要和她离婚，只给3万元抚养费，原因是嫌她太懒。\r \r<br/>《中了500万 夫妻离了婚》续\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(49, 1, 47, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月27日00:29  汉网-武汉晚报 \r<br/>本报讯 (记者 翁晓波) 大学新生上学，除爷爷奶奶、父母、小姨、舅舅舅妈接送外，还携带着包括衣服、被子、零食、电脑等整整十大箱子行李。这是前日晚上，记者在汉口火车站见到的情景。\r \r<br/>张敏(化名)是十堰市人，家族里兄弟姐妹中，就她一个女孩。打小就是众人眼里的“宝贝”。今年高考，她考上武汉科技学院，因为是家族中第一个大学生，全家人都非常开心。\r \r<br/>马上就要开学了，张敏决定提前几天到武汉，在武汉的舅舅家住几天。两天前，全家人都在给她准备行李：妈妈怕学校的被子不厚，专门给她带了3床厚被子；爸爸为了奖励她考上大学，给他买了一个笔记本电脑；平时穿的衣服全部要带上，春夏秋冬还要重新买几套备用；亲戚送的“好记星”、MP3等都得带上；爷爷奶奶从超市购回5大袋家乡的零食，生怕她在武汉饮食不习惯；哥哥弟弟们还给她买了很多玩具，她专门选了一个大号的玩具熊带着；平时喜欢看的书，也专门安排箱子带着……两天收拾下来，所带的东西足足装了十个箱子。\r \r<br/>前日一早，爷爷奶奶、爸爸妈妈及小姨就和张敏一起，浩浩荡荡来到武汉。晚上汽车达到武汉，舅舅舅妈早就在下车点迎接了。一家人打了三辆的士才勉强挤进去。\r \r<br/>记者问张敏：“你带这么多东西，在学校里放在哪里啊？”她不假思索回答：“我也不知道，反正他们给我装了这么多。”\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(50, 1, 48, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月26日 09:55  新闻晨报\r \r \r \r □捏造“胡斌替身”谣言者被拘，引发网民热议。\r \r \r<br/>晨报记者 姜 鹏\r \r \r<br/>前一段时间，网络上关于杭州“5·7”交通肇事案出庭被告人胡斌是“替身”的议论沸沸扬扬，最后经杭州司法机关出面澄清才平息了质疑。\r \r<br/>昨日，晨报记者从湖北鄂州警方证实，湖北省鄂州市无业人员熊忠俊被指利用网络捏造、散布杭州“5·7”交通肇事案出庭被告人胡斌是“替身”谣言，日前被行政拘留10天。\r \r<br/>不过，网友对于警方的这一作法又起质疑，认为属“因言获罪”。专家表示，警察拘留网民应谨慎，建议尽快出台司法解释，明晰正当言论与造谣的区别。\r \r<br/>散布者：\r \r<br/>曾任某杂志驻深圳记者\r \r<br/>7月20日，杭州“5·7”交通肇事案一审判决，出现在庭审现场的胡斌比案发时明显发胖，而且戴上黑框眼镜，看上去判若两人。21日，熊忠俊以“刘逸明”名义在网上发布《荒唐，受审的飙车案主犯“胡斌”竟是替身》一帖说：“让人吃惊的是，受审的‘胡斌’竟是一个替身，中国媒体在广传有关消息的时候，竟然都没看出来，实在是可悲。”随后，杭州司法部门接受媒体采访时称：“这些猜测纯属无稽之谈，毫无事实根据。”\r \r<br/>24日，刘逸明再发表《上庭受审的“胡斌”铁定是替身》一帖，对法院“无稽之谈”的说法再次予以质疑，“不能不说是现代版的指鹿为马。”\r \r<br/>从7月23日至8月2日，熊忠俊共发表8篇帖子，公布各种胡斌使用替身的“证据”，认为司法机关和媒体作假包庇。\r \r<br/>鄂州市公安机关认为，熊忠俊利用互联网捏造、散布“胡斌替身”谣言，引发网民猜疑，误导公众舆论，扰乱公共秩序，已构成违反治安管理行为。对上述违法行为，熊忠俊供认不讳。鄂州市公安机关根据《中华人民共和国治安管理处罚法》第25条之规定，于2009年8月21日对熊忠俊作出行政拘留10天的处罚。\r \r<br/>晨报记者多方求证获悉，熊忠俊1980年出生于湖北鄂州，爱好文学，笔名“刘逸明”，曾担任一家杂志社驻深圳记者，为多家媒体撰稿。\r \r<br/>晨报记者还获悉了一段熊忠俊被拘留前一天的QQ聊天记录，称“当天他被湖北警察传唤，涉嫌罪名是造谣”。熊忠俊承认“我发过怀疑胡斌找替身的文章”，但他否认自己“首发”该帖。\r \r<br/>在天涯网站上，“刘逸明”属于“全面封杀”用户，最后一次上站是8月21日。自今年4月注册以来，网友“刘逸明”发帖50余篇，其中大多数是评论和质疑内容。网 友：\r \r<br/>非凭空捏造，属合理质疑\r \r<br/>网友“刘逸明”被拘的消息一经传出，立即引发其他网友的热议。一位网友表示难以接受，认为“刘逸明”通过对比前后两张有明显区别的胡斌照片，怀疑胡斌使用替身属于合理质疑，而非凭空捏造了一个事实，“刘逸明”被拘属于“因言获罪”。不过，也有网友认为“这(熊忠俊的发帖)明显不是怀疑，而是造谣”。对此，天涯网总编辑胡彬接受晨报记者采访时对警方拘留熊忠俊的举动有些不解，“抓网民，应当慎重。”胡彬表示，网友“刘逸明”在多家网站多次发帖“胡斌有替身”，确有干扰、散布之嫌，但不能认定属造谣。“按照这种逻辑，警方先前发布车速70码，亦属于造谣。”\r \r<br/>针对网友“因言获罪”的担忧，胡彬介绍说，当前互联网讨论秩序亟待规范，应当从规范网友讨论和加强站方管理两方面着手，建立一个理性、文明、友好的言论环境。\r \r<br/>有网友怀疑天涯网站泄露了熊忠俊的个人资料。胡彬表示，经内部调查，网站并未泄露相关信息，而此次警方也未要求天涯网站提供相关信息。\r \r<br/>专家：\r \r<br/>应明确言论和谣言区别\r \r<br/>近年来，因网络发帖造谣而被拘留的案例呈现高发态势。\r \r<br/>北京大学法学院教授张千帆表示，我国法律对言论与谣言的区别并未有明确的界定，以至于对谣言案认定显得比较随意，时常引发争议。张千帆认为，最高司法机关应借助该类案件的频频发生尽快制定一些司法解释，既保护公民言论自由，又明确质疑言论和造谣的边界，从而减少对言论的误判或矫枉过正。\r \r<br/>张千帆表示，从监督和推动政府部门工作的角度，政府部门应该善待网友言论。如果失实言论没有造成危害或严重后果，应谨慎对言论者采取拘留或处罚措施。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(51, 1, 49, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月27日03:20  华龙网-重庆晚报\r \r \r 赵本山这次被“纵容”？ \r \r \r<br/>广电总局一纸限制方言剧的禁令，让方言剧的生存空间越来越小。将于本月30日重庆卫视开播的电视剧《挪个地方要得不》就不得不出资数十万元，两度对电视剧的配音进行调整。在接受记者采访时，该剧制片人兼主演赵亮对广电总局的新规定很有异议，他表示：“广电总局规定，在上星卫视黄金时段播出的电视剧中，方言的比例只能占到30%—40%，但却把东北剧撇开，模糊规定称不能完全使用东北话，可以使用东北的一些口语。”这样的规定对于重庆等南方的方言剧很不公平。\r \r<br/>现状\r \r<br/>方言也分地域对待 四川话很受伤\r \r<br/>代表作《挪个地方要得不》\r \r<br/>重庆卫视宣布赵亮、王迅、媛凤主演的城乡统筹轻喜剧《挪个地方要得不》，将采用普通话版本，这让许多观众颇为失望，一些观众致电本报记者：“最喜欢的就是媛凤闹喳喳的感觉，改成普通话，可能就没意思了。”对此，制片人赵亮很无奈，“广电总局的规定在那里，要上卫星就不能全用方言。”\r \r<br/>陕北话很郁闷\r \r<br/>代表作：《苍天》\r \r<br/>近段时间在央视热播的电视剧《苍天》，在剧中大量使用陕北话，在得到观众“很有亲切感”的认同之外，也受到了“广电总局的禁令到底是不是一纸空文”的质疑。昨日，记者联系上该剧主演王学圻，面对质疑，王学圻很委屈。\r \r<br/>他告诉记者，其实原来版本中的陕北方言比现在多很多，剧中群众所说的话都是陕北方言，但广电总局和央视都不允许播，后来只好重新配音，仅有一些口语使用方言。王学圻也证实了赵亮的说法，方言在剧中比例不能超过30%—40%。\r \r<br/>东北话很得意\r \r<br/>代表作：《乡村爱情3》\r \r<br/>与前面两部剧的遭遇相比，《乡村爱情3》就没有遇到这样的问题，该剧传出的最新消息是已经锁定央视春节档播出。不但剧中使用东北方言不受限制，而广电总局的另一项“限播电视剧续集”的规定也在该剧中失效。赵本山明确表示：“《乡村爱情3》不会改名。”\r \r<br/>潜规则\r \r<br/>南方方言敌不过北方方言\r \r<br/>赵本山让东北话大行其道为了剧能播，只能多花钱\r \r<br/>赵亮给记者举了一个例子，一部南方方言的电视剧和东北方言的电视剧竞争在央视一套播出，南方方言的电视剧会明显处于劣势，“也许在央视眼中，东北话的普及程度要比南方方言高，而东北方言更接近普通话吧。”\r \r<br/>赵本山让东北话大行其道\r \r<br/>而一位不愿透露姓名的制片人，则把东北话在央视大行其道的原因归结到赵本山身上，“其实大家可以关注一下，能在央视播出的东北剧，大多都有赵本山的份，央视播东北话其实是给赵本山面子。”这位制片人的说法未免有一些偏激，不过有一个细节却值得关注，在央视播出的《清凌凌的水蓝莹莹的天》中，自导自演的潘长江，放弃了东北话，改用普通话。\r \r<br/>为了剧能播，只能多花钱\r \r<br/>为了能让剧上星，赵亮调整了两次配音方案，他寻找到一个妥协的方式，在剧中主要使用普通话，但王迅等人物还是保留四川话，“在规定之内，最大限度上使用方言。”而这让他的投资成本增加了30万元。“能不能不上星，坚持用方言？”赵亮的答案是否定的，他表示，如果只在地方台播，他根本就收不回成本。\r \r<br/>王学圻也同样很无奈，他反问记者：“你想想，本来陕北话说得很亲切，突然要改成对着铁话筒说普通话(后期配音)，能有什么好效果。”首席记者 巫天旭\r \r<br/>观点\r \r<br/>重庆话能不能上央视？广电总局：只能适量用\r \r<br/>作为广电总局审片委员，周星对于广电总局的禁令有比较详细的了解。他介绍，方言禁令的出台，其实是在方言剧泛滥成风的前提下进行了限制。周星认为，既然国家规定了将普通话作为大众推广语言，在央视、卫星台上播出的电视剧，就应该以普通话为基准，但允许在剧中穿插少量的方言来展示地方风情。因此不管是东北话、重庆话都只能适量的使用，广电总局出台的这一禁令并无不妥之处。\r \r<br/>事实是，从1980年开始，四川话连续剧能上央视的，只有《傻儿师长》、《山城棒棒军》、《王保长歪传》不多的几部，并且都是在央视一套之外。\r \r<br/>重庆导演：改改就能用\r \r<br/>而长期拍摄普通话电视剧的重庆导演鄢光宗，则有另外一番解读。他表示，自己曾针对东北话在央视受欢迎，重庆话不受待见的现象进行过研究。他有一个比较深的感受，东北话在观众能听懂的前提下，能够传递出诙谐、幽默。同时，如果说话是“技”的话，东北演员可谓有“技”还有“艺”。而重庆方言则缺乏必要的提炼，在情感的表达上不够细腻，同时重庆演员太依托重庆话本身的魅力，而这种语言在脱离了当地的语言背景之后，很难被人接受。“重庆话不是不能用，而是需要改动之后再用。”\r \r<br/>方言剧制片人：看菜吃饭\r \r<br/>作为方言剧制片人的代表，赵亮希望广电总局不搞“一刀切”。有一些电视剧，用普通话表达会有问题，比如《山城棒棒军》，脱离了特殊语境，很难达到预期的效果。而像《挪个地方要得不》这部剧而言，普通话或方言对剧的精彩程度影响并不大，因为该剧的故事性比较强，喜剧的效果是通过剧情来表达，而不是完全依托于语言。“看菜吃饭，具体情况具体分析。”\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(52, 1, 50, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-27 05:58:37　来源: 四川新闻网-成都商报(成都)\r \r 成都商报8月27日报道 昨日，一篇向著名歌唱家蒋大为追债的帖子引起了网友的热议。帖子中称蒋大为在2003年向当时的朋友兼经纪人姚曼借款90万元，并写下借条，但是蒋大为并未如期归还这笔钱，随后姚曼于2004年将蒋大为告上法庭，蒋大为却反诉姚曼欺诈，此案由北京市公安局刑侦总队展开调查，然而，案子却从此没了下文。\r \r 昨日，姚曼告诉本报记者，网上的帖子是她发的，原因是当年和蒋大为的90万元欠款官司时隔6年仍然没有任何进展，警方没有拿出任何调查结果，蒋大为也从未还过她钱，实在没办法了，她才“网上追债”。之后，记者联系上蒋大为的弟弟，他表示，借款一事根本就不存在。\r \r 网上发帖：蒋大为赖账6年\r \r 网上的帖子称：以《在那桃花盛开的地方》等歌曲享誉国内外的著名歌唱家蒋大为在6年前欠下了90万元的巨债，至今也未归还，其间借款人曾经提起诉讼，蒋大为却以种种方法“赖掉”了还款，并反诉借款人姚曼“胁迫”其写下借条，涉嫌敲诈。这篇长长的帖子中还贴出了大量与案件相关的文件，包括2004年7月21日北京市公安局刑侦总队向海淀区人民法院发出的编号为京公刑侦发字(2004)34号的函件、蒋大为的借条原件扫描图、海淀区人民法院民事裁定书等。\r \r 记者注意到，有大量网友跟帖，称其为“网络追债”，有网友称：“看来‘名人效应’不仅在商业演出圈管用，在其他地方也能‘通吃’，要不然怎么有凭有据的借款案最后就能不了了之？”也有网友质疑事件背后的隐情和发帖人的身份，还有网友调侃为“在那逃债盛行的地方”。\r \r 事件背后：案件石沉大海\r \r 昨日，姚曼向本报记者承认，网上的帖子正是她发的：“我没有其他办法了，6年了，我就是想要个说法”。\r \r 早在2006年，这个借款官司就曾因为姚曼两次上门要债而名声大噪。那个时候，姚曼和蒋大为已经认识多年了。1998年，姚曼在蒋大为的邀请下，开始与他合作做演出。姚曼通过父亲的关系为蒋大为组织了一些演出并接拍了一些广告，相当于经纪人的角色。2003年的年初，她个人拿出90万元现金准备组织一场演出，后来因为种种原因取消了。于是，她就把这笔钱存放在了蒋大为的家中，也就是帖子中借条上的时间2003年3月20日，内容是“今借姚曼人民币玖拾万元整，于2003年10月底前还清”，落款人是蒋大为。 但是蒋大为不但没有还款，还和姚曼的关系闹僵了。姚曼在2004年元旦过后将蒋大为起诉至北京海淀法院。2004年3月，蒋大为提出反诉，称借条是姚曼在地下车库以“非法胁迫”手段迫使他写下的。同时，他声称姚曼以非法手段虚构借贷关系，侵占了他124万元，足以抵消90万元的欠款。\r \r 时隔几天，也就是2004年3月15日，北京市公安局刑事侦查总队向海淀区人民法院发出了“关于请海淀区人民法院协助工作的函”，称2003年11月，刑侦总队已经受理了姚曼涉嫌敲诈蒋大为一案，将作为刑事案件立案侦查。为保证侦查过程顺利进行，要求法院做好保密工作，并妥善处理姚曼一案件。随后，海淀区人民法院向姚曼发出了民事裁定书，称中止此案诉讼。\r \r “我就这样成了犯罪嫌疑人，而且一当就当到现在”，姚曼昨日说，可是在这几年中，并没有警方来调查过她这个“犯罪嫌疑人”，案件也石沉大海，再无结果。\r \r 事到如今：双方各执一词\r \r 昨日，蒋大为没有接听本报记者的电话，蒋大为的弟弟称蒋大为目前在国内，但是不方便接电话：“关于此事，没什么好说的，去问公安局和法院吧，现在是以法律为准绳。”他称借款一事并不存在。而北京市公安局刑侦总队的值班警官则表示，案件的时间太久了，不确定此案是否还在调查中，需要核实之后告知。\r \r 姚曼称，今年年初，蒋大为还通过中间人找过她，希望少还一些钱，50万元左右还拿得出来，但被其拒绝，“他在我面前从未否认过这笔欠款的存在，可就是想通过其他途径赖掉。” (本文来源：成都商报 )\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(53, 1, 51, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-26 18:17:33　来源: 网易娱乐专稿\r \r \r \r 刘德华到香港后前往公司。\r \r \r \r 刘德华不回应是否结婚。\r \r \r \r \r \r 刘德华上楼往公司。\r \r \r \r 网易娱乐8月26日独家报道 昨日(8月25日)晚上十时多和朱丽倩十指紧扣返港的华仔。于翌日十四时二十分坐着保姆车，从加多利山寓所驶出，前往他的公司——华仔天地安建中心。大约十四时四十五分，华仔在五至六名保安的保护下下车，途中有记者提问“公开关系后是否轻松很多？”“对粉丝的责怪有否感到压力”和“是否会在不久将来会和朱丽倩到大马举行婚礼”等问题。对此，头带cap帽的华仔并没有回应记者任何提问，目无表情地走入大厦。\r \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(54, 1, 52, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-27 01:17:36　来源: 中国新闻网(北京)\r 中国新闻网8月27日报道 经过连续数月的快速攀升，上海房价创下历史新高。房价的急速上涨使得地方政府此前的护盘心态出现变化，上海正通过大手笔的推地及二十六日起连续开工建设三个大型居住区等增加供应量的做法来平抑房价。\r \r 最新公布的、分别反映新房和二手房价格走势的中房上海指数和上海二手房指数显示，七月份的上海房价创出历史新高。\r \r 七月中房上海综合指数为二一二七点，较上月上涨百分之四点七三。其中住宅指数为二0四五点，较上月上涨九十九点，环比涨幅百分之五点零九，刷新了历史纪录，与今年二月份房价低位时相比，上涨了百分之十点二，与去年同期相比上涨了百分之三点二三。\r \r 七月的上海二手房价格指数为二四二七点，较六月上升二十九点，环比涨幅百分之一点二一，同样一举跃上历史最高点。全市五十六个控制点板块均出现上涨，无一下跌。\r \r 郊区楼盘价格频频破万。相关报道称，除远郊崇明县外，上海已进入“万元”房价时代。大幅上涨的房价已成为社会热点，也引起政府高官高度关注。\r \r 中共上海市委书记俞正声七月份对媒体谈及上海房价时表示，“我觉得房价高”，将“增加供给量”。\r \r 最近一周来，上海出现新一轮的推地热潮。市规划和国土资源管理局接连发布的六十一、六十二、六十三号公告共推地十一块，总面积达四十五点八三公顷。其中居住用地占了相当比例。\r \r 同时，今年第九号土地出让预公告，拟出让闵行大型居住社区浦江基地鲁汇A、B块两个地块，共出让土地十七点一三公顷。这两个地块同属于今年确定的大型居住社区项目。\r \r 在大手笔推地的同时，上海市十五个大型居住区建设取得突破性进展。继六月下旬江桥基地启动以来，首批六个基地中的浦江、周康航和曹路三大基地从今天起三天内先后开工。规划显示，六大基地建设用地面积约十九点三三平方公里，其中居住用地面积约十点七七平方公里，规划居住人口约五十二万人。\r \r 上海市市长韩正上周的公开表态为以上的政府行为作了注解：“上海房价已过高，我们必须防止房价上涨过快，政府应该采取措施，有效控制房地产市场增长速度。”他表示，上海市政府下半年将增加可供房地产开发的土地供应量，并加快建设面向低收入家庭的经济适用房。\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(55, 1, 53, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-27 08:05:56　来源: 新京报\r \r \r \r 智联招聘前CEO刘浩 \r  \r \r \r<br/>本报讯 (记者林其玲)昨天有媒体报道招聘网站智联招聘上一财年亏1.5亿元，CEO刘浩因为业绩不佳，被迫“下课”。智联招聘方面表示，“刘浩是主动请辞”，“董事会是肯定刘浩业绩的”。\r \r<br/>智联持续亏损\r \r<br/>据媒体报道，智联招聘的最大股东澳大利亚seek前天公布上一财年报告。财报显示，由于智联招聘的亏损，使seek产生了1725.4万澳元的税后亏损额。“如此计算，智联招聘本身的亏损约1.5亿多人民币。”而seek公司今年3月公布的一份财报显示，智联招聘2008年的亏损额约1.7亿元人民币。\r \r<br/>上月刘浩接受记者采访时表示，“现在还不是赚钱的时候，市场份额才是目的。”业内人士认为，这可能是刘浩跟股东和高层意见不一致的导火索。不过智联招聘公关强调，刘浩辞职是个人原因，智联招聘“如果亏损，肯定是战略性亏损”。\r \r<br/>三招聘龙头仅前程无忧盈利\r \r<br/>本月初，中华英才的母公司Monster发布第二季度财报显示，中华英才网也处于亏损状态。而去年中华英才网的亏损额高达1.75亿元人民币。其前总裁张建国也于今年年初离职。\r \r<br/>目前国内三家龙头招聘网站中，只有前程无忧保持盈利，其第二季度净利润比去年同期增长7.78%。\r \r<br/>- 相关\r \r<br/>“网络招聘行业或生变”\r \r<br/>据易观国际最新的市场检测数据，前程无忧目前占有国内26.3%的市场份额，而英才网和智联分别占有22.4%、15.3%。易观国际分析师表示，中华英才有可能抢占市场份额。业内人士表示，网络招聘行业格局可能将会发生变化。\r \r<br/>据悉，英才和智联上半年都在新业务上进行尝试，企业在战略上也有调整。英才网今年推出开发简历助手业务，希望从注册用户数上追赶51job，而智联招聘也于6月推出简历增强显示的增值业务服务，并成立培训咨询服务公司。 \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(56, 1, 54, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-27 07:53:33　来源: 新京报\r \r 10年来1330位中国富豪中49位“生变”，其中17人获刑，3人待宣判 \r \r \r<br/>- 关注焦点\r \r<br/>一向乐于挖掘中国富豪的胡润，昨日正式发布了《胡润百富榜-中国富豪特别报告》。\r \r<br/>据这份报告披露，10年来登陆胡润百富榜、财富令人艳羡的1330位中国富豪们，有49位发生了各种变故，其中17人获刑入狱，3人待宣判。包括牟其中、唐万新、顾雏军、周正毅等名噪一时的人物。\r \r<br/>昨日，胡润研究院发布的《胡润百富榜-中国富豪特别报告》，罗列了1999年至2008年10年间，上过胡润百富榜的1330位企业家出“问题”的名单。\r \r<br/>48位变故富豪补充为49位\r \r<br/>根据报告，10年来，1330位上榜富豪中曾发生变故的有49位(其中一同上榜的兄弟及夫妻均算一位)。这里的“变故”包括，被判刑、等待宣判，正在或者曾经被调查过，下落不明(或在国外)或者去世。\r \r<br/>其中，已经判刑或者等待被判刑的分别有17人和3人，这20名“归宿”明了的企业家，被称作“问题富豪”，占据了胡润榜单上榜1330位富豪的1.4%。\r \r<br/>此前，有媒体报道变故富豪是48位。昨日，胡润研究院相关负责人表示，在48位变故表单制作完成后，发现漏掉了已经去世的中发电气董事长南民，后补充成49位。\r \r<br/>获刑富豪最高被判无期\r \r<br/>报告中详细列出49位变故富豪的资料，资料来源多为公开信息。其中很多名字虽然近年几乎被人们遗忘，但他们都曾名噪一时。\r \r<br/>17名被判刑的问题富豪包括：南德集团牟其中被判无期徒刑后改判18年，缔造格林柯尔系的顾雏军被判10年有期徒刑，操纵证券交易价格的德隆系掌门人唐万新被判8年徒刑，行贿、挪用资金的上海农凯集团周正毅两次被判19年徒刑。\r \r<br/>17人中，明伦集团周益明因合同欺诈量刑最高，终审被判无期徒刑。\r \r<br/>胡润称富豪落马情况复杂\r \r<br/>“对这些问题富豪，很难归纳他们出现问题的共性。”胡润表示，“富豪落马其实还是一个比较复杂、多层次的事件，把一切归因于个人道德不合适，但转到中国经济这一背景下又有些太形而上。但大部分企业都在失去创始人的情况下，度过了危机，存活下来。”\r \r<br/>纵观这些富豪触及的问题，多包括挪用资金、诈骗、行贿等等。胡润表示，在过去中国企业的经营环境中，“第一桶金”是很难拿到的，并不像今天一样融资渠道很多，可以直接找风投。在现在政策体制已经有所改善的环境下，富豪们就没有了犯此类错误的托辞，企业家原罪理论对现在的富豪们不适用。\r \r<br/>胡润否认百富榜为“杀猪榜”\r \r<br/>胡润一直否认自己的百富榜为“杀猪榜”，但这份“问题富豪”名单中，一些企业家确实为胡润榜单的常客。\r \r<br/>在正在被调查的10位富豪中，包括黄光裕、黄俊钦兄弟、东星航空兰世立、中信泰富荣智健等7人连续4次以上登上胡润百富榜。\r \r<br/>胡润对此表示，自己一手打造的榜单，与这些富豪的命运没有直接关联，“10年来98.6%的民营企业家都带领着企业健康发展，这个出问题的比例很低，在中国经济高速发展的十年，没有一个人出问题才不正常”。\r \r<br/>- 对话\r \r<br/>胡润：黄光裕仍会上榜\r \r<br/>认为错误跟财务没关系，称此次报告是以数据回击“杀猪榜”质疑\r \r<br/>高调发布“百富榜”10年的英国人胡润，为什么要发布《中国富豪特别报告》？胡润接受本报记者采访，谈了他对榜单以及对中国富豪的看法。\r \r<br/>很多人对企业家态度不公平\r \r<br/>新京报：为何此次改变了“挖掘”富豪的工作，晒出了10年来“问题富豪”的名单？这样的报告你希望告诉人们什么？\r \r<br/>胡润：很多人对待企业家的态度是不公平的，认为他们有财富，就一定出问题。\r \r<br/>但是我们的报告数据显示，98.6%的企业家在中国经济高速发展的近10年都带领企业健康的成长。尽管一些企业家因为自身和环境的原因出了“问题”，但是民营企业家对中国经济的贡献不能抹煞。\r \r<br/>此外，有人一直认为胡润百富榜是“杀猪榜”，我们一直没有回应，但是现在以这种数据报告的方式来证明，让很多质疑之人没有话说。\r \r<br/>新京报：黄光裕等“问题富豪”还会登上你的富豪榜吗？这样的“问题富豪”继续上榜会不会影响榜单的社会形象？\r \r<br/>胡润：当然会上榜。黄光裕遭调查的问题仍旧没有结论，我们以创维董事局主席黄宏生为例，他出现过问题服刑6年并已经出狱，由于他们一直对企业持有股份，依旧是富豪。错误跟财务没关系。\r \r<br/>应关注有学习价值的企业家\r \r<br/>新京报：你的团队制作榜单调研的数据基础是什么，这样的调研是否权威？\r \r<br/>胡润：2000年9月，当我们把计算出的任正非的财富数字及相关信息传真到华为公司后，收到了华为发的一张律师函。10年来，我们收到的律师函很多，我没有数过。但是我们的数据都是来自公开数据，如上市公司披露的信息，所以没有问题。\r \r<br/>新京报：很多人并不喜欢你的榜单，认为你在借此平台“把富豪当商品卖”，你怎么看？\r \r<br/>胡润：这个蛮难回答的。事实是一些上榜富豪对我的榜单也很感兴趣，甚至有些上榜的人在人前炫耀得有点夸张。\r \r<br/>其实，富豪本身就是明星，关注的人很多，除了我的富豪榜单外，就像我在机场看到的，到处都是关于他们的书。关注这些人，可以通过这些企业家的故事，了解行业的故事，了解到中国社会的变迁。这些人也引导、启迪很多人的思路。很多人的故事是很了不得的，我们应该去关注身边这些有学习价值的企业家，大家不能永远去学比尔·盖茨，很无聊的。\r \r<br/>采写/本报记者 张晓蕊 \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(69, 2, 67, 1, 'he21cn', '127.0.0.1', 1251942186, '测试的话题', '', 1, '0');
-INSERT INTO `hope_post` (`pid`, `class_id`, `tid`, `uid`, `username`, `ip`, `dateline`, `message`, `pic`, `isthread`, `hotuser`) VALUES
-(59, 1, 57, 1, 'he21cn', '127.0.0.1', 1251357730, '09:20:28千龙网\r<br/>今年以来，网络上开始出现一些以“门”命名的色情视频，并通过社区、论坛等方式广泛传播，不过更令人惊讶的是，已经有证据显示这些“门”视频似乎并不全是网友在“无意”之中泄露到网络上的。 \r \r<br/>26日，杀毒软件360安全卫士相关专家表示，此类偷拍或自拍色情视频在网上流传有明显人为推广痕迹，而商业黑客正是幕后黑手。360分析认为，黑客用木马从当事人电脑中盗取视频后再传播的可能性极大，目的是散播木马获取利益。 \r \r<br/>色情视频链接暗藏病毒 \r<br/>近来网上以“门”命名的各类色情视频层出不穷，这些偷拍或自拍视频一经传到网上，就被迅速转载到各大社区和论坛，相关词汇随即成为炙手可热的搜索词汇。然而，在与这些热词相关的网页、BT种子、在线视频等内容中，却大量暗藏着各种木马病毒。 \r \r<br/>360安全中心杀毒软件专家表示，目前已经先后在多家论坛、博客中，发现“门”事件有明显的人为推广痕迹。主要表现为：这类“门”信息发布的地点比较固定，而不同的“门”相关“挂马网页”又都指向同一木马下载地址，夹带着相同种群的盗号木马及后门程序。 \r \r<br/>本月20日，网络安全服务商美国赛门铁克公司公布了“2009年夏季最肮脏网站名单”。结果显示，100个“最脏”网站中有48个使用了色情内容引诱人们掉入电脑病毒陷阱。而据360安全中心公布的同类调查数据显示，国内“挂马攻击”危害TOP20网站全部为色情网站。 \r \r<br/>国内色情网站“十站九毒” \r<br/>据360网络安全专家介绍，为了牟取利益，目前色情网站大都放弃了极易留下犯罪线索的会员收费制，开始投身木马产业链，充当起出卖访问者电脑安全的“流量商”角色。以近日央视《焦点访谈》曝光的“妹妹五月天”色情网站为例，该站长在网站“挂马”向商业黑客收取“人头费”，短短5个月就敛财10万余元，而黑客利用木马盗号窃取的财富显然远不止这个数。 \r \r<br/>360网络安全专家表示，“挂马”已经成为色情网站最主要的收入来源，国内色情网站“十站九毒”一点都不夸张，网友们一定要远离这类危险网站。当然，色情网站有时还会利用聊天软件或社交网站散布链接，导致很多网友无意间就点开了色情网页。（记者 杨汛）\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(60, 1, 58, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-27 09:41:52　来源: 中国新闻网\r \r \r 妈妈指刘德华当时劈腿。\r \r 中新网8月27日电 刘德华以十指紧扣高调“手法”让朱丽倩正名。前女友喻可欣献“淡淡的祝福”，但喻妈妈跳出来说：“华仔和喻可欣那时还在谈恋爱，是朱丽倩介入，而且追得很紧。” \r \r 台湾“中国时报”报道，喻妈妈指刘德华当时劈腿(脚踏两只船)，喻可欣还因此跟他大吵：“要她就不要我，要我就不要她！”接着就闹分手。喻可欣多年来放不下这段情，喻妈妈不舍也不甘，对刘德华终于认了朱丽倩，她还说，不管当初是怎么抢的，朱丽倩也算熬出头了。 \r \r 喻可欣和刘德华分手后，身体状况时好时坏，两年前还得了肺结核，所幸是非开放性(不会传染)，为了治疗，她几乎不出门。她之前接受访问时透露，专心研读佛经，曾用易经替自己算命，“易经上说，等他结婚后，我就解套了。”\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(61, 1, 59, 1, 'he21cn', '127.0.0.1', 1251357730, '2009-08-27 02:42:27　来源: 京华时报(北京)\r \r \r 刘德华25日与绯闻女友朱丽倩十指紧扣返回香港。\r \r 京华时报8月27日报道 刘德华25日与绯闻女友朱丽倩十指紧扣返回香港。在机场被问及是否会在百日内结婚时，华仔首度开腔回应：“不是，所有的事情不会再讲，我不会多作解释”。华仔又在个人网站留言，他感谢媒体的包容眷顾，并对歌迷们为他遮风挡雨“万二分感谢。”此外，昨日朱丽倩家族的一位生意伙伴爆料称，其实华仔与朱丽倩两人早就结婚了。 \r \r “我带她回家休息”\r \r 据香港媒体报道，华仔与朱丽倩于25日晚10时半左右飞抵香港。虽然现场集结过百媒体记者及粉丝，但戴着口罩的华仔与朱丽倩，依然手牵手步出闸口。华仔为保护朱丽倩免被人群撞倒，更是腾出另一只手揽着她。二人寸步不离，表现恩爱。\r \r 面对记者的追访，华仔只礼貌地表示：“多谢传媒关心。”有记者追问华仔与朱丽倩会否于朱父逝世一百日内结婚，华仔终打破沉默首度开腔回应：“不是，所有的事情不会再讲，我不会多作解释，给点时间我等我带她回家里休息，搞到大家这样不好意思。”在华仔接受访问期间，朱丽倩一直低着头做其背后女人。\r \r “万二分”谢歌迷\r \r 昨天，华仔在个人网站留言，他感谢媒体的包容眷顾，对在机场引发的混乱表示歉意，还特别提及歌迷们无私无悔为他遮风挡雨，表示“万二分感谢。”\r \r 留言中，刘德华上来就是“让很多关心我的人都挂心了。”他说，在两地机场都引起了一些混乱，影响了不少旅客和工作人员，十分抱歉。随后，他提到媒体，“其实素来对我格外包容眷顾，感受到大家对我的爱护，你们这次也都辛苦了。”接着，刘德华在谈到歌迷时则表示“早已深受感动”。他说：“看到大家对我的爱更是无私无悔……容老大衷心说句，万二分感谢。”\r \r 两人被爆早已结婚\r \r 朱丽倩家族的一位生意伙伴昨天爆料称，其实华仔与朱丽倩两人早已结婚。\r \r 据报道，爆料人Byren一家和朱丽倩家族有生意往来。“我家和他们家(朱家)算是世交，偶尔会一起聚会，所以他们的事情基本上都知道。”Byren告诉记者，作为天王巨星，刘德华之所以迟迟不公开与朱丽倩的婚姻，是希望保护个人隐私。早在刘德华当红之时，他就公开过一次恋情，不仅许多歌迷难以接受，广告商也十分不满，女方也受到很大影响。所以，当刘德华与朱丽倩开始恋情，到最后结婚，他都保持高度神秘，不仅对外否认，也从不携手出行。Byren猜测，婚讯不公开的原因，还是考虑到个人隐私，不愿意私生活受媒体的“监督”。\r \r 另外，Byren还透露，在马来西亚，几乎所有人都知道刘德华是朱家的女婿，但是没有人会去对外面的人说。只是最近朱父去世刘德华表现“太差”，居民们才纷纷表示不满。综合《厦门商报》等消息\r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(62, 1, 60, 1, 'he21cn', '127.0.0.1', 1251357730, '2009年08月27日 10:51:12 　来源：广州日报 \r \r     消费陷阱 \r     如今，手机市场的“高仿之风”越刮越猛，高仿手机卖得也越来越火，但是出现的消费纠纷也越来越多，不少奸商利用这种手机谋取暴利。 \r \r     有的消费者虽知道是高仿机，低价购买后没用几天故障就频频出现，维修无门，几百元相当于扔进了水里；还有一些消费者被不法厂商蒙骗，花了正品的价格却买了部高仿机，欲哭无泪。 \r \r<br/>诱惑：真机4000多元仿机400元 \r \r     所谓高仿机，就是高度仿造的手机，实质上就是无视知识产权的假冒手机。这些高仿机几乎和真机一样，做到了难以分辨的程度，连开机时的声音、开机后的界面都和正规品牌手机一样。有些高仿机甚至还能输入验证序列码。 \r \r     这类手机受到市场热捧也有一定原因，不少消费者对原版的高价觉得难以企及却又喜欢这款手机的外观；还有的消费者为了在朋友面前炫耀，乐意花上几百元去“显摆”，还有些学生或者追求高性价比的用户也会选择此类机型。 \r \r     高仿机所仿效的主要对象是售价高昂的大品牌高端手机、奢侈手机、天价手机，特别是新上市的旗舰机型；其次则是大品牌销量十分大的中端价位手机。记者在电脑城、大沙头等手机市场看到，这些高仿机价格低得惊人，比如三星伯爵手机、苹果iphone以及诺基亚N96等高档手机，真品价格多在4000~6000元，而这些手机的“仿真版”却只有几百元。 \r \r     陷阱：外观不错操作很差很难保修 \r \r     虽然说姜太公钓鱼，愿者上钩。且不评价高仿手机涉嫌侵犯知识产权问题，消费者抱着一种明知而为之的心态去购买，固然不值得提倡。但从保护消费者利益看，所谓高仿手机其实有很多消费陷阱，消费者购买后也并非能用得舒心。\r \r      其一，质量差很多。很多高仿机吹嘘自己能1：1高度仿真，但实际并非如此。虽然外观差不多，但手机的做工以及操作系统比真品其实要差很多。某消费者王先生花500元购买了一款“山寨”版苹果iphone手机。购买当天，王先生并未开机试用，待回到家后，他便发现手机音乐播放器无法使用，耳机也听不到声音，而且手机的原配电池使用不到1小时就自动关机了。 \r \r     其二，很难保修。这类手机在保修期内一旦出现性能故障，很难享受“三包“服务。大多数消费者购买时已经知其为“三无产品”，心头虽有疑虑，但经不住销售商“可退可换、保修3个月或半年”等口头承诺，也就忽视了售后服务问题。但实际上多是空头支票，许多高仿机的保修期最多承诺保修3个月，有的不到承诺的期限就找不到人了，售后还是要自己处理。 \r \r     其三，被骗话费。很多高仿手机内置了恶意扣费软件，手机也会像电脑一样，沦为黑客控制的“肉鸡”。不法厂商往手机芯片上植入了一些扣费程序后，他们就可以像黑客一样，通过GPRS网络让手机用户每月扣费消费。 \r \r     一些不法商家甚至会是以蒙骗的方式直接把高仿机当作真品卖。据记者了解，这些手机仿冒程度达到了95%以上，不但外形一模一样，就连功能表等操作界面都一样，如果不是行家，还真很难分辨出来。 \r \r     为了蒙蔽消费者，有的商家还会玩弄“偷梁换柱”的把戏，消费者挑选试用的时候是真机，而付款后拿来的却是高仿机。 \r \r<br/>鉴别 \r \r     真手机“天衣无缝” \r \r     假手机接缝松动 \r \r     看做工。比如外壳的各个接缝处。真品手机的各处接缝间隙均是十分均匀，而且不会出现松动的情况。仿真手机的间隙开口显得比较大，而且用手轻轻按压就会感到有松动的迹象。还比如外壳工艺处理上，真品手机一般光泽度极好，烤漆面均匀光滑，手感细腻。而仿真手机则漆面不均匀，手感有毛刺，外壳的某些部位还出现了轻微的锈迹。\r \r     仿真品的铭牌印刷得比较粗糙，字体笔画不均匀，质量较次。 \r \r     摸键盘。手感方面，仿真手机的按键大多不能很好地保持在同一平面之上，而且手感也显得比较生涩，手感极差，不仅难以定位，而且很容易发生错误操作。而真手机就较少出现这些问题。 \r \r     听声音。真品手机一般声音很纯，没有任何杂音，而不好的高仿机则是声音很大，没有那么纯，感觉有杂音，容易出现破音。 \r \r     装软件。如果是智能手机，可以临时用一个免签名的软件(如Ucweb)在机子里安装一下，不能成功安装则是高仿机，不支持Java下载的也是仿真机。如果验证非智能手机，安装软件不好办的话，那就安装主题，一般的高仿机基本上不能安装主题。 \r \r     配件不能忽视。配件也是高仿的，比如诺基亚电池，真品的防伪标签颜色偏红，立体感十足，其字体非常清晰。而仿制品的镭射标签则偏绿色，立体感较差，其上的小字体模糊不清。（薛松） \r\n\r\n\r\n\r\n\r\n**************************************************', '', 1, '0'),
-(86, 1, 58, 1, 'he21cn', '127.0.0.1', 1252980727, '1132', '', 0, '0'),
-(87, 1, 58, 1, 'he21cn', '127.0.0.1', 1252980738, '999', '', 0, '0'),
-(101, 40, 72, 911, 'hope00000062', '192.168.1.102', 1255395403, '<DIV>现在学生学习压力比较大，所以不知道到底给学生布置作业量多少才合适？</DIV>', '', 1, '0'),
-(102, 40, 73, 911, 'hope00000062', '192.168.1.102', 1255398205, '<DIV><IMG src="http://www.szschool.com.cn/pic/star.gif"></DIV>\r\n<DIV>把你心中认为的校园之星写下来。无论是老师还是你同学朋友都可以。</DIV>', '', 1, '0'),
-(103, 2, 67, 932, 'hope00000932', '192.168.1.102', 1255419858, '<img src="attachment/200910/13/932_1255419855q0AR.jpg">', '', 0, '0'),
-(104, 37, 74, 1, 'he21cn', '192.168.1.102', 1255593042, '<DIV>大幅度</DIV>', '', 1, '0'),
-(105, 37, 75, 1, 'he21cn', '192.168.1.102', 1255593081, '<DIV>霏霏</DIV>', '', 1, '0'),
-(106, 40, 76, 911, 'hope00000062', '192.168.1.3', 1256528720, '<DIV>有谁知道重阳节的来历吗?</DIV>', '', 1, '0'),
-(107, 37, 75, 1, 'he21cn', '127.0.0.1', 1256539899, '广东省', '', 0, '0'),
-(108, 2, 67, 1, 'he21cn', '192.168.1.180', 1256542066, '<img src="attachment/200910/26/1_1256542063yYw0.jpg">', '', 0, '0'),
-(109, 38, 77, 911, 'hope00000062', '127.0.0.1', 1256712441, 'fdas', '', 1, '0'),
-(110, 38, 78, 911, 'hope00000062', '127.0.0.1', 1256712505, 'fdas', '', 1, '0'),
-(111, 38, 79, 911, 'hope00000062', '127.0.0.1', 1256712535, 'fdas', '', 1, '0'),
-(112, 38, 80, 911, 'hope00000062', '127.0.0.1', 1256712631, '12121321321', '', 1, '0'),
-(113, 37, 81, 1, 'he21cn', '192.168.1.44', 1256713100, '发撒发撒2222312<ins class="modify">[本话题由 he21cn 于 2009-10-28 14:58:28 编辑]</ins>', '', 1, '0'),
-(114, 38, 80, 911, 'hope00000062', '127.0.0.1', 1256716229, '<img src="image/face/12.gif" class="face">', '', 0, '0'),
-(115, 37, 82, 1, 'he21cn', '192.168.1.101', 1256866048, 'fdsafdasfas', '', 1, '0'),
-(116, 37, 0, 1, 'he21cn', 'unknown', 1256871967, 'fsfasfas', '', 1, '0'),
-(117, 37, 0, 1, 'he21cn', 'unknown', 1256872050, 'fsfasfas', '', 1, '0'),
-(118, 37, 0, 1, 'he21cn', 'unknown', 1256872056, 'fsfasfas', '', 1, '0'),
-(119, 37, 0, 1, 'he21cn', 'unknown', 1256872059, 'fsfasfas', '', 1, '0'),
-(120, 37, 83, 1, 'he21cn', 'unknown', 1256872070, 'fdasfdas', '', 1, '0'),
-(121, 37, 0, 1, 'he21cn', 'unknown', 1256872077, 'fdasfdasds2312', '', 1, '0'),
-(122, 37, 0, 1, 'he21cn', 'unknown', 1256872253, '&nbsp;【乐园】重温快乐时光 【乐园】重温快乐时光 【乐园】重温快乐时光 【乐园】重温快乐时光 【', '', 1, '0'),
-(123, 37, 0, 1, 'he21cn', 'unknown', 1256872296, '&nbsp;【乐园】重温快乐时光 【乐园】重温快乐时光 【乐园】重温快乐时光 【乐园】重温快乐时光 【', '', 1, '0'),
-(124, 37, 84, 1, 'he21cn', 'unknown', 1256872473, 'v重温快乐时光快乐时光', '', 1, '0'),
-(125, 37, 85, 911, 'hope00000062', '192.168.1.3', 1257385990, '<DIV>大家觉得感恩节应该怎么来组织活动呢?</DIV>\r\n<DIV>请大家积极参与!</DIV>', '', 1, '0'),
-(126, 37, 86, 1, 'he21cn', '192.168.1.102', 1257386517, '<DIV>你们是不是注定的天生一对？跟他（她）在一起人生将变更美好，或只是一连串心碎的开端…爱情测试准确率最高达98%,将以下网址粘贴到地址栏</DIV>', '', 1, '0'),
-(127, 37, 87, 1, 'he21cn', '192.168.1.102', 1257388588, '<DIV><IMG src="http://192.168.1.222/uchome/image/face/7.gif"><IMG src="http://192.168.1.222/uchome/image/face/6.gif"></DIV>', '', 1, '0'),
-(128, 37, 83, 1, 'he21cn', 'unknown', 1258011092, 'fdasfas', '', 0, '0'),
-(129, 37, 88, 911, 'hope00000062', '192.168.1.3', 1258510664, '<DIV><IMG src="http://192.168.1.222/uchome/image/face/21.gif"><IMG src="http://192.168.1.222/uchome/image/face/22.gif">fdfdfffffffaefkj<IMG src="http://192.168.1.222/uchome/image/face/4.gif"><IMG src="http://192.168.1.222/uchome/image/face/11.gif"><IMG src="http://192.168.1.222/uchome/image/face/7.gif"></DIV>', '', 1, '0'),
-(130, 38, 89, 911, 'hope00000062', '192.168.1.3', 1258511010, '<DIV>\r\n<DIV><IMG src="http://192.168.1.222/uchome/image/face/6.gif">\r\n<DIV><IMG src="http://192.168.1.222/uchome/image/face/6.gif">\r\n<DIV><IMG src="http://192.168.1.222/uchome/image/face/6.gif">\r\n<DIV><IMG src="http://192.168.1.222/uchome/image/face/6.gif">\r\n<DIV><IMG src="http://192.168.1.222/uchome/image/face/6.gif">\r\n<DIV><IMG src="http://192.168.1.222/uchome/image/face/6.gif">\r\n<DIV><IMG src="http://192.168.1.222/uchome/image/face/6.gif"></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV>', '', 1, '0'),
-(131, 370, 90, 1094, 'teacher', '192.168.1.117', 1260945990, 'gjhgjhhhhgggggggfgrgfgf', '', 1, '0');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `hope_thread`
---
-
-CREATE TABLE IF NOT EXISTS `hope_thread` (
-  `tid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '话题id',
-  `topicid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `class_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '班级id',
-  `eventid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) NOT NULL COMMENT '标题',
-  `magiccolor` tinyint(6) unsigned NOT NULL DEFAULT '0',
-  `magicegg` tinyint(6) unsigned NOT NULL DEFAULT '0',
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
-  `username` char(15) NOT NULL DEFAULT '' COMMENT '用户名',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `viewnum` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '浏览数',
-  `replynum` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '回复数',
-  `lastpost` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '最后回复id',
-  `lastauthor` char(15) NOT NULL DEFAULT '' COMMENT '最后回复用户',
-  `lastauthorid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '最后回复用户id',
-  `displayorder` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `digest` tinyint(1) NOT NULL DEFAULT '0' COMMENT '精华',
-  `hot` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '热门',
-  `click_11` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_12` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_13` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_14` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_15` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `state` tinyint(1) DEFAULT '1' COMMENT '0:删除',
-  PRIMARY KEY (`tid`),
-  KEY `tagid` (`class_id`,`displayorder`,`lastpost`),
-  KEY `uid` (`uid`,`lastpost`),
-  KEY `lastpost` (`lastpost`),
-  KEY `topicid` (`topicid`,`dateline`),
-  KEY `eventid` (`eventid`,`lastpost`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='班级话题表' AUTO_INCREMENT=91 ;
-
---
--- 转存表中的数据 `hope_thread`
---
-
-INSERT INTO `hope_thread` (`tid`, `topicid`, `class_id`, `eventid`, `subject`, `magiccolor`, `magicegg`, `uid`, `username`, `dateline`, `viewnum`, `replynum`, `lastpost`, `lastauthor`, `lastauthorid`, `displayorder`, `digest`, `hot`, `click_11`, `click_12`, `click_13`, `click_14`, `click_15`, `state`) VALUES
-(1, 0, 1, 0, '组图：刘德华、朱丽倩终于修成正果', 0, 0, 1, 'he21cn', 1251357714, 4, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(2, 0, 1, 0, '美国真人秀明星残忍杀妻后自杀', 0, 0, 1, 'he21cn', 1251357714, 4, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(3, 0, 1, 0, '小伙七夕卖2.7万只萤火虫', 0, 0, 1, 'he21cn', 1251357714, 5, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(4, 0, 1, 0, '父亲让13岁儿子休学一年走遍全国(图)', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(5, 0, 1, 0, '多名家长联名发帖要求更换班主任', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(6, 0, 1, 0, '央视新址大火首批涉案者正移送起诉', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(7, 0, 1, 0, '魔兽战网帐号存安全漏洞 滋生卖号骗子', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(8, 0, 1, 0, '京城筑诚嘉信 北漂族的噩梦', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(9, 0, 1, 0, '疾病自测：你的痛经到了几级？', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(10, 0, 1, 0, '腰部保暖可缓解女性手脚冰凉症状', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(11, 0, 1, 0, '被网瘾，IT人士可否申请工伤？', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(12, 0, 1, 0, '回复:被网瘾，IT人士可否申请工伤？', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(13, 0, 1, 0, '我国将出现第一次老年人口增长高峰', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(14, 0, 1, 0, '司机酒后驾驶将被撞者拖行3公里致死', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(15, 0, 1, 0, '家电公司高层诈骗千万货款后集体失踪', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(16, 0, 1, 0, '中500万大奖后夫妻离婚', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(17, 0, 1, 0, '七位亲人携十箱行李护送大学新生入学', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(18, 0, 1, 0, '天涯否认泄露胡斌案替身造谣者资料', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(19, 0, 1, 0, '广电总局“方言令”惹争议', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(20, 0, 1, 0, '蒋大为欠人90万被网上追讨？？', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(21, 0, 1, 0, '刘德华拒答是否与朱丽倩结婚', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(22, 0, 1, 0, '上海拟大举增加土地供应量平抑房价', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(23, 0, 1, 0, '智联招聘巨亏1.5亿 CEO刘浩“下课”', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(24, 0, 1, 0, '胡润盘点10年来上榜“问题富豪”', 0, 0, 1, 'he21cn', 1251357714, 6, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(25, 0, 1, 0, '惊艳：婚纱上落满活蝴蝶', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(26, 0, 1, 0, '母亲培养儿子做“老鸨” 让未来儿媳接客卖淫', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(27, 0, 1, 0, '色情网站“十站九毒” 黑客用色情视频传病毒', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(28, 0, 1, 0, '喻可欣母亲批刘德华当年劈腿', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(29, 0, 1, 0, '朱家生意伙伴爆料：刘德华朱丽倩早已结婚', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(30, 0, 1, 0, '400元买到4000元手机？专家:小心消费陷阱', 0, 0, 1, 'he21cn', 1251357714, 0, 0, 1251357714, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(31, 0, 1, 0, '组图：刘德华、朱丽倩终于修成正果', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(32, 0, 1, 0, '美国真人秀明星残忍杀妻后自杀', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(33, 0, 1, 0, '小伙七夕卖2.7万只萤火虫', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(34, 0, 1, 0, '父亲让13岁儿子休学一年走遍全国(图)', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(35, 0, 1, 0, '多名家长联名发帖要求更换班主任', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(36, 0, 1, 0, '央视新址大火首批涉案者正移送起诉', 0, 0, 1, 'he21cn', 1251357730, 1, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(37, 0, 1, 0, '魔兽战网帐号存安全漏洞 滋生卖号骗子', 0, 0, 1, 'he21cn', 1251357730, 4, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(38, 0, 1, 0, '京城筑诚嘉信 北漂族的噩梦', 0, 0, 1, 'he21cn', 1251357730, 1, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(39, 0, 1, 0, '疾病自测：你的痛经到了几级？', 0, 0, 1, 'he21cn', 1251357730, 6, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(40, 0, 1, 0, '腰部保暖可缓解女性手脚冰凉症状', 0, 0, 1, 'he21cn', 1251357730, 2, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(41, 0, 1, 0, '被网瘾，IT人士可否申请工伤？', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(45, 0, 1, 0, '家电公司高层诈骗千万货款后集体失踪', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(46, 0, 1, 0, '中500万大奖后夫妻离婚', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(47, 0, 1, 0, '七位亲人携十箱行李护送大学新生入学', 0, 0, 1, 'he21cn', 1251357730, 1, 0, 1251357730, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(48, 0, 1, 0, '天涯否认泄露胡斌案替身造谣者资料', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(49, 0, 1, 0, '广电总局“方言令”惹争议', 0, 0, 1, 'he21cn', 1251357730, 1, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(50, 0, 1, 0, '蒋大为欠人90万被网上追讨？？', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(51, 0, 1, 0, '刘德华拒答是否与朱丽倩结婚', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(52, 0, 1, 0, '上海拟大举增加土地供应量平抑房价', 0, 0, 1, 'he21cn', 1251357730, 5, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(53, 0, 1, 0, '智联招聘巨亏1.5亿 CEO刘浩“下课”', 0, 0, 1, 'he21cn', 1251357730, 14, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(54, 0, 1, 0, '胡润盘点10年来上榜“问题富豪”', 0, 0, 1, 'he21cn', 1251357730, 0, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(71, 0, 1, 0, '我在0901班发起话题', 0, 0, 1, 'he21cn', 1253173141, 84, 5, 1253173141, 'wing', 61, 1, 0, 20, 0, 0, 0, 0, 0, 1),
-(57, 0, 1, 0, '色情网站“十站九毒” 黑客用色情视频传病毒', 0, 0, 1, 'he21cn', 1251357730, 1, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(58, 0, 1, 0, '喻可欣母亲批刘德华当年劈腿', 0, 0, 1, 'he21cn', 1251357730, 52, 2, 1251357730, 'he21cn', 1, 1, 1, 0, 0, 0, 3, 0, 0, 1),
-(59, 0, 1, 0, '朱家生意伙伴爆料：刘德华朱丽倩早已结婚', 0, 0, 1, 'he21cn', 1251357730, 14, 0, 1251357730, 'he21cn', 1, 0, 1, 0, 0, 0, 0, 0, 0, 1),
-(60, 0, 1, 0, '400元买到4000元手机？专家:小心消费陷阱', 0, 1, 1, 'he21cn', 1251357730, 21, 0, 1251357730, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(67, 0, 2, 0, '学校的话题', 0, 0, 1, 'he21cn', 1251942186, 9, 3, 1251942186, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(72, 0, 40, 0, '布置家庭作业多少量才合适？', 0, 0, 911, 'hope00000062', 1255395403, 2, 0, 1255395403, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(73, 0, 40, 0, '谁是校园之星？', 0, 0, 911, 'hope00000062', 1255398205, 4, 0, 1255398205, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(74, 0, 37, 0, '夺', 0, 0, 1, 'he21cn', 1255593042, 4, 0, 1255593042, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(75, 0, 37, 0, '妥', 0, 0, 1, 'he21cn', 1255593081, 33, 1, 1255593081, 'he21cn', 1, 0, 0, 0, 0, 0, 1, 0, 0, 1),
-(76, 0, 40, 0, '重阳节的来历', 0, 0, 911, 'hope00000062', 1256528720, 3, 0, 1256528720, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(77, 0, 38, 0, 'dfsa', 0, 0, 911, 'hope00000062', 1256712441, 0, 0, 1256712441, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(78, 0, 38, 0, 'dfsa', 0, 0, 911, 'hope00000062', 1256712505, 0, 0, 1256712505, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(79, 0, 38, 0, 'dfsa', 0, 0, 911, 'hope00000062', 1256712535, 1, 0, 1256712535, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(80, 0, 38, 0, 'fads222222222222', 0, 0, 911, 'hope00000062', 1256712631, 1, 1, 1256712631, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(81, 0, 37, 0, '但是发发生', 0, 0, 1, 'he21cn', 1256713108, 3, 0, 1256713100, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(82, 0, 37, 0, '&lt;a href=&quot;baidu.com&quot;&gt;baidu nihao &lt;/a&gt;', 0, 0, 1, 'he21cn', 1256866048, 1, 0, 1256866048, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(83, 0, 37, 0, '好大的勺子（布奇乐乐园系列）', 0, 0, 1, 'he21cn', 1256872070, 6, 1, 1256872070, 'he21cn', 1, 0, 0, 0, 0, 0, 1, 0, 0, 1),
-(84, 0, 37, 0, '重温快乐时光快乐时光重温快乐时光快乐时光重温快乐时光快乐时光重温快乐时光快乐时光', 0, 0, 1, 'he21cn', 1256872473, 8, 0, 1256872473, 'he21cn', 1, 0, 0, 0, 1, 0, 0, 0, 0, 1),
-(85, 0, 37, 0, '感恩节活动', 0, 0, 911, 'hope00000062', 1257385990, 1, 0, 1257385990, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(86, 0, 37, 0, '男', 0, 0, 1, 'he21cn', 1257386517, 5, 0, 1257386517, 'he21cn', 1, 0, 0, 0, 0, 0, 1, 0, 0, 1),
-(87, 0, 37, 0, 'dhjdfjijj', 0, 0, 1, 'he21cn', 1257388588, 3, 0, 1257388588, 'he21cn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(88, 0, 37, 0, 'kkkkkkkkkkkkkk', 0, 0, 911, 'hope00000062', 1258510664, 6, 0, 1258510664, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(89, 0, 38, 0, '话题讨论', 0, 0, 911, 'hope00000062', 1258511010, 2, 0, 1258511010, 'hope00000062', 911, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(90, 0, 370, 0, '反反复复', 0, 0, 1094, 'teacher', 1260945990, 0, 0, 1260945990, 'teacher', 1094, 0, 0, 0, 0, 0, 0, 0, 0, 1);
-
--- --------------------------------------------------------
-
---
 -- 表的结构 `login_record`
 --
 
@@ -5167,7 +4602,7 @@ CREATE TABLE IF NOT EXISTS `login_record` (
   `login_ip` varchar(15) DEFAULT NULL,
   `login_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
 -- 转存表中的数据 `login_record`
@@ -5191,7 +4626,144 @@ INSERT INTO `login_record` (`id`, `uid`, `login_ip`, `login_time`) VALUES
 (15, 1, '127.0.0.1', 1263966644),
 (16, 1, '127.0.0.1', 1263968833),
 (17, 1, '127.0.0.1', 1263973429),
-(18, 1, '127.0.0.1', 1263974317);
+(18, 1, '127.0.0.1', 1263974317),
+(19, 1, '127.0.0.1', 1263985822),
+(20, 1, '127.0.0.1', 1263993757),
+(21, 1, '127.0.0.1', 1263998979),
+(22, 1, '127.0.0.1', 1264079103),
+(23, 1, '127.0.0.1', 1264296332),
+(24, 1, '127.0.0.1', 1264339262),
+(25, 1, '127.0.0.1', 1264506075),
+(26, 1, '127.0.0.1', 1264591831),
+(27, 1, '127.0.0.1', 1265292427),
+(28, 1, '127.0.0.1', 1266581907),
+(29, 1, '127.0.0.1', 1266667396),
+(30, 1, '127.0.0.1', 1266670894),
+(31, 2, '127.0.0.1', 1266671081),
+(32, 1, '127.0.0.1', 1267018998),
+(33, 1, '127.0.0.1', 1267099059),
+(34, 1, '127.0.0.1', 1267099190),
+(35, 1, '127.0.0.1', 1267193898),
+(36, 1, '127.0.0.1', 1267226846),
+(37, 1, '127.0.0.1', 1267271389),
+(38, 1, '127.0.0.1', 1270434634),
+(39, 1, '127.0.0.1', 1271904265),
+(40, 1, '127.0.0.1', 1271984121),
+(41, 1, '127.0.0.1', 1272098383),
+(42, 1, '127.0.0.1', 1273034323),
+(43, 1, '127.0.0.1', 1273112695),
+(44, 1, '127.0.0.1', 1273115116),
+(45, 1, '127.0.0.1', 1273115798),
+(46, 1, '127.0.0.1', 1273125622),
+(47, 1, '127.0.0.1', 1273134273);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mini`
+--
+
+CREATE TABLE IF NOT EXISTS `mini` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `name` char(10) DEFAULT NULL,
+  `type` int(1) NOT NULL DEFAULT '1',
+  `content` text,
+  `tagId` int(11) DEFAULT NULL,
+  `ctime` int(11) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `replay_numbel` int(11) NOT NULL DEFAULT '0',
+  `feedId` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`uid`),
+  KEY `replay_numbel` (`replay_numbel`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+
+--
+-- 转存表中的数据 `mini`
+--
+
+INSERT INTO `mini` (`id`, `uid`, `name`, `type`, `content`, `tagId`, `ctime`, `status`, `replay_numbel`, `feedId`) VALUES
+(1, 1, '管理员', 1, '/折磨', NULL, 1266671285, 0, 0, 7),
+(2, 1, '管理员', 1, 'bv', NULL, 1266671289, 0, 0, 8),
+(3, 1, '管理员', 1, '/难过', NULL, 1267019509, 0, 0, 9),
+(4, 1, '管理员', 1, '/大哭/惊恐/握手 /ff', NULL, 1267020034, 0, 0, 10),
+(5, 1, NULL, 1, 'fdas ', NULL, 1267022486, 1, 0, 0),
+(6, 1, NULL, 1, 'aaaaaaaa', NULL, 1267022600, 1, 0, 0),
+(7, 1, NULL, 1, 'fasdfsda', NULL, 1267022602, 1, 0, 0),
+(8, 1, '管理员', 1, 'fasd ', NULL, 1267023962, 0, 0, 0),
+(9, 1, '管理员', 1, 'fasd', NULL, 1267024035, 0, 0, 0),
+(10, 1, '管理员', 1, '222', NULL, 1267024037, 0, 0, 0),
+(11, 1, '管理员', 1, '/流汗', NULL, 1267099067, 0, 0, 0),
+(12, 1, '管理员', 1, '最近很烦恼', NULL, 1267099132, 0, 0, 0),
+(13, 1, '管理员', 1, '415632', NULL, 1267099863, 0, 0, 0),
+(14, 1, '管理员', 1, '/大哭', NULL, 1267099914, 0, 0, 0),
+(15, 1, '管理员', 1, '13\n', NULL, 1267226879, 0, 0, 0),
+(16, 1, '管理员', 1, '56\n', NULL, 1267236999, 0, 0, 0),
+(17, 1, '管理员', 1, '/惊恐', NULL, 1273116071, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `msg`
+--
+
+CREATE TABLE IF NOT EXISTS `msg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fromUserId` int(11) DEFAULT NULL,
+  `toUserId` int(11) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `content` text,
+  `ctime` int(11) DEFAULT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT '0',
+  `replyMsgId` int(11) DEFAULT NULL,
+  `is_new` tinyint(1) NOT NULL DEFAULT '1',
+  `is_del` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `msg`
+--
+
+INSERT INTO `msg` (`id`, `fromUserId`, `toUserId`, `subject`, `content`, `ctime`, `is_read`, `replyMsgId`, `is_new`, `is_del`) VALUES
+(1, 1, 2, '323', '5', 1267242456, 0, NULL, 1, 0),
+(2, 2, 1, '99999', '5', 1267242456, 0, NULL, 1, 0),
+(3, 1, 2, 'fas', 'fasd', NULL, 0, NULL, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `notify`
+--
+
+CREATE TABLE IF NOT EXISTS `notify` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `type` varchar(25) DEFAULT NULL,
+  `new` tinyint(1) DEFAULT NULL,
+  `authorid` int(11) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `title` text,
+  `body` text,
+  `url` text,
+  `ctime` int(11) DEFAULT NULL,
+  `cate` varchar(255) DEFAULT NULL,
+  `appid` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `notify`
+--
+
+INSERT INTO `notify` (`id`, `uid`, `type`, `new`, `authorid`, `author`, `title`, `body`, `url`, `ctime`, `cate`, `appid`) VALUES
+(1, 1, 'add_friend', 2, 2, '李大', 'N;', 'a:1:{s:4:"note";s:12:"四川电视";}', '2', 1260798917, 'friend', 0),
+(2, 99, 'add_friend', 1, 1, '管理员', 'N;', 'a:1:{s:4:"note";s:6:"发生";}', '1', 1260876041, 'friend', 0),
+(4, 1, 'add_friend', 2, 3, '李璐', 'N;', 'a:1:{s:4:"note";s:9:"发大水";}', '3', 1260968604, 'friend', 0),
+(5, 3, 'agree_friend', 1, 1, '管理员', 'N;', 'N;', '', 1260968622, 'friend', 0),
+(6, 2, 'group_create', 1, 1, '管理员', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:4:{s:5:"actor";s:9:"管理员";s:3:"mid";i:1;s:5:"title";s:4:"fsda";s:4:"code";s:32:"573b2e71dfb931ffa6092286cf8902ee";}', '', 1264079378, 'notification', 12),
+(7, 3, 'group_create', 1, 1, '管理员', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:4:{s:5:"actor";s:9:"管理员";s:3:"mid";i:1;s:5:"title";s:4:"fsda";s:4:"code";s:32:"573b2e71dfb931ffa6092286cf8902ee";}', '', 1264079378, 'notification', 12);
 
 -- --------------------------------------------------------
 
@@ -5265,10 +4837,10 @@ INSERT INTO `photo_album` (`id`, `uid`, `name`, `info`, `ctime`, `mtime`, `cover
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ts_photo_index`
+-- 表的结构 `photo_index`
 --
 
-CREATE TABLE IF NOT EXISTS `ts_photo_index` (
+CREATE TABLE IF NOT EXISTS `photo_index` (
   `albumId` int(11) NOT NULL DEFAULT '0',
   `photoId` int(11) NOT NULL DEFAULT '0',
   `userId` int(11) DEFAULT NULL,
@@ -5279,17 +4851,17 @@ CREATE TABLE IF NOT EXISTS `ts_photo_index` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ts_photo_index`
+-- 转存表中的数据 `photo_index`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ts_photo_mark`
+-- 表的结构 `photo_mark`
 --
 
-CREATE TABLE IF NOT EXISTS `ts_photo_mark` (
+CREATE TABLE IF NOT EXISTS `photo_mark` (
   `photoId` int(11) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
   `userName` varchar(50) DEFAULT NULL,
@@ -5299,9 +4871,48 @@ CREATE TABLE IF NOT EXISTS `ts_photo_mark` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `ts_photo_mark`
+-- 转存表中的数据 `photo_mark`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smile`
+--
+
+CREATE TABLE IF NOT EXISTS `smile` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `type` varchar(10) DEFAULT NULL,
+  `emotion` varchar(10) DEFAULT NULL,
+  `filename` varchar(20) DEFAULT NULL,
+  `title` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+
+--
+-- 转存表中的数据 `smile`
+--
+
+INSERT INTO `smile` (`id`, `type`, `emotion`, `filename`, `title`) VALUES
+(1, 'mini', '/拥抱', 'hug.gif', '拥抱'),
+(2, 'mini', '/示爱', 'kiss.gif', '示爱'),
+(3, 'mini', '/呲牙', 'lol.gif', '呲牙'),
+(4, 'mini', '/可爱', 'loveliness.gif', '可爱'),
+(5, 'mini', '/折磨', 'mad.gif', '折磨'),
+(6, 'mini', '/难过', 'sad.gif', '难过'),
+(7, 'mini', '/流汗', 'sweat.gif', '流汗'),
+(8, 'mini', '/憨笑', 'biggrin.gif', '憨笑'),
+(9, 'mini', '/大哭', 'cry.gif', '大哭'),
+(10, 'mini', '/惊恐', 'funk.gif', '惊恐'),
+(11, 'mini', '/握手', 'handshake.gif', '握手'),
+(12, 'mini', '/发怒', 'huffy.gif', '发怒'),
+(13, 'mini', '/惊讶', 'shocked.gif', '惊讶'),
+(14, 'mini', '/害羞', 'shy.gif', '害羞'),
+(15, 'mini', '/微笑', 'smile.gif', '微笑'),
+(16, 'mini', '/偷笑', 'titter.gif', '偷笑'),
+(17, 'mini', '/调皮', 'tongue.gif', '调皮'),
+(18, 'mini', '/胜利', 'victory.gif', '胜利');
 
 -- --------------------------------------------------------
 
@@ -5316,7 +4927,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) DEFAULT NULL,
   `handle` varchar(255) DEFAULT NULL,
   `sex` varchar(10) DEFAULT NULL,
-  `birthday` varchar(255) DEFAULT NULL,
+  `birthyear` smallint(6) DEFAULT '0',
+  `birthmonth` tinyint(1) DEFAULT '0',
+  `birthday` tinyint(1) DEFAULT '0',
   `blood_type` varchar(5) DEFAULT NULL,
   `current_province` varchar(255) DEFAULT NULL,
   `current_city` varchar(255) DEFAULT NULL,
@@ -5335,10 +4948,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 转存表中的数据 `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `username`, `handle`, `sex`, `birthday`, `blood_type`, `current_province`, `current_city`, `current_area`, `admin_level`, `commend`, `active`, `ctime`, `identity`, `score`) VALUES
-(1, 'admin@admin.com', 'f402195e81465ffb02ffdb894e6e2aa6', '管理员', NULL, '1', NULL, NULL, NULL, NULL, NULL, '1', 0, 1, 1260770048, 1, 1000),
-(2, 'huanghuibin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '黄大', NULL, '1', NULL, NULL, '1963', '2074', NULL, '0', NULL, 1, 1260770264, 1, 0),
-(3, 'dfas@good.com', 'xmdasd', 'fddf', NULL, '0', NULL, NULL, NULL, NULL, NULL, '0', NULL, 0, NULL, 1, 0);
+INSERT INTO `user` (`id`, `email`, `password`, `username`, `handle`, `sex`, `birthyear`, `birthmonth`, `birthday`, `blood_type`, `current_province`, `current_city`, `current_area`, `admin_level`, `commend`, `active`, `ctime`, `identity`, `score`) VALUES
+(1, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '管理员', NULL, '1', 0, 0, NULL, NULL, NULL, NULL, NULL, '1', 0, 1, 1260770048, 1, 1000),
+(2, 'huanghuibin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '黄大', NULL, '1', 0, 0, NULL, NULL, '1963', '2074', NULL, '0', NULL, 1, 1260770264, 1, 0),
+(3, 'dfas@good.com', 'xmdasd', '叮当猫', NULL, '0', 0, 0, NULL, NULL, NULL, NULL, NULL, '0', NULL, 0, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5628,3 +5241,7 @@ INSERT INTO `vote_user` (`id`, `uid`, `username`, `vid`, `option`, `ctime`) VALU
 (12, 2, 'test', 9, 'a:1:{i:47;s:6:"网物";}', 1257233574),
 (13, 911, 'hope00000062', 11, 'a:1:{i:52;s:6:"同意";}', 1257402987),
 (14, 1, 'he21cn', 12, 'a:1:{i:56;s:6:"网球";}', 1259130156);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
