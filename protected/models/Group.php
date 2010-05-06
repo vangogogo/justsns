@@ -71,7 +71,7 @@ class Group extends CActiveRecord
 			// Please remove those attributes that should not be searched.
 			array('id, uid, name, intro, logo, announce, cid0, cid1, membercount, threadcount, postcount, type, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'safe', 'on'=>'search'),
 			
-			array('name,type,cid0','required', 'on' => 'create'),
+			array('name,type,cid0,intro','required', 'on' => 'create'),
 			array('name', 'checkGroupName', 'on'=> 'create'),
 			
 		);
@@ -100,8 +100,8 @@ class Group extends CActiveRecord
 			'intro' => '概况',
 			'logo' => 'Logo',
 			'announce' => '公告',
-			'cid0' => '分类1',
-			'cid1' => '分类2',
+			'cid0' => '群大类',
+			'cid1' => '子类',
 			'membercount' => '成员数',
 			'threadcount' => '话题数',
 			'postcount' => '回复数',

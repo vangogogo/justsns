@@ -1,11 +1,10 @@
 <?php
-    include('_top.php');
+ include('_top.php');
 ?>
+
 <?php
-		$CS=Yii::app()->jformvalidate;
-		echo $CS->beginForm(); 
-		$CS->setScenario($form->scenario);
-		$CS->setOptions(array(
+		echo EHtml::beginForm(); 
+		EHtml::setOptions(array(
 		
 			//'errorLabelContainer' 	=> 'div.container ul',
 			//'errorContainer'		=> 'div.container',
@@ -37,7 +36,7 @@
 		<li>
 			<div class="cl">用户名：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activeTextField($form,'username',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activeTextField($form,'username',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -84,9 +83,9 @@
 						$days[$i] = $i;
 					}										
 				?>
-				<?php echo $CS->activeDropDownList($form,'birthyear',$years,array('empty'=>'')); ?>年 
-				<?php echo $CS->activeDropDownList($form,'birthmonth',$months,array('empty'=>'')); ?>月 
-				<?php echo $CS->activeDropDownList($form,'birthday',$days,array('empty'=>'')); ?>日											
+				<?php echo EHtml::activeDropDownList($form,'birthyear',$years,array('empty'=>'')); ?>年 
+				<?php echo EHtml::activeDropDownList($form,'birthmonth',$months,array('empty'=>'')); ?>月 
+				<?php echo EHtml::activeDropDownList($form,'birthday',$days,array('empty'=>'')); ?>日											
 			</div>
 			<div class="c"></div>
 		</li>
@@ -94,7 +93,7 @@
 			<div class="cl">居住城市：</div>
 			<div class="cc">
 			<input type="hidden" name="ts_areaval" id="ts_areaval"/>
-				<?php echo $CS->activeTextField($form,'area',array('class'=>'t_input','style'=>"width:165px;float:left;")); ?>
+				<?php echo EHtml::activeTextField($form,'area',array('class'=>'t_input','style'=>"width:165px;float:left;")); ?>
 
 				<input alt="<?php echo Yii::app()->createUrl('/site/getArea',array('pid'=>'0'));?>" title="选择地区" type="button" class="btn_b thickbox" value="选择地区" level='2' selectArea="true" style="float:left; margin-left:5px;" areatype="areaval" >
 			</div>
@@ -114,7 +113,7 @@
 		<li>
 			<div class="cl">血型：</div>
 			<div class="cc">
-				<?php echo $CS->activeDropDownList($form,'blood_type',$form->getBloodTypes(),array('empty'=>'')); ?>									
+				<?php echo EHtml::activeDropDownList($form,'blood_type',$form->getBloodTypes(),array('empty'=>'')); ?>									
 			</div>
 			<div class="c"></div>
 		</li>
@@ -126,4 +125,4 @@
 		</li>
 	</ul>
 </div><!-- 修改密码 end  -->
-<?php echo $CS->endForm(); ?>
+<?php echo EHtml::endForm(); ?>

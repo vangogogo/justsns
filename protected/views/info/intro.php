@@ -1,11 +1,9 @@
-<?php
-    include('_top.php');
+<?php include('_top.php');
 ?>
+
 <?php
-		$CS=Yii::app()->jformvalidate;
-		echo $CS->beginForm(); 
-		$CS->setScenario($form->scenario);
-		$CS->setOptions(array(
+		echo EHtml::beginForm(); 
+		EHtml::setOptions(array(
 		
 			//'errorLabelContainer' 	=> 'div.container ul',
 			//'errorContainer'		=> 'div.container',
@@ -31,7 +29,7 @@
 		
 ?>
 <div class="data jsvform" style="padding-top:30px;"><!-- 修改密码 begin  -->
-<?php echo CHtml::errorSummary($form);?>
+<?php echo EHtml::errorSummary($form);?>
 	<div style="padding: 10px 0px;" class="lh18 alC border cGray2">
 		为了更好地保护你的账户安全，需要验证你拥有这个Email地址。
 		<br/>
@@ -48,7 +46,7 @@
 		<li>
 			<div class="cl">新email：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activeTextField($form,'email',array('class'=>'t_input','value'=>$form->email)); ?>
+				<?php echo EHtml::activeTextField($form,'email',array('class'=>'t_input','value'=>$form->email)); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -68,7 +66,7 @@
 			<div class="cl">验证码：<em>*</em></div>
 			<div class="cc">
 				<?php $this->widget('CCaptcha'); ?><br/>
-				<?php echo $CS->activeTextField($form,'verifyCode',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activeTextField($form,'verifyCode',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -91,4 +89,4 @@
 		</li>
 	</ul>
 </div><!-- 修改密码 end  -->
-<?php echo $CS->endForm(); ?>
+<?php echo EHtml::endForm(); ?>
