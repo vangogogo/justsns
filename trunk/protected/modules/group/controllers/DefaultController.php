@@ -17,14 +17,13 @@ class DefaultController extends Controller
 		$uid = Yii::app()->user->id;
 		
 		$model = new Group();
-		$model->scenario = 'modify';
+		$model->scenario = 'create';
 		if(!empty($_POST['Group']))
 		{
-			$attributes = $_POST['user'];
+			$attributes = $_POST['Group'];
 			$model->attributes = $attributes;
 			$model->validate();
 		}
-		var_dump($model->errors);
 		
 		$data = array(
 			'owner'=>$owner,

@@ -1,8 +1,6 @@
 <?php
-	$CS=Yii::app()->jformvalidate;
-	echo $CS->beginForm(); 
-	$CS->setScenario("reg");
-	$CS->setOptions(array(
+	echo EHtml::beginForm(); 
+	EHtml::setOptions(array(
 	
 		//'errorLabelContainer' => 'div.container ul',
 		//'errorContainer'		=> 'div.container',
@@ -31,14 +29,14 @@
 		<p class="cGray">{$site_opts.site_name}是帮助你与朋友、同事、同学、家人保持更紧密联系的真实社交平台，在这里你可以及时了解他们的最新动态；结识更多的新朋友</p>
 
 
-<?php echo CHtml::errorSummary($form);?>
+<?php echo EHtml::errorSummary($form);?>
 			<input type="hidden" name="code" value="{$code}">
 		  
 			<ul>
 				<li>
 					<div class="cl">您的Email：<em>*</em></div>
 					<div class="cc">
-						<?php echo $CS->activeTextField($form,'email',array('class'=>'t_input')); ?>
+						<?php echo EHtml::activeTextField($form,'email',array('class'=>'t_input')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">
@@ -56,7 +54,7 @@
 				<li>
 					<div class="cl">设置登录密码：<em>*</em></div>
 					<div class="cc">
-						<?php echo $CS->activePasswordField($form,'password',array('class'=>'t_input')); ?>
+						<?php echo EHtml::activePasswordField($form,'password',array('class'=>'t_input')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">
@@ -77,7 +75,7 @@
 				<li>
 					<div class="cl">再输入一遍密码：<em>*</em></div>
 					<div class="cc">
-						<?php echo $CS->activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
+						<?php echo EHtml::activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">
@@ -97,7 +95,7 @@
 				<li>
 					<div class="cl">你的姓名：<em>*</em></div>
 					<div class="cc">
-						<?php echo $CS->activeTextField($form,'username',array('class'=>'t_input')); ?>
+						<?php echo EHtml::activeTextField($form,'username',array('class'=>'t_input')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">
@@ -144,9 +142,9 @@
 								$days[$i] = $i;
 							}										
 						?>
-				<?php echo $CS->activeDropDownList($form,'birthyear',$years,array('empty'=>'')); ?>年 
-				<?php echo $CS->activeDropDownList($form,'birthmonth',$months,array('empty'=>'')); ?>月 
-				<?php echo $CS->activeDropDownList($form,'birthday',$days,array('empty'=>'')); ?>日													
+				<?php echo EHtml::activeDropDownList($form,'birthyear',$years,array('empty'=>'')); ?>年 
+				<?php echo EHtml::activeDropDownList($form,'birthmonth',$months,array('empty'=>'')); ?>月 
+				<?php echo EHtml::activeDropDownList($form,'birthday',$days,array('empty'=>'')); ?>日													
 					</div>
 					<div class="c"></div>
 					
@@ -156,7 +154,7 @@
 					 <div class="cl">居住城市：</div>
 					<div class="cc">
 					<input type="hidden" name="ts_areaval" id="ts_areaval"/>
-						<?php echo $CS->activeTextField($form,'area',array('class'=>'t_input','style'=>"width:165px;float:left;")); ?>
+						<?php echo EHtml::activeTextField($form,'area',array('class'=>'t_input','style'=>"width:165px;float:left;")); ?>
 
 						<input alt="<?php echo Yii::app()->createUrl('/site/getArea',array('pid'=>'0'));?>" title="选择地区" type="button" class="btn_b thickbox" value="选择地区" level='2' selectArea="true" style="float:left; margin-left:5px;" areatype="areaval" >
 					</div>
@@ -191,7 +189,7 @@
 					<div class="cl">验证码：<em>*</em></div>
 					<div class="cc">
 						<?php $this->widget('CCaptcha'); ?><br/>
-						<?php echo $CS->activeTextField($form,'verifyCode',array('class'=>'t_input')); ?>
+						<?php echo EHtml::activeTextField($form,'verifyCode',array('class'=>'t_input')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">
@@ -218,4 +216,4 @@
 				</li>
 			</ul>
 
-	</div><?php echo $CS->endForm(); ?>
+	</div><?php echo EHtml::endForm(); ?>

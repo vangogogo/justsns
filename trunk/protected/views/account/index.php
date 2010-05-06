@@ -1,9 +1,7 @@
 <?php include('_top.php');?>
 <?php
-	$CS=Yii::app()->jformvalidate;
-	echo $CS->beginForm(); 
-	$CS->setScenario($form->scenario);
-	$CS->setOptions(array(
+	echo EHtml::beginForm(); 
+	EHtml::setOptions(array(
 	
 		//'errorLabelContainer'	=> 'div.container ul',
 		//'errorContainer'		=> 'div.container',
@@ -29,12 +27,12 @@
 		
 ?>
 <div class="data jsvform" style="padding-top:30px;"><!-- 修改密码 begin  -->
-<?php echo CHtml::errorSummary($form);?>
+<?php echo EHtml::errorSummary($form);?>
 	<ul>
 		<li>
 			<div class="cl">当前密码：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activePasswordField($form,'oldpassword',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activePasswordField($form,'oldpassword',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -52,7 +50,7 @@
 		<li>
 			<div class="cl">新密码：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activePasswordField($form,'password',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activePasswordField($form,'password',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -70,7 +68,7 @@
 		<li>
 			<div class="cl">再输入一遍密码：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -93,4 +91,4 @@
 		</li>
 	</ul>
 </div><!-- 修改密码 end  -->
-<?php echo $CS->endForm();?>
+<?php echo EHtml::endForm();?>
