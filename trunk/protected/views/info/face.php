@@ -9,12 +9,12 @@
 		<td width="190" align="center" valign="top">
 			<div class="len_bbs_userpic" id="userfacediv">
 			 <div class="headpic100">
-<img name="userface" id="userface" onerror="this.onerror=null;this.src='<?php echo Yii::app()->params['upload_dir'].'userface/_middle_face.jpg'?>'" src="<?php echo Yii::app()->params['upload_dir'].'userface/'.Yii::app()->user->id.'_middle_face.jpg'?>?<?php echo time();?>"/>
+<img name="userface" id="userface" src="<?php echo Yii::app()->params['upload_dir'].'userface/'.Yii::app()->user->id.'_middle_face.jpg'?>?<?php echo time();?>"/>
 			 </div>
 			</div>
 
 
-			<table name="tbface" id="tbface" width="98%" border="0" cellpadding="3" cellspacing="1" style="display:none;">
+			<table id="tbface" width="98%" border="0" cellpadding="3" cellspacing="1" style="display:none;">
 				<tr>
 					<td  bgcolor="#FFFFFF">
 						<div id="">
