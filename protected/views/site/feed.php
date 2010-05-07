@@ -28,7 +28,7 @@
             <div class="RC" id="feed_body_{$feed.id}">
                 <div <?php if($feed["type"] == "mini"){?> class="bg_huifu" <?php }?> >
                     <?php if($feed['type'] == 'mini'){?>
-                    <include file="../Public/feed_comment" /> {$feed.body}
+                    {$feed.body}
                     <?php }else{?>
                     {$feed.body}
                     <?php }?>

@@ -1,10 +1,9 @@
 <?php
 	echo EHtml::beginForm(); 
 	EHtml::setOptions(array(
-	
 		//'errorLabelContainer' => 'div.container ul',
 		//'errorContainer'		=> 'div.container',
-		'errorElement'			=> "div",
+		'errorElement'			=> 'div',
 		//'wrapper' 			=> 'li',
 		'errorClass' 			=> 'invalid',
 		
@@ -155,7 +154,6 @@
 					<div class="cc">
 					<input type="hidden" name="ts_areaval" id="ts_areaval"/>
 						<?php echo EHtml::activeTextField($form,'area',array('class'=>'t_input','style'=>"width:165px;float:left;")); ?>
-
 						<input alt="<?php echo Yii::app()->createUrl('/site/getArea',array('pid'=>'0'));?>" title="选择地区" type="button" class="btn_b thickbox" value="选择地区" level='2' selectArea="true" style="float:left; margin-left:5px;" areatype="areaval" >
 					</div>
 					<div class="cr">

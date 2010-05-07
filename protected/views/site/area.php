@@ -34,7 +34,7 @@
 	</div>
 	<div id="selectmessage" style="margin: 3px; color: red; clear: both; text-align: left;"> 
 		<span style="margin-left: 5px;" id="select_1">北京</span>
-		<span style="margin-left: 5px;" id="select_2"/>
+		<span style="margin-left: 5px;" id="select_2"></span>
 	</div>
 	<div id="f_button" class="btm"><input type="button" onclick="save()" value="确 定" class="btn_b" name="input"/><input type="button" onclick="ymPrompt.close();" value="取 消" class="btn_w" name="input2"/></div>	
 </div>

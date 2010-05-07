@@ -23,9 +23,19 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery-ui-1.7.2.custom.min.js');
 Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
+
+
 //colorbox
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.js');
 Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.css');
+
+/*
+//fancybox
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.mousewheel-3.0.2.pack.js');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.1.js');
+Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.1.css');
+*/
+
 // blueprint CSS framework
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/screen.css','screen, projection');
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/print.css','print');
@@ -33,10 +43,11 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/print
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/public.css');
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
 ?>	
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <!--[if lt IE 8]>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/ie.css" media="screen, projection" />
 <![endif]-->
+
 </head>
 
 <body>
