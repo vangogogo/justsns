@@ -1,5 +1,5 @@
 <div class=page_title> <!-- page_title begin -->
-	<h2><img src="../Public/images/applications.gif" />帐号管理</h2>
+	<h2><img src="<?php echo Yii::app()->theme->baseUrl;?>/public/images/applications.gif" />帐号管理</h2>
 	<div class="c"></div>
 </div><!-- page_title end -->
 <!-- 切换标签 begin  -->
