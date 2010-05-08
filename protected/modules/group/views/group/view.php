@@ -107,7 +107,7 @@
             <div class="c3"></div>
        	  </li>
        	  <?php if(is_array($fileList)): ?><?php $i = 0;?><?php $__LIST__ = $fileList?><?php if( count($__LIST__)==0 ) : echo "" ; ?><?php else: ?><?php foreach($__LIST__ as $key=>$file): ?><?php ++$i;?><?php $mod = ($i % 2 )?><li>
-   	    	<div class="c1"><img src="../Public/images/icon/<?php echo ($file["filetype"]); ?>.gif" /> <a href="__APP__/Dir/file/gid/<?php echo ($gid); ?>/fid/<?php echo ($file["id"]); ?>"><?php echo ($file["name"]); ?></a></div>
+   	    	<div class="c1"><img src="../public/images/icon/<?php echo ($file["filetype"]); ?>.gif" /> <a href="__APP__/Dir/file/gid/<?php echo ($gid); ?>/fid/<?php echo ($file["id"]); ?>"><?php echo ($file["name"]); ?></a></div>
             <div class="c2"><?php echo (formatsize($file["filesize"])); ?></div>
             <div class="c3"><a href="javascript: download(<?php echo ($file['id']); ?>);">下载</a></div>
        	  </li><?php endforeach; ?><?php endif; ?><?php else: echo "" ;?><?php endif; ?>

@@ -17,11 +17,18 @@
 		var TPIS		=	'0';
 	//-->
 	</script>
+	<script src="http://www.google.com/jsapi"></script>
+	<script>
+		// Load jQuery
+		google.load("jquery", "1.4.2");
+		google.load("jqueryui", "1.8.1");
+	</script>
 <?php
+/*
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+ */
 
-Yii::app()->clientScript->registerCoreScript('jquery');
-
-Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery-ui-1.7.2.custom.min.js');
 Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
 
 

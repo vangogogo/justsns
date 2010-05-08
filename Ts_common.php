@@ -355,7 +355,7 @@ function getUserFace($uid, $size = 'small') {
 
     if(!file_exists($face_file)) {
     //  $face_path =  __PUBLIC__.'/images/noface/';
-    //$face_path2  =  C("TS_URL").'/Public/images/noface/';
+    //$face_path2  =  C("TS_URL").'/public/images/noface/';
     //$uid       =  "noface";
 
         $uid  =  abs(intval($uid));
