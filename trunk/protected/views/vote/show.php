@@ -27,14 +27,14 @@
 			{:W('Report',array( 'type'=>'投票举报','appid'=>$APPINFO['APP_ID'],'url'=>'Index/pollDetail/id/'.$vote['id'],'title'=>$vote['title'],'recordId'=>$vote['id'] ))}<?php if(0 AND isAddApp('share')) {  ?><input type="button" value="分享" class="BtnShare" style="margin-left:10px;" onclick="ts_sharePop('{$vote.id}','__URL__')" id="BtnShare_{$vote.id}"/>
 			<?php } } ?></div>
 		<div>
-			<span>发起时间：<?php echo friendlyDate('Y-m-d',$vote->ctime);?></span><br/>
+			<span>发起时间：<?php echo friendlyDate('Y-m-d H:i:s',$vote['ctime']);?></span><br/>
 			<span>已投票数：<?php echo $vote->votercount;?></span><br/>
-			<span>截止时间：<?php echo date('Y-m-d H:i:s',$vote['expiration']) ?></span>
+			<span>截止时间：<?php echo friendlyDate('Y-m-d H:i:s',$vote['expiration']) ?></span>
 		</div>
 	</div>
 	<div style="width:70%; margin:0 auto;">
 		<h1 class="alC lh35 f14px"><span class="f14px fB cBlue"><?php echo $vote->subject;?></span><span class="cGray2" >(可选<span id="most_vote_num"><?php echo intval( $vote['maxchoice'])+1; ?></span>个)</span></h1>
-		<p class="cGray2">{$vote.explain}</p>
+		<p class="cGray2"><?php echo $vote['message'];?></p>
 	</div>
 
 	<div class="LogList" style="width:100%; ">
@@ -96,12 +96,12 @@
 
 	<div class="circs" style="padding-bottom:20px;">
 		<?php if( $empty_friend ){ ?>
-		{$join}还没有投票
+		<?php echo $join ?>还没有投票
 		<?php }else{ ?>
 		<dl>
-			<dt>{$join}的投票情况：</dt>
+			<dt><?php echo $join ?>的投票情况：</dt>
 			<div class ="vote_opts">
-			<?php if(!empty($vote->log2)){ foreach($vote->log as $key => $vo)	{?>
+			<?php if(!empty($$vote_log)){ foreach($vote_log as $key => $vo)	{?>
 				<?php if( true === $vo['isFriend'] || true === $vo['admin'] || true == $vo['Show'] ){ ?>
 				<dd><div class="left mt5" style="width:20px;"><?php if( true == $vo['isFriend'] ){ ?><img src="../Public/images/haoyou.gif"><?php } ?><?php if( $mid == $vo['uid'] ){ ?><img src="../Public/images/arrow_y.gif"><?php } ?>&nbsp;</div><div class="left" style="width:760px;"><a href="__TS__/space/{$vo.uid}">{$vo.name}</a> {$vo.cTime|friendlyDate}&nbsp;&nbsp;投票给“{$vo.opts}”</div> </dd>
 				<?php } ?>

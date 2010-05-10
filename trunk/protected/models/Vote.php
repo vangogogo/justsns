@@ -169,4 +169,22 @@ class Vote extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/**
+	 * 获得投票记录
+	 * @return array
+	 */
+	public function getVoteLog()
+	{
+		return $this->log?$this->log:array();
+	}
+	
+	/**
+	 * 获得投票项
+	 * @return array
+	 */
+	public function getVoteOption()
+	{
+		return $this->option?$this->option:array();
+	}	
 }

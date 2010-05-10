@@ -76,7 +76,7 @@ padding:3px 2px;
 .page_title h2 img {float:left;height:24px;margin-right:5px;width:24px;}
 /*心情样式*/
 .page_title h2 img { height:24px; width:24px; float:left; margin-right:5px }
-.page_title h2 { font-size:14px; color:#000000; font-weight:bold; line-height:25px; float:left; height:25px; margin-bottom:10px; clear:both }
+.page_title h2 { font-size:14px; color:#000000; font-weight:bold; line-height:25px; height:25px; clear:both }
 .data { clear: both; }
 .data ul { padding: 0px; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; }
 .data ul li { clear: both; overflow: hidden; width: 100%; line-height: 24px; margin: 5px 0; }
