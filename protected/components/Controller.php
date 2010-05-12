@@ -44,4 +44,25 @@ class Controller extends CController
 			),
 		);
 	}
+	
+	/**
+	 * @var array the breadcrumbs of the current page. The value of this property will
+	 * 所有Controller的重定向跳转
+	 */
+	public function redirectMessage($message, $url = array('/'), $delay=3, $type = 'success' , $script='')
+	{
+		//$this->layout=false;
+		if(is_array($url))
+		{
+			$route=isset($url[0]) ? $url[0] : '';
+			$url=$this->createUrl($route,array_splice($url,1));
+		}
+		return $this->render('/redirect', array(
+			'message' => $message,
+			'url' => $url,
+			'delay' => $delay,
+			'script' => $script,
+			'type' => $type,
+		));
+	}
 }

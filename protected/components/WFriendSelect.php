@@ -11,6 +11,6 @@ class WFriendSelect extends CWidget
 	{
 		$items=array();
 
-		$this->render('FriendSelect',array('id'=>''));
+		$this->render('WFriendSelect',array('id'=>''));
 	}
 }
