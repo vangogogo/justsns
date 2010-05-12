@@ -6,13 +6,9 @@ a {color:#005FAB;text-decoration:none;}
 .container {width:1000px;}
 .column1 #content{background:none;padding:20px;border-left:1px solid #D1D1D1}
 .error_info {display:none;}
-.cc .invalid {background:#FBE6F2;border:1px solid #D893A1;color:#996633;}
+.cc .invalid,input.error,select.error,textarea.error {background:#FBE6F2;border:1px solid #D893A1;color:#996633;}
 
-textarea, input, select {
-border:1px solid #DDDDDD;
-line-height:16px;
-padding:3px 2px;
-}
+textarea, input, select {border:1px solid #DDDDDD;line-height:16px;padding:3px 2px;}
 
 #header { height:40px; width:1000px; text-align:left; position:relative; margin-right: auto; margin-left: auto; background-image: url(../images/header_bg.gif); background-repeat: repeat-x; background-position: 0px 0px; background-color: #1f73bb; }
 #header #logo { float:left; position:absolute; top:0px; left:0px; font-weight:700; font-size:28px;}
