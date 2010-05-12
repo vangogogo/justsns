@@ -1,7 +1,9 @@
 <div style="height:30px;">&nbsp;</div>
+<?php if(!empty($model->errors)):?>
 <div class="LoginBox_msg">
 	<?php echo CHtml::errorSummary($model); ?>
 </div>
+<?php endif;?>
 	<div class="LoginBox border bg01">
 		<h1 class="cBlue">登录{$site_opts.site_name}</h1>
 			<?php echo CHtml::beginForm(); ?>

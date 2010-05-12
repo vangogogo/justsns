@@ -29,7 +29,8 @@ class UserIdentity extends CUserIdentity
 			$this->_id=$user->id;
 
 			$this->setState('email', $user->email);
-
+			$this->setState('name', $user->username);
+			
 			//$this->setState('role', '管理员');
 			//保存登录记录
 
