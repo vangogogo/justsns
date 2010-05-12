@@ -32,6 +32,6 @@ class WFriendGroup extends CWidget
         	'url' => $url,
         );
 
-		$this->render('FriendGroup',$data);
+		$this->render('WFriendGroup',$data);
 	}
 }
