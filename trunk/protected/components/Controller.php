@@ -46,7 +46,10 @@ class Controller extends CController
 	}
 	
 	/**
-	 * @var array the breadcrumbs of the current page. The value of this property will
+	 * @var string $message 显示内容
+	 * @var array $url 路由
+	 * @var int $delay 跳转时间
+	 * @var $type 显示样式
 	 * 所有Controller的重定向跳转
 	 */
 	public function redirectMessage($message, $url = array('/'), $delay=3, $type = 'success' , $script='')

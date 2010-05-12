@@ -14,7 +14,6 @@ class VoteController extends Controller
 	public function actionIndex()
 	{
 		$uid = Yii::app()->user->id;
-
 		$model = new Vote();
 		 //初始化
 		$criteria=new CDbCriteria;
