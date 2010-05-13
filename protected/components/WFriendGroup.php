@@ -24,13 +24,13 @@ class WFriendGroup extends CWidget
 
 		if($_GET["uid"]) $other = "/uid/".$_GET["uid"];
 		
-       // $data["cur_url"] = isset( $data['this_url'] ) ? $data['this_url']:C("TS_URL")."/index.php?s=/".MODULE_NAME."/".ACTION_NAME.$other;
-        $url = $this->url;
-        
-        $data = array(
-        	'groups' => $groups,
-        	'url' => $url,
-        );
+		// $data["cur_url"] = isset( $data['this_url'] ) ? $data['this_url']:C("TS_URL")."/index.php?s=/".MODULE_NAME."/".ACTION_NAME.$other;
+		$url = $this->url;
+		
+		$data = array(
+			'groups' => $groups,
+			'url' => $url,
+		);
 
 		$this->render('WFriendGroup',$data);
 	}
