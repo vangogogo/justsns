@@ -57,7 +57,7 @@
 						<div class="left" style="width: 30px;">
 							<?php
 								$des = "投票";
-								if( $has_vote == true || $vote['expiration'] <= time() || ( '1' == $vote['onlyfriend'] && $mid != $vote['uid'] && false == $api->friend_areFriends( $mid,$vote['uid'] )  ) ){
+								if( $has_vote == true || $vote['expiration'] <= time() || ( '1' == $vote['novote'] && $mid != $vote['uid'] && false == $api->friend_areFriends( $mid,$vote['uid'] )  ) ){
 								$css = "disabled";
 								$des = "仅好友可投票";
 								} ?>
@@ -78,7 +78,7 @@
 			<?php }elseif( $has_vote ){ ?>
 			<span class="cRed">您已经投过票</span>
 			<?php }else{ ?>
-			<div class="left"><input name="" type="button" style="cursor:pointer" onclick='post_vote( {$vote.type})' class="btn_b" value="{$des}" {$css}/></div>
+			<div class="left"><input name="" type="button" style="cursor:pointer" onclick='post_vote( {$vote.type})' class="btn_b" value="<?php echo $des?>" {$css}/></div>
 			<?php } ?>
 		</form>
 		<div class="clear"></div>
@@ -113,5 +113,5 @@
 	</div>
 
 
-	<div style="width:637px">{:W('Comment',array( 'type'=>'vote','appid'=>$vote['id'],'mid'=>$vote['uid'],"face"=>getUserFace( $mid ),'role'=>1 ))}</div>
+	<div style="width:637px"><?php $this->widget('WComment',array('type'=>'vote','appid'=>$vote['id'],'mid'=>$vote['uid'],'face'=>getUserFace($mid),'role'=>1 ));?></div>
 </div>

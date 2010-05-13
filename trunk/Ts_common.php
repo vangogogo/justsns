@@ -9,6 +9,10 @@ function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') 
     $dDay		=	intval(date("Ymd",$cTime)) - intval(date("Ymd",$sTime));
     $dYear		=	intval(date("Y",$cTime)) - intval(date("Y",$sTime));
     //normal：n秒前，n分钟前，n小时前，日期
+    if($dTime < 0)
+    {
+    	return date($show,$sTime);
+    }
     if($type=='normal') {
         if( $dTime < 60 ) {
             return $dTime."秒前";
