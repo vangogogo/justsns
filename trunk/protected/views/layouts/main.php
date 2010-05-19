@@ -10,7 +10,7 @@
 		var	APP			=	'/yiisns/';
 		var	PUBLIC		=	'http://localhost/yiisns/public';
 		var	ROOT		=	'http://localhost/yiisns';
-		var TS			=	'http://localhost/yiisns/index.php?r=';
+		var TS			=	'http://localhost/yiisns/';
 		var MID			=	'0';
 		var NEED_LOGIN	=	'0';
 		var expire		=	'3600';

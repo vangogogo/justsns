@@ -23,14 +23,14 @@
 		  <div>
 		  <textarea id ="mini-coment" name="content" rows="" wrap="virtual" class="WB" onkeyup="fot(this)" onkeydown="fot(this)"></textarea>
 		  </div>
-		  <div class="phiz_box">
-		  <div class="phiz" style="display:none;top: 0px;left: 0px;">
-			<?php if(!empty($icon_list)) foreach($icon_list as $i =>$value){?>
-			<div class="ico_link">
-			  <img onclick="insert(this,<?php echo $i?>);" title="<?php echo $value->title?>" emotion="<?php echo $value->emotion?>" src="<?php echo Yii::app()->request->baseUrl.'/images/biaoqing/mini/'.$value->filename?>"/>
+		<div class="phiz_box">
+			<div class="phiz" style="display:none;top: 0px;left: 0px;">
+				<?php if(!empty($icon_list)) foreach($icon_list as $i =>$value){?>
+				<div class="ico_link">
+				  <img onclick="insert(this,<?php echo $i?>);" title="<?php echo $value->title?>" emotion="<?php echo $value->emotion?>" src="<?php echo Yii::app()->request->baseUrl.'/images/biaoqing/mini/'.$value->filename?>"/>
+				</div>
+				<?php }?>
 			</div>
-			<?php }?>
-		</div>
 		</div>
 		</div>
 		<div class="left pt5 pl5"><input type="submit" class="btn_big" onclick="doAdd()" value="发布" /></div>

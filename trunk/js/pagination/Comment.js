@@ -55,7 +55,7 @@ function pageselectCallback(page_id, jq){
   var page = page_id+1; //鼠标按的页数
   $( '#comment >ul' ).html("");
   $( '#loadding' ).html( "<img src= \""+PUBLIC+"/images/logging.gif\">" );
-  $( '#comment > ul' ).load( TS+"/Comment/getComment/p/"+page,{type:type,id:appid,mid:mid},function(){
+  $( '#comment > ul' ).load( TS+"Comment/getComment/p/"+page,{type:type,id:appid,mid:mid},function(){
         $( '#loadding' ).html( '' );
       
       });
@@ -79,9 +79,9 @@ function pageselectCallback(page_id, jq){
 
     function insertBQ(_this,bid){
         var emotion = $(_this).attr("emotion");
-        var old_con = $("#content").val();
+        var old_con = $("#content1").val();
         var new_con = old_con+emotion;
-        $("#content").val(new_con);
+        $("#content1").val(new_con);
         $( '#smileylist' ).hide();
     }
 
@@ -132,10 +132,10 @@ function getComments(){
 
     $( '#loadding' ).html( "<img src= \""+PUBLIC+"/images/logging.gif\">" );
     //加载初始化的数据
-    $( '#comment > ul' ).load( TS+"/Comment/getComment",{type:type,id:appid,mid:mid},function( result ){
+    $( '#comment > ul' ).load( TS+"Comment/getComment",{type:type,id:appid,mid:mid},function( result ){
       $( '#loadding' ).html( "" );
-           showTips();
-        $.post( TS+"/Comment/getCount/",{type:type,id:appid,mid:mid},function( count ){
+           //showTips();
+        $.post( TS+"Comment/getCount/",{type:type,id:appid,mid:mid},function( count ){
           if( count != -1 && count >100 ){
             var data_count = count;
             var items_per_page = 10; //每页显示多少条数据
@@ -197,7 +197,7 @@ function addComment(_this){
 
   //检查字数
   if( JHshStrLen( content ) >= 4000 ) {
-  Alert( "最多2000个中文字符" );
+  Alert("最多2000个中文字符" );
   _this.attr( 'disabled',false );
   _this.val( Abottom );
   return;
@@ -208,18 +208,20 @@ function addComment(_this){
   _this.val( Abottom );
   return;
   }
-  $.post( TS+"/Comment/doAddComment",{comment:content,type:type,appid:appid,toId:toId,quietly:quietly,filed:filed},function( txt ){
+  $.post( TS+"Comment/doAddComment",{comment:content,type:type,appid:appid,toId:toId,quietly:quietly,filed:filed},function( txt ){
       if( txt != -1 ){
           var a = new Array();
+          /*
           JSON.parse( txt,function( key,value ){
               a[key] = value;
             });
+            
           $( '#comment > ul' ).prepend( replaceComment(a) );
           $( '#content' ).val( "" );
           
           _this.val( Abottom );
           _this.removeAttr( 'disabled');
-          
+          */
           //发送动态回调函数
           try{
         	commentSuccess(txt);
@@ -265,7 +267,7 @@ return
   _this.val( Abottom );
   return
   }
-  $.post( TS+"/Comment/doAddComment",{comment:content,type:type,appid:appid,toId:toId,quietly:quietly,filed:filed},function( txt ){
+  $.post( TS+"Comment/doAddComment",{comment:content,type:type,appid:appid,toId:toId,quietly:quietly,filed:filed},function( txt ){
       if( txt != -1 ){
           var a = new Array();
           JSON.parse( txt,function( key,value ){

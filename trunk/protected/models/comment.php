@@ -116,4 +116,32 @@ class comment extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getComments($type,$appid,$page = 0)
+	{
+		$model = self::model();
+		$comments = $model->findAll($criteria);
+		return $comments;
+		 //初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime DESC';
+		$criteria->condition="type=:type AND appid=:appid";
+		$criteria->params=array(':type'=>$type,':appid'=>$appid);
+		$comments = $model->findAll($criteria);
+	
+		return $commets;
+	}
+	
+	public function getCount($type,$appid,$page = 0)
+	{
+		$model = self::model();
+		 //初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime DESC';
+		$criteria->condition="type=:type AND appid=:appid";
+		$criteria->params=array(':type'=>$type,':appid'=>$appid);
+		$comments = $model->findAll($criteria);
+	
+		return $commets;
+	}	
 }
