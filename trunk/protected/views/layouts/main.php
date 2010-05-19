@@ -22,7 +22,7 @@
 Yii::app()->clientScript->registerCoreScript('jquery');
 
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery-ui-1.7.2.custom.min.js');
-Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
 
 
 //colorbox
