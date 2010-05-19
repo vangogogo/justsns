@@ -13,14 +13,8 @@ class WMini extends CWidget
 		
 		$uid = Yii::app()->user->id;
 		
-		$model = new mini();
-		 //初始化
-		$criteria=new CDbCriteria;
-		$criteria->order='ctime DESC';
-		$criteria->condition="uid=:uid";
-		$criteria->params=array(':uid'=>$uid);
-		
-		$mini = $model->find($criteria);
+		$model = new Mini();
+		$mini =$model->getLastMiniByUid($uid);
 		
 		$icon_list = smile::model()->findAll();
 		

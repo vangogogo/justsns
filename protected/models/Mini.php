@@ -177,5 +177,78 @@ class Mini extends CActiveRecord
 			$this->status = 0;
 		}
 		return true;
-	}	
+	}
+	
+	public function getLastMiniByUid($uid)
+	{
+		$model = self::model();
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime DESC';
+		$criteria->condition="uid=:uid";
+		$criteria->params=array(':uid'=>$uid);
+		
+		$mini = $model->find($criteria);
+		$content = $mini['content'];
+		
+		$bq_path = "<img src='".__PUBLIC__."/images/biaoqing/{$smiletype}/";
+		foreach($bq_emotion as $v){
+			$one_mini["content"] =  str_replace($v["emotion"], $bq_path.$v['filename']."'>", $one_mini["content"]);
+		}
+		$mini['content'] = $content;
+		return $mini;
+	}
+	
+	public function getIconList()
+	{
+		$icon_list = smile::model()->findAll();
+		return $icon_list;
+	}
+
+	/**
+	 * replace 
+	 * 在数据集中替换
+	 * @param mixed $data 
+	 * @access private
+	 * @return void
+	 */
+	protected function replace( $data ){
+		$result = $data;
+
+		//修改content
+		foreach( $result as &$value ){
+			$value['content'] = str_replace('{PUBLIC_URL}',__PUBLIC__,$this->replaceContent( $value['content'] ));
+		}
+		return $result;
+	}
+
+	/**
+	 * replaceContent 
+	 * 替换内容
+	 * @param mixed $content 
+	 * @access private
+	 * @return void
+	 */
+	protected function replaceContent( $content,$temp=null ){
+		$public = isset( $temp )?$temp:'{PUBLIC_URL}';
+		$path   = $public."/images/biaoqing/".$this->config->smiletype."/";//路径
+		
+		$icon_list = $this->getIconList();
+		//循环替换掉文本中所有ubb表情
+		foreach( $this->config->ico as $value ){
+
+			$img = sprintf("<img title='%s' src='%s%s'>",$value['title'],$path,$value['filename']);
+			$content = str_replace( $value['emotion'],$img,htmlspecialchars_decode($content) );
+
+		}
+		return $content;
+	}
+
+	protected function replayPath( ){
+		$config = $this->config->replay; //回复的配置
+	}
+
+	public function setUid( $uid ){
+		$this->uid = $uid;
+	}
+
 }
