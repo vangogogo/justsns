@@ -140,8 +140,8 @@ class comment extends CActiveRecord
 		$criteria->order='ctime DESC';
 		$criteria->condition="type=:type AND appid=:appid";
 		$criteria->params=array(':type'=>$type,':appid'=>$appid);
-		$comments = $model->findAll($criteria);
+		$count = $model->count($criteria);
 	
-		return $commets;
+		return $count;
 	}	
 }
