@@ -106,7 +106,7 @@ return array(
 			// see: http://www.yiiframework.com/doc/guide/topics.url
 			'rules'=>array(
 				// www.example.com/home instead of www.example.com/site/index
-				'home'=>'site/index',
+				//'home'=>'site/index',
 				'post/<id:\d+>'=>'post/show',
 
 				'group/topic/<id:\d+>'=>'group/topic/view',
