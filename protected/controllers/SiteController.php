@@ -28,6 +28,7 @@ class SiteController extends Controller
 		{
 			$this->redirect(array('site/home'));
 		}
+		$data = array();
 		$this->render('index',$data);
 	}
 	/**
@@ -39,7 +40,7 @@ class SiteController extends Controller
 		
 		$uid = Yii::app()->user->id;
 		//用户信息
-		$owner = user::model()->with(array('mini'))->findByPk($uid);
+		$owner = User::model()->with(array('mini'))->findByPk($uid);
 		
 		//8个应用
 		$apps = App::model()->findAll();
@@ -59,7 +60,7 @@ class SiteController extends Controller
 		
 		//空间主人的好友
 		$friend_list = $owner->getUserFriends($uid);
-
+		$visitors = array();
 		$data = array(
 			'owner'=>$owner,
 			'is_me'=>$is_me,

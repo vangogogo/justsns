@@ -345,19 +345,19 @@ class FriendController extends Controller
 		{
 			$withOption= array('onlineFilter');
 
-			$total=user::model()->with($withOption)->count($criteria);
+			$total=User::model()->with($withOption)->count($criteria);
 			$criteria->distinct=true;
 		}
 		else
 		{
-			$total=user::model()->count($criteria);
+			$total=User::model()->count($criteria);
 		}
 
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$users = user::model()->with($withOption)->together()->findAll($criteria);
+		$users = User::model()->with($withOption)->together()->findAll($criteria);
 		
 		$data = array(
 			'users' => $users,

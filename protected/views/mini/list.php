@@ -3,7 +3,7 @@
 	<div class="c1">
 		<span class="headpic50">
 			<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>"  class="tips">
-				<img src="<?php echo user::model()->getUserFace($vo['uid'],'middle');?>" />
+				<img src="<?php echo User::model()->getUserFace($vo['uid'],'middle');?>" />
 			</a>
 		</span>
 	</div>

@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 		<div class="Linfo">
 			<div class="info">
-				<h2 id="host_name"><?php echo $owner->getUserName($uid).' ';echo user::model()->getUserGroupIcon();?></h2>
+				<h2 id="host_name"><?php echo $owner->getUserName($uid).' ';echo User::model()->getUserGroupIcon();?></h2>
 				<h2 id="my_name" style="display:none"><?php echo $owner->getUserName()?></h2>
 				<?php $this->widget('WMini');?>
 			</div>

@@ -26,7 +26,7 @@ class EAccess extends CApplicationComponent
 	public function refreshOnline()
 	{
 		$uid = Yii::app()->user->id;
-		$user = user::model()->findByPk($uid);
+		$user = User::model()->findByPk($uid);
 		if(!empty($user))
 		{
 			$user->refreshOnline();
