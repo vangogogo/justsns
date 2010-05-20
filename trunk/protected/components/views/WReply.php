@@ -5,7 +5,7 @@
 	<div class="RLI btmline" id="first{$id}" >
 		<div class="user_img">
 			<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$first['uid']));?>"  class="tips">
-				<img src="<?php echo user::model()->getUserFace($first['uid'],'middle');?>" />
+				<img src="<?php echo User::model()->getUserFace($first['uid'],'middle');?>" />
 			</a>
 		</div>			
 		<div class="RLC">
@@ -38,7 +38,7 @@
 	<div class="RLI btmline" id="last<?php echo $id;?>" >
 		<div class="user_img">
 			<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$last['uid']));?>"  class="tips">
-				<img src="<?php echo user::model()->getUserFace($last['uid'],'middle');?>" />
+				<img src="<?php echo User::model()->getUserFace($last['uid'],'middle');?>" />
 			</a>
 		</div>
 		<div class="RLC">
@@ -68,7 +68,7 @@
 <div class="Input_box" id="RLI<?php echo $id;?>" >
 	<div class="pic" style="display:none;" id="image<?php echo $id;?>">
 		<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$uid));?>"  class="tips">
-			<img src="<?php echo user::model()->getUserFace($uid,'middle');?>" />
+			<img src="<?php echo User::model()->getUserFace($uid,'middle');?>" />
 		</a>
 	</div>
 	<div class="box">

@@ -106,7 +106,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mini'=>array(self::HAS_ONE, 'mini', 'uid', 'order' => 't.ctime DESC'),
+			'mini'=>array(self::HAS_ONE, 'Mini', 'uid', 'order' => 't.ctime DESC'),
 			'apps'=>array(self::MANY_MANY, 'App', 'app_user(appid,uid)','order'=>'appid '),
 		);
 	}
@@ -290,7 +290,7 @@ class User extends CActiveRecord
 		}
 		else
 		{
-			$user = user::model()->findByPk($uid);
+			$user = User::model()->findByPk($uid);
 		}
 		
 		return $user->username;

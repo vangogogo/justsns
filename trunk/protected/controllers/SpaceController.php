@@ -10,7 +10,7 @@ class SpaceController extends Controller
 	{
 		$uid = Yii::app()->request->getParam('uid');
 		//用户信息
-		$owner = user::model()->with(array('mini'))->findByPk($uid);
+		$owner = User::model()->with(array('mini'))->findByPk($uid);
 		
 		//8个应用
 		$apps = App::model()->findAll();

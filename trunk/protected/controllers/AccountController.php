@@ -17,7 +17,7 @@ class AccountController extends Controller
 			$form->validate();
 
 			$uid = Yii::app()->user->id;
-			$user = user::model()->findByPk($uid);
+			$user = User::model()->findByPk($uid);
 			if(md5($attributes['oldpassword']) != $user->password)
 			{
 				$form->addError('oldpassword', '旧密码错误');

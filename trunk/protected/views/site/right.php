@@ -74,7 +74,7 @@
 						<?php } ?>
 						</span>
 						<?php if(!isset($space_privacy) || $space_privacy){ ?>
-							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$friend['id']));?></div>
+							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$user['id']));?></div>
 						<?php }else{ ?>
 							<div class="name">{$user.id|isOnlineIcon}{$user.name}</div>
 						<?php } ?>

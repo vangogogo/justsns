@@ -84,7 +84,7 @@ class Friend extends CActiveRecord
 		{
 			$this->uid=Yii::app()->user->id;
 			$this->dateline=time();
-			$user = user::model()->findByPk($this->fuid);
+			$user = User::model()->findByPk($this->fuid);
 			if(empty($user))
 			{
 				//提示没有这个用户

@@ -17,8 +17,8 @@ class UserIdentity extends CUserIdentity
 	
 	public function authenticate()
 	{
-		//$user=user::model()->find('LOWER(username)=?',array(strtolower($this->username)));
-		$user=user::model()->find('LOWER(email)=?',array(strtolower($this->username)));
+		//$user=User::model()->find('LOWER(username)=?',array(strtolower($this->username)));
+		$user=User::model()->find('LOWER(email)=?',array(strtolower($this->username)));
 		if($user===null)
 			//$this->errorCode=self::ERROR_USERNAME_INVALID;
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
@@ -62,7 +62,7 @@ class UserIdentity extends CUserIdentity
 			//生成同步登录的代码
 			$ucsynlogin = uc_user_synlogin($uid);
 			
-			$user=user::model()->findByPk($uid);
+			$user=User::model()->findByPk($uid);
 			$this->_id=$user->id;
 
 			$this->setState('email', $user->email);
