@@ -59,7 +59,7 @@ class MiniController extends Controller
 		
 		$mini = $model->find($criteria);
 		
-		$icon_list = smile::model()->findAll();
+		$icon_list = $model->getIconList();
 
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))
@@ -178,7 +178,7 @@ class MiniController extends Controller
 		$add = $model->save();
 
 		if( $add ){
-			echo $content;
+			echo $model->replaceContent($content);
 		}else{
 			echo -1;
 		}
