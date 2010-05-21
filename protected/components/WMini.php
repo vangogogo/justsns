@@ -16,7 +16,7 @@ class WMini extends CWidget
 		$model = new Mini();
 		$mini =$model->getLastMiniByUid($uid);
 		
-		$icon_list = smile::model()->findAll();
+		$icon_list = $model->getIconList();
 		
 		$data = array(
 			'mini'=>$mini,

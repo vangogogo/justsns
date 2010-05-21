@@ -17,6 +17,10 @@ class Controller extends CController
 	public function init()
 	{
 		$this->mid = Yii::app()->user->id;
+
+		define('PUBLIC_URL',Yii::app()->request->baseUrl);
+
+
 		if(!Yii::app()->user->isGuest)
 		{
 			$this->layout='column2';
