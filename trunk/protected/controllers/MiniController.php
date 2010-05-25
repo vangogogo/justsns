@@ -10,7 +10,7 @@ class MiniController extends Controller
 	{
 		$uid = Yii::app()->user->id;
 		
-		$model = new mini();
+		$model = new Mini();
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->select = "friend.fuid as uid,t.*";
@@ -50,7 +50,7 @@ class MiniController extends Controller
 	{
 		$uid = Yii::app()->user->id;
 		
-		$model = new mini();
+		$model = new Mini();
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
@@ -92,7 +92,7 @@ class MiniController extends Controller
 	{
 		$uid = Yii::app()->user->id;
 		
-		$model = new mini();
+		$model = new Mini();
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
@@ -131,7 +131,7 @@ class MiniController extends Controller
 			$this->redirect(array('my'));
 		}
 		
-		$model = new mini();
+		$model = new Mini();
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
@@ -172,7 +172,7 @@ class MiniController extends Controller
 			echo -1;
 			return false;
 		}
-		$model = new mini();
+		$model = new Mini();
 		//TODO 检测空白输入
 		$model->content = $content;
 		$add = $model->save();
@@ -192,7 +192,7 @@ class MiniController extends Controller
 	 */
 	public function doDeleteMini(  ){
 		$id = Yii::app()->request->getPost('id');
-		$model = new mini();
+		$model = new Mini();
 		//TODO 检测空白输入
 		$mini = $model->findByPk($id);
 

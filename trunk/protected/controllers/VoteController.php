@@ -63,7 +63,7 @@ class VoteController extends Controller
 
 		$mini = $model->find($criteria);
 
-		$icon_list = smile::model()->findAll();
+		$icon_list = Smile::model()->findAll();
 
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))

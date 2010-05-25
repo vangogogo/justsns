@@ -31,8 +31,8 @@ class Wcomment extends CWidget
 		$model = new Comment();
 		$comments = $model->getComments($type,$appid);
 		
-		$data['icon_list'] = smile::model()->findAll();
+		$data['icon_list'] = Smile::model()->findAll();
 		
-		$this->render('Wcomment',$data);
+		$this->render('WComment',$data);
 	}
 }

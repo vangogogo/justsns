@@ -8,7 +8,7 @@ class AccountController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$form=new user();
+		$form=new User();
 		$form->scenario = 'modify';
 		if(!empty($_POST['user']))
 		{
@@ -38,7 +38,7 @@ class AccountController extends Controller
 
 	public function actionAccount()
 	{
-		$form=new user();
+		$form=new User();
 		$form->scenario = 'account';
 		if(!empty($_POST['user']))
 		{
@@ -75,7 +75,7 @@ class AccountController extends Controller
 	
 	public function actionScore()
 	{
-		$form=new user();
+		$form=new User();
 		$data = array(
 			'form' => $form,
 		);
@@ -84,7 +84,7 @@ class AccountController extends Controller
 
 	public function actionFaq()
 	{
-		$form=new user();
+		$form=new User();
 		$data = array(
 			'form' => $form,
 		);
