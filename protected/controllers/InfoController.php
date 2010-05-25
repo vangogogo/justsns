@@ -8,7 +8,7 @@ class InfoController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$model=new user();
+		$model=new User();
 		$uid = Yii::app()->user->id;
 		$form = $model->findByPk($uid);
 		$form->scenario = 'base';
@@ -20,7 +20,7 @@ class InfoController extends Controller
 	
 	public function actionIntro()
 	{
-		$form=new user();
+		$form=new User();
 		$data = array(
 			'form' => $form,
 		);
@@ -29,7 +29,7 @@ class InfoController extends Controller
 	
 	public function actionContact()
 	{
-		$form=new user();
+		$form=new User();
 		$data = array(
 			'form' => $form,
 		);
@@ -38,7 +38,7 @@ class InfoController extends Controller
 
 	public function actionEducation()
 	{
-		$form=new user();
+		$form=new User();
 		$data = array(
 			'form' => $form,
 		);
@@ -47,7 +47,7 @@ class InfoController extends Controller
 	
 	public function actionCareer()
 	{
-		$form=new user();
+		$form=new User();
 		$data = array(
 			'form' => $form,
 		);
@@ -57,7 +57,7 @@ class InfoController extends Controller
 	public function actionFace()
 	{
 	
-		$form=new user();
+		$form=new User();
 		$data = array(
 			'form' => $form,
 		);

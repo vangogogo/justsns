@@ -14,7 +14,7 @@ class WFileAway extends CWidget
 
 
 		
-		$data['tableName'] = 'mini';
+		$data['tableName'] = 'Mini';
 		$data['limit'] = 6;
 		
 		$date = date('Ym',time());

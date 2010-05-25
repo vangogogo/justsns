@@ -196,7 +196,7 @@ class Mini extends CActiveRecord
 	
 	public function getIconList()
 	{
-		$icon_list = smile::model()->findAll();
+		$icon_list = Smile::model()->findAll();
 		return $icon_list;
 	}
 

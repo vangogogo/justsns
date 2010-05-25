@@ -234,7 +234,7 @@ class User extends CActiveRecord
 	 */	
 	public function getUserMini()
 	{
-		$model = new mini();
+		$model = new Mini();
 		$uid = $this->id;
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';

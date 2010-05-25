@@ -10,7 +10,7 @@ class NotifyController extends Controller
 	{
 		$type = Yii::app()->request->getQuery('type');
 		$type_arr = Notify::model()->type_arr;
-		$user = new user();
+		$user = new User();
 		$notifys = array();
 
 		$uid = Yii::app()->user->id;
@@ -52,7 +52,7 @@ class NotifyController extends Controller
 	public function actionInbox()
 	{
 		$msgs = array();
-		$user = new user();
+		$user = new User();
 		
 		$uid = Yii::app()->user->id;
 		$model = new Msg();
@@ -82,7 +82,7 @@ class NotifyController extends Controller
 	public function actionOutbox()
 	{
 		$msgs = array();
-		$user = new user();
+		$user = new User();
 		
 		$uid = Yii::app()->user->id;
 		$model = new Msg();
@@ -113,7 +113,7 @@ class NotifyController extends Controller
 	{
 		$uid = Yii::app()->request->getQuery('uid');
         if($uid){
-        	$user = new user();
+        	$user = new User();
             $toUserFace = $user->getUserFace($uid);
             $toUserName = $user->getUserName($uid);
         }
