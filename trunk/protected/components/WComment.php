@@ -18,6 +18,9 @@ class Wcomment extends CWidget
 		$data = $this->items;
 		
 		$role = $data['role'];
+		$type = $data['type'];
+		$appid = $data['appid'];
+		
 		switch($role)
 		{
 			case 2:
@@ -30,8 +33,8 @@ class Wcomment extends CWidget
 		
 		$model = new Comment();
 		$comments = $model->getComments($type,$appid);
-		
 		$data['icon_list'] = Smile::model()->findAll();
+		$data['comments'] = $comments;
 		
 		$this->render('WComment',$data);
 	}

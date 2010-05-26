@@ -18,11 +18,13 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/p
 ?>
 
 <script type="text/javascript">
-
+//jquery 1.4 hotkey bug
+/*
 $(document).bind("keydown","ctrl+return",function(evt){
-	//addComment($('#content_submit'));
+	//addComment($('#content_submit'));	
 	return false;
 });
+*/
 </script>
 
 <div id="content1" class="Guestbook">
@@ -56,6 +58,11 @@ $(document).bind("keydown","ctrl+return",function(evt){
 <div id="comment" class="critique">
 	<!-- 评论列表 begin  -->
 	<ul>
+		<?php
+			//加载评论列表
+			
+			$this->controller->renderPartial('/comment/list',array('comments'=>$comments,'pages'=>$pages));
+		?>
 	</ul>
 	<div id="Pagination" class="pagination"></div>
 	<div id="Searchresult"></div>
