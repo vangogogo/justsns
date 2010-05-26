@@ -113,5 +113,7 @@
 	</div>
 
 
-	<div style="width:637px"><?php $this->widget('WComment',array('items'=>array('type'=>'vote','appid'=>$vote['id'],'mid'=>$vote['uid'],'face'=>User::model()->getUserFace($mid),'role'=>1 )));?></div>
+	<div style="width:637px">
+		<?php $this->widget('WComment',array('items'=>array('type'=>'vote','appid'=>$vote['id'],'mid'=>$vote['uid'],'face'=>User::model()->getUserFace($mid),'role'=>1 )));?>
+	</div>
 </div>

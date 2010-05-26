@@ -59,9 +59,7 @@ class Mini extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'reply' => array(self::HAS_MANY, 'Comment', 'appid', 
-
-			),		
+			'reply' => array(self::HAS_MANY, 'Comment', 'appid'),		
 		);
 	}
 
@@ -179,6 +177,12 @@ class Mini extends CActiveRecord
 		return true;
 	}
 	
+	protected function afterFind()
+	{
+		$smile = new Smile();
+		$this->content =  $smile->replaceContent($this->content);
+	}
+	
 	public function getLastMiniByUid($uid)
 	{
 		$model = self::model();
@@ -188,54 +192,8 @@ class Mini extends CActiveRecord
 		$criteria->params=array(':uid'=>$uid);
 		
 		$mini = $model->find($criteria);
-		$content = $mini['content'];
-		
-		$mini['content'] = $this->replaceContent($content);
 		return $mini;
-	}
-	
-	public function getIconList()
-	{
-		$icon_list = Smile::model()->findAll();
-		return $icon_list;
+
 	}
 
-	/**
-	 * replace 
-	 * 在数据集中替换
-	 * @param mixed $data 
-	 * @access private
-	 * @return void
-	 */
-	protected function replace( $data ){
-		$result = $data;
-
-		//修改content
-		foreach( $result as &$value ){
-			$value['content'] = str_replace('{PUBLIC_URL}',__PUBLIC__,$this->replaceContent( $value['content'] ));
-		}
-		return $result;
-	}
-
-	/**
-	 * replaceContent 
-	 * 替换内容
-	 * @param mixed $content 
-	 * @access private
-	 * @return void
-	 */
-	public function replaceContent($content,$temp=null ){
-		$smiletype = 'mini';
-		$public = isset( $temp )?$temp:PUBLIC_URL;
-		$path   = $public."/images/biaoqing/".$smiletype."/";//路径
-		
-		$icon_list = $this->getIconList();
-		//循环替换掉文本中所有ubb表情
-		foreach($icon_list as $value ){
-			$img = sprintf("<img title='%s' src='%s%s'>",$value['title'],$path,$value['filename']);
-			$content = str_replace($value['emotion'],$img,htmlspecialchars_decode($content) );
-
-		}
-		return $content;
-	}
 }

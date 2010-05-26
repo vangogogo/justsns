@@ -59,7 +59,8 @@ class MiniController extends Controller
 		
 		$mini = $model->find($criteria);
 		
-		$icon_list = $model->getIconList();
+		$smile = new Smile();
+		$icon_list = $smile->getIconList();
 
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))

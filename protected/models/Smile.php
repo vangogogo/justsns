@@ -95,4 +95,56 @@ class Smile extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/**
+	 * replace 
+	 * 在数据集中替换
+	 * @param mixed $data 
+	 * @access private
+	 * @return void
+	 */
+	protected function replace( $data ){
+		$result = $data;
+
+		//修改content
+		foreach( $result as &$value ){
+			$value['content'] = str_replace('{PUBLIC_URL}',__PUBLIC__,$this->replaceContent( $value['content'] ));
+		}
+		return $result;
+	}
+
+	/**
+	 * replaceContent 
+	 * 替换内容
+	 * @param mixed $content 
+	 * @access private
+	 * @return void
+	 */
+	public function replaceContent($content,$temp=null ){
+		$smiletype = 'mini';
+		$public = isset( $temp )?$temp:PUBLIC_URL;
+		$path   = $public."/images/biaoqing/".$smiletype."/";//路径
+		
+		$icon_list = $this->getIconList();
+		//循环替换掉文本中所有ubb表情
+		foreach($icon_list as $value ){
+			$img = sprintf("<img title='%s' src='%s%s'>",$value['title'],$path,$value['filename']);
+			$content = str_replace($value['emotion'],$img,htmlspecialchars_decode($content) );
+
+		}
+		return $content;
+	}
+	
+	
+	public function getIconList()
+	{
+		$cache_key = md5('getIconList');
+		$icon_list = Yii::app()->cache->get($cache_key);
+		if(empty($icon_list))
+		{
+			$icon_list = self::model()->findAll();
+			Yii::app()->cache->set($cache_key,$icon_list);
+		}
+		return $icon_list;
+	}	
 }
