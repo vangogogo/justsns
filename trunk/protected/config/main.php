@@ -128,42 +128,34 @@ return array(
             'class'=>'system.gii.GiiModule',
             'password'=>'yiidev',
         ),
-		'srbac'=>array(
-			// Your application's user class (default: User)
-			"userclass"=>"user",
-			// Your users' table user_id column (default: userid)
-			"userid"=>"id",
-			// your users' table username column (default: username)
-			"username"=>"username",
-			// If in debug mode (default: false)
-			// In debug mode every user (even guest) can admin srbac, also
-			//if you use internationalization untranslated words/phrases
-			//will be marked with a red star
-			"debug"=>false,
-			// The number of items shown in each page (default:15)
-			"pageSize"=>20,
-			// The name of the super user
-			"superUser" =>"Authority",
-
-			"layout"=>"application.modules.admin.views.layouts.main",
-			"imagesPack"=>"tango",
-
-
-			// The always allowed actions
-			"alwaysAllowed"=>array(
-			'SiteLogin','SiteLogout','SiteIndex','SiteAdmin',
-			'SiteError', 'SiteContact'),
-			// The operationa assigned to users
-			"userActions"=>array(
-			"Show","View","List"
-			),
-			//The number of lines in assign listboxes (default 10)
-			"listBoxNumberOfLines" => 15,
-			// The images pack to use
-			"imagesPack"=>"noia",
-			//Display text next to the icons or not
-			"iconText"=>true,
+        
+		'srbac' => array( 
+			'userclass'=>'User', //optional defaults to User 
+			'userid'=>'id', //optional defaults to userid 
+			'username'=>'username', //optional defaults to username 
+			'debug'=>true, //optional defaults to false 
+			'pageSize'=>10, //optional defaults to 15 
+			'superUser' =>'Authority', //optional defaults to Authorizer 
+			'css'=>'srbac.css',  //optional defaults to srbac.css 
+			'layout'=> 	'application.views.layouts.main', //optional defaults to  // application.views.layouts.main, must be an existing alias 
+			'notAuthorizedView'=> 'srbac.views.authitem.unauthorized ', // optional defaults to //srbac.views.authitem.unauthorized, must be an existing alias 
+			'alwaysAllowed'=>array(			 //optional defaults to gui 
+				'SiteLogin','SiteLogout','SiteIndex','SiteAdmin', 
+				'SiteError', 'SiteContact'), 
+			'userActions'=>array(//optional defaults to empty array 
+				'Show','View','List'), 
+			'listBoxNumberOfLines' => 15,  //optional defaults to 10 
+			'imagesPath' => 'srbac.images', //optional defaults to srbac.images 
+			'imagesPack'=>'noia', //optional defaults to noia 
+			'iconText'=>true, //optional defaults to false 
+			'header'=>'srbac.views.authitem.header', //optional defaults to // srbac.views.authitem.header, must be an existing alias 
+			'footer'=>'srbac.views.authitem.footer', //optional defaults to // srbac.views.authitem.footer, must be an existing alias 
+			
+			'showHeader'=>true, //optional defaults to false 
+			'showFooter'=>true, //optional defaults to false 
+			'alwaysAllowedPath'=>'srbac.components', //optional defaults to srbac.components // must be an existing alias 
 		),
+
 
 		'blog'=>array(
 			"layout"=>"application.views.layouts.main",
