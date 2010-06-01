@@ -3,7 +3,9 @@
 	<li id="comm<?php echo $vo['id'];?>"class="comlist">
   		<div class="left" style="width:65px;">
   			<span class="headpic50">
-  				<a href="__APP__/space/{$vo['uid']}" class="tips" rel="__TS__/Index/userInfo/uid/{$vo['uid']}"><img src="{$vo['face']}" /></a>
+  				<a href="__APP__/space/{$vo['uid']}" class="tips" rel="__TS__/Index/userInfo/uid/{$vo['uid']}">
+  					<img src="<?php echo User::model()->getUserFace($vo['uid']);?>"/>
+  				</a>
   			</span>
   		</div>
 		<div style="margin-left:65px;">
@@ -37,7 +39,9 @@
 					<?php foreach($subcomment as $vo):?>
 						<div class="sublist pt5 clear" id="comm<?php echo $vo['id'];?>">
 							<div class="left" style="width:50px;">
-								<span class="pic38"><a href="__APP__/space/<?php echo $vo['id'];?>" class="tips" rel="__TS__/Index/userInfo/uid/{$value['uid']}"><img src="{$value['face']}" /></a></span>
+								<span class="pic38"><a href="__APP__/space/<?php echo $vo['id'];?>" class="tips" rel="__TS__/Index/userInfo/uid/{$value['uid']}">
+									<img src="<?php echo User::model()->getUserFace($vo['uid']);?>"/>
+								</a></span>
 							</div>
 							<div style=" margin-left:50px;">
 								<h3 class="tit_Critique lh20 mb5"><span class="right f12px mr5">         

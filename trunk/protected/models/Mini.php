@@ -59,6 +59,7 @@ class Mini extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user'=>array(self::BELONGS_TO, 'User', 'uid'),
 			'reply' => array(self::HAS_MANY, 'Comment', 'appid'),		
 		);
 	}
@@ -70,13 +71,13 @@ class Mini extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'uid' => 'Uid',
-			'name' => 'Name',
-			'type' => 'Type',
-			'content' => 'Content',
+			'uid' => '用户id',
+			'name' => '用户名称',
+			'type' => '表情类型',
+			'content' => '内容',
 			'tagId' => 'Tag',
-			'ctime' => 'Ctime',
-			'status' => 'Status',
+			'ctime' => '添加时间',
+			'status' => '状态',
 			'replay_numbel' => 'Replay Numbel',
 			'feedId' => 'Feed',
 		);
