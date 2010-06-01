@@ -30,6 +30,25 @@ function subComment(vo){
 }
 
 
+$(function() {
+	// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+	$("#dialog").dialog("destroy");
+
+	$("#dialog-confirm").dialog({
+		resizable: false,
+		height:140,
+		modal: true,
+		buttons: {
+			'Delete all items': function() {
+				$(this).dialog('close');
+			},
+			Cancel: function() {
+				$(this).dialog('close');
+			}
+		}
+	});
+});
+
 function deleteComment(id,appid){
 	Confirm({message:'是否删除此评论',handler:function(button){
 		if ('ok' == button){

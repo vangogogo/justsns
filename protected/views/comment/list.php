@@ -25,7 +25,8 @@
 					<?php if(!empty($delete)){?><span class="ml5"><?php echo $delete;?></span><?php }?>
 					
 					</span>
-					<a href="__APP__/space/{<?php echo $vo['uid'];?>"><?php echo $vo['name'];?></a>
+					<?php echo CHtml::link($vo['name'],array('/space','uid'=>$vo['uid']));?>
+
 					<em class="cGray2"><?php echo friendlyDate('Y-m-d H:i:s',$vo['ctime']);?></em>
 					<?php if($vo['quietly'] == 1){?><font color="red"><b>[悄悄话]</b></font><?php }?>
 				</h3>
@@ -53,7 +54,7 @@
 								}
 								?>
 								<?php if($vo['status'] == 1){?><span class="ml5"><?php echo $delete;?></span><?php }?>
-								<a href="__APP__/space/{<?php echo $vo['uid'];?>"><?php echo $vo['name'];?></a>
+								<?php echo CHtml::link($vo['name'],array('/space','uid'=>$vo['uid']));?>
 								<em class="cGray2"><?php echo friendlyDate('Y-m-d H:i:s',$vo['ctime']);?></em>
 								<?php if($vo['quietly'] == 1){?><font color="red"><b>[悄悄话]</b></font><?php }?>					
 								</h3>
