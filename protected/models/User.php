@@ -260,7 +260,7 @@ class User extends CActiveRecord
 			//男或女
 			//$info =  $api->user_getInfo($uid,"sex");
 			$info = $this->attributes;
-			if( $info['sex'] ) {
+			if( !$info['sex'] ) {
 				return Yii::app()->theme->baseUrl."/images/pic2.gif";
 			}else {
 				return Yii::app()->theme->baseUrl."/images/pic1.gif";
@@ -268,10 +268,10 @@ class User extends CActiveRecord
 	
 		}else {
 			$url = Yii::app()->params['upload_dir'].'userface/';
+			
 			$image = $url.$uid.'_'.$size.'_face.jpg';
 			return $image;
-		}		
-		
+		}
 	}
 	
 	public function getUserInfo()

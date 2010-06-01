@@ -68,7 +68,9 @@ class CommentController extends Controller
 		{
 			echo -1;
 		}
-		echo CJSON::encode($model->attributes);
+		$data = $model->attributes;
+		$data['face']=$model->user->getUserFace();
+		echo CJSON::encode($data);
 	}
 	
 	/*
