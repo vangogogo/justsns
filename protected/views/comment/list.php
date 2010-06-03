@@ -36,8 +36,8 @@
 			<div class="subcomment">
 	
 	
-				<?php $subcomment = $vo['subcomment'];if(!empty($subcomment)): ?>
-					<?php foreach($subcomment as $vo):?>
+				<?php if(!empty($vo['subcomment'])): ?>
+					<?php foreach($vo['subcomment'] as $vo):?>
 						<div class="sublist pt5 clear" id="comm<?php echo $vo['id'];?>">
 							<div class="left" style="width:50px;">
 								<span class="pic38"><a href="__APP__/space/<?php echo $vo['id'];?>" class="tips" rel="__TS__/Index/userInfo/uid/{$value['uid']}">

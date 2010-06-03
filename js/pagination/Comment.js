@@ -29,27 +29,7 @@ function subComment(vo){
 	return result;
 }
 
-
-$(function() {
-	// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-	$("#dialog").dialog("destroy");
-
-	$("#dialog-confirm").dialog({
-		resizable: false,
-		height:140,
-		modal: true,
-		buttons: {
-			'Delete all items': function() {
-				$(this).dialog('close');
-			},
-			Cancel: function() {
-				$(this).dialog('close');
-			}
-		}
-	});
-});
-
-function deleteComment(id,appid){
+function deleteComment2(id,appid){
 	Confirm({message:'是否删除此评论',handler:function(button){
 		if ('ok' == button){
 			$.post(TS+"/Comment/doDeleteComment/",{id:id,appid:appid},function(result){
@@ -61,12 +41,31 @@ function deleteComment(id,appid){
 					
 					}
 				}else{
-					alert('删除失败');
+					Alert('删除失败');
 					return;
 				}
 			});
 		}
 	}});
+}
+
+function deleteComment(id,appid){
+	Confirm('是否删除此评论',function(){
+			alert("得到");
+			$.post(TS+"/Comment/doDeleteComment/",{id:id,appid:appid},function(result){
+				if(result != -1){
+					$('#comm'+id).hide("slow");
+					try{
+					deleteCommentCount(appid);
+					}catch(err){
+					
+					}
+				}else{
+					Alert('删除失败');
+					return;
+				}
+			});
+	});
 }
 
 function pageselectCallback(page_id, jq){
@@ -225,13 +224,13 @@ function addComment(_this){
 
 	// 检查字数
 	if(JHshStrLen(content) >= 4000) {
-		alert("最多2000个中文字符");
+		Alert("最多2000个中文字符");
 		_this.attr('disabled',false);
 		_this.val(Abottom);
 		return;
 	}
 	if(JHshStrLen(content) < 1 ){
-		alert("必须填写评论内容");
+		Alert("必须填写评论内容");
 		_this.removeAttr('disabled');
 		_this.val(Abottom);
 		return;
@@ -258,7 +257,7 @@ function addComment(_this){
 			}
 					
 		}else{
-			alert('添加失败，请稍后再试');
+			Alert('添加失败，请稍后再试');
 			_this.val(Abottom);
 			_this.removeAttr('disabled');
 		}
@@ -284,13 +283,13 @@ function ReplayComment(_this){
 
 	// 检查字数
 	if(JHshStrLen(content) >= 4000){
-		alert("最多2000个中文字符");
+		Alert("最多2000个中文字符");
 		_this.attr('disabled',false);
 		_this.val(Abottom);
 		return
 	}
 	if(content.length <3){
-		alert("最少10个字符");
+		Alert("最少10个字符");
 		_this.removeAttr('disabled');
 		_this.val(Abottom);
 		return
@@ -313,7 +312,7 @@ function ReplayComment(_this){
 				
 			}
 		}else{
-			alert('添加失败，请稍后再试');
+			Alert('添加失败，请稍后再试');
 			_this.val(Abottom);
 			_this.removeAttr('disabled');
 		}
