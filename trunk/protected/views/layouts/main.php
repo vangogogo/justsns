@@ -21,7 +21,7 @@
 
 Yii::app()->clientScript->registerCoreScript('jquery');
 
-Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery-ui-1.7.2.custom.min.js');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
 
 
@@ -49,6 +49,8 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.c
 <![endif]-->
 
 </head>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/flick/jquery-ui.css" type="text/css" rel="Stylesheet" />
 
 <body>
 <?php
@@ -139,6 +141,9 @@ $(document).ready(function() {
 	</div><!-- footer -->
 
 </div><!-- page -->
+
+
+
 
 </body>
 </html>

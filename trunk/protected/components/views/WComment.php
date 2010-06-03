@@ -82,3 +82,4 @@ $(document).bind("keydown","ctrl+return",function(evt){
 	</div>
 </div>
 <input type="hidden" id='url' value="<?php echo ($url); ?>">
+
