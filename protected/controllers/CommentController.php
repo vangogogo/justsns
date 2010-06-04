@@ -67,6 +67,7 @@ class CommentController extends Controller
 		if(!empty($model->errors))
 		{
 			echo -1;
+			exit();
 		}
 		$data = $model->attributes;
 		$data['face']=$model->user->getUserFace();

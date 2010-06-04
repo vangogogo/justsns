@@ -1,3 +1,13 @@
+$(function() {
+	$('.doDeleteComment').click(function(){
+		self = $(this);
+		id = self.attr('id');
+		appid = self.attr('appid')
+
+		deleteComment(id,appid);
+	});
+});
+
 function replaceComment(vo){
 	var quietly = "";
 	if(vo.quietly == 1){
@@ -29,10 +39,9 @@ function subComment(vo){
 	return result;
 }
 
-function deleteComment2(id,appid){
+function deleteComment(id,appid){
 	Confirm({message:'是否删除此评论',handler:function(button){
-		if ('ok' == button){
-			$.post(TS+"/Comment/doDeleteComment/",{id:id,appid:appid},function(result){
+			$.post(TS+"/Comment/doDelComment/",{id:id,appid:appid},function(result){
 				if(result != -1){
 					$('#comm'+id).hide("slow");
 					try{
@@ -45,14 +54,13 @@ function deleteComment2(id,appid){
 					return;
 				}
 			});
-		}
 	}});
 }
 
-function deleteComment(id,appid){
+function deleteComment2(id,appid){
 	Confirm('是否删除此评论',function(){
-			alert("得到");
-			$.post(TS+"/Comment/doDeleteComment/",{id:id,appid:appid},function(result){
+			$.post(TS+"/Comment/doDelComment/",{id:id,appid:appid},function(result){
+				
 				if(result != -1){
 					$('#comm'+id).hide("slow");
 					try{

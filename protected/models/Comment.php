@@ -119,6 +119,35 @@ class Comment extends CActiveRecord
 		));
 	}
 	
+	/**
+	 * Prepares attributes before performing validation.
+	 */
+	protected function beforeValidate()
+	{
+		if($this->isNewRecord)
+		{
+			$this->uid=Yii::app()->user->id;
+			$this->ctime=time();
+			$user = User::model()->findByPk($this->uid);
+			if(empty($user))
+			{
+				//提示没有这个用户
+			}
+			else
+			{
+				$this->name = $user->username;
+			}
+			$this->status = 0;
+		}
+		return true;
+	}
+	
+	protected function afterFind()
+	{
+		$smile = new Smile();
+		$this->comment =  $smile->replaceContent($this->comment);
+	}
+		
 	public function getComments($type,$appid,$page = 0)
 	{
 		$model = self::model();
@@ -130,8 +159,8 @@ class Comment extends CActiveRecord
 		$criteria->condition="type=:type AND appid=:appid AND status != :status";
 		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
 		$comments = $model->findAll($criteria);
-	
-		return $commets;
+
+		return $comments;
 	}
 	
 	public function getCount($type,$appid,$page = 0)

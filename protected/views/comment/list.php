@@ -18,7 +18,7 @@
 
 					if( $vo['uid'] == $this->mid){
 						$href = "deleteComment($vo[id],$vo[appid])";
-						$delete = CHtml::link('删除','javascript:void(0)',array('href'=>'###','onclick'=>$href));
+						$delete = CHtml::link('删除','javascript:void(0)',array('class'=>'doDeleteComment','href'=>'###','id'=>$vo[id],'appid'=>$vo[appid],'onclick'=>$href));
 					}
 					?>
 					<span><?php echo $string?></span>

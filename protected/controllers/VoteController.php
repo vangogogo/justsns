@@ -48,7 +48,7 @@ class VoteController extends Controller
 	}
 
 	/**
-	 * 我的心情
+	 * 我的投票
 	 */
 	public function actionMy()
 	{
@@ -90,7 +90,7 @@ class VoteController extends Controller
 	}
 
 	/**
-	 * 我的心情
+	 * 我的投票
 	 */
 	public function actionAll()
 	{
@@ -123,7 +123,7 @@ class VoteController extends Controller
 	}
 
 	/**
-	 * 好友的心情
+	 * 好友的投票
 	 */
 	public function actionFriends()
 	{
