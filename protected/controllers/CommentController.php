@@ -78,30 +78,23 @@ class CommentController extends Controller
 	 */
 	public function actionDoDelComment()
 	{
-		$mid = $_POST['mid'];
 		$id = $_POST['id'];
-		$type = $_POST['type'];
 		$appid = $_POST['appid'];
-		$comment = $_POST['comment'];
-		$quietly = $_POST['quietly'];
-		$toId = $_POST['toId'];
-		
-		$model = new Comment();
-		
 		$params = array(
-			'type'=>$type,
-			'appid'=>$appid,
-			'comment'=>$comment,
-			'toId'=>$toId,
-			'quietly'=>$quietly,
+			'id'=>$id,'appid'=>$appid,
 		);
 		
-		$model->attributes = $params;
-		$model->save();
-		if(!empty($model->errors))
+		$model = new Comment();
+		$result = $model->deleteByAttributes($params);
+		
+		
+		if($result)
+		{
+			echo 1;
+		}
+		else
 		{
 			echo -1;
 		}
-		echo CJSON::encode($model->attributes);
 	}	
 }
