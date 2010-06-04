@@ -17,8 +17,7 @@
 					$string = CHtml::link('回复','javascript:void(0)',array('class'=>'comment_reply','reply_id'=>$vo[id],'reply_name'=>$vo[name]));
 
 					if( $vo['uid'] == $this->mid){
-						$href = "deleteComment($vo[id],$vo[appid])";
-						$delete = CHtml::link('删除','javascript:void(0)',array('class'=>'doDeleteComment','href'=>'###','id'=>$vo[id],'appid'=>$vo[appid],'onclick'=>$href));
+						$delete = CHtml::link('删除','javascript:void(0)',array('class'=>'doDeleteComment','id'=>$vo[id],'appid'=>$vo[appid]));
 					}
 					?>
 					<span><?php echo $string?></span>

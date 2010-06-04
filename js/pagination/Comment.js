@@ -3,7 +3,6 @@ $(function() {
 		self = $(this);
 		id = self.attr('id');
 		appid = self.attr('appid')
-
 		deleteComment(id,appid);
 	});
 });
