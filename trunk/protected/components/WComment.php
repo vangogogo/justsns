@@ -20,7 +20,7 @@ class Wcomment extends CWidget
 		$role = $data['role'];
 		$type = $data['type'];
 		$appid = $data['appid'];
-		
+
 		switch($role)
 		{
 			case 2:

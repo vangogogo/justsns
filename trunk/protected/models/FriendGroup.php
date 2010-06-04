@@ -73,10 +73,7 @@ class FriendGroup extends CActiveRecord
 		if($this->isNewRecord)
 		{
 			$this->uid=Yii::app()->user->id;
-
 		}
-
-		
 		return true;
 	}
 
