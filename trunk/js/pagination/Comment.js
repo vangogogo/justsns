@@ -38,6 +38,11 @@ function subComment(vo){
 	return result;
 }
 
+function Confirm()
+{
+	
+}
+
 function deleteComment(id,appid){
 	Confirm({message:'是否删除此评论',handler:function(button){
 			$.post(TS+"/Comment/doDelComment/",{id:id,appid:appid},function(result){
