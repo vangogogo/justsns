@@ -60,7 +60,7 @@ class Comment extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user'=>array(self::BELONGS_TO, 'User', 'uid'),
-			'subcomment' => array(self::HAS_MANY, 'Comment', 'toId'),
+			'subcomment' => array(self::HAS_MANY, 'Comment', 'toId', 'condition'=>'subcomment.status= 0', 'order'=>'subcomment.ctime DESC'),
 		);
 	}
 
@@ -71,15 +71,15 @@ class Comment extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'type' => 'Type',
-			'appid' => 'Appid',
-			'name' => 'Name',
-			'uid' => 'Uid',
-			'comment' => 'Comment',
-			'ctime' => 'Ctime',
-			'toId' => 'To',
-			'status' => 'Status',
-			'quietly' => 'Quietly',
+			'type' => '类型',
+			'appid' => '类型id',
+			'name' => '发表人',
+			'uid' => '发表人id',
+			'comment' => '评论内容',
+			'ctime' => '评论时间',
+			'toId' => '回复评论',
+			'status' => '状态',
+			'quietly' => '是否悄悄话',
 		);
 	}
 
@@ -122,21 +122,16 @@ class Comment extends CActiveRecord
 	/**
 	 * Prepares attributes before performing validation.
 	 */
+	/**
+	 * Prepares attributes before performing validation.
+	 */
 	protected function beforeValidate()
 	{
 		if($this->isNewRecord)
 		{
 			$this->uid=Yii::app()->user->id;
+			$this->name=Yii::app()->user->name;
 			$this->ctime=time();
-			$user = User::model()->findByPk($this->uid);
-			if(empty($user))
-			{
-				//提示没有这个用户
-			}
-			else
-			{
-				$this->name = $user->username;
-			}
 			$this->status = 0;
 		}
 		return true;
@@ -187,4 +182,17 @@ class Comment extends CActiveRecord
 		}
 		return false;
 	}
+	
+	public function addComment($params)
+	{
+		$model = self::model();
+		$model->attributes = $params;
+		$model->save();
+		if(!empty($model->errors))
+		{
+			//var_dump($model->errors);die;
+			return $model->errors;
+		}
+		return $model;
+	}	
 }
