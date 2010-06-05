@@ -186,5 +186,53 @@ class Vote extends CActiveRecord
 	public function getVoteOption()
 	{
 		return $this->option?$this->option:array();
-	}	
+	}
+	
+	public function getVoteInfo()
+	{
+//		$voteOptions = $vote->getVoteOption();
+//		$options = array();
+//		$sum = 0;
+//		foreach($voteOptions as $option)
+//		{
+//			$oid = $option['oid'];
+//			$array = $option->attributes;
+//			$options[$oid] = $array;
+//		}
+		//投票记录
+		$votelogs = $this->getVoteLog();
+		//投票项
+		$polloption = $this->getVoteOption();
+		//总投票数
+		$allvote = 0;
+		foreach($votelogs as $user){
+			$value = $user->getAttributes();
+
+			$option_list= unserialize($value['option']);
+			foreach($option_list as $key =>$tmp){
+				$vote_num[$key] +=1;
+				$allvote += 1;
+			}
+		}
+		//统计投票各项的数目
+		foreach($polloption as $key => $tmp) {
+			$value = $tmp->getAttributes();
+			$value[votenum] = $vote_num[$value[oid]];
+			$option[] = $value;
+		};
+
+		//计算百分比
+		foreach($option as $key => $value) {
+			if($value['votenum'] && $allvote) {
+				$value['percent'] = round($value['votenum']/$allvote, 2);
+				$value['width'] = round($value['percent']*160);
+				$value['percent'] = $value['percent']*100;
+			} else {
+				$value['width'] = $value['percent'] = 0;
+			}
+			$option[$key] = $value;
+		}
+		
+		return $option;
+	}
 }

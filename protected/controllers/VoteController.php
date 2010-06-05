@@ -180,45 +180,13 @@ class VoteController extends Controller
 		
 		//验证是否投过票
 		//$hasvoted = $this->_checkPollHasVote($this->uid,$pid);
+		$info = $vote->getVoteInfo();
 
-		//投票记录
-		$vote_log = $vote->getVoteLog();
-		//投票项
-		$polloption = $vote->getVoteOption();
-		//总投票数
-		$allvote = 0;
-		foreach($vote_log as $user){
-			$value = $user->getAttributes();
-
-			$option_list= unserialize($value['option']);
-			foreach($option_list as $key =>$tmp){
-				$vote_num[$key] +=1;
-				$allvote += 1;
-			}
-		}
-		//统计投票各项的数目
-		foreach($polloption as $key => $tmp) {
-			$value = $tmp->getAttributes();
-			$value[votenum] = $vote_num[$value[oid]];
-			$option[] = $value;
-		};
-
-		//计算百分比
-		foreach($option as $key => $value) {
-			if($value['votenum'] && $allvote) {
-				$value['percent'] = round($value['votenum']/$allvote, 2);
-				$value['width'] = round($value['percent']*160);
-				$value['percent'] = $value['percent']*100;
-			} else {
-				$value['width'] = $value['percent'] = 0;
-			}
-			$option[$key] = $value;
-		}
 		
 		
 		$data = array(
 			'vote'=> $vote,
-			'pages'=> $pages,
+			'info'=> $info,
 			'mid'=>$mid,
 			'vote_log'=>$vote_log
 		);

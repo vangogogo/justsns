@@ -41,10 +41,10 @@
 
 		<form method="post" action="">
 			<ul style="width:580px;" class="left">
-				<?php if(!empty($vote->option)){ foreach($vote->option as $key => $vo)	{?>
+				<?php if(!empty($info)){ foreach($info as $key => $vo)	{?>
 
 					<li>
-						<div class="left alR" style="width: 245px;"><?php echo $vo->option?>:</div>
+						<div class="left alR" style="width: 245px;"><?php echo $vo['option']?>:</div>
 						<div class="left" style="width: 204px;">
 							<div class="poll">
 								<?php $kk = $k%10; ?>
@@ -53,18 +53,18 @@
 								</div>
 							</div>
 						</div>
-						<div class="left" style="width: 81px;">{$vo.num}({$vote_pers[$k-1]}%)</div>
+						<div class="left" style="width: 81px;"><?php echo $vo['num']?>(<?php echo $vo['percent']?>%)</div>
 						<div class="left" style="width: 30px;">
 							<?php
 								$des = "投票";
 								if( $has_vote == true || $vote['expiration'] <= time() || ( '1' == $vote['novote'] && $mid != $vote['uid'] && false == $api->friend_areFriends( $mid,$vote['uid'] )  ) ){
-								$css = "disabled";
+								//$css = "disabled";
 								$des = "仅好友可投票";
 								} ?>
 							<?php if( $vote['maxchoice'] == 0){ ?>
-							<input name="vote_opt" type="radio" value="{$vo.name}" id="{$vo.id}" {$css}/>
+							<input name="vote_opt" type="radio" value="<?php echo $vo['name']?>" id="<?php echo $vo['pid']?>" <?php echo $css?> />
 								   <?php }else{ ?>
-							<input name="vote_opt" type="checkbox" value="{$vo.name}" id="{$vo.id}" {$css}/>
+							<input name="vote_opt" type="checkbox" value="<?php echo $vo['name']?>" id="<?php echo $vo['oid']?>" <?php echo $css?> />
 								   <?php } ?>
 						</div>
 						<div class="c"></div>
@@ -78,8 +78,10 @@
 			<?php }elseif( $has_vote ){ ?>
 			<span class="cRed">您已经投过票</span>
 			<?php }else{ ?>
-			<div class="left"><input name="" type="button" style="cursor:pointer" onclick='post_vote( {$vote.type})' class="btn_b" value="<?php echo $des?>" {$css}/></div>
+			<div class="left"><input name="" type="button" style="cursor:pointer" onclick='post_vote(<?php echo $vote['maxchoice']?>)' class="btn_b" value="<?php echo $des?>" <?php echo $css?>/></div>
 			<?php } ?>
+						<div class="left"><input name="" type="button" style="cursor:pointer" onclick='post_vote(<?php echo $vote['maxchoice']?>)' class="btn_b" value="<?php echo $des?>" <?php echo $css?>/></div>
+			
 		</form>
 		<div class="clear"></div>
 	</div><!-- LogList end  -->
