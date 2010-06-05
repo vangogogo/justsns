@@ -69,9 +69,23 @@ class CommentController extends Controller
 			echo -1;
 			exit();
 		}
-		$data = $model->attributes;
-		$data['face']=$model->user->getUserFace();
-		echo CJSON::encode($data);
+//		$data = $model->attributes;
+//		$data['face']=$model->user->getUserFace();
+//		echo CJSON::encode($data);
+
+		$comment = $model->attributes;
+		$comment['face']=$model->user->getUserFace();
+
+		if(!$comment[toId])
+		{
+			$data['comment'] = $comment;
+			$this->renderPartial('comment_li',$data);
+		}
+		else
+		{
+			$data['subcomment'] = $comment;
+			$this->renderPartial('subcomment_li',$data);
+		}
 	}
 	
 	/*
