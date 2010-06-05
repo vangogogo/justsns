@@ -1,8 +1,9 @@
 $(function() {
-	$('.doDeleteComment').click(function(){
+	$('.doDeleteComment').live('click',function(){
 		self = $(this);
 		id = self.attr('id');
-		appid = self.attr('appid')
+		appid = self.attr('appid');
+		alert(appid);
 		deleteComment(id,appid);
 	});
 });
@@ -17,7 +18,7 @@ function replaceComment(vo){
 			<li class=\"comlist\" id=\'comm"+vo.id+"\'>\
 			<div class=\"left\" style=\"width: 65px;\"><span class=\"headpic50\"><a href=\""+TS+"/space/"+vo.uid+"\"><img src=\""+vo.face+"\" /></a></span></div>\
 			<div style=\"margin-left: 65px;\">\
-			<div style=\"padding-bottom: 20px;\"><h3 class=\"tit_Critique lh25 mb5\"><span class=\"right f12px mr5\"><span><a	href=\"javascript:replay(\'"+vo.name+"\',"+vo.id+")\">回复</a></span><span class=\"ml5\"><a href=\"###\" onclick=\"deleteComment("+vo.id+","+vo.appid+")\">删除</a></span></span><a href=\""+TS+"/space/"+vo.uid+"\">"+vo.name+"</a>	 <em class=\"cGray2\">"+'刚刚'+"</em>"+quietly+"</h3>\
+			<div style=\"padding-bottom: 20px;\"><h3 class=\"tit_Critique lh25 mb5\"><span class=\"right f12px mr5\"><span><a	href=\"javascript:replay(\'"+vo.name+"\',"+vo.id+")\">回复</a></span><span class=\"ml5\"><a href=\"###\" class=\"doDeleteComment\">删除</a></span></span><a href=\""+TS+"/space/"+vo.uid+"\">"+vo.name+"</a>	 <em class=\"cGray2\">"+'刚刚'+"</em>"+quietly+"</h3>\
 				<p>"+vo.comment+"</p></div>"+sub+"</div></li>\
 	"
 	return result;
@@ -249,24 +250,25 @@ function addComment(_this){
 	}
 	$.post(TS+"Comment/doAddComment",{comment:content,type:type,appid:appid,toId:toId,quietly:quietly,filed:filed},function(txt){
 		if(txt != -1){
-			var a = new Array();
-			
-			JSON.parse(txt,function(key,value){
-				a[key] = value; 
-			});
-
-			$('#comment > ul').prepend(replaceComment(a));
+//			var a = new Array();
+//			
+//			JSON.parse(txt,function(key,value){
+//				a[key] = value; 
+//			});
+//
+//			$('#comment > ul').prepend(replaceComment(a));
+			$('#comment > ul').prepend(txt);
 			$('#content_text').val("");
 
 			_this.val(Abottom);
 			_this.removeAttr('disabled');
 			 
 			// 发送动态回调函数
-			try{
-				commentSuccess(txt);
-			}catch(err){
-				
-			}
+//			try{
+//				commentSuccess(txt);
+//			}catch(err){
+//				
+//			}
 					
 		}else{
 			Alert('添加失败，请稍后再试');
@@ -308,21 +310,22 @@ function ReplayComment(_this){
 	}
 	$.post(TS+"Comment/doAddComment",{comment:content,type:type,appid:appid,toId:toId,quietly:quietly,filed:filed},function(txt){
 		if(txt != -1){
-			var a = new Array();
-			JSON.parse(txt,function(key,value){
-				a[key] = value;
-			});
-			$('#replay2').before(subComment(a));
+//			var a = new Array();
+//			JSON.parse(txt,function(key,value){
+//				a[key] = value;
+//			});
+//			$('#replay2').before(subComment(a));
+			$('#replay2').before(txt);
 			$('#content2').val("");
 			$('#replay2').remove();
 			_this.val(Abottom);
 			_this.removeAttr('disabled');
 			// 发送动态回调函数
-			try{
-			commentSuccess(txt);
-			}catch(err){
-				
-			}
+//			try{
+//			commentSuccess(txt);
+//			}catch(err){
+//				
+//			}
 		}else{
 			Alert('添加失败，请稍后再试');
 			_this.val(Abottom);

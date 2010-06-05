@@ -60,7 +60,7 @@ class Comment extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user'=>array(self::BELONGS_TO, 'User', 'uid'),
-			'subcomment' => array(self::HAS_MANY, 'Comment', 'toId', 'condition'=>'subcomment.status= 0', 'order'=>'subcomment.ctime DESC'),
+			'subcomments' => array(self::HAS_MANY, 'Comment', 'toId', 'condition'=>'subcomments.status= 0', 'order'=>'subcomments.ctime DESC'),
 		);
 	}
 
@@ -151,7 +151,7 @@ class Comment extends CActiveRecord
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
-		$criteria->condition="type=:type AND appid=:appid AND status != :status";
+		$criteria->condition="type=:type AND appid=:appid AND status != :status AND toId = 0";
 		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
 		$comments = $model->findAll($criteria);
 
