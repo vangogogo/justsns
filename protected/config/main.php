@@ -116,10 +116,10 @@ return array(
 			),
 		),
 		//验证模块
-	    'jformvalidate' => array (
-	    	'class' => 'application.extensions.jformvalidate.EJFValidate',
-	     	'enable' => true
-	    ),		
+		'jformvalidate' => array (
+			'class' => 'application.extensions.jformvalidate.EJFValidate',
+			'enable' => true
+		),		
 	),
 
 	// application modules
