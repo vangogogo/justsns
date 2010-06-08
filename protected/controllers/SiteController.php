@@ -102,6 +102,7 @@ class SiteController extends Controller
 	{
 		if($error=Yii::app()->errorHandler->error)
 		{
+			$this->layout='column1';
 			if(Yii::app()->request->isAjaxRequest)
 				$this->renderPartial('error',$error);
 				//echo $error['message'];
