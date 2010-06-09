@@ -186,12 +186,49 @@ class MiniController extends Controller
 	}
 
 	/**
+	 * DoAddReplay
+	 * 添加mini回复到表 comment
+	 * @access public
+	 * @return void
+	 */
+	public function actionDoAddReplay(){
+		$more = $_POST['more'];
+		$page = $_POST['page'];
+		
+		$mid = $_POST['mid'];
+		$id = $_POST['id'];
+		$type = 'mini';
+		$appid = $_POST['appid'];
+		$comment = $_POST['content'];
+		$toId = $_POST['toId'];
+		
+		$params = array(
+			'type'=>$type,
+			'appid'=>$appid,
+			'comment'=>$comment,
+			'toId'=>$toId,
+			'quietly'=>$quietly,
+		);
+		
+		$model = new Comment();
+		$model = $model->addComment($params);
+//		$model->attributes = $params;
+//		$model->save();
+		
+		if(!empty($model->errors))
+		{
+			echo -1;
+			exit();
+		}
+	}
+	
+	/**
 	 * doDeleteMini
 	 * 删除mini
 	 * @access public
 	 * @return void
 	 */
-	public function doDeleteMini(  ){
+	public function doDeleteMini(){
 		$id = Yii::app()->request->getPost('id');
 		$model = new Mini();
 		//TODO 检测空白输入

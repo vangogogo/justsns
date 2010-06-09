@@ -55,7 +55,7 @@ function deleteMini( id ){
               if( text == 1 ){
                   $( '#Fli'+id ).remove();
               }else{
-                  alert( "删除失败" );
+                  Alert( "删除失败" );
               }
             });
       }
@@ -131,8 +131,8 @@ function doAdd(){
   var content = $( '#mini-coment' ).val();
   //检测合法性
 
- if(!content) {alert("不能为空哦~~~");return;}
- if(content.length>mini_zishu) {alert("不能多于mini_zishu个字哦~~~");return;}
+ if(!content) {Alert("不能为空哦~~~");return;}
+ if(content.length>mini_zishu) {Alert("不能多于mini_zishu个字哦~~~");return;}
 
   $( '.btn_big' ).attr( 'disabled',true );
       $(".phiz").hide();
@@ -152,7 +152,7 @@ function doAdd(){
           $( '.btn_big').removeAttr('disabled');
 
       }else{
-      alert( "提交失败" );
+      Alert( "提交失败" );
             $(this).removeAttr('disabled');
       }
       });
@@ -187,7 +187,7 @@ function replay( uid,mini_id ){
   $( '.inputReplay' ).blur();
   touid = uid;
   var obj = $( '#input'+mini_id );
-  alert(obj.html());
+  //Alert(obj.html());
   replayShow(obj) ;
   if( uid != "false" ){
     old_con = obj.val();
