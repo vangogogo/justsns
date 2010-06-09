@@ -23,7 +23,7 @@ class FriendGroup extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'friend_group';
+		return '{{friend_group}}';
 	}
 
 	/**

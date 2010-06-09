@@ -30,7 +30,7 @@ class Msg extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'msg';
+		return '{{msg}}';
 	}
 
 	/**

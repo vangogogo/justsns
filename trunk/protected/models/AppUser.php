@@ -28,7 +28,7 @@ class AppUser extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'app_user';
+		return '{{app_user}}';
 	}
 
 	/**

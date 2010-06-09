@@ -24,7 +24,7 @@ class GiftCategory extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gift_category';
+		return '{{gift_category}}';
 	}
 
 	/**

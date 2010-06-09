@@ -23,7 +23,7 @@ class VoteOption extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'vote_option';
+		return '{{vote_option}}';
 	}
 
 	/**

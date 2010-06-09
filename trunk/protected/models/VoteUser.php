@@ -26,7 +26,7 @@ class VoteUser extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'vote_user';
+		return '{{vote_user}}';
 	}
 
 	/**

@@ -124,11 +124,11 @@ return array(
 
 	// application modules
 	'modules'=>array(
-        'gii'=>array(
-            'class'=>'system.gii.GiiModule',
-            'password'=>'yiidev',
-        ),
-        
+		'gii'=>array(
+			'class'=>'system.gii.GiiModule',
+			'password'=>'yiidev',
+		),
+		
 		'srbac' => array( 
 			'userclass'=>'User', //optional defaults to User 
 			'userid'=>'id', //optional defaults to userid 

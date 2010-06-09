@@ -24,7 +24,7 @@ class LoginRecord extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'login_record';
+		return '{{login_record}}';
 	}
 
 	/**

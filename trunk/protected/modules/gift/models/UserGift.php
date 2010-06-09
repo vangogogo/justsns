@@ -29,7 +29,7 @@ class UserGift extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user_gift';
+		return '{{user_gift}}';
 	}
 
 	/**

@@ -32,7 +32,7 @@ class GroupPost extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'group_post';
+		return '{{group_post}}';
 	}
 
 	/**

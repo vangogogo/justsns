@@ -31,7 +31,7 @@ class Feed extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'feed';
+		return '{{feed}}';
 	}
 
 	/**
