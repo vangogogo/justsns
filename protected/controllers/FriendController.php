@@ -34,7 +34,7 @@ class FriendController extends Controller
 
 		if(!empty($gid))
 		{
-			$criteria->join = "left join friend_belong_group on friend_belong_group.uid = t.uid ";
+			$criteria->join = "left join {{friend_belong_group}} on {{friend_belong_group}}.uid = t.uid ";
 			$criteria->addCondition('gid='.$gid);
 		}
 		

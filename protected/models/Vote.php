@@ -42,7 +42,7 @@ class Vote extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'vote';
+		return '{{vote}}';
 	}
 
 	/**

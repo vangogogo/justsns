@@ -17,16 +17,16 @@ class VoteController extends Controller
 		$model = new Vote();
 		 //初始化
 		$criteria=new CDbCriteria;
-		$criteria->select = "friend.fuid as uid,t.*";
+		$criteria->select = "{{friend}}.fuid as uid,t.*";
 		$criteria->order='id';
-		$criteria->join = "left join friend on friend.fuid = t.uid ";
-		$criteria->condition="friend.uid=:uid";
+		$criteria->join = "left join {{friend}} on {{friend}}.fuid = t.uid ";
+		$criteria->condition="{{friend}}.uid=:uid";
 		$criteria->params=array(':uid'=>$uid);
 
 		$gid = Yii::app()->request->getQuery('gid');
 		if(!empty($gid))
 		{
-			$criteria->join .= " left join friend_belong_group on friend_belong_group.uid = friend.uid ";
+			$criteria->join .= " left join {{friend_belong_group}} on {{friend_belong_group}}.uid = {{friend}}.uid ";
 			$criteria->addCondition('gid='.$gid);
 		}
 

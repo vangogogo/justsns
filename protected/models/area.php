@@ -24,7 +24,7 @@ class area extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'area';
+		return '{{area}}';
 	}
 
 	/**

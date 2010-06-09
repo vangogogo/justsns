@@ -31,7 +31,7 @@ class Mini extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'mini';
+		return '{{mini}}';
 	}
 
 	/**

@@ -26,7 +26,7 @@ class Friend extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'friend';
+		return '{{friend}}';
 	}
 
 	/**

@@ -25,7 +25,7 @@ class Smile extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'smile';
+		return '{{smile}}';
 	}
 
 	/**

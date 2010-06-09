@@ -26,7 +26,7 @@ class GroupCategory extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'group_category';
+		return '{{group_category}}';
 	}
 
 	/**

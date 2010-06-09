@@ -37,7 +37,7 @@ class App extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'app';
+		return '{{app}}';
 	}
 
 	/**

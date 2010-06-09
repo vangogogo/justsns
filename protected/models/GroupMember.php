@@ -29,7 +29,7 @@ class GroupMember extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'group_member';
+		return '{{group_member}}';
 	}
 
 	/**

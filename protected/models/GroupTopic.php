@@ -39,7 +39,7 @@ class GroupTopic extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'group_topic';
+		return '{{group_topic}}';
 	}
 
 	/**
