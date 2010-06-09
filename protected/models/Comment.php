@@ -188,11 +188,6 @@ class Comment extends CActiveRecord
 		$model = self::model();
 		$model->attributes = $params;
 		$model->save();
-		if(!empty($model->errors))
-		{
-			//var_dump($model->errors);die;
-			return $model->errors;
-		}
 		return $model;
 	}	
 }
