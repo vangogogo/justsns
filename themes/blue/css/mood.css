@@ -40,6 +40,6 @@
 .Input_box { padding-top:5px; padding-bottom:5px; clear: both; overflow: hidden; width: 380px; }
 .Input_box .pic { height:38px; width:38px; float:left; overflow:hidden; margin-right: 5px; }
 .Input_box .pic img { height:38px; width:38px }
-.Input_box .box { overflow:hidden; float: left; text-align: left; }
+.Input_box .box { overflow:hidden; float: left; text-align: left;margin:0;padding:0; }
 .Input_box .box textarea { border:1px solid #BDC7D8; font-size:12px; overflow: hidden; padding-top: 0px; padding-right: 5px; padding-bottom: 0px; padding-left: 5px; }
 .Input_box .box .btn2 { margin-bottom:5px; margin-top: 5px; }
