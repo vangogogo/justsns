@@ -1,17 +1,16 @@
-
 <div class="cr"><!-- cr begin  -->
-<div class="UserList">
-   <form action="__APP__" method="get"  id="list_fri" class="form_validator">
-		<input type="hidden" name="s" value="/Friend/lists" >
-		<input type="hidden" name="type" value="info" id="sub_type">
-		<div class="tit">搜索用户</div>
-		<div class="ListBox">
-		<div ><div style="float:left; width:170px; padding-left:10px;"><input name="name" class="TextH20" style="width:165px; margin-right:5px;" type="text"  onblur="this.className='TextH20'" onfocus="this.className='Text2'" /></div><div style="float:left;" ><input type="submit" class="btn_b hander" value="找 人" /></div>
-		</div>
-		</div>
-		<div class="btm"></div>
-	</form>
-</div>
+	<div class="UserList">
+	   <form action="__APP__" method="get"  id="list_fri" class="form_validator">
+			<input type="hidden" name="s" value="/Friend/lists" >
+			<input type="hidden" name="type" value="info" id="sub_type">
+			<div class="tit">搜索用户</div>
+			<div class="ListBox">
+			<div ><div style="float:left; width:170px; padding-left:10px;"><input name="name" class="TextH20" style="width:165px; margin-right:5px;" type="text"  onblur="this.className='TextH20'" onfocus="this.className='Text2'" /></div><div style="float:left;" ><input type="submit" class="btn_b hander" value="找 人" /></div>
+			</div>
+			</div>
+			<div class="btm"></div>
+		</form>
+	</div>
 	<?php if(!isset($space_privacy) || $space_privacy){ ?>
 
 	<?php if($visitors){ ?>

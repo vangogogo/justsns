@@ -4,7 +4,7 @@
 
 <div class="BlogBox">
 	<div class="MList" style="width:640px;"><!-- 写短消息 begin  -->
-	<div class="mt10 f14px lh30 cGray2"><strong>发送私密对话</strong></div>
+		<div class="mt10 f14px lh30 cGray2"><strong>发送私密对话</strong></div>
 		<?php echo CHtml::beginForm(); ?>
 			<ul>
 				<li>

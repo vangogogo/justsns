@@ -27,7 +27,7 @@
 			<div class="phiz" style="display:none;top: 0px;left: 0px;">
 				<?php if(!empty($icon_list)) foreach($icon_list as $i =>$value){?>
 				<div class="ico_link">
-				  <img onclick="insert(this,<?php echo $i?>);" title="<?php echo $value->title?>" emotion="<?php echo $value->emotion?>" src="<?php echo Yii::app()->request->baseUrl.'/images/biaoqing/mini/'.$value->filename?>"/>
+					<img onclick="insert(this,<?php echo $i?>);" title="<?php echo $value->title?>" emotion="<?php echo $value->emotion?>" src="<?php echo Yii::app()->request->baseUrl.'/images/biaoqing/mini/'.$value->filename?>"/>
 				</div>
 				<?php }?>
 			</div>
