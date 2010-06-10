@@ -1,0 +1,46 @@
+<?php
+
+return array(
+	/*
+	'sample1'=>array(
+		'uid' => '',
+		'name' => '',
+		'title' => '',
+		'category' => '',
+		'cover' => '',
+		'content' => '',
+		'readCount' => '',
+		'commentCount' => '',
+		'tags' => '',
+		'cTime' => '',
+		'mTime' => '',
+		'isHot' => '',
+		'type' => '',
+		'status' => '',
+		'private' => '',
+		'hot' => '',
+		'friendId' => '',
+		'canableComment' => '',
+	),
+	'sample2'=>array(
+		'uid' => '',
+		'name' => '',
+		'title' => '',
+		'category' => '',
+		'cover' => '',
+		'content' => '',
+		'readCount' => '',
+		'commentCount' => '',
+		'tags' => '',
+		'cTime' => '',
+		'mTime' => '',
+		'isHot' => '',
+		'type' => '',
+		'status' => '',
+		'private' => '',
+		'hot' => '',
+		'friendId' => '',
+		'canableComment' => '',
+	),
+	*/
+);
