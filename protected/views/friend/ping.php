@@ -14,7 +14,6 @@
 					</div>
 				<?php echo CHtml::endForm(); ?> 
 				<div class="c"></div>
-
 			</li>
 		</ul>
 		<br /><br />
