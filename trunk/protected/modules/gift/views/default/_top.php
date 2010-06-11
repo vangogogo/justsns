@@ -9,9 +9,9 @@
 <div class="tab-menu">
 	<?php
 		$items =array(
-			array('label'=>'<span>礼物中心</span>', 'url'=>array('/create')),
-			array('label'=>'<span>收到的礼物</span>', 'url'=>array('/Revice')),
-			array('label'=>'<span>送出的礼物</span>', 'url'=>array('/Send')),
+			array('label'=>'<span>礼物中心</span>', 'url'=>array('/gift/create')),
+			array('label'=>'<span>收到的礼物</span>', 'url'=>array('/gift/Revice')),
+			array('label'=>'<span>送出的礼物</span>', 'url'=>array('/gift/Send')),
 		);
 		
 		$this->widget('zii.widgets.CMenu',array(

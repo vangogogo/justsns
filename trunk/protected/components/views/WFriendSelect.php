@@ -1,6 +1,5 @@
-<script src="js/friend_suggest/ui.friendsuggest.js"></script>
-<link href="js/friend_suggest/ui.friendsuggest.css" rel="stylesheet" type="text/css" />
-
+<?php Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl.'/js/friend_suggest/ui.friendsuggest.js');?>
+<?php Yii::app()->getClientScript()->registerCssFile(Yii::app()->request->baseUrl.'/js/friend_suggest/ui.friendsuggest.css');?>
 <script>var no_edit = 0;</script>
 
 <script>

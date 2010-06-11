@@ -11,7 +11,7 @@ class WFriendGroup extends CWidget
 	public function run()
 	{
 
-		$uid = ntval($_GET["uid"]);
+		$uid = intval($_GET["uid"]);
 
 		//初始化
 		$criteria=new CDbCriteria;

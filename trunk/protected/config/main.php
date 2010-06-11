@@ -107,11 +107,14 @@ return array(
 			'rules'=>array(
 				// www.example.com/home instead of www.example.com/site/index
 				//'home'=>'site/index',
+				'space/<uid:\d+>'=>'space/index',
+		
 				'post/<id:\d+>'=>'post/show',
 
 				'group/topic/<id:\d+>'=>'group/topic/view',
 				'group/<id:\d+>'=>'group/group/view',
 				'group/create'=>'group/default/create',
+
 
 			),
 		),
@@ -172,6 +175,7 @@ return array(
 		),
 		'gift'=>array(
 			'layout'=>'application.views.layouts.main',
+//			"defaultController"=>"gift",
 		),
 	),
 

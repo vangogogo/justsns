@@ -13,6 +13,7 @@ class GiftController extends Controller
 
 	public function init()
 	{
+		parent::init();
 		$this->accessOptions =  GiftUser::model()->getAccessOptions();
 		$this->image_dir = Yii::app()->request->baseUrl.'/images/gift/';
 	}
