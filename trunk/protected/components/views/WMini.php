@@ -20,9 +20,9 @@
 		</div>
 		<div class="jishuan"><span id='mini-count'></span></div>
 		<div class="status_edit"><!-- 心情状态页显示编辑框 -->
-		  <div>
-		  <textarea id ="mini-coment" name="content" rows="" wrap="virtual" class="WB" onkeyup="fot(this)" onkeydown="fot(this)"></textarea>
-		  </div>
+			<div>
+				<textarea id ="mini-coment" name="content" rows="" wrap="virtual" class="WB" onkeyup="fot(this)" onkeydown="fot(this)"></textarea>
+			</div>
 		<div class="phiz_box">
 			<div class="phiz" style="display:none;top: 0px;left: 0px;">
 				<?php if(!empty($icon_list)) foreach($icon_list as $i =>$value){?>

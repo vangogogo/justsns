@@ -11,9 +11,9 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-	
+
 	public $mid = 0;
-	
+
 	public function init()
 	{
 		$this->mid = Yii::app()->user->id;
@@ -34,21 +34,21 @@ class Controller extends CController
 	public function actions()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
+		// captcha action renders the CAPTCHA image displayed on the contact page
 			'captcha'=>array(
 				'class'=>'CCaptchaAction',
 				'backColor'=>0xFFFFFF,
 				'maxLength'=>'4',
 				'minLength'=>'4',				
-			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
+		),
+		// page action renders "static" pages stored under 'protected/views/site/pages'
+		// They can be accessed via: index.php?r=site/page&view=FileName
 			'page'=>array(
 				'class'=>'CViewAction',
-			),
+		),
 		);
 	}
-	
+
 	/**
 	 * @var string $message 显示内容
 	 * @var array $url 路由

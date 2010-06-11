@@ -1,10 +1,10 @@
 <script type="text/javascript" charset="utf-8">
 var items_per_page = "<?php echo ($perpage); ?>";
-var next_text      = "<?php echo ($next); ?>";
-var prev_text      = "<?php echo ($prev); ?>";
-var appid          = <?php echo ($appid); ?>;
-var mid            = <?php echo ($mid); ?>;
-var filed          = '<?php echo ($filed); ?>';
+var next_text	  = "<?php echo ($next); ?>";
+var prev_text	  = "<?php echo ($prev); ?>";
+var appid		  = <?php echo ($appid); ?>;
+var mid			= <?php echo ($mid); ?>;
+var filed		  = '<?php echo ($filed); ?>';
 var type = "<?php echo ($type); ?>";
 
 </script>

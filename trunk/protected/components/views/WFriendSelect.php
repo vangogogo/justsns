@@ -56,8 +56,7 @@ function cancelAll(){alert('456');
 <!-- 选择好友组件-->
 <!--<div class="ui-fs-result clearfix" style="display:none;" id="show_choose"></div>-->
 <div id="ui-fs<?php echo $id;?>" class="ui-fs">
-	<div class="ui-fs-result clearfix" style="display:none;">
-	</div>
+	<div class="ui-fs-result clearfix" style="display:none;"></div>
 	<div class="ui-fs-input">
 		<input type="text" value="输入好友姓名" maxlength="30" />
 		<a class="ui-fs-icon" href="javascript:void(0)" title="查看所有好友">查看所有好友</a>
@@ -68,8 +67,8 @@ function cancelAll(){alert('456');
 	<div class="ui-fs-all">
 		<div class="top">
 			<select id="ui-fs-friendtype<?php echo $id;?>"><option value="-1">所有好友</option></select>
-<!--			<input id="chooseAll" type="checkbox" onclick="parent.chooseAll();" />全选
-			<input id="cancelAll" type="checkbox" onclick="parent.cancelAll();" />全不选-->
+<!--			<input id="chooseAll" type="checkbox" onclick="parent.chooseAll();" />全选-->
+<!--			<input id="cancelAll" type="checkbox" onclick="parent.cancelAll();" />全不选-->
 			<div class="close" title="关闭">关闭</div>
 		</div>
 		<div class="ui-fs-allinner">
