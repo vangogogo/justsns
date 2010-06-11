@@ -15,7 +15,7 @@ class EAccess extends CApplicationComponent
 		if(!Yii::app()->user->isGuest){
 			Yii::app()->attachEventHandler('onBeginRequest',array($this,'refreshOnline'));
 		}else{
-			
+
 		}
 
 	}
@@ -31,7 +31,5 @@ class EAccess extends CApplicationComponent
 		{
 			$user->refreshOnline();
 		}
-
 	}
-	
 }

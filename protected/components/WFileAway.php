@@ -7,16 +7,14 @@ class WFileAway extends CWidget
 {
 	public $data=array();
 	public $url = 'friend';
-	
+
 	public function run()
 	{
 		$data = $this->data;
 
-
-		
 		$data['tableName'] = 'Mini';
 		$data['limit'] = 6;
-		
+
 		$date = date('Ym',time());
 		$date = self::paramData( $date,$data['limit'],$data['tableName']);
 
@@ -57,10 +55,10 @@ class WFileAway extends CWidget
 		if( !empty( $where ) ){
 			$where = implode( ' AND ',$where )." AND ";
 		}
-		
+
 		//$model = $tableName::model();
 		$model = call_user_func(array($tableName, 'model'));
-		
+
 		$tableName = $model->tableName();
 		$criteria=new CDbCriteria;
 		$criteria->order = 'ctime';
@@ -68,11 +66,11 @@ class WFileAway extends CWidget
 		$criteria->params = array(':uid'=>Yii::app()->user->id);
 		$oldest = $model->find();
 		$oldest_ctime = $oldest->ctime;
-		
+
 		$oldest_month = date('Ym',$oldest->ctime);
 		$month_arr = $this->getMonthArray($oldest_month,$date,6);
-		
-		
+
+
 		foreach($month_arr as $key)
 		{
 			$time  = $this->getMonthData($key);
@@ -88,7 +86,7 @@ class WFileAway extends CWidget
 
 			foreach ( $result as $value ){
 				$limit_time[$value['time']]['count'] = $value['count'];
-				
+
 				if($limit_time[$value['time']]['count'] == 0)
 				{
 					//unset($limit_time[$value['time']]);
@@ -98,7 +96,7 @@ class WFileAway extends CWidget
 
 		return $limit_time;
 	}
-	
+
 	/**
 	 * getMonthArray
 	 * 获得两个年月之间的月份数组
@@ -199,6 +197,6 @@ class WFileAway extends CWidget
 		return array( $start,$end );
 
 	}
-	
-		
+
+
 }

@@ -1,22 +1,21 @@
 <div>
 <div class="RC" id = "RC{$id}">
-
 <?php if(!empty($first)){ ?>
 	<div class="RLI btmline" id="first{$id}" >
 		<div class="user_img">
 			<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$first['uid']));?>"  class="tips">
 				<img src="<?php echo User::model()->getUserFace($first['uid'],'middle');?>" />
 			</a>
-		</div>			
+		</div>
 		<div class="RLC">
 			<h4>
 				<span class="right mt5">
 				<?php
-				  if( $uid == $first['uid'] || $mid == $uid){
-				  echo "<a id= \"d-first".$first['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$first['id'].",".$first['appid'].",\'first\',".$mid.")\">删除</a>";
-				  }
-			 	?>
-			  	</span>
+					if( $uid == $first['uid'] || $mid == $uid){
+					echo "<a id= \"d-first".$first['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$first['id'].",".$first['appid'].",\'first\',".$mid.")\">删除</a>";
+					}
+				?>
+				</span>
 				<span class="left">
 					<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$first['uid']));?>">
 						<strong><?php echo $first['name'];?></strong>
@@ -45,11 +44,11 @@
 			<h4>
 				<span class="right mt5">
 				<?php
-				  if( $uid == $last['uid'] || $mid == $uid){
-				  echo "<a id= \"d-last".$last['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$last['id'].",".$last['appid'].",\'first\',".$mid.")\">删除</a>";
-				  }
-			 	?>
-			  	</span>
+					if( $uid == $last['uid'] || $mid == $uid){
+						echo "<a id= \"d-last".$last['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$last['id'].",".$last['appid'].",\'first\',".$mid.")\">删除</a>";
+					}
+				?>
+				</span>
 				<span class="left">
 					<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$last['uid']));?>">
 						<strong><?php echo $last['name'];?></strong>
@@ -60,7 +59,7 @@
 			<p><?php echo $last['comment'];?><a href="javascript:replay(<?php $last['uid']?>,<?php echo $id;?>)" onclick="">回复</a></p>
 		</div>
 		<div class="c" ></div>
-	</div>			  
+	</div>
 <?php }?>
 </div>
 </div>

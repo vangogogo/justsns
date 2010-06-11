@@ -16,7 +16,7 @@ class Wcomment extends CWidget
 	public function run()
 	{
 		$data = $this->items;
-		
+
 		$role = $data['role'];
 		$type = $data['type'];
 		$appid = $data['appid'];
@@ -30,12 +30,12 @@ class Wcomment extends CWidget
 				echo "您无法评论,日志发布者已经关闭评论";exit();
 				break;
 		}
-		
+
 		$model = new Comment();
 		$comments = $model->getComments($type,$appid);
 		$data['icon_list'] = Smile::model()->findAll();
 		$data['comments'] = $comments;
-		
+
 		$this->render('WComment',$data);
 	}
 }
