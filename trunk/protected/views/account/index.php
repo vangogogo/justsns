@@ -24,13 +24,15 @@
 		}',
 		'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
 	));
-		
 ?>
-<div class="data jsvform" style="padding-top:30px;"><!-- 修改密码 begin  -->
-<?php echo EHtml::errorSummary($form);?>
+<!-- 修改密码 begin  -->
+<div class="data jsvform" style="padding-top:30px;">
+	<?php echo EHtml::errorSummary($form);?>
 	<ul>
 		<li>
-			<div class="cl">当前密码：<em>*</em></div>
+			<div class="cl">
+				当前密码：<em>*</em>
+			</div>
 			<div class="cc">
 				<?php echo EHtml::activePasswordField($form,'oldpassword',array('class'=>'t_input')); ?>
 			</div>
@@ -41,14 +43,21 @@
 				<div class="error_info" style="position: relative;">
 					<div>
 						<span><img src="<?php echo Yii::app()->theme->baseUrl ?>/public/images/th_ju[1].gif" /></span>
-						<div class="clue"><p class="error_content"></p><span class="clue_btm"></span></div>
+						<div class="clue">
+							<p class="error_content">
+							</p>
+							<span class="clue_btm"></span>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="c"></div>
+			<div class="c">
+			</div>
 		</li>
 		<li>
-			<div class="cl">新密码：<em>*</em></div>
+			<div class="cl">
+				新密码：<em>*</em>
+			</div>
 			<div class="cc">
 				<?php echo EHtml::activePasswordField($form,'password',array('class'=>'t_input')); ?>
 			</div>
@@ -59,14 +68,21 @@
 				<div class="error_info" style="position: relative;">
 					<div>
 						<span><img src="<?php echo Yii::app()->theme->baseUrl ?>/public/images/th_ju[1].gif" /></span>
-						<div class="clue"><p class="error_content"></p><span class="clue_btm"></span></div>
+						<div class="clue">
+							<p class="error_content">
+							</p>
+							<span class="clue_btm"></span>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="c"></div>
+			<div class="c">
+			</div>
 		</li>
 		<li>
-			<div class="cl">再输入一遍密码：<em>*</em></div>
+			<div class="cl">
+				再输入一遍密码：<em>*</em>
+			</div>
 			<div class="cc">
 				<?php echo EHtml::activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
 			</div>
@@ -77,18 +93,30 @@
 				<div class="error_info" style="position: relative;">
 					<div>
 						<span><img src="<?php echo Yii::app()->theme->baseUrl ?>/public/images/th_ju[1].gif" /></span>
-						<div class="clue"><p class="error_content"></p><span class="clue_btm"></span></div>
+						<div class="clue">
+							<p class="error_content">
+							</p>
+							<span class="clue_btm"></span>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="c"></div>
+			<div class="c">
+			</div>
 		</li>
-		
-		<li><div class="cl"><em>&nbsp;</em></div><div class="cc">
-			<?php echo CHtml::submitButton('确认修改',array('class'=>'btn_b')); ?>
-			</div><div class="cr"></div>
-			<div class="c"></div>
+		<li>
+			<div class="cl">
+				<em>&nbsp;</em>
+			</div>
+			<div class="cc">
+				<?php echo CHtml::submitButton('确认修改',array('class'=>'btn_b')); ?>
+			</div>
+			<div class="cr">
+			</div>
+			<div class="c">
+			</div>
 		</li>
 	</ul>
-</div><!-- 修改密码 end  -->
+</div>
+<!-- 修改密码 end  -->
 <?php echo EHtml::endForm();?>
