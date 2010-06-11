@@ -1,4 +1,5 @@
-<div class=page_title> <!-- page_title begin -->
+<!-- page_title begin -->
+<div class=page_title> 
 	<h2><img src="<?php echo Yii::app()->theme->baseUrl;?>/Public/images/applications.gif" />帐号管理</h2>
 	<div class="c"></div>
 </div><!-- page_title end -->
