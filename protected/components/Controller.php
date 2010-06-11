@@ -20,14 +20,13 @@ class Controller extends CController
 
 		define('PUBLIC_URL',Yii::app()->request->baseUrl);
 
-
 		if(!Yii::app()->user->isGuest)
 		{
-			$this->layout='column2';
+			$this->layout='application.views.layouts.column2';
 		}
 		else
 		{
-			$this->layout='column1';
+			$this->layout='application.views.layouts.column1';
 		}
 	}
 
