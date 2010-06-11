@@ -142,8 +142,5 @@ $(document).ready(function() {
 
 </div><!-- page -->
 
-
-
-
 </body>
 </html>
