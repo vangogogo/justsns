@@ -3,7 +3,7 @@
 class Gift extends CActiveRecord
 {
 	/**
-	 * The followings are the available columns in table 'greeting':
+	 * The followings are the available columns in table 'gift':
 	 * @var integer $id
 	 * @var integer $categoryId
 	 * @var string $name
@@ -55,7 +55,7 @@ class Gift extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cate'=>array(self::BELONGS_TO, 'GreetingCategory', 'categoryId'),		
+			'cate'=>array(self::BELONGS_TO, 'GiftCategory', 'categoryId'),		
 		);
 	}
 
