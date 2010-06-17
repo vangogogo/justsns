@@ -194,7 +194,21 @@ class Mini extends CActiveRecord
 		
 		$mini = $model->find($criteria);
 		return $mini;
-
+	}
+	
+	public function deleteMiniById($id)
+	{
+		$mini = $this->findByPk($id);
+		if(!empty($mini))
+		{
+			if($mini['uid'] == Yii::app()->user->id)
+			{
+				$mini->status = -1;
+				return $mini->save();
+			}
+//			echo "不是本人";
+		}
+		return false;
 	}
 
 }

@@ -2,6 +2,7 @@
 
 class Comment extends CActiveRecord
 {
+	public $face;
 	/**
 	 * The followings are the available columns in table 'comment':
 	 * @var integer $id
@@ -45,6 +46,7 @@ class Comment extends CActiveRecord
 			array('type', 'length', 'max'=>15),
 			array('name', 'length', 'max'=>30),
 			array('comment', 'safe'),
+			array('type, appid, name, uid, comment, ctime, status', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, type, appid, name, uid, comment, ctime, toId, status, quietly', 'safe', 'on'=>'search'),
@@ -141,6 +143,7 @@ class Comment extends CActiveRecord
 	{
 		$smile = new Smile();
 		$this->comment =  $smile->replaceContent($this->comment);
+		$this->face = User::model()->getUserFace($this->uid);
 	}
 		
 	public function getComments($type,$appid,$page = 0)
@@ -185,9 +188,34 @@ class Comment extends CActiveRecord
 	
 	public function addComment($params)
 	{
-		$model = self::model();
+		$model = $this;
 		$model->attributes = $params;
 		$model->save();
+		
+		$model->face = User::model()->getUserFace($this->uid);
+		
 		return $model;
-	}	
+	}
+	
+	/**
+	 * 获得心情的评论，心情的评论格式不同
+	 * @param unknown_type $params
+	 */
+	public function getReplays($params)
+	{
+		$type = $params['type'];
+		$appid = $params['appid'];
+		
+		$model = self::model();
+		//$comments = $model->findAll($criteria);
+		//return $comments;
+		 //初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='ctime DESC';
+		$criteria->condition="type=:type AND appid=:appid AND status != :status";
+		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
+		$comments = $model->findAll($criteria);
+		
+		
+	}
 }
