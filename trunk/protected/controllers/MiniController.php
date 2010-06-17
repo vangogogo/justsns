@@ -3,29 +3,29 @@
 class MiniController extends Controller
 {
 	const PAGE_SIZE=20;
-	
+
 	public $is_me;
 
 	public function actionIndex()
 	{
 		$uid = Yii::app()->user->id;
-		
+
 		$model = new Mini();
-		 //初始化
+		//初始化
 		$criteria=new CDbCriteria;
 		$criteria->select = "{{friend}}.fuid as uid,t.*";
 		$criteria->order='id';
 		$criteria->join = "left join {{friend}} on {{friend}}.fuid = t.uid ";
-		$criteria->condition="{{friend}}.uid=:uid";
+		$criteria->condition="{{friend}}.uid=:uid AND status != -1";
 		$criteria->params=array(':uid'=>$uid);
-				
+
 		$gid = Yii::app()->request->getQuery('gid');
 		if(!empty($gid))
 		{
 			$criteria->join .= " left join {{friend_belong_group}} on {{friend_belong_group}}.uid = {{friend}}.uid ";
 			$criteria->addCondition('gid='.$gid);
 		}
-		
+
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
@@ -33,41 +33,41 @@ class MiniController extends Controller
 		$pages->applyLimit($criteria);
 		//获取数据集
 		$mini_list = $model->findAll($criteria);
-				
+
 		$data = array(
 			'mini_list'=> $mini_list,
 			'pages'=> $pages,
 		);
 
-		
+
 		$this->render('index',$data);
 	}
-	
+
 	/**
 	 * 我的心情
 	 */
 	public function actionMy()
 	{
 		$uid = Yii::app()->user->id;
-		
+
 		$model = new Mini();
-		 //初始化
+		//初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
-		$criteria->condition="uid=:uid";
+		$criteria->condition="uid=:uid AND status != -1";
 		$criteria->params=array(':uid'=>$uid);
-		
+
 		$mini = $model->find($criteria);
-		
+
 		$smile = new Smile();
 		$icon_list = $smile->getIconList();
 
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))
-		{	
+		{
 			$criteria = $model->fileaway($date,$criteria);
 		}
-		
+
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
@@ -85,24 +85,24 @@ class MiniController extends Controller
 
 		$this->render('my',$data);
 	}
-	
+
 	/**
 	 * 我的心情
 	 */
 	public function actionAll()
 	{
 		$uid = Yii::app()->user->id;
-		
+
 		$model = new Mini();
-		 //初始化
+		//初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))
-		{	
+		{
 			$criteria = $model->fileaway($date,$criteria);
 		}
-		
+
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
@@ -110,7 +110,7 @@ class MiniController extends Controller
 		$pages->applyLimit($criteria);
 		//获取数据集
 		$mini_list = $model->findAll($criteria);
-				
+
 		$data = array(
 			'mini_list'=> $mini_list,
 			'pages'=> $pages,
@@ -118,7 +118,7 @@ class MiniController extends Controller
 
 		$this->render('my',$data);
 	}
-		
+
 	/**
 	 * 好友的心情
 	 */
@@ -126,14 +126,14 @@ class MiniController extends Controller
 	{
 		$uid = Yii::app()->request->getQuery('uid');
 		$mid = Yii::app()->user->id;
-		
+
 		if($uid == $mid)
 		{
 			$this->redirect(array('my'));
 		}
-		
+
 		$model = new Mini();
-		 //初始化
+		//初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
 		$criteria->condition="uid=:uid";
@@ -141,7 +141,7 @@ class MiniController extends Controller
 
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))
-		{	
+		{
 			$year = $date[0].$date[1].$date[2].$date[3];
 			$month = $date[4].$date[5];
 			$start = mktime(0,0,0,$month,1,$year);
@@ -149,7 +149,7 @@ class MiniController extends Controller
 			$condition = "$start < ctime AND ctime < $end";
 			$criteria->addCondition($condition);
 		}
-		
+
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
@@ -157,16 +157,16 @@ class MiniController extends Controller
 		$pages->applyLimit($criteria);
 		//获取数据集
 		$mini_list = $model->findAll($criteria);
-				
+
 		$data = array(
 			'mini_list'=> $mini_list,
 			'pages'=> $pages,
 		);
 
-		
+
 		$this->render('my',$data);
-	}	
-	
+	}
+
 	public function actionDoAddMini(){
 		$content = Yii::app()->request->getPost('content');
 		if( empty($content) ){
@@ -178,12 +178,33 @@ class MiniController extends Controller
 		$model->content = $content;
 		$add = $model->save();
 
-		if( $add ){
-			echo $model->replaceContent($content);
+		if($add){
+			echo Smile::model()->replaceContent($content);
 		}else{
 			echo -1;
 		}
 	}
+
+	
+	/*
+	 * 删除心情
+	 */
+	public function actionDoDeleteMini()
+	{
+		$id = Yii::app()->request->getPost('id');
+		
+		$model = new Mini();
+		$result = $model->deleteMiniById($id);
+		
+		if($result)
+		{
+			echo 1;
+		}
+		else
+		{
+			echo -1;
+		}
+	}	
 
 	/**
 	 * DoAddReplay
@@ -191,17 +212,21 @@ class MiniController extends Controller
 	 * @access public
 	 * @return void
 	 */
-	public function actionDoAddReplay(){
-		$more = $_POST['more'];
-		$page = $_POST['page'];
+	public function actionDoAddReplay()
+	{
+		$more = Yii::app()->request->getPost('more');
+		$page = Yii::app()->request->getPost('page');
+		$mid = Yii::app()->request->getPost('mid');
+		$id = Yii::app()->request->getPost('id');
+		$appid = Yii::app()->request->getPost('appid');
+		$comment = Yii::app()->request->getPost('content');
+		$quietly = Yii::app()->request->getPost('quietly');
+
+		//TODO feed 到某个提醒
+		$toUid = Yii::app()->request->getPost('toUid');
 		
-		$mid = $_POST['mid'];
-		$id = $_POST['id'];
+		
 		$type = 'mini';
-		$appid = $_POST['appid'];
-		$comment = $_POST['content'];
-		$toId = $_POST['toId'];
-		
 		$params = array(
 			'type'=>$type,
 			'appid'=>$appid,
@@ -209,26 +234,33 @@ class MiniController extends Controller
 			'toId'=>$toId,
 			'quietly'=>$quietly,
 		);
-		
+
 		$model = new Comment();
 		$model = $model->addComment($params);
-//		$model->attributes = $params;
-//		$model->save();
-		
+		//		$model->attributes = $params;
+		//		$model->save();
+
 		if(!empty($model->errors))
 		{
 			echo -1;
 			exit();
 		}
+		else
+		{
+			$data = $model->attributes;
+			$data['face']=$model->user->getUserFace();
+			echo CJSON::encode($data);
+		}
 	}
-	
+
 	/**
 	 * doDeleteMini
 	 * 删除mini
 	 * @access public
 	 * @return void
 	 */
-	public function doDeleteMini(){
+	public function doDeleteMini()
+	{
 		$id = Yii::app()->request->getPost('id');
 		$model = new Mini();
 		//TODO 检测空白输入
@@ -239,5 +271,27 @@ class MiniController extends Controller
 		}else{
 			echo -1;
 		}
-	}	
+	}
+
+
+
+	/**
+	 * ajax获得评论(显示全部XX条)
+	 */
+	public function getReplay()
+	{
+		$uid = Yii::app()->request->getPost('mid');
+		$appid = Yii::app()->request->getPost('appid');
+
+		$type = 'mini';
+		
+		$params = array(
+			'type'=>$type,
+			'appid'=>$appid,
+			'uid'=>$uid,
+		);
+		$model = new Comment();
+		$replays = $model->getReplays($params);
+
+	}
 }

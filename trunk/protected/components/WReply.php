@@ -18,8 +18,10 @@ class WReply extends CWidget
 		$count = count($replys);
 
 		$first = $replys[0];
-		$last = $replys[$count-1];
-
+		if($count > 2)
+		{
+			$last = $replys[$count-1];
+		}
 		$mid = Yii::app()->user->id;
 
 		$data = array(
