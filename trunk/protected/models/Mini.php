@@ -16,7 +16,6 @@ class Mini extends CActiveRecord
 	 * @var integer $feedId
 	 */
 	public $time;
-	public $count;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -59,8 +58,16 @@ class Mini extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			//心情所有者
 			'user'=>array(self::BELONGS_TO, 'User', 'uid'),
-			'reply' => array(self::HAS_MANY, 'Comment', 'appid'),		
+			//所有回复
+			'reply' => array(self::HAS_MANY, 'Comment', 'appid', 'condition'=>'reply.status= 0', 'order'=>'reply.ctime'),
+			//第一条回复
+			'first' => array(self::HAS_ONE, 'Comment', 'appid', 'condition'=>'first.status= 0', 'order'=>'first.ctime '),
+			//最后一条回复
+			'last' => array(self::HAS_ONE, 'Comment', 'appid', 'condition'=>'last.status= 0', 'order'=>'last.ctime DESC'),
+			//回复总数
+			'count' => array(self::STAT, 'Comment', 'appid', 'condition'=>'status= 0'),
 		);
 	}
 
@@ -78,7 +85,7 @@ class Mini extends CActiveRecord
 			'tagId' => 'Tag',
 			'ctime' => '添加时间',
 			'status' => '状态',
-			'reply_numbel' => 'Reply Numbel',
+			'reply_numbel' => '回复总数',
 			'feedId' => 'Feed',
 		);
 	}
@@ -115,7 +122,7 @@ class Mini extends CActiveRecord
 		$time = $this->getMonthData($findTime);
 		$start = $time[0];
 		$end = $time[1];
-		$condition = "$start < ctime AND ctime < $end";
+		$condition = "$start < t.ctime AND t.ctime < $end";
 		$criteria->addCondition($condition);
 		return $criteria;
 	}

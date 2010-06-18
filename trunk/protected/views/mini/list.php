@@ -41,7 +41,7 @@
 				<?php }?>
 			</p>
 		</div>
-		<?php $this->Widget('WReply',array('reply'=>$vo->reply,'uid'=>$vo->uid,'id'=>$vo->id));?>
+		<?php $this->Widget('WReply',array('reply'=>$vo->reply,'uid'=>$vo->uid,'id'=>$vo->id,'count'=>$vo->count,'first'=>$vo->first,'last'=>$vo->last));?>
 	</div>
 	<div class="c"></div>
 </div>

@@ -6,26 +6,25 @@
 class WReply extends CWidget
 {
 	public $reply=array();
-
+	public $count;
+	public $first;
+	public $last;
+	
 	public $uid;
 	public $mid;
 	public $id;
 
 	public function run()
 	{
-		$replys = $this->reply;
 
-		$count = count($replys);
+		$count = $this->count;
+		$first = $this->first;
+		$last = $this->last;
+		
 
-		$first = $replys[0];
-		if($count > 2)
-		{
-			$last = $replys[$count-1];
-		}
 		$mid = Yii::app()->user->id;
 
 		$data = array(
-			'replys'=>$replys,
 			'count'=>$count,
 			'first'=>$first,
 			'last'=>$last,

@@ -193,7 +193,7 @@ class Comment extends CActiveRecord
 		{
 			if($model['uid'] == Yii::app()->user->id)
 			{
-				$mini->status = -1;
+				$model->status = -1;
 				return $model->save();
 			}
 //			echo "不是本人";
