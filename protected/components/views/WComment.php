@@ -69,14 +69,14 @@ $(document).bind("keydown","ctrl+return",function(evt){
 	<input id="toId" type="hidden" value="">
 </div>
 
-<div id="replay2" style="display: none">
+<div id="reply2" style="display: none">
 	<div class="pt5 clear">
 		<div style="width: 50px;" class="left">
 			<span class="pic38"><img id="face" src="<?php echo ($face); ?>" /></span>
 		</div>
 		<div style="margin-left: 50px; overflow: hidden;">
 			<textarea onfocus="this.className='Text1'" id="content2" onblur="this.className='Text'" class="Text" style="width: 99%; _width: 98%;" rows="4" name="textarea"> </textarea>
-			<input onclick="ReplayComment( $( this ) )" type="button" value="回 复" class="btn_b mt5" /> 
+			<input onclick="ReplyComment( $( this ) )" type="button" value="回 复" class="btn_b mt5" /> 
 			<input onclick="cancel( $( this ) )" type="button" value="取消" class="btn_w mt5" />
 		</div>
 	</div>

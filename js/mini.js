@@ -1,4 +1,4 @@
-var oddReplay = "";
+var oddReply = "";
 var lastinput = "";
 var touid = 0;
 $(document).ready(function() {
@@ -24,11 +24,11 @@ $(document).ready(function() {
 		var id = $(this).attr('id').substring(3);
 		$('#d-' + id).hide();
 	});
-	$('.inputReplay').click(function() {
-		replayShow($(this));
+	$('.inputReply').click(function() {
+		replyShow($(this));
 	});
-	$('.inputReplay').blur(function() {
-		replayHide($(this));
+	$('.inputReply').blur(function() {
+		replyHide($(this));
 	})
 	$('.RLI').mouseover(function() {
 		var id = $(this).attr('id');
@@ -85,9 +85,9 @@ function bq_show() {
 	});
 }
 
-function replaceReplay(vo) {
+function replaceReply(vo) {
 
-	var deleteReplay = vo.isDelete ? "<a id=\"d-RLI"
+	var deleteReply = vo.isDelete ? "<a id=\"d-RLI"
 			+ vo.id
 			+ "\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( "
 			+ vo.id + "," + vo.appid + " )\">删除</a>"
@@ -101,11 +101,11 @@ function replaceReplay(vo) {
 			+ "\"><img src=\""
 			+ vo.face
 			+ "\" /></a></div><div class=\"RLC\"><h4><span class = \"right mt5\">"
-			+ deleteReplay + "</span><span class=\"left\"><strong><a href=\""
+			+ deleteReply + "</span><span class=\"left\"><strong><a href=\""
 			+ TS + "/space/" + vo.uid + "\" class =\"name" + vo.uid + "\">"
 			+ vo.name + "</a></strong> <span class=\"time\">" + vo.ctime
 			+ "</span></span></h4><p>" + vo.comment
-			+ "<a href=\"javascript:replay(" + vo.uid + "," + vo.appid
+			+ "<a href=\"javascript:reply(" + vo.uid + "," + vo.appid
 			+ ")\">回复</a></p></div><div class=\"c\"></div></div>";
 	return result;
 }
@@ -184,7 +184,7 @@ function doAdd() {
 	});
 
 }
-function replayShow(_this) {
+function replyShow(_this) {
 	_this.attr('style', "height:50px; line-height:25px; width:325px;");
 	// _this.removeClass();
 	id = _this.attr('id').substring(5);
@@ -197,7 +197,7 @@ function replayShow(_this) {
 	$('#button' + id).css('display', "block");
 
 }
-function replayHide(_this) {
+function replyHide(_this) {
 	if (!_this.val()) {
 		// _this.addClass( 'cGray2' );
 		_this.attr('style', "height:25px; line-height:25px; width:368px;").val(
@@ -209,12 +209,12 @@ function replayHide(_this) {
 	}
 }
 
-function replay(uid, mini_id) {
-	$('.inputReplay').blur();
+function reply(uid, mini_id) {
+	$('.inputReply').blur();
 	touid = uid;
 	var obj = $('#input' + mini_id);
 	// Alert(obj.html());
-	replayShow(obj);
+	replyShow(obj);
 	if (uid != "false") {
 		old_con = obj.val();
 		// 通过:号分割，不能同时回复几个人
@@ -240,17 +240,17 @@ function getFilePath(num) {
 
 function showMore(id, uid) {
 	$('#showMore' + id).html("loading........");
-	$.post(getReplay_url, {
+	$.post(getReply_url, {
 		appid : id,
 		uid : uid
 	}, function(text) {
 		if (text != -1) {
 			// var result = JSON.parse(text);
-			// var newReplay = replaceReplay(result.OddReplay);
-			// var oddReplay = "";
+			// var newReply = replaceReply(result.OddReply);
+			// var oddReply = "";
 			// // 处理以往的数据信息。
-			// for ( var one in result.OddReplay) {
-			// oddReplay += replaceReplay(result.OddReplay[one]);
+			// for ( var one in result.OddReply) {
+			// oddReply += replaceReply(result.OddReply[one]);
 			// }
 			$('#showMore' + id).hide();
 
@@ -265,7 +265,7 @@ function showMore(id, uid) {
 	})
 }
 
-function replayComment(appid, more, mid) {
+function replyComment(appid, more, mid) {
 	// 获得数据
 	// 评论内容
 	var content = $('#input' + appid).val();
@@ -277,7 +277,7 @@ function replayComment(appid, more, mid) {
 	// 如果留言数大于2。则要加载隐藏的留言信息
 	if (more && 'true' == showmore) {
 		// ajax发送
-		$.post(doAddReplay_url, {
+		$.post(doAddReply_url, {
 			toUid : touid,
 			content : content,
 			appid : appid,
@@ -290,21 +290,21 @@ function replayComment(appid, more, mid) {
 				Alert("这里有个");
 				var result = JSON.parse(txt);
 
-				var newReplay = replaceReplay(result.newReplay);
-				var oddReplay = "";
+				var newReply = replaceReply(result.newReply);
+				var oddReply = "";
 
 				// 处理以往的数据信息。
-				for ( var one in result.OddReplay) {
-					oddReplay += replaceReplay(result.OddReplay[one]);
+				for ( var one in result.OddReply) {
+					oddReply += replaceReply(result.OddReply[one]);
 				}
 				$("#button" + appid).attr('readonly', false).val("回复");
 				$("#button" + id).attr('showmore', false);
-				$('#first' + appid).after(oddReplay);
+				$('#first' + appid).after(oddReply);
 				$('#last' + appid).hide();
-				$('#last' + appid).after(newReplay);
+				$('#last' + appid).after(newReply);
 				$('#showMore' + appid).hide();
 				$('#input' + appid).val("");
-				replayHide($('#input' + appid));
+				replyHide($('#input' + appid));
 
 				$('#RC' + appid).slideDown('normal');
 				deleteMouse();
@@ -315,7 +315,7 @@ function replayComment(appid, more, mid) {
 
 	} else {
 		// 只需要直接返回新的回复html格式就可以
-		$.post(doAddReplay_url, {
+		$.post(doAddReply_url, {
 			toUid : touid,
 			content : content,
 			appid : appid,
@@ -327,12 +327,12 @@ function replayComment(appid, more, mid) {
 			if (txt != -1) {
 				// Alert("这里有个2");
 				// var result = JSON.parse(txt);
-				// newReplay = replaceReplay(result);
+				// newReply = replaceReply(result);
 				$("#button" + appid).attr('readonly', false).val("回复");
 				$('#showMore' + appid).hide();
 				$('#input' + appid).val("");
 				$("#button" + id).attr('showmore', false);
-				replayHide($('#input' + appid));
+				replyHide($('#input' + appid));
 				$("#RC" + appid).append(txt);
 				$('#RC' + appid).slideDown("normal");
 				deleteMouse();
@@ -359,7 +359,7 @@ function deleteComment(id, appid, where, uid) {
 	Confirm( {
 		message : '是否删除此评论?',
 		handler : function(button) {
-			$.post(doDeleteReplay_url, {
+			$.post(doDeleteReply_url, {
 				id : id,
 				appid : appid
 			}, function(txt) {
@@ -394,7 +394,7 @@ function fot(e) {
 	lastinput = e.value;
 }
 /*
- * function doReplay( appid ){ var newInput = "<div class=\"RC\"
+ * function doReply( appid ){ var newInput = "<div class=\"RC\"
  * id=\"RC\""+appid+" style=\"margin-top: 10px; margin-bottom: 5px;\" ></div><div
  * class=\"RLI bg01\" id =\"RLI"+appid+"\"> <div class=\"user_img\"
  * id=\"image"+appid+"\"><img
@@ -402,26 +402,26 @@ function fot(e) {
  * class=\"RLC\"><div class=\"input_box\"><textarea id=\"input"+appid+"\"
  * name=\"comment\" cols=\"\" rows=\"3\" style=\"height:50px; line-height:18px;
  * width:99%\" class=\"cGray2\"></textarea><input id = \"button"+appid+"\"
- * type=\"button\" class=\"btn2\" onclick=\"replayComment("+appid+",false)\"
+ * type=\"button\" class=\"btn2\" onclick=\"replyComment("+appid+",false)\"
  * value=\"回 复\" /></div></div></div>"; $( '#Fli'+appid+"> .LC").append(
- * newInput ); var obj = $( '#input'+appid ); obj.bind('click', replayShow( obj
- * )); obj.bind('blur', replayHide( obj ) ); }
+ * newInput ); var obj = $( '#input'+appid ); obj.bind('click', replyShow( obj
+ * )); obj.bind('blur', replyHide( obj ) ); }
  */
-var openReplay = true;
-function closeReplay(appid, uid) {
+var openReply = true;
+function closeReply(appid, uid) {
 	// 获取回复数
-	if (openReplay) {
-		$.post(getReplayCount_url, {
+	if (openReply) {
+		$.post(getReplyCount_url, {
 			id : appid
 		}, function(count) {
 			if (count != -1) {
-				$('#closeReplay' + appid).text(count);
+				$('#closeReply' + appid).text(count);
 			} else {
 				Alert('意外的网路异常');
 			}
 		});
 	} else {
-		$('#closeReplay' + appid).text('收起回复');
+		$('#closeReply' + appid).text('收起回复');
 	}
 
 	$('#RC' + appid)
@@ -430,12 +430,12 @@ function closeReplay(appid, uid) {
 					function() {
 						$('#showMore' + appid).hide();
 						if ("none" == $(this).css('display')) {
-							openReplay = false;
+							openReply = false;
 						} else {
 							// 加载全部
 							$
 									.post(
-											getReplay_url,
+											getReply_url,
 											{
 												id : appid,
 												uid : uid
@@ -444,11 +444,11 @@ function closeReplay(appid, uid) {
 												if (text != -1) {
 													var result = JSON
 															.parse(text);
-													var newReplay = replaceReplay(result.OddReplay);
-													var oddReplay = "";
+													var newReply = replaceReply(result.OddReply);
+													var oddReply = "";
 													// 处理以往的数据信息。
-													for ( var one in result.OddReplay) {
-														oddReplay += replaceReplay(result.OddReplay[one]);
+													for ( var one in result.OddReply) {
+														oddReply += replaceReply(result.OddReply[one]);
 													}
 
 													var temp = "<div id=\"first"
@@ -462,7 +462,7 @@ function closeReplay(appid, uid) {
 													$('#first' + appid)
 															.remove();
 													$('#RC' + appid).html(
-															temp + oddReplay);
+															temp + oddReply);
 													deleteMouse();
 													$('#button' + appid).attr(
 															'showmore', false);
@@ -470,7 +470,7 @@ function closeReplay(appid, uid) {
 													Alert("无法加载全部回复");
 												}
 											})
-							openReplay = true;
+							openReply = true;
 						}
 					});
 	$('#RLI' + appid).slideToggle('normal');

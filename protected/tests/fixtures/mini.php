@@ -10,7 +10,7 @@ return array(
 		'tagId' => '',
 		'ctime' => '',
 		'status' => '',
-		'replay_numbel' => '',
+		'reply_numbel' => '',
 		'feedId' => '',
 	),
 	'sample2'=>array(
@@ -21,7 +21,7 @@ return array(
 		'tagId' => '',
 		'ctime' => '',
 		'status' => '',
-		'replay_numbel' => '',
+		'reply_numbel' => '',
 		'feedId' => '',
 	),
 	*/

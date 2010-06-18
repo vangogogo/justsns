@@ -12,7 +12,7 @@ class Mini extends CActiveRecord
 	 * @var integer $tagId
 	 * @var integer $ctime
 	 * @var integer $status
-	 * @var integer $replay_numbel
+	 * @var integer $reply_numbel
 	 * @var integer $feedId
 	 */
 	public $time;
@@ -42,12 +42,12 @@ class Mini extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, type, tagId, ctime, status, replay_numbel, feedId', 'numerical', 'integerOnly'=>true),
+			array('uid, type, tagId, ctime, status, reply_numbel, feedId', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>10),
 			array('content', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, name, type, content, tagId, ctime, status, replay_numbel, feedId', 'safe', 'on'=>'search'),
+			array('id, uid, name, type, content, tagId, ctime, status, reply_numbel, feedId', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,7 +78,7 @@ class Mini extends CActiveRecord
 			'tagId' => 'Tag',
 			'ctime' => '添加时间',
 			'status' => '状态',
-			'replay_numbel' => 'Replay Numbel',
+			'reply_numbel' => 'Reply Numbel',
 			'feedId' => 'Feed',
 		);
 	}
@@ -146,7 +146,7 @@ class Mini extends CActiveRecord
 
 		$criteria->compare('status',$this->status);
 
-		$criteria->compare('replay_numbel',$this->replay_numbel);
+		$criteria->compare('reply_numbel',$this->reply_numbel);
 
 		$criteria->compare('feedId',$this->feedId);
 
