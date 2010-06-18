@@ -103,7 +103,7 @@ function replaceReplay(vo) {
 			+ "\" /></a></div><div class=\"RLC\"><h4><span class = \"right mt5\">"
 			+ deleteReplay + "</span><span class=\"left\"><strong><a href=\""
 			+ TS + "/space/" + vo.uid + "\" class =\"name" + vo.uid + "\">"
-			+ vo.name + "</a></strong> <span class=\"time\">" + vo.cTime
+			+ vo.name + "</a></strong> <span class=\"time\">" + vo.ctime
 			+ "</span></span></h4><p>" + vo.comment
 			+ "<a href=\"javascript:replay(" + vo.uid + "," + vo.appid
 			+ ")\">回复</a></p></div><div class=\"c\"></div></div>";
@@ -245,15 +245,16 @@ function showMore(id, uid) {
 		uid : uid
 	}, function(text) {
 		if (text != -1) {
-			var result = JSON.parse(text);
-			var newReplay = replaceReplay(result.OddReplay);
-			var oddReplay = "";
-			// 处理以往的数据信息。
-			for ( var one in result.OddReplay) {
-				oddReplay += replaceReplay(result.OddReplay[one]);
-			}
+			// var result = JSON.parse(text);
+			// var newReplay = replaceReplay(result.OddReplay);
+			// var oddReplay = "";
+			// // 处理以往的数据信息。
+			// for ( var one in result.OddReplay) {
+			// oddReplay += replaceReplay(result.OddReplay[one]);
+			// }
 			$('#showMore' + id).hide();
-			$('#first' + id).after(oddReplay);
+
+			$('#first' + id).after(text);
 
 			deleteMouse();
 			$('#last' + id).hide();
@@ -286,6 +287,7 @@ function replayComment(appid, more, mid) {
 			js_token : js_token
 		}, function(txt) {
 			if (txt != -1) {
+				Alert("这里有个");
 				var result = JSON.parse(txt);
 
 				var newReplay = replaceReplay(result.newReplay);
@@ -323,14 +325,15 @@ function replayComment(appid, more, mid) {
 			js_token : js_token
 		}, function(txt) {
 			if (txt != -1) {
-				var result = JSON.parse(txt);
-				newReplay = replaceReplay(result);
+				// Alert("这里有个2");
+				// var result = JSON.parse(txt);
+				// newReplay = replaceReplay(result);
 				$("#button" + appid).attr('readonly', false).val("回复");
 				$('#showMore' + appid).hide();
 				$('#input' + appid).val("");
 				$("#button" + id).attr('showmore', false);
 				replayHide($('#input' + appid));
-				$("#RC" + appid).append(newReplay);
+				$("#RC" + appid).append(txt);
 				$('#RC' + appid).slideDown("normal");
 				deleteMouse();
 			} else {
@@ -356,57 +359,20 @@ function deleteComment(id, appid, where, uid) {
 	Confirm( {
 		message : '是否删除此评论?',
 		handler : function(button) {
-			if ('ok' == button) {
-				if (where) {
-					// 加载全部
-					$
-							.post(
-									getReplay_url,
-									{
-										id : appid,
-										uid : uid
-									},
-									function(text) {
-										if (text != -1) {
-											var result = JSON.parse(text);
-											var newReplay = replaceReplay(result.OddReplay);
-											var oddReplay = "";
-											// 处理以往的数据信息。
-											for ( var one in result.OddReplay) {
-												oddReplay += replaceReplay(result.OddReplay[one]);
-											}
-											var temp = "<div id=\"first"
-													+ appid
-													+ "\" class=\"RLI\">"
-													+ $('#first' + appid)
-															.clone().html()
-													+ "</div>";
-											$('#first').remove();
-											$('#RC' + appid).html(
-													temp + oddReplay);
-											deleteMouse();
-											$('#button' + appid).attr(
-													'showmore', false);
-										} else {
-											Alert("无法加载全部回复");
-										}
-									});
-				}
-				$.post(doDeleteReplay_url, {
-					id : id,
-					appid : appid
-				}, function(txt) {
-					if (txt != -1) {
-						if (where == 'first') {
-							$('#first' + appid).remove();
-						} else {
-							$('#RLI' + id).remove();
-						}
+			$.post(doDeleteReplay_url, {
+				id : id,
+				appid : appid
+			}, function(txt) {
+				if (txt != -1) {
+					if (where == 'first') {
+						$('#first' + appid).remove();
 					} else {
-						Alert("删除失败");
+						$('#RLI' + id).remove();
 					}
-				});
-			}
+				} else {
+					Alert("删除失败");
+				}
+			});
 		}
 	})
 

@@ -16,7 +16,7 @@ class MiniController extends Controller
 		$criteria->select = "{{friend}}.fuid as uid,t.*";
 		$criteria->order='id';
 		$criteria->join = "left join {{friend}} on {{friend}}.fuid = t.uid ";
-		$criteria->condition="{{friend}}.uid=:uid AND status != -1";
+		$criteria->condition="{{friend}}.uid=:uid";
 		$criteria->params=array(':uid'=>$uid);
 
 		$gid = Yii::app()->request->getQuery('gid');
@@ -207,7 +207,7 @@ class MiniController extends Controller
 	}	
 
 	/**
-	 * DoAddReplay
+	 * actionDoAddReplay
 	 * 添加mini回复到表 comment
 	 * @access public
 	 * @return void
@@ -237,8 +237,6 @@ class MiniController extends Controller
 
 		$model = new Comment();
 		$model = $model->addComment($params);
-		//		$model->attributes = $params;
-		//		$model->save();
 
 		if(!empty($model->errors))
 		{
@@ -247,19 +245,23 @@ class MiniController extends Controller
 		}
 		else
 		{
-			$data = $model->attributes;
-			$data['face']=$model->user->getUserFace();
-			echo CJSON::encode($data);
+//			$data = $model->attributes;
+//			$data['face']=$model->user->getUserFace();
+//			echo CJSON::encode($data);
+			$data['comments'] = array($model);
+			$data['id'] = $appid;
+			$data['mid'] = $mid;
+			$this->renderPartial('reply_div',$data);
 		}
 	}
 
 	/**
-	 * doDeleteMini
-	 * 删除mini
+	 * actionDoDeleteReplay
+	 * 删除回复 权限拥有者(心情发起者,评论者)
 	 * @access public
 	 * @return void
 	 */
-	public function doDeleteMini()
+	public function actionDoDeleteReplay()
 	{
 		$id = Yii::app()->request->getPost('id');
 		$model = new Mini();
@@ -278,7 +280,7 @@ class MiniController extends Controller
 	/**
 	 * ajax获得评论(显示全部XX条)
 	 */
-	public function getReplay()
+	public function actionGetReplay()
 	{
 		$uid = Yii::app()->request->getPost('mid');
 		$appid = Yii::app()->request->getPost('appid');
@@ -291,7 +293,21 @@ class MiniController extends Controller
 			'uid'=>$uid,
 		);
 		$model = new Comment();
-		$replays = $model->getReplays($params);
-
+		$order = 'ctime ASC';
+		$comments = $model->getComments($type,$appid,0,$order);
+		if(empty($comments))
+		{
+			echo -1;
+			exit();
+		}
+		else
+		{
+			//剔除第一条信息
+			unset($comments[0]);
+			$data['comments'] = $comments;
+			$data['id'] = $appid;
+			$this->renderPartial('reply_div',$data);
+		}		
+		
 	}
 }
