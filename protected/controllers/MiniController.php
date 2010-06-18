@@ -185,17 +185,17 @@ class MiniController extends Controller
 		}
 	}
 
-	
+
 	/*
 	 * 删除心情
 	 */
 	public function actionDoDeleteMini()
 	{
 		$id = Yii::app()->request->getPost('id');
-		
+
 		$model = new Mini();
 		$result = $model->deleteMiniById($id);
-		
+
 		if($result)
 		{
 			echo 1;
@@ -204,7 +204,7 @@ class MiniController extends Controller
 		{
 			echo -1;
 		}
-	}	
+	}
 
 	/**
 	 * actionDoAddReply
@@ -224,8 +224,8 @@ class MiniController extends Controller
 
 		//TODO feed 到某个提醒
 		$toUid = Yii::app()->request->getPost('toUid');
-		
-		
+
+
 		$type = 'mini';
 		$params = array(
 			'type'=>$type,
@@ -245,9 +245,9 @@ class MiniController extends Controller
 		}
 		else
 		{
-//			$data = $model->attributes;
-//			$data['face']=$model->user->getUserFace();
-//			echo CJSON::encode($data);
+			//			$data = $model->attributes;
+			//			$data['face']=$model->user->getUserFace();
+			//			echo CJSON::encode($data);
 			$data['comments'] = array($model);
 			$data['id'] = $appid;
 			$data['mid'] = $mid;
@@ -286,7 +286,7 @@ class MiniController extends Controller
 		$appid = Yii::app()->request->getPost('appid');
 
 		$type = 'mini';
-		
+
 		$params = array(
 			'type'=>$type,
 			'appid'=>$appid,
@@ -307,7 +307,7 @@ class MiniController extends Controller
 			$data['comments'] = $comments;
 			$data['id'] = $appid;
 			$this->renderPartial('reply_div',$data);
-		}		
-		
+		}
+
 	}
 }
