@@ -146,14 +146,14 @@ class Comment extends CActiveRecord
 		$this->face = User::model()->getUserFace($this->uid);
 	}
 		
-	public function getComments($type,$appid,$page = 0)
+	public function getComments($type,$appid,$page = 0,$order='ctime DESC')
 	{
 		$model = self::model();
 		//$comments = $model->findAll($criteria);
 		//return $comments;
 		 //初始化
 		$criteria=new CDbCriteria;
-		$criteria->order='ctime DESC';
+		$criteria->order=$order;
 		$criteria->condition="type=:type AND appid=:appid AND status != :status AND toId = 0";
 		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
 		$comments = $model->findAll($criteria);
@@ -186,6 +186,21 @@ class Comment extends CActiveRecord
 		return false;
 	}
 	
+	public function deleteCommentById($id)
+	{
+		$model = $this->findByPk($id);
+		if(!empty($model))
+		{
+			if($model['uid'] == Yii::app()->user->id)
+			{
+				$mini->status = -1;
+				return $model->save();
+			}
+//			echo "不是本人";
+		}
+		return false;
+	}
+		
 	public function addComment($params)
 	{
 		$model = $this;
@@ -216,6 +231,6 @@ class Comment extends CActiveRecord
 		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
 		$comments = $model->findAll($criteria);
 		
-		
+		return $comments;
 	}
 }

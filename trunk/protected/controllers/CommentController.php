@@ -4,7 +4,7 @@ class CommentController extends Controller
 {
 	public function actionIndex()
 	{
-		
+
 	}
 	/*
 	 * 显示评论列表
@@ -16,27 +16,27 @@ class CommentController extends Controller
 		$id = $_POST['id'];
 		$type = $_POST['type'];
 		$appid = $_POST['id'];
-		
+
 		$model = new Comment();
 		$comments = $model->getComments($type,$appid);
-		
+
 		$data = array(
 			'comments'=>$comments,
 		);
-		$this->renderPartial('list',$data);	
-		
+		$this->renderPartial('list',$data);
+
 	}
-	
+
 	public function actionGetCount()
 	{
 		$mid = $_POST['mid'];
 		$id = $_POST['id'];
 		$type = $_POST['type'];
 		$type = $_POST['type'];
-		
+
 		$model = new Comment();
 		$count = $model->getCount($type,$appid);
-		
+
 		return $count;
 	}
 	/*
@@ -51,9 +51,9 @@ class CommentController extends Controller
 		$comment = $_POST['comment'];
 		$quietly = $_POST['quietly'];
 		$toId = $_POST['toId'];
-		
+
 		$model = new Comment();
-		
+
 		$params = array(
 			'type'=>$type,
 			'appid'=>$appid,
@@ -61,7 +61,7 @@ class CommentController extends Controller
 			'toId'=>$toId,
 			'quietly'=>$quietly,
 		);
-		
+
 		$model->attributes = $params;
 		$model->save();
 		if(!empty($model->errors))
@@ -69,9 +69,9 @@ class CommentController extends Controller
 			echo -1;
 			exit();
 		}
-//		$data = $model->attributes;
-//		$data['face']=$model->user->getUserFace();
-//		echo CJSON::encode($data);
+		//		$data = $model->attributes;
+		//		$data['face']=$model->user->getUserFace();
+		//		echo CJSON::encode($data);
 
 		$comment = $model->attributes;
 		$comment['face']=$model->user->getUserFace();
@@ -87,7 +87,7 @@ class CommentController extends Controller
 			$this->renderPartial('subcomment_li',$data);
 		}
 	}
-	
+
 	/*
 	 * 删除评论
 	 */
@@ -98,11 +98,10 @@ class CommentController extends Controller
 		$params = array(
 			'id'=>$id,'appid'=>$appid,
 		);
-		
+
 		$model = new Comment();
 		$result = $model->deleteByAttributes($params);
-		
-		
+
 		if($result)
 		{
 			echo 1;
@@ -111,5 +110,5 @@ class CommentController extends Controller
 		{
 			echo -1;
 		}
-	}	
+	}
 }
