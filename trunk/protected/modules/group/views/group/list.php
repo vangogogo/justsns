@@ -34,10 +34,10 @@
 			<?php }?>
 			<p class="WB">
 				<?php echo $vo['content'];?>
-				<?php if( isset( $vo['replay'] ) && 2 < $vo['replay_numbel'] ){ ?>
-					<a id="closeReplay<?php echo $vo['id']?>" href="###" onclick="closeReplay(<?php echo $vo['id']?>,<?php echo $vo['uid']?>)">收起回复</a>
+				<?php if( isset( $vo['reply'] ) && 2 < $vo['reply_numbel'] ){ ?>
+					<a id="closeReply<?php echo $vo['id']?>" href="###" onclick="closeReply(<?php echo $vo['id']?>,<?php echo $vo['uid']?>)">收起回复</a>
 				<?php }else{?>
-					<a href="javascript:replay('false',<?php echo $vo['id']?>)"><?php echo Yii::t('sns', 'reply');?></a>
+					<a href="javascript:reply('false',<?php echo $vo['id']?>)"><?php echo Yii::t('sns', 'reply');?></a>
 				<?php }?>
 			</p>
 		</div>

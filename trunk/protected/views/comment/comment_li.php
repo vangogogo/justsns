@@ -11,7 +11,7 @@
 			<h3 class="tit_Critique lh25 mb5">
 				<span class="right f12px mr5">
 				<?php
-				$href = "javascript:replay($comment[name],$comment[id])";
+				$href = "javascript:reply($comment[name],$comment[id])";
 				$string = CHtml::link('回复','javascript:void(0)',array('class'=>'comment_reply','reply_id'=>$comment[id],'reply_name'=>$comment[name]));
 
 				if( $comment['uid'] == $this->mid){

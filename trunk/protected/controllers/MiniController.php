@@ -207,12 +207,12 @@ class MiniController extends Controller
 	}	
 
 	/**
-	 * actionDoAddReplay
+	 * actionDoAddReply
 	 * 添加mini回复到表 comment
 	 * @access public
 	 * @return void
 	 */
-	public function actionDoAddReplay()
+	public function actionDoAddReply()
 	{
 		$more = Yii::app()->request->getPost('more');
 		$page = Yii::app()->request->getPost('page');
@@ -256,12 +256,12 @@ class MiniController extends Controller
 	}
 
 	/**
-	 * actionDoDeleteReplay
+	 * actionDoDeleteReply
 	 * 删除回复 权限拥有者(心情发起者,评论者)
 	 * @access public
 	 * @return void
 	 */
-	public function actionDoDeleteReplay()
+	public function actionDoDeleteReply()
 	{
 		$id = Yii::app()->request->getPost('id');
 		$model = new Mini();
@@ -280,7 +280,7 @@ class MiniController extends Controller
 	/**
 	 * ajax获得评论(显示全部XX条)
 	 */
-	public function actionGetReplay()
+	public function actionGetReply()
 	{
 		$uid = Yii::app()->request->getPost('mid');
 		$appid = Yii::app()->request->getPost('appid');

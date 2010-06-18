@@ -18,7 +18,7 @@ function replaceComment(vo){
 			<li class=\"comlist\" id=\'comm"+vo.id+"\'>\
 			<div class=\"left\" style=\"width: 65px;\"><span class=\"headpic50\"><a href=\""+TS+"/space/"+vo.uid+"\"><img src=\""+vo.face+"\" /></a></span></div>\
 			<div style=\"margin-left: 65px;\">\
-			<div style=\"padding-bottom: 20px;\"><h3 class=\"tit_Critique lh25 mb5\"><span class=\"right f12px mr5\"><span><a	href=\"javascript:replay(\'"+vo.name+"\',"+vo.id+")\">回复</a></span><span class=\"ml5\"><a href=\"###\" class=\"doDeleteComment\">删除</a></span></span><a href=\""+TS+"/space/"+vo.uid+"\">"+vo.name+"</a>	 <em class=\"cGray2\">"+'刚刚'+"</em>"+quietly+"</h3>\
+			<div style=\"padding-bottom: 20px;\"><h3 class=\"tit_Critique lh25 mb5\"><span class=\"right f12px mr5\"><span><a	href=\"javascript:reply(\'"+vo.name+"\',"+vo.id+")\">回复</a></span><span class=\"ml5\"><a href=\"###\" class=\"doDeleteComment\">删除</a></span></span><a href=\""+TS+"/space/"+vo.uid+"\">"+vo.name+"</a>	 <em class=\"cGray2\">"+'刚刚'+"</em>"+quietly+"</h3>\
 				<p>"+vo.comment+"</p></div>"+sub+"</div></li>\
 	"
 	return result;
@@ -150,7 +150,7 @@ $(document).ready(function(){
 	$('.comment_reply').bind('click',function(){
 		name = $(this).attr('reply_name');
 		toId = $(this).attr('reply_id');
-		replay(name,toId);
+		reply(name,toId);
 
 
 	});
@@ -164,8 +164,8 @@ $(document).ready(function(){
 
 function getComments(){
 
-	obj_tmp = $('#replay2').clone();
-	$('#replay2').remove();
+	obj_tmp = $('#reply2').clone();
+	$('#reply2').remove();
 
 	$('#loadding').html("<img src= \""+PUBLIC+"/images/logging.gif\">");
 	// 加载初始化的数据
@@ -194,7 +194,7 @@ function getComments(){
 }
 
 /**
- * replay 回复某人
+ * reply 回复某人
  * 
  * @param uid
  *						$uid
@@ -203,12 +203,12 @@ function getComments(){
  * @access public
  * @return void
  */
-function replay(name,toId){
-	obj_tmp = $('#replay2');
-	$('#replay2').remove();
+function reply(name,toId){
+	obj_tmp = $('#reply2');
+	$('#reply2').remove();
 	if($('#comm'+toId+"> div >.subcomment").find('input').html() == null){
 		$('#comm'+toId+"> div >.subcomment").append(obj_tmp);
-		$('#replay2').show();
+		$('#reply2').show();
 	}
 
 	var obj = $('#content2');
@@ -218,7 +218,7 @@ function replay(name,toId){
 }
 
 function cancel(_this){
-	$('#replay2').remove();
+	$('#reply2').remove();
 }
 
 /**
@@ -287,7 +287,7 @@ function addComment(_this){
  * @access public
  * @return void
  */
-function ReplayComment(_this){
+function ReplyComment(_this){
 	var Abottom = _this.val();
 	var quietly = $('#quietly2').is(":checked")?1:0;
 	var toId	= $('#toId').val();
@@ -314,10 +314,10 @@ function ReplayComment(_this){
 //			JSON.parse(txt,function(key,value){
 //				a[key] = value;
 //			});
-//			$('#replay2').before(subComment(a));
-			$('#replay2').before(txt);
+//			$('#reply2').before(subComment(a));
+			$('#reply2').before(txt);
 			$('#content2').val("");
-			$('#replay2').remove();
+			$('#reply2').remove();
 			_this.val(Abottom);
 			_this.removeAttr('disabled');
 			// 发送动态回调函数

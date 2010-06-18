@@ -2,7 +2,7 @@
 <script type="text/javascript" charset="utf-8">
 	var mini_zishu = 140;
 	<?php 
-		$array=array('doAddMini','doDeleteMini','getReplay','getReplayCount','doReplyMini','doAddReplay','doDeleteReplay');
+		$array=array('doAddMini','doDeleteMini','getReply','getReplyCount','doReplyMini','doAddReply','doDeleteReply');
 		foreach($array as $action){
 	?>
 	var <?php echo $action;?>_url = "<?php echo Yii::app()->createUrl('/mini/'.$action);?>";

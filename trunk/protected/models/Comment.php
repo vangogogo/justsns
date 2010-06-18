@@ -216,7 +216,7 @@ class Comment extends CActiveRecord
 	 * 获得心情的评论，心情的评论格式不同
 	 * @param unknown_type $params
 	 */
-	public function getReplays($params)
+	public function getReplys($params)
 	{
 		$type = $params['type'];
 		$appid = $params['appid'];
