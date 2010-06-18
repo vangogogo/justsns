@@ -45,7 +45,7 @@
 					<span class="right mt5">
 					<?php
 						if( $uid == $last['uid'] || $mid == $uid){
-							echo "<a id= \"d-last".$last['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$last['id'].",".$last['appid'].",'first',".$mid.")\">删除</a>";
+							echo "<a id= \"d-last".$last['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$last['id'].",".$last['appid'].",'last',".$mid.")\">删除</a>";
 						}
 					?>
 					</span>

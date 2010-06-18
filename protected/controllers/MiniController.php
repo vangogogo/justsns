@@ -53,8 +53,8 @@ class MiniController extends Controller
 		$model = new Mini();
 		//初始化
 		$criteria=new CDbCriteria;
-		$criteria->order='ctime DESC';
-		$criteria->condition="uid=:uid AND status != -1";
+		$criteria->order='t.ctime DESC';
+		$criteria->condition="t.uid=:uid AND t.status != -1";
 		$criteria->params=array(':uid'=>$uid);
 
 		$mini = $model->find($criteria);
@@ -74,7 +74,8 @@ class MiniController extends Controller
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$mini_list = $model->with(array('reply'))->findAll($criteria);
+		//$mini_list = $model->with(array('first','last','count'))->findAll($criteria);
+		$mini_list = $model->findAll($criteria);
 
 		$data = array(
 			'mini_list'=> $mini_list,
@@ -264,13 +265,17 @@ class MiniController extends Controller
 	public function actionDoDeleteReply()
 	{
 		$id = Yii::app()->request->getPost('id');
-		$model = new Mini();
-		//TODO 检测空白输入
-		$mini = $model->findByPk($id);
+		$appid = Yii::app()->request->getPost('appid');
+		//TODO 心情发起者也有权限
+		$model = new Comment();
+		$result = $model->deleteCommentById($id);
 
-		if( $mini->delete()){
+		if($result)
+		{
 			echo 1;
-		}else{
+		}
+		else
+		{
 			echo -1;
 		}
 	}

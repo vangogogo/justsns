@@ -364,7 +364,9 @@ function deleteComment(id, appid, where, uid) {
 				appid : appid
 			}, function(txt) {
 				if (txt != -1) {
-					if (where == 'first') {
+					if (where == 'last') {
+						$('#last' + appid).remove();
+					}else if (where == 'first') {
 						$('#first' + appid).remove();
 					} else {
 						$('#RLI' + id).remove();
@@ -393,20 +395,7 @@ function fot(e) {
 	}
 	lastinput = e.value;
 }
-/*
- * function doReply( appid ){ var newInput = "<div class=\"RC\"
- * id=\"RC\""+appid+" style=\"margin-top: 10px; margin-bottom: 5px;\" ></div><div
- * class=\"RLI bg01\" id =\"RLI"+appid+"\"> <div class=\"user_img\"
- * id=\"image"+appid+"\"><img
- * src=\"http://www.qiniao.com/product/thinksns/Tpl/default/Public/images/userimg.jpg\" /></div><div
- * class=\"RLC\"><div class=\"input_box\"><textarea id=\"input"+appid+"\"
- * name=\"comment\" cols=\"\" rows=\"3\" style=\"height:50px; line-height:18px;
- * width:99%\" class=\"cGray2\"></textarea><input id = \"button"+appid+"\"
- * type=\"button\" class=\"btn2\" onclick=\"replyComment("+appid+",false)\"
- * value=\"回 复\" /></div></div></div>"; $( '#Fli'+appid+"> .LC").append(
- * newInput ); var obj = $( '#input'+appid ); obj.bind('click', replyShow( obj
- * )); obj.bind('blur', replyHide( obj ) ); }
- */
+
 var openReply = true;
 function closeReply(appid, uid) {
 	// 获取回复数
@@ -424,54 +413,41 @@ function closeReply(appid, uid) {
 		$('#closeReply' + appid).text('收起回复');
 	}
 
-	$('#RC' + appid)
-			.slideToggle(
-					'normal',
-					function() {
-						$('#showMore' + appid).hide();
-						if ("none" == $(this).css('display')) {
-							openReply = false;
-						} else {
-							// 加载全部
-							$
-									.post(
-											getReply_url,
-											{
-												id : appid,
-												uid : uid
-											},
-											function(text) {
-												if (text != -1) {
-													var result = JSON
-															.parse(text);
-													var newReply = replaceReply(result.OddReply);
-													var oddReply = "";
-													// 处理以往的数据信息。
-													for ( var one in result.OddReply) {
-														oddReply += replaceReply(result.OddReply[one]);
-													}
+	$('#RC' + appid).slideToggle(
+			'normal',
+			function() {
+				$('#showMore' + appid).hide();
+				if ("none" == $(this).css('display')) {
+					openReply = false;
+				} else {
+					// 加载全部
+					$.post(getReply_url, {
+						id : appid,
+						uid : uid
+					}, function(text) {
+						if (text != -1) {
+							var result = JSON.parse(text);
+							var newReply = replaceReply(result.OddReply);
+							var oddReply = "";
+							// 处理以往的数据信息。
+							for ( var one in result.OddReply) {
+								oddReply += replaceReply(result.OddReply[one]);
+							}
 
-													var temp = "<div id=\"first"
-															+ appid
-															+ "\" class=\"RLI btmline\">"
-															+ $(
-																	'#first' + appid)
-																	.clone()
-																	.html()
-															+ "</div>";
-													$('#first' + appid)
-															.remove();
-													$('#RC' + appid).html(
-															temp + oddReply);
-													deleteMouse();
-													$('#button' + appid).attr(
-															'showmore', false);
-												} else {
-													Alert("无法加载全部回复");
-												}
-											})
-							openReply = true;
+							var temp = "<div id=\"first" + appid
+									+ "\" class=\"RLI btmline\">"
+									+ $('#first' + appid).clone().html()
+									+ "</div>";
+							$('#first' + appid).remove();
+							$('#RC' + appid).html(temp + oddReply);
+							deleteMouse();
+							$('#button' + appid).attr('showmore', false);
+						} else {
+							Alert("无法加载全部回复");
 						}
-					});
+					})
+					openReply = true;
+				}
+			});
 	$('#RLI' + appid).slideToggle('normal');
 }
