@@ -173,7 +173,7 @@ function doAdd() {
 			$('#mini-content').html(txt);
 			$('#mini-time').html('刚刚');
 			$('#mini-coment').val('');
-			$('#mini-count').html(mini_zishu + "/" + mini_zishu);
+			$('#zishu').html(mini_zishu);
 			$('.btn_big').removeAttr('disabled');
 
 		} else {

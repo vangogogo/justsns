@@ -1,15 +1,14 @@
 <script type="text/javascript" charset="utf-8">
-	var mini_zishu = 140;
+	var mini_zishu = <?php echo $this->mini_zishu;?>;
 	<?php 
-		$array=array('doAddMini','doDeleteMini','getReply','getReplyCount','doReplyMini','doAddReply','doDeleteReply');
-		foreach($array as $action){
+		foreach($this->mini_ajax as $action):
 	?>
 	var <?php echo $action;?>_url = "<?php echo Yii::app()->createUrl('/mini/'.$action);?>";
-	<?php }?>
+	<?php endforeach;?>
 </script>
 <div class="edit_box">
 	<div class="alR" style="width:350px; margin-bottom:-5px;">
-		<span id="mb-hint"><b><span id="zishu">140</span></b>/140</span>
+		<span id="mb-hint"><strong id="zishu"><?php echo $this->mini_zishu;?></strong>/<?php echo $this->mini_zishu;?></span>
 	</div>
 	<div class="status_editor">
 		<div style="float:left; width:100%" class="lh25">
@@ -17,7 +16,6 @@
 			<span class="cGray2 fn f12px ml10" id="mini-time"><?php echo date('Y-m-d',$mini->ctime);?></span>
 			<span class="f12px fn ml5"><a href="<?php echo Yii::app()->createUrl('/mini/my');?>">更多心情</a></span>
 		</div>
-		<div class="jishuan"><span id='mini-count'></span></div>
 		<div class="status_edit"><!-- 心情状态页显示编辑框 -->
 			<div>
 				<textarea id ="mini-coment" name="content" rows="" wrap="virtual" class="WB" onkeyup="fot(this)" onkeydown="fot(this)"></textarea>

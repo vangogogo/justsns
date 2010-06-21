@@ -5,6 +5,9 @@
  */
 class WMini extends CWidget
 {
+	public $mini_zishu = 140;
+	public $mini_ajax = array('doAddMini','doDeleteMini','getReply','getReplyCount','doReplyMini','doAddReply','doDeleteReply');
+	
 	public $items=array();
 
 	public function run()
