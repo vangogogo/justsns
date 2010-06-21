@@ -85,31 +85,6 @@ function bq_show() {
 	});
 }
 
-function replaceReply(vo) {
-
-	var deleteReply = vo.isDelete ? "<a id=\"d-RLI"
-			+ vo.id
-			+ "\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( "
-			+ vo.id + "," + vo.appid + " )\">删除</a>"
-			: "";
-	var result = "<div class=\"RLI btmline\" id=\"RLI"
-			+ vo.id
-			+ "\"><div class=\"user_img\"><a href=\""
-			+ TS
-			+ "/space/"
-			+ vo.uid
-			+ "\"><img src=\""
-			+ vo.face
-			+ "\" /></a></div><div class=\"RLC\"><h4><span class = \"right mt5\">"
-			+ deleteReply + "</span><span class=\"left\"><strong><a href=\""
-			+ TS + "/space/" + vo.uid + "\" class =\"name" + vo.uid + "\">"
-			+ vo.name + "</a></strong> <span class=\"time\">" + vo.ctime
-			+ "</span></span></h4><p>" + vo.comment
-			+ "<a href=\"javascript:reply(" + vo.uid + "," + vo.appid
-			+ ")\">回复</a></p></div><div class=\"c\"></div></div>";
-	return result;
-}
-
 /**
  * 计算字符串长度的函数
  * 
@@ -129,7 +104,6 @@ function JHshStrLen(sString) {
 			iCount = iCount + 2;
 		}
 	}
-
 	return iCount;
 }
 
@@ -218,7 +192,7 @@ function reply(uid, mini_id) {
 		old_con = obj.val();
 		// 通过:号分割，不能同时回复几个人
 		array = old_con.split(":");
-		new_con = "回复" + $('.name' + uid).html();
+		new_con = "@" + $('.name' + uid).html();
 		if (array[0] != new_con) {
 			if (array[1]) {
 				obj.val(new_con + ":" + array[1]);
@@ -268,74 +242,31 @@ function replyComment(appid, more, mid) {
 
 	showmore = $('#button' + id).attr('showmore');
 	$("#button" + appid).attr('readonly', true).val("loading...");
-	// 如果留言数大于2。则要加载隐藏的留言信息
-	if (more && 'true' == showmore) {
-		// ajax发送
-		$.post(doAddReply_url, {
-			toUid : touid,
-			content : content,
-			appid : appid,
-			more : showmore,
-			mid : mid,
-			page : page,
-			js_token : js_token
-		}, function(txt) {
-			if (txt != -1) {
-				Alert("这里有个");
-				var result = JSON.parse(txt);
+	// 只需要直接返回新的回复html格式就可以
+	$.post(doAddReply_url, {
+		toUid : touid,
+		content : content,
+		appid : appid,
+		more : showmore,
+		mid : mid,
+		page : page,
+		js_token : js_token
+	}, function(txt) {
+		if (txt != -1) {
+			// Alert("这里有个2");
+			$("#button" + appid).attr('readonly', false).val("回复");
+//			$('#showMore' + appid).hide();
+			$('#input' + appid).val("");
+			$("#button" + id).attr('showmore', false);
+//			replyHide($('#input' + appid));
+			$("#RC" + appid).append(txt);
+			$('#RC' + appid).slideDown("normal");
+			deleteMouse();
+		} else {
+			Alert("心情添加失败");
+		}
+	});
 
-				var newReply = replaceReply(result.newReply);
-				var oddReply = "";
-
-				// 处理以往的数据信息。
-				for ( var one in result.OddReply) {
-					oddReply += replaceReply(result.OddReply[one]);
-				}
-				$("#button" + appid).attr('readonly', false).val("回复");
-				$("#button" + id).attr('showmore', false);
-				$('#first' + appid).after(oddReply);
-				$('#last' + appid).hide();
-				$('#last' + appid).after(newReply);
-				$('#showMore' + appid).hide();
-				$('#input' + appid).val("");
-				replyHide($('#input' + appid));
-
-				$('#RC' + appid).slideDown('normal');
-				deleteMouse();
-			} else {
-				Alert("心情发布失败");
-			}
-		});
-
-	} else {
-		// 只需要直接返回新的回复html格式就可以
-		$.post(doAddReply_url, {
-			toUid : touid,
-			content : content,
-			appid : appid,
-			more : showmore,
-			mid : mid,
-			page : page,
-			js_token : js_token
-		}, function(txt) {
-			if (txt != -1) {
-				// Alert("这里有个2");
-				// var result = JSON.parse(txt);
-				// newReply = replaceReply(result);
-				$("#button" + appid).attr('readonly', false).val("回复");
-				$('#showMore' + appid).hide();
-				$('#input' + appid).val("");
-				$("#button" + id).attr('showmore', false);
-				replyHide($('#input' + appid));
-				$("#RC" + appid).append(txt);
-				$('#RC' + appid).slideDown("normal");
-				deleteMouse();
-			} else {
-				Alert("心情添加失败");
-			}
-		});
-
-	}
 	touid = 0;
 }
 function deleteMouse() {
