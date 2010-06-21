@@ -3,8 +3,7 @@
 ?>
 <div class="Friend">
 	<div class="sidebar mt10">
-		<!-- 好友分组 -->
-		<?php if(!Yii::app()->user->isGuest) $this->widget('WFriendGroup',array('url'=>'mini/'.$this->action->id)); ?>
+		<?php if(!Yii::app()->user->isGuest) $this->widget('WFileAway',array('url'=>'mini/'.$this->action->id)); ?><!-- 好友分组 -->
 	</div>
 	<!-- 好友心情 begin  -->
 	<div class="FList">

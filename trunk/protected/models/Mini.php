@@ -41,12 +41,12 @@ class Mini extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, type, tagId, ctime, status, reply_numbel, feedId', 'numerical', 'integerOnly'=>true),
+			array('uid, type, tagId, ctime, status, feedId', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>10),
 			array('content', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, name, type, content, tagId, ctime, status, reply_numbel, feedId', 'safe', 'on'=>'search'),
+			array('id, uid, name, type, content, tagId, ctime, status, feedId', 'safe', 'on'=>'search'),
 		);
 	}
 

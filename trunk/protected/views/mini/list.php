@@ -34,14 +34,14 @@
 			<?php }?>
 			<p class="WB">
 				<?php echo $vo['content'];?>
-				<?php if( isset( $vo['reply'] ) && 2 < $vo['reply_numbel'] ){ ?>
+				<?php if( 2 < $vo['count'] ){ ?>
 					<a id="closeReply<?php echo $vo['id']?>" href="###" onclick="closeReply(<?php echo $vo['id']?>,<?php echo $vo['uid']?>)">收起回复</a>
 				<?php }else{?>
 					<a href="javascript:reply('false',<?php echo $vo['id']?>)"><?php echo Yii::t('sns', 'reply');?></a>
 				<?php }?>
 			</p>
 		</div>
-		<?php $this->Widget('WReply',array('reply'=>$vo->reply,'uid'=>$vo->uid,'id'=>$vo->id,'count'=>$vo->count,'first'=>$vo->first,'last'=>$vo->last));?>
+		<?php $this->Widget('WReply',array('uid'=>$vo->uid,'id'=>$vo->id,'count'=>$vo->count,'first'=>$vo->first,'last'=>$vo->last));?>
 	</div>
 	<div class="c"></div>
 </div>

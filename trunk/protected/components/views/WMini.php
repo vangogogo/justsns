@@ -1,4 +1,3 @@
-<?php Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl.'/js/mini.js');?>
 <script type="text/javascript" charset="utf-8">
 	var mini_zishu = 140;
 	<?php 

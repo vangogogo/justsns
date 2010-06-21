@@ -9,6 +9,8 @@ class WMini extends CWidget
 
 	public function run()
 	{
+		Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl.'/js/mini.js');
+		
 		$items=array();
 
 		$uid = Yii::app()->user->id;

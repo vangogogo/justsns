@@ -57,7 +57,7 @@ function deleteMini(id) {
 				id : id
 			}, function(text) {
 				if (text == 1) {
-					$('#Fli' + id).remove();
+					$('#Fli' + id).hide("slow");
 				} else {
 					Alert("删除失败");
 				}
@@ -142,7 +142,6 @@ function insert(_this) {
 	var old_con = $("#mini-coment").val();
 	var new_con = old_con + emotion;
 	$("#mini-coment").val(new_con);
-
 }
 
 function doAdd() {
@@ -239,30 +238,25 @@ function getFilePath(num) {
 }
 
 function showMore(id, uid) {
-	$('#showMore' + id).html("loading........");
-	$.post(getReply_url, {
-		appid : id,
-		uid : uid
-	}, function(text) {
-		if (text != -1) {
-			// var result = JSON.parse(text);
-			// var newReply = replaceReply(result.OddReply);
-			// var oddReply = "";
-			// // 处理以往的数据信息。
-			// for ( var one in result.OddReply) {
-			// oddReply += replaceReply(result.OddReply[one]);
-			// }
-			$('#showMore' + id).hide();
-
-			$('#first' + id).after(text);
-
-			deleteMouse();
-			$('#last' + id).hide();
-			$('#button' + id).attr('showmore', false);
-		} else {
-			Alert("无法加载全部回复");
-		}
-	})
+	var str = 'loading........';
+	if($('#showMore' + id).html() != str)
+	{
+		$('#showMore' + id).html(str);
+		$.post(getReply_url, {
+			appid : id,
+			uid : uid
+		}, function(text) {
+			if (text != -1) {
+				$('#showMore' + id).hide();
+				$('#first' + id).after(text);
+				deleteMouse();
+				$('#last' + id).hide();
+				$('#button' + id).attr('showmore', false);
+			} else {
+				Alert("无法加载全部回复");
+			}
+		})
+	}
 }
 
 function replyComment(appid, more, mid) {
@@ -365,11 +359,11 @@ function deleteComment(id, appid, where, uid) {
 			}, function(txt) {
 				if (txt != -1) {
 					if (where == 'last') {
-						$('#last' + appid).remove();
+						$('#last' + appid).hide("slow");
 					}else if (where == 'first') {
-						$('#first' + appid).remove();
+						$('#first' + appid).hide("slow");
 					} else {
-						$('#RLI' + id).remove();
+						$('#RLI' + id).hide("slow");
 					}
 				} else {
 					Alert("删除失败");
@@ -387,7 +381,8 @@ function fot(e) {
 	var c = e.value.length;
 	var xxx = mini_zishu - c;
 	if (c <= mini_zishu) {
-		// d.innerHTML =xxx+"/"+mini_zishu;
+//		str =xxx+"/"+mini_zishu;
+		$('#zishu').html(xxx);
 	} else {
 		e.value = lastinput;
 		$('#mini-coment').focus();
@@ -401,10 +396,11 @@ function closeReply(appid, uid) {
 	// 获取回复数
 	if (openReply) {
 		$.post(getReplyCount_url, {
-			id : appid
+			appid : appid
 		}, function(count) {
 			if (count != -1) {
-				$('#closeReply' + appid).text(count);
+				var text = count + '回复';
+				$('#closeReply' + appid).text(text);
 			} else {
 				Alert('意外的网路异常');
 			}
@@ -421,31 +417,7 @@ function closeReply(appid, uid) {
 					openReply = false;
 				} else {
 					// 加载全部
-					$.post(getReply_url, {
-						id : appid,
-						uid : uid
-					}, function(text) {
-						if (text != -1) {
-							var result = JSON.parse(text);
-							var newReply = replaceReply(result.OddReply);
-							var oddReply = "";
-							// 处理以往的数据信息。
-							for ( var one in result.OddReply) {
-								oddReply += replaceReply(result.OddReply[one]);
-							}
-
-							var temp = "<div id=\"first" + appid
-									+ "\" class=\"RLI btmline\">"
-									+ $('#first' + appid).clone().html()
-									+ "</div>";
-							$('#first' + appid).remove();
-							$('#RC' + appid).html(temp + oddReply);
-							deleteMouse();
-							$('#button' + appid).attr('showmore', false);
-						} else {
-							Alert("无法加载全部回复");
-						}
-					})
+					showMore(appid,uid);
 					openReply = true;
 				}
 			});
