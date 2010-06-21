@@ -97,7 +97,14 @@ class MiniController extends Controller
 		$model = new Mini();
 		//初始化
 		$criteria=new CDbCriteria;
-		$criteria->order='ctime DESC';
+		$criteria->order='t.ctime DESC';
+		$criteria->condition="1 AND t.status != -1";
+
+		$mini = $model->find($criteria);
+
+		$smile = new Smile();
+		$icon_list = $smile->getIconList();
+
 		$date = Yii::app()->request->getQuery('date');
 		if(!empty($date))
 		{
@@ -110,11 +117,14 @@ class MiniController extends Controller
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
+		//$mini_list = $model->with(array('first','last','count'))->findAll($criteria);
 		$mini_list = $model->findAll($criteria);
 
 		$data = array(
 			'mini_list'=> $mini_list,
 			'pages'=> $pages,
+			'mini'=> $mini,
+			'icon_list' =>$icon_list,
 		);
 
 		$this->render('my',$data);
@@ -246,9 +256,9 @@ class MiniController extends Controller
 		}
 		else
 		{
-			//			$data = $model->attributes;
-			//			$data['face']=$model->user->getUserFace();
-			//			echo CJSON::encode($data);
+			//$data = $model->attributes;
+			//$data['face']=$model->user->getUserFace();
+			//echo CJSON::encode($data);
 			$data['comments'] = array($model);
 			$data['id'] = $appid;
 			$data['mid'] = $mid;
@@ -313,6 +323,18 @@ class MiniController extends Controller
 			$data['id'] = $appid;
 			$this->renderPartial('reply_div',$data);
 		}
-
 	}
+	
+	/*
+	 * 获取回复总数
+	 */
+	public function actionGetReplyCount()
+	{
+		$uid = Yii::app()->request->getPost('mid');
+		$appid = Yii::app()->request->getPost('appid');
+		$type = 'mini';
+		$model = new Comment();
+		$count = $model->getCount($type,$appid);
+		echo $count;
+	}	
 }
