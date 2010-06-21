@@ -17,7 +17,7 @@
 			</span>
 			<span class="left">
 				<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$vo['uid']));?>">
-					<strong><?php echo $vo['name'];?></strong>
+					<strong class="name<?php echo $vo['uid'];?>"><?php echo $vo['name'];?></strong>
 				</a>
 				<span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>
 			</span>

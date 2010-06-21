@@ -18,7 +18,7 @@
 					</span>
 					<span class="left">
 						<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$first['uid']));?>">
-							<strong><?php echo $first['name'];?></strong>
+							<strong class="name<?php echo $first['uid'];?>"><?php echo $first['name'];?></strong>
 						</a>
 						<span class="time"><?php echo date('Y-m-d H:s',$first['ctime'])?></span>
 					</span>
@@ -51,7 +51,7 @@
 					</span>
 					<span class="left">
 						<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$last['uid']));?>">
-							<strong><?php echo $last['name'];?></strong>
+							<strong class="name<?php echo $last['uid'];?>"><?php echo $last['name'];?></strong>
 						</a>
 						<span class="time"><?php echo date('Y-m-d H:s',$last['ctime'])?></span>
 					</span>
