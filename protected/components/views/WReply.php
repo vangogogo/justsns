@@ -73,7 +73,7 @@
 	<div class="box">
 		<textarea id="input<?php echo $id;?>" name="comment" rows="3"  style="height:25px; width:368px;line-height:25px; <?php if(empty($first)):?>display:none;<?php endif;?>" class="cGray2 inputReply" >添加回复</textarea>
 		<input id = "button<?php echo $id;?>" <?php if( $count<=2 ){echo "showmore=false";}else{echo "showmore=true";}?> type="button" class="btn_b" onclick="replyComment(<?php echo $id;?>,true,<?php echo $mid;?>)" style="display:none;" value="回 复" />
-		<input type="button" id="button2<?php echo $id;?>" name="replyHide($( '#button<?php echo $id;?>' ))" style="display:none;" value="取消">
+		<input type="button" id="button2<?php echo $id;?>" name="replyHide($('#button<?php echo $id;?>'))" style="display:none;" value="取消">
 		<input id="uid" type="hidden" value="1" >
  	</div>
  </div>

@@ -3,7 +3,7 @@
 <!-- page_title begin -->
 <div class=page_title>
 	<div class="tit"><img src="/yiisns/themes/blue/images/apps/ico_app04.gif" class="img" /><?php echo Yii::t('sns', 'mini');?></div>
-	<?php if($this->action->id == 'my')
+	<?php
 		$this->widget('WMini');
 	?>
 	<div class="c"></div>
