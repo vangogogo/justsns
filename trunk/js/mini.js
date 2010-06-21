@@ -4,15 +4,16 @@ var touid = 0;
 $(document).ready(function() {
 	$(".input_box > textarea").val("添加回复");
 	$('#mini-coment').click(function() {
-		$('.jishuan').show();
+		//$('.jishuan').show();
 		bq_show();
 	});
 
 	$("#mini-coment").blur(function() {
 		if (!$("#mini-coment").val()) {
 			$(".phiz").hide();
-			$('.jishuan').hide();
+			//$('.jishuan').hide();
 		}
+		
 	})
 
 	$(".MC").mouseover(function() {
@@ -79,7 +80,7 @@ function bq_show() {
 		$("#mini-coment").blur(function() {
 			if (!$("#mini-coment").val()) {
 				$(".phiz").hide();
-				$(".jishuan").hide();
+				//$(".jishuan").hide();
 			}
 		});
 	});
@@ -127,13 +128,13 @@ function doAdd() {
 		return;
 	}
 	if (content.length > mini_zishu) {
-		Alert("不能多于mini_zishu个字哦~~~");
+		Alert("不能多于"+mini_zishu+"个字哦~~~");
 		return;
 	}
 
 	$('.btn_big').attr('disabled', true);
 	$(".phiz").hide();
-	$(".jishuan").hide();
+	//$(".jishuan").hide();
 
 	// POST提交
 	$.post(doAddMini_url, {
@@ -149,7 +150,6 @@ function doAdd() {
 			$('#mini-coment').val('');
 			$('#zishu').html(mini_zishu);
 			$('.btn_big').removeAttr('disabled');
-
 		} else {
 			Alert("提交失败");
 			$(this).removeAttr('disabled');
@@ -302,7 +302,6 @@ function deleteComment(id, appid, where, uid) {
 			});
 		}
 	})
-
 }
 
 // 字数递减和限制字数
