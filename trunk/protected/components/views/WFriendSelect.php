@@ -34,7 +34,7 @@
 			ajaxGetCountUrl: "<?php echo Yii::app()->createUrl('/friend/getCountUrl')?>",
 			ajaxGetFriendTypeUrl: "<?php echo Yii::app()->createUrl('/friend/getFriendType')?>",
 			selectCallBack:function(fid, name, image) {
-				alert("您选择的好友ID为"+fid);
+				Alert("您选择的好友ID为"+fid);
 				this.setDropDownListHide();
 				this.setAllFriendHide();
 			}
@@ -45,9 +45,9 @@
 		}
 	});
 
-/*function chooseAll(){alert('123');
+/*function chooseAll(){Alert('123');
 }
-function cancelAll(){alert('456');
+function cancelAll(){Alert('456');
 }*/
 </script>
 

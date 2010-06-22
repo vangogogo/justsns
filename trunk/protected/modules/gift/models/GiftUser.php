@@ -5,8 +5,8 @@
  *
  * The followings are the available columns in table '{{gift_user}}':
  * @property integer $id
- * @property integer $uid
- * @property integer $touid
+ * @property integer $fromUserId
+ * @property integer $toUserId
  * @property string $username
  * @property integer $toGroupID
  * @property integer $gift
@@ -41,13 +41,13 @@ class GiftUser extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, touid, username, gift, content, ctime', 'required'),
-			array('uid, touid, toGroupID, gift, access, ctime', 'numerical', 'integerOnly'=>true),
-			array('username', 'length', 'max'=>50),
+			array('fromUserId, toUserId, fromUsername, toUsername, giftId, ctime', 'required'),
+			array('fromUserId, toUserId, toGroupID, giftId, access, ctime', 'numerical', 'integerOnly'=>true),
+			array('fromUsername', 'length', 'max'=>50),
 			array('content', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, touid, username, toGroupID, gift, content, access, ctime', 'safe', 'on'=>'search'),
+			array('id, fromUserId, toUserId, fromUsername, toUsername, toGroupID, giftId, content, access, ctime', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +59,9 @@ class GiftUser extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'sender'=>array(self::BELONGS_TO, 'User', 'fromUserId'),
+			'reciver'=>array(self::BELONGS_TO, 'User', 'toUserId'),
+			'gift'=>array(self::BELONGS_TO, 'Gift', 'giftId'),
 		);
 	}
 
@@ -69,14 +72,15 @@ class GiftUser extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'uid' => '发送者id',
-			'touid' => '接受者id',
-			'username' => '发送者名',
+			'fromUserId' => '发送者id',
+			'toUserId' => '接受者id',
+			'fromUsername' => '发送者名',
+			'toUsername' => '接收者名',
 			'toGroupID' => '接受者群id',
-			'gift' => '礼物',
+			'giftId' => '礼物',
 			'content' => '附言',
 			'access' => '赠送的方式',
-			'ctime' => '时间',
+			'ctime' => '发送时间',
 		);
 	}
 
@@ -93,15 +97,17 @@ class GiftUser extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 
-		$criteria->compare('uid',$this->uid);
+		$criteria->compare('fromUserId',$this->fromUserId);
 
-		$criteria->compare('touid',$this->touid);
+		$criteria->compare('toUserId',$this->toUserId);
 
-		$criteria->compare('username',$this->username,true);
+		$criteria->compare('fromUsername',$this->fromUsername,true);
+		
+		$criteria->compare('toUsername',$this->toUsername,true);
 
 		$criteria->compare('toGroupID',$this->toGroupID);
 
-		$criteria->compare('gift',$this->gift);
+		$criteria->compare('giftId',$this->giftId);
 
 		$criteria->compare('content',$this->content,true);
 
@@ -121,9 +127,9 @@ class GiftUser extends CActiveRecord
 	{
 		if($this->isNewRecord)
 		{
-			$this->uid=Yii::app()->user->id;
-			$this->fromUserName = Yii::app()->user->name;
-			$this->cTime=time();
+			$this->fromUserId=Yii::app()->user->id;
+			$this->fromUsername = Yii::app()->user->name;
+			$this->ctime=time();
 		}
 		
 		return true;

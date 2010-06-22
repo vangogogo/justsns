@@ -35,7 +35,7 @@
 				}
 				var flag = 0;
 				$(".vote_opt").each(function (i) {
-					if($.trim($(this).val())) flag++;									
+					if($.trim($(this).val())) flag++;
 				})
 				if(flag<2){
 					Alert("至少填写2个选项!");
@@ -54,7 +54,7 @@
 				var new_vote = $( '#vote_default' ).clone();
 				if( flag == 1 ){
 					$( '.vote_opt' ).each( function( i ){
-					   flag++;
+						flag++;
 					});
 				}
 				new_vote.children( '.alR' ).html( "候选项"+flag+"：" );

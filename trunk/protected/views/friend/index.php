@@ -1,5 +1,5 @@
 <?php
-    include('_top.php');
+	include('_top.php');
 ?>
 <div class="sidebar pt10">
 	<?php if(!Yii::app()->user->isGuest) $this->widget('WFriendGroup'); ?>

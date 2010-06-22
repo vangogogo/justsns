@@ -11,8 +11,8 @@
 	<?php
 		$items =array(
 			array('label'=>'<span>礼物中心</span>', 'url'=>array('gift/index')),
-			array('label'=>'<span>收到的礼物</span>', 'url'=>array('gift/revice')),
-			array('label'=>'<span>送出的礼物</span>', 'url'=>array('gift/send')),
+			array('label'=>'<span>收到的礼物</span>', 'url'=>array('gift/reciveBox')),
+			array('label'=>'<span>送出的礼物</span>', 'url'=>array('gift/sendBox')),
 		);
 		
 		$this->widget('zii.widgets.CMenu',array(
