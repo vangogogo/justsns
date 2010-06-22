@@ -8,8 +8,8 @@
       <table width="630" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="120" align="right" height="30">问候送给：</td>
-          <td>
-			<?php $this->widget('WFriendSelect'); ?>
+          <td>22
+			<?php $this->widget('WFriendSelect'); ?>33
             </td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@
 <?php if(!empty($gifts)) { ?>
 	<?php if(is_array($gifts)) { foreach($gifts as $key => $value) { ?>
               <dl>
-                <dt><label for="greeting_ids[<?php echo $value->id?>]"><?php echo CHtml::image($this->image_dir.$value->imgPath,$value->name,array('title'=>$value->desc));?></label>
+                <dt><label for="greeting_ids[<?php echo $value->id?>]"><?php echo CHtml::image('222'.$value->imgPath,$value->name,array('title'=>$value->desc));?></label>
 				</dt>
 				<dd>
 					<input id="greeting_ids[<?php echo $value->id?>]" name="greeting_ids[<?php echo $value->id?>]" type="checkbox" value="<?php echo $value->id?>" />
