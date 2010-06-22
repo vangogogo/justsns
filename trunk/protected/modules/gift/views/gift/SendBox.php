@@ -7,8 +7,12 @@
 		</div>
 		<div class="left" style="width:560px;">
 			<div class="lh20">
-				您在<?php echo friendlyDate('Y-m-d',$gift['ctime']);?> 赠送给
-				<?php echo CHtml::link($gift['reciver']['username'],array('/space/','uid'=>$gift['toUserId']));?>
+				<?php if($gift['access'] == 3 AND $gift['fromUserId'] != $this->mid)
+					echo CHtml::encode('神秘人士');
+				else
+					 echo CHtml::link($gift['fromUsername'],array('/space/','uid'=>$gift['fromUserId']));?>
+				在<?php echo friendlyDate('Y-m-d',$gift['ctime']);?> 赠送给 
+				<?php echo CHtml::link($gift['toUsername'],array('/space/','uid'=>$gift['toUserId']));?>
 				<br/>
 				<div class="cGray2 lh30">赠言：</div>
 				<div class="quote" style="margin:0;">

@@ -88,9 +88,12 @@ class Gift extends CActiveRecord
 		}
 		else 
 			$this->mtime = time();
-
-			
-		
 		return true;
-	}		
+	}
+	
+	public function getImgPath()
+	{
+		$path = Yii::app()->request->baseUrl.'/images/gift/';
+		return $path;
+	}
 }

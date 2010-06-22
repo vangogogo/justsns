@@ -9,15 +9,24 @@ class GiftController extends Controller
 
 	public $image_dir = '';
 
+	public $uid;
 	const PAGE_SIZE=20;
 
 	public function init()
 	{
 		parent::init();
+		//礼物类型
 		$this->accessOptions =  GiftUser::model()->getAccessOptions();
-		$this->image_dir = Yii::app()->request->baseUrl.'/images/gift/';
+		//礼物图片地址
+		$this->image_dir = Gift::model()->getImgPath();
+		//uid
+		$uid = Yii::app()->request->getQuery('uid');
+		$this->uid = $uid?$uid:Yii::app()->user->id;
 	}
 
+	/**
+	 * 礼物首页
+	 */
 	public function actionIndex()
 	{
 		$this->processSendGift();
@@ -44,6 +53,10 @@ class GiftController extends Controller
 
 		$this->render('index',$data);
 	}
+	
+	/**
+	 * 发送礼物的方法
+	 */
 	protected function processSendGift()
 	{
 		if(isset($_POST['GiftUser']))
@@ -75,20 +88,19 @@ class GiftController extends Controller
 	 */
 	public function actionReciveBox()
 	{
-
 		$model=new GiftUser;
 		//初始化
 		$criteria=new CDbCriteria;
 		$criteria->order="ctime DESC";
 		$criteria->condition="toUserId=:toUserId";
-		$criteria->params=array(':toUserId'=>Yii::app()->user->id);
+		$criteria->params=array(':toUserId'=>$this->uid);
 		//取得数据总数,分页显示
 		$total = GiftUser::model()->count($criteria);
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$gifts = GiftUser::model()->with('sender')->findAll($criteria);
+		$gifts = GiftUser::model()->findAll($criteria);
 		$data = array(
 			'gifts' => $gifts,
 			'pages' => $pages,
@@ -109,7 +121,7 @@ class GiftController extends Controller
 		$criteria=new CDbCriteria;
 		$criteria->order="ctime DESC";
 		$criteria->condition="fromUserId=:fromUserId";
-		$criteria->params=array(':fromUserId'=>Yii::app()->user->id);
+		$criteria->params=array(':fromUserId'=>$this->uid);
 
 		//取得数据总数,分页显示
 		$total = GiftUser::model()->count($criteria);
