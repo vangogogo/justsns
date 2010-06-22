@@ -30,7 +30,7 @@
 
 				var title = $.trim($("#title").val());
 				if(!title){
-					alert("投票主题不能为空!");
+					Alert("投票主题不能为空!");
 					return false;
 				}
 				var flag = 0;
@@ -38,12 +38,12 @@
 					if($.trim($(this).val())) flag++;									
 				})
 				if(flag<2){
-					alert("至少填写2个选项!");
+					Alert("至少填写2个选项!");
 					return false;
 				}
 				var type = $( '#type' ).val();
 				if( type > flag-1 ){
-				  alert( '投票选项不得少于可选选项限数' ) ;
+				  Alert( '投票选项不得少于可选选项限数' ) ;
 				  return false;
 				}
 			}
