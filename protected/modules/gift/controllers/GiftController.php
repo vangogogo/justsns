@@ -20,12 +20,39 @@ class GiftController extends Controller
 
 	public function actionIndex()
 	{
-		//群组分类
-		$this->render('index');
+		//添加补充信息
+		$this->accessOptions = array(
+			0 => '公开赠送',
+			1 => '私下赠送(不让其他人知道是你送的)',
+			2 => '匿名赠送(不让接收礼物的人知道是你送的)',	
+		);
+		$giftCategory = GiftCategory::model()->getCategorys();
+		
+		$model=new GiftUser;
+		//礼物的种类
+		$criteria=new CDbCriteria;
+		$criteria->condition="status=:status";
+		$criteria->params=array(':status'=>1);
+		//取得数据总数,分页显示
+		$total = Gift::model()->count($criteria);
+		$pages=new CPagination($total);
+		$pages->pageSize=self::PAGE_SIZE;
+		$pages->applyLimit($criteria);
+		//获取数据集
+		$gifts = Gift::model()->findAll($criteria);
+
+		$data = array(
+			'giftCategory'=>$giftCategory,
+			'gifts' => $gifts,
+			'model'=>$model,
+			'pages'=>$pages,
+		);
+
+		$this->render('index',$data);
 	}
 
 	/**
-	 * 收到的问候
+	 * 收到的礼物
 	 */
 	public function actionRevice()
 	{
@@ -55,7 +82,7 @@ class GiftController extends Controller
 
 
 	/**
-	 * 发出的问候
+	 * 发出的礼物
 	 */
 	public function actionSend()
 	{
@@ -84,7 +111,7 @@ class GiftController extends Controller
 	}
 
 	/**
-	 * 问候发送页面
+	 * 礼物发送页面
 	 */
 	public function actionCreate()
 	{
@@ -92,13 +119,13 @@ class GiftController extends Controller
 		$this->accessOptions = array(
 			0 => '公开赠送',
 			1 => '私下赠送(不让其他人知道是你送的)',
-			2 => '匿名赠送(不让接收问候的人知道是你送的)',	
+			2 => '匿名赠送(不让接收礼物的人知道是你送的)',	
 		);
 
 		$model=new GiftUser;
 
 
-		//问候的种类
+		//礼物的种类
 		$criteria=new CDbCriteria;
 		$criteria->condition="status=:status";
 		$criteria->params=array(':status'=>1);
@@ -129,15 +156,15 @@ class GiftController extends Controller
 			$gift_ids = $_POST['gift_ids'];
 			if(empty($gift_ids))
 			{
-				//请选择问候的种类
-				throw new CHttpException(404,'先选择问候.');
+				//请选择礼物的种类
+				throw new CHttpException(404,'先选择礼物.');
 			}
 
 
-			//先对某个用户发送问候
+			//先对某个用户发送礼物
 			foreach($friend_ids as $toUserid)
 			{
-				//发送各种问候
+				//发送各种礼物
 				foreach($gift_ids as $giftid)
 				{
 						
