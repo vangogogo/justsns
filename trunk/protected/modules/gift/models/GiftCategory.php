@@ -49,6 +49,9 @@ class GiftCategory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			//类型下的礼物
+			'gifts' => array(self::HAS_MANY, 'Gift', 'cid', 'condition'=>'gifts.status= 1', 'order'=>'gifts.ctime'),
+		
 		);
 	}
 
@@ -64,7 +67,7 @@ class GiftCategory extends CActiveRecord
 			'ctime' => '添加时间',
 		);
 	}
-	
+
 	/**
 	 * Prepares attributes before performing validation.
 	 */
@@ -77,22 +80,22 @@ class GiftCategory extends CActiveRecord
 
 		return true;
 	}
-	
+
 	/**
 	 * 分类不可以删除
 	 */
-	protected function beforeDelete() 
+	protected function beforeDelete()
 	{
 		if($this->id != 0)
 		{
 			return true;
 		}
-	}	
-		
+	}
+
 	/**
 	 * 分类删除后,所有分类下的Gift的categoryId都修改为0
 	 */
-	protected function afterDelete() 
+	protected function afterDelete()
 	{
 		$model = new Gift();
 		$attributes = array(
@@ -100,5 +103,14 @@ class GiftCategory extends CActiveRecord
 		);
 		$condition = "categoryId={$this->id}";
 		$model->updateAll($attributes,$condition);
-	}	
+	}
+	
+	public function getCategorys()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->condition="status=:status";
+		$criteria->params=array(':status'=>1);
+		$models = $this->findAll($criteria);
+		return $models;
+	}
 }

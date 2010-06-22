@@ -82,3 +82,7 @@ function cancelAll(){alert('456');
 	</div>
 </div>
 <!--选择好友组件 end-->
+
+<input type="hidden" id="ui_fri_ids<?php echo $id;?>" name="fri_ids<?php echo $id;?>"  dataType="LimitB" min="1"  msg="必须选择用户!"> 
+
+<!-- <input type="hidden" id="<?php echo $id;?>" name="fri_ids<?php echo $id;?>"  dataType="LimitB" min="1"  msg="必须选择用户!"> -->
