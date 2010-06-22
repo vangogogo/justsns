@@ -1,4 +1,4 @@
-<?php $this->renderPartial('_top'); ?>
+<?php include('_top.php'); ?>
 
 <div class="grid_16"
 	style="position: relative; z-index: 1;"><!--问候 begin-->

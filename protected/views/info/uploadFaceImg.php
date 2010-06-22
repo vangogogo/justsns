@@ -7,7 +7,7 @@
 			 return;
 		 }
 		 if(!imgPattern.test(imageInput.value)){
-			 alert('该文件不是图片！');
+			 Alert('该文件不是图片！');
 			 return;
 		 }
 		 document.getElementById('uploadFrom').submit();
@@ -49,12 +49,12 @@ $this->widget('application.extensions.uploadify.EuploadifyWidget',
             'width' => 150,
             ),
         'callbacks' => array( 
-           'onError' => 'function(evt,queueId,fileObj,errorObj){alert("Error: " + errorObj.type + "\nInfo: " + errorObj.info);}',
+           'onError' => 'function(evt,queueId,fileObj,errorObj){Alert("Error: " + errorObj.type + "\nInfo: " + errorObj.info);}',
            'onComplete' => 'function(event, ID, fileObj, response, data){
            	var fileurl = eval("(" + response + ")");
 			insertImg1(fileurl);
            	$("#bigImage").val(fileurl);}',
-           'onCancel' => 'function(evt,queueId,fileObj,data){alert("Cancelled");}',
+           'onCancel' => 'function(evt,queueId,fileObj,data){Alert("Cancelled");}',
         )
     )); 
 

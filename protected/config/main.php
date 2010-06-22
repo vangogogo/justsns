@@ -107,7 +107,7 @@ return array(
 			'rules'=>array(
 				// www.example.com/home instead of www.example.com/site/index
 				//'home'=>'site/index',
-				'space/<uid:\d+>'=>'space/index',
+				'space/uid/<uid:\d+>'=>'space/index',
 		
 				'post/<id:\d+>'=>'post/show',
 

@@ -19,7 +19,7 @@ include('_top.php');
 						
 						var uname = $("#uname").val();
 						
-						//alert(school);alert(ru_year);alert(class);alert(uname);
+						//Alert(school);Alert(ru_year);Alert(class);Alert(uname);
 						if(!school && !ru_year && !classes && !uname ) {
 							Error("请至少填写一项!");
 							return false;

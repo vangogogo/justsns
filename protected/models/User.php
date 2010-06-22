@@ -6,7 +6,7 @@ class User extends CActiveRecord
 	public $repassword;
 	public $rememberMe;
 	public $area;
-	
+	public $face;
 	public $oldpassword;
 	/**
 	 * The followings are the available columns in table 'user':
@@ -54,48 +54,48 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('commend, active, ctime, identity, score', 'numerical', 'integerOnly'=>true),
-			array('email, username, handle, birthyear,birthmonth,birthday, current_province, current_city, current_area, admin_level', 'length', 'max'=>255),
+		array('commend, active, ctime, identity, score', 'numerical', 'integerOnly'=>true),
+		array('email, username, handle, birthyear,birthmonth,birthday, current_province, current_city, current_area, admin_level', 'length', 'max'=>255),
 			
-			array('blood_type', 'length', 'max'=>5),
+		array('blood_type', 'length', 'max'=>5),
 			
-			array('email','email'),
+		array('email','email'),
 			
-			array('password', 'length', 'max'=>50, 'min'=>6, 'on' => 'reg', 'message' => '密码由6-16个英文字母、数字或特殊字符组成'),
-			//修改密码
-			array('password,repassword,oldpassword','required', 'on' => 'modify'),
-			array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify','message' => '密码由6-16个英文字母、数字或特殊字符组成'),
+		array('password', 'length', 'max'=>50, 'min'=>6, 'on' => 'reg', 'message' => '密码由6-16个英文字母、数字或特殊字符组成'),
+		//修改密码
+		array('password,repassword,oldpassword','required', 'on' => 'modify'),
+		array('password,repassword,oldpassword', 'length', 'max'=>50, 'min'=>6, 'on' => 'modify','message' => '密码由6-16个英文字母、数字或特殊字符组成'),
 
-			//修改email
-			array('email,verifyCode','required', 'on' => 'account'),
-			//基本资料
-			array('username','required', 'on' => 'base'),
+		//修改email
+		array('email,verifyCode','required', 'on' => 'account'),
+		//基本资料
+		array('username','required', 'on' => 'base'),
 			
-			array('password,repassword,email,username,sex,verifyCode,area','required', 'on' => 'reg'),
-			array('username', 'checkUsername', 'on'=> 'account,reg'),
-			array('email', 'checkEmail', 'on'=> 'account,reg'),
-			array('repassword', 'compare', 'compareAttribute'=>'password', 'on' => 'reg,modify','message' => '两次输入的密码不一样，请重输！'),
+		array('password,repassword,email,username,sex,verifyCode,area','required', 'on' => 'reg'),
+		array('username', 'checkUsername', 'on'=> 'account,reg'),
+		array('email', 'checkEmail', 'on'=> 'account,reg'),
+		array('repassword', 'compare', 'compareAttribute'=>'password', 'on' => 'reg,modify','message' => '两次输入的密码不一样，请重输！'),
 			
-			array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd'), 'on' => 'account,reg'),
+		array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd'), 'on' => 'account,reg'),
 			
-			//ajax验证
-			array('username', 'application.extensions.jformvalidate.ECustomJsValidator' ,
+		//ajax验证
+		array('username', 'application.extensions.jformvalidate.ECustomJsValidator' ,
 				'rules'	=> array(
 					'remote' => Yii::app()->createUrl('/site/checkUsername'),
-				),
+		),
 				'messages' => array(
 					'remote' => '{attribute} already exist'
-				)
-			),
-			array('email', 'application.extensions.jformvalidate.ECustomJsValidator' ,
+					)
+					),
+					array('email', 'application.extensions.jformvalidate.ECustomJsValidator' ,
 				'rules'	=> array(
 					'remote' => Yii::app()->createUrl('/site/checkEmail'),
-				),
+					),
 				'messages' => array(
 					'remote' => '{attribute} already exist'
-				)
-			),
-		);
+					)
+					),
+					);
 	}
 
 	/**
@@ -119,8 +119,8 @@ class User extends CActiveRecord
 			'B型' => 'B型',
 			'AB型' => 'AB型',
 			'稀有血型' => '稀有血型'
-		);
-		
+			);
+
 	}
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -155,7 +155,7 @@ class User extends CActiveRecord
 			'area' => '居住地址',
 		);
 	}
-	
+
 	/**
 	 * 保存密码前md5
 	 */
@@ -163,7 +163,7 @@ class User extends CActiveRecord
 		$this->password = md5($this->password);
 		return true;
 	}
-	
+
 	/**
 	 * 检查用户名是否存在
 	 */
@@ -171,19 +171,17 @@ class User extends CActiveRecord
 		if(Yii::app()->user->name == $this->username) return true;
 		$user = self::model();
 		$error_msg = 'username already exist';
-		
+
 		if($user->count('username=:username', array(':username'=>$this->username)) > 0) {
 			$this->addError('email',$error_msg);
 			return false;
 		}
-		else 
+		else
 		{
 			return true;
 		}
-
-		
 	}
-	
+
 	/**
 	 * 检查邮箱是否存在
 	 */
@@ -194,15 +192,15 @@ class User extends CActiveRecord
 			$this->addError('email',$error_msg);
 			return false;
 		}
-		else 
+		else
 		{
 			return true;
 		}
 	}
-	
+
 	/**
 	 * 刷新在线时间
-	 */	
+	 */
 	public function refreshOnline()
 	{
 		$model = new UserOnline();
@@ -226,12 +224,12 @@ class User extends CActiveRecord
 			);
 			$model->attributes = $attribute;
 			$model->save();
-		}	
+		}
 	}
 
 	/**
 	 * 获得用户心情
-	 */	
+	 */
 	public function getUserMini()
 	{
 		$model = new Mini();
@@ -244,15 +242,15 @@ class User extends CActiveRecord
 		$mini = $model->find($criteria);
 		return $mini['content'];
 	}
-	
+
 	/**
 	 * 获得用户头像
-	 */	
+	 */
 	public function getUserFace($uid = '',$size = 'middle')
 	{
 		$size = in_array($size, array('big', 'middle', 'small',"yuan")) ? $size : 'middle';
 		if(empty($uid))
-			$uid = $this->id;
+		$uid = $this->id;
 		$path = Yii::app()->params['uploadPath'].'userface/';
 		$image = $path.$uid.'_'.$size.'_face.jpg';
 
@@ -265,15 +263,15 @@ class User extends CActiveRecord
 			}else {
 				return Yii::app()->theme->baseUrl."/images/pic1.gif";
 			}
-	
+
 		}else {
 			$url = Yii::app()->params['upload_dir'].'userface/';
-			
+				
 			$image = $url.$uid.'_'.$size.'_face.jpg';
 			return $image;
 		}
 	}
-	
+
 	public function getUserInfo()
 	{
 		$arr = $this->attributes;
@@ -281,7 +279,15 @@ class User extends CActiveRecord
 		$arr['face'] = $this->getUserFace();
 		return $arr;
 	}
-	
+
+	public function getUserWo()
+	{
+		$sex = $this->sex;
+		$sex = explode("-",$info['sex']);
+		return $sex[0] ? "他":"她";
+
+	}
+
 	public function getUserName($uid = '')
 	{
 		if(!empty($this->username))
@@ -292,16 +298,16 @@ class User extends CActiveRecord
 		{
 			$user = User::model()->findByPk($uid);
 		}
-		
+
 		return $user->username;
 	}
-	
+
 	public function getUserGroupIcon()
 	{
 		$GroupIcon = 'UserGroupIcon';
 		return $GroupIcon;
 	}
-	
+
 	public function getUserApps($num = '')
 	{
 		$model = new App();
@@ -312,12 +318,12 @@ class User extends CActiveRecord
 		}
 		return $this->apps;
 	}
-	
+
 	public function getUserFriends($uid) {
 		$friends = array();
-		
+
 		$model = new Friend();
-		 //初始化
+		//初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='id';
 		$criteria->condition="t.uid=:uid";
@@ -333,7 +339,7 @@ class User extends CActiveRecord
 			{
 				$fri_user = $value->user;
 				if(!empty($fri_user))
-					$friends[$key] = $fri_user->getUserInfo();
+				$friends[$key] = $fri_user->getUserInfo();
 			}
 		}
 		return $friends;
