@@ -13,11 +13,12 @@ class Controller extends CController
 	public $breadcrumbs=array();
 
 	public $mid = 0;
+	public $uid = 0;
 
 	public function init()
 	{
 		$this->mid = Yii::app()->user->id;
-
+		$this->uid = Yii::app()->request->getQuery('uid');
 		define('PUBLIC_URL',Yii::app()->request->baseUrl);
 
 		if(!Yii::app()->user->isGuest)

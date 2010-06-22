@@ -10,10 +10,14 @@
 				<?php if($gift['access'] == 3)
 					echo CHtml::encode('神秘人士');
 				else
-					 echo CHtml::link($gift['sender']['username'],array('/space/','uid'=>$gift['fromUserId']));?>
-				在<?php echo friendlyDate('Y-m-d',$gift['ctime']);?> 赠送给 您
+					 echo CHtml::link($gift['fromUsername'],array('/space/','uid'=>$gift['fromUserId']));?>
+				在<?php echo friendlyDate('Y-m-d',$gift['ctime']);?> 赠送给 
+				<?php echo CHtml::link($gift['toUsername'],array('/space/','uid'=>$gift['toUserId']));?>
+				
+				<?php if($this->mid == $gift['toUserId']):?>
 				<br/>
 				<?php echo CHtml::link('回赠礼物',array('gift/index','uid'=>$gift['fromUserId']));?>
+				<?php endif;?>
 				<br/>
 				<div class="cGray2 lh30">赠言：</div>
 				<div class="quote" style="margin:0;">
