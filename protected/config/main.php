@@ -109,10 +109,11 @@ return array(
 				//'home'=>'site/index',
 				'space/uid/<uid:\d+>'=>'space/index',
 		
-				'post/<id:\d+>'=>'post/show',
+				'post/<pid:\d+>'=>'post/show',
 
-				'group/topic/<id:\d+>'=>'group/topic/view',
+				'group/topic/<tid:\d+>'=>'group/topic/view',
 				'group/<gid:\d+>'=>'group/group/view',
+				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
 				'group/create'=>'group/default/create',
 
 

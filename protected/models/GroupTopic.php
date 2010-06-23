@@ -69,6 +69,7 @@ class GroupTopic extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'author' => array(self::BELONGS_TO, 'user', 'uid'),
+			'group' => array(self::BELONGS_TO, 'Group', 'tid'),
 			'comments' => array(self::HAS_MANY, 'GroupPost', 'tid', 'condition'=>'comments.status= 1', 'order'=>'comments.ctime DESC'),
 			'commentCount' => array(self::STAT, 'GroupPost', 'tid', 'condition'=>'group_post.status= 1'),
 		);
@@ -148,5 +149,17 @@ class GroupTopic extends CActiveRecord
 		return new CActiveDataProvider('GroupTopic', array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	/**
+	 * 读取话题
+	 */
+	public function loadTopic($id=null)
+	{
+		if($id!==null || isset($_POST['tid']))
+			$model=$this->findbyPk($id!==null ? $id : $_POST['tid']);
+		if($model===null)
+			throw new CHttpException(404,'该话题不存在.');
+		return $model;
 	}
 }

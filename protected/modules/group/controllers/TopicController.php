@@ -3,6 +3,7 @@
 class TopicController extends Controller
 {
 	private $_model;
+	public $defaultAction = 'view';
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -60,34 +61,17 @@ class TopicController extends Controller
 	 */
 	 public function actionView()
 	{
-		$topic = $this->loadTopic();
+		$model = new GroupTopic();
+		$tid = Yii::app()->request->getQuery('tid');
+		$topic = $model->loadTopic($tid);
 		$comment=$this->newComment($post);
 
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
 		);
-		$this->render('view',$data);
+		$this->render('topic',$data);
 	}
-
-	/**
-	 * 读取话题
-	 */
-	public function loadTopic()
-	{
-		if($this->_model===null)
-		{
-			if(isset($_GET['id']))
-			{
-				$condition='status=1';
-				$this->_model=GroupTopic::model()->findByPk($_GET['id'], $condition);
-			}
-			if($this->_model===null)
-				throw new CHttpException(404,'访问内容不存在.');
-		}
-		return $this->_model;
-	}
-
 	/**
 	 * 增加话题回复
 	 */

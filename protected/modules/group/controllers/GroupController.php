@@ -4,7 +4,7 @@ class GroupController extends Controller
 {
 	private $_model;
 
-	public $defaultAction = 'my';
+	public $defaultAction = 'view';
 	/**
 	 * 小组首页
 	 */
@@ -21,7 +21,7 @@ class GroupController extends Controller
 	{
 		$gid = Yii::app()->request->getQuery('gid');
 		$model =  new Group();
-		$group = $this->loadGroup($gid);
+		$group = $model->loadGroup($gid);
 		//友情小租
 		//$friend_groups = $group->getGroupNewFriends();
 		//最近加入
@@ -49,24 +49,6 @@ class GroupController extends Controller
 		$data['group'] = $group;
 		$this->render('discussion',$data);
 	}
-	/**
-	 * 读取小组
-	 */
-	public function loadGroup()
-	{
-		if($this->_model===null)
-		{
-			if(isset($_GET['gid']))
-			{
-				$condition='status=1';
-				$this->_model=Group::model()->findByPk($_GET['gid'], $condition);
-			}
-			if($this->_model===null)
-				throw new CHttpException(404,'访问内容不存在.');
-		}
-		return $this->_model;
-	}
-
 	/**
 	 * 我的小组
 	 */
