@@ -271,7 +271,7 @@ class Group extends CActiveRecord
 		}
 		$models=$model->findAll($criteria);
 		$data = array(
-			'models'=>$models,
+			'members'=>$models,
 			'pages' => $pages,
 		);
 		return $data;
@@ -316,7 +316,7 @@ class Group extends CActiveRecord
 		}
 		$models=$model->findAll($criteria);
 		$data = array(
-			'models'=>$models,
+			'groups'=>$models,
 			'pages' => $pages,
 		);
 		return $data;
@@ -361,7 +361,7 @@ class Group extends CActiveRecord
 		}
 		$models=$model->findAll($criteria);
 		$data = array(
-			'models'=>$models,
+			'threads'=>$models,
 			'pages' => $pages,
 		);
 		return $data;
@@ -370,21 +370,21 @@ class Group extends CActiveRecord
 	public function getGroupNewThreads(array $params = array(), $limit = '6')
 	{
 		$data = $this->getGroupThreads($params,$limit);
-		$members = $data['models'];
+		$members = $data['threads'];
 		return $members;
 	}
 
 	public function getGroupNewMembers(array $params = array(), $limit = '6')
 	{
 		$data = $this->getGroupMembers();
-		$members = $data['models'];
+		$members = $data['members'];
 		return $members;
 	}
 
 	public function getGroupNewFriends(array $params = array(), $limit = '6')
 	{
 		$data = $this->getGroupMembers();
-		$members = $data['models'];
+		$members = $data['groups'];
 		return $members;
 	}
 	
@@ -401,4 +401,15 @@ class Group extends CActiveRecord
 	{
 		return true;
 	}
+	/**
+	 * 读取话题
+	 */
+	public function loadGroup($id=null)
+	{
+		if($id!==null || isset($_POST['gid']))
+			$model=$this->findbyPk($id!==null ? $id : $_POST['gid']);
+		if($model===null)
+			throw new CHttpException(404,'该话题不存在.');
+		return $model;
+	}	
 }
