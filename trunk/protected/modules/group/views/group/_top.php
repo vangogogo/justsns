@@ -13,34 +13,34 @@
 		
 	</div>
 	<div class="rmenu left" style="width:150px;">
-	  <if condition=" $mid "><php>if(isAddApp('share')) { </php>
+	  <if condition=" $mid "><?php if(isAddApp('share')) {  ?>
 		<a href="javascript:void(0)"
 			onclick="sharePop('{$gid}','__URL__','{$gid}')"  id="BtnShare_{$gid}">分享该群组</a>
-			<php> } </php>
-		<php>if(isadmin($mid,$gid)){</php>
+			<?php }?>
+		<?php if($group->isAdmin($mid,$gid)){ ?>
 			<a href="__APP__/Manage/index/gid/{$groupinfo['id']}">管理该群</a>
-		<php>}else{</php>
+		<?php }else{ ?>
 		{:W('Report',array( 'type'=>'群组举报','appid'=>$APPINFO['APP_ID'],'url'=>'Group/index/gid/'.$groupinfo['id'],'title'=>$groupinfo['name'],'recordId'=>$groupinfo['id']))}
-		<php>}</php>
-		<php>if(checkPriv('invite',$groupinfo['need_invite'],$mid,$gid)) { </php>
+		<?php } ?>
+		<?php //if(checkPriv('invite',$groupinfo['need_invite'],$mid,$gid)) {  ?>
 			
 			 <a href="__APP__/Invite/create/gid/{$groupinfo['id']}">邀请朋友加入</a>
 			 <a href="__TS__/Invite/index/uid/{$mid}/gid/{$gid}">邀请站外好友加入</a>
 			
-		<php>} </php>
+		<?php //}  ?>
 		
 		
-		<php>if(!isadmin($mid,$gid) && !ismember($mid,$gid)){</php>
-			<php>if($groupinfo['membercount'] == $config['groupMaxUser']){</php>
+		<?php if(!$group->isAdmin($mid,$gid) && !$group->isMember($mid,$gid)){ ?>
+			<?php if($groupinfo['membercount'] == $config['groupMaxUser']){ ?>
 				人数已经满({$groupinfo['membercount']})
-			<php>}else{</php>
+			<?php }else{ ?>
 				<a href="javascript:joingroup({$gid})">申请加入该群</a>
-			<php>}</php>
-		<php>} elseif(iscreater($mid,$gid)){</php>
+			<?php } ?>
+		<?php } elseif($group->isCreater($mid,$gid)){ ?>
 			<a href="javascript:delgroup({$gid})">删除该群</a>
-		<php>} else {</php>
+		<?php } else { ?>
 			<a href="javascript:quitgroup({$gid})">脱离该群</a>
-		<php>}</php>
+		<?php } ?>
 		</if>
 	  </div>
 

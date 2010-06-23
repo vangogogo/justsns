@@ -14,7 +14,7 @@ class GroupTopic extends CActiveRecord
 	 * @var integer $dist
 	 * @var integer $top
 	 * @var integer $lock
-	 * @var integer $addtime
+	 * @var integer $ctime
 	 * @var integer $replytime
 	 * @var integer $mtime
 	 * @var integer $status
@@ -50,13 +50,13 @@ class GroupTopic extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('gid, uid, viewcount, postcount, dist, top, lock, addtime, replytime, mtime, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
+			array('gid, uid, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>36),
 			array('title', 'length', 'max'=>255),
 			array('attach', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, gid, uid, name, title, viewcount, postcount, dist, top, lock, addtime, replytime, mtime, status, isrecom, is_del, attach', 'safe', 'on'=>'search'),
+			array('id, gid, uid, name, title, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del, attach', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -90,7 +90,7 @@ class GroupTopic extends CActiveRecord
 			'dist' => '精华',
 			'top' => '置顶',
 			'lock' => '锁定',
-			'addtime' => '添加时间',
+			'ctime' => '添加时间',
 			'replytime' => '最后回复时间',
 			'mtime' => '编辑时间',
 			'status' => '状态',
@@ -131,7 +131,7 @@ class GroupTopic extends CActiveRecord
 
 		$criteria->compare('lock',$this->lock);
 
-		$criteria->compare('addtime',$this->addtime);
+		$criteria->compare('ctime',$this->ctime);
 
 		$criteria->compare('replytime',$this->replytime);
 

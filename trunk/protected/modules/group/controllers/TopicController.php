@@ -38,7 +38,7 @@ class TopicController extends Controller
 	{
 		
 		//空间主人的好友
-		$friend_list = $owner->getUserFriends($uid);
+		//$friend_list = $owner->getUserFriends($uid);
 
 		$data = array(
 			'owner'=>$owner,

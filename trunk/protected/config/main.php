@@ -112,7 +112,7 @@ return array(
 				'post/<id:\d+>'=>'post/show',
 
 				'group/topic/<id:\d+>'=>'group/topic/view',
-				'group/<id:\d+>'=>'group/group/view',
+				'group/<gid:\d+>'=>'group/group/view',
 				'group/create'=>'group/default/create',
 
 
