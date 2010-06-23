@@ -159,11 +159,16 @@ class User extends CActiveRecord
 	/**
 	 * 保存密码前md5
 	 */
-	public function beforeSave() {
+	public function beforeSave()
+	{
 		$this->password = md5($this->password);
 		return true;
 	}
-
+	
+	public function afterFind()
+	{
+		$this->face = $this->getUserFace();
+	}
 	/**
 	 * 检查用户名是否存在
 	 */

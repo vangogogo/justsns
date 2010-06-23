@@ -62,17 +62,17 @@ class Group extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('uid, cid0, cid1, membercount, threadcount, postcount, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>32),
-			array('logo', 'length', 'max'=>255),
-			array('type', 'length', 'max'=>5),
-			array('intro, announce', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, uid, name, intro, logo, announce, cid0, cid1, membercount, threadcount, postcount, type, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'safe', 'on'=>'search'),
+		array('uid, cid0, cid1, membercount, threadcount, postcount, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
+		array('name', 'length', 'max'=>32),
+		array('logo', 'length', 'max'=>255),
+		array('type', 'length', 'max'=>5),
+		array('intro, announce', 'safe'),
+		// The following rule is used by search().
+		// Please remove those attributes that should not be searched.
+		array('id, uid, name, intro, logo, announce, cid0, cid1, membercount, threadcount, postcount, type, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'safe', 'on'=>'search'),
 			
-			array('name,type,cid0,intro','required', 'on' => 'create'),
-			array('name', 'checkGroupName', 'on'=> 'create'),
+		array('name,type,cid0,intro','required', 'on' => 'create'),
+		array('name', 'checkGroupName', 'on'=> 'create'),
 			
 		);
 	}
@@ -139,12 +139,12 @@ class Group extends CActiveRecord
 			$this->addError('email',$error_msg);
 			return false;
 		}
-		else 
+		else
 		{
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -221,5 +221,184 @@ class Group extends CActiveRecord
 		return new CActiveDataProvider('Group', array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function addTopic($params)
+	{
+		$model = new GroupTopic();
+		$model->attributes = $params;
+		$model->gid = $this->gid;
+		$model->save();
+		return $model;
+	}
+
+	public function getGroupMembers(array $params = array(),$limit = '')
+	{
+		$gid = $this->id;
+		$model = new GroupMember();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" gid = :gid";
+		$criteria->params[':gid']=$gid;
+		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		if(!empty($limit))
+		{
+			$criteria->limit = $limit;
+		}
+		if(!empty($params))
+		{
+			$array = array(
+				'status','level'
+				);
+				foreach($params as $key => $value)
+				{
+					if(in_array($key,$array))
+					{
+						$criteria->condition.=" and $key=:$key";
+						$criteria->params[':'.$key]=$value;
+					}
+				}
+		}
+		$page_size = $params['page_size'];
+		if(!empty($page_size))
+		{
+			$page = $params['page'];
+			$_GET['page'] = $page;
+			$total = $model->count($criteria);
+			$pages=new CPagination($total);
+			$pages->pageSize=$page_size;
+			//$pages->currentPage = $page;
+			$pages->applyLimit($criteria);
+		}
+		$models=$model->findAll($criteria);
+		$data = array(
+			'models'=>$models,
+			'pages' => $pages,
+		);
+		return $data;
+	}
+
+	public function getGroupFriends(array $params = array(), $limit = '6')
+	{
+		$gid = $this->id;
+		$model = new GroupFriend();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" gid = :gid";
+		$criteria->params[':gid']=$gid;
+		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		if(!empty($limit))
+		{
+			$criteria->limit = $limit;
+		}
+		if(!empty($params))
+		{
+			$array = array(
+				'status','level'
+				);
+				foreach($params as $key => $value)
+				{
+					if(in_array($key,$array))
+					{
+						$criteria->condition.=" and $key=:$key";
+						$criteria->params[':'.$key]=$value;
+					}
+				}
+		}
+		$page_size = $params['page_size'];
+		if(!empty($page_size))
+		{
+			$page = $params['page'];
+			$_GET['page'] = $page;
+			$total = $model->count($criteria);
+			$pages=new CPagination($total);
+			$pages->pageSize=$page_size;
+			//$pages->currentPage = $page;
+			$pages->applyLimit($criteria);
+		}
+		$models=$model->findAll($criteria);
+		$data = array(
+			'models'=>$models,
+			'pages' => $pages,
+		);
+		return $data;
+	}
+
+	public function getGroupThreads(array $params = array(), $limit = '6')
+	{
+		$gid = $this->id;
+		$model = new GroupTopic();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" gid = :gid";
+		$criteria->params[':gid']=$gid;
+		$criteria->order = !empty($params['order'])?$params['order']:'ctime DESC';
+		if(!empty($limit))
+		{
+			$criteria->limit = $limit;
+		}
+		if(!empty($params))
+		{
+			$array = array(
+				'uid','gid','dist','top','lock'
+				);
+				foreach($params as $key => $value)
+				{
+					if(in_array($key,$array))
+					{
+						$criteria->condition.=" and $key=:$key";
+						$criteria->params[':'.$key]=$value;
+					}
+				}
+		}
+		$page_size = $params['page_size'];
+		if(!empty($page_size))
+		{
+			$page = $params['page'];
+			$_GET['page'] = $page;
+			$total = $model->count($criteria);
+			$pages=new CPagination($total);
+			$pages->pageSize=$page_size;
+			//$pages->currentPage = $page;
+			$pages->applyLimit($criteria);
+		}
+		$models=$model->findAll($criteria);
+		$data = array(
+			'models'=>$models,
+			'pages' => $pages,
+		);
+		return $data;
+	}
+
+	public function getGroupNewThreads(array $params = array(), $limit = '6')
+	{
+		$data = $this->getGroupThreads($params,$limit);
+		$members = $data['models'];
+		return $members;
+	}
+
+	public function getGroupNewMembers(array $params = array(), $limit = '6')
+	{
+		$data = $this->getGroupMembers();
+		$members = $data['models'];
+		return $members;
+	}
+
+	public function getGroupNewFriends(array $params = array(), $limit = '6')
+	{
+		$data = $this->getGroupMembers();
+		$members = $data['models'];
+		return $members;
+	}
+	
+	public function isAdmin()
+	{
+		return true;
+	}
+	
+	public function isMember()
+	{
+		return true;
+	}
+	public function isCreater()
+	{
+		return true;
 	}
 }

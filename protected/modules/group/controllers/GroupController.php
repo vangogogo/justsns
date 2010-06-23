@@ -19,16 +19,36 @@ class GroupController extends Controller
 	 */
 	public function actionView()
 	{
-		$id = Yii::app()->request->getQuery('id');
+		$gid = Yii::app()->request->getQuery('gid');
 		$model =  new Group();
-		$group = $this->loadGroup();
+		$group = $this->loadGroup($gid);
+		//友情小租
+		//$friend_groups = $group->getGroupNewFriends();
+		//最近加入
+		$group_members = $group->getGroupNewMembers();
+		//话题
+		$threads = $group->getGroupNewThreads();
+		$adminList = array();
+		$memberList = array();
 		
 		$data = array(
-			'group'=>$group,	
+			'group'=>$group,
+			'threads'=>$threads,
+			'adminList'=>$adminList,
+			'memberList'=>$memberList,
 		);
-		$this->render('view',$data);
+		$this->render('group',$data);
 	}
-
+	/*
+	 * 小组的所有话题
+	 */
+	public function actionDiscussion()
+	{
+		$group = $this->loadGroup();
+		$data = $group->getGroupThreads();
+		$data['group'] = $group;
+		$this->render('discussion',$data);
+	}
 	/**
 	 * 读取小组
 	 */
@@ -36,10 +56,10 @@ class GroupController extends Controller
 	{
 		if($this->_model===null)
 		{
-			if(isset($_GET['id']))
+			if(isset($_GET['gid']))
 			{
 				$condition='status=1';
-				$this->_model=Group::model()->findByPk($_GET['id'], $condition);
+				$this->_model=Group::model()->findByPk($_GET['gid'], $condition);
 			}
 			if($this->_model===null)
 				throw new CHttpException(404,'访问内容不存在.');

@@ -3,11 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2010 年 05 月 06 日 09:36
+-- 生成日期: 2010 年 06 月 23 日 10:20
 -- 服务器版本: 5.1.41
 -- PHP 版本: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,10 +22,780 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `ad`
+-- 表的结构 `auth_assignment`
 --
 
-CREATE TABLE IF NOT EXISTS `ad` (
+CREATE TABLE IF NOT EXISTS `auth_assignment` (
+  `itemname` varchar(64) NOT NULL,
+  `userid` varchar(64) NOT NULL,
+  `bizrule` text,
+  `data` text,
+  PRIMARY KEY (`itemname`,`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限分配表';
+
+--
+-- 转存表中的数据 `auth_assignment`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_item`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_item` (
+  `name` varchar(64) NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text,
+  `bizrule` text,
+  `data` text,
+  PRIMARY KEY (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限表';
+
+--
+-- 转存表中的数据 `auth_item`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_item_child`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_item_child` (
+  `parent` varchar(64) NOT NULL,
+  `child` varchar(64) NOT NULL,
+  PRIMARY KEY (`parent`,`child`),
+  KEY `child` (`child`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限上下级关系表';
+
+--
+-- 转存表中的数据 `auth_item_child`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `blog`
+--
+
+CREATE TABLE IF NOT EXISTS `blog` (
+  `blogid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `topicid` mediumint(8) NOT NULL DEFAULT '0',
+  `cate_id` mediumint(8) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `tag` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` mediumtext NOT NULL,
+  `postip` varchar(20) NOT NULL DEFAULT '',
+  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
+  `hot` mediumint(8) NOT NULL DEFAULT '0',
+  `hotuser` text,
+  `magiccolor` tinyint(6) NOT NULL DEFAULT '0',
+  `magicpaper` tinyint(6) NOT NULL DEFAULT '0',
+  `magiccall` tinyint(1) NOT NULL DEFAULT '0',
+  `noview` tinyint(1) NOT NULL DEFAULT '0',
+  `noreply` tinyint(1) NOT NULL DEFAULT '0',
+  `viewnum` mediumint(8) NOT NULL DEFAULT '0',
+  `replynum` mediumint(8) NOT NULL DEFAULT '0',
+  `click_1` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `click_2` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `click_3` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `click_4` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `click_5` smallint(6) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`blogid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+
+--
+-- 转存表中的数据 `blog`
+--
+
+INSERT INTO `blog` (`blogid`, `uid`, `topicid`, `cate_id`, `username`, `tag`, `subject`, `message`, `postip`, `dateline`, `hot`, `hotuser`, `magiccolor`, `magicpaper`, `magiccall`, `noview`, `noreply`, `viewnum`, `replynum`, `click_1`, `click_2`, `click_3`, `click_4`, `click_5`) VALUES
+(1, 2, 0, 1, 'test', 'a:1:{i:23;s:6:"热情";}', '发撒热情额外', '人我却认为', '127.0.0.1', 1250153860, 0, NULL, 0, 0, 0, 0, 0, 25, 1, 0, 0, 0, 0, 0),
+(2, 2, 0, 1, 'test', 'a:3:{i:1;s:6:"大水";i:34;s:3:"fas";i:35;s:4:"w发";}', '发大水发大水1223发', '发生发生', '127.0.0.1', 1250153847, 0, NULL, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0),
+(7, 2, 0, 1, 'test', 'a:2:{i:36;s:6:"发文";i:5;s:6:"发生";}', '发生大幅发文额', '额外人为恶', '127.0.0.1', 1250154056, 40, NULL, 1, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0),
+(8, 2, 0, 1, 'test', 'Array', '新帖子', '发发生', '127.0.0.1', 1250154174, 2, NULL, 1, 1, 0, 0, 0, 78, 4, 0, 0, 1, 0, 0),
+(9, 1, 0, 0, 'he21cn', '', '发生', '发大水', '127.0.0.1', 1250994357, 0, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(10, 1, 0, 0, 'he21cn', '', '发大水', '发的阿斯发大水', '127.0.0.1', 1250994386, 0, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(11, 1, 0, 2, 'he21cn', '', '发大水飞洒', '飞打算发生的', '127.0.0.1', 1250994426, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(12, 1, 0, 2, 'he21cn', '', '发大水飞洒', '飞打算发生的', '127.0.0.1', 1250994438, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(13, 1, 0, 2, 'he21cn', '', '发大水飞洒', '飞打算发生的', '127.0.0.1', 1250994460, 0, NULL, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0),
+(14, 1, 0, 2, 'he21cn', '', '我今天有个日志', '但是发撒发撒', '127.0.0.1', 1251163532, 0, NULL, 0, 0, 0, 0, 1, 47, 7, 0, 0, 0, 0, 0),
+(15, 1, 0, 2, 'he21cn', '', 'fdas', 'dfasfdas', '127.0.0.1', 1252909091, 0, NULL, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0),
+(16, 1, 0, 2, 'he21cn', '', '2222222', '22222222', '127.0.0.1', 1252909134, 0, NULL, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `blog_category`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_category` (
+  `cate_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` mediumint(8) NOT NULL,
+  `cate_name` varchar(100) NOT NULL,
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cate_id`),
+  KEY `uid` (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `blog_category`
+--
+
+INSERT INTO `blog_category` (`cate_id`, `pid`, `cate_name`, `uid`, `dateline`) VALUES
+(2, 1, '范德萨', 1, 1250994357);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `click`
+--
+
+CREATE TABLE IF NOT EXISTS `click` (
+  `clickid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL DEFAULT '',
+  `icon` varchar(100) NOT NULL DEFAULT '',
+  `idtype` varchar(15) NOT NULL DEFAULT '',
+  `displayorder` tinyint(6) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`clickid`),
+  KEY `idtype` (`idtype`,`displayorder`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='点击图标表' AUTO_INCREMENT=16 ;
+
+--
+-- 转存表中的数据 `click`
+--
+
+INSERT INTO `click` (`clickid`, `name`, `icon`, `idtype`, `displayorder`) VALUES
+(2, '雷人', 'leiren.gif', 'blogid', 0),
+(3, '握手', 'woshou.gif', 'blogid', 0),
+(4, '鲜花', 'xianhua.gif', 'blogid', 0),
+(5, '鸡蛋', 'jidan.gif', 'blogid', 0),
+(6, '漂亮', 'piaoliang.gif', 'picid', 0),
+(7, '酷毙', 'kubi.gif', 'picid', 0),
+(8, '雷人', 'leiren.gif', 'picid', 0),
+(9, '鲜花', 'xianhua.gif', 'picid', 0),
+(10, '鸡蛋', 'jidan.gif', 'picid', 0),
+(11, '搞笑', 'gaoxiao.gif', 'tid', 0),
+(12, '迷惑', 'mihuo.gif', 'tid', 0),
+(13, '雷人', 'leiren.gif', 'tid', 0),
+(14, '鲜花', 'xianhua.gif', 'tid', 0),
+(15, '鸡蛋', 'jidan.gif', 'tid', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `click_user`
+--
+
+CREATE TABLE IF NOT EXISTS `click_user` (
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
+  `username` varchar(15) NOT NULL DEFAULT '' COMMENT '用户名',
+  `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `idtype` varchar(15) NOT NULL DEFAULT '' COMMENT '类型(tid指代话题)',
+  `clickid` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '点击的图标',
+  `dateline` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '时间',
+  PRIMARY KEY (`uid`,`id`,`idtype`),
+  KEY `id` (`id`,`idtype`,`dateline`),
+  KEY `uid` (`uid`,`idtype`,`dateline`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表态(路过,雷人,鲜花,鸡蛋等等)';
+
+--
+-- 转存表中的数据 `click_user`
+--
+
+INSERT INTO `click_user` (`uid`, `username`, `id`, `idtype`, `clickid`, `dateline`) VALUES
+(3, 'test2', 2, 'tid', 15, 1250751871),
+(4, 'kelan1210', 58, 'tid', 13, 1251701515),
+(3, 'test1', 58, 'tid', 13, 1251709752),
+(2, 'test', 58, 'tid', 13, 1251709843),
+(911, 'hope00000062', 75, 'tid', 13, 1255679601),
+(917, 'hope00000917', 84, 'tid', 11, 1257302028),
+(911, 'hope00000062', 86, 'tid', 13, 1257387783),
+(911, 'hope00000062', 83, 'tid', 13, 1257403507);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `event`
+--
+
+CREATE TABLE IF NOT EXISTS `event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `title` text,
+  `explain` text,
+  `contact` varchar(32) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL,
+  `sTime` int(11) DEFAULT NULL,
+  `eTime` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `cTime` int(11) DEFAULT NULL,
+  `deadline` int(11) DEFAULT NULL,
+  `joinCount` int(11) NOT NULL DEFAULT '0',
+  `attentionCount` int(11) NOT NULL DEFAULT '0',
+  `limitCount` int(11) NOT NULL DEFAULT '0',
+  `commentCount` int(11) NOT NULL DEFAULT '0',
+  `coverId` int(11) NOT NULL DEFAULT '0',
+  `optsId` int(11) NOT NULL DEFAULT '0',
+  `feedId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='活动表' AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `event`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `event_opts`
+--
+
+CREATE TABLE IF NOT EXISTS `event_opts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cost` char(10) NOT NULL DEFAULT '0',
+  `costExplain` varchar(255) DEFAULT '0',
+  `province` char(10) DEFAULT NULL,
+  `city` char(10) DEFAULT NULL,
+  `area` varchar(10) DEFAULT NULL,
+  `opts` varchar(50) NOT NULL DEFAULT '0',
+  `isHot` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `event_opts`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `event_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `event_photo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `eventId` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `name` char(10) DEFAULT NULL,
+  `filename` varchar(255) DEFAULT NULL,
+  `filepath` varchar(255) DEFAULT NULL,
+  `savename` varchar(255) DEFAULT NULL,
+  `aid` int(11) DEFAULT NULL,
+  `cTime` int(11) DEFAULT NULL,
+  `commentCount` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `event_photo`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `event_type`
+--
+
+CREATE TABLE IF NOT EXISTS `event_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- 转存表中的数据 `event_type`
+--
+
+INSERT INTO `event_type` (`id`, `name`) VALUES
+(1, '音乐/演出'),
+(2, '展览'),
+(3, '电影'),
+(4, '讲座/沙龙'),
+(5, '戏剧/曲艺'),
+(8, '体育'),
+(9, '旅行'),
+(10, '公益'),
+(11, '其他');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `event_user`
+--
+
+CREATE TABLE IF NOT EXISTS `event_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `eventId` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `contact` text,
+  `action` char(10) NOT NULL DEFAULT 'attention',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `cTime` int(11) DEFAULT NULL,
+  `feedId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `event_user`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `feed`
+--
+
+CREATE TABLE IF NOT EXISTS `feed` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `title_data` text,
+  `body_data` text,
+  `cTime` int(11) DEFAULT NULL,
+  `appid` varchar(25) DEFAULT '',
+  `feedtype` tinyint(3) NOT NULL DEFAULT '0',
+  `fid` int(11) NOT NULL DEFAULT '0',
+  `cache` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- 转存表中的数据 `feed`
+--
+
+INSERT INTO `feed` (`id`, `uid`, `username`, `type`, `title_data`, `body_data`, `cTime`, `appid`, `feedtype`, `fid`, `cache`) VALUES
+(1, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:1;s:5:"cTime";i:1260770316;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(2, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:2;s:5:"cTime";i:1260770316;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(3, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/1/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:15:"放大萨发送";s:5:"title";s:0:"";}', 1261033225, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:3;s:5:"cTime";i:1261033225;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/1/mid/1">放大萨</a>";s:4:"body";s:15:"放大萨发送";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
+(4, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/2/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:9:"放大萨";s:5:"title";s:0:"";}', 1261033329, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:4;s:5:"cTime";i:1261033329;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1">放大萨</a>";s:4:"body";s:9:"放大萨";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
+(5, 1, '管理员', 'group_create', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:2:{s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 1261033391, '12', 0, 1, 'a:7:{s:4:"type";s:12:"group_create";s:2:"id";i:5;s:5:"cTime";i:1261033391;s:3:"uid";i:1;s:5:"title";s:92:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 创建了一个新群组";s:4:"body";s:92:" <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
+(6, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:1;}', 1261033453, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:6;s:5:"cTime";i:1261033453;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/1">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
+(7, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:2;}', 1261040927, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:7;s:5:"cTime";i:1261040927;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/2">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
+(8, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:8;s:5:"cTime";i:1262749737;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(9, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:9;s:5:"cTime";i:1262749737;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(10, 1, '管理员', 'vote_add', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', 'a:2:{s:3:"url";s:56:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>去投票</a>";s:4:"body";s:27:"1.1<br />2.2<br />3.3<br />";}', 1262828895, '13', 0, 0, 'a:7:{s:4:"type";s:8:"vote_add";s:2:"id";i:10;s:5:"cTime";i:1262828895;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发起了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"body";s:123:"1.1<br />2.2<br />3.3<br />\r\n<a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>去投票</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
+(11, 1, '管理员', 'vote_in', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', '0', 1262828929, '13', 0, 0, 'a:6:{s:4:"type";s:7:"vote_in";s:2:"id";i:11;s:5:"cTime";i:1262828929;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 参与了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
+(12, 1, '管理员', 'mini', 'a:1:{s:7:"content";s:70:"<img title=''流汗'' src=''{PUBLIC_URL}/images/biaoqing/mini/sweat.gif''>";}', 'a:3:{s:2:"id";i:1;s:3:"uid";i:1;s:3:"con";s:7:"/流汗";}', 1262831743, '3', 0, 0, 'a:7:{s:4:"type";s:4:"mini";s:2:"id";i:12;s:5:"cTime";i:1262831743;s:3:"uid";i:1;s:5:"title";s:233:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a>:<img title=''流汗'' src=''http://localhost/thinksns/public/images/biaoqing/mini/sweat.gif''>  <a href="javascript:void(0)" onclick="hide_reply(this);">收起回复</a>";s:4:"body";s:149:"<input type="hidden" value="/流汗" class="mini_con"><input type="hidden" value="1" class="mini_id"><input type="hidden" value="1" class="mini_uid">";s:4:"icon";s:57:"http://localhost/thinksns/apps/mini/appinfo/ico_app04.gif";}'),
+(13, 1, '管理员', 'share_blog', 'a:1:{s:2:"id";i:1;}', 'a:10:{s:4:"name";s:9:"管理员";s:3:"uid";s:1:"1";s:5:"title";s:9:"放大萨";s:5:"intro";s:9:"放大萨";s:5:"aimId";i:2;s:6:"typeId";i:5;s:5:"toUid";i:1;s:10:"toUserName";s:9:"管理员";s:4:"info";s:2:"12";s:2:"id";i:1;}', 1262831945, '11', 0, 0, 'a:7:{s:4:"type";s:10:"share_blog";s:2:"id";i:13;s:5:"cTime";i:1262831945;s:3:"uid";i:1;s:5:"title";s:181:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 分享了一个日志 (<a href=''http://localhost/thinksns/apps/share/index.php?s=/Index/content/id/1''>评论</a>)";s:4:"body";s:331:"<div class="lh30 fB"><a href=''http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1''>放大萨</a></div> \r\n<div class="lh20">来自:<a href=''http://localhost/thinksns/index.php?s=/space/1''>管理员</a></div>\r\n<div class="lh20 cGray2">放大萨</div>\r\n<div class="quote"><p><span class="quoteR">12</span></p></div>";s:4:"icon";s:62:"http://localhost/thinksns/apps/share/appinfo/ico_app_share.gif";}');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `feed_del`
+--
+
+CREATE TABLE IF NOT EXISTS `feed_del` (
+  `uid` int(11) DEFAULT NULL,
+  `feedId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `feed_del`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `feed_template`
+--
+
+CREATE TABLE IF NOT EXISTS `feed_template` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) DEFAULT NULL,
+  `title` text,
+  `body` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+
+--
+-- 转存表中的数据 `feed_template`
+--
+
+INSERT INTO `feed_template` (`id`, `type`, `title`, `body`) VALUES
+(13, 'photo', '{actor}上传了{num}张照片至{album}', '<div class="left mr5">{pic}</div>'),
+(5, 'friend', '{actor} 和 {touser} 成为了好友', ''),
+(14, 'record', '{actor} 发了一条记录了: {content}', ''),
+(15, 'parking', '{actor}把{car}停在了{xxx}的车位上~~~', ''),
+(16, 'share_url', '{actor} 分享了一个网址 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30"><a href=''{url}'' target=''_blank''>{title}</a></div>\r\n\r\n<div class="lh30"><a href=''{url}'' target=''_blank''>{url}</a></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(17, 'mini', '{actor}:{content}  <a href="javascript:void(0)" onclick="hide_reply(this);">收起回复</a>', '<input type="hidden" value="{con}" class="mini_con"><input type="hidden" value="{id}" class="mini_id"><input type="hidden" value="{uid}" class="mini_uid">'),
+(28, 'vote_add', '{actor} 发起了投票 {title}', '{body}\r\n{url}'),
+(19, 'blog', '{actor} 发表了一篇日志：{title}', '{content}'),
+(20, 'head', '{actor} 上传了新头像', '<img height="50" width="50" src="{src}"/>'),
+(27, 'info', '{actor} {content}', ''),
+(29, 'vote_in', '{actor} 参与了投票 {title}', ''),
+(30, 'event', '{actor} 发起了一个活动: {title}', ''),
+(31, 'share_music', '{actor} 分享了一个音乐 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<img class="hand" src="{WR}/apps/share/Tpl/default/Public/images/music.gif" alt="音乐" onclick="javascript:playmusic(''{url}'', this, ''{id}'');" /> <p id="flash_mp3_{id}"></p> <a class="video-close-link" id="mp3_close_{id}" href="javascript:void(0)"  onClick="mp3_close(this)" rel="{id}" style="display:none">收起</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(32, 'share', '{actor} 分享了一个 {type}', '{title}<br />\r\n{content}'),
+(33, 'share_video', '{actor} 分享了一个视频 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="playbutton lh30" id="{id}" rel="{url}" onclick="playflash(this);"> <img class="hand" src="{WR}/apps/share/Tpl/default/Public/images/video_img.gif" style="cursor:pointer"/></div> <p id="flash_video_{id}"></p> \r\n\r\n<a class="video-close-link" id="video_close_{id}" href="javascript:void(0)" onClick="video_close(this)" rel="{id}" style="display:none">收起</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(34, 'share_flash', '{actor} 分享了一个Flash (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="playbutton lh30" id="{id}" rel="{url}" onclick="playflash(this);"> <img class="hand" src="{WR}/apps/share/Tpl/default/Public/images/video_img.gif" style="cursor:pointer"/></div> <p id="flash_video_{id}"></p> \r\n\r\n<a class="video-close-link" id="video_close_{id}" href="javascript:void(0)" onClick="video_close(this)" rel="{id}" style="display:none">收起</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(35, 'share_blog', '{actor} 分享了一个日志 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30 fB"><a href=''{WR}/apps/blog/index.php?s=/Index/show/id/{aimId}/mid/{uid}''>{title}</a></div> \r\n<div class="lh20">来自:<a href=''{WR}/index.php?s=/space/{uid}''>{name}</a></div>\r\n<div class="lh20 cGray2">{intro}</div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(42, 'share_user', '{actor} 分享了一个用户 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;display:table;">\r\n<div class="left" style="width:70px; padding-top:10px;">\r\n<span class="headpic50">\r\n<a href="{WR}/index.php?s=/space/{uid}"><img src="{userface}" /></a>\r\n</span>\r\n</div>\r\n<div class="left" style="width:300px; padding-top:10px;">\r\n<a href="{WR}/index.php?s=/space/{uid}"><strong>{username}</strong></a>\r\n<div class="lh20">{mini}</div></div></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(36, 'share_photo', '{actor} 分享了一张相片 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;">\r\n<div class="left pic140" style="width:140px; padding-top:10px;">\r\n<span class="unLine"> <a href="{WR}/apps/photo/index.php?s=/Index/photo/id/{aimId}/aid/{albumId}/uid/{userId}/type/mAll"> <img style="padding: 2px;border: 1px solid #CCC;" src="{WR}/thumb.php?w=120&h=100&url={photo}" /> </a>\r\n</span>\r\n</div>\r\n<div class="left" style="width:200px; padding:10px 0 0 10px;"> \r\n<div> 相片：<a href="{WR}/apps/photo/index.php?s=/Index/photo/id/{aimId}/aid/{albumId}/uid/{userId}/type/mAll"> {name}</a>\r\n</div>\r\n<div> 相册：<a href="{WR}/apps/photo/index.php?s=/Index/album/id/{albumId}/uid/{userId}"> {albumName}</a> \r\n</div> \r\n<div class="lh20">创建人：\r\n<a href="{WR}/index.php?s=/space/{userId}">{username}</a>\r\n</div>\r\n</div>\r\n </div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(37, 'share_event', '{actor} 分享了一个活动 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<a href="{url}">{title}</a>\r\n发起人:<a href=''{WR}/index.php?s=/space/{uid}''>{name}</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(38, 'group_create', '{actor} 创建了一个新群组', ' <a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a>'),
+(39, 'group_topic', '{actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a> 中发表了一个新话题', '<a href="{SITE_URL}/Topic/topic/gid/{gid}/tid/{tid}">{title}</a>'),
+(40, 'group_file', ' {actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''> {group_name}</a> 中上传了一个新文件 ', '<a href="{SITE_URL}/Dir/file/gid/{gid}/fid/{fid}">{name}</a>'),
+(44, 'share_picture', '{actor} 分享了一张图片 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh20"><a href=''{WR}/apps/Share/index.php?s=/Index/content/id/{id}''><img src=''{WR}/thumb.php?w=120&h=100&url={url}'' /></a></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(43, 'share_vote', '{actor} 分享了一个投票 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30"><a href=''{WR}/apps/vote/index.php?s=/Index/pollDetail/id/{aimId}'' target=''_blank''>{title}</a></div>\r\n\r\n<div class="lh30">来自:<a href=''{WR}/index.php?s=/space/{uid}''>{name}</a></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(45, 'share_group', '{actor} 分享了一个群组 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;">\r\n<div class="left" style="width:70px; padding-top:10px;"><span class="headpic50"><a href="{WR}/apps/group/index.php?s=/Group/index/gid/{aimId}"><img src="{WR}/thumb.php?w=50&h=50&url={logo}" /></a> </span>\r\n</div>\r\n<div class="left" style="width:350px; padding-top:10px;">\r\n<div><a href="{WR}/apps/group/index.php?s=/Group/index/gid/{aimId}">{name}</a></div>\r\n<div class="lh20">{catagory}</div>\r\n<div class="lh20">现有 {membercount} 名成员</div>\r\n<div class="c"></div>\r\n</div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>\r\n</div>'),
+(46, 'share_topic', '{actor} 分享了一个话题 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30 fB"><a href="{WR}/apps/group/index.php?s=/Topic/topic/gid/{gid}/tid/{aimId}">{title}</a></div>\r\n<div class="lh20"><a href=''{WR}/index.php?s=/space/{uid}''>{name}</a></div>\r\n<div class="lh20">群组: <a href="{WR}/apps/group/index.php?s=/Group/index/gid/{gid}">{groupName}</a></div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(47, 'share_album', '{actor} 分享了一个相册 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;display:table;">\r\n<div class="left" style="width:140px; padding-top:10px;">\r\n<span class="photo135 unLine"> <a style="display:block;" href="{WR}/apps/photo/index.php?s=/Index/album/id/{aimId}/uid/{userId}"> <img src="{WR}/thumb.php?w=120&h=100&url={cover}" /> </a>\r\n</span>\r\n</div>\r\n<div class="left" style="width:200px; padding:10px 0 0 10px;">\r\n<div>相册： <a href="{WR}/apps/photo/index.php?s=/Index/album/id/{aimId}/uid/{userId}">{name}</a> \r\n</div> \r\n<div class="lh20">创建人：<a href="{WR}/index.php?s=/space/{userId}">{username}</a>\r\n</div>\r\n</div>\r\n\r\n</div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
+(53, 'blog_import', '{actor}导入了{count}篇日志 <a href=''{SITE_URL}/Index/personal/uid/{uid}''>更多日志</a>', '{title}\r\n<br />\r\n'),
+(48, 'group_album', '{actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''> {group_name}</a> 中创建了一个相册', '<a href="{SITE_URL}/Album/getAlbum/gid/{gid}/albumId/{albumId}">{title}</a> '),
+(49, 'group_photo', '{actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a> 中上传了{num}张新照片', '{url}'),
+(54, 'add_friend', '{user} 和 {fuser} 成为好友', ''),
+(51, 'group_join', '{actor} {title} ', '<a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a>'),
+(50, 'app_add', '{actor} 安装了应用 {title}', '{content}'),
+(52, 'gift', '{actor} 送给 {user} 一个礼物', '{img}</br>\r\n<div class="quote"><p><span class="quoteR">{content}</span></p></div>'),
+(55, 'invite_reg', '<a href=''{SITE_URL}/space/{uid}''>{user}</a> 接受了 <a href=''{SITE_URL}/space/{fuid}''>{fuser}</a> 的邀请 加入{site_name}', ''),
+(56, 'group_topic_post', '{actor} 回复了话题', '<a href="{SITE_URL}/Topic/topic/gid/{gid}/tid/{tid}">{title}</a>'),
+(57, 'game', '{actor} 玩了{name} 游戏获得了{score}分', '点击玩{url}。看看你是否比他强'),
+(58, 'blog_comment', '{actor} 评论了 {user} 的日志 {title}', '<div class="quote left" style="clear:none;"><span class="quoteR">{comment}</span></div>'),
+(59, 'photo_comment', '{actor} 评论了 {user} 的相片 {picname} ', '<div class="left mr5">{pic}</div>\r\n<div class="quote left" style="clear:none;"><span class="quoteR">{comment}</span></div>');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `file`
+--
+
+CREATE TABLE IF NOT EXISTS `file` (
+  `fileid` mediumint(8) NOT NULL AUTO_INCREMENT,
+  `udiskid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `class_id` mediumint(8) NOT NULL,
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
+  `postip` char(20) NOT NULL DEFAULT '',
+  `filename` char(100) NOT NULL DEFAULT '',
+  `title` char(150) NOT NULL DEFAULT '',
+  `type` char(20) NOT NULL DEFAULT '',
+  `size` int(10) unsigned NOT NULL DEFAULT '0',
+  `unit` varchar(20) NOT NULL,
+  `fileext` varchar(20) DEFAULT NULL,
+  `filepath` char(60) NOT NULL DEFAULT '',
+  `thumb` tinyint(1) NOT NULL DEFAULT '0',
+  `remote` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`fileid`),
+  KEY `albumid` (`udiskid`,`dateline`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='网盘文件' AUTO_INCREMENT=9 ;
+
+--
+-- 转存表中的数据 `file`
+--
+
+INSERT INTO `file` (`fileid`, `udiskid`, `class_id`, `uid`, `dateline`, `postip`, `filename`, `title`, `type`, `size`, `unit`, `fileext`, `filepath`, `thumb`, `remote`) VALUES
+(2, 12, 1, 1, 1252739391, '127.0.0.1', 'but_home_4_090908.jpg', '', 'image/jpeg', 184955, '', 'jpg', '200909/12/1_1252739391f5g5.jpg', 1, 0),
+(3, 13, 16, 1, 1252739232, '192.168.1.44', 'header_roof.gif__60f7.gif', '', 'image/gif', 1146, '', 'gif', '200909/12/1_1252739232J9gB.gif', 1, 0),
+(4, 13, 16, 1, 1252739244, '192.168.1.44', 'PuTTY-v0.60.rar', '', 'application/rar', 964363, '', 'rar', '200909/12/1_12527392449368.rar', 0, 0),
+(5, 17, 37, 1, 1256194090, '192.168.1.107', '英西峰林.doc', '', 'application/msword', 10752, '', 'doc', '200910/22/1_1256194090Tqvm.doc', 0, 0),
+(6, 16, 37, 1, 1256881352, 'unknown', 'TECHNOTES.txt', '', 'text/plain', 16114, '', 'txt', '200910/30/1_1256881352s9SU.txt', 0, 0),
+(7, 16, 37, 917, 1257303739, '192.168.1.3', 'test.doc', '测试文件', 'application/msword', 19968, '', 'doc', '200911/4/917_12573037399FrC.doc', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `file_udisk`
+--
+
+CREATE TABLE IF NOT EXISTS `file_udisk` (
+  `udiskid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `udiskname` varchar(50) NOT NULL DEFAULT '',
+  `class_id` mediumint(8) NOT NULL,
+  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `username` varchar(15) NOT NULL DEFAULT '',
+  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `filenum` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `file` varchar(60) NOT NULL DEFAULT '',
+  `fileflag` tinyint(1) NOT NULL DEFAULT '0',
+  `friend` tinyint(1) NOT NULL DEFAULT '0',
+  `password` varchar(10) NOT NULL DEFAULT '',
+  `target_ids` text NOT NULL,
+  PRIMARY KEY (`udiskid`),
+  KEY `uid` (`uid`,`updatetime`),
+  KEY `friend` (`friend`,`updatetime`),
+  KEY `updatetime` (`updatetime`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='网盘目录' AUTO_INCREMENT=19 ;
+
+--
+-- 转存表中的数据 `file_udisk`
+--
+
+INSERT INTO `file_udisk` (`udiskid`, `udiskname`, `class_id`, `uid`, `username`, `dateline`, `updatetime`, `filenum`, `file`, `fileflag`, `friend`, `password`, `target_ids`) VALUES
+(14, '我的网盘', 2, 1, 'he21cn', 1252727770, 1252734894, 1, '200909/12/1_12527348943693.ppt', 1, 0, '', ''),
+(5, '我的相册', 3, 2, 'test', 1250479555, 1250479555, 0, '', 0, 0, '', ''),
+(12, '我的网盘', 1, 1, 'he21cn', 1251679870, 1252739391, 1, '200909/12/1_1252739391f5g5.jpg.thumb.jpg', 1, 0, '', ''),
+(13, '我的网盘', 16, 1, 'he21cn', 1252726788, 1252739244, 3, '200909/12/1_12527392449368.rar', 1, 0, '', ''),
+(15, '20091016', 40, 911, 'hope00000062', 1255682035, 1255682035, 0, '', 0, 0, '', ''),
+(16, '我的网盘', 37, 1, 'he21cn', 1256194089, 1256881352, 2, '200910/30/1_1256881352s9SU.txt', 1, 0, '', ''),
+(17, '重要资料', 37, 917, 'hope00000917', 1257303739, 1257303739, 1, '200911/4/917_12573037399FrC.doc', 1, 0, '', ''),
+(18, '文档', 37, 911, 'hope00000062', 1257304206, 1257304206, 0, '200911/4/911_1257304206d0cc.doc', 1, 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group_attention`
+--
+
+CREATE TABLE IF NOT EXISTS `group_attention` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `ctime` int(10) NOT NULL,
+  `mtime` int(10) NOT NULL,
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='关注群组表' AUTO_INCREMENT=23 ;
+
+--
+-- 转存表中的数据 `group_attention`
+--
+
+INSERT INTO `group_attention` (`id`, `gid`, `uid`, `ctime`, `mtime`, `is_delete`) VALUES
+(1, 37, 1, 2009, 2009, 1),
+(2, 37, 1, 2009, 0, 1),
+(3, 37, 1, 2009, 2009, 1),
+(4, 37, 1, 2009, 2009, 1),
+(5, 37, 1, 2009, 2009, 1),
+(6, 37, 1, 2009, 2009, 1),
+(7, 37, 1, 2009, 2009, 1),
+(8, 37, 1, 2009, 2009, 1),
+(9, 37, 1, 2009, 2009, 1),
+(10, 37, 911, 2009, 2009, 1),
+(11, 2, 1, 2009, 2009, 1),
+(12, 37, 1, 2009, 2009, 1),
+(13, 37, 1, 2009, 2009, 1),
+(14, 38, 1, 2009, 2009, 1),
+(15, 65, 1, 2009, 2009, 1),
+(16, 37, 1, 2009, 2009, 1),
+(17, 37, 1094, 2009, 0, 0),
+(18, 38, 1, 2009, 0, 0),
+(19, 370, 1094, 2009, 0, 0),
+(20, 37, 1, 2010, 0, 0),
+(21, 40, 1, 2010, 0, 0),
+(22, 60, 1, 2010, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group_category`
+--
+
+CREATE TABLE IF NOT EXISTS `group_category` (
+  `id` mediumint(5) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT '1',
+  `pid` tinyint(3) NOT NULL DEFAULT '0',
+  `module` varchar(50) DEFAULT NULL,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- 转存表中的数据 `group_category`
+--
+
+INSERT INTO `group_category` (`id`, `title`, `type`, `pid`, `module`, `desc`) VALUES
+(5, '子类1', 1, 2, NULL, '发大水'),
+(2, '大类1', 1, 0, NULL, '大大大'),
+(6, '子类2', 1, 2, NULL, '发生');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `group_photo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gid` int(11) DEFAULT NULL,
+  `attachId` int(11) DEFAULT NULL,
+  `albumId` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `name` varchar(255) DEFAULT NULL,
+  `ctime` int(10) unsigned DEFAULT NULL,
+  `mtime` int(10) unsigned DEFAULT NULL,
+  `info` text,
+  `commentCount` int(11) unsigned DEFAULT '0',
+  `viewCount` int(11) unsigned DEFAULT '0',
+  `savepath` varchar(255) DEFAULT NULL,
+  `size` int(11) NOT NULL DEFAULT '0',
+  `tags` text,
+  `order` int(11) DEFAULT NULL,
+  `is_del` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `gid` (`gid`,`albumId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `group_photo`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group_photo_cate`
+--
+
+CREATE TABLE IF NOT EXISTS `group_photo_cate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gid` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `info` text,
+  `ctime` int(10) unsigned DEFAULT NULL,
+  `mtime` int(10) unsigned DEFAULT NULL,
+  `coverImageId` int(11) DEFAULT NULL,
+  `coverImagePath` varchar(255) DEFAULT NULL,
+  `photoCount` int(11) DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `share` tinyint(1) NOT NULL DEFAULT '0',
+  `is_del` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`),
+  KEY `cTime` (`ctime`),
+  KEY `mTime` (`mtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `group_photo_cate`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `photo`
+--
+
+CREATE TABLE IF NOT EXISTS `photo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `attachId` int(11) DEFAULT NULL,
+  `albumId` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `name` varchar(255) DEFAULT NULL,
+  `ctime` int(10) unsigned DEFAULT NULL,
+  `mtime` int(10) unsigned DEFAULT NULL,
+  `info` text,
+  `commentCount` int(11) unsigned DEFAULT '0',
+  `viewCount` int(11) unsigned DEFAULT '0',
+  `savepath` varchar(255) DEFAULT NULL,
+  `size` int(11) NOT NULL DEFAULT '0',
+  `privacy` int(1) NOT NULL DEFAULT '1',
+  `tags` text,
+  `order` int(11) NOT NULL DEFAULT '0',
+  `isDel` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='相片表' AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `photo`
+--
+
+INSERT INTO `photo` (`id`, `attachId`, `albumId`, `uid`, `status`, `name`, `ctime`, `mtime`, `info`, `commentCount`, `viewCount`, `savepath`, `size`, `privacy`, `tags`, `order`, `isDel`) VALUES
+(1, 6, 1, 1, 1, '四叶草22', 1262844930, 1262844930, NULL, 0, 0, '20100107/14/4b457c023534e.jpg', 29677, 4, NULL, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `photo_album`
+--
+
+CREATE TABLE IF NOT EXISTS `photo_album` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `info` text,
+  `ctime` int(10) unsigned DEFAULT NULL,
+  `mtime` int(10) unsigned DEFAULT NULL,
+  `coverImageId` int(11) DEFAULT NULL,
+  `coverImagePath` varchar(255) DEFAULT NULL,
+  `photoCount` int(11) DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `share` tinyint(1) NOT NULL DEFAULT '0',
+  `privacy` tinyint(1) DEFAULT NULL,
+  `privacy_data` text,
+  `isDel` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`),
+  KEY `cTime` (`ctime`),
+  KEY `mTime` (`mtime`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='相册表' AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `photo_album`
+--
+
+INSERT INTO `photo_album` (`id`, `uid`, `name`, `info`, `ctime`, `mtime`, `coverImageId`, `coverImagePath`, `photoCount`, `status`, `share`, `privacy`, `privacy_data`, `isDel`) VALUES
+(1, 1, '我的相册', NULL, 1261033403, 1261033403, 1, '20100107/14/4b457c023534e.jpg', 1, 1, 0, 4, '123456', 0),
+(2, 2, '我的相册', NULL, 1262755700, 1262755700, NULL, NULL, 0, 1, 0, 1, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `photo_index`
+--
+
+CREATE TABLE IF NOT EXISTS `photo_index` (
+  `albumId` int(11) NOT NULL DEFAULT '0',
+  `photoId` int(11) NOT NULL DEFAULT '0',
+  `userId` int(11) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  `privacy` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`albumId`,`photoId`),
+  UNIQUE KEY `album_photo` (`albumId`,`photoId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `photo_index`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `photo_mark`
+--
+
+CREATE TABLE IF NOT EXISTS `photo_mark` (
+  `photoId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `userName` varchar(50) DEFAULT NULL,
+  `markedUserId` int(11) DEFAULT NULL,
+  `x` varchar(100) DEFAULT NULL,
+  `y` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `photo_mark`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yiisns_ad`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `place` varchar(25) DEFAULT NULL,
@@ -34,17 +805,17 @@ CREATE TABLE IF NOT EXISTS `ad` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表' AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `ad`
+-- 转存表中的数据 `yiisns_ad`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `app`
+-- 表的结构 `yiisns_app`
 --
 
-CREATE TABLE IF NOT EXISTS `app` (
+CREATE TABLE IF NOT EXISTS `yiisns_app` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `enname` varchar(150) DEFAULT NULL,
@@ -66,10 +837,10 @@ CREATE TABLE IF NOT EXISTS `app` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='应用列表' AUTO_INCREMENT=9 ;
 
 --
--- 转存表中的数据 `app`
+-- 转存表中的数据 `yiisns_app`
 --
 
-INSERT INTO `app` (`id`, `name`, `enname`, `icon`, `url`, `url_exp`, `url_admin`, `uid_url`, `add_url`, `add_name`, `author`, `description`, `order2`, `place`, `status`, `canvas_url`, `type`) VALUES
+INSERT INTO `yiisns_app` (`id`, `name`, `enname`, `icon`, `url`, `url_exp`, `url_admin`, `uid_url`, `add_url`, `add_name`, `author`, `description`, `order2`, `place`, `status`, `canvas_url`, `type`) VALUES
 (1, '心情', 'mini', 'ico_app04.gif', '/mini', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/friends/uid/', '', '', 'sam', '心情', 5, 0, 0, '', NULL),
 (2, '日志', 'blog', 'ico_app01.gif', '/blog', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/personal/uid/', '/index.php?s=/Index/addBlog', '发表', 'sam', '想分享你的文章给你的好友么，快来记录日志吧', 1, 0, 0, '', NULL),
 (3, '相册', 'photo', 'ico_app02.gif', '/photo', 'index.php?s=', '/index.php?s=Admin', '/index.php?s=/Index/photos/uid/', '/index.php?s=/Upload/flash', '上传', 'sam', '分享你的图片给好友吧', 4, 0, 0, '', NULL),
@@ -82,10 +853,10 @@ INSERT INTO `app` (`id`, `name`, `enname`, `icon`, `url`, `url_exp`, `url_admin`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `app_user`
+-- 表的结构 `yiisns_app_user`
 --
 
-CREATE TABLE IF NOT EXISTS `app_user` (
+CREATE TABLE IF NOT EXISTS `yiisns_app_user` (
   `appid` int(11) NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL DEFAULT '0',
   `open` tinyint(1) NOT NULL DEFAULT '1',
@@ -98,17 +869,17 @@ CREATE TABLE IF NOT EXISTS `app_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户的应用';
 
 --
--- 转存表中的数据 `app_user`
+-- 转存表中的数据 `yiisns_app_user`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `area`
+-- 表的结构 `yiisns_area`
 --
 
-CREATE TABLE IF NOT EXISTS `area` (
+CREATE TABLE IF NOT EXISTS `yiisns_area` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `pid` int(11) NOT NULL DEFAULT '0',
@@ -118,10 +889,10 @@ CREATE TABLE IF NOT EXISTS `area` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3235 ;
 
 --
--- 转存表中的数据 `area`
+-- 转存表中的数据 `yiisns_area`
 --
 
-INSERT INTO `area` (`id`, `title`, `pid`, `status`) VALUES
+INSERT INTO `yiisns_area` (`id`, `title`, `pid`, `status`) VALUES
 (1, '北京', 0, 1),
 (2, '北京市', 1, 1),
 (3, '东城区', 2, 1),
@@ -1956,7 +2727,7 @@ INSERT INTO `area` (`id`, `title`, `pid`, `status`) VALUES
 (1832, '雨花区', 1827, 1),
 (1833, '长沙县', 1827, 1),
 (1834, '望城县', 1827, 1);
-INSERT INTO `area` (`id`, `title`, `pid`, `status`) VALUES
+INSERT INTO `yiisns_area` (`id`, `title`, `pid`, `status`) VALUES
 (1835, '宁乡县', 1827, 1),
 (1836, '浏阳市', 1827, 1),
 (1837, '株洲市', 1826, 1),
@@ -3361,10 +4132,10 @@ INSERT INTO `area` (`id`, `title`, `pid`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `attach`
+-- 表的结构 `yiisns_attach`
 --
 
-CREATE TABLE IF NOT EXISTS `attach` (
+CREATE TABLE IF NOT EXISTS `yiisns_attach` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `attach_type` varchar(50) NOT NULL DEFAULT 'attach',
   `userId` int(11) unsigned DEFAULT NULL,
@@ -3384,10 +4155,10 @@ CREATE TABLE IF NOT EXISTS `attach` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='附件表' AUTO_INCREMENT=9 ;
 
 --
--- 转存表中的数据 `attach`
+-- 转存表中的数据 `yiisns_attach`
 --
 
-INSERT INTO `attach` (`id`, `attach_type`, `userId`, `uploadTime`, `name`, `type`, `size`, `extension`, `hash`, `private`, `isDel`, `savepath`, `savename`, `savedomain`) VALUES
+INSERT INTO `yiisns_attach` (`id`, `attach_type`, `userId`, `uploadTime`, `name`, `type`, `size`, `extension`, `hash`, `private`, `isDel`, `savepath`, `savename`, `savedomain`) VALUES
 (1, '', 1, 1261033323, 'pic2.gif', 'image/gif', '5222', 'gif', '18b75c8b3fc3b38ddb0d829fce634bc6', 0, 0, '20091217/15/', '4b29d76b7a9f7.gif', 0),
 (2, '', 1, 1261033491, 'pic2.gif', 'image/gif', '5222', 'gif', '18b75c8b3fc3b38ddb0d829fce634bc6', 0, 0, '20091217/15/', '4b29d813ae606.gif', 0),
 (3, '', 1, 1261040923, 'pic2.gif', 'image/gif', '5222', 'gif', '18b75c8b3fc3b38ddb0d829fce634bc6', 0, 0, '20091217/17/', '4b29f51b11da2.gif', 0),
@@ -3400,360 +4171,192 @@ INSERT INTO `attach` (`id`, `attach_type`, `userId`, `uploadTime`, `name`, `type
 -- --------------------------------------------------------
 
 --
--- 表的结构 `auth_assignment`
+-- 表的结构 `yiisns_blog`
 --
 
-CREATE TABLE IF NOT EXISTS `auth_assignment` (
-  `itemname` varchar(64) NOT NULL,
-  `userid` varchar(64) NOT NULL,
-  `bizrule` text,
-  `data` text,
-  PRIMARY KEY (`itemname`,`userid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限分配表';
+CREATE TABLE IF NOT EXISTS `yiisns_blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(20) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `category` mediumint(5) DEFAULT NULL,
+  `cover` varchar(255) DEFAULT NULL,
+  `content` longtext,
+  `readCount` int(11) NOT NULL DEFAULT '0',
+  `commentCount` int(11) NOT NULL DEFAULT '0',
+  `recommendCount` int(11) NOT NULL DEFAULT '0',
+  `tags` varchar(255) DEFAULT NULL,
+  `cTime` int(11) DEFAULT NULL,
+  `mTime` int(11) DEFAULT NULL,
+  `rTime` int(11) NOT NULL DEFAULT '0',
+  `isHot` varchar(1) NOT NULL DEFAULT '0',
+  `type` int(1) DEFAULT NULL,
+  `status` varchar(1) NOT NULL DEFAULT '1',
+  `private` tinyint(1) NOT NULL DEFAULT '0',
+  `private_data` varchar(255) DEFAULT NULL,
+  `hot` int(11) NOT NULL DEFAULT '0',
+  `canableComment` tinyint(1) NOT NULL DEFAULT '1',
+  `attach` text,
+  PRIMARY KEY (`id`),
+  KEY `hot` (`hot`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `auth_assignment`
+-- 转存表中的数据 `yiisns_blog`
 --
 
-INSERT INTO `auth_assignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
-('管理员', '8', '', 's:0:"";'),
-('Authority', '8', '', 's:0:"";');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `auth_item`
+-- 表的结构 `yiisns_blog_category`
 --
 
-CREATE TABLE IF NOT EXISTS `auth_item` (
-  `name` varchar(64) NOT NULL,
-  `type` int(11) NOT NULL,
-  `description` text,
-  `bizrule` text,
-  `data` text,
-  PRIMARY KEY (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限表';
+CREATE TABLE IF NOT EXISTS `yiisns_blog_category` (
+  `id` mediumint(5) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `pid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pid` (`pid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- 转存表中的数据 `auth_item`
+-- 转存表中的数据 `yiisns_blog_category`
 --
 
-INSERT INTO `auth_item` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
-('Authority', 2, NULL, NULL, NULL),
-('管理员', 2, NULL, NULL, NULL),
-('UserCreate', 0, NULL, NULL, NULL),
-('UserDelete', 0, NULL, NULL, NULL),
-('UserUpdate', 0, NULL, NULL, NULL),
-('UserShow', 0, NULL, NULL, NULL),
-('后台用户管理', 1, NULL, NULL, NULL),
-('UserList', 0, NULL, NULL, NULL),
-('UserAdmin', 0, NULL, NULL, NULL),
-('教师管理', 1, NULL, NULL, NULL),
-('TeacherShow', 0, NULL, NULL, NULL),
-('TeacherCreate', 0, NULL, NULL, NULL),
-('TeacherUpdate', 0, NULL, NULL, NULL),
-('TeacherDelete', 0, NULL, NULL, NULL),
-('TeacherSubject_in_School', 0, NULL, NULL, NULL),
-('TeacherList', 0, NULL, NULL, NULL),
-('TeacherAdmin', 0, NULL, NULL, NULL),
-('内容管理', 1, NULL, NULL, NULL),
-('ContentShow', 0, NULL, NULL, NULL),
-('ContentDay', 0, NULL, NULL, NULL),
-('ContentCreate', 0, NULL, NULL, NULL),
-('ContentUpdate', 0, NULL, NULL, NULL),
-('ContentDelete', 0, NULL, NULL, NULL),
-('ContentList', 0, NULL, NULL, NULL),
-('ContentAdmin', 0, NULL, NULL, NULL),
-('学校管理', 1, NULL, NULL, NULL),
-('SchoolShow', 0, NULL, NULL, NULL),
-('SchoolCreate', 0, NULL, NULL, NULL),
-('SchoolUpdate', 0, NULL, NULL, NULL),
-('SchoolDelete', 0, NULL, NULL, NULL),
-('SchoolList', 0, NULL, NULL, NULL),
-('SchoolAdmin', 0, NULL, NULL, NULL),
-('学生管理', 1, NULL, NULL, NULL),
-('StudentShow', 0, NULL, NULL, NULL),
-('StudentAddClass', 0, NULL, NULL, NULL),
-('StudentCreate', 0, NULL, NULL, NULL),
-('StudentClass_in_School', 0, NULL, NULL, NULL),
-('StudentAddParent', 0, NULL, NULL, NULL),
-('StudentUpdate', 0, NULL, NULL, NULL),
-('StudentDelete', 0, NULL, NULL, NULL),
-('StudentList', 0, NULL, NULL, NULL),
-('StudentAdmin', 0, NULL, NULL, NULL),
-('StudentClass', 0, NULL, NULL, NULL),
-('StudentTest', 0, NULL, NULL, NULL),
-('StudentRemoteValidate', 0, NULL, NULL, NULL),
-('加入班级申请管理', 1, NULL, NULL, NULL),
-('Hope_class_tempShow', 0, NULL, NULL, NULL),
-('Hope_class_tempCreate', 0, NULL, NULL, NULL),
-('Hope_class_tempUpdate', 0, NULL, NULL, NULL),
-('Hope_class_tempDelete', 0, NULL, NULL, NULL),
-('Hope_class_tempList', 0, NULL, NULL, NULL),
-('Hope_class_tempAdmin', 0, NULL, NULL, NULL),
-('BaseAdministrating', 1, NULL, NULL, NULL),
-('班级管理', 1, NULL, NULL, NULL),
-('ClassShow', 0, NULL, NULL, NULL),
-('ClassCreate', 0, NULL, NULL, NULL),
-('ClassUpdate', 0, NULL, NULL, NULL),
-('ClassDelete', 0, NULL, NULL, NULL),
-('ClassList', 0, NULL, NULL, NULL),
-('ClassAdmin', 0, NULL, NULL, NULL),
-('ClassTeacher', 0, NULL, NULL, NULL),
-('导入管理', 1, NULL, NULL, NULL),
-('ImportYEY', 0, NULL, NULL, NULL),
-('ImportTeacher', 0, NULL, NULL, NULL),
-('ImportParent', 0, NULL, NULL, NULL),
-('ImportShow', 0, NULL, NULL, NULL),
-('ImportCreate', 0, NULL, NULL, NULL),
-('ImportUpdate', 0, NULL, NULL, NULL),
-('ImportDelete', 0, NULL, NULL, NULL),
-('ImportList', 0, NULL, NULL, NULL),
-('ImportAdmin', 0, NULL, NULL, NULL),
-('ImportUpload', 0, NULL, NULL, NULL),
-('ImportBackdown', 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `auth_item_child`
+-- 表的结构 `yiisns_blog_item`
 --
 
-CREATE TABLE IF NOT EXISTS `auth_item_child` (
-  `parent` varchar(64) NOT NULL,
-  `child` varchar(64) NOT NULL,
-  PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限上下级关系表';
+CREATE TABLE IF NOT EXISTS `yiisns_blog_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sourceId` int(11) DEFAULT NULL,
+  `snapday` int(11) DEFAULT NULL,
+  `pubdate` int(11) DEFAULT NULL,
+  `boot` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `summary` text,
+  PRIMARY KEY (`id`),
+  KEY `source_id` (`sourceId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `auth_item_child`
+-- 转存表中的数据 `yiisns_blog_item`
 --
 
-INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
-('内容管理', 'ContentAdmin'),
-('内容管理', 'ContentCreate'),
-('内容管理', 'ContentDay'),
-('内容管理', 'ContentDelete'),
-('内容管理', 'ContentList'),
-('内容管理', 'ContentShow'),
-('内容管理', 'ContentUpdate'),
-('加入班级申请管理', 'Hope_class_tempAdmin'),
-('加入班级申请管理', 'Hope_class_tempCreate'),
-('加入班级申请管理', 'Hope_class_tempDelete'),
-('加入班级申请管理', 'Hope_class_tempList'),
-('加入班级申请管理', 'Hope_class_tempShow'),
-('加入班级申请管理', 'Hope_class_tempUpdate'),
-('后台用户管理', 'UserAdmin'),
-('后台用户管理', 'UserCreate'),
-('后台用户管理', 'UserDelete'),
-('后台用户管理', 'UserList'),
-('后台用户管理', 'UserShow'),
-('后台用户管理', 'UserUpdate'),
-('学校管理', 'SchoolAdmin'),
-('学校管理', 'SchoolCreate'),
-('学校管理', 'SchoolDelete'),
-('学校管理', 'SchoolList'),
-('学校管理', 'SchoolShow'),
-('学校管理', 'SchoolUpdate'),
-('学生管理', 'StudentAddClass'),
-('学生管理', 'StudentAddParent'),
-('学生管理', 'StudentAdmin'),
-('学生管理', 'StudentClass'),
-('学生管理', 'StudentClass_in_School'),
-('学生管理', 'StudentCreate'),
-('学生管理', 'StudentDelete'),
-('学生管理', 'StudentList'),
-('学生管理', 'StudentRemoteValidate'),
-('学生管理', 'StudentShow'),
-('学生管理', 'StudentTest'),
-('学生管理', 'StudentUpdate'),
-('导入管理', 'ImportAdmin'),
-('导入管理', 'ImportBackdown'),
-('导入管理', 'ImportCreate'),
-('导入管理', 'ImportDelete'),
-('导入管理', 'ImportList'),
-('导入管理', 'ImportParent'),
-('导入管理', 'ImportShow'),
-('导入管理', 'ImportTeacher'),
-('导入管理', 'ImportUpdate'),
-('导入管理', 'ImportUpload'),
-('导入管理', 'ImportYEY'),
-('教师管理', 'TeacherAdmin'),
-('教师管理', 'TeacherCreate'),
-('教师管理', 'TeacherDelete'),
-('教师管理', 'TeacherList'),
-('教师管理', 'TeacherShow'),
-('教师管理', 'TeacherSubject_in_School'),
-('教师管理', 'TeacherUpdate'),
-('班级管理', 'ClassAdmin'),
-('班级管理', 'ClassCreate'),
-('班级管理', 'ClassDelete'),
-('班级管理', 'ClassList'),
-('班级管理', 'ClassShow'),
-('班级管理', 'ClassTeacher'),
-('班级管理', 'ClassUpdate'),
-('管理员', 'BaseAdministrating'),
-('管理员', 'MemberAdministrating'),
-('管理员', '内容管理'),
-('管理员', '加入班级申请管理'),
-('管理员', '后台用户管理'),
-('管理员', '学校管理'),
-('管理员', '学生管理'),
-('管理员', '导入管理'),
-('管理员', '教师管理'),
-('管理员', '班级管理');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `blog`
+-- 表的结构 `yiisns_blog_mention`
 --
 
-CREATE TABLE IF NOT EXISTS `blog` (
-  `blogid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `topicid` mediumint(8) NOT NULL DEFAULT '0',
-  `cate_id` mediumint(8) NOT NULL,
-  `username` varchar(40) NOT NULL,
-  `tag` varchar(255) DEFAULT NULL,
-  `subject` varchar(255) NOT NULL,
-  `message` mediumtext NOT NULL,
-  `postip` varchar(20) NOT NULL DEFAULT '',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `hot` mediumint(8) NOT NULL DEFAULT '0',
-  `hotuser` text,
-  `magiccolor` tinyint(6) NOT NULL DEFAULT '0',
-  `magicpaper` tinyint(6) NOT NULL DEFAULT '0',
-  `magiccall` tinyint(1) NOT NULL DEFAULT '0',
-  `noview` tinyint(1) NOT NULL DEFAULT '0',
-  `noreply` tinyint(1) NOT NULL DEFAULT '0',
-  `viewnum` mediumint(8) NOT NULL DEFAULT '0',
-  `replynum` mediumint(8) NOT NULL DEFAULT '0',
-  `click_1` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_2` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_3` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_4` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `click_5` smallint(6) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`blogid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+CREATE TABLE IF NOT EXISTS `yiisns_blog_mention` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `blogid` int(20) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `blogid` (`blogid`,`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `blog`
+-- 转存表中的数据 `yiisns_blog_mention`
 --
 
-INSERT INTO `blog` (`blogid`, `uid`, `topicid`, `cate_id`, `username`, `tag`, `subject`, `message`, `postip`, `dateline`, `hot`, `hotuser`, `magiccolor`, `magicpaper`, `magiccall`, `noview`, `noreply`, `viewnum`, `replynum`, `click_1`, `click_2`, `click_3`, `click_4`, `click_5`) VALUES
-(1, 2, 0, 1, 'test', 'a:1:{i:23;s:6:"热情";}', '发撒热情额外', '人我却认为', '127.0.0.1', 1250153860, 0, NULL, 0, 0, 0, 0, 0, 25, 1, 0, 0, 0, 0, 0),
-(2, 2, 0, 1, 'test', 'a:3:{i:1;s:6:"大水";i:34;s:3:"fas";i:35;s:4:"w发";}', '发大水发大水1223发', '发生发生', '127.0.0.1', 1250153847, 0, NULL, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0),
-(7, 2, 0, 1, 'test', 'a:2:{i:36;s:6:"发文";i:5;s:6:"发生";}', '发生大幅发文额', '额外人为恶', '127.0.0.1', 1250154056, 40, NULL, 1, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0),
-(8, 2, 0, 1, 'test', 'Array', '新帖子', '发发生', '127.0.0.1', 1250154174, 2, NULL, 1, 1, 0, 0, 0, 78, 4, 0, 0, 1, 0, 0),
-(9, 1, 0, 0, 'he21cn', '', '发生', '发大水', '127.0.0.1', 1250994357, 0, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0),
-(10, 1, 0, 0, 'he21cn', '', '发大水', '发的阿斯发大水', '127.0.0.1', 1250994386, 0, NULL, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0),
-(11, 1, 0, 2, 'he21cn', '', '发大水飞洒', '飞打算发生的', '127.0.0.1', 1250994426, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(12, 1, 0, 2, 'he21cn', '', '发大水飞洒', '飞打算发生的', '127.0.0.1', 1250994438, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(13, 1, 0, 2, 'he21cn', '', '发大水飞洒', '飞打算发生的', '127.0.0.1', 1250994460, 0, NULL, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0),
-(14, 1, 0, 2, 'he21cn', '', '我今天有个日志', '但是发撒发撒', '127.0.0.1', 1251163532, 0, NULL, 0, 0, 0, 0, 1, 47, 7, 0, 0, 0, 0, 0),
-(15, 1, 0, 2, 'he21cn', '', 'fdas', 'dfasfdas', '127.0.0.1', 1252909091, 0, NULL, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0),
-(16, 1, 0, 2, 'he21cn', '', '2222222', '22222222', '127.0.0.1', 1252909134, 0, NULL, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `blog_category`
+-- 表的结构 `yiisns_blog_outline`
 --
 
-CREATE TABLE IF NOT EXISTS `blog_category` (
-  `cate_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `pid` mediumint(8) NOT NULL,
-  `cate_name` varchar(100) NOT NULL,
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`cate_id`),
-  KEY `uid` (`uid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+CREATE TABLE IF NOT EXISTS `yiisns_blog_outline` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(20) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `category` mediumint(5) DEFAULT NULL,
+  `cover` varchar(255) DEFAULT NULL,
+  `content` longtext,
+  `readCount` int(11) NOT NULL DEFAULT '0',
+  `commentCount` int(11) NOT NULL DEFAULT '0',
+  `tags` varchar(255) DEFAULT NULL,
+  `cTime` int(11) DEFAULT NULL,
+  `mTime` int(11) DEFAULT NULL,
+  `isHot` varchar(1) NOT NULL DEFAULT '0',
+  `type` int(1) DEFAULT NULL,
+  `status` varchar(1) NOT NULL DEFAULT '1',
+  `private` tinyint(1) NOT NULL DEFAULT '0',
+  `hot` int(11) NOT NULL DEFAULT '0',
+  `friendId` text,
+  `canableComment` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `hot` (`hot`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `blog_category`
+-- 转存表中的数据 `yiisns_blog_outline`
 --
 
-INSERT INTO `blog_category` (`cate_id`, `pid`, `cate_name`, `uid`, `dateline`) VALUES
-(2, 1, '范德萨', 1, 1250994357);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `click`
+-- 表的结构 `yiisns_blog_source`
 --
 
-CREATE TABLE IF NOT EXISTS `click` (
-  `clickid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `icon` varchar(100) NOT NULL DEFAULT '',
-  `idtype` varchar(15) NOT NULL DEFAULT '',
-  `displayorder` tinyint(6) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`clickid`),
-  KEY `idtype` (`idtype`,`displayorder`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='点击图标表' AUTO_INCREMENT=16 ;
+CREATE TABLE IF NOT EXISTS `yiisns_blog_source` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service` varchar(10) DEFAULT NULL,
+  `username` char(30) DEFAULT NULL,
+  `cTime` int(11) DEFAULT NULL,
+  `lastSnap` int(11) DEFAULT NULL,
+  `isNew` tinyint(1) DEFAULT NULL,
+  `changes` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `click`
+-- 转存表中的数据 `yiisns_blog_source`
 --
 
-INSERT INTO `click` (`clickid`, `name`, `icon`, `idtype`, `displayorder`) VALUES
-(2, '雷人', 'leiren.gif', 'blogid', 0),
-(3, '握手', 'woshou.gif', 'blogid', 0),
-(4, '鲜花', 'xianhua.gif', 'blogid', 0),
-(5, '鸡蛋', 'jidan.gif', 'blogid', 0),
-(6, '漂亮', 'piaoliang.gif', 'picid', 0),
-(7, '酷毙', 'kubi.gif', 'picid', 0),
-(8, '雷人', 'leiren.gif', 'picid', 0),
-(9, '鲜花', 'xianhua.gif', 'picid', 0),
-(10, '鸡蛋', 'jidan.gif', 'picid', 0),
-(11, '搞笑', 'gaoxiao.gif', 'tid', 0),
-(12, '迷惑', 'mihuo.gif', 'tid', 0),
-(13, '雷人', 'leiren.gif', 'tid', 0),
-(14, '鲜花', 'xianhua.gif', 'tid', 0),
-(15, '鸡蛋', 'jidan.gif', 'tid', 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `click_user`
+-- 表的结构 `yiisns_blog_subscribe`
 --
 
-CREATE TABLE IF NOT EXISTS `click_user` (
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
-  `username` varchar(15) NOT NULL DEFAULT '' COMMENT '用户名',
-  `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `idtype` varchar(15) NOT NULL DEFAULT '' COMMENT '类型(tid指代话题)',
-  `clickid` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '点击的图标',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '时间',
-  PRIMARY KEY (`uid`,`id`,`idtype`),
-  KEY `id` (`id`,`idtype`,`dateline`),
-  KEY `uid` (`uid`,`idtype`,`dateline`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表态(路过,雷人,鲜花,鸡蛋等等)';
+CREATE TABLE IF NOT EXISTS `yiisns_blog_subscribe` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sourceId` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `type` tinyint(4) DEFAULT '0',
+  `newNum` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `sourceId` (`sourceId`,`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `click_user`
+-- 转存表中的数据 `yiisns_blog_subscribe`
 --
 
-INSERT INTO `click_user` (`uid`, `username`, `id`, `idtype`, `clickid`, `dateline`) VALUES
-(3, 'test2', 2, 'tid', 15, 1250751871),
-(4, 'kelan1210', 58, 'tid', 13, 1251701515),
-(3, 'test1', 58, 'tid', 13, 1251709752),
-(2, 'test', 58, 'tid', 13, 1251709843),
-(911, 'hope00000062', 75, 'tid', 13, 1255679601),
-(917, 'hope00000917', 84, 'tid', 11, 1257302028),
-(911, 'hope00000062', 86, 'tid', 13, 1257387783),
-(911, 'hope00000062', 83, 'tid', 13, 1257403507);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `comment`
+-- 表的结构 `yiisns_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `comment` (
+CREATE TABLE IF NOT EXISTS `yiisns_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` char(15) DEFAULT NULL,
   `appid` int(11) DEFAULT NULL,
@@ -3767,350 +4370,93 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id`),
   KEY `type` (`type`),
   KEY `appid` (`appid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
 
 --
--- 转存表中的数据 `comment`
+-- 转存表中的数据 `yiisns_comment`
 --
 
-INSERT INTO `comment` (`id`, `type`, `appid`, `name`, `uid`, `comment`, `ctime`, `toId`, `status`, `quietly`) VALUES
-(1, 'mini', 10, '管理员', 1, '9999', 1267100241, 0, 0, 0),
-(2, 'mini', 10, '管理员', 1, '54', 1267100308, 0, 0, 0);
+INSERT INTO `yiisns_comment` (`id`, `type`, `appid`, `name`, `uid`, `comment`, `ctime`, `toId`, `status`, `quietly`) VALUES
+(1, 'mini', 24, '管理员', 1, '的发萨法大赛', 1276753704, 0, 0, 0),
+(2, 'mini', 24, '管理员', 1, '防盗锁', 1276753904, 0, 0, 0),
+(3, 'mini', 24, '管理员', 1, '回复管理员:风速达', 1276753917, 0, 0, 0),
+(4, 'mini', 23, '管理员', 1, '555', 1276839673, 0, -1, 0),
+(5, 'mini', 23, '管理员', 1, '555', 1276839685, 0, -1, 0),
+(6, 'mini', 23, '管理员', 1, '22\n', 1276839714, 0, -1, 0),
+(7, 'mini', 23, '管理员', 1, '22\n', 1276839743, 0, -1, 0),
+(8, 'mini', 23, '管理员', 1, '22', 1276839904, 0, -1, 0),
+(9, 'mini', 23, '管理员', 1, '22\n', 1276839969, 0, 0, 0),
+(10, 'mini', 23, '管理员', 1, '22', 1276839978, 0, -1, 0),
+(11, 'mini', 22, '管理员', 1, '222', 1276840024, 0, 0, 0),
+(12, 'mini', 22, '管理员', 1, '22', 1276840079, 0, 0, 0),
+(13, 'mini', 22, '管理员', 1, '22', 1276840628, 0, 0, 0),
+(14, 'mini', 20, '管理员', 1, 'fdas ', 1276840646, 0, 0, 0),
+(15, 'mini', 20, '管理员', 1, '33', 1276840668, 0, 0, 0),
+(16, 'mini', 20, '管理员', 1, 'fds', 1276840771, 0, 0, 0),
+(17, 'mini', 20, '管理员', 1, '222', 1276840774, 0, 0, 0),
+(18, 'mini', 18, '管理员', 1, 'ddd', 1276840786, 0, 0, 0),
+(19, 'mini', 1, '管理员', 1, '55', 1276840822, 0, 0, 0),
+(20, 'mini', 1, '管理员', 1, 'da ', 1276840933, 0, 0, 0),
+(21, 'mini', 1, '管理员', 1, '回复null:222', 1276840942, 0, 0, 0),
+(22, 'mini', 2, '管理员', 1, 'fdas', 1276841126, 0, 0, 0),
+(23, 'mini', 1, '管理员', 1, 'fdas', 1276841268, 0, 0, 0),
+(24, 'mini', 1, '管理员', 1, 'eee56', 1276841274, 0, 0, 0),
+(25, 'mini', 3, '管理员', 1, 'fds', 1276841280, 0, 0, 0),
+(26, 'mini', 3, '管理员', 1, 'fdsa', 1276841411, 0, 0, 0),
+(27, 'mini', 3, '管理员', 1, 'fdas', 1276841473, 0, -1, 0),
+(28, 'mini', 3, '管理员', 1, 'bbb', 1276841482, 0, -1, 0),
+(29, 'mini', 4, '管理员', 1, 'fda', 1276841492, 0, 0, 0),
+(30, 'mini', 11, '管理员', 1, 'fdas ', 1276842983, 0, 0, 0),
+(31, 'mini', 11, '管理员', 1, 'fdsa', 1276842988, 0, 0, 0),
+(32, 'mini', 11, '管理员', 1, '444', 1276842990, 0, -1, 0),
+(33, 'mini', 11, '管理员', 1, 'dd', 1276842992, 0, -1, 0),
+(34, 'mini', 6, '管理员', 1, '1', 1276843282, 0, -1, 0),
+(35, 'mini', 6, '管理员', 1, '2', 1276843284, 0, 0, 0),
+(36, 'mini', 6, '管理员', 1, '3', 1276843285, 0, 0, 0),
+(37, 'mini', 6, '管理员', 1, '4', 1276843287, 0, 0, 0),
+(38, 'mini', 6, '管理员', 1, '5', 1276843288, 0, 0, 0),
+(39, 'mini', 6, '管理员', 1, '6', 1276843407, 0, 0, 0),
+(40, 'mini', 6, '管理员', 1, '回复null:66', 1276844562, 0, 0, 0),
+(41, 'mini', 9, '管理员', 1, '555', 1276844579, 0, 0, 0),
+(42, 'mini', 6, '管理员', 1, 'vv', 1276846839, 0, 0, 0),
+(43, 'mini', 6, '管理员', 1, '99', 1276846846, 0, 0, 0),
+(44, 'mini', 11, '管理员', 1, '22', 1276849798, 0, 0, 0),
+(45, 'mini', 10, '管理员', 1, '333', 1276851409, 0, 0, 0),
+(46, 'mini', 10, '管理员', 1, '333', 1276851416, 0, 0, 0),
+(47, 'mini', 10, '管理员', 1, '55', 1276851422, 0, 0, 0),
+(48, 'mini', 23, '管理员', 1, 'fds', 1277088097, 0, 0, 0),
+(49, 'mini', 27, '管理员', 1, '发达的', 1277105246, 0, 0, 0),
+(50, 'mini', 27, '管理员', 1, '放大', 1277105248, 0, 0, 0),
+(51, 'mini', 27, '管理员', 1, '防盗锁', 1277105252, 0, 0, 0),
+(52, 'mini', 27, '管理员', 1, '防盗锁', 1277105253, 0, 0, 0),
+(53, 'mini', 27, '管理员', 1, '防盗锁', 1277105255, 0, 0, 0),
+(54, 'mini', 27, '管理员', 1, '防盗锁', 1277105257, 0, 0, 0),
+(55, 'mini', 27, '管理员', 1, '防盗锁弟弟', 1277105259, 0, 0, 0),
+(56, 'mini', 27, '管理员', 1, '555555', 1277105266, 0, 0, 0),
+(57, 'mini', 27, '管理员', 1, '防盗锁 ', 1277105274, 0, 0, 0),
+(58, 'mini', 27, '管理员', 1, '555', 1277105372, 0, 0, 0),
+(59, 'mini', 27, '管理员', 1, '放大', 1277105459, 0, 0, 0),
+(60, 'mini', 27, '管理员', 1, '防盗锁', 1277105462, 0, 0, 0),
+(61, 'mini', 23, '管理员', 1, '不vb', 1277105466, 0, 0, 0),
+(62, 'mini', 23, '管理员', 1, '辅导费', 1277105469, 0, 0, 0),
+(63, 'mini', 22, '管理员', 1, '防盗锁', 1277105472, 0, 0, 0),
+(64, 'mini', 22, '管理员', 1, '人仍然', 1277105475, 0, 0, 0),
+(65, 'mini', 20, '管理员', 1, '333', 1277105484, 0, 0, 0),
+(66, 'mini', 20, '管理员', 1, '放大', 1277105534, 0, 0, 0),
+(67, 'mini', 20, '管理员', 1, '额额', 1277105536, 0, 0, 0),
+(68, 'mini', 20, '管理员', 1, '222', 1277105538, 0, 0, 0),
+(69, 'mini', 18, '管理员', 1, '法大赛', 1277105541, 0, 0, 0),
+(70, 'mini', 18, '管理员', 1, '防盗锁', 1277105543, 0, 0, 0),
+(71, 'mini', 18, '管理员', 1, '放大萨', 1277105545, 0, 0, 0),
+(72, 'mini', 11, '管理员', 1, '回复管理员:法大赛', 1277105911, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `event`
+-- 表的结构 `yiisns_friend`
 --
 
-CREATE TABLE IF NOT EXISTS `event` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `name` varchar(32) DEFAULT NULL,
-  `title` text,
-  `explain` text,
-  `contact` varchar(32) DEFAULT NULL,
-  `type` tinyint(4) DEFAULT NULL,
-  `sTime` int(11) DEFAULT NULL,
-  `eTime` int(11) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `cTime` int(11) DEFAULT NULL,
-  `deadline` int(11) DEFAULT NULL,
-  `joinCount` int(11) NOT NULL DEFAULT '0',
-  `attentionCount` int(11) NOT NULL DEFAULT '0',
-  `limitCount` int(11) NOT NULL DEFAULT '0',
-  `commentCount` int(11) NOT NULL DEFAULT '0',
-  `coverId` int(11) NOT NULL DEFAULT '0',
-  `optsId` int(11) NOT NULL DEFAULT '0',
-  `feedId` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='活动表' AUTO_INCREMENT=1 ;
-
---
--- 转存表中的数据 `event`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `event_opts`
---
-
-CREATE TABLE IF NOT EXISTS `event_opts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cost` char(10) NOT NULL DEFAULT '0',
-  `costExplain` varchar(255) DEFAULT '0',
-  `province` char(10) DEFAULT NULL,
-  `city` char(10) DEFAULT NULL,
-  `area` varchar(10) DEFAULT NULL,
-  `opts` varchar(50) NOT NULL DEFAULT '0',
-  `isHot` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- 转存表中的数据 `event_opts`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `event_photo`
---
-
-CREATE TABLE IF NOT EXISTS `event_photo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `eventId` int(11) DEFAULT NULL,
-  `uid` int(11) DEFAULT NULL,
-  `name` char(10) DEFAULT NULL,
-  `filename` varchar(255) DEFAULT NULL,
-  `filepath` varchar(255) DEFAULT NULL,
-  `savename` varchar(255) DEFAULT NULL,
-  `aid` int(11) DEFAULT NULL,
-  `cTime` int(11) DEFAULT NULL,
-  `commentCount` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- 转存表中的数据 `event_photo`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `event_type`
---
-
-CREATE TABLE IF NOT EXISTS `event_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
-
---
--- 转存表中的数据 `event_type`
---
-
-INSERT INTO `event_type` (`id`, `name`) VALUES
-(1, '音乐/演出'),
-(2, '展览'),
-(3, '电影'),
-(4, '讲座/沙龙'),
-(5, '戏剧/曲艺'),
-(8, '体育'),
-(9, '旅行'),
-(10, '公益'),
-(11, '其他');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `event_user`
---
-
-CREATE TABLE IF NOT EXISTS `event_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `eventId` int(11) DEFAULT NULL,
-  `uid` int(11) DEFAULT NULL,
-  `name` varchar(32) DEFAULT NULL,
-  `contact` text,
-  `action` char(10) NOT NULL DEFAULT 'attention',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `cTime` int(11) DEFAULT NULL,
-  `feedId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- 转存表中的数据 `event_user`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `feed`
---
-
-CREATE TABLE IF NOT EXISTS `feed` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `title_data` text,
-  `body_data` text,
-  `cTime` int(11) DEFAULT NULL,
-  `appid` varchar(25) DEFAULT '',
-  `feedtype` tinyint(3) NOT NULL DEFAULT '0',
-  `fid` int(11) NOT NULL DEFAULT '0',
-  `cache` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
-
---
--- 转存表中的数据 `feed`
---
-
-INSERT INTO `feed` (`id`, `uid`, `username`, `type`, `title_data`, `body_data`, `cTime`, `appid`, `feedtype`, `fid`, `cache`) VALUES
-(1, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:1;s:5:"cTime";i:1260770316;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(2, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:2;s:5:"cTime";i:1260770316;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(3, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/1/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:15:"放大萨发送";s:5:"title";s:0:"";}', 1261033225, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:3;s:5:"cTime";i:1261033225;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/1/mid/1">放大萨</a>";s:4:"body";s:15:"放大萨发送";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
-(4, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/2/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:9:"放大萨";s:5:"title";s:0:"";}', 1261033329, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:4;s:5:"cTime";i:1261033329;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1">放大萨</a>";s:4:"body";s:9:"放大萨";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
-(5, 1, '管理员', 'group_create', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:2:{s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 1261033391, '12', 0, 1, 'a:7:{s:4:"type";s:12:"group_create";s:2:"id";i:5;s:5:"cTime";i:1261033391;s:3:"uid";i:1;s:5:"title";s:92:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 创建了一个新群组";s:4:"body";s:92:" <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
-(6, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:1;}', 1261033453, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:6;s:5:"cTime";i:1261033453;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/1">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
-(7, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:2;}', 1261040927, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:7;s:5:"cTime";i:1261040927;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/2">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
-(8, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:8;s:5:"cTime";i:1262749737;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(9, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:9;s:5:"cTime";i:1262749737;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(10, 1, '管理员', 'vote_add', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', 'a:2:{s:3:"url";s:56:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>去投票</a>";s:4:"body";s:27:"1.1<br />2.2<br />3.3<br />";}', 1262828895, '13', 0, 0, 'a:7:{s:4:"type";s:8:"vote_add";s:2:"id";i:10;s:5:"cTime";i:1262828895;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发起了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"body";s:123:"1.1<br />2.2<br />3.3<br />\r\n<a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>去投票</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
-(11, 1, '管理员', 'vote_in', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', '0', 1262828929, '13', 0, 0, 'a:6:{s:4:"type";s:7:"vote_in";s:2:"id";i:11;s:5:"cTime";i:1262828929;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 参与了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
-(12, 1, '管理员', 'mini', 'a:1:{s:7:"content";s:70:"<img title=''流汗'' src=''{PUBLIC_URL}/images/biaoqing/mini/sweat.gif''>";}', 'a:3:{s:2:"id";i:1;s:3:"uid";i:1;s:3:"con";s:7:"/流汗";}', 1262831743, '3', 0, 0, 'a:7:{s:4:"type";s:4:"mini";s:2:"id";i:12;s:5:"cTime";i:1262831743;s:3:"uid";i:1;s:5:"title";s:233:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a>:<img title=''流汗'' src=''http://localhost/thinksns/public/images/biaoqing/mini/sweat.gif''>  <a href="javascript:void(0)" onclick="hide_reply(this);">收起回复</a>";s:4:"body";s:149:"<input type="hidden" value="/流汗" class="mini_con"><input type="hidden" value="1" class="mini_id"><input type="hidden" value="1" class="mini_uid">";s:4:"icon";s:57:"http://localhost/thinksns/apps/mini/appinfo/ico_app04.gif";}'),
-(13, 1, '管理员', 'share_blog', 'a:1:{s:2:"id";i:1;}', 'a:10:{s:4:"name";s:9:"管理员";s:3:"uid";s:1:"1";s:5:"title";s:9:"放大萨";s:5:"intro";s:9:"放大萨";s:5:"aimId";i:2;s:6:"typeId";i:5;s:5:"toUid";i:1;s:10:"toUserName";s:9:"管理员";s:4:"info";s:2:"12";s:2:"id";i:1;}', 1262831945, '11', 0, 0, 'a:7:{s:4:"type";s:10:"share_blog";s:2:"id";i:13;s:5:"cTime";i:1262831945;s:3:"uid";i:1;s:5:"title";s:181:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 分享了一个日志 (<a href=''http://localhost/thinksns/apps/share/index.php?s=/Index/content/id/1''>评论</a>)";s:4:"body";s:331:"<div class="lh30 fB"><a href=''http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1''>放大萨</a></div> \r\n<div class="lh20">来自:<a href=''http://localhost/thinksns/index.php?s=/space/1''>管理员</a></div>\r\n<div class="lh20 cGray2">放大萨</div>\r\n<div class="quote"><p><span class="quoteR">12</span></p></div>";s:4:"icon";s:62:"http://localhost/thinksns/apps/share/appinfo/ico_app_share.gif";}');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `feed_del`
---
-
-CREATE TABLE IF NOT EXISTS `feed_del` (
-  `uid` int(11) DEFAULT NULL,
-  `feedId` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `feed_del`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `feed_template`
---
-
-CREATE TABLE IF NOT EXISTS `feed_template` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) DEFAULT NULL,
-  `title` text,
-  `body` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
-
---
--- 转存表中的数据 `feed_template`
---
-
-INSERT INTO `feed_template` (`id`, `type`, `title`, `body`) VALUES
-(13, 'photo', '{actor}上传了{num}张照片至{album}', '<div class="left mr5">{pic}</div>'),
-(5, 'friend', '{actor} 和 {touser} 成为了好友', ''),
-(14, 'record', '{actor} 发了一条记录了: {content}', ''),
-(15, 'parking', '{actor}把{car}停在了{xxx}的车位上~~~', ''),
-(16, 'share_url', '{actor} 分享了一个网址 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30"><a href=''{url}'' target=''_blank''>{title}</a></div>\r\n\r\n<div class="lh30"><a href=''{url}'' target=''_blank''>{url}</a></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(17, 'mini', '{actor}:{content}  <a href="javascript:void(0)" onclick="hide_reply(this);">收起回复</a>', '<input type="hidden" value="{con}" class="mini_con"><input type="hidden" value="{id}" class="mini_id"><input type="hidden" value="{uid}" class="mini_uid">'),
-(28, 'vote_add', '{actor} 发起了投票 {title}', '{body}\r\n{url}'),
-(19, 'blog', '{actor} 发表了一篇日志：{title}', '{content}'),
-(20, 'head', '{actor} 上传了新头像', '<img height="50" width="50" src="{src}"/>'),
-(27, 'info', '{actor} {content}', ''),
-(29, 'vote_in', '{actor} 参与了投票 {title}', ''),
-(30, 'event', '{actor} 发起了一个活动: {title}', ''),
-(31, 'share_music', '{actor} 分享了一个音乐 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<img class="hand" src="{WR}/apps/share/Tpl/default/Public/images/music.gif" alt="音乐" onclick="javascript:playmusic(''{url}'', this, ''{id}'');" /> <p id="flash_mp3_{id}"></p> <a class="video-close-link" id="mp3_close_{id}" href="javascript:void(0)"  onClick="mp3_close(this)" rel="{id}" style="display:none">收起</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(32, 'share', '{actor} 分享了一个 {type}', '{title}<br />\r\n{content}'),
-(33, 'share_video', '{actor} 分享了一个视频 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="playbutton lh30" id="{id}" rel="{url}" onclick="playflash(this);"> <img class="hand" src="{WR}/apps/share/Tpl/default/Public/images/video_img.gif" style="cursor:pointer"/></div> <p id="flash_video_{id}"></p> \r\n\r\n<a class="video-close-link" id="video_close_{id}" href="javascript:void(0)" onClick="video_close(this)" rel="{id}" style="display:none">收起</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(34, 'share_flash', '{actor} 分享了一个Flash (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="playbutton lh30" id="{id}" rel="{url}" onclick="playflash(this);"> <img class="hand" src="{WR}/apps/share/Tpl/default/Public/images/video_img.gif" style="cursor:pointer"/></div> <p id="flash_video_{id}"></p> \r\n\r\n<a class="video-close-link" id="video_close_{id}" href="javascript:void(0)" onClick="video_close(this)" rel="{id}" style="display:none">收起</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(35, 'share_blog', '{actor} 分享了一个日志 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30 fB"><a href=''{WR}/apps/blog/index.php?s=/Index/show/id/{aimId}/mid/{uid}''>{title}</a></div> \r\n<div class="lh20">来自:<a href=''{WR}/index.php?s=/space/{uid}''>{name}</a></div>\r\n<div class="lh20 cGray2">{intro}</div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(42, 'share_user', '{actor} 分享了一个用户 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;display:table;">\r\n<div class="left" style="width:70px; padding-top:10px;">\r\n<span class="headpic50">\r\n<a href="{WR}/index.php?s=/space/{uid}"><img src="{userface}" /></a>\r\n</span>\r\n</div>\r\n<div class="left" style="width:300px; padding-top:10px;">\r\n<a href="{WR}/index.php?s=/space/{uid}"><strong>{username}</strong></a>\r\n<div class="lh20">{mini}</div></div></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(36, 'share_photo', '{actor} 分享了一张相片 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;">\r\n<div class="left pic140" style="width:140px; padding-top:10px;">\r\n<span class="unLine"> <a href="{WR}/apps/photo/index.php?s=/Index/photo/id/{aimId}/aid/{albumId}/uid/{userId}/type/mAll"> <img style="padding: 2px;border: 1px solid #CCC;" src="{WR}/thumb.php?w=120&h=100&url={photo}" /> </a>\r\n</span>\r\n</div>\r\n<div class="left" style="width:200px; padding:10px 0 0 10px;"> \r\n<div> 相片：<a href="{WR}/apps/photo/index.php?s=/Index/photo/id/{aimId}/aid/{albumId}/uid/{userId}/type/mAll"> {name}</a>\r\n</div>\r\n<div> 相册：<a href="{WR}/apps/photo/index.php?s=/Index/album/id/{albumId}/uid/{userId}"> {albumName}</a> \r\n</div> \r\n<div class="lh20">创建人：\r\n<a href="{WR}/index.php?s=/space/{userId}">{username}</a>\r\n</div>\r\n</div>\r\n </div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(37, 'share_event', '{actor} 分享了一个活动 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<a href="{url}">{title}</a>\r\n发起人:<a href=''{WR}/index.php?s=/space/{uid}''>{name}</a>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(38, 'group_create', '{actor} 创建了一个新群组', ' <a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a>'),
-(39, 'group_topic', '{actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a> 中发表了一个新话题', '<a href="{SITE_URL}/Topic/topic/gid/{gid}/tid/{tid}">{title}</a>'),
-(40, 'group_file', ' {actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''> {group_name}</a> 中上传了一个新文件 ', '<a href="{SITE_URL}/Dir/file/gid/{gid}/fid/{fid}">{name}</a>'),
-(44, 'share_picture', '{actor} 分享了一张图片 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh20"><a href=''{WR}/apps/Share/index.php?s=/Index/content/id/{id}''><img src=''{WR}/thumb.php?w=120&h=100&url={url}'' /></a></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(43, 'share_vote', '{actor} 分享了一个投票 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30"><a href=''{WR}/apps/vote/index.php?s=/Index/pollDetail/id/{aimId}'' target=''_blank''>{title}</a></div>\r\n\r\n<div class="lh30">来自:<a href=''{WR}/index.php?s=/space/{uid}''>{name}</a></div>\r\n\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(45, 'share_group', '{actor} 分享了一个群组 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;">\r\n<div class="left" style="width:70px; padding-top:10px;"><span class="headpic50"><a href="{WR}/apps/group/index.php?s=/Group/index/gid/{aimId}"><img src="{WR}/thumb.php?w=50&h=50&url={logo}" /></a> </span>\r\n</div>\r\n<div class="left" style="width:350px; padding-top:10px;">\r\n<div><a href="{WR}/apps/group/index.php?s=/Group/index/gid/{aimId}">{name}</a></div>\r\n<div class="lh20">{catagory}</div>\r\n<div class="lh20">现有 {membercount} 名成员</div>\r\n<div class="c"></div>\r\n</div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>\r\n</div>'),
-(46, 'share_topic', '{actor} 分享了一个话题 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="lh30 fB"><a href="{WR}/apps/group/index.php?s=/Topic/topic/gid/{gid}/tid/{aimId}">{title}</a></div>\r\n<div class="lh20"><a href=''{WR}/index.php?s=/space/{uid}''>{name}</a></div>\r\n<div class="lh20">群组: <a href="{WR}/apps/group/index.php?s=/Group/index/gid/{gid}">{groupName}</a></div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(47, 'share_album', '{actor} 分享了一个相册 (<a href=''{WR}/apps/share/index.php?s=/Index/content/id/{id}''>评论</a>)', '<div class="clear: both;padding:5px 0;display:table;">\r\n<div class="left" style="width:140px; padding-top:10px;">\r\n<span class="photo135 unLine"> <a style="display:block;" href="{WR}/apps/photo/index.php?s=/Index/album/id/{aimId}/uid/{userId}"> <img src="{WR}/thumb.php?w=120&h=100&url={cover}" /> </a>\r\n</span>\r\n</div>\r\n<div class="left" style="width:200px; padding:10px 0 0 10px;">\r\n<div>相册： <a href="{WR}/apps/photo/index.php?s=/Index/album/id/{aimId}/uid/{userId}">{name}</a> \r\n</div> \r\n<div class="lh20">创建人：<a href="{WR}/index.php?s=/space/{userId}">{username}</a>\r\n</div>\r\n</div>\r\n\r\n</div>\r\n<div class="quote"><p><span class="quoteR">{info}</span></p></div>'),
-(53, 'blog_import', '{actor}导入了{count}篇日志 <a href=''{SITE_URL}/Index/personal/uid/{uid}''>更多日志</a>', '{title}\r\n<br />\r\n'),
-(48, 'group_album', '{actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''> {group_name}</a> 中创建了一个相册', '<a href="{SITE_URL}/Album/getAlbum/gid/{gid}/albumId/{albumId}">{title}</a> '),
-(49, 'group_photo', '{actor} 在 <a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a> 中上传了{num}张新照片', '{url}'),
-(54, 'add_friend', '{user} 和 {fuser} 成为好友', ''),
-(51, 'group_join', '{actor} {title} ', '<a href=''{SITE_URL}/Group/index/gid/{gid}''>{group_name}</a>'),
-(50, 'app_add', '{actor} 安装了应用 {title}', '{content}'),
-(52, 'gift', '{actor} 送给 {user} 一个礼物', '{img}</br>\r\n<div class="quote"><p><span class="quoteR">{content}</span></p></div>'),
-(55, 'invite_reg', '<a href=''{SITE_URL}/space/{uid}''>{user}</a> 接受了 <a href=''{SITE_URL}/space/{fuid}''>{fuser}</a> 的邀请 加入{site_name}', ''),
-(56, 'group_topic_post', '{actor} 回复了话题', '<a href="{SITE_URL}/Topic/topic/gid/{gid}/tid/{tid}">{title}</a>'),
-(57, 'game', '{actor} 玩了{name} 游戏获得了{score}分', '点击玩{url}。看看你是否比他强'),
-(58, 'blog_comment', '{actor} 评论了 {user} 的日志 {title}', '<div class="quote left" style="clear:none;"><span class="quoteR">{comment}</span></div>'),
-(59, 'photo_comment', '{actor} 评论了 {user} 的相片 {picname} ', '<div class="left mr5">{pic}</div>\r\n<div class="quote left" style="clear:none;"><span class="quoteR">{comment}</span></div>');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `file`
---
-
-CREATE TABLE IF NOT EXISTS `file` (
-  `fileid` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `udiskid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `class_id` mediumint(8) NOT NULL,
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `postip` char(20) NOT NULL DEFAULT '',
-  `filename` char(100) NOT NULL DEFAULT '',
-  `title` char(150) NOT NULL DEFAULT '',
-  `type` char(20) NOT NULL DEFAULT '',
-  `size` int(10) unsigned NOT NULL DEFAULT '0',
-  `unit` varchar(20) NOT NULL,
-  `fileext` varchar(20) DEFAULT NULL,
-  `filepath` char(60) NOT NULL DEFAULT '',
-  `thumb` tinyint(1) NOT NULL DEFAULT '0',
-  `remote` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`fileid`),
-  KEY `albumid` (`udiskid`,`dateline`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='网盘文件' AUTO_INCREMENT=9 ;
-
---
--- 转存表中的数据 `file`
---
-
-INSERT INTO `file` (`fileid`, `udiskid`, `class_id`, `uid`, `dateline`, `postip`, `filename`, `title`, `type`, `size`, `unit`, `fileext`, `filepath`, `thumb`, `remote`) VALUES
-(2, 12, 1, 1, 1252739391, '127.0.0.1', 'but_home_4_090908.jpg', '', 'image/jpeg', 184955, '', 'jpg', '200909/12/1_1252739391f5g5.jpg', 1, 0),
-(3, 13, 16, 1, 1252739232, '192.168.1.44', 'header_roof.gif__60f7.gif', '', 'image/gif', 1146, '', 'gif', '200909/12/1_1252739232J9gB.gif', 1, 0),
-(4, 13, 16, 1, 1252739244, '192.168.1.44', 'PuTTY-v0.60.rar', '', 'application/rar', 964363, '', 'rar', '200909/12/1_12527392449368.rar', 0, 0),
-(5, 17, 37, 1, 1256194090, '192.168.1.107', '英西峰林.doc', '', 'application/msword', 10752, '', 'doc', '200910/22/1_1256194090Tqvm.doc', 0, 0),
-(6, 16, 37, 1, 1256881352, 'unknown', 'TECHNOTES.txt', '', 'text/plain', 16114, '', 'txt', '200910/30/1_1256881352s9SU.txt', 0, 0),
-(7, 16, 37, 917, 1257303739, '192.168.1.3', 'test.doc', '测试文件', 'application/msword', 19968, '', 'doc', '200911/4/917_12573037399FrC.doc', 0, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `file_udisk`
---
-
-CREATE TABLE IF NOT EXISTS `file_udisk` (
-  `udiskid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `udiskname` varchar(50) NOT NULL DEFAULT '',
-  `class_id` mediumint(8) NOT NULL,
-  `uid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `username` varchar(15) NOT NULL DEFAULT '',
-  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
-  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
-  `filenum` smallint(6) unsigned NOT NULL DEFAULT '0',
-  `file` varchar(60) NOT NULL DEFAULT '',
-  `fileflag` tinyint(1) NOT NULL DEFAULT '0',
-  `friend` tinyint(1) NOT NULL DEFAULT '0',
-  `password` varchar(10) NOT NULL DEFAULT '',
-  `target_ids` text NOT NULL,
-  PRIMARY KEY (`udiskid`),
-  KEY `uid` (`uid`,`updatetime`),
-  KEY `friend` (`friend`,`updatetime`),
-  KEY `updatetime` (`updatetime`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='网盘目录' AUTO_INCREMENT=19 ;
-
---
--- 转存表中的数据 `file_udisk`
---
-
-INSERT INTO `file_udisk` (`udiskid`, `udiskname`, `class_id`, `uid`, `username`, `dateline`, `updatetime`, `filenum`, `file`, `fileflag`, `friend`, `password`, `target_ids`) VALUES
-(14, '我的网盘', 2, 1, 'he21cn', 1252727770, 1252734894, 1, '200909/12/1_12527348943693.ppt', 1, 0, '', ''),
-(5, '我的相册', 3, 2, 'test', 1250479555, 1250479555, 0, '', 0, 0, '', ''),
-(12, '我的网盘', 1, 1, 'he21cn', 1251679870, 1252739391, 1, '200909/12/1_1252739391f5g5.jpg.thumb.jpg', 1, 0, '', ''),
-(13, '我的网盘', 16, 1, 'he21cn', 1252726788, 1252739244, 3, '200909/12/1_12527392449368.rar', 1, 0, '', ''),
-(15, '20091016', 40, 911, 'hope00000062', 1255682035, 1255682035, 0, '', 0, 0, '', ''),
-(16, '我的网盘', 37, 1, 'he21cn', 1256194089, 1256881352, 2, '200910/30/1_1256881352s9SU.txt', 1, 0, '', ''),
-(17, '重要资料', 37, 917, 'hope00000917', 1257303739, 1257303739, 1, '200911/4/917_12573037399FrC.doc', 1, 0, '', ''),
-(18, '文档', 37, 911, 'hope00000062', 1257304206, 1257304206, 0, '200911/4/911_1257304206d0cc.doc', 1, 0, '', '');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `friend`
---
-
-CREATE TABLE IF NOT EXISTS `friend` (
+CREATE TABLE IF NOT EXISTS `yiisns_friend` (
   `uid` int(11) unsigned NOT NULL DEFAULT '0',
   `fuid` int(11) unsigned NOT NULL DEFAULT '0',
   `fusername` varchar(50) NOT NULL,
@@ -4123,10 +4469,10 @@ CREATE TABLE IF NOT EXISTS `friend` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='好友表';
 
 --
--- 转存表中的数据 `friend`
+-- 转存表中的数据 `yiisns_friend`
 --
 
-INSERT INTO `friend` (`uid`, `fuid`, `fusername`, `status`, `note`, `dateline`) VALUES
+INSERT INTO `yiisns_friend` (`uid`, `fuid`, `fusername`, `status`, `note`, `dateline`) VALUES
 (1, 2, 'demo', 1, '', 1260928276),
 (2, 1, 'admin', 1, 'tes', 0),
 (2, 3, '测试', 1, '1', 0),
@@ -4135,10 +4481,10 @@ INSERT INTO `friend` (`uid`, `fuid`, `fusername`, `status`, `note`, `dateline`) 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `friend_belong_group`
+-- 表的结构 `yiisns_friend_belong_group`
 --
 
-CREATE TABLE IF NOT EXISTS `friend_belong_group` (
+CREATE TABLE IF NOT EXISTS `yiisns_friend_belong_group` (
   `uid` int(11) NOT NULL DEFAULT '0',
   `fuid` int(11) NOT NULL DEFAULT '0',
   `gid` int(11) NOT NULL,
@@ -4146,10 +4492,10 @@ CREATE TABLE IF NOT EXISTS `friend_belong_group` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='好友所属分组表';
 
 --
--- 转存表中的数据 `friend_belong_group`
+-- 转存表中的数据 `yiisns_friend_belong_group`
 --
 
-INSERT INTO `friend_belong_group` (`uid`, `fuid`, `gid`) VALUES
+INSERT INTO `yiisns_friend_belong_group` (`uid`, `fuid`, `gid`) VALUES
 (1, 3, 6),
 (1, 3, 4),
 (1, 1, 8),
@@ -4159,10 +4505,10 @@ INSERT INTO `friend_belong_group` (`uid`, `fuid`, `gid`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `friend_group`
+-- 表的结构 `yiisns_friend_group`
 --
 
-CREATE TABLE IF NOT EXISTS `friend_group` (
+CREATE TABLE IF NOT EXISTS `yiisns_friend_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -4170,10 +4516,10 @@ CREATE TABLE IF NOT EXISTS `friend_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='个人好友分组列表' AUTO_INCREMENT=17 ;
 
 --
--- 转存表中的数据 `friend_group`
+-- 转存表中的数据 `yiisns_friend_group`
 --
 
-INSERT INTO `friend_group` (`id`, `uid`, `name`) VALUES
+INSERT INTO `yiisns_friend_group` (`id`, `uid`, `name`) VALUES
 (1, 0, '未分组'),
 (2, 0, '通过本站认识'),
 (3, 0, '通过活动认识'),
@@ -4187,93 +4533,172 @@ INSERT INTO `friend_group` (`id`, `uid`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `gift`
+-- 表的结构 `yiisns_gift`
 --
 
-CREATE TABLE IF NOT EXISTS `gift` (
+CREATE TABLE IF NOT EXISTS `yiisns_gift` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL COMMENT '分类ID',
   `name` varchar(50) NOT NULL COMMENT '问候',
   `desc` varchar(255) NOT NULL COMMENT '问候说明',
-  `imgPath` varchar(255) NOT NULL COMMENT '问候的礼物表现图',
+  `num` int(11) NOT NULL COMMENT '数量',
+  `price` int(11) NOT NULL COMMENT '价格',
+  `img` varchar(255) NOT NULL COMMENT '礼物图片',
   `status` tinyint(1) NOT NULL COMMENT '问候的礼物状态,1为上架，0为下状',
   `order` smallint(6) NOT NULL COMMENT '问候礼物图排序',
   `ctime` int(10) NOT NULL COMMENT '创建时间',
   `mtime` int(10) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='礼物表(系统)' AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='礼物表(系统)' AUTO_INCREMENT=57 ;
 
 --
--- 转存表中的数据 `gift`
+-- 转存表中的数据 `yiisns_gift`
 --
 
-INSERT INTO `gift` (`id`, `cid`, `name`, `desc`, `imgPath`, `status`, `order`, `ctime`, `mtime`) VALUES
-(1, 0, '问候1', '第一个问候', '/范德萨', 1, 2, 1260927523, 1261015200),
-(2, 0, '问候1', '第一个问候', '/范德萨', 1, 2, 1260927523, 1261015200),
-(3, 0, '问候2', '第一个问候', '/范德萨', 1, 2, 1260927523, 1261015200),
-(4, 0, '问候3', '第一个问候', '/范德萨', 1, 2, 1260927523, 1261015200),
-(5, 0, '问候4', '第一个问候', '/范德萨', 1, 2, 1260927523, 1261015200);
+INSERT INTO `yiisns_gift` (`id`, `cid`, `name`, `desc`, `num`, `price`, `img`, `status`, `order`, `ctime`, `mtime`) VALUES
+(1, 2, '冰块', '', 998, 50, '4a6ff66da5b9f.gif', 1, 0, 0, 0),
+(2, 1, '玫瑰', '', 972, 28, 'birth1.gif', 1, 0, 0, 0),
+(3, 1, '开心蛋糕', '', 946, 38, 'birth2.gif', 1, 0, 0, 0),
+(4, 1, '钻石', '', 964, 50, 'birth3.gif', 1, 0, 0, 0),
+(5, 1, '金元宝', '', 979, 50, 'birth4.gif', 1, 0, 0, 0),
+(6, 1, '宝贝熊', '', 989, 36, 'birth5.gif', 1, 0, 0, 0),
+(7, 1, '香槟', '', 975, 22, 'birth6.gif', 1, 0, 0, 0),
+(8, 1, '心愿', '', 999, 20, 'birth7.gif', 1, 0, 0, 0),
+(9, 1, '浓情棒棒糖', '', 993, 20, 'birth8.gif', 1, 0, 0, 0),
+(10, 1, '女人最爱', '', 956, 33, 'birth9.gif', 1, 0, 0, 0),
+(11, 1, '男人期待', '', 981, 33, 'birth10.gif', 1, 0, 0, 0),
+(12, 2, '衬衣', '', 999, 20, 'new1.gif', 1, 0, 0, 0),
+(13, 2, '哇财', '', 988, 45, 'new2.gif', 1, 0, 0, 0),
+(14, 2, '口红', '', 1000, 20, 'new3.gif', 1, 0, 0, 0),
+(15, 2, '洗衣板', '', 1000, 22, 'new4.gif', 1, 0, 0, 0),
+(16, 2, '性感肚兜', '', 999, 30, 'new5.gif', 1, 0, 0, 0),
+(17, 2, '靓丽高跟鞋', '', 1000, 35, 'new6.gif', 1, 0, 0, 0),
+(18, 2, '浓情红玫瑰', '', 1000, 26, 'new7.gif', 1, 0, 0, 0),
+(19, 2, '剃须刀', '', 1000, 28, 'new8.gif', 1, 0, 0, 0),
+(20, 2, '真爱冰激淋', '', 1000, 20, 'new9.gif', 1, 0, 0, 0),
+(21, 2, '奶嘴', '', 997, 20, 'new10.gif', 1, 0, 0, 0),
+(22, 1, '雷公', '', 872, 22, 'birth11.gif', 1, 0, 0, 0),
+(23, 1, '电母', '', 885, 22, 'birth12.gif', 1, 0, 0, 0),
+(24, 1, '协会', '', 885, 25, 'birth13.gif', 1, 0, 0, 0),
+(25, 1, '雷语', '', 992, 22, 'birth14.gif', 1, 0, 0, 0),
+(26, 1, '小队长', '', 888, 20, 'birth15.gif', 1, 0, 0, 0),
+(27, 1, '中队长', '', 886, 20, 'birth16.gif', 1, 0, 0, 0),
+(28, 1, '大队长', '', 878, 20, 'birth17.gif', 1, 0, 0, 0),
+(29, 2, '帅哥证', '', 999, 26, 'new11.gif', 1, 0, 0, 0),
+(30, 2, '美女证', '', 1000, 26, 'new12.gif', 1, 0, 0, 0),
+(31, 2, '公章', '', 1000, 28, 'new13.gif', 1, 0, 0, 0),
+(32, 2, '公章', '', 1000, 28, 'new14.gif', 1, 0, 0, 0),
+(33, 2, '公章', '', 1000, 28, 'new15.gif', 1, 0, 0, 0),
+(34, 1, '豪华跑车', '', 876, 45, 'birth18.gif', 1, 0, 0, 0),
+(35, 2, '啤酒', '', 988, 50, '4a6ff694f1a7a.gif', 1, 0, 0, 0),
+(36, 1, '礼物盒', '', 995, 50, '4a6ff7c85bd99.gif', 1, 0, 0, 0),
+(37, 2, '乒乓球拍', '', 997, 50, '4a6ffa25bb600.gif', 1, 0, 0, 0),
+(38, 2, '网球', '', 999, 50, '4a6ffa3b53591.gif', 1, 0, 0, 0),
+(39, 2, '高尔夫球', '', 998, 50, '4a6ffa4e50ea3.gif', 1, 0, 0, 0),
+(40, 2, '橄榄球', '', 999, 50, '4a6ffa69b46dd.gif', 1, 0, 0, 0),
+(41, 2, '排球', '', 998, 50, '4a6ffa7c62a7a.gif', 1, 0, 0, 0),
+(42, 2, '篮球', '', 996, 50, '4a6ffa94366a0.gif', 1, 0, 0, 0),
+(43, 2, '足球', '', 987, 50, '4a6ffa9ee5d18.gif', 1, 0, 0, 0),
+(44, 1, '红枣粽子', '', 997, 50, '4a6ffc7d10214.gif', 1, 0, 0, 0),
+(45, 1, '运动鞋', '', 994, 100, '4a6ffe72c1046.gif', 1, 0, 0, 0),
+(46, 1, '披萨', '', 996, 100, '4a700398492ca.gif', 1, 0, 0, 0),
+(47, 1, '购物袋', '', 994, 100, '4a7004032f310.gif', 1, 0, 0, 0),
+(48, 2, '吸血蝙蝠', '', 999, 100, '4a70046342824.gif', 1, 0, 0, 0),
+(49, 1, 'MP3', '', 990, 100, '4a700508e3c92.gif', 1, 0, 0, 0),
+(50, 1, '香水', '', 987, 100, '4a700724e1fa1.gif', 1, 0, 0, 0),
+(51, 1, '游戏机', '', 999, 100, '4a70079505d66.gif', 1, 0, 0, 0),
+(52, 1, '数码相机', '', 996, 200, '4a7007a6923ea.gif', 1, 0, 0, 0),
+(53, 2, '小笼包', '', 997, 100, '4a700a2f649b4.gif', 1, 0, 0, 0),
+(54, 2, '滑板', '', 997, 100, '4a700a42a35b1.gif', 1, 0, 0, 0),
+(55, 1, '红色跑车', '', 84, 200, '4a700ae34514a.gif', 1, 0, 0, 0),
+(56, 1, '急速跑车', '', 72, 200, '4a700afee7d2e.gif', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `gift_category`
+-- 表的结构 `yiisns_gift_category`
 --
 
-CREATE TABLE IF NOT EXISTS `gift_category` (
+CREATE TABLE IF NOT EXISTS `yiisns_gift_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT '礼物分类名称',
   `desc` varchar(255) NOT NULL COMMENT '简要说明',
+  `status` tinyint(1) NOT NULL COMMENT '类型状态',
   `ctime` int(10) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='问候管理分类(系统)' AUTO_INCREMENT=4 ;
 
 --
--- 转存表中的数据 `gift_category`
+-- 转存表中的数据 `yiisns_gift_category`
 --
 
-INSERT INTO `gift_category` (`id`, `name`, `desc`, `ctime`) VALUES
-(0, '未分类', '本分类为系统默认分类，不得删除', 0);
+INSERT INTO `yiisns_gift_category` (`id`, `name`, `desc`, `status`, `ctime`) VALUES
+(0, '未分类', '本分类为系统默认分类，不得删除', 0, 0),
+(2, '最新上架', '', 1, 0),
+(1, '热门礼物', '', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `gift_user`
+-- 表的结构 `yiisns_gift_user`
 --
 
-CREATE TABLE IF NOT EXISTS `gift_user` (
+CREATE TABLE IF NOT EXISTS `yiisns_gift_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
-  `touid` int(11) NOT NULL COMMENT '接收者id',
-  `username` varchar(50) NOT NULL COMMENT '发送人',
+  `fromUserId` int(11) NOT NULL COMMENT '发送者id',
+  `toUserId` int(11) NOT NULL COMMENT '接收者id',
+  `fromUsername` varchar(50) NOT NULL COMMENT '发送人',
+  `toUsername` varchar(50) NOT NULL COMMENT '接收者名',
   `toGroupID` int(11) DEFAULT NULL COMMENT '群组ID',
-  `gift` int(11) NOT NULL COMMENT '礼物id',
+  `giftId` int(11) NOT NULL COMMENT '礼物id',
   `content` varchar(255) NOT NULL COMMENT '问候内容',
   `access` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0公开,1悄悄送2匿名送',
   `ctime` int(10) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `toUserid` (`touid`),
-  KEY `uid` (`uid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='问候发送表' AUTO_INCREMENT=5 ;
+  KEY `toUserid` (`toUserId`),
+  KEY `uid` (`fromUserId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='问候发送表' AUTO_INCREMENT=27 ;
 
 --
--- 转存表中的数据 `gift_user`
+-- 转存表中的数据 `yiisns_gift_user`
 --
 
-INSERT INTO `gift_user` (`id`, `uid`, `touid`, `username`, `toGroupID`, `gift`, `content`, `access`, `ctime`) VALUES
-(1, 3, 1, 'demo', NULL, 1, 'fdasfas', 0, 1260951417),
-(2, 3, 2, 'demo', NULL, 1, 'fdasfas', 0, 1260951417),
-(3, 3, 1, 'demo', NULL, 1, '匿名赠送2', 2, 1260951733),
-(4, 3, 2, 'demo', NULL, 1, '匿名赠送2', 2, 1260951733);
+INSERT INTO `yiisns_gift_user` (`id`, `fromUserId`, `toUserId`, `fromUsername`, `toUsername`, `toGroupID`, `giftId`, `content`, `access`, `ctime`) VALUES
+(1, 3, 1, 'demo', '管理员', NULL, 1, 'fdasfas', 0, 1260951417),
+(2, 3, 2, 'demo', '黄大', NULL, 1, 'fdasfas', 0, 1260951417),
+(3, 3, 1, 'demo', '管理员', NULL, 1, '匿名赠送2', 2, 1260951733),
+(4, 3, 2, 'demo', '黄大', NULL, 1, '匿名赠送2', 2, 1260951733),
+(5, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186375),
+(6, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186424),
+(7, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186456),
+(8, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186476),
+(9, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186486),
+(10, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186491),
+(11, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186510),
+(12, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186560),
+(13, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186590),
+(14, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186636),
+(15, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277186660),
+(16, 1, 2, '管理员', '黄大', NULL, 55, '', 1, 1277187212),
+(17, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191608),
+(18, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191621),
+(19, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191663),
+(20, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191687),
+(21, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191785),
+(22, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191802),
+(23, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191823),
+(24, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191833),
+(25, 1, 3, '管理员', '叮当猫', NULL, 56, '', 1, 1277191847),
+(26, 1, 2, '管理员', '黄大', NULL, 2, 'fdas ', 1, 1277192262);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `group`
+-- 表的结构 `yiisns_group`
 --
 
-CREATE TABLE IF NOT EXISTS `group` (
+CREATE TABLE IF NOT EXISTS `yiisns_group` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) unsigned NOT NULL DEFAULT '0',
   `name` varchar(32) DEFAULT NULL,
@@ -4309,10 +4734,10 @@ CREATE TABLE IF NOT EXISTS `group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- 转存表中的数据 `group`
+-- 转存表中的数据 `yiisns_group`
 --
 
-INSERT INTO `group` (`id`, `uid`, `name`, `intro`, `logo`, `announce`, `cid0`, `cid1`, `membercount`, `threadcount`, `postcount`, `type`, `need_invite`, `need_verify`, `actor_level`, `brower_level`, `openUploadFile`, `whoUploadFile`, `openAlbum`, `whoCreateAlbum`, `whoUploadPic`, `anno`, `ipshow`, `invitepriv`, `createalbumpriv`, `uploadpicpriv`, `ctime`, `mtime`, `status`, `isrecom`, `is_del`) VALUES
+INSERT INTO `yiisns_group` (`id`, `uid`, `name`, `intro`, `logo`, `announce`, `cid0`, `cid1`, `membercount`, `threadcount`, `postcount`, `type`, `need_invite`, `need_verify`, `actor_level`, `brower_level`, `openUploadFile`, `whoUploadFile`, `openAlbum`, `whoCreateAlbum`, `whoUploadPic`, `anno`, `ipshow`, `invitepriv`, `createalbumpriv`, `uploadpicpriv`, `ctime`, `mtime`, `status`, `isrecom`, `is_del`) VALUES
 (1, 1, '第一个群组', '一点结束少', '', '公告', 2, 0, 0, 3, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260696662, 0, 1, 0, 0),
 (2, 1, '群组额', '啊打', '', '', 2, 0, 0, 0, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260718138, 0, 1, 0, 0),
 (3, 1, '测试', '发生', '', '', 2, NULL, 0, 0, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260721712, 0, 1, 0, 0);
@@ -4320,10 +4745,10 @@ INSERT INTO `group` (`id`, `uid`, `name`, `intro`, `logo`, `announce`, `cid0`, `
 -- --------------------------------------------------------
 
 --
--- 表的结构 `group_attachement`
+-- 表的结构 `yiisns_group_attachement`
 --
 
-CREATE TABLE IF NOT EXISTS `group_attachement` (
+CREATE TABLE IF NOT EXISTS `yiisns_group_attachement` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `gid` int(11) unsigned DEFAULT NULL,
   `uid` int(11) unsigned DEFAULT NULL,
@@ -4344,86 +4769,17 @@ CREATE TABLE IF NOT EXISTS `group_attachement` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `group_attachement`
+-- 转存表中的数据 `yiisns_group_attachement`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `group_attention`
+-- 表的结构 `yiisns_group_member`
 --
 
-CREATE TABLE IF NOT EXISTS `group_attention` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `gid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  `ctime` int(10) NOT NULL,
-  `mtime` int(10) NOT NULL,
-  `is_delete` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='关注群组表' AUTO_INCREMENT=23 ;
-
---
--- 转存表中的数据 `group_attention`
---
-
-INSERT INTO `group_attention` (`id`, `gid`, `uid`, `ctime`, `mtime`, `is_delete`) VALUES
-(1, 37, 1, 2009, 2009, 1),
-(2, 37, 1, 2009, 0, 1),
-(3, 37, 1, 2009, 2009, 1),
-(4, 37, 1, 2009, 2009, 1),
-(5, 37, 1, 2009, 2009, 1),
-(6, 37, 1, 2009, 2009, 1),
-(7, 37, 1, 2009, 2009, 1),
-(8, 37, 1, 2009, 2009, 1),
-(9, 37, 1, 2009, 2009, 1),
-(10, 37, 911, 2009, 2009, 1),
-(11, 2, 1, 2009, 2009, 1),
-(12, 37, 1, 2009, 2009, 1),
-(13, 37, 1, 2009, 2009, 1),
-(14, 38, 1, 2009, 2009, 1),
-(15, 65, 1, 2009, 2009, 1),
-(16, 37, 1, 2009, 2009, 1),
-(17, 37, 1094, 2009, 0, 0),
-(18, 38, 1, 2009, 0, 0),
-(19, 370, 1094, 2009, 0, 0),
-(20, 37, 1, 2010, 0, 0),
-(21, 40, 1, 2010, 0, 0),
-(22, 60, 1, 2010, 0, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `group_category`
---
-
-CREATE TABLE IF NOT EXISTS `group_category` (
-  `id` mediumint(5) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT '1',
-  `pid` tinyint(3) NOT NULL DEFAULT '0',
-  `module` varchar(50) DEFAULT NULL,
-  `desc` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- 转存表中的数据 `group_category`
---
-
-INSERT INTO `group_category` (`id`, `title`, `type`, `pid`, `module`, `desc`) VALUES
-(5, '子类1', 1, 2, NULL, '发大水'),
-(2, '大类1', 1, 0, NULL, '大大大'),
-(6, '子类2', 1, 2, NULL, '发生');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `group_member`
---
-
-CREATE TABLE IF NOT EXISTS `group_member` (
+CREATE TABLE IF NOT EXISTS `yiisns_group_member` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `gid` int(11) unsigned DEFAULT NULL,
   `uid` int(11) unsigned NOT NULL DEFAULT '0',
@@ -4439,81 +4795,17 @@ CREATE TABLE IF NOT EXISTS `group_member` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `group_member`
+-- 转存表中的数据 `yiisns_group_member`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `group_photo`
+-- 表的结构 `yiisns_group_post`
 --
 
-CREATE TABLE IF NOT EXISTS `group_photo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `gid` int(11) DEFAULT NULL,
-  `attachId` int(11) DEFAULT NULL,
-  `albumId` int(11) DEFAULT NULL,
-  `uid` int(11) DEFAULT NULL,
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `name` varchar(255) DEFAULT NULL,
-  `ctime` int(10) unsigned DEFAULT NULL,
-  `mtime` int(10) unsigned DEFAULT NULL,
-  `info` text,
-  `commentCount` int(11) unsigned DEFAULT '0',
-  `viewCount` int(11) unsigned DEFAULT '0',
-  `savepath` varchar(255) DEFAULT NULL,
-  `size` int(11) NOT NULL DEFAULT '0',
-  `tags` text,
-  `order` int(11) DEFAULT NULL,
-  `is_del` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `gid` (`gid`,`albumId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- 转存表中的数据 `group_photo`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `group_photo_cate`
---
-
-CREATE TABLE IF NOT EXISTS `group_photo_cate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `gid` int(11) DEFAULT NULL,
-  `uid` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `info` text,
-  `ctime` int(10) unsigned DEFAULT NULL,
-  `mtime` int(10) unsigned DEFAULT NULL,
-  `coverImageId` int(11) DEFAULT NULL,
-  `coverImagePath` varchar(255) DEFAULT NULL,
-  `photoCount` int(11) DEFAULT '0',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `share` tinyint(1) NOT NULL DEFAULT '0',
-  `is_del` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`),
-  KEY `cTime` (`ctime`),
-  KEY `mTime` (`mtime`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- 转存表中的数据 `group_photo_cate`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `group_post`
---
-
-CREATE TABLE IF NOT EXISTS `group_post` (
+CREATE TABLE IF NOT EXISTS `yiisns_group_post` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `gid` int(11) unsigned DEFAULT NULL,
   `uid` int(11) unsigned DEFAULT NULL,
@@ -4531,10 +4823,10 @@ CREATE TABLE IF NOT EXISTS `group_post` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
--- 转存表中的数据 `group_post`
+-- 转存表中的数据 `yiisns_group_post`
 --
 
-INSERT INTO `group_post` (`id`, `gid`, `uid`, `tid`, `content`, `ip`, `istopic`, `ctime`, `status`, `quote`, `is_del`, `attach`) VALUES
+INSERT INTO `yiisns_group_post` (`id`, `gid`, `uid`, `tid`, `content`, `ip`, `istopic`, `ctime`, `status`, `quote`, `is_del`, `attach`) VALUES
 (1, 1, 1, 1, '话题测试', '127.0.0.1', 1, 1260714935, 0, 0, '0', NULL),
 (2, 1, 1, 1, '发大水', '127.0.0.1', 0, 1260714991, 0, 0, '0', NULL),
 (3, 1, 1, 2, '飞啊都是', '127.0.0.1', 1, 1260715333, 0, 0, '0', NULL),
@@ -4554,10 +4846,10 @@ INSERT INTO `group_post` (`id`, `gid`, `uid`, `tid`, `content`, `ip`, `istopic`,
 -- --------------------------------------------------------
 
 --
--- 表的结构 `group_topic`
+-- 表的结构 `yiisns_group_topic`
 --
 
-CREATE TABLE IF NOT EXISTS `group_topic` (
+CREATE TABLE IF NOT EXISTS `yiisns_group_topic` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `gid` int(11) unsigned DEFAULT NULL,
   `uid` int(11) unsigned DEFAULT NULL,
@@ -4568,7 +4860,7 @@ CREATE TABLE IF NOT EXISTS `group_topic` (
   `dist` tinyint(1) NOT NULL DEFAULT '0',
   `top` tinyint(1) NOT NULL DEFAULT '0',
   `lock` tinyint(1) NOT NULL DEFAULT '0',
-  `addtime` int(11) NOT NULL DEFAULT '0',
+  `ctime` int(11) NOT NULL DEFAULT '0',
   `replytime` int(11) NOT NULL DEFAULT '0',
   `mtime` int(11) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
@@ -4581,10 +4873,10 @@ CREATE TABLE IF NOT EXISTS `group_topic` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- 转存表中的数据 `group_topic`
+-- 转存表中的数据 `yiisns_group_topic`
 --
 
-INSERT INTO `group_topic` (`id`, `gid`, `uid`, `name`, `title`, `viewcount`, `postcount`, `dist`, `top`, `lock`, `addtime`, `replytime`, `mtime`, `status`, `isrecom`, `is_del`, `attach`) VALUES
+INSERT INTO `yiisns_group_topic` (`id`, `gid`, `uid`, `name`, `title`, `viewcount`, `postcount`, `dist`, `top`, `lock`, `ctime`, `replytime`, `mtime`, `status`, `isrecom`, `is_del`, `attach`) VALUES
 (1, 1, 1, 'Guest', '话题测试', 107, 1, 0, 0, 0, 1260714935, 1260714991, 0, 0, 0, 0, NULL),
 (2, 1, 1, 'Guest', '求助的', 99, 8, 0, 0, 0, 1260715333, 2147483647, 0, 1, 0, 0, NULL),
 (3, 1, 3, 'demo', 'fasf', 13, 3, 0, 0, 0, 1260782050, 2147483647, 0, 0, 0, 0, NULL);
@@ -4592,22 +4884,22 @@ INSERT INTO `group_topic` (`id`, `gid`, `uid`, `name`, `title`, `viewcount`, `po
 -- --------------------------------------------------------
 
 --
--- 表的结构 `login_record`
+-- 表的结构 `yiisns_login_record`
 --
 
-CREATE TABLE IF NOT EXISTS `login_record` (
+CREATE TABLE IF NOT EXISTS `yiisns_login_record` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
   `login_ip` varchar(15) DEFAULT NULL,
   `login_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
 
 --
--- 转存表中的数据 `login_record`
+-- 转存表中的数据 `yiisns_login_record`
 --
 
-INSERT INTO `login_record` (`id`, `uid`, `login_ip`, `login_time`) VALUES
+INSERT INTO `yiisns_login_record` (`id`, `uid`, `login_ip`, `login_time`) VALUES
 (1, 1, '127.0.0.1', 1262919175),
 (2, NULL, 'unknown', 1260770264),
 (3, 1, '127.0.0.1', 1262918362),
@@ -4654,15 +4946,41 @@ INSERT INTO `login_record` (`id`, `uid`, `login_ip`, `login_time`) VALUES
 (44, 1, '127.0.0.1', 1273115116),
 (45, 1, '127.0.0.1', 1273115798),
 (46, 1, '127.0.0.1', 1273125622),
-(47, 1, '127.0.0.1', 1273134273);
+(47, 1, '127.0.0.1', 1273134273),
+(48, 1, '127.0.0.1', 1273197472),
+(49, 1, '127.0.0.1', 1273289158),
+(50, 1, '127.0.0.1', 1273634178),
+(51, 1, '127.0.0.1', 1273647766),
+(52, 2, '127.0.0.1', 1273648608),
+(53, 1, '127.0.0.1', 1273649182),
+(54, 1, '127.0.0.1', 1273719241),
+(55, 1, '127.0.0.1', 1273719326),
+(56, 1, '127.0.0.1', 1273805741),
+(57, 1, '127.0.0.1', 1274235700),
+(58, 1, '127.0.0.1', 1274852635),
+(59, 1, '127.0.0.1', 1275454935),
+(60, 1, '127.0.0.1', 1275551902),
+(61, 1, '127.0.0.1', 1275614857),
+(62, 1, '127.0.0.1', 1275876357),
+(63, 1, '127.0.0.1', 1276045224),
+(64, 1, '127.0.0.1', 1276047110),
+(65, 1, '127.0.0.1', 1276740139),
+(66, 1, '127.0.0.1', 1276740515),
+(67, 1, '127.0.0.1', 1276825743),
+(68, 1, '127.0.0.1', 1276839962),
+(69, 1, '127.0.0.1', 1277088010),
+(70, 1, '127.0.0.1', 1277089538),
+(71, 1, '127.0.0.1', 1277167983),
+(72, 1, '127.0.0.1', 1277171460),
+(73, 1, '127.0.0.1', 1277263887);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `mini`
+-- 表的结构 `yiisns_mini`
 --
 
-CREATE TABLE IF NOT EXISTS `mini` (
+CREATE TABLE IF NOT EXISTS `yiisns_mini` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
   `name` char(10) DEFAULT NULL,
@@ -4676,38 +4994,53 @@ CREATE TABLE IF NOT EXISTS `mini` (
   PRIMARY KEY (`id`),
   KEY `userId` (`uid`),
   KEY `replay_numbel` (`replay_numbel`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- 转存表中的数据 `mini`
+-- 转存表中的数据 `yiisns_mini`
 --
 
-INSERT INTO `mini` (`id`, `uid`, `name`, `type`, `content`, `tagId`, `ctime`, `status`, `replay_numbel`, `feedId`) VALUES
-(1, 1, '管理员', 1, '/折磨', NULL, 1266671285, 0, 0, 7),
-(2, 1, '管理员', 1, 'bv', NULL, 1266671289, 0, 0, 8),
-(3, 1, '管理员', 1, '/难过', NULL, 1267019509, 0, 0, 9),
-(4, 1, '管理员', 1, '/大哭/惊恐/握手 /ff', NULL, 1267020034, 0, 0, 10),
-(5, 1, NULL, 1, 'fdas ', NULL, 1267022486, 1, 0, 0),
-(6, 1, NULL, 1, 'aaaaaaaa', NULL, 1267022600, 1, 0, 0),
-(7, 1, NULL, 1, 'fasdfsda', NULL, 1267022602, 1, 0, 0),
-(8, 1, '管理员', 1, 'fasd ', NULL, 1267023962, 0, 0, 0),
-(9, 1, '管理员', 1, 'fasd', NULL, 1267024035, 0, 0, 0),
-(10, 1, '管理员', 1, '222', NULL, 1267024037, 0, 0, 0),
-(11, 1, '管理员', 1, '/流汗', NULL, 1267099067, 0, 0, 0),
-(12, 1, '管理员', 1, '最近很烦恼', NULL, 1267099132, 0, 0, 0),
-(13, 1, '管理员', 1, '415632', NULL, 1267099863, 0, 0, 0),
-(14, 1, '管理员', 1, '/大哭', NULL, 1267099914, 0, 0, 0),
-(15, 1, '管理员', 1, '13\n', NULL, 1267226879, 0, 0, 0),
-(16, 1, '管理员', 1, '56\n', NULL, 1267236999, 0, 0, 0),
-(17, 1, '管理员', 1, '/惊恐', NULL, 1273116071, 0, 0, 0);
+INSERT INTO `yiisns_mini` (`id`, `uid`, `name`, `type`, `content`, `tagId`, `ctime`, `status`, `replay_numbel`, `feedId`) VALUES
+(1, 1, '管理员', 1, '<img title=''折磨'' src=''/yiisns/images/biaoqing/mini/mad.gif''>', NULL, 1266671285, -1, 0, 7),
+(2, 1, '管理员', 1, 'bv', NULL, 1266671289, -1, 0, 8),
+(3, 1, '管理员', 1, '<img title=''难过'' src=''/yiisns/images/biaoqing/mini/sad.gif''>', NULL, 1267019509, -1, 0, 9),
+(4, 1, '管理员', 1, '<img title=''大哭'' src=''/yiisns/images/biaoqing/mini/cry.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''> /ff', NULL, 1267020034, -1, 0, 10),
+(5, 1, NULL, 1, 'fdas ', NULL, 1267022486, -1, 0, 0),
+(6, 1, NULL, 1, 'aaaaaaaa', NULL, 1267022600, -1, 0, 0),
+(7, 1, NULL, 1, 'fasdfsda', NULL, 1267022602, -1, 0, 0),
+(8, 1, '管理员', 1, 'fasd ', NULL, 1267023962, -1, 0, 0),
+(9, 1, '管理员', 1, 'fasd', NULL, 1267024035, -1, 0, 0),
+(10, 1, '管理员', 1, '222', NULL, 1267024037, -1, 0, 0),
+(11, 1, '管理员', 1, '<img title=''流汗'' src=''/yiisns/images/biaoqing/mini/sweat.gif''>', NULL, 1267099067, -1, 0, 0),
+(12, 1, '管理员', 1, '最近很烦恼', NULL, 1267099132, -1, 0, 0),
+(13, 1, '管理员', 1, '415632', NULL, 1267099863, -1, 0, 0),
+(14, 1, '管理员', 1, '<img title=''大哭'' src=''/yiisns/images/biaoqing/mini/cry.gif''>', NULL, 1267099914, -1, 0, 0),
+(15, 1, '管理员', 1, '13\n', NULL, 1267226879, -1, 0, 0),
+(16, 1, '管理员', 1, '56\n', NULL, 1267236999, -1, 0, 0),
+(17, 1, '管理员', 1, '<img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''>', NULL, 1273116071, -1, 0, 0),
+(18, 1, '管理员', 1, '<img title=''折磨'' src=''/yiisns/images/biaoqing/mini/mad.gif''>', NULL, 1274260339, -1, 0, 0),
+(19, 1, '管理员', 1, '<img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''>', NULL, 1274260348, -1, 0, 0),
+(20, 1, '管理员', 1, '<img title=''大哭'' src=''/yiisns/images/biaoqing/mini/cry.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''>', NULL, 1274260420, -1, 0, 0),
+(21, 1, '管理员', 1, '<img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''>', NULL, 1274260459, -1, 0, 0),
+(22, 1, '管理员', 1, '<img title=''憨笑'' src=''/yiisns/images/biaoqing/mini/biggrin.gif''>', NULL, 1276741879, -1, 0, 0),
+(23, 1, '管理员', 1, '<img title=''难过'' src=''/yiisns/images/biaoqing/mini/sad.gif''><img title=''折磨'' src=''/yiisns/images/biaoqing/mini/mad.gif''>', NULL, 1276741944, -1, 0, 0),
+(24, 1, '管理员', 1, '<img title=''折磨'' src=''/yiisns/images/biaoqing/mini/mad.gif''><img title=''难过'' src=''/yiisns/images/biaoqing/mini/sad.gif''>', NULL, 1276741953, -1, 0, 0),
+(25, 1, '管理员', 1, 'fdas <img title=''大哭'' src=''/yiisns/images/biaoqing/mini/cry.gif''>', NULL, 1277102859, -1, 0, 0),
+(26, 1, '管理员', 1, '444444发<img title=''憨笑'' src=''/yiisns/images/biaoqing/mini/biggrin.gif''>', NULL, 1277103152, -1, 0, 0),
+(27, 1, '管理员', 1, 'f deeszdddccx', NULL, 1277103305, -1, 0, 0),
+(28, 1, '管理员', 1, '<img title=''憨笑'' src=''/yiisns/images/biaoqing/mini/biggrin.gif''>55', NULL, 1277106356, -1, 0, 0),
+(29, 1, '管理员', 1, '<img title=''大哭'' src=''/yiisns/images/biaoqing/mini/cry.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''><img title=''憨笑'' src=''/yiisns/images/biaoqing/mini/biggrin.gif''> fsd', NULL, 1277106608, -1, 0, 0),
+(30, 1, '管理员', 1, '<img title=''折磨'' src=''/yiisns/images/biaoqing/mini/mad.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''>fdsee', NULL, 1277106925, -1, 0, 0),
+(31, 1, '管理员', 1, 'eeexcggg/可爱', NULL, 1277107111, 0, 0, 0),
+(32, 1, '管理员', 1, '/憨笑434打发发发/惊恐', NULL, 1277189462, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `msg`
+-- 表的结构 `yiisns_msg`
 --
 
-CREATE TABLE IF NOT EXISTS `msg` (
+CREATE TABLE IF NOT EXISTS `yiisns_msg` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fromUserId` int(11) DEFAULT NULL,
   `toUserId` int(11) DEFAULT NULL,
@@ -4722,10 +5055,10 @@ CREATE TABLE IF NOT EXISTS `msg` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- 转存表中的数据 `msg`
+-- 转存表中的数据 `yiisns_msg`
 --
 
-INSERT INTO `msg` (`id`, `fromUserId`, `toUserId`, `subject`, `content`, `ctime`, `is_read`, `replyMsgId`, `is_new`, `is_del`) VALUES
+INSERT INTO `yiisns_msg` (`id`, `fromUserId`, `toUserId`, `subject`, `content`, `ctime`, `is_read`, `replyMsgId`, `is_new`, `is_del`) VALUES
 (1, 1, 2, '323', '5', 1267242456, 0, NULL, 1, 0),
 (2, 2, 1, '99999', '5', 1267242456, 0, NULL, 1, 0),
 (3, 1, 2, 'fas', 'fasd', NULL, 0, NULL, 1, 0);
@@ -4733,10 +5066,10 @@ INSERT INTO `msg` (`id`, `fromUserId`, `toUserId`, `subject`, `content`, `ctime`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `notify`
+-- 表的结构 `yiisns_notify`
 --
 
-CREATE TABLE IF NOT EXISTS `notify` (
+CREATE TABLE IF NOT EXISTS `yiisns_notify` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
   `type` varchar(25) DEFAULT NULL,
@@ -4753,10 +5086,10 @@ CREATE TABLE IF NOT EXISTS `notify` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- 转存表中的数据 `notify`
+-- 转存表中的数据 `yiisns_notify`
 --
 
-INSERT INTO `notify` (`id`, `uid`, `type`, `new`, `authorid`, `author`, `title`, `body`, `url`, `ctime`, `cate`, `appid`) VALUES
+INSERT INTO `yiisns_notify` (`id`, `uid`, `type`, `new`, `authorid`, `author`, `title`, `body`, `url`, `ctime`, `cate`, `appid`) VALUES
 (1, 1, 'add_friend', 2, 2, '李大', 'N;', 'a:1:{s:4:"note";s:12:"四川电视";}', '2', 1260798917, 'friend', 0),
 (2, 99, 'add_friend', 1, 1, '管理员', 'N;', 'a:1:{s:4:"note";s:6:"发生";}', '1', 1260876041, 'friend', 0),
 (4, 1, 'add_friend', 2, 3, '李璐', 'N;', 'a:1:{s:4:"note";s:9:"发大水";}', '3', 1260968604, 'friend', 0),
@@ -4767,120 +5100,10 @@ INSERT INTO `notify` (`id`, `uid`, `type`, `new`, `authorid`, `author`, `title`,
 -- --------------------------------------------------------
 
 --
--- 表的结构 `photo`
+-- 表的结构 `yiisns_smile`
 --
 
-CREATE TABLE IF NOT EXISTS `photo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `attachId` int(11) DEFAULT NULL,
-  `albumId` int(11) DEFAULT NULL,
-  `uid` int(11) DEFAULT NULL,
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `name` varchar(255) DEFAULT NULL,
-  `ctime` int(10) unsigned DEFAULT NULL,
-  `mtime` int(10) unsigned DEFAULT NULL,
-  `info` text,
-  `commentCount` int(11) unsigned DEFAULT '0',
-  `viewCount` int(11) unsigned DEFAULT '0',
-  `savepath` varchar(255) DEFAULT NULL,
-  `size` int(11) NOT NULL DEFAULT '0',
-  `privacy` int(1) NOT NULL DEFAULT '1',
-  `tags` text,
-  `order` int(11) NOT NULL DEFAULT '0',
-  `isDel` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='相片表' AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `photo`
---
-
-INSERT INTO `photo` (`id`, `attachId`, `albumId`, `uid`, `status`, `name`, `ctime`, `mtime`, `info`, `commentCount`, `viewCount`, `savepath`, `size`, `privacy`, `tags`, `order`, `isDel`) VALUES
-(1, 6, 1, 1, 1, '四叶草22', 1262844930, 1262844930, NULL, 0, 0, '20100107/14/4b457c023534e.jpg', 29677, 4, NULL, 0, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `photo_album`
---
-
-CREATE TABLE IF NOT EXISTS `photo_album` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `info` text,
-  `ctime` int(10) unsigned DEFAULT NULL,
-  `mtime` int(10) unsigned DEFAULT NULL,
-  `coverImageId` int(11) DEFAULT NULL,
-  `coverImagePath` varchar(255) DEFAULT NULL,
-  `photoCount` int(11) DEFAULT '0',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `share` tinyint(1) NOT NULL DEFAULT '0',
-  `privacy` tinyint(1) DEFAULT NULL,
-  `privacy_data` text,
-  `isDel` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`),
-  KEY `cTime` (`ctime`),
-  KEY `mTime` (`mtime`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='相册表' AUTO_INCREMENT=3 ;
-
---
--- 转存表中的数据 `photo_album`
---
-
-INSERT INTO `photo_album` (`id`, `uid`, `name`, `info`, `ctime`, `mtime`, `coverImageId`, `coverImagePath`, `photoCount`, `status`, `share`, `privacy`, `privacy_data`, `isDel`) VALUES
-(1, 1, '我的相册', NULL, 1261033403, 1261033403, 1, '20100107/14/4b457c023534e.jpg', 1, 1, 0, 4, '123456', 0),
-(2, 2, '我的相册', NULL, 1262755700, 1262755700, NULL, NULL, 0, 1, 0, 1, NULL, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `photo_index`
---
-
-CREATE TABLE IF NOT EXISTS `photo_index` (
-  `albumId` int(11) NOT NULL DEFAULT '0',
-  `photoId` int(11) NOT NULL DEFAULT '0',
-  `userId` int(11) DEFAULT NULL,
-  `order` int(11) DEFAULT NULL,
-  `privacy` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`albumId`,`photoId`),
-  UNIQUE KEY `album_photo` (`albumId`,`photoId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `photo_index`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `photo_mark`
---
-
-CREATE TABLE IF NOT EXISTS `photo_mark` (
-  `photoId` int(11) DEFAULT NULL,
-  `userId` int(11) DEFAULT NULL,
-  `userName` varchar(50) DEFAULT NULL,
-  `markedUserId` int(11) DEFAULT NULL,
-  `x` varchar(100) DEFAULT NULL,
-  `y` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `photo_mark`
---
-
-
--- --------------------------------------------------------
-
---
--- 表的结构 `smile`
---
-
-CREATE TABLE IF NOT EXISTS `smile` (
+CREATE TABLE IF NOT EXISTS `yiisns_smile` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) DEFAULT NULL,
   `emotion` varchar(10) DEFAULT NULL,
@@ -4890,10 +5113,10 @@ CREATE TABLE IF NOT EXISTS `smile` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
--- 转存表中的数据 `smile`
+-- 转存表中的数据 `yiisns_smile`
 --
 
-INSERT INTO `smile` (`id`, `type`, `emotion`, `filename`, `title`) VALUES
+INSERT INTO `yiisns_smile` (`id`, `type`, `emotion`, `filename`, `title`) VALUES
 (1, 'mini', '/拥抱', 'hug.gif', '拥抱'),
 (2, 'mini', '/示爱', 'kiss.gif', '示爱'),
 (3, 'mini', '/呲牙', 'lol.gif', '呲牙'),
@@ -4916,10 +5139,10 @@ INSERT INTO `smile` (`id`, `type`, `emotion`, `filename`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user`
+-- 表的结构 `yiisns_user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `yiisns_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
@@ -4944,10 +5167,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=4 ;
 
 --
--- 转存表中的数据 `user`
+-- 转存表中的数据 `yiisns_user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `username`, `handle`, `sex`, `birthyear`, `birthmonth`, `birthday`, `blood_type`, `current_province`, `current_city`, `current_area`, `admin_level`, `commend`, `active`, `ctime`, `identity`, `score`) VALUES
+INSERT INTO `yiisns_user` (`id`, `email`, `password`, `username`, `handle`, `sex`, `birthyear`, `birthmonth`, `birthday`, `blood_type`, `current_province`, `current_city`, `current_area`, `admin_level`, `commend`, `active`, `ctime`, `identity`, `score`) VALUES
 (1, 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', '管理员', NULL, '1', 0, 0, NULL, NULL, NULL, NULL, NULL, '1', 0, 1, 1260770048, 1, 1000),
 (2, 'huanghuibin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '黄大', NULL, '1', 0, 0, NULL, NULL, '1963', '2074', NULL, '0', NULL, 1, 1260770264, 1, 0),
 (3, 'dfas@good.com', 'xmdasd', '叮当猫', NULL, '0', 0, 0, NULL, NULL, NULL, NULL, NULL, '0', NULL, 0, NULL, 1, 0);
@@ -4955,10 +5178,10 @@ INSERT INTO `user` (`id`, `email`, `password`, `username`, `handle`, `sex`, `bir
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user_app`
+-- 表的结构 `yiisns_user_app`
 --
 
-CREATE TABLE IF NOT EXISTS `user_app` (
+CREATE TABLE IF NOT EXISTS `yiisns_user_app` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
   `appid` int(11) DEFAULT NULL,
@@ -4966,17 +5189,17 @@ CREATE TABLE IF NOT EXISTS `user_app` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `user_app`
+-- 转存表中的数据 `yiisns_user_app`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user_online`
+-- 表的结构 `yiisns_user_online`
 --
 
-CREATE TABLE IF NOT EXISTS `user_online` (
+CREATE TABLE IF NOT EXISTS `yiisns_user_online` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户id',
   `username` varchar(50) NOT NULL COMMENT '用户名',
@@ -4987,17 +5210,17 @@ CREATE TABLE IF NOT EXISTS `user_online` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='在线用户' AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `user_online`
+-- 转存表中的数据 `yiisns_user_online`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user_score`
+-- 表的结构 `yiisns_user_score`
 --
 
-CREATE TABLE IF NOT EXISTS `user_score` (
+CREATE TABLE IF NOT EXISTS `yiisns_user_score` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
@@ -5009,10 +5232,10 @@ CREATE TABLE IF NOT EXISTS `user_score` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
--- 转存表中的数据 `user_score`
+-- 转存表中的数据 `yiisns_user_score`
 --
 
-INSERT INTO `user_score` (`id`, `uid`, `info`, `action`, `type`, `number`, `cTime`) VALUES
+INSERT INTO `yiisns_user_score` (`id`, `uid`, `info`, `action`, `type`, `number`, `cTime`) VALUES
 (1, 1, '用户登录增加了1经验', 'user_login', 'experience', 1, 1260770061),
 (2, 1, '空间被访问增加了1积分', 'user_visited', 'score', 1, 1260770284),
 (3, 1, '空间被访问增加了1经验', 'user_visited', 'experience', 1, 1260770284),
@@ -5075,10 +5298,10 @@ INSERT INTO `user_score` (`id`, `uid`, `info`, `action`, `type`, `number`, `cTim
 -- --------------------------------------------------------
 
 --
--- 表的结构 `vote`
+-- 表的结构 `yiisns_vote`
 --
 
-CREATE TABLE IF NOT EXISTS `vote` (
+CREATE TABLE IF NOT EXISTS `yiisns_vote` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '投票id',
   `topicid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '热闹?',
   `uid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '用户id(uchome)',
@@ -5112,17 +5335,17 @@ CREATE TABLE IF NOT EXISTS `vote` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='投票主表' AUTO_INCREMENT=13 ;
 
 --
--- 转存表中的数据 `vote`
+-- 转存表中的数据 `yiisns_vote`
 --
 
-INSERT INTO `vote` (`id`, `topicid`, `uid`, `username`, `subject`, `votercount`, `replycount`, `multiple`, `maxchoice`, `sex`, `noview`, `novote`, `noreply`, `credit`, `percredit`, `expiration`, `lastvote`, `ctime`, `hot`, `message`, `summary`, `state`) VALUES
+INSERT INTO `yiisns_vote` (`id`, `topicid`, `uid`, `username`, `subject`, `votercount`, `replycount`, `multiple`, `maxchoice`, `sex`, `noview`, `novote`, `noreply`, `credit`, `percredit`, `expiration`, `lastvote`, `ctime`, `hot`, `message`, `summary`, `state`) VALUES
 (1, 0, 1, 'he21cn', '第一个投票,吃什么好', 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1253166029, 1253153156, 0, '', NULL, 1),
 (4, 0, 1, 'he21cn', 'fasfas发大水的说法', 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1254190665, 1253171463, 0, '', NULL, 1),
 (5, 0, 1, 'he21cn', '再来一次', 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1253234532, 1253171844, 0, '', NULL, 1),
 (6, 0, 911, 'hope00000062', '班长候选人', 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1255967999, 0, 1255399466, 0, '', NULL, 1),
 (7, 0, 911, 'hope00000062', '组长候选人', 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1255708799, 1255399594, 1255399517, 0, '', NULL, 1),
 (8, 0, 1, 'he21cn', 'sdsd', 1, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 1255570454, 1255570425, 0, '', NULL, 1),
-(9, 0, 1, 'he21cn', '班长是谁', 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1257233574, 1255591316, 0, '', NULL, 1),
+(9, 0, 1, 'he21cn', '班长是谁', 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1281063600, 1257233574, 1255591316, 0, '', NULL, 1),
 (10, 0, 911, 'hope00000062', '投票', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1256712657, 0, '', NULL, 1),
 (11, 0, 911, 'hope00000062', '是否同意组织感恩节活动', 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1259164799, 1257402987, 1257402978, 0, '', NULL, 1),
 (12, 0, 911, 'hope00000062', '周末活动', 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1259130156, 1259128374, 0, '', NULL, 1);
@@ -5130,10 +5353,10 @@ INSERT INTO `vote` (`id`, `topicid`, `uid`, `username`, `subject`, `votercount`,
 -- --------------------------------------------------------
 
 --
--- 表的结构 `vote_option`
+-- 表的结构 `yiisns_vote_option`
 --
 
-CREATE TABLE IF NOT EXISTS `vote_option` (
+CREATE TABLE IF NOT EXISTS `yiisns_vote_option` (
   `oid` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `vid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '投票id',
   `option` varchar(255) NOT NULL COMMENT '投票选项',
@@ -5142,10 +5365,10 @@ CREATE TABLE IF NOT EXISTS `vote_option` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='投票选项表' AUTO_INCREMENT=57 ;
 
 --
--- 转存表中的数据 `vote_option`
+-- 转存表中的数据 `yiisns_vote_option`
 --
 
-INSERT INTO `vote_option` (`oid`, `vid`, `option`) VALUES
+INSERT INTO `yiisns_vote_option` (`oid`, `vid`, `option`) VALUES
 (1, 1, '饭'),
 (2, 1, '水果'),
 (3, 1, '零食'),
@@ -5206,10 +5429,10 @@ INSERT INTO `vote_option` (`oid`, `vid`, `option`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `vote_user`
+-- 表的结构 `yiisns_vote_user`
 --
 
-CREATE TABLE IF NOT EXISTS `vote_user` (
+CREATE TABLE IF NOT EXISTS `yiisns_vote_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '用户id',
   `username` varchar(15) NOT NULL COMMENT '用户名',
@@ -5219,28 +5442,9 @@ CREATE TABLE IF NOT EXISTS `vote_user` (
   PRIMARY KEY (`id`),
   KEY `pid` (`vid`,`ctime`),
   KEY `uid` (`uid`,`ctime`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='投票记录' AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='投票记录' AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `vote_user`
+-- 转存表中的数据 `yiisns_vote_user`
 --
 
-INSERT INTO `vote_user` (`id`, `uid`, `username`, `vid`, `option`, `ctime`) VALUES
-(1, 1, 'he21cn', 2, 'a:1:{i:8;s:6:"不偷";}', 1253153517),
-(2, 1, '', 3, 'a:1:{i:16;s:3:"how";}', 1253155078),
-(3, 3, 'test2', 3, 'a:1:{i:12;s:12:"写内容吗";}', 1253155197),
-(4, 1, 'he21cn', 1, 'a:1:{i:6;s:6:"戒了";}', 1253166029),
-(5, 3, 'test2', 4, 'a:1:{i:22;s:1:"3";}', 1253171634),
-(6, 1, 'he21cn', 5, 'a:1:{i:31;s:1:"9";}', 1253234532),
-(7, 1, 'he21cn', 4, 'a:1:{i:23;s:1:"4";}', 1254190665),
-(8, 932, 'hope00000932', 7, 'a:1:{i:39;s:6:"李四";}', 1255399594),
-(9, 1, 'he21cn', 8, 'a:3:{i:41;s:4:"dsdd";i:42;s:4:"dsds";i:43;s:5:"dsds1";}', 1255570454),
-(10, 1, 'he21cn', 9, 'a:1:{i:47;s:6:"网物";}', 1255593127),
-(11, 911, 'hope00000062', 9, 'a:1:{i:46;s:6:"利斯";}', 1255919968),
-(12, 2, 'test', 9, 'a:1:{i:47;s:6:"网物";}', 1257233574),
-(13, 911, 'hope00000062', 11, 'a:1:{i:52;s:6:"同意";}', 1257402987),
-(14, 1, 'he21cn', 12, 'a:1:{i:56;s:6:"网球";}', 1259130156);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1303,6 +1303,7 @@ function isOnlineIcon($uid) {
  *
  */
 function isAddApp($appName='',$uid='0',$appId=0){
+	return true;
 	$api = new TS_API();
 	if(!$uid){
 		$uid = $api->User_getLoggedInUser();
