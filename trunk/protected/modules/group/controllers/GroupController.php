@@ -44,7 +44,8 @@ class GroupController extends Controller
 	 */
 	public function actionDiscussion()
 	{
-		$group = $this->loadGroup();
+		$model = new Group();
+		$group = $model->loadGroup($_GET['gid']);
 		$data = $group->getGroupThreads();
 		$data['group'] = $group;
 		$this->render('discussion',$data);
