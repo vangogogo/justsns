@@ -1,9 +1,7 @@
 <?php include('_top.php');?>
 <?php
-	$CS=Yii::app()->jformvalidate;
-	echo $CS->beginForm(); 
-	$CS->setScenario("reg");
-	$CS->setOptions(array(
+	echo EHtml::beginForm(); 
+	EHtml::setOptions(array(
 		//'errorLabelContainer' => 'div.container ul',
 		//'errorContainer'		=> 'div.container',
 		'errorElement'			=> 'div',
@@ -19,19 +17,19 @@
 		
 		'highlight' 			=> '
 			function(element,errorClass){
-	       		$(element).addClass("invalid");
-	       		$(element).parents("li").find("div.error_info").show().prev(".success").hide();			
+				$(element).addClass("invalid");
+				$(element).parents("li").find("div.error_info").show().prev(".success").hide();
 		}',
 		'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
 	));
 ?>
 <div class="data jsvform" style="padding-top:30px;"><!-- 修改密码 begin  -->
-<?php echo CHtml::errorSummary($form);?>
+<?php echo EHtml::errorSummary($form);?>
 	<ul>
 		<li>
 			<div class="cl">群名称：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activePasswordField($form,'oldpassword',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activePasswordField($form,'name',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -49,7 +47,7 @@
 		<li>
 			<div class="cl">隐私类型：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activePasswordField($form,'password',array('class'=>'t_input')); ?>
+				<?php echo CHtml::activeRadioButtonList($form,'type',array('open'=>'公开','close'=>'私密'),array('separator'=>'&nbsp;&nbsp;&nbsp;')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -67,7 +65,7 @@
 		<li>
 			<div class="cl">群介绍：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activeTextarea($form,'intro',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -85,7 +83,7 @@
 		<li>
 			<div class="cl">群分类：<em>*</em></div>
 			<div class="cc">
-				<?php echo $CS->activePasswordField($form,'repassword',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activePasswordField($form,'cid0',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -107,4 +105,4 @@
 		</li>
 	</ul>
 </div><!-- 修改密码 end  -->
-<?php echo $CS->endForm();?>
+<?php echo EHtml::endForm();?>

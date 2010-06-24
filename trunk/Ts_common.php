@@ -1,7 +1,7 @@
 <?php
 function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') {
     if(!$sTime) {
-        return '';
+    	return '';
     }
     //sTime=源时间，cTime=当前时间，dTime=时间差
     $cTime		=	time();
