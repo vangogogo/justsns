@@ -114,7 +114,7 @@ return array(
 				'group/topic/<tid:\d+>'=>'group/topic/view',
 				'group/<gid:\d+>'=>'group/group/view',
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
-				'group/create'=>'group/default/create',
+				'group/create'=>'group/group/create',
 
 
 			),
