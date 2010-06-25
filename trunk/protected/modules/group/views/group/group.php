@@ -65,54 +65,54 @@
 			</div>
 		</div>
 		<?php endif;?>
+		<?php if(!empty($groupFeed)):?>
 		<div class="box1">
 			<h3>成员动态</h3>
 			<ul class="list pl10">
-				<volist name="groupFeed" id="feed">
-					<if condition="$feed['type'] eq 'group_join' ">
-						<li class="btmlineD">
-							<div class="right alR" style="width:14%;">
-								<em>{:date('m-d H:i',$feed['cTime'])}</em>
-							</div>
-							<div class="cGray2" style="width:85%;">
-								{$feed.title|stripGroupName}
-							</div>
-						</li>
-						<else/>
-						<li class="btmlineD">
-							<div class="right alR" style="width:14%;">
-								<em>{:date('m-d H:i',$feed['cTime'])}</em>
-							</div>
-							<div class="cGray2" style="width:85%;">
-								{$feed.title|stripGroupName}:  {$feed.body}
-							</div>
-						</li>
-					</if>
-				</volist>
+				<?php foreach($groupFeed as $feed):?>
+				<li class="btmlineD">
+					<div class="right alR" style="width:14%;">
+						<em>{:date('m-d H:i',$feed['cTime'])}</em>
+					</div>
+					<div class="cGray2" style="width:85%;">
+						<?php if(!empty($feed['group_join'])){?>
+						{$feed.title|stripGroupName}:  {$feed.body}
+						<?php }else{?>
+						{$feed.title|stripGroupName}
+						<?php }?>
+					</div>
+				</li>
+				<?php endforeach;?>
 			</ul>
 		</div>
+		<?php endif;?>
 		<?php
 			//话题列表
 			$this->renderPartial('../topic/list',array('threads'=>$threads,'group'=>$group));
 		?>
-		<if condition=" $groupinfo['openAlbum'] ">
-			<div class="box1">
-				<h3>群相册(共{$photoCount}张)</h3>
-				<ul class="piclist">
-					<volist name="photoList" id="photo">
-						<li>
-							<a href="__APP__/Photo/getPhoto/gid/{$gid}/albumId/{$photo.albumId}/photoId/{$photo.id}" class="preview" rel="{$photo.savepath|get_photo_url}" title="{$photo.name}"><img src="__ROOT__/thumb.php?w=134&h=91&t=f&url={$photo.savepath|get_photo_url}"/></a>
-							<br/>
-							<a href="__APP__/Photo/getPhoto/gid/{$gid}/albumId/{$photo.albumId}/photoId/{$photo.id}">{$photo.name|msubstr=0,13}</a>
-						</li>
-					</volist>
-				</ul>
-				<div class="alR lh30">
-					<a href="__APP__/Photo/upload/gid/{$gid}">上传照片</a>
-					┊<a href="__APP__/Album/index/gid/{$gid}">进入群相册>></a>
-				</div>
+		<?php
+			//相册列表
+			//$this->renderPartial('../album/list',array('albums'=>$albums,'group'=>$group));
+		?>		
+		<div class="box1">
+			<h3>群相册(共{$photoCount}张)</h3>
+			<?php if(!empty($photoList)):?>
+			<ul class="piclist">
+				<?php foreach($photoList as $photo):?>
+				<li>
+					<a href="__APP__/Photo/getPhoto/gid/{$gid}/albumId/{$photo.albumId}/photoId/{$photo.id}" class="preview" rel="{$photo.savepath|get_photo_url}" title="{$photo.name}"><img src="__ROOT__/thumb.php?w=134&h=91&t=f&url={$photo.savepath|get_photo_url}"/></a>
+					<br/>
+					<a href="__APP__/Photo/getPhoto/gid/{$gid}/albumId/{$photo.albumId}/photoId/{$photo.id}">{$photo.name|msubstr=0,13}</a>
+				</li>
+				<?php endforeach;?>
+			</ul>
+			<?php endif;?>
+			<div class="alR lh30">
+				<a href="__APP__/Photo/upload/gid/{$gid}">上传照片</a>
+				┊<a href="__APP__/Album/index/gid/{$gid}">进入群相册>></a>
 			</div>
-		</if>
+		</div>
+
 		<if condition=" $groupinfo['openUploadFile'] ">
 			<div class="box1">
 				<h3>群文件(共{$fileCount}个)</h3>

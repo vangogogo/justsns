@@ -1,10 +1,10 @@
 <?PHP if(!empty($init)){ ?>
 	<?php for($i=1;$i<=$arealevel;$i++){ ?>
 		<div class="con">
-		<ul class="ullist" id="list_{$i}">
+		<ul class="ullist" id="list_<?php echo $i;?>">
 			<?php foreach($list as $vo){ ?>
 				<?php $selected = ($vo['id'] == $arrPid[$i-1])?"class='on'":""; ?>
-				<li id='node_{$vo.id}' {$selected}><a href='javascript:void(0);' onclick=selectarea("{$vo.id}","{$vo.level}","{$vo.title}") >{$vo.title}</a></li>
+				<li id='node_<?php echo $vo['id'];?>' <?php echo $selected;?>><a href='javascript:void(0);' onclick=selectarea("<?php echo $vo['id'];?>","<?php echo $vo['level'];?>","<?php echo $vo['title'];?>") ><?php echo $vo['title'];?></a></li>
 			<?php } ?>
 		</ul>
 		</div>
@@ -12,7 +12,7 @@
 	<?php } ?>
 	
 <?PHP }else{ ?>
-	<volist id="vo" name="list">
-		<li id='node_{$vo.id}'><a href='javascript:void(0);' onclick=selectarea("{$vo.id}","{$vo.level}","{$vo.title}") >{$vo.title}</a></li>
-	</volist>
+	<?php foreach($list as $vo):?>
+		<li id='node_<?php echo $vo['id'];?>'><a href='javascript:void(0);' onclick=selectarea("<?php echo $vo['id'];?>","<?php echo $vo['level'];?>","<?php echo $vo['title'];?>") ><?php echo $vo['title'];?></a></li>
+	<?php endforeach;?>
 <?PHP } ?>
