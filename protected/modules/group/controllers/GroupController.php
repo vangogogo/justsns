@@ -89,6 +89,9 @@ class GroupController extends Controller
 		
 		$model = new Group();
 		$model->scenario = 'create';
+		$category_list = $model->getGroupCategory();
+		$category_list = CHtml::listData($category_list,'id','title');
+		
 		if(!empty($_POST['Group']))
 		{
 			$attributes = $_POST['Group'];
@@ -100,14 +103,14 @@ class GroupController extends Controller
 			'owner'=>$owner,
 			'is_me'=>$is_me,
 			'form'=>$model,
-		
-			'uid' => $uid,
-			'mid' => $mid,
-			'may_users' => $may_users,
-			'visitors' => $visitors,
-			'friend_list' => $friend_list,
+			'category_list'=>$category_list,
 		);
 		$this->render('create',$data);	
 	}
-
+	public function actionGetGroupCategory()
+	{
+		$model = new Group();
+		$params = $_POST['params'];
+		$exam = $model->getGroupCategory($params);
+	}
 }
