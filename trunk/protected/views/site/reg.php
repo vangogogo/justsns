@@ -112,7 +112,7 @@
 				<li>
 					<div class="cl">性别：<em>*</em></div>
 					<div class="cc">
-						<?php echo CHtml::activeRadioButtonList($form,'sex',array(1=>'男',0=>'女'),array('separator'=>'&nbsp;&nbsp;&nbsp;')); ?>
+						<?php echo EHtml::activeRadioButtonList($form,'sex',array(1=>'男',0=>'女'),array('separator'=>'&nbsp;&nbsp;&nbsp;')); ?>
 					</div>
 					<div class="cr">
 						<div class="success hidden">

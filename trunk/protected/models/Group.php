@@ -105,7 +105,7 @@ class Group extends CActiveRecord
 			'membercount' => '成员数',
 			'threadcount' => '话题数',
 			'postcount' => '回复数',
-			'type' => 'Type',
+			'type' => '类型',
 			'need_invite' => 'Need Invite',
 			'need_verify' => 'Need Verify',
 			'actor_level' => 'Actor Level',
@@ -411,5 +411,37 @@ class Group extends CActiveRecord
 		if($model===null)
 			throw new CHttpException(404,'该话题不存在.');
 		return $model;
+	}
+	
+	public function getGroupCategory($params = array('pid'=>0))
+	{
+		if(!isset($params['status']))
+		{
+			$params['status'] = 1;
+		}
+
+		$model = new GroupCategory();
+		$criteria=new CDbCriteria;
+		$criteria->condition='1 ';
+		$criteria->order = !empty($params['order'])?$params['order']:'title DESC';
+
+		if(!empty($params))
+		{
+			$array = array(
+				'pid','type'
+				);
+				foreach($params as $key => $value)
+				{
+					if(in_array($key,$array))
+					{
+							
+						$criteria->condition.=" and $key=:$key";
+						$criteria->params[':'.$key]=$value;
+					}
+				}
+					
+		}
+		$models=$model->findAll($criteria);
+		return $models;
 	}	
 }

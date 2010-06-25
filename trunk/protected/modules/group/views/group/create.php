@@ -47,7 +47,7 @@
 		<li>
 			<div class="cl">隐私类型：<em>*</em></div>
 			<div class="cc">
-				<?php echo CHtml::activeRadioButtonList($form,'type',array('open'=>'公开','close'=>'私密'),array('separator'=>'&nbsp;&nbsp;&nbsp;')); ?>
+				<?php echo EHtml::activeRadioButtonList($form,'type',array('open'=>'公开','close'=>'私密'),array('separator'=>'&nbsp;&nbsp;&nbsp;')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -83,7 +83,7 @@
 		<li>
 			<div class="cl">群分类：<em>*</em></div>
 			<div class="cc">
-				<?php echo EHtml::activePasswordField($form,'cid0',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activeDropDownList($form,'cid0',$category_list,array('class'=>'t_input','empty'=>'请选择')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
