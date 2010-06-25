@@ -21,9 +21,8 @@
 		
 		'highlight' 			=> '
 			function(element,errorClass){
-
-		       		$(element).addClass("invalid");
-		       		$(element).parents("li").find("div.error_info").show().prev(".success").hide();					
+				$(element).addClass("invalid");
+				$(element).parents("li").find("div.error_info").show().prev(".success").hide();
 		}',
 		'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
 	));
