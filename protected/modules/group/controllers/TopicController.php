@@ -64,8 +64,15 @@ class TopicController extends Controller
 		$model = new GroupTopic();
 		$tid = Yii::app()->request->getQuery('tid');
 		$topic = $model->loadTopic($tid);
+		//访问量+1
+		$topic->updateCounters(array('viewcount'=>+1));
+		//回复主题
 		$comment=$this->newComment($post);
-
+		
+		//相关话题求助
+		$group = $topic->group;
+		$topics = $group->getGroupNewThreads();
+		
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
