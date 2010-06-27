@@ -325,11 +325,15 @@ class Group extends CActiveRecord
 	public function getGroupThreads(array $params = array(), $limit = '6')
 	{
 		$gid = $this->id;
+		if(!empty($gid) AND !isset($params))
+		{
+			$params['gid'] = $gid;
+		}
 		$model = new GroupTopic();
 		$criteria=new CDbCriteria;
-		$criteria->condition.=" gid = :gid";
-		$criteria->params[':gid']=$gid;
-		$criteria->order = !empty($params['order'])?$params['order']:'ctime DESC';
+		$criteria->condition.=" 1";
+
+		$criteria->order = !empty($params['order'])?$params['order']:'replytime DESC';
 		if(!empty($limit))
 		{
 			$criteria->limit = $limit;
