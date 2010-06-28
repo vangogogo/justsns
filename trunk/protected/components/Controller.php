@@ -29,6 +29,7 @@ class Controller extends CController
 		{
 			$this->layout='application.views.layouts.column1';
 		}
+		$this->layout='application.views.layouts.column1';
 	}
 
 	public function actions()

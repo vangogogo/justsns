@@ -43,11 +43,11 @@ class TopicController extends Controller
 		$model->scenario = 'create';
 
 		
-		if(!empty($_POST['Group']))
+		if(!empty($_POST['GroupTopic']))
 		{
-			$attributes = $_POST['Group'];
+			$attributes = $_POST['GroupTopic'];
 			$model->attributes = $attributes;
-			$model->validate();
+			//$model->validate();
 		}
 		
 		$data = array(

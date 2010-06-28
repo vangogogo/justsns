@@ -2,6 +2,7 @@
 
 class GroupTopic extends CActiveRecord
 {
+	public $content;
 	/**
 	 * The followings are the available columns in table 'group_topic':
 	 * @var integer $id
@@ -57,6 +58,9 @@ class GroupTopic extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, gid, uid, name, title, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del, attach', 'safe', 'on'=>'search'),
+
+			array('title,content','required', 'on' => 'create'),
+			//array('name', 'checkGroupName', 'on'=> 'create'),
 		);
 	}
 

@@ -22,41 +22,50 @@
 		'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
 	));
 ?>
-<div class="groupBox">
+<div class="data jsvform" style="padding-top:30px;"><!-- 修改密码 begin  -->
 <?php echo EHtml::errorSummary($form);?>
-	<div class="boxL" style="width: 100%;">
-		<div class="box1">
-		<h3>发表新话题</h3>
-		
-		<ul class="pt10">
-			<li class="li">
-				<div class="lh35 alR left" style="width: 5%"><strong>标题：</strong></div>
-				<div class="left" style="width: 95%">
-					<?php echo EHtml::activeTextField($form,'title',array('class'=>'t_input')); ?>
-				</div>	
-			</li>
-			<li class="li pt10">
-				<div class="left alR" style="width: 5%"><strong>内容：</strong></div>
-				<div class="left" style="width: 95%">
-					{:W("Edit",array('smileList'=>$smileList,'smilePath'=>$smilePath,'rows'=>20,'cols'=>20,'name'=>'content','id'=>'icontent'))}
+	<ul>
+		<li>
+			<div class="cl">标题：<em>*</em></div>
+			<div class="cc">
+				<?php echo EHtml::activeTextField($form,'title',array('class'=>'t_input')); ?>
+			</div>
+			<div class="cr">
+				<div class="success hidden">
+					<span><img src="<?php echo Yii::app()->theme->baseUrl ?>/public/images/fzcg_dh[1].gif" /></span>
 				</div>
-			</li>
-			<li class="li">
-				<div class="lh35 alR left" style="width: 5%"><strong>附件：</strong></div>
-				<div class="left" style="width: 95%; padding-top: 5px;">
-					{:W('UploadAttach',array( 'uid'=>$mid , 'type'=>'group_topic' ,'callback'=>'attach_upload_success') )}
+				<div class="error_info" style="position: relative;">
+					<div>
+						<span><img src="<?php echo Yii::app()->theme->baseUrl ?>/public/images/th_ju[1].gif" /></span>
+						<div class="clue"><p class="error_content"></p><span class="clue_btm"></span></div>
+					</div>
 				</div>
-			</li>
-			<li class="li">
-				<div style="width: 5%" class="left">&nbsp;</div>
-				<div class="left" style="width: 95%">
-					<input type="hidden" name="addsubmit" value="do"> <input name="button" type="submit" class="btn_b mt5" id="button" value="发表话题" />
+			</div>
+			<div class="c"></div>
+		</li>
+		<li>
+			<div class="cl">内容：<em>*</em></div>
+			<div class="cc">
+				<?php echo EHtml::activeTextArea($form,'content',array('class'=>'t_input')); ?>
+			</div>
+			<div class="cr">
+				<div class="success hidden">
+					<span><img src="<?php echo Yii::app()->theme->baseUrl ?>/public/images/fzcg_dh[1].gif" /></span>
 				</div>
-			</li>
-		</ul>
-		
-		</div>
-	</div>
-</div>
+				<div class="error_info" style="position: relative;">
+					<div>
+						<span><img src="<?php echo Yii::app()->theme->baseUrl ?>/public/images/th_ju[1].gif" /></span>
+						<div class="clue"><p class="error_content"></p><span class="clue_btm"></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="c"></div>
+		</li>
+		<li><div class="cl"><em>&nbsp;</em></div><div class="cc">
+			<?php echo CHtml::submitButton('确认',array('class'=>'btn_b')); ?>
+			</div><div class="cr"></div>
+			<div class="c"></div>
+		</li>
+	</ul>
 </div><!-- 修改密码 end  -->
 <?php echo EHtml::endForm();?>
