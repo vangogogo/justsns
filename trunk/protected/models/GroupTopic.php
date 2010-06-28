@@ -69,9 +69,11 @@ class GroupTopic extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'author' => array(self::BELONGS_TO, 'user', 'uid'),
-			'group' => array(self::BELONGS_TO, 'Group', 'tid'),
+			'group' => array(self::BELONGS_TO, 'Group', 'gid'),
 			'comments' => array(self::HAS_MANY, 'GroupPost', 'tid', 'condition'=>'comments.status= 1', 'order'=>'comments.ctime DESC'),
 			'commentCount' => array(self::STAT, 'GroupPost', 'tid', 'condition'=>'group_post.status= 1'),
+		
+			'content' => array(self::HAS_ONE, 'GroupPost', 'tid', 'condition'=>'content.istopic= 1'),
 		);
 	}
 
@@ -100,7 +102,7 @@ class GroupTopic extends CActiveRecord
 			'attach' => '附件',
 		);
 	}
-
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -161,5 +163,9 @@ class GroupTopic extends CActiveRecord
 		if($model===null)
 			throw new CHttpException(404,'该话题不存在.');
 		return $model;
+	}
+	public function getTopicContent()
+	{
+		return $this->content->content;
 	}
 }
