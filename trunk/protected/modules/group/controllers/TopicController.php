@@ -37,21 +37,21 @@ class TopicController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$uid = Yii::app()->user->id;
 		
-		//空间主人的好友
-		//$friend_list = $owner->getUserFriends($uid);
+		$model = new GroupTopic();
+		$model->scenario = 'create';
 
-		$data = array(
-			'owner'=>$owner,
-			'is_me'=>$is_me,
-			'apps'=>$apps,
-			'apps_num'=>$apps_num,
 		
-			'uid' => $uid,
-			'mid' => $mid,
-			'may_users' => $may_users,
-			'visitors' => $visitors,
-			'friend_list' => $friend_list,
+		if(!empty($_POST['Group']))
+		{
+			$attributes = $_POST['Group'];
+			$model->attributes = $attributes;
+			$model->validate();
+		}
+		
+		$data = array(
+			'form'=>$model,
 		);
 		$this->render('create',$data);
 	}

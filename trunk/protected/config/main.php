@@ -98,7 +98,7 @@ return array(
 			// the URL format. It must be either 'path' or 'get'.
 			// path: index.php/controller/action/attribute/value
 			// get: index.php?r=controller/action&attribute=value
-			'urlFormat'=>'path',
+			//'urlFormat'=>'path',
 			// show www.example.com/index.php/controller/action
 			// or just www.example.com/controller/action
 			'showScriptName' => false,
@@ -114,9 +114,8 @@ return array(
 				'group/topic/<tid:\d+>'=>'group/topic/view',
 				'group/<gid:\d+>'=>'group/group/view',
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
-				'group/create'=>'group/group/create',
-
-
+				'group/create/<gid:\d+>'=>'group/group/create',
+				'group/new_topic/<gid:\d+>'=>'group/topic/create',
 			),
 		),
 		//验证模块
