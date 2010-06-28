@@ -1,5 +1,5 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/index.css');?>
-<?php include('right.php');?>
+<?php include('_right.php');?>
 <script>
 $(document).ready(function() { 
 	

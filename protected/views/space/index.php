@@ -1,5 +1,5 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
-<?php include('right.php');?>
+<?php include('_right.php');?>
 
 <div class="cc">
 	<div class="user_info"><!-- 用户资料 begin  -->
