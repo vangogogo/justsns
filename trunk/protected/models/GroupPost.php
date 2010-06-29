@@ -131,6 +131,7 @@ class GroupPost extends CActiveRecord
 		));
 	}
 	
+	
 	/**
 	 * Prepares attributes before performing validation.
 	 */
@@ -140,7 +141,7 @@ class GroupPost extends CActiveRecord
 		{
 			$this->ctime = time();
 			$this->uid = Yii::app()->user->id;
-			$this->ip = Yii::app()->request->userHostAddress;
+			$this->ip = Yii::app()->request->userHostAddress;		
 		}
 		//else
 			//GroupPost 没有修改时间
@@ -148,5 +149,63 @@ class GroupPost extends CActiveRecord
 			
 		
 		return true;
-	}	
+	}
+	
+	/**
+	 * 添加话题/回复后业务处理
+	 */	
+	protected function afterSave()
+	{
+		if($this->isNewRecord)
+		{
+			//主题
+			if($this->istopic == '1') 
+			{
+				//Group::model()->updateCounters(array('threadcount'=>1), "id={$this->gid}");
+			}
+			else
+			{
+			
+				//回复
+				GroupTopic::model()->updateCounters(array('replycount'=>+1,'replytime'=> time()), "id={$this->tid}");
+				//TODO有邮件提醒本帖回复,并且不是自己回复
+				$topic = $this->topic;
+				if($topic->isrecom == 1 && $this->uid != $topic->uid)
+				{
+					$user = $topic->user;
+					if(!empty($user->email))
+					{
+						//邮件内容
+						
+					}
+				}
+			}
+
+		}
+	}
+
+	/**
+	 * 删除话题/回复前业务处理
+	 */	
+	protected function beforerDelete()
+	{
+		if($this->uid != Yii::app()->user->id)
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * 删除话题/回复后业务处理
+	 */	
+	protected function afterDelete()
+	{
+		if($this->istopic == '1') {
+			GroupTopic::model()->deleteByPk($this->tid);
+			//Group::model()->updateCounters(array('threadcount'=>-1), "id={$this->gid}");
+		}else{
+			GroupTopic::model()->updateCounters(array('replycount'=>-1), "id={$this->tid}");
+		}
+	}
 }
