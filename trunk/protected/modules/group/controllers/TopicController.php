@@ -75,7 +75,7 @@ class TopicController extends Controller
 		if(!empty($_POST['GroupTopic']))
 		{
 			$attributes = $_POST['GroupTopic'];
-			$model = $group->addTopic($attributes);
+			$topic = $model->addTopic($attributes);
 			if(empty($topic->errors))
 			{
 				$this->redirect(array('show','tid'=>$model->id));
@@ -106,9 +106,11 @@ class TopicController extends Controller
 		$group = $topic->group;
 		$topics = $group->getGroupNewThreads();
 		
+		$post = new GroupPost();
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
+			'post'=>$post,
 		);
 		$this->render('topic',$data);
 	}

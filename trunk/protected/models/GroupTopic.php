@@ -213,6 +213,13 @@ class GroupTopic extends CActiveRecord
 		return $this;
 	}
 
+	public function setTopic($params)
+	{
+		$this->attributes = $params;
+		$this->content_temp = $params['content_temp'];
+		$this->save();
+		return $this;
+	}	
 	/**
 	 * 插入信息
 	 */
