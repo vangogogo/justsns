@@ -111,8 +111,8 @@ return array(
 		
 				'post/<pid:\d+>'=>'post/show',
 
-				'group/topic/<tid:\d+>'=>'group/topic/view',
-				'group/<gid:\d+>'=>'group/group/view',
+				'group/topic/<tid:\d+>'=>'group/topic/show',
+				'group/<gid:\d+>'=>'group/group/show',
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
 				'group/create/<gid:\d+>'=>'group/group/create',
 				'group/new_topic/<gid:\d+>'=>'group/topic/create',

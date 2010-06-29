@@ -2,7 +2,7 @@
 
 class GroupTopic extends CActiveRecord
 {
-	public $content;
+	public $content_temp;
 	/**
 	 * The followings are the available columns in table 'group_topic':
 	 * @var integer $id
@@ -59,7 +59,7 @@ class GroupTopic extends CActiveRecord
 			// Please remove those attributes that should not be searched.
 			array('id, gid, uid, name, title, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del, attach', 'safe', 'on'=>'search'),
 
-			array('title,content','required', 'on' => 'create'),
+			array('title,content_temp','required', 'on' => 'create'),
 			//array('name', 'checkGroupName', 'on'=> 'create'),
 		);
 	}
@@ -156,7 +156,30 @@ class GroupTopic extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
+	/**
+	 * Prepares attributes before performing validation.
+	 */
+	protected function beforeValidate()
+	{
+		if($this->isNewRecord)
+		{
+			$this->uid=Yii::app()->user->id;
+			$this->ctime=time();
+			$user = User::model()->findByPk($this->uid);
+			if(empty($user))
+			{
+				//提示没有这个用户
+			}
+			else
+			{
+				$this->name = $user->username;
+			}
+			$this->status = 0;
+		}
+		else
+			$this->mtime=time();
+		return true;
+	}
 	/**
 	 * 读取话题
 	 */
@@ -168,8 +191,63 @@ class GroupTopic extends CActiveRecord
 			throw new CHttpException(404,'该话题不存在.');
 		return $model;
 	}
+	
 	public function getTopicContent()
 	{
 		return $this->content->content;
 	}
+	
+	public function addTopic($params)
+	{
+		$this->attributes = $params;
+		$this->content_temp = $params['content_temp'];
+		$this->save();
+		return $this;
+	}
+
+	/**
+	 * 插入信息
+	 */
+	protected function afterSave() 
+	{
+		if($this->isNewRecord)
+		{
+			$post = new GroupPost();
+
+			$data = array(
+				'gid' => $this->gid,
+				'uid' => $this->uid,
+				'tid' => $this->id,
+				'istopic' => 1,
+			);
+			$post->attributes=$data;
+			$post->content = $this->content_temp;
+			$post->save();
+			
+			Group::model()->updateCounters(array('threadcount'=>+1), "id={$this->gid}");
+		}
+		else 
+		{
+			$post = GroupPost::model()->findByPk($this->content->id);
+			$post->content = $this->content_temp;
+			$post->save();
+		}
+
+		//标签更新,无条件判定
+		if(0)
+		{
+			foreach($this->getTagArray() as $name)
+			{
+				if(($tag=GroupTag::model()->findByAttributes(array('name'=>$name)))===null)
+				{
+					$tag=new GroupTag;
+					$tag->name=$name;
+					$tag->save();
+				}
+				$this->dbConnection->createCommand("INSERT INTO group_topic_tag (tid, tagid) VALUES ({$this->id},{$tag->id})")->execute();
+			}
+		}
+		
+	}	
+	
 }
