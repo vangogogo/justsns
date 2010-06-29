@@ -1,6 +1,6 @@
 <div class="groupBox">
 	<div class="box1">
-		<h3><span class="right mr5"><input type="button" id="BtnShare_1" onclick="sharePop('1','/thinksns/apps/group/index.php?s=/Topic','1')" class="BtnShare" value="分享"></span><span style="line-height: 30px;">主题：fdas </span></h3>
+		<h3><span class="right mr5"><input type="button" id="BtnShare_1" onclick="sharePop('1','/thinksns/apps/group/index.php?s=/Topic','1')" class="BtnShare" value="分享"></span><span style="line-height: 30px;">主题：<?php echo $topic['title']?></span></h3>
 		<div class="li pt10">
 			<div style="width: 8%;" class="left">
 				<span class="headpic50">
@@ -61,15 +61,28 @@
 		<div class="lh30 alR topline">
 			<?php echo CHtml::link('返回话题列表>>',array('group/discussion','gid'=>$topic['gid']));?>
 		</div>
-		<form onsubmit="return replySubmit();" id="replyForm" action="/thinksns/apps/group/index.php?s=/Topic/post" method="post">
+		<?php echo EHtml::beginForm(); ?>
 			<div class="li">
 				<div style="width: 20%;" class="left alR lh25">
 					<strong>回复话题：</strong>
 				</div>
 				<div style="width: 80%;" class="left">
-					<?php $this->renderPartial('../post/_form',array('model'=>$post,'topic'=>$topic,'update'=>false,)); ?>
+					<?php $this->widget('application.extensions.ckeditor.CKEditor', array(
+						'model'=>$post,
+						'name'=>'title',
+						'language'=>Yii::app()->language,
+						'editorTemplate'=>'basic',
+						'skin'=>'v2',
+					)); ?>
 				</div>
+				<div class="left alR lh25" style="width:20%;"><strong>&nbsp</strong></div>
+           		<div class="left" style="width:80%">
+                <input type="hidden" name="gid" value="{$gid}">
+				<input type="hidden" name="tid" value="{$tid}">
+				<input  type="submit" class="btn_b mt5"  value="发送" id="send_reply"/>
+			   </div>				
+
 			</div>
-		</form>
+		<?php echo EHtml::endForm(); ?>
 	</div>
 </div>

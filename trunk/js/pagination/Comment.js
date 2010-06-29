@@ -218,7 +218,7 @@ function reply(name,toId){
 }
 
 function cancel(_this){
-	$('#reply2').remove();
+	$('#reply2').hide();
 }
 
 /**
@@ -317,7 +317,7 @@ function ReplyComment(_this){
 //			$('#reply2').before(subComment(a));
 			$('#reply2').before(txt);
 			$('#content2').val("");
-			$('#reply2').remove();
+			$('#reply2').hide();
 			_this.val(Abottom);
 			_this.removeAttr('disabled');
 			// 发送动态回调函数

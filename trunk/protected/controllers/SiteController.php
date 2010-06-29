@@ -195,7 +195,7 @@ class SiteController extends Controller
 	{
 	
 		if(Yii::app()->request->isAjaxRequest OR 1) {
-			if(isset($_GET['user'])) {
+			if(isset($_GET['User'])) {
 				$form=new User();
 				$form->scenario = 'reg';
 				$form->setAttributes($_GET['user'],false);
