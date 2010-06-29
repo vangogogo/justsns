@@ -1,8 +1,8 @@
 <?php
 	include('_top.php');
 ?>
-<script type="text/javascript" src="js/kxthumb/thumb.js"></script>
-<link rel="stylesheet" type="text/css" href="js/kxthumb/main.css" />
+<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/kxthumb/main.css');?>
+<?php echo Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/kxthumb/thumb.js');?>
 
 <table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:20px;" >
 	<tr>
@@ -23,29 +23,29 @@
 							<div id="Canvas" class="uploaddiv">
 
 								<div id="ImageDragContainer">
-									<img src='js/kxthumb/image/dd.JPG' id='ImageDrag' class='imagePhoto'>
+									<img src='<?php echo Yii::app()->request->baseUrl;?>/js/kxthumb/image/dd.JPG' id='ImageDrag' class='imagePhoto'>
 								</div>
 								<div id="IconContainer">
-									<img src='js/kxthumb/image/dd.JPG' id='ImageIcon' class='imagePhoto'>
+									<img src='<?php echo Yii::app()->request->baseUrl;?>/js/kxthumb/image/dd.JPG' id='ImageIcon' class='imagePhoto'>
 								</div>
 							</div>
 							<div class="uploaddiv">
 								<table>
 									<tr>
 										<td id="Min">
-										<img alt="缩小" src="js/kxthumb/image/_c.gif" onMouseOver="this.src='js/kxthumb/image/_c.gif';" onMouseOut="this.src='js/kxthumb/image/_h.gif';" id="moresmall" class="smallbig" />								</td>
+										<img alt="缩小" src="<?php echo Yii::app()->request->baseUrl;?>/js/kxthumb/image/_c.gif" onMouseOver="this.src='js/kxthumb/image/_c.gif';" onMouseOut="this.src='js/kxthumb/image/_h.gif';" id="moresmall" class="smallbig" />								</td>
 										<td>
 											<div id="bar">
 												<div class="child"></div>
 											</div>
 										</td>
 										<td id="Max">
-											<img alt="放大" src="js/kxthumb/image/c.gif" onMouseOver="this.src='js/kxthumb/image/c.gif';" onMouseOut="this.src='js/kxthumb/image/h.gif';" id="morebig" class="smallbig" />
+											<img alt="放大" src="<?php echo Yii::app()->request->baseUrl;?>/js/kxthumb/image/c.gif" onMouseOver="this.src='js/kxthumb/image/c.gif';" onMouseOut="this.src='js/kxthumb/image/h.gif';" id="morebig" class="smallbig" />
 										</td>
 									</tr>
 								</table>
 							</div>
-							<form action="<?php echo $this->createUrl('/account/info/saveThumb')?>" method="post">
+							<form action="<?php echo $this->createUrl('info/saveThumb')?>" method="post">
 								<input type="hidden" name="person" value="person">
 								<div class="uploaddiv">
 									<input type="submit" value="保存头像" class="btn_b" name="btn_Image">

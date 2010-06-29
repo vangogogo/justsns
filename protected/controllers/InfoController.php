@@ -186,7 +186,7 @@ class InfoController extends Controller
 				
 		//CThumb::resizeImage($middle_name, $small_w, $small_h, $small_name,$filetype = 'jpg');
 
-		$this->redirect(array('account'));
+		$this->redirect(array('info/face'));
 	}
 	
 
