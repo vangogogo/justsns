@@ -17,7 +17,7 @@ class GroupController extends Controller
 	/**
 	 * 小组首页
 	 */
-	public function actionView()
+	public function actionShow()
 	{
 		$gid = Yii::app()->request->getQuery('gid');
 		$model =  new Group();

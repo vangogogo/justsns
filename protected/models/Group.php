@@ -144,7 +144,33 @@ class Group extends CActiveRecord
 			return true;
 		}
 	}
-
+	/**
+	 * 群组类型
+	 */
+	public function getTypeOptions()
+	{
+		return array(
+			'open'=>'开放',
+			'limit'=>'限制',
+			'close'=>'关闭',
+		);
+	}
+	/**
+	 * Prepares attributes before performing validation.
+	 */
+	protected function beforeValidate()
+	{
+		if($this->isNewRecord)
+		{
+			$this->ctime=time();
+			$this->uid = Yii::app()->user->id;
+		}
+		else
+			$this->mtime=time();
+			
+		
+		return true;
+	}		
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -226,10 +252,9 @@ class Group extends CActiveRecord
 	public function addTopic($params)
 	{
 		$model = new GroupTopic();
-		$model->attributes = $params;
-		$model->gid = $this->gid;
-		$model->save();
-		return $model;
+		$params['gid'] = $this->id;
+		$topic = $model->addTopic($params);
+		return $topic;
 	}
 
 	public function getGroupMembers(array $params = array(),$limit = '')
@@ -447,5 +472,5 @@ class Group extends CActiveRecord
 		}
 		$models=$model->findAll($criteria);
 		return $models;
-	}	
+	}
 }

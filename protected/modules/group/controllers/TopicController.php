@@ -3,7 +3,7 @@
 class TopicController extends Controller
 {
 	private $_model;
-	public $defaultAction = 'view';
+	public $defaultAction = 'show';
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -37,7 +37,9 @@ class TopicController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$uid = Yii::app()->user->id;
+		$gid = Yii::app()->request->getQuery('gid');
+		$model =  new Group();
+		$group = $model->loadGroup($gid);
 		
 		$model = new GroupTopic();
 		$model->scenario = 'create';
@@ -46,7 +48,11 @@ class TopicController extends Controller
 		if(!empty($_POST['GroupTopic']))
 		{
 			$attributes = $_POST['GroupTopic'];
-			$model->attributes = $attributes;
+			$model = $group->addTopic($attributes);
+			if(empty($topic->errors))
+			{
+				$this->redirect(array('show','tid'=>$model->id));
+			}
 			//$model->validate();
 		}
 		
@@ -59,7 +65,7 @@ class TopicController extends Controller
 	/**
 	 * 话题内容
 	 */
-	 public function actionView()
+	 public function actionShow()
 	{
 		$model = new GroupTopic();
 		$tid = Yii::app()->request->getQuery('tid');

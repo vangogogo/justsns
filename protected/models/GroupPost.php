@@ -61,7 +61,12 @@ class GroupPost extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'topic' => array(self::BELONGS_TO, 'Topic', 'tid'),
+			//user
+			'user'=>array(self::BELONGS_TO, 'User', 'uid'),	
+			//所属群组
+			'group'=>array(self::BELONGS_TO, 'Group', 'gid'),
+			//所属话题
+			'topic'=>array(self::BELONGS_TO, 'GroupTopic', 'tid'),
 		);
 	}
 
@@ -125,4 +130,23 @@ class GroupPost extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/**
+	 * Prepares attributes before performing validation.
+	 */
+	protected function beforeValidate()
+	{
+		if($this->isNewRecord)
+		{
+			$this->ctime = time();
+			$this->uid = Yii::app()->user->id;
+			$this->ip = Yii::app()->request->userHostAddress;
+		}
+		//else
+			//GroupPost 没有修改时间
+			//$this->mtime=time();
+			
+		
+		return true;
+	}	
 }

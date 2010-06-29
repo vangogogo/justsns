@@ -28,7 +28,7 @@
 		<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
 	</div>
 	<div class="alR lh30">
-		<a href="__APP__/Topic/add/gid/{$gid}">发表话题</a>
+		<?php echo CHtml::link('发表话题',array('topic/create','gid'=>$group['id']));?>
 		┊<?php echo CHtml::link('进入话题区>>',array('group/discussion','gid'=>$group['id']));?>
 	</div>
 </div>

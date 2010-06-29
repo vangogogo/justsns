@@ -46,7 +46,7 @@
 		<li>
 			<div class="cl">内容：<em>*</em></div>
 			<div class="cc">
-				<?php echo EHtml::activeTextArea($form,'content',array('class'=>'t_input')); ?>
+				<?php echo EHtml::activeTextArea($form,'content_temp',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
