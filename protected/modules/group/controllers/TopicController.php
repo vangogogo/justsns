@@ -63,6 +63,33 @@ class TopicController extends Controller
 	}
 
 	/**
+	 * 编辑话题
+	 */
+	public function actionEdit()
+	{
+		$model = new GroupTopic();
+		$tid = Yii::app()->request->getQuery('tid');
+		$model = $model->loadTopic($tid);
+		$group = $topic->group;
+		
+		if(!empty($_POST['GroupTopic']))
+		{
+			$attributes = $_POST['GroupTopic'];
+			$model = $group->addTopic($attributes);
+			if(empty($topic->errors))
+			{
+				$this->redirect(array('show','tid'=>$model->id));
+			}
+			//$model->validate();
+		}
+		
+		$data = array(
+			'form'=>$model,
+		);
+		$this->render('create',$data);
+	}
+		
+	/**
 	 * 话题内容
 	 */
 	 public function actionShow()
@@ -108,4 +135,21 @@ class TopicController extends Controller
 		}
 		return $comment;
 	}
+	
+	/**
+	 * 修改话题的状态，置顶，精华，锁定
+	 */
+	public function actionSwitch() {
+		$tid = Yii::app()->request->getParam('tid');
+		$topic = $this->loadTopic($tid);
+
+		$option = empty($_GET['option'])?0:$_GET['option'];
+		$value = isset($_GET['cancel'])?0:1;
+		
+		if(!in_array($option, array('dist','top','lock'))) {
+			throw new CHttpException(404,'非法选项.');
+		}
+		$topic->$option = $value;
+		$topic->save();
+	}	
 }

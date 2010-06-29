@@ -192,8 +192,16 @@ class GroupTopic extends CActiveRecord
 		return $model;
 	}
 	
+	public function afterFind()
+	{
+		$content = $this->getTopicContent();
+		$this->content_temp = $content;
+		return true;
+	}
+	
 	public function getTopicContent()
 	{
+		//TODO 缓存
 		return $this->content->content;
 	}
 	
@@ -223,12 +231,10 @@ class GroupTopic extends CActiveRecord
 			$post->attributes=$data;
 			$post->content = $this->content_temp;
 			$post->save();
-			
-			Group::model()->updateCounters(array('threadcount'=>+1), "id={$this->gid}");
 		}
 		else 
 		{
-			$post = GroupPost::model()->findByPk($this->content->id);
+			$post = $this->content;
 			$post->content = $this->content_temp;
 			$post->save();
 		}
