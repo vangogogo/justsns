@@ -31,13 +31,13 @@
 				<div class="lh35 alR toplineD">
 				
 					<?php if($isadmin) { ?>
-						<a href="__URL__/edit/gid/<?php echo ($gid); ?>/tid/<?php echo ($topic['id']); ?>" title="编辑">编辑</a> ┊ 
+						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']));?> ┊ 
 						<?php if($topic['dist'] == 1) { ?><a id="dist" href="javascript:admin_set('undist');" title="取消精华">取消精华</a> <?php } else { ?> <a id="dist" href="javascript:admin_set('dist');" title="精华">设置精华</a> <?php } ?>┊ 
 						<?php if($topic['top'] == 1) { ?><a id="top" href="javascript:admin_set('untop');" title="取消置顶">取消置顶</a> <?php } else { ?> <a id="top" href="javascript:admin_set('top');" title="置顶">置顶</a> <?php } ?>┊ 
 						<?php if($topic['lock'] == 1) { ?><a id="top" href="javascript:admin_set('unlock');" title="取消锁定">取消锁定</a> <?php } else { ?> <a id="top" href="javascript:admin_set('lock');" title="锁定">锁定</a> <?php } ?>┊ 
 						<a href="javascript:delThread(<?php echo ($gid); ?>,<?php echo ($tid); ?>);" title="删除">删除</a> ┊
 					<?php } elseif($this->mid == $topic['uid']) { ?>
-						<a href="__URL__/edit/gid/<?php echo ($gid); ?>/tid/<?php echo ($topic['id']); ?>" title="编辑">编辑</a> ┊
+						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']));?> ┊
 						<a href="javascript:delThread(<?php echo ($gid); ?>,<?php echo ($tid); ?>);" title="删除">删除</a> ┊
 					<?php } ?>
 

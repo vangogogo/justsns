@@ -111,4 +111,14 @@ class GroupMember extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/**
+	 * 添加群组成员以后
+	 */
+	protected function afterSave()
+	{
+		
+//		if($this->isNewRecord && $this->status==BlogComment::STATUS_APPROVED)
+//			Blog::model()->updateCounters(array('commentCount'=>1), "id={$this->blogId}");
+	}	
 }

@@ -254,6 +254,11 @@ class Group extends CActiveRecord
 		$model = new GroupTopic();
 		$params['gid'] = $this->id;
 		$topic = $model->addTopic($params);
+		if(empty($topic->errors))
+		{
+			$this->threadcount += 1;
+			$this->save();
+		}
 		return $topic;
 	}
 
