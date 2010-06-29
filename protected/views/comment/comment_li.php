@@ -1,8 +1,8 @@
 <li id="comm<?php echo $comment['id'];?>"class="comlist">
 	<div class="left" style="width:65px;">
 		<span class="headpic50">
-			<a href="__APP__/space/{$comment['uid']}" class="tips" rel="__TS__/Index/userInfo/uid/{$comment['uid']}">
-				<img src="<?php echo User::model()->getUserFace($comment['uid']);?>"/>
+			<a href="<?php echo $this->createUrl('/space/',array('uid'=>$comment['uid']));?>"  class="tips">
+				<img src="<?php echo User::model()->getUserFace($comment['uid'],'middle');?>" />
 			</a>
 		</span>
 	</div>

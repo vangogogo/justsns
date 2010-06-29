@@ -1,9 +1,11 @@
 <?php if(!empty($subcomment)):?>
 <div class="sublist pt5 clear" id="comm<?php echo $subcomment['id'];?>">
 	<div class="left" style="width:50px;">
-		<span class="pic38"><a href="__APP__/space/<?php echo $subcomment['id'];?>" class="tips" rel="__TS__/Index/userInfo/uid/{$value['uid']}">
-			<img src="<?php echo User::model()->getUserFace($subcomment['uid']);?>"/>
-		</a></span>
+		<span class="pic38">
+			<a href="<?php echo $this->createUrl('/space/',array('uid'=>$subcomment['uid']));?>"  class="tips">
+				<img src="<?php echo User::model()->getUserFace($subcomment['uid'],'middle');?>" />
+			</a>		
+		</span>
 	</div>
 	<div style=" margin-left:50px;">
 		<h3 class="tit_Critique lh20 mb5"><span class="right f12px mr5"></span>
