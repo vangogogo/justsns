@@ -3,7 +3,6 @@ $(function() {
 		self = $(this);
 		id = self.attr('id');
 		appid = self.attr('appid');
-		alert(appid);
 		deleteComment(id,appid);
 	});
 });
@@ -39,10 +38,7 @@ function subComment(vo){
 	return result;
 }
 
-function Confirm()
-{
-	
-}
+
 
 function deleteComment(id,appid){
 	Confirm({message:'是否删除此评论',handler:function(button){

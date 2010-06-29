@@ -1,5 +1,14 @@
 $(function() {
-
+	//确认删除
+	$('.a_confirm_link').live('click',function(){
+		self = $(this);
+		message = self.attr('title');
+		url = self.attr('href');
+		Confirm({message:message,handler:function(button){
+			$.get(url,'',function(result){Alert(result)});
+		}});
+		return false;
+	});
 });
 
 //jQuery UI 弹出框

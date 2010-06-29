@@ -156,5 +156,15 @@ class TopicController extends Controller
 		}
 		$topic->$option = $value;
 		$topic->save();
+	}
+
+	public function actionDoDelTopic()
+	{
+		echo 'actionDoDelTopic';
+	}
+	
+	public function actionDoDelPost()
+	{
+		echo 'actionDoDelTopic';
 	}	
 }
