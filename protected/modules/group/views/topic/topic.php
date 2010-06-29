@@ -67,21 +67,10 @@
 					<strong>回复话题：</strong>
 				</div>
 				<div style="width: 80%;" class="left">
-					<?php $this->widget('application.extensions.ckeditor.CKEditor', array(
+					<?php $this->widget('WPost', array(
 						'model'=>$post,
-						'name'=>'title',
-						'language'=>Yii::app()->language,
-						'editorTemplate'=>'basic',
-						'skin'=>'v2',
 					)); ?>
 				</div>
-				<div class="left alR lh25" style="width:20%;"><strong>&nbsp</strong></div>
-           		<div class="left" style="width:80%">
-                <input type="hidden" name="gid" value="{$gid}">
-				<input type="hidden" name="tid" value="{$tid}">
-				<input  type="submit" class="btn_b mt5"  value="发送" id="send_reply"/>
-			   </div>				
-
 			</div>
 		<?php echo EHtml::endForm(); ?>
 	</div>
