@@ -107,6 +107,9 @@ class TopicController extends Controller
 		$topics = $group->getGroupNewThreads();
 		
 		$post = new GroupPost();
+		$post->gid = $topic->gid;
+		$post->tid = $topic->id;
+		
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
