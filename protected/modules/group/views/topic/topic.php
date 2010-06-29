@@ -67,7 +67,7 @@
 					<strong>回复话题：</strong>
 				</div>
 				<div style="width: 80%;" class="left">
-					
+					<?php $this->renderPartial('../post/_form',array('model'=>$post,'topic'=>$topic,'update'=>false,)); ?>
 				</div>
 			</div>
 		</form>
