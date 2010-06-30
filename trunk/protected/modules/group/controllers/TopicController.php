@@ -144,18 +144,21 @@ class TopicController extends Controller
 	/**
 	 * 修改话题的状态，置顶，精华，锁定
 	 */
-	public function actionSwitch() {
-		$tid = Yii::app()->request->getParam('tid');
-		$topic = $this->loadTopic($tid);
+	public function actionSwitch() 
+	{
+		$model = new GroupTopic();
+		$tid = Yii::app()->request->getQuery('tid');
+		$topic = $model->loadTopic($tid);
 
 		$option = empty($_GET['option'])?0:$_GET['option'];
-		$value = isset($_GET['cancel'])?0:1;
-		
+		$value = empty($_GET['value'])?0:1;
+
 		if(!in_array($option, array('dist','top','lock'))) {
 			throw new CHttpException(404,'非法选项.');
 		}
 		$topic->$option = $value;
 		$topic->save();
+		echo !empty($topic->errors)?-1:1;
 	}
 
 	public function actionDoDelTopic()

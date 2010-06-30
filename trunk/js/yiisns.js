@@ -9,11 +9,32 @@ $(function() {
 		}});
 		return false;
 	});
+	
+	$('.a_alert_link').live('click',function(){
+		self = $(this);
+		message = self.attr('title');
+		url = self.attr('href');
+		$.get(url,'',function(result){
+			if(result == 1)
+			{
+				Alert(message+'成功','标题',function(){reload();});
+			}
+			else
+			{
+				Alert(message+'失败');
+			}
+			
+		});
+		return false;
+	});	
 });
 
+function reload() {
+	window.location.reload();
+}
 //jQuery UI 弹出框
 
-function Alert(message,title){
+function Alert(message,title,callback){
 
 	$("#dialog").dialog("destroy");
 	if ($("#dialog-message").length == 0) {
@@ -31,6 +52,7 @@ function Alert(message,title){
 		},
 		buttons: {
 			'确定': function() {
+				callback.call();
 				$(this).dialog('close');
 			}
 		}
