@@ -50,7 +50,7 @@ class GroupPost extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, gid, uid, tid, content, ip, istopic, ctime, status, quote, is_del, attach', 'safe', 'on'=>'search'),
-			array('content', 'required'),
+			array('gid, uid, tid, content, ip, istopic, ctime', 'required'),
 		);
 	}
 
@@ -142,7 +142,7 @@ class GroupPost extends CActiveRecord
 		{
 			$this->ctime = time();
 			$this->uid = Yii::app()->user->id;
-			$this->ip = Yii::app()->request->userHostAddress;		
+			$this->ip = Yii::app()->request->userHostAddress;
 		}
 		//else
 			//GroupPost 没有修改时间
@@ -209,4 +209,11 @@ class GroupPost extends CActiveRecord
 			GroupTopic::model()->updateCounters(array('replycount'=>-1), "id={$this->tid}");
 		}
 	}
+	
+	public function addPost($params)
+	{
+		$this->attributes = $params;
+		$this->save();
+		return $this;
+	}	
 }

@@ -12,6 +12,7 @@ class WPost extends CWidget
 	public function run()
 	{
 		$post = new GroupPost();
+		$post = $this->model;
 		$data = array(
 			'model' => $post,	
 		);
