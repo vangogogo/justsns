@@ -52,7 +52,10 @@ function Alert(message,title,callback){
 		},
 		buttons: {
 			'确定': function() {
-				callback.call();
+				if(typeof(callback)=="function")
+				{
+					callback.call();
+				}
 				$(this).dialog('close');
 			}
 		}

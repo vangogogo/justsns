@@ -22,7 +22,6 @@ class TopicController extends Controller
 			'is_me'=>$is_me,
 			'apps'=>$apps,
 			'apps_num'=>$apps_num,
-		
 			'uid' => $uid,
 			'mid' => $mid,
 			'may_users' => $may_users,

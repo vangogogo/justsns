@@ -112,7 +112,7 @@
 		<div class="lh30 alR topline">
 			<?php echo CHtml::link('返回话题列表>>',array('group/discussion','gid'=>$topic['gid']));?>
 		</div>
-		<?php echo CHtml::beginForm(); ?>
+
 			<div class="li">
 				<div style="width: 20%;" class="left alR lh25">
 					<strong>回复话题：</strong>
@@ -121,6 +121,6 @@
 					<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
 				</div>
 			</div>
-		<?php echo CHtml::endForm(); ?>
+
 	</div>
 </div>

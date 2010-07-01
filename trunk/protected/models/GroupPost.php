@@ -50,6 +50,7 @@ class GroupPost extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, gid, uid, tid, content, ip, istopic, ctime, status, quote, is_del, attach', 'safe', 'on'=>'search'),
+			array('content', 'required'),
 		);
 	}
 
