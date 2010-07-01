@@ -61,71 +61,66 @@
 			</div>
 			<div class="c"></div>
 		</div>
+		<?php if(!empty($post_list)):?>
+		<?php foreach($post_list as $key => $post):?>
 		<div class="li pt10 topline">
 			<div class="left" style="width:8%;">
 				<span class="headpic50">
-					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$topic['uid']));?>"  class="tips">
-						<img title="<?php echo User::model()->getUserName($topic['uid']);?>" src="<?php echo User::model()->getUserFace($topic['uid'],'middle');?>" />
+					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$post['uid']));?>"  class="tips">
+						<img title="<?php echo User::model()->getUserName($post['uid']);?>" src="<?php echo User::model()->getUserFace($topic['uid'],'middle');?>" />
 					</a>
 				</span>
 				<br />
 			</div>
 			<div style="width: 12%; overflow: hidden;" class="left lh30">
-				<a href="<?php echo $this->createUrl('/space/',array('uid'=>$topic['uid']));?>"  class="tips">
-					<?php echo User::model()->getUserName($topic['uid']);?>
+				<a href="<?php echo $this->createUrl('/space/',array('uid'=>$post['uid']));?>"  class="tips">
+					<?php echo User::model()->getUserName($post['uid']);?>
 				</a>
 				<br>
-				<img alt="管理员" src="http://localhost/thinksns/public/themes/blue/images/icon/groupicon/admin.png">
+				<?php //{$post['uid']|getUserGroupIcon}?>
 			</div>
-						
-			<div class="left lh30" style="width:12%; overflow:hidden;">
-			<a href="__TS__/space/{$post['uid']}">{$post['uid']|getUserName}</a> <BR>{$post['uid']|getUserGroupIcon}</div>
 			<div class="left" style="width:80%">
-			  <div class="cGray2 lh30">
-				<div class="right"><php>$p = $_GET['p'] ? intval($_GET['p']) : 1; echo intval($p-1)*$limit+($key-1)</php>楼</div>
-			  {$post['ctime']|friendlyDate}</div>
+				<div class="cGray2 lh30">
+					<div class="right">
+				<?php $p = $_GET['page'] ? intval($_GET['page']) : 1; echo intval($p-1)*$post_pages->pageSize+($key+1) ?>楼
+					</div>
+					<?php echo friendlyDate('Y-m-d H:i:s',$post['ctime']);?>
+				</div>
 				<div class="btmlineD pb10 pt10 f14px" style="line-height:180%;">
 				<div style="padding:0 50px 0 0; " id="reply_content">
-					<php>if($post['quote']){ $qcontent = getPost($post['quote']);$qstr = "<a href='__TS__/space/$qcontent[uid]'>".getUserName($qcontent['uid']).'</a> 回复于：'.friendlyDate($qcontent['ctime']).'<br/>'.h($qcontent['content']); </php><div id="quotes">   {$qstr|stripslashes|ubb} </div>  <php>}</php>
-					{$post['content']|stripslashes|ubb|h}
-		
-					<php>if($post['attach']) { $attach = unserialize($post['attach']);  </php>
-					<volist name="attach" id="data">
-					<php>$data = explode('|',$data);</php>
-					<div class="adjunct_list">
-		                            <h2>附件:</h2>
-		                        <p class="cGray2"><a href="__TS__/Attach/index/id/{$data['0']}/uid/{$post['uid']}">{$data[1]}</a><p>
-		                        </div>
-					</volist>
-				<php>}</php>
+					<?php if($post['quote']){ $qcontent = getPost($post['quote']);$qstr = "<a href='__TS__/space/$qcontent[uid]'>".getUserName($qcontent['uid']).'</a> 回复于：'.friendlyDate($qcontent['ctime']).'<br/>'.h($qcontent['content']);  ?><div id="quotes">   {$qstr|stripslashes|ubb} </div>  <?php } ?>
+
+					<?php echo h(stripslashes($post['content']));?>
 		
 					</div>
 				</div>
 				<div class="lh35 alR">
-				   <php>if($topic['lock'] == 1 || !$actor_level){</php>   <php>} else{ </php>
+					<?php if($topic['lock'] == 1 || !$actor_level){ ?>   <?php } else{  ?>
 					<a href="javascript:quote({$post['id']})">引用</a>
-					<php>}</php>
+					<?php } ?>
 		
-					<php>if($mid == $post['uid'] || $isadmin){</php> ┊ <a href="__APP__/Topic/editPost/gid/{$gid}/pid/{$post['id']}">编辑</a> ┊ <a href="javascript:delPost({$gid},{$post['id']});">删除</a><php>}</php>
+					<?php if($mid == $post['uid'] || $isadmin){ ?> ┊ <a href="__APP__/Topic/editPost/gid/{$gid}/pid/{$post['id']}">编辑</a> ┊ <a href="javascript:delPost({$gid},{$post['id']});">删除</a><?php } ?>
 				</div>
 			</div>
 			<div class="c"></div>
 		</div>		
-		
-		<div class="page">
+		<?php endforeach;?>
+		<div class="baikeUserPage">
+			<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
 		</div>
+		<?php endif ?>
 		<div class="lh30 alR topline">
 			<?php echo CHtml::link('返回话题列表>>',array('group/discussion','gid'=>$topic['gid']));?>
 		</div>
-		<?php echo EHtml::beginForm(); ?>
+		<?php echo CHtml::beginForm(); ?>
 			<div class="li">
 				<div style="width: 20%;" class="left alR lh25">
 					<strong>回复话题：</strong>
 				</div>
 				<div style="width: 80%;" class="left">
-					<?php //$this->widget('WPost', array('model'=>$post,)); ?>
+					<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
 				</div>
 			</div>
-		<?php echo EHtml::endForm(); ?>
+		<?php echo CHtml::endForm(); ?>
 	</div>
 </div>

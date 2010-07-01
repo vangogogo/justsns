@@ -2,6 +2,7 @@
 
 class Group extends CActiveRecord
 {
+	const PAGE_SIZE=20;
 	/**
 	 * The followings are the available columns in table 'group':
 	 * @var integer $id
@@ -288,15 +289,14 @@ class Group extends CActiveRecord
 					}
 				}
 		}
-		$page_size = $params['page_size'];
-		if(!empty($page_size))
+		$pageSize = $params['pageSize'];
+		if(!empty($pageSize))
 		{
 			$page = $params['page'];
 			$_GET['page'] = $page;
 			$total = $model->count($criteria);
 			$pages=new CPagination($total);
-			$pages->pageSize=$page_size;
-			//$pages->currentPage = $page;
+			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
 			$pages->applyLimit($criteria);
 		}
 		$models=$model->findAll($criteria);
@@ -333,15 +333,14 @@ class Group extends CActiveRecord
 					}
 				}
 		}
-		$page_size = $params['page_size'];
-		if(!empty($page_size))
+		$pageSize = $params['pageSize'];
+		if(!empty($pageSize))
 		{
 			$page = $params['page'];
 			$_GET['page'] = $page;
 			$total = $model->count($criteria);
 			$pages=new CPagination($total);
-			$pages->pageSize=$page_size;
-			//$pages->currentPage = $page;
+			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
 			$pages->applyLimit($criteria);
 		}
 		$models=$model->findAll($criteria);
@@ -382,15 +381,14 @@ class Group extends CActiveRecord
 					}
 				}
 		}
-		$page_size = $params['page_size'];
-		if(!empty($page_size))
+		$pageSize = $params['pageSize'];
+		if(!empty($pageSize))
 		{
 			$page = $params['page'];
 			$_GET['page'] = $page;
 			$total = $model->count($criteria);
 			$pages=new CPagination($total);
-			$pages->pageSize=$page_size;
-			//$pages->currentPage = $page;
+			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
 			$pages->applyLimit($criteria);
 		}
 		$models=$model->findAll($criteria);
@@ -478,4 +476,47 @@ class Group extends CActiveRecord
 		$models=$model->findAll($criteria);
 		return $models;
 	}
+	
+	
+	public function getGroupPosts(array $params = array(), $limit = '6')
+	{
+		$model = new GroupPost();
+		$criteria=new CDbCriteria;
+		$criteria->condition.="1";
+		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		if(!empty($limit))
+		{
+			$criteria->limit = $limit;
+		}
+		if(!empty($params))
+		{
+			$array = array(
+				'gid','tid','uid','quote','is_del'
+				);
+				foreach($params as $key => $value)
+				{
+					if(in_array($key,$array))
+					{
+						$criteria->condition.=" and $key=:$key";
+						$criteria->params[':'.$key]=$value;
+					}
+				}
+		}
+		$pageSize = $params['pageSize'];
+		if(!empty($pageSize))
+		{
+			$page = $params['page'];
+			$_GET['page'] = $page;
+			$total = $model->count($criteria);
+			$pages=new CPagination($total);
+			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
+			$pages->applyLimit($criteria);
+		}
+		$models=$model->findAll($criteria);
+		$data = array(
+			'post_list'=>$models,
+			'pages' => $pages,
+		);
+		return $data;
+	}	
 }
