@@ -173,5 +173,13 @@ class TopicController extends Controller
 	public function actionDoDelPost()
 	{
 		echo 'actionDoDelTopic';
-	}	
+	}
+	
+	public function actionDoAddPost()
+	{
+		$model = new GroupPost();
+		$params = $_POST['GroupPost'];
+		$post = $model->addPost($params);
+		echo !empty($topic->errors)?-1:1;
+	}
 }

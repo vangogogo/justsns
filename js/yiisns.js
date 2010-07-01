@@ -96,3 +96,30 @@ function Confirm(object,callback){
 	$("#dialog-confirm").html(message);
 	$("#dialog-confirm").dialog("open");
 }
+
+function showloading(wating) {
+	
+	if ($("#ajax-show").length == 0) {
+		$("body").append('<div id="ajax-show" class="ui-widget-content ui-corner-all"><div id="ajax-show-content" class="ui-widget-header ui-corner-all">Show</div></div>');
+	}
+
+	$("#ajax-show-content").html(wating);
+	//get effect type from 
+	var selectedEffect = 'highlight';
+	
+	//most effect types need no options passed by default
+	var options = {};
+	//check if it's scale or size - they need options explicitly set
+	if(selectedEffect == 'scale'){  options = {percent: 100}; }
+	else if(selectedEffect == 'size'){ options = { to: {width: 280,height: 185} }; }
+	
+	//run the effect
+	$("#ajax-show").show(selectedEffect,options,500,callback);
+	//Alert(wating);
+}
+
+function callback(){
+	setTimeout(function(){
+		$("#ajax-show:visible").removeAttr('style').hide().fadeOut();
+	}, 5000);
+};
