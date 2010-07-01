@@ -97,23 +97,28 @@ class TopicController extends Controller
 		$model = new GroupTopic();
 		$tid = Yii::app()->request->getQuery('tid');
 		$topic = $model->loadTopic($tid);
+
 		//访问量+1
 		$topic->updateCounters(array('viewcount'=>+1));
-		//回复主题
-		$comment=$this->newComment($post);
-		
 		//相关话题求助
 		$group = $topic->group;
 		$topics = $group->getGroupNewThreads();
 		
-		$post = new GroupPost();
-		$post->gid = $topic->gid;
-		$post->tid = $topic->id;
+		$params = array('tid'=>$tid);
+
+		$params['page'] = $_GET['page'];
+		$post_data = $group->getGroupPosts($params);
+
+		$GroupPost = new GroupPost();
+		$GroupPost->gid = $topic->gid;
+		$GroupPost->tid = $topic->id;
 		
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
-			'post'=>$post,
+			'GroupPost'=>$GroupPost,
+			'post_list'=>$post_data['post_list'],
+			'post_pages'=>$post_data['pages'],
 		);
 		$this->render('topic',$data);
 	}

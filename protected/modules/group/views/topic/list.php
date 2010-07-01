@@ -6,16 +6,16 @@
 		</tr>
 		
 		<?php if(!empty($threads)){?>
-			<?php foreach($threads as $thread):?>
+			<?php foreach($threads as $topic):?>
 			<tr>
 			<td class="OverH">
-				<?php if($thread['top']):?><span class="zd">顶</span><?php endif;?>
-				<?php if($thread['dist']):?><span class="jh">精</span><?php endif;?>
-				<?php echo CHtml::link($thread['title'],array('/group/topic/'.$thread['id'],));?>
+				<?php if($topic['top']):?><span class="zd">顶</span><?php endif;?>
+				<?php if($topic['dist']):?><span class="jh">精</span><?php endif;?>
+				<?php echo CHtml::link($topic['title'],array('/group/topic/'.$topic['id'],));?>
 			</td>
-			<td><?php echo $thread['name']?></td>
-			<td><?php echo $thread['postcount']?>/<?php echo $thread['viewcount']?></td>
-			<td><?php echo friendlyDate('Y-m-d H:i:s',$thread['replytime'])?></td>
+			<td><?php echo $topic['name']?></td>
+			<td><?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?></td>
+			<td><?php echo friendlyDate('Y-m-d H:i:s',$topic['replytime'])?></td>
 			<?php endforeach;?>
 			</tr>
 		<?php }else{?>
