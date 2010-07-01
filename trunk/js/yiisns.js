@@ -114,11 +114,11 @@ function showloading(wating) {
 	else if(selectedEffect == 'size'){ options = { to: {width: 280,height: 185} }; }
 	
 	//run the effect
-	$("#ajax-show").show(selectedEffect,options,500,callback);
+	$("#ajax-show").show(selectedEffect,options,500,showloading_callback);
 	//Alert(wating);
 }
 
-function callback(){
+function showloading_callback(){
 	setTimeout(function(){
 		$("#ajax-show:visible").removeAttr('style').hide().fadeOut();
 	}, 5000);
