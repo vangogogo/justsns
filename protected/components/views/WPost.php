@@ -1,3 +1,23 @@
+<?php
+	echo EHtml::beginForm(); 
+	EHtml::setOptions(array(
+	
+		//'errorLabelContainer' 	=> 'div.container ul',
+		//'errorContainer'		=> 'div.container',
+		'errorElement'			=> "div",
+		//'wrapper' 				=> 'li',
+		'errorClass' 			=> 'invalid',
+		
+		//错误提示
+		'errorPlacement' => 'function(error, element) {Alert(error);}',
+
+		//'keyup' 				=> false,
+		//'focusout' 				=> true,
+
+		'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
+	));
+?>
+
 <?php /*$this->widget('application.extensions.ckeditor.CKEditor', array(
 	'model'=>$model,
 	'name'=>'content',
@@ -5,8 +25,11 @@
 	'editorTemplate'=>'basic',
 	'skin'=>'v2',
 ));*/ ?>
-<?php echo CHtml::activeTextArea($model,'content');?>
+<?php echo EHtml::activeTextArea($model,'content');?>
 <br/>
-<?php echo CHtml::activeHiddenField($model,'gid');?>
-<?php echo CHtml::activeHiddenField($model,'tid');?>
-<input  type="submit" class="btn_b mt5"  value="发送" id="send_reply"/>
+<?php echo EHtml::activeHiddenField($model,'gid');?>
+<?php echo EHtml::activeHiddenField($model,'tid');?>
+
+<?php echo EHtml::submitButton('发送',array('id'=> 'send_reply','value'=>'发送','class'=>'btn_b mt5')); ?>
+
+<?php echo EHtml::endForm(); ?>		
