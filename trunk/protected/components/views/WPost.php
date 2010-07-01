@@ -1,19 +1,17 @@
 <?php
-	echo EHtml::beginForm(); 
+	echo EHtml::beginForm();
 	EHtml::setOptions(array(
 	
 		//'errorLabelContainer' 	=> 'div.container ul',
 		//'errorContainer'		=> 'div.container',
 		'errorElement'			=> "div",
 		//'wrapper' 				=> 'li',
-		'errorClass' 			=> 'invalid',
-		
+		'errorClass' 			=> 'error',
 		//错误提示
-		'errorPlacement' => 'function(error, element) {Alert(error);}',
+		//'errorPlacement' => 'function(error, element) {Alert(error);}',
 
-		//'keyup' 				=> false,
-		//'focusout' 				=> true,
-
+		'keyup' 				=> false,
+		'focusout'				=> true,
 		'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
 	));
 ?>
@@ -25,6 +23,7 @@
 	'editorTemplate'=>'basic',
 	'skin'=>'v2',
 ));*/ ?>
+<?php echo EHtml::errorSummary($model);?>
 <?php echo EHtml::activeTextArea($model,'content');?>
 <br/>
 <?php echo EHtml::activeHiddenField($model,'gid');?>

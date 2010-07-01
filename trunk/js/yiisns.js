@@ -43,7 +43,7 @@ function Alert(message,title,callback){
 	
 	$("#dialog-message").dialog({
 		title: '消息框',
-		//modal: true,
+		modal: true,
 		resizable:false,
 		autoOpen: false,
 		overlay: {
@@ -52,10 +52,6 @@ function Alert(message,title,callback){
 		},
 		buttons: {
 			'确定': function() {
-				if(typeof(callback)=="function")
-				{
-					callback.call();
-				}
 				$(this).dialog('close');
 			}
 		}
@@ -85,7 +81,10 @@ function Confirm(object,callback){
 		},
 		buttons: {
 			"确定": function(){
-				callback.call();
+				if(typeof(callback)=="function")
+				{
+					callback.call();
+				}
 				$(this).dialog("close");
 			},
 			"取消": function(){
