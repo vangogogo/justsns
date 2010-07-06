@@ -48,16 +48,29 @@ $(document).ready(function() {
 	<!--用户应用-->
 	<div class="system_info">
 		<div style="width:23%">
-			<a href="__APP__/Notify/inbox">短消息<span class="<?php if($notify_num['message']){ echo 'cRed fB f14px'; }else{ echo 'cGray2'; } ?> hand"><?php echo $notify_num["message"];?></span>条
-			</a>
+			<?php $class =  $notify_num['message']>0?'cRed fB f14px':'cGray2';
+				$text = '短消息<span class="'.$class.' hand">'.$notify_num["message"].'</span>条';
+			?>
+			<?php echo CHtml::link($text,array('notify/inbox'));?>
 		</div>
 		<div style="width:26%">
-			<a href="__APP__/Notify/index/t/sys">系统通知<span class="<?php if($notify_num['notification']){ echo 'cRed fB f14px'; }else{ echo 'cGray2'; } ?> hand"><?php echo $notify_num["notification"];?></span>条 </a>
+			<?php $class =  $notify_num['notification']>0?'cRed fB f14px':'cGray2';
+				$text = '系统通知<span class="'.$class.' hand">'.$notify_num["notification"].'</span>条';
+			?>
+			<?php echo CHtml::link($text,array('notify/index','type'=>'system'));?>
 		</div>
-		<div style="width:26%"><a href="__APP__/Notify/index/t/fri" >好友请求<span class="<?php if($notify_num['friend']){ echo 'cRed fB f14px'; }else{ echo 'cGray2'; } ?> hand"><?php echo $notify_num["friend"];?></span>条
-			</a>
+		<div style="width:26%">
+			<?php $class =  $notify_num['friend']>0?'cRed fB f14px':'cGray2';
+				$text = '好友请求<span class="'.$class.' hand">'.$notify_num["friend"].'</span>条';
+			?>
+			<?php echo CHtml::link($text,array('notify/index','type'=>'friend'));?>
 		</div>
-		<div style="width:23%"><a href="__APP__/space/{$mid}#wall">留言板<span class="<?php if($notify_num['wall']){ echo 'cRed fB f14px'; }else{ echo 'cGray2'; } ?> hand"><?php echo $notify_num["wall"];?></span>条</a>
+		<div style="width:23%">
+		
+			<?php $class =  $notify_num['wall']>0?'cRed fB f14px':'cGray2';
+				$text = '留言板<span class="'.$class.' hand">'.$notify_num["wall"].'</span>条';
+			?>
+			<?php echo CHtml::link($text,array('/space','uid'=>$this->mid));?>
 		</div>
 	</div>
 	<!--用户应用end-->

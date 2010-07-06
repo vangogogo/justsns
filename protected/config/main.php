@@ -184,7 +184,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-		'upload_dir'=>'/yiisns/uploads/images/',
+		'upload_dir'=>'/uploads/images/',
 		'uploadPath'=>$path.'/uploads/images/'
 	),
 );

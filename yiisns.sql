@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2010 年 06 月 23 日 10:20
+-- 生成日期: 2010 年 07 月 02 日 03:59
 -- 服务器版本: 5.1.41
 -- PHP 版本: 5.3.1
 
@@ -355,46 +355,6 @@ CREATE TABLE IF NOT EXISTS `event_user` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `feed`
---
-
-CREATE TABLE IF NOT EXISTS `feed` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `title_data` text,
-  `body_data` text,
-  `cTime` int(11) DEFAULT NULL,
-  `appid` varchar(25) DEFAULT '',
-  `feedtype` tinyint(3) NOT NULL DEFAULT '0',
-  `fid` int(11) NOT NULL DEFAULT '0',
-  `cache` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
-
---
--- 转存表中的数据 `feed`
---
-
-INSERT INTO `feed` (`id`, `uid`, `username`, `type`, `title_data`, `body_data`, `cTime`, `appid`, `feedtype`, `fid`, `cache`) VALUES
-(1, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:1;s:5:"cTime";i:1260770316;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(2, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:2;s:5:"cTime";i:1260770316;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(3, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/1/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:15:"放大萨发送";s:5:"title";s:0:"";}', 1261033225, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:3;s:5:"cTime";i:1261033225;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/1/mid/1">放大萨</a>";s:4:"body";s:15:"放大萨发送";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
-(4, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/2/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:9:"放大萨";s:5:"title";s:0:"";}', 1261033329, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:4;s:5:"cTime";i:1261033329;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1">放大萨</a>";s:4:"body";s:9:"放大萨";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
-(5, 1, '管理员', 'group_create', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:2:{s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 1261033391, '12', 0, 1, 'a:7:{s:4:"type";s:12:"group_create";s:2:"id";i:5;s:5:"cTime";i:1261033391;s:3:"uid";i:1;s:5:"title";s:92:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 创建了一个新群组";s:4:"body";s:92:" <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
-(6, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:1;}', 1261033453, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:6;s:5:"cTime";i:1261033453;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/1">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
-(7, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:2;}', 1261040927, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:7;s:5:"cTime";i:1261040927;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/2">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
-(8, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:8;s:5:"cTime";i:1262749737;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(9, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:9;s:5:"cTime";i:1262749737;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
-(10, 1, '管理员', 'vote_add', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', 'a:2:{s:3:"url";s:56:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>去投票</a>";s:4:"body";s:27:"1.1<br />2.2<br />3.3<br />";}', 1262828895, '13', 0, 0, 'a:7:{s:4:"type";s:8:"vote_add";s:2:"id";i:10;s:5:"cTime";i:1262828895;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发起了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"body";s:123:"1.1<br />2.2<br />3.3<br />\r\n<a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>去投票</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
-(11, 1, '管理员', 'vote_in', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', '0', 1262828929, '13', 0, 0, 'a:6:{s:4:"type";s:7:"vote_in";s:2:"id";i:11;s:5:"cTime";i:1262828929;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 参与了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
-(12, 1, '管理员', 'mini', 'a:1:{s:7:"content";s:70:"<img title=''流汗'' src=''{PUBLIC_URL}/images/biaoqing/mini/sweat.gif''>";}', 'a:3:{s:2:"id";i:1;s:3:"uid";i:1;s:3:"con";s:7:"/流汗";}', 1262831743, '3', 0, 0, 'a:7:{s:4:"type";s:4:"mini";s:2:"id";i:12;s:5:"cTime";i:1262831743;s:3:"uid";i:1;s:5:"title";s:233:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a>:<img title=''流汗'' src=''http://localhost/thinksns/public/images/biaoqing/mini/sweat.gif''>  <a href="javascript:void(0)" onclick="hide_reply(this);">收起回复</a>";s:4:"body";s:149:"<input type="hidden" value="/流汗" class="mini_con"><input type="hidden" value="1" class="mini_id"><input type="hidden" value="1" class="mini_uid">";s:4:"icon";s:57:"http://localhost/thinksns/apps/mini/appinfo/ico_app04.gif";}'),
-(13, 1, '管理员', 'share_blog', 'a:1:{s:2:"id";i:1;}', 'a:10:{s:4:"name";s:9:"管理员";s:3:"uid";s:1:"1";s:5:"title";s:9:"放大萨";s:5:"intro";s:9:"放大萨";s:5:"aimId";i:2;s:6:"typeId";i:5;s:5:"toUid";i:1;s:10:"toUserName";s:9:"管理员";s:4:"info";s:2:"12";s:2:"id";i:1;}', 1262831945, '11', 0, 0, 'a:7:{s:4:"type";s:10:"share_blog";s:2:"id";i:13;s:5:"cTime";i:1262831945;s:3:"uid";i:1;s:5:"title";s:181:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 分享了一个日志 (<a href=''http://localhost/thinksns/apps/share/index.php?s=/Index/content/id/1''>评论</a>)";s:4:"body";s:331:"<div class="lh30 fB"><a href=''http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1''>放大萨</a></div> \r\n<div class="lh20">来自:<a href=''http://localhost/thinksns/index.php?s=/space/1''>管理员</a></div>\r\n<div class="lh20 cGray2">放大萨</div>\r\n<div class="quote"><p><span class="quoteR">12</span></p></div>";s:4:"icon";s:62:"http://localhost/thinksns/apps/share/appinfo/ico_app_share.gif";}');
-
--- --------------------------------------------------------
-
---
 -- 表的结构 `feed_del`
 --
 
@@ -589,31 +549,6 @@ INSERT INTO `group_attention` (`id`, `gid`, `uid`, `ctime`, `mtime`, `is_delete`
 (20, 37, 1, 2010, 0, 0),
 (21, 40, 1, 2010, 0, 0),
 (22, 60, 1, 2010, 0, 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `group_category`
---
-
-CREATE TABLE IF NOT EXISTS `group_category` (
-  `id` mediumint(5) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT '1',
-  `pid` tinyint(3) NOT NULL DEFAULT '0',
-  `module` varchar(50) DEFAULT NULL,
-  `desc` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- 转存表中的数据 `group_category`
---
-
-INSERT INTO `group_category` (`id`, `title`, `type`, `pid`, `module`, `desc`) VALUES
-(5, '子类1', 1, 2, NULL, '发大水'),
-(2, '大类1', 1, 0, NULL, '大大大'),
-(6, '子类2', 1, 2, NULL, '发生');
 
 -- --------------------------------------------------------
 
@@ -4453,6 +4388,46 @@ INSERT INTO `yiisns_comment` (`id`, `type`, `appid`, `name`, `uid`, `comment`, `
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `yiisns_feed`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_feed` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `title_data` text,
+  `body_data` text,
+  `cTime` int(11) DEFAULT NULL,
+  `appid` varchar(25) DEFAULT '',
+  `feedtype` tinyint(3) NOT NULL DEFAULT '0',
+  `fid` int(11) NOT NULL DEFAULT '0',
+  `cache` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- 转存表中的数据 `yiisns_feed`
+--
+
+INSERT INTO `yiisns_feed` (`id`, `uid`, `username`, `type`, `title_data`, `body_data`, `cTime`, `appid`, `feedtype`, `fid`, `cache`) VALUES
+(1, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:1;s:5:"cTime";i:1260770316;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(2, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1260770316, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:2;s:5:"cTime";i:1260770316;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(3, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/1/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:15:"放大萨发送";s:5:"title";s:0:"";}', 1261033225, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:3;s:5:"cTime";i:1261033225;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/1/mid/1">放大萨</a>";s:4:"body";s:15:"放大萨发送";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
+(4, 1, '管理员', 'blog', 'a:1:{s:5:"title";s:56:"<a href="{SITE_URL}/Index/show/id/2/mid/1">放大萨</a>";}', 'a:2:{s:7:"content";s:9:"放大萨";s:5:"title";s:0:"";}', 1261033329, '4', 0, 0, 'a:7:{s:4:"type";s:4:"blog";s:2:"id";i:4;s:5:"cTime";i:1261033329;s:3:"uid";i:1;s:5:"title";s:186:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发表了一篇日志：<a href="http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1">放大萨</a>";s:4:"body";s:9:"放大萨";s:4:"icon";s:57:"http://localhost/thinksns/apps/blog/appinfo/ico_app01.gif";}'),
+(5, 1, '管理员', 'group_create', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:2:{s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 1261033391, '12', 0, 1, 'a:7:{s:4:"type";s:12:"group_create";s:2:"id";i:5;s:5:"cTime";i:1261033391;s:3:"uid";i:1;s:5:"title";s:92:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 创建了一个新群组";s:4:"body";s:92:" <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
+(6, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:1;}', 1261033453, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:6;s:5:"cTime";i:1261033453;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/1">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
+(7, 1, '管理员', 'group_topic', 'a:3:{s:5:"actor";s:9:"管理员";s:3:"gid";i:1;s:10:"group_name";s:9:"放大萨";}', 'a:3:{s:5:"title";s:3:"123";s:3:"gid";i:1;s:3:"tid";i:2;}', 1261040927, '12', 0, 1, 'a:7:{s:4:"type";s:11:"group_topic";s:2:"id";i:7;s:5:"cTime";i:1261040927;s:3:"uid";i:1;s:5:"title";s:191:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 在 <a href=''http://localhost/thinksns/apps/group/index.php?s=/Group/index/gid/1''>放大萨</a> 中发表了一个新话题";s:4:"body";s:91:"<a href="http://localhost/thinksns/apps/group/index.php?s=/Topic/topic/gid/1/tid/2">123</a>";s:4:"icon";s:58:"http://localhost/thinksns/apps/group/appinfo/ico_app05.gif";}'),
+(8, 2, '黄大', 'add_friend', 'a:2:{s:4:"user";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";s:5:"fuser";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:8;s:5:"cTime";i:1262749737;s:3:"uid";i:2;s:5:"title";s:91:"<a href=''__TS__/space/2''>黄大</a> 和 <a href=''__TS__/space/1''>管理员</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(9, 1, '管理员', 'add_friend', 'a:2:{s:4:"user";s:40:"<a href=''{__TS__}/space/1''>管理员</a>";s:5:"fuser";s:37:"<a href=''{__TS__}/space/2''>黄大</a>";}', '0', 1262749737, '', 0, 0, 'a:6:{s:4:"type";s:10:"add_friend";s:2:"id";i:9;s:5:"cTime";i:1262749737;s:3:"uid";i:1;s:5:"title";s:91:"<a href=''__TS__/space/1''>管理员</a> 和 <a href=''__TS__/space/2''>黄大</a> 成为好友";s:4:"icon";s:50:"http://localhost/thinksns/public/images/system.gif";}'),
+(10, 1, '管理员', 'vote_add', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', 'a:2:{s:3:"url";s:56:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>去投票</a>";s:4:"body";s:27:"1.1<br />2.2<br />3.3<br />";}', 1262828895, '13', 0, 0, 'a:7:{s:4:"type";s:8:"vote_add";s:2:"id";i:10;s:5:"cTime";i:1262828895;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 发起了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"body";s:123:"1.1<br />2.2<br />3.3<br />\r\n<a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>去投票</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
+(11, 1, '管理员', 'vote_in', 'a:1:{s:5:"title";s:51:"<a href=''{SITE_URL}/Index/pollDetail/id/1''>1234</a>";}', '0', 1262828929, '13', 0, 0, 'a:6:{s:4:"type";s:7:"vote_in";s:2:"id";i:11;s:5:"cTime";i:1262828929;s:3:"uid";i:1;s:5:"title";s:173:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 参与了投票 <a href=''http://localhost/thinksns/apps/vote/index.php?s=/Index/pollDetail/id/1''>1234</a>";s:4:"icon";s:57:"http://localhost/thinksns/apps/vote/appinfo/ico_app06.gif";}'),
+(12, 1, '管理员', 'mini', 'a:1:{s:7:"content";s:70:"<img title=''流汗'' src=''{PUBLIC_URL}/images/biaoqing/mini/sweat.gif''>";}', 'a:3:{s:2:"id";i:1;s:3:"uid";i:1;s:3:"con";s:7:"/流汗";}', 1262831743, '3', 0, 0, 'a:7:{s:4:"type";s:4:"mini";s:2:"id";i:12;s:5:"cTime";i:1262831743;s:3:"uid";i:1;s:5:"title";s:233:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a>:<img title=''流汗'' src=''http://localhost/thinksns/public/images/biaoqing/mini/sweat.gif''>  <a href="javascript:void(0)" onclick="hide_reply(this);">收起回复</a>";s:4:"body";s:149:"<input type="hidden" value="/流汗" class="mini_con"><input type="hidden" value="1" class="mini_id"><input type="hidden" value="1" class="mini_uid">";s:4:"icon";s:57:"http://localhost/thinksns/apps/mini/appinfo/ico_app04.gif";}'),
+(13, 1, '管理员', 'share_blog', 'a:1:{s:2:"id";i:1;}', 'a:10:{s:4:"name";s:9:"管理员";s:3:"uid";s:1:"1";s:5:"title";s:9:"放大萨";s:5:"intro";s:9:"放大萨";s:5:"aimId";i:2;s:6:"typeId";i:5;s:5:"toUid";i:1;s:10:"toUserName";s:9:"管理员";s:4:"info";s:2:"12";s:2:"id";i:1;}', 1262831945, '11', 0, 0, 'a:7:{s:4:"type";s:10:"share_blog";s:2:"id";i:13;s:5:"cTime";i:1262831945;s:3:"uid";i:1;s:5:"title";s:181:"<a style=''white-space: nowrap;'' href=''__TS__/space/1''>管理员</a> 分享了一个日志 (<a href=''http://localhost/thinksns/apps/share/index.php?s=/Index/content/id/1''>评论</a>)";s:4:"body";s:331:"<div class="lh30 fB"><a href=''http://localhost/thinksns/apps/blog/index.php?s=/Index/show/id/2/mid/1''>放大萨</a></div> \r\n<div class="lh20">来自:<a href=''http://localhost/thinksns/index.php?s=/space/1''>管理员</a></div>\r\n<div class="lh20 cGray2">放大萨</div>\r\n<div class="quote"><p><span class="quoteR">12</span></p></div>";s:4:"icon";s:62:"http://localhost/thinksns/apps/share/appinfo/ico_app_share.gif";}');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `yiisns_friend`
 --
 
@@ -4738,7 +4713,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_group` (
 --
 
 INSERT INTO `yiisns_group` (`id`, `uid`, `name`, `intro`, `logo`, `announce`, `cid0`, `cid1`, `membercount`, `threadcount`, `postcount`, `type`, `need_invite`, `need_verify`, `actor_level`, `brower_level`, `openUploadFile`, `whoUploadFile`, `openAlbum`, `whoCreateAlbum`, `whoUploadPic`, `anno`, `ipshow`, `invitepriv`, `createalbumpriv`, `uploadpicpriv`, `ctime`, `mtime`, `status`, `isrecom`, `is_del`) VALUES
-(1, 1, '第一个群组', '一点结束少', '', '公告', 2, 0, 0, 3, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260696662, 0, 1, 0, 0),
+(1, 1, '第一个群组', '一点结束少', '', '公告', 2, 0, 0, 5, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260696662, 0, 1, 0, 0),
 (2, 1, '群组额', '啊打', '', '', 2, 0, 0, 0, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260718138, 0, 1, 0, 0),
 (3, 1, '测试', '发生', '', '', 2, NULL, 0, 0, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260721712, 0, 1, 0, 0);
 
@@ -4772,6 +4747,58 @@ CREATE TABLE IF NOT EXISTS `yiisns_group_attachement` (
 -- 转存表中的数据 `yiisns_group_attachement`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yiisns_group_category`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_group_category` (
+  `id` mediumint(5) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT '1',
+  `pid` tinyint(3) NOT NULL DEFAULT '0',
+  `module` varchar(50) DEFAULT NULL,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+
+--
+-- 转存表中的数据 `yiisns_group_category`
+--
+
+INSERT INTO `yiisns_group_category` (`id`, `title`, `type`, `pid`, `module`, `desc`) VALUES
+(1, '社团', 1, 0, '', ''),
+(2, '学校/同学录', 1, 0, '', ''),
+(3, '同乡会', 1, 0, '', ''),
+(4, '同城交友', 1, 0, '', ''),
+(5, '情感', 1, 0, '', ''),
+(6, '星座', 1, 0, '', ''),
+(7, '旅游', 1, 0, '', ''),
+(8, '美食', 1, 0, '', ''),
+(9, '影视', 1, 0, '', ''),
+(10, '音乐', 1, 0, '', ''),
+(11, '读书', 1, 0, '', ''),
+(12, '体育', 1, 0, '', ''),
+(13, '动漫', 1, 0, '', ''),
+(14, '游戏', 1, 0, '', ''),
+(15, '时尚生活', 1, 0, '', ''),
+(16, '明星名人', 1, 0, '', ''),
+(17, '投资理财', 1, 0, '', ''),
+(18, '健康', 1, 0, '', ''),
+(19, '美容', 1, 0, '', ''),
+(20, '育儿', 1, 0, '', ''),
+(21, '宠物', 1, 0, '', ''),
+(22, '汽车', 1, 0, '', ''),
+(23, '家居', 1, 0, '', ''),
+(24, '学习考试', 1, 0, '', ''),
+(25, '电脑数码', 1, 0, '', ''),
+(26, '人文历史', 1, 0, '', ''),
+(27, '艺术', 1, 0, '', ''),
+(28, '科技', 1, 0, '', ''),
+(29, '军事', 1, 0, '', ''),
+(30, '其它', 1, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -4820,7 +4847,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_group_post` (
   `attach` text,
   PRIMARY KEY (`id`),
   KEY `gid` (`gid`,`tid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- 转存表中的数据 `yiisns_group_post`
@@ -4841,7 +4868,26 @@ INSERT INTO `yiisns_group_post` (`id`, `gid`, `uid`, `tid`, `content`, `ip`, `is
 (12, 1, 3, 3, 'fsadfasf', '192.168.1.104', 0, 1260782053, 0, 0, '0', NULL),
 (13, 1, 3, 3, 'sdfafsf', '192.168.1.104', 0, 1260782059, 0, 0, '0', NULL),
 (14, 1, 3, 3, 'fasfsadf', '192.168.1.104', 0, 1260782062, 0, 0, '0', NULL),
-(15, 1, 3, 2, 'fdsfsafsfdasfadsfasff\r\nf\r\nsafasdfdsdfaf', '192.168.1.104', 0, 1260782071, 0, 0, '0', NULL);
+(15, 1, 3, 2, 'fdsfsafsfdasfadsfasff\r\nf\r\nsafasdfdsdfaf', '192.168.1.104', 0, 1260782071, 0, 0, '0', NULL),
+(16, 1, 1, 8, NULL, '127.0.0.1', 1, 1277799579, 0, 0, '0', NULL),
+(17, 1, 1, 9, 'eeeeeeeeee222', '127.0.0.1', 1, 1277799677, 0, 0, '0', NULL),
+(18, NULL, 1, NULL, 'fds', '127.0.0.1', 0, 1277969462, 0, 0, '0', NULL),
+(19, NULL, 1, NULL, 'fds', '127.0.0.1', 0, 1277969462, 0, 0, '0', NULL),
+(20, 1, 1, 1, 'fas', '127.0.0.1', 0, 1277969762, 0, 0, '0', NULL),
+(21, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969790, 0, 0, '0', NULL),
+(22, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969792, 0, 0, '0', NULL),
+(23, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969792, 0, 0, '0', NULL),
+(24, 1, 1, 1, '22', '127.0.0.1', 0, 1277973245, 0, 0, '0', NULL),
+(25, 1, 1, 1, 'fds', '127.0.0.1', 0, 1277973264, 0, 0, '0', NULL),
+(26, 1, 1, 1, 'fds', '127.0.0.1', 0, 1277973266, 0, 0, '0', NULL),
+(27, 1, 1, 1, 'fdsfdas', '127.0.0.1', 0, 1277973268, 0, 0, '0', NULL),
+(28, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973393, 0, 0, '0', NULL),
+(29, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973396, 0, 0, '0', NULL),
+(30, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973397, 0, 0, '0', NULL),
+(31, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973398, 0, 0, '0', NULL),
+(32, 1, 1, 1, 'fdas', '127.0.0.1', 0, 1277973417, 0, 0, '0', NULL),
+(33, 1, 1, 1, 'hh', '127.0.0.1', 0, 1277974670, 0, 0, '0', NULL),
+(34, 1, 1, 1, 'hhhh', '127.0.0.1', 0, 1277974673, 0, 0, '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -4870,16 +4916,19 @@ CREATE TABLE IF NOT EXISTS `yiisns_group_topic` (
   PRIMARY KEY (`id`),
   KEY `gid` (`gid`),
   KEY `gid_2` (`gid`,`uid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `yiisns_group_topic`
 --
 
 INSERT INTO `yiisns_group_topic` (`id`, `gid`, `uid`, `name`, `title`, `viewcount`, `postcount`, `dist`, `top`, `lock`, `ctime`, `replytime`, `mtime`, `status`, `isrecom`, `is_del`, `attach`) VALUES
-(1, 1, 1, 'Guest', '话题测试', 107, 1, 0, 0, 0, 1260714935, 1260714991, 0, 0, 0, 0, NULL),
-(2, 1, 1, 'Guest', '求助的', 99, 8, 0, 0, 0, 1260715333, 2147483647, 0, 1, 0, 0, NULL),
-(3, 1, 3, 'demo', 'fasf', 13, 3, 0, 0, 0, 1260782050, 2147483647, 0, 0, 0, 0, NULL);
+(1, 1, 1, 'Guest', '话题测试', 410, 1, 1, 1, 1, 1260714935, 2147483647, 1277869333, 0, 0, 0, NULL),
+(2, 1, 1, 'Guest', '求助的', 402, 8, 0, 0, 0, 1260715333, 2147483647, 0, 1, 0, 0, NULL),
+(3, 1, 3, 'demo', 'fasf', 316, 3, 0, 0, 0, 1260782050, 2147483647, 0, 0, 0, 0, NULL),
+(9, 1, 1, '管理员', 'fdas', 271, 0, 0, 0, 0, 1277799677, 0, 1277804586, 0, 0, 0, NULL),
+(8, 1, 1, '管理员', 'fdas', 272, 0, 0, 0, 0, 1277799579, 0, 0, 0, 0, 0, NULL),
+(7, 1, 1, '管理员', 'fsda', 273, 0, 0, 0, 0, 1277797803, 0, 0, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -4893,7 +4942,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_login_record` (
   `login_ip` varchar(15) DEFAULT NULL,
   `login_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
 -- 转存表中的数据 `yiisns_login_record`
@@ -4972,7 +5021,11 @@ INSERT INTO `yiisns_login_record` (`id`, `uid`, `login_ip`, `login_time`) VALUES
 (70, 1, '127.0.0.1', 1277089538),
 (71, 1, '127.0.0.1', 1277167983),
 (72, 1, '127.0.0.1', 1277171460),
-(73, 1, '127.0.0.1', 1277263887);
+(73, 1, '127.0.0.1', 1277263887),
+(74, 1, '127.0.0.1', 1277348052),
+(75, 1, '127.0.0.1', 1277352301),
+(76, 1, '127.0.0.1', 1277695411),
+(77, 1, '127.0.0.1', 1277713864);
 
 -- --------------------------------------------------------
 
@@ -4994,7 +5047,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_mini` (
   PRIMARY KEY (`id`),
   KEY `userId` (`uid`),
   KEY `replay_numbel` (`replay_numbel`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 --
 -- 转存表中的数据 `yiisns_mini`
@@ -5032,7 +5085,16 @@ INSERT INTO `yiisns_mini` (`id`, `uid`, `name`, `type`, `content`, `tagId`, `cti
 (29, 1, '管理员', 1, '<img title=''大哭'' src=''/yiisns/images/biaoqing/mini/cry.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''><img title=''憨笑'' src=''/yiisns/images/biaoqing/mini/biggrin.gif''> fsd', NULL, 1277106608, -1, 0, 0),
 (30, 1, '管理员', 1, '<img title=''折磨'' src=''/yiisns/images/biaoqing/mini/mad.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''>fdsee', NULL, 1277106925, -1, 0, 0),
 (31, 1, '管理员', 1, 'eeexcggg/可爱', NULL, 1277107111, 0, 0, 0),
-(32, 1, '管理员', 1, '/憨笑434打发发发/惊恐', NULL, 1277189462, 0, 0, 0);
+(32, 1, '管理员', 1, '/憨笑434打发发发/惊恐', NULL, 1277189462, 0, 0, 0),
+(33, 1, '管理员', 1, 'f', NULL, 1277704186, 0, 0, 0),
+(34, 1, '管理员', 1, 'e', NULL, 1277704187, 0, 0, 0),
+(35, 1, '管理员', 1, 'ww', NULL, 1277704189, 0, 0, 0),
+(36, 1, '管理员', 1, 'fdsafdsa', NULL, 1277704191, 0, 0, 0),
+(37, 1, '管理员', 1, 'gfffffff', NULL, 1277704197, 0, 0, 0),
+(38, 1, '管理员', 1, 'eeeeeeeee', NULL, 1277704199, 0, 0, 0),
+(39, 1, '管理员', 1, 'ffffffffff', NULL, 1277704215, 0, 0, 0),
+(40, 1, '管理员', 1, 'eee', NULL, 1277704217, 0, 0, 0),
+(41, 1, '管理员', 1, 'zcvzx', NULL, 1277704218, 0, 0, 0);
 
 -- --------------------------------------------------------
 
