@@ -6,6 +6,7 @@ require('DatabaseConfig.php');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 $path=dirname(dirname(dirname(__FILE__)));
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Yii TEST',
@@ -107,15 +108,18 @@ return array(
 			'rules'=>array(
 				// www.example.com/home instead of www.example.com/site/index
 				//'home'=>'site/index',
-				'space/uid/<uid:\d+>'=>'space/index',
+				//'http://<_s:(user|admin|group)+>.yiisns.com<_t:.*>/*'=>'<_s><_t>',
+				//'http://<_m:(user|space|group)>.yiisns.com<_q:.*>/*’=>’<_m><_q>',
 		
+				'space/uid/<uid:\d+>'=>'space/index',
 				'post/<pid:\d+>'=>'post/show',
 
-				'group/topic/<tid:\d+>'=>'group/topic/show',
 				'group/<gid:\d+>'=>'group/group/show',
+				'group/topic/<tid:\d+>'=>'group/topic/show',
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
 				'group/create/<gid:\d+>'=>'group/group/create',
 				'group/new_topic/<gid:\d+>'=>'group/topic/create',
+				
 			),
 		),
 		//验证模块

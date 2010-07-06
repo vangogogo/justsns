@@ -78,7 +78,7 @@ $(document).ready(function() {
 	<div id="header">
 		<div id="logo" class="span-4"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 		<div id="mainmenu" class="span-21 last">
-			<?php 
+			<?php
 			if(!Yii::app()->user->isGuest) {
 				$friend_item = array(
 					array('label'=>'我的好友', 'url'=>array('/friend/index')),
