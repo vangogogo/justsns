@@ -11,7 +11,7 @@
 			<td class="OverH">
 				<?php if($topic['top']):?><span class="zd">顶</span><?php endif;?>
 				<?php if($topic['dist']):?><span class="jh">精</span><?php endif;?>
-				<?php echo CHtml::link($topic['title'],array('/group/topic/'.$topic['id'],));?>
+				<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']));?>
 			</td>
 			<td><?php echo $topic['name']?></td>
 			<td><?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?></td>
