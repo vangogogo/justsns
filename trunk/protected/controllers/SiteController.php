@@ -37,7 +37,7 @@ class SiteController extends Controller
 	 */
 	public function actionHome()
 	{
-		
+		$notify_num = array(0);
 		$uid = Yii::app()->user->id;
 		//用户信息
 		$owner = User::model()->with(array('mini'))->findByPk($uid);
@@ -72,6 +72,7 @@ class SiteController extends Controller
 			'may_users' => $may_users,
 			'visitors' => $visitors,
 			'friend_list' => $friend_list,
+			'notify_num' => $notify_num,
 		);
 		$this->render('home',$data);
 	}

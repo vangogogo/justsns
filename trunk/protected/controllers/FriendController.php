@@ -365,6 +365,16 @@ class FriendController extends Controller
 		);
 		$this->render('find',$data);
 	}
+	
+	/**
+	 * 用户列表
+	 */
+	public function actionList()
+	{
+
+
+		$this->render('find',$data);
+	}	
 
 	//------------------------------------------------以下是选择好友组件相关-----------------------------------
 	public function actionAjax() {

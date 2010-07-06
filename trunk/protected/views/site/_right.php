@@ -1,7 +1,6 @@
 <div class="cr"><!-- cr begin  -->
 	<div class="UserList">
-	   <form action="__APP__" method="get"  id="list_fri" class="form_validator">
-			<input type="hidden" name="s" value="/Friend/lists" >
+		<?php echo CHtml::beginForm(array('friend/list'),'get',array('class'=>'form_validator','id'=>'list_fri'))?>
 			<input type="hidden" name="type" value="info" id="sub_type">
 			<div class="tit">搜索用户</div>
 			<div class="ListBox">
@@ -9,7 +8,7 @@
 			</div>
 			</div>
 			<div class="btm"></div>
-		</form>
+		<?php echo Chtml::endForm();?>
 	</div>
 	<?php if(!isset($space_privacy) || $space_privacy){ ?>
 
