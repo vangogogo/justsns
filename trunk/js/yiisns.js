@@ -1,5 +1,5 @@
 $(function() {
-	var notice = 'test';
+	var notice = $.pnotify();
 	//确认删除
 	$('.a_confirm_link').live('click',function(){
 		self = $(this);
@@ -99,6 +99,7 @@ function Confirm(object,callback){
 }
 
 function showloading(wating) {
+	alert(notice);
 	//$.pnotify_remove_all();
 	var options = {
 		pnotify_text: wating,
@@ -131,16 +132,22 @@ function showComplete(wating) {
 		pnotify_width: "250px",
 		pnotify_history: false,
 	};
-	
 	var notice = $.pnotify(options);
-	notice.pnotify_remove();
 }
 
 /*<![CDATA[*/
-function myBeforeSend(){
+function AjaxBeforeSend(){
 	showloading('数据读取中 请稍候...');
 }
-function myComplete(){
+function AjaxComplete(){
+	showComplete('操作完成...');
+	return false;
+}
+function AjaxError(){
+	showComplete('操作完成...');
+	return false;
+}
+function AjaxComplete(){
 	showComplete('操作完成...');
 	return false;
 }
