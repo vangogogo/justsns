@@ -24,6 +24,9 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
 
+//pnotify
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.min.js');
+Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.default.css');
 
 //colorbox
 //Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/thickbox/thickbox.js');
@@ -49,8 +52,8 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.c
 <![endif]-->
 
 </head>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/flick/jquery-ui.css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css"/>
 <body>
 <?php
 	if(Yii::app()->user->hasFlash('Emessage')){

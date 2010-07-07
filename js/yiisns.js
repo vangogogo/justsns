@@ -98,6 +98,48 @@ function Confirm(object,callback){
 }
 
 function showloading(wating) {
+	var notice = $.pnotify({
+		//pnotify_title: "Done!",
+		pnotify_text: wating,
+		pnotify_addclass: "ajax-show",
+		pnotify_notice_icon: 'loadingbar',
+		pnotify_hide: true,
+		pnotify_closer: true,
+		//pnotify_remove: true,
+		pnotify_opacity: 1,
+		pnotify_delay: 200,
+		pnotify_type: "notice",
+		pnotify_width: "250px"
+	});
+}
+
+function showComplete(wating) {
+	var notice = $.pnotify({
+		//pnotify_title: "Done!",
+		pnotify_text: wating,
+		pnotify_addclass: "ajax-show",
+		pnotify_notice_icon: 'successbar',
+		pnotify_hide: true,
+		pnotify_closer: true,
+		//pnotify_remove: true,
+		pnotify_opacity: 1,
+		pnotify_delay: 200,
+		pnotify_type: "notice",
+		pnotify_width: "250px"
+	});
+}
+
+/*<![CDATA[*/
+function myBeforeSend(){
+	showloading('数据读取中 请稍候...');
+}
+function myComplete(){
+	showComplete('操作完成...');
+	return false;
+}
+/*]]>*/
+
+function showloading2(wating) {
 	
 	if ($("#ajax-show").length == 0) {
 		$("body").append('<div id="ajax-show" class="ui-widget-content ui-corner-all"><div id="ajax-show-content" class="ui-widget-header ui-corner-all">Show</div></div>');
