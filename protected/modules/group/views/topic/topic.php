@@ -105,9 +105,7 @@
 			<div class="c"></div>
 		</div>		
 		<?php endforeach;?>
-		<div class="baikeUserPage">
-			<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
-		</div>
+
 		<?php endif ?>
 		<div class="lh30 alR topline">
 			<?php echo CHtml::link('返回话题列表>>',array('group/discussion','gid'=>$topic['gid']));?>
@@ -121,6 +119,8 @@
 					<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
 				</div>
 			</div>
-
+		<div class="baikeUserPage" style="text-align:center;">
+			<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
+		</div>
 	</div>
 </div>

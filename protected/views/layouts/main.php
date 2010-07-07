@@ -25,7 +25,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/y
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
 
 //pnotify
-Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.min.js');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.js');
 Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.default.css');
 
 //colorbox
