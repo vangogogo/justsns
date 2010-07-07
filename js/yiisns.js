@@ -104,16 +104,7 @@ function AjaxPnotify(options,test) {
 	if(test)
 	var body_data = $("body").data("AjaxPnotify");
 	if (body_data && body_data.length) {
-		
 		var AjaxPnotify = body_data.pnotify(options);
-		//alert(AjaxPnotify.opts.pnotify_hide);
-		if (AjaxPnotify.opts.pnotify_hide && AjaxPnotify.pnotify_display)
-		{
-			//body_data.pnotify_display();
-			//alert($('.ajax-show .ui-pnotify-text').html());
-			
-		}
-			
 	}
 	else
 	{
