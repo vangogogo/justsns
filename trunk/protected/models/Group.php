@@ -518,5 +518,5 @@ class Group extends CActiveRecord
 			'pages' => $pages,
 		);
 		return $data;
-	}	
+	}
 }

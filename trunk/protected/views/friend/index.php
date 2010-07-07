@@ -11,8 +11,6 @@
 			<li class="btmlineD li pb10 pt5" id="fri_<?php echo $friend['id']?>" >
 				<div class="left" style="width:70px;">
 					<span class="headpic50">
-					
-						
 					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$friend['id']));?>"  class="tips">
 						<img src="<?php echo $friend['face'];?>" />
 					</a>
@@ -38,7 +36,7 @@
 						<?php echo CHtml::link('查看空间',array('/space/','uid'=>$friend['id']));?>
 					</p>
 					<p class="lh20">
-						<?php echo CHtml::link('发送短信',array('/notice/write','uid'=>$friend['id']));?>
+						<?php echo CHtml::link('发送短信',array('/notify/write','uid'=>$friend['id']));?>
 					</p>
 					
 					<p class="lh20">

@@ -15,31 +15,6 @@
 		'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
 	));
 ?>
-
-<style type="text/css">
-		.toggler { width: 500px; height: 200px; }
-		#button { padding: .5em 1em; text-decoration: none; }
-		#effect { width: 240px; height: 135px; padding: 0.4em; position: relative; }
-		#effect h3 { margin: 0; padding: 0.4em; text-align: center; }
-		
-#ajax-show {
-
-border:4px solid #CCCCCC;
-font-size:12px;
-height:auto;
-position:fixed;
-right:1px;
-top:1px;
-width:180px;
-}		
-	</style>
-	
-	<script type="text/javascript">
-	showloading('<p class="loadingbar">数据读取中 请稍候...</p>');
-
-	</script>
-
-
 <?php /*$this->widget('application.extensions.ckeditor.CKEditor', array(
 	'model'=>$model,
 	'name'=>'content',
@@ -66,14 +41,3 @@ width:180px;
 		?>
 		
 <?php echo EHtml::endForm(); ?>
-<script type="text/javascript">
-/*<![CDATA[*/
-	function myBeforeSend(){
-		showloading('<p class="loadingbar">数据读取中 请稍候...</p>');
-	}
-	function myComplete(){
-		showloading('<p class="loadingbar">操作完成...</p>');
-		return false;
-	}
-/*]]>*/
-</script>
