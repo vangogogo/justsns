@@ -99,11 +99,12 @@ function Confirm(object,callback){
 	$("#dialog-confirm").dialog("open");
 }
 
-function AjaxPnotify(options) {;
+function AjaxPnotify(options,test) {
+//	$('.ajax-show').show();
+	if(test)
 	var body_data = $("body").data("AjaxPnotify");
 	if (body_data && body_data.length) {
 		
-		$('.ajax-show').show();
 		var AjaxPnotify = body_data.pnotify(options);
 		//alert(AjaxPnotify.opts.pnotify_hide);
 		if (AjaxPnotify.opts.pnotify_hide && AjaxPnotify.pnotify_display)
@@ -129,9 +130,6 @@ function AjaxBeforeSend(){
 		pnotify_text: '数据读取中 请稍候...',
 		pnotify_addclass: "ajax-show",
 		pnotify_notice_icon: 'loadingbar',
-		pnotify_hide: true,
-		pnotify_closer: true,
-		pnotify_remove: false,
 		pnotify_opacity: 1,
 		pnotify_delay: 500,
 		pnotify_type: "notice",
@@ -139,7 +137,7 @@ function AjaxBeforeSend(){
 //			pnotify_history: false,
 	};
 	
-	AjaxPnotify(options);
+	AjaxPnotify(options,false);
 }
 function AjaxComplete(){
 	showComplete('操作完成...');
@@ -154,9 +152,6 @@ function AjaxSuccess(){
 		pnotify_text: '操作完成22...',
 		pnotify_addclass: "ajax-show",
 		pnotify_notice_icon: 'successbar',
-		pnotify_hide: true,
-		pnotify_closer: true,
-		pnotify_remove: false,
 		pnotify_opacity: 1,
 		pnotify_delay: 500,
 		pnotify_type: "notice",
@@ -164,7 +159,7 @@ function AjaxSuccess(){
 //		pnotify_history: false,
 	};
 	
-	AjaxPnotify(options);
+	AjaxPnotify(options,true);
 	return false;
 }
 /*]]>*/
@@ -175,6 +170,8 @@ function showloading2(wating) {
 		$("body").append('<div id="ajax-show" class="ui-widget-content ui-corner-all"><div id="ajax-show-content" class="ui-widget-header ui-corner-all">Show</div></div>');
 	}
 
+	
+	
 	$("#ajax-show-content").html(wating);
 	//get effect type from 
 	var selectedEffect = 'highlight';
