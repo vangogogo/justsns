@@ -32,9 +32,9 @@
 		<?php 
 		echo EHtml::ajaxSubmitButton('发送',Yii::app()->createUrl('group/topic/doAddPost'),
 			array(
-				'beforeSend' => 'myBeforeSend',
+				'beforeSend' => 'AjaxBeforeSend',
 				// uncomment to enable onComplete handler
-				'complete' => 'myComplete',
+				'success' => 'AjaxSuccess',
 				'update'=> '#response'),
 			array('id'=> 'nicestuff','class'=>'ui-state-default ui-corner-all')
 		);  

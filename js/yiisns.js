@@ -1,5 +1,6 @@
+var AjaxPnotify;
+
 $(function() {
-	var notice = $.pnotify();
 	//确认删除
 	$('.a_confirm_link').live('click',function(){
 		self = $(this);
@@ -98,46 +99,47 @@ function Confirm(object,callback){
 	$("#dialog-confirm").dialog("open");
 }
 
-function showloading(wating) {
-	alert(notice);
-	//$.pnotify_remove_all();
-	var options = {
-		pnotify_text: wating,
-		pnotify_addclass: "ajax-show",
-		pnotify_notice_icon: 'loadingbar',
-		pnotify_hide: true,
-		pnotify_closer: true,
-		pnotify_remove: true,
-		pnotify_opacity: 1,
-		pnotify_delay: 100,
-		pnotify_type: "notice",
-		pnotify_width: "250px",
-		pnotify_history: false,
-	};
-	var notice = $.pnotify(options);
-}
+function AjaxPnotify(options) {;
+	var body_data = $("body").data("AjaxPnotify");
+	if (body_data && body_data.length) {
+		
+		$('.ajax-show').show();
+		var AjaxPnotify = body_data.pnotify(options);
+		//alert(AjaxPnotify.opts.pnotify_hide);
+		if (AjaxPnotify.opts.pnotify_hide && AjaxPnotify.pnotify_display)
+		{
+			//body_data.pnotify_display();
+			//alert($('.ajax-show .ui-pnotify-text').html());
+			
+		}
+			
+	}
+	else
+	{
+		var AjaxPnotify = $.pnotify(options);
+	}
 
-function showComplete(wating) {
-	$.pnotify_remove_all();
-	var options = {
-		pnotify_text: wating,
-		pnotify_addclass: "ajax-show",
-		pnotify_notice_icon: 'successbar',
-		pnotify_hide: true,
-		pnotify_closer: true,
-		pnotify_remove: true,
-		pnotify_opacity: 1,
-		pnotify_delay: 100,
-		pnotify_type: "notice",
-		pnotify_width: "250px",
-		pnotify_history: false,
-	};
-	var notice = $.pnotify(options);
+	$("body").data("AjaxPnotify", AjaxPnotify);
 }
 
 /*<![CDATA[*/
 function AjaxBeforeSend(){
-	showloading('数据读取中 请稍候...');
+	
+	var options = {
+		pnotify_text: '数据读取中 请稍候...',
+		pnotify_addclass: "ajax-show",
+		pnotify_notice_icon: 'loadingbar',
+		pnotify_hide: true,
+		pnotify_closer: true,
+		pnotify_remove: false,
+		pnotify_opacity: 1,
+		pnotify_delay: 500,
+		pnotify_type: "notice",
+		pnotify_width: "250px",
+//			pnotify_history: false,
+	};
+	
+	AjaxPnotify(options);
 }
 function AjaxComplete(){
 	showComplete('操作完成...');
@@ -147,8 +149,22 @@ function AjaxError(){
 	showComplete('操作完成...');
 	return false;
 }
-function AjaxComplete(){
-	showComplete('操作完成...');
+function AjaxSuccess(){
+	var options = {
+		pnotify_text: '操作完成22...',
+		pnotify_addclass: "ajax-show",
+		pnotify_notice_icon: 'successbar',
+		pnotify_hide: true,
+		pnotify_closer: true,
+		pnotify_remove: false,
+		pnotify_opacity: 1,
+		pnotify_delay: 500,
+		pnotify_type: "notice",
+		pnotify_width: "250px",
+//		pnotify_history: false,
+	};
+	
+	AjaxPnotify(options);
 	return false;
 }
 /*]]>*/
