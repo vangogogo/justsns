@@ -1,4 +1,5 @@
 $(function() {
+	var notice = 'test';
 	//确认删除
 	$('.a_confirm_link').live('click',function(){
 		self = $(this);
@@ -98,35 +99,41 @@ function Confirm(object,callback){
 }
 
 function showloading(wating) {
-	var notice = $.pnotify({
-		//pnotify_title: "Done!",
+	//$.pnotify_remove_all();
+	var options = {
 		pnotify_text: wating,
 		pnotify_addclass: "ajax-show",
 		pnotify_notice_icon: 'loadingbar',
 		pnotify_hide: true,
 		pnotify_closer: true,
-		//pnotify_remove: true,
+		pnotify_remove: true,
 		pnotify_opacity: 1,
-		pnotify_delay: 200,
+		pnotify_delay: 100,
 		pnotify_type: "notice",
-		pnotify_width: "250px"
-	});
+		pnotify_width: "250px",
+		pnotify_history: false,
+	};
+	var notice = $.pnotify(options);
 }
 
 function showComplete(wating) {
-	var notice = $.pnotify({
-		//pnotify_title: "Done!",
+	$.pnotify_remove_all();
+	var options = {
 		pnotify_text: wating,
 		pnotify_addclass: "ajax-show",
 		pnotify_notice_icon: 'successbar',
 		pnotify_hide: true,
 		pnotify_closer: true,
-		//pnotify_remove: true,
+		pnotify_remove: true,
 		pnotify_opacity: 1,
-		pnotify_delay: 200,
+		pnotify_delay: 100,
 		pnotify_type: "notice",
-		pnotify_width: "250px"
-	});
+		pnotify_width: "250px",
+		pnotify_history: false,
+	};
+	
+	var notice = $.pnotify(options);
+	notice.pnotify_remove();
 }
 
 /*<![CDATA[*/

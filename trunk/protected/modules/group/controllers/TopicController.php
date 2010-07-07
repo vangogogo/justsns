@@ -103,7 +103,7 @@ class TopicController extends Controller
 		$group = $topic->group;
 		$topics = $group->getGroupNewThreads();
 		
-		$params = array('tid'=>$tid);
+		$params = array('tid'=>$tid,'pageSize'=>20);
 
 		$params['page'] = $_GET['page'];
 		$post_data = $group->getGroupPosts($params);
@@ -117,7 +117,7 @@ class TopicController extends Controller
 			'topic'=>$topic,
 			'GroupPost'=>$GroupPost,
 			'post_list'=>$post_data['post_list'],
-			'post_pages'=>$post_data['pages'],
+			'post_pages'=>$post_data['post_pages'],
 		);
 		$this->render('topic',$data);
 	}

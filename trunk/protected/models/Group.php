@@ -515,7 +515,7 @@ class Group extends CActiveRecord
 		$models=$model->findAll($criteria);
 		$data = array(
 			'post_list'=>$models,
-			'pages' => $pages,
+			'post_pages' => $pages,
 		);
 		return $data;
 	}
