@@ -378,4 +378,5 @@ color:#FFFFFF;
 
 .loadingbar {background:url(../images/loading.gif) 0px 0px no-repeat;margin:0;height:32px;width:32px;}
 .successbar {background:url(../images/32x32/accept.png) 0px 0px no-repeat;margin:0;height:32px;width:32px;}
+.errorbar {background:url(../images/32x32/delete.png) 0px 0px no-repeat;margin:0;height:32px;width:32px;}
 .ui-pnotify-text {line-height:32px;}
