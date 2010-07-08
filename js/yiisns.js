@@ -67,7 +67,19 @@ $(function(){
 			message: message,
 			handler: function(button){
 				$.get(url, '', function(result){
-					Alert(result)
+					if(result == 1)
+					{
+						Alert('操作成功...');
+					}
+					else if($result == -1)
+					{
+						Alert('操作失败...');
+					}
+					else
+					{
+						Alert(result)
+					}
+					
 				});
 			}
 		});

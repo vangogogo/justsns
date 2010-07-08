@@ -96,59 +96,66 @@ class TopicController extends Controller
 		$model = new GroupTopic();
 		$tid = Yii::app()->request->getQuery('tid');
 		$topic = $model->loadTopic($tid);
-
-		//访问量+1
-		$topic->updateCounters(array('viewcount'=>+1));
 		//相关话题求助
 		$group = $topic->group;
 		$topics = $group->getGroupNewThreads();
+		//默认回复
+		$GroupPost = $this->addPost();
+		$GroupPost->gid = $topic->gid;
+		$GroupPost->tid = $topic->id;
 		
-		$params = array('tid'=>$tid,'pageSize'=>20);
+		$params = array('tid'=>$tid,'pageSize'=>20,'is_del'=>0);
 
 		$params['page'] = $_GET['page'];
 		$post_data = $group->getGroupPosts($params);
+		$post_list = $post_data['post_list'];
+		$post_pages = $post_data['post_pages'];
 
-		$GroupPost = new GroupPost();
-		$GroupPost->gid = $topic->gid;
-		$GroupPost->tid = $topic->id;
+		//最后一页才能回复
+		if(empty($post_pages) OR ($post_pages->PageCount == $post_pages->CurrentPage + 1))
+		{
+			$post_access = 1;
+		}
+
+		
+		//访问量+1
+		$topic->updateCounters(array('viewcount'=>+1));
 		
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
 			'GroupPost'=>$GroupPost,
-			'post_list'=>$post_data['post_list'],
-			'post_pages'=>$post_data['post_pages'],
+			'post_list'=>$post_list,
+			'post_pages'=>$post_pages,
+			'post_access'=>$post_access,
 		);
 		$this->render('topic',$data);
 	}
 	/**
 	 * 增加话题回复
 	 */
-	protected function newComment($post)
+	protected function addPost()
 	{
-		$comment=new Comment;
-		if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
+		$model = new GroupPost();
+		$params = $_POST['GroupPost'];
+		if(!empty($params))
 		{
-			echo CActiveForm::validate($comment);
-			Yii::app()->end();
-		}
-		if(isset($_POST['Comment']))
-		{
-			$comment->attributes=$_POST['Comment'];
-			if($post->addComment($comment))
+			$post = $model->addPost($params);
+			if(empty($post->errors))
 			{
-				if($comment->status==Comment::STATUS_PENDING)
-					Yii::app()->user->setFlash('commentSubmitted','Thank you for your comment. Your comment will be posted once it is approved.');
-				$this->refresh();
+//				$this->refresh();
+				$this->refresh(true,'&post=ok#last');
 			}
+			else
+			return $post;
 		}
-		return $comment;
+		return $model;
 	}
 	
 	/**
 	 * 修改话题的状态，置顶，精华，锁定
 	 */
-	public function actionSwitch() 
+	public function actionDoSwitch() 
 	{
 		$model = new GroupTopic();
 		$tid = Yii::app()->request->getQuery('tid');
@@ -165,16 +172,33 @@ class TopicController extends Controller
 		echo !empty($topic->errors)?-1:1;
 	}
 
+	/**
+	 * 异步删除话题
+	 */
 	public function actionDoDelTopic()
 	{
-		echo 'actionDoDelTopic';
+		$id = $_GET['tid'];
+		$model = new GroupTopic();
+		$topic = $model->loadTopic($id);
+		$return = $topic->delTopic();
+		echo $return;
 	}
 	
+	/**
+	 * 异步删除回复
+	 */
 	public function actionDoDelPost()
 	{
-		echo 'actionDoDelTopic';
+		$id = $_GET['pid'];
+		$model = new GroupPost();
+		$post = $model->loadPost($id);
+		$return = $post->delPost();
+		echo !$return?-1:1;
 	}
 	
+	/**
+	 * 异步添加回复
+	 */
 	public function actionDoAddPost()
 	{
 		$model = new GroupPost();

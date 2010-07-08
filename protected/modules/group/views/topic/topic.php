@@ -34,17 +34,15 @@
 						
 						<?php $array = array('dist'=>'精华','top'=>'置顶','lock'=>'锁定');?>
 						<?php foreach($array as $option => $name){ $title = $topic[$option]?'取消'.$name:$name;?>
-							<?php echo CHtml::link($title,array('topic/switch','tid'=>$topic['id'],'option'=>$option,'value'=>1-$topic[$option]),array('id'=>$option,'title'=>$title,'class'=>'a_alert_link'));?>
+							<?php echo CHtml::link($title,array('topic/doSwitch','tid'=>$topic['id'],'option'=>$option,'value'=>1-$topic[$option]),array('id'=>$option,'title'=>$title,'class'=>'a_alert_link'));?>
 						<?php }?>
 						
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
 					<?php } elseif($this->mid == $topic['uid']) { ?>
 					
-
-
 						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']),array('class'=>'a_confirm_link'));?> ┊
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
-						
+
 					<?php } ?>
 
 					<?php if($topic['lock'] == 1 || !$actor_level){ ?>   <?php } else{ ?>
@@ -95,11 +93,13 @@
 					</div>
 				</div>
 				<div class="lh35 alR">
-					<?php if($topic['lock'] == 1 || !$actor_level){ ?>   <?php } else{  ?>
-					<a href="javascript:quote({$post['id']})">引用</a>
+					<?php if($topic['lock'] == 1 || !$actor_level || 1){ ?>   <?php } else{  ?>
+					<a href="javascript:quote({$post['id']})">引用</a> ┊ 
 					<?php } ?>
-		
-					<?php if($mid == $post['uid'] || $isadmin){ ?> ┊ <a href="__APP__/Topic/editPost/gid/{$gid}/pid/{$post['id']}">编辑</a> ┊ <a href="javascript:delPost({$gid},{$post['id']});">删除</a><?php } ?>
+					<?php if($this->mid == $post['uid'] || $isadmin){ ?>
+						<?php echo CHtml::link('编辑',array('topic/editPost','pid'=>$post['id']),array('class'=>'a_confirm_link'));?> ┊
+						<?php echo CHtml::link('删除',array('topic/doDelPost','pid'=>$post['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="c"></div>
@@ -110,8 +110,14 @@
 		<div class="lh30 alR topline">
 			<?php echo CHtml::link('返回话题列表>>',array('group/discussion','gid'=>$topic['gid']));?>
 		</div>
-
-			<div class="li">
+		
+		<?php if($post_access):?>
+			<?php if(!empty($_GET['post'])){?>
+			<div class="color-gray">
+				<?php echo CHtml::link('继续发言',array('topic/show','tid'=>$topic['id'],'page'=>$_GET['page'],'#'=>'last'),array('id'=>'last'));?>
+			</div>
+			<?php }else{?>
+			<div class="li" id="last">
 				<div style="width: 20%;" class="left alR lh25">
 					<strong>回复话题：</strong>
 				</div>
@@ -119,6 +125,9 @@
 					<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
 				</div>
 			</div>
+			<?php }?>
+		<?php endif;?>
+		
 		<div class="baikeUserPage" style="text-align:center;">
 			<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
 		</div>
