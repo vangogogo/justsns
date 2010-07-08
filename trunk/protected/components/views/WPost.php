@@ -28,14 +28,18 @@
 <?php echo EHtml::activeHiddenField($model,'gid');?>
 <?php echo EHtml::activeHiddenField($model,'tid');?>
 
-
+<?php echo CHtml::submitButton('加上去',array('class'=>'btn_b')); ?>
 		<?php 
+		/*
 		echo EHtml::ajaxSubmitButton('发送',Yii::app()->createUrl('group/topic/doAddPost'),
 			array(
-
+				'beforeSend' => 'AjaxBeforeSend',
+				// uncomment to enable onComplete handler
+				'success' => 'AjaxSuccess',
 				'update'=> '#response'),
 			array('id'=> 'nicestuff','class'=>'ui-state-default ui-corner-all')
-		);  
+		);
+		*/
 		?>
 		
 <?php echo EHtml::endForm(); ?>

@@ -132,7 +132,17 @@ class GroupPost extends CActiveRecord
 		));
 	}
 	
-	
+	/**
+	 * 读取话题
+	 */
+	public function loadPost($id=null)
+	{
+		if($id!==null || isset($_POST['pid']))
+			$model=$this->findbyPk($id!==null ? $id : $_POST['pid']);
+		if($model===null)
+			throw new CHttpException(404,'该回复不存在.');
+		return $model;
+	}
 	/**
 	 * Prepares attributes before performing validation.
 	 */
@@ -168,7 +178,8 @@ class GroupPost extends CActiveRecord
 			{
 			
 				//回复
-				GroupTopic::model()->updateCounters(array('replycount'=>+1,'replytime'=> time()), "id={$this->tid}");
+				GroupTopic::model()->updateCounters(array('postcount'=>+1,'replytime'=> time()), "id={$this->tid}");
+
 				//TODO有邮件提醒本帖回复,并且不是自己回复
 				$topic = $this->topic;
 				if($topic->isrecom == 1 && $this->uid != $topic->uid)
@@ -190,13 +201,31 @@ class GroupPost extends CActiveRecord
 	 */	
 	protected function beforerDelete()
 	{
+		die("我要删除");
 		if($this->uid != Yii::app()->user->id)
 		{
 			return false;
 		}
 		return true;
 	}
-	
+	public function delPost()
+	{
+		if(!$this->getIsNewRecord())
+		{
+			Yii::trace(get_class($this).'.delete()','system.db.ar.CActiveRecord');
+			if($this->beforeDelete())
+			{
+				$this->is_del = 1;
+				$result = $this->save();
+				$this->afterDelete();
+				return $result;
+			}
+			else
+				return false;
+		}
+		else
+			throw new CDbException(Yii::t('yii','The active record cannot be deleted because it is new.'));
+	}
 	/**
 	 * 删除话题/回复后业务处理
 	 */	
@@ -206,7 +235,7 @@ class GroupPost extends CActiveRecord
 			GroupTopic::model()->deleteByPk($this->tid);
 			//Group::model()->updateCounters(array('threadcount'=>-1), "id={$this->gid}");
 		}else{
-			GroupTopic::model()->updateCounters(array('replycount'=>-1), "id={$this->tid}");
+			GroupTopic::model()->updateCounters(array('postcount'=>-1), "id={$this->tid}");
 		}
 	}
 	

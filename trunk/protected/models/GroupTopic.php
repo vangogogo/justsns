@@ -219,7 +219,18 @@ class GroupTopic extends CActiveRecord
 		$this->content_temp = $params['content_temp'];
 		$this->save();
 		return $this;
-	}	
+	}
+	
+	public function delTopic()
+	{
+		if($this->uid == $this->mid)
+		{
+			$this->is_del = 1;
+			$this->save();
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * 插入信息
 	 */
