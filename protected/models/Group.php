@@ -482,7 +482,7 @@ class Group extends CActiveRecord
 	{
 		$model = new GroupPost();
 		$criteria=new CDbCriteria;
-		$criteria->condition.="1";
+		$criteria->condition.="1 AND istopic = 0";
 		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
 		if(!empty($limit))
 		{

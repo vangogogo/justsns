@@ -112,12 +112,11 @@ class TopicController extends Controller
 		$post_pages = $post_data['post_pages'];
 
 		//最后一页才能回复
-		if(empty($post_pages) OR ($post_pages->PageCount == $post_pages->CurrentPage + 1))
+		if($post_pages->PageCount == 0 OR ($post_pages->PageCount == $post_pages->CurrentPage + 1))
 		{
 			$post_access = 1;
 		}
 
-		
 		//访问量+1
 		$topic->updateCounters(array('viewcount'=>+1));
 		
@@ -143,15 +142,47 @@ class TopicController extends Controller
 			$post = $model->addPost($params);
 			if(empty($post->errors))
 			{
-//				$this->refresh();
-				$this->refresh(true,'&post=ok#last');
+				$anchor = !empty($_GET['page'])?'&':'?';
+				$anchor .= 'post=ok#last';
+				var_dump($auchor);die;
+//				$this->refresh(true,$anchor);
+				//$this->redirect(array('show','tid'=>$topic->id));
 			}
 			else
 			return $post;
 		}
 		return $model;
 	}
-	
+	/**
+	 * 编辑话题回复
+	 */
+	public function actionEditPost()
+	{
+		$model = new GroupPost();
+		$pid = Yii::app()->request->getQuery('pid');
+		$model = $model->loadPost($pid);
+		$tid = $model->tid;
+		$GroupPost = new GroupPost();
+		$topic = $GroupPost->loadTopic($tid);
+		
+		$group = $topic->group;
+		
+		if(!empty($_POST['GroupPost']))
+		{
+			$attributes = $_POST['GroupPost'];
+			$post = $model->addTopic($attributes);
+			if(empty($post->errors))
+			{
+				$this->redirect(array('show','tid'=>$topic->id));
+			}
+			//$model->validate();
+		}
+		
+		$data = array(
+			'form'=>$model,
+		);
+		$this->render('EditPost',$data);
+	}
 	/**
 	 * 修改话题的状态，置顶，精华，锁定
 	 */
