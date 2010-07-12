@@ -22,7 +22,7 @@
 Yii::app()->clientScript->registerCoreScript('jquery');
 
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
-Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
+//Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/ts_common.js');
 
 //pnotify
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.js');

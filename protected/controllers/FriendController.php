@@ -250,6 +250,17 @@ class FriendController extends Controller
 		}
 	}
 	
+	public function actionDoDelFriend()
+	{
+		$model=new Friend;
+		
+		$uid = Yii::app()->user->id;
+		$fuid = Yii::app()->request->getParam('uid');
+		$relation = $model->getFriendRelation($uid, $fuid);
+		$return = $relation->delFriend();
+		echo !$return?-1:1;
+
+	}
 	
 	/**
 	 * 好友添加

@@ -229,44 +229,33 @@ function AjaxSuccess(){
 }
 
 /*]]>*/
+function test()
+{
+					selector	= href.split('#', 2);
+					data		= selectedOpts.ajax.data || {};
 
-function showloading2(wating){
+					if (selector.length > 1) {
+						href = selector[0];
 
-	if ($("#ajax-show").length == 0) {
-		$("body").append('<div id="ajax-show" class="ui-widget-content ui-corner-all"><div id="ajax-show-content" class="ui-widget-header ui-corner-all">Show</div></div>');
-	}
-	
-	
-	
-	$("#ajax-show-content").html(wating);
-	//get effect type from 
-	var selectedEffect = 'highlight';
-	
-	//most effect types need no options passed by default
-	var options = {};
-	//check if it's scale or size - they need options explicitly set
-	if (selectedEffect == 'scale') {
-		options = {
-			percent: 100
-		};
-	}
-	else 
-		if (selectedEffect == 'size') {
-			options = {
-				to: {
-					width: 280,
-					height: 185
-				}
-			};
-		}
-	
-	//run the effect
-	$("#ajax-show").show(selectedEffect, options, 500, showloading_callback);
-	//Alert(wating);
+						if (typeof data == "string") {
+							data += '&selector=' + selector[1];
+						} else {
+							data.selector = selector[1];
+						}
+					}
+
+					busy = false;
+					$.fancybox.showActivity();
+
+					ajaxLoader = $.ajax($.extend(selectedOpts.ajax, {
+						url		: href,
+						data	: data,
+						error	: fancybox_error,
+						success : function(data, textStatus, XMLHttpRequest) {
+							if (ajaxLoader.status == 200) {
+								tmp.html( data );
+								fancybox_process_inline();
+							}
+						}
+					}));
 }
-
-function showloading_callback(){
-	setTimeout(function(){
-		$("#ajax-show:visible").removeAttr('style').hide().fadeOut();
-	}, 5000);
-};

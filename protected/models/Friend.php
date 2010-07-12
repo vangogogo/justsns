@@ -169,5 +169,42 @@ class Friend extends CActiveRecord
 
 
 		return $count;
+	}
+	
+	public function getFriendRelation($uid,$fuid)
+	{
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'uid=:uid AND fuid=:fuid';
+		$criteria->params = array(':uid'=>$uid,':fuid'=>$fuid);
+		$model = Friend::model()->find($criteria);
+
+		if(empty($model))
+		{
+			throw new CHttpException(404,'不是好友.');
+		}
+		else
+		{
+			return $model;
+		}
+	}
+	
+
+	public function delFriend()
+	{
+		if(!$this->getIsNewRecord())
+		{
+			Yii::trace(get_class($this).'.delete()','system.db.ar.CActiveRecord');
+			if($this->beforeDelete())
+			{
+				$this->is_del = 1;
+				$result = $this->save();
+				$this->afterDelete();
+				return $result;
+			}
+			else
+				return false;
+		}
+		else
+			throw new CDbException(Yii::t('yii','The active record cannot be deleted because it is new.'));
 	}	
 }
