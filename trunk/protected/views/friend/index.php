@@ -40,7 +40,7 @@
 					</p>
 					
 					<p class="lh20">
-						<?php if($is_me) echo CHtml::link('解除关系',array('/friend/delete','uid'=>$friend['id']),array('class'=>'thickbox'));?>
+						<?php if($is_me) echo CHtml::link('解除关系',array('/friend/DoDelFriend','uid'=>$friend['id']),array('class'=>'a_confirm_link','title'=>'确认解除关系?'));?>
 					</p>
 				</div>
 				<div class="c"></div>
