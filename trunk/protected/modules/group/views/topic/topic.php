@@ -97,7 +97,7 @@
 					<a href="javascript:quote({$post['id']})">引用</a> ┊ 
 					<?php } ?>
 					<?php if($this->mid == $post['uid'] || $isadmin){ ?>
-						<?php echo CHtml::link('编辑',array('topic/editPost','pid'=>$post['id']),array('class'=>'a_confirm_link'));?> ┊
+						<?php //echo CHtml::link('编辑',array('topic/editPost','pid'=>$post['id']),array('class'=>'a_confirm_link'));?>
 						<?php echo CHtml::link('删除',array('topic/doDelPost','pid'=>$post['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?>
 					<?php } ?>
 				</div>
