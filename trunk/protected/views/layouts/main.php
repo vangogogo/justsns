@@ -88,7 +88,7 @@ $(document).ready(function() {
 					array('label'=>'好友屏蔽', 'url'=>array('/friend/ping')),
 					array('label'=>'访问脚印', 'url'=>array('/friend/track')),
 					array('label'=>'查找朋友', 'url'=>array('/friend/find')),
-					array('label'=>'邀请好友', 'url'=>array('/friend/invite')),
+					array('label'=>'邀请好友', 'url'=>array('/invite')),
 				);
 				$notice_item = array(
 					array('label'=>'短消息', 'url'=>array('/notify/inbox')),

@@ -19,8 +19,11 @@ class Controller extends CController
 	{
 		$this->mid = Yii::app()->user->id;
 		$this->uid = Yii::app()->request->getQuery('uid');
-		define('PUBLIC_URL',Yii::app()->request->baseUrl);
-
+		
+		$domail = 'www.yiisns.com';
+		define('PUBLIC_URL',Yii::app()->request->baseUrl.'/');
+		define('THEME_URL',Yii::app()->theme->baseUrl);
+		
 		if(!Yii::app()->user->isGuest)
 		{
 			$this->layout='application.views.layouts.column2';
