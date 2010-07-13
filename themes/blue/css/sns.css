@@ -8,6 +8,7 @@ a {color:#005FAB;text-decoration:none;}
 .error_info {display:none;}
 .cc .invalid,input.error,select.error,textarea.error {background:#FBE6F2;border:1px solid #D893A1;color:#996633;}
 
+body, td, th {font:12px/162% Arial,Helvetica,sans-serif;}
 textarea, input, select {border:1px solid #DDDDDD;line-height:16px;padding:3px 2px;}
 
 #header { height:40px; width:960px; text-align:left; position:relative; margin-right: auto; margin-left: auto; background-image: url(../images/header_bg.gif); background-repeat: repeat-x; background-position: 0px 0px; background-color: #1f73bb; }

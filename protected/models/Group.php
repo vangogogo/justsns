@@ -358,6 +358,10 @@ class Group extends CActiveRecord
 		{
 			$params['gid'] = $gid;
 		}
+		if(empty($params['is_del']))
+		{
+			$params['is_del'] = 0;
+		}
 		$model = new GroupTopic();
 		$criteria=new CDbCriteria;
 		$criteria->condition.=" 1";
@@ -370,7 +374,7 @@ class Group extends CActiveRecord
 		if(!empty($params))
 		{
 			$array = array(
-				'uid','gid','dist','top','lock'
+				'uid','gid','dist','top','lock','is_del'
 				);
 				foreach($params as $key => $value)
 				{

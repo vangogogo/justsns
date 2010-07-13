@@ -178,10 +178,13 @@ class GroupPost extends CActiveRecord
 			{
 			
 				//回复
-				GroupTopic::model()->updateCounters(array('postcount'=>+1,'replytime'=> time()), "id={$this->tid}");
-
+				//GroupTopic::model()->updateCounters(array('postcount'=>+1,'replytime'=> $this->ctime), "id={$this->tid}");
+				$topic = GroupTopic::model()->loadTopic($this->tid);
+				$topic->postcount += 1;
+				$topic->replytime = $this->ctime;
+				$topic->save();
+				
 				//TODO有邮件提醒本帖回复,并且不是自己回复
-				$topic = $this->topic;
 				if($topic->isrecom == 1 && $this->uid != $topic->uid)
 				{
 					$user = $topic->user;
@@ -210,6 +213,11 @@ class GroupPost extends CActiveRecord
 	}
 	public function delPost()
 	{
+		if($this->is_del == 1)
+		{
+			return true;
+		}
+		
 		if(!$this->getIsNewRecord())
 		{
 			Yii::trace(get_class($this).'.delete()','system.db.ar.CActiveRecord');
