@@ -117,7 +117,7 @@
 .top_box div a { }
 
 /* one-line list table (forum of subject)*/
-.olt{ width:100%; padding:0; margin-bottom:3px;}
-.olt td{ border-bottom:1px dashed #DDDDDD; padding:3px 3px 3px 0;}
+.olt{ width:100%; padding:0; margin-bottom:3px; line-height:20px;}
+.olt td,.olt th{ border-bottom:1px dashed #DDDDDD; padding:3px 3px 3px 0;}
 .olt td.date{ width:75px; text-align:center; color:#999;padding-right:0;}
 .olt td.time{ width:110px;color:#999;padding-right:0;text-align:right}
