@@ -20,7 +20,6 @@ class Controller extends CController
 		$this->mid = Yii::app()->user->id;
 		$this->uid = Yii::app()->request->getQuery('uid');
 		
-		$domail = 'www.yiisns.com';
 		define('PUBLIC_URL',Yii::app()->request->baseUrl.'/');
 		define('THEME_URL',Yii::app()->theme->baseUrl);
 		
