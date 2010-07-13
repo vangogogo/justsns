@@ -69,11 +69,11 @@ $(function(){
 				$.get(url, '', function(result){
 					if(result == 1)
 					{
-						Alert('操作成功...');
+						//Alert('操作成功...');
 					}
 					else if($result == -1)
 					{
-						Alert('操作失败...');
+						//Alert('操作失败...');
 					}
 					else
 					{

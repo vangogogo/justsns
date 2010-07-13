@@ -115,3 +115,9 @@
 .top_box legend { font-size: 14px; color: #666; font-weight: bold; }
 .top_box div { float:left; width:119px; height:110px; text-align: center; overflow: hidden; padding-top: 10px; }
 .top_box div a { }
+
+/* one-line list table (forum of subject)*/
+.olt{ width:100%; padding:0; margin-bottom:3px;}
+.olt td{ border-bottom:1px dashed #DDDDDD; padding:3px 3px 3px 0;}
+.olt td.date{ width:75px; text-align:center; color:#999;padding-right:0;}
+.olt td.time{ width:110px;color:#999;padding-right:0;text-align:right}

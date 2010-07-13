@@ -104,9 +104,10 @@ class TopicController extends Controller
 		$GroupPost->gid = $topic->gid;
 		$GroupPost->tid = $topic->id;
 		
-		$params = array('tid'=>$tid,'pageSize'=>20,'is_del'=>0);
+		$page = $_GET['page']?$_GET['page']:1;
+		$params = array('tid'=>$tid,'pageSize'=>10,'is_del'=>0);
 
-		$params['page'] = $_GET['page'];
+		$params['page'] = $page;
 		$post_data = $group->getGroupPosts($params);
 		$post_list = $post_data['post_list'];
 		$post_pages = $post_data['post_pages'];
@@ -127,6 +128,7 @@ class TopicController extends Controller
 			'post_list'=>$post_list,
 			'post_pages'=>$post_pages,
 			'post_access'=>$post_access,
+			'page'=>$page,
 		);
 		$this->render('topic',$data);
 	}
@@ -144,8 +146,8 @@ class TopicController extends Controller
 			{
 				$anchor = !empty($_GET['page'])?'&':'?';
 				$anchor .= 'post=ok#last';
-				var_dump($auchor);die;
-//				$this->refresh(true,$anchor);
+				//var_dump($auchor);die;
+				$this->refresh(true,$anchor);
 				//$this->redirect(array('show','tid'=>$topic->id));
 			}
 			else

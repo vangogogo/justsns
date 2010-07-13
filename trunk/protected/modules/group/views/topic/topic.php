@@ -30,7 +30,7 @@
 				</div>
 				<div class="lh35 alR toplineD">
 					<?php if($isadmin) { ?>
-						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']),array('class'=>'a_confirm_link'));?> ┊ 
+						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']));?> ┊ 
 						
 						<?php $array = array('dist'=>'精华','top'=>'置顶','lock'=>'锁定');?>
 						<?php foreach($array as $option => $name){ $title = $topic[$option]?'取消'.$name:$name;?>
@@ -40,7 +40,7 @@
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
 					<?php } elseif($this->mid == $topic['uid']) { ?>
 					
-						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']),array('class'=>'a_confirm_link'));?> ┊
+						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']));?> ┊
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
 
 					<?php } ?>
@@ -114,7 +114,7 @@
 		<?php if($post_access):?>
 			<?php if(!empty($_GET['post'])){?>
 			<div class="color-gray">
-				<?php echo CHtml::link('继续发言',array('topic/show','tid'=>$topic['id'],'page'=>$_GET['page'],'#'=>'last'),array('id'=>'last'));?>
+				<?php echo CHtml::link('继续发言',array('topic/show','tid'=>$topic['id'],'page'=>$page,'#'=>'last'),array('id'=>'last'));?>
 			</div>
 			<?php }else{?>
 			<div class="li" id="last">

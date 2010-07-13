@@ -1,6 +1,6 @@
 <div class="box1">
 	<h3>群话题区(共{$threadCount}条)</h3>
-	<table class="ul">
+	<table class="ul olt">
 		<tr>
 			<th class="c1">话题</th><th class="c2">作者</th><th class="c3">回应/浏览</th><th class="c5">最后回应</th>
 		</tr>
@@ -15,7 +15,7 @@
 			</td>
 			<td><?php echo $topic['name']?></td>
 			<td><?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?></td>
-			<td><?php echo friendlyDate('Y-m-d H:i:s',$topic['replytime'])?></td>
+			<td class="time"><?php echo date('m-d H:i',$topic['replytime'])?></td>
 			<?php endforeach;?>
 			</tr>
 		<?php }else{?>

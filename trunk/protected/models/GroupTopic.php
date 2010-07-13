@@ -164,7 +164,10 @@ class GroupTopic extends CActiveRecord
 		if($this->isNewRecord)
 		{
 			$this->uid=Yii::app()->user->id;
-			$this->ctime=time();
+			$time = time();
+			$this->ctime=$time;
+			$this->replytime=$time;
+			
 			$user = User::model()->findByPk($this->uid);
 			if(empty($user))
 			{
@@ -189,6 +192,8 @@ class GroupTopic extends CActiveRecord
 			$model=$this->findbyPk($id!==null ? $id : $_POST['tid']);
 		if($model===null)
 			throw new CHttpException(404,'该话题不存在.');
+		if($model->is_del != 0)
+			throw new CHttpException(404,'该话题不存在或被删除.');
 		return $model;
 	}
 	
@@ -223,7 +228,7 @@ class GroupTopic extends CActiveRecord
 	
 	public function delTopic()
 	{
-		if($this->uid == $this->mid)
+		if($this->uid == Yii::app()->user->id)
 		{
 			$this->is_del = 1;
 			$this->save();
