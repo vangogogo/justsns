@@ -121,3 +121,18 @@
 .olt td,.olt th{ border-bottom:1px dashed #DDDDDD; padding:3px 3px 3px 0;}
 .olt td.date{ width:75px; text-align:center; color:#999;padding-right:0;}
 .olt td.time{ width:110px;color:#999;padding-right:0;text-align:right}
+
+/* group topic new */
+.topic-content .user-face,
+.topic-reply .user-face { float: left; width: 48px; height: 48px; overflow: hidden }
+.topic-content .topic-doc { float: right; width: 520px; margin-bottom: 30px }
+.topic-content .topic-doc h3 { margin: 0; padding: 5px 0; height: auto; background: none }
+.topic-content .topic-doc p { margin: 0; padding: 0; word-wrap:break-word; overflow: hidden }
+.topic-content .topic-opt { padding: 15px 0 0 }
+.topic-content .topic-opt .fleft { color: #666; margin-right: 10px }
+.topic-reply li { margin: 0 0 20px 48px }
+.topic-reply li .reply-doc { float: right; width: 473px }
+.topic-reply li .reply-doc h4 { margin: 0 0 15px 4px; height: 22px; line-height: 22px }
+.topic-reply li .reply-doc p { margin: 0 0 25px 0; word-wrap:break-word; overflow: hidden }
+.bg-img-green { display: block; background: url(http://t.douban.com/pics/topicbar.gif) no-repeat }
+.group_banned { text-align: right }

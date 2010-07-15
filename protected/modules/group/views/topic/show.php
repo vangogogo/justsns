@@ -8,7 +8,7 @@
 				</div>
 				<div class="topic-doc">
 					<h3>
-						<span class="color-green">2010-05-10 14:19:47</span>
+						<span class="color-green"><?php echo $topic->ctime;?></span>
 						<span class="pl20">来自: <a href="http://www.douban.com/people/liuwenbo/">快刀柔风</a>(极目疑天阔逆风验英雄)</span>
 					</h3>
 					<p>
@@ -88,52 +88,28 @@
 		</div>
 		<div class="aside">
 			<p class="pl2">
-				&gt; <a href="http://www.douban.com/group/sz80/">回深圳80后小组</a>
+				&gt; <?php echo CHtml::link('回到'.$group['name'],array('group','gid'=>$group['id']));?>
 			</p>
 			<br>
 			<!-- douban ad begin -->
 			<div id="google_ads_slot_group_topic_new_top_right">
-				<iframe width="310" scrolling="no" height="188" frameborder="0" id="google_ads_slot_iframe_group_topic_new_top_right" class="mb20">
-				</iframe>
+
 			</div>
-			<!-- douban ad end --><h2 class="usf">最新话题:</h2>
+			<!-- douban ad end -->
+			<?php if(!empty($topics)):?>
+			<h2 class="usf">最新话题:</h2>
 			<div class="indent">
+				<?php foreach($topics as $topic):?>
 				<p class="pl ul">
-					<a title="最近很喜欢吃，，，怎么办" href="http://www.douban.com/group/topic/12663191/">最近很喜欢吃，，，怎么办</a>
+					<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']))?>
 					&nbsp; <span class="pl">(EC在等) </span>
 				</p>
-				<p class="pl ul">
-					<a title="感动每一个人的礼物！" href="http://www.douban.com/group/topic/12665856/">感动每一个人的礼物！</a>
-					&nbsp; <span class="pl">(小月) </span>
-				</p>
-				<p class="pl ul">
-					<a title="突然发现下班后挺无聊的" href="http://www.douban.com/group/topic/12665513/">突然发现下班后挺无聊的</a>
-					&nbsp; <span class="pl">(偌大的世界) </span>
-				</p>
-				<p class="pl ul">
-					<a title="求助求便宜的电影票" href="http://www.douban.com/group/topic/12665332/">求助求便宜的电影票</a>
-					&nbsp;<span class="pl">(潜龙勿用) </span>
-				</p>
-				<p class="pl ul">
-					<a title="哪些瞬间让你决定跟定你的爱人？" href="http://www.douban.com/group/topic/11640953/">哪些瞬间让你决定跟定你的爱人？</a>
-					&nbsp; <span class="pl">(樱菲妮媂) </span>
-				</p>
-				<p class="pl ul">
-					<a title="这几天突然地对一个女生产生很大的兴趣&mdash;&mdash;爱情来了吗？" href="http://www.douban.com/group/topic/12651835/">这几天突然地对一个女生产生很大的兴趣&mdash;&mdash;爱情来了吗...</a>
-					&nbsp; <span class="pl">(EERF) </span>
-				</p>
-				<p class="pl ul">
-					<a title="80后的我在白石洲卖新疆凉皮了，附近的同学们有空来尝尝吧~~~香的很！" href="http://www.douban.com/group/topic/11710379/">80后的我在白石洲卖新疆凉皮了，附近的同学们有空来尝...</a>
-					&nbsp; <span class="pl">(那些花儿) </span>
-				</p>
-				<p class="pl ul">
-					<a title="姐，笑而不语" href="http://www.douban.com/group/topic/12580451/">姐，笑而不语</a>
-					&nbsp; <span class="pl">(小癫) </span>
-				</p>
+				<?php endforeach;?>
 			</div>
+			<?php endif;?>
 		</div>
 		<div class="extra">
-			<a href="http://www.douban.com/misc/report?type=T&amp;uid=11285196" class="gact">&gt; 举报不良信息</a>
+			
 		</div>
 	</div>
 </div>

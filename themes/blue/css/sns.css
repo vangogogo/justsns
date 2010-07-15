@@ -380,3 +380,41 @@ color:#FFFFFF;
 .successbar {background:url(../images/32x32/accept.png) 0px 0px no-repeat;margin:0;height:32px;width:32px;}
 .errorbar {background:url(../images/32x32/delete.png) 0px 0px no-repeat;margin:0;height:32px;width:32px;}
 .ui-pnotify-text {line-height:32px;}
+
+/* ond style */
+#maxw{ margin: 0 auto; padding:8px 15px;  background: #FFF;  width: 964px; overflow:hidden}
+.ellipsis {-o-text-overflow:ellipsis;text-overflow: ellipsis;-moz-binding: url('ellipsis.xml#ellipsis');overflow:hidden;}
+form { margin:0;padding: 0; border: 0px; }
+fieldset.site {border:none;padding:0;margin:0}
+fieldset.site legend {display:none}
+fieldset.site label {width:120px;font-size:14px;float:left;overflow:hidden}
+.fsct {margin-bottom:5px}
+.fsctm {margin-left:130px;}
+input.other,.detail input.other {border:none;padding:0;}
+
+ol {padding:0 0 0 20px;}
+textarea{ font-family: Arial; overflow:auto; }
+input{font-size:12px;}
+a{cursor:pointer}
+a:link { color: #336699; text-decoration: none; }
+a:visited { color: #666699; text-decoration: none; }
+a:hover { color: #FFFFFF; text-decoration: none; background: #003399; }
+a:active { color: #FFFFFF; text-decoration: none; background: #FF9933; }
+a img { border-width:0; }
+body,td,th { font: 12px Arial, Helvetica, sans-serif; line-height: 162%; }
+table { border-collapse:collapse; border: none; padding: 0; margin: 0; }
+h1 { display: block; font-size: 25px; font-weight: bold; color: #494949; margin:0; padding: 0 0 15px 0;line-height:1.1; }
+/*h2 { font: 14px Arial, Helvetica, sans-serif; color: #006600; margin-bottom: 5px; line-height: 150%; }*/
+h3 { height:26px;margin-left:4px;font: 14px Arial, Helvetica, sans-serif;color: #666666;margin-bottom: 1px;line-height: 150%; background:url(http://t.douban.com/pics/topicbar.gif) no-repeat right top}
+h3 img{margin:1px 1px 0 0;}
+ul { list-style-type: none; margin: 0; padding: 0; }
+h4 {height:26px; margin:0 0 10px 4px; overflow: hidden; font: 12px Arial, Helvetica, sans-serif; color: #666; line-height: 1.8em; background: url(http://t.douban.com/pics/topicbar.gif) no-repeat right top;}
+h2 { font: 14px Arial, Helvetica, sans-serif; color: #060; margin:0 0 12px 0; line-height: 150%; }
+.wrap { background: url(http://t.douban.com/pics/topicbar.gif) no-repeat; display: block }
+.wrap h3 { margin-top: 20px }
+.obssin {width:100%;}
+.sline{border-bottom:1px solid #a8a8a8;}
+#header{ background:url(http://t.douban.com/pics/headnavbot.gif) no-repeat scroll left 33px; margin:7px 0}
+#header img.logo{float:left;margin-top:-3px;}
+#page_focus{border: 1px solid #ccc; margin:0 10px 0 0;height:16px;width:171px;padding:2px 0 0 2px}
+#page_focus:focus{border: 1px solid #686868;}

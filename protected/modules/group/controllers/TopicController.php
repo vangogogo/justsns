@@ -130,7 +130,7 @@ class TopicController extends Controller
 			'post_access'=>$post_access,
 			'page'=>$page,
 		);
-		$this->render('topic',$data);
+		$this->render('show',$data);
 	}
 	/**
 	 * 增加话题回复
