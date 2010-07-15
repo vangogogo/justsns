@@ -1,5 +1,5 @@
 <?php $this->beginContent(); ?>
-	<div id="content" class="clearfix">
+	<div id="content_main" class="clearfix">
 	
 		<div class="span-4" id="sidebar">
 			<?php if(!Yii::app()->user->isGuest) $this->widget('UserApp'); ?>
