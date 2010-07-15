@@ -2034,13 +2034,18 @@ a.a-lnk:hover,a.a-lnk:active { color:#369;background-color:transparent; }
 
 .aside .mod { margin-bottom: 40px }
 
+#header #logo { float:left; position:absolute; top:0px; left:0px; font-weight:700; font-size:28px;}
+#header #logo a { height: 40px; width: 137px; display: block; text-decoration: none; background-image: url(../images/logo.jpg); background-repeat: no-repeat; background-position: 0px 0px;  }
+#header #logo a:hover { height: 40px; width: 137px; display: block; text-decoration: none; }
+#header #mainmenu { margin-left: 150px; padding-top: 8px;}
+#header #mainmenu ul { list-style-type:none; margin: 0px; padding: 0px; }
 #header #mainmenu ul li { font-size:14px; color:#FFFFFF; font-weight:bold; float:left; position:relative; line-height:32px; display:block; margin: 0px; padding: 0px; list-style-type: none; }
 #header #mainmenu ul li.on { background-color: #FFF; font-size:14px; line-height:30px; border-top-width: 2px; border-right-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: #6bafd4; border-right-color: #6bafd4; border-left-color: #6bafd4; display: block; margin: 0px; padding: 0px; }
 #header #mainmenu ul li.on a.fb14 { color: #005FAB; white-space: nowrap; font-size: 14px; padding: 0px 18px 0px 14px; display: block; }
 #header #mainmenu ul li .ico_new { position:absolute; top:-10px; right:0px; }
 #header #mainmenu ul li .ico_arrow { background-image:url(../images/ico_arrow_1.gif); background-repeat:no-repeat; background-position:47px center; }
-#header #mainmenu ul li a.fb14 { color:#FFFFFF; white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
-#header #mainmenu ul li a { color:#FFFFFF; white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
+#header #mainmenu ul li a.fb14 { white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
+#header #mainmenu ul li a { white-space:nowrap; padding: 0px 20px 0px 16px; display: block; }
 #header #mainmenu ul li .dropmenu { visibility: hidden; z-index: 9000; top: 30px; left: -2px; position: absolute; width: 110px; }
 #header #mainmenu ul li .dropmenu li{ width:100%; }
 #header #mainmenu ul li.on .ico_arrow { background-image:url(../images/ico_arrow.gif); background-repeat:no-repeat; background-position:45px center; }
