@@ -43,10 +43,10 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/fanc
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/screen.css','screen, projection');
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/print.css','print');
 
-//Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/public.css');
-//Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/public.css');
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
 
-Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/packed_douban229.css');
+//Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/packed_douban229.css');
 ?>	
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <!--[if lt IE 8]>

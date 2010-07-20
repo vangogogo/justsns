@@ -259,3 +259,17 @@ function test()
 						}
 					}));
 }
+
+function checkJsToken(txt) {
+		if(txt == 'error'){
+				Alert('请不要频繁提交');
+				$( '.btn_big').removeAttr('disabled');
+				return false;
+		}
+		if(txt == 'fail'){
+				Alert('说得太快了。休息会吧');
+				$( '.btn_big').removeAttr('disabled');
+				return false;
+		}
+		return true
+}

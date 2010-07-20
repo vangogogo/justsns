@@ -123,15 +123,15 @@ class Smile extends CActiveRecord
 	public function replaceContent($content,$temp=null ){
 		$smiletype = 'mini';
 		$public = isset( $temp )?$temp:PUBLIC_URL;
-		$path   = $public."/images/biaoqing/".$smiletype."/";//路径
+		$path   = $public."images/biaoqing/".$smiletype."/";//路径
 		
 		$icon_list = $this->getIconList();
 		//循环替换掉文本中所有ubb表情
 		foreach($icon_list as $value ){
 			$img = sprintf("<img title='%s' src='%s%s'>",$value['title'],$path,$value['filename']);
 			$content = str_replace($value['emotion'],$img,htmlspecialchars_decode($content) );
-
 		}
+		var_dump($content);die("fdsfds");
 		return $content;
 	}
 	
