@@ -2,7 +2,10 @@
 
 
 <div class="page_title" style="width:100%"> <!-- page_title begin -->
-	<h2><span class="right f12px fn"><a href="javascript:history.back( -1 )">返回上一页</a></span><img src="../Public/images/ico_app06.gif" />发起投票</h2>
+	<h2>
+		<span class="right f12px fn"><a href="javascript:history.back( -1 )">返回上一页</a></span>
+		<img src="<?php echo PUBLIC_URL;?>themes/blue/images/apps/ico_app06.gif" class="img" />发起投票
+	</h2>
 	<div class="c"></div>
 </div><!-- page_title end -->
 
@@ -278,6 +281,5 @@
 		<?php echo CHtml::endForm(); ?>
 	  </div> <!-- LogList end  -->
   </div>
-  
-  </div><!-- 画布 end  -->
+
   <div class="c"></div>

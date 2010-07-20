@@ -2,7 +2,7 @@
 <?php Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl.'/js/mini.js');?>
 <!-- page_title begin -->
 <div class=page_title>
-	<div class="tit"><img src="/yiisns/themes/blue/images/apps/ico_app04.gif" class="img" /><?php echo Yii::t('sns', 'mini');?></div>
+	<div class="tit"><img src="<?php echo PUBLIC_URL;?>themes/blue/images/apps/ico_app04.gif" class="img" /><?php echo Yii::t('sns', 'mini');?></div>
 	<?php
 		$this->widget('WMini');
 	?>

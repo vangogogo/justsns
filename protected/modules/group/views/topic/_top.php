@@ -1,6 +1,6 @@
 <?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/mood.css');?>
 <div class=page_title> <!-- page_title begin -->
-	<div class="tit"><img src="/yiisns/themes/blue/images/apps/ico_app05.gif" class="img" /><?php echo Yii::t('sns', 'group');?></div>
+	<div class="tit"><img src="<?php echo PUBLIC_URL;?>themes/blue/images/apps/ico_app05.gif" class="img" /><?php echo Yii::t('sns', 'group');?></div>
 
 
 	<div class="c"></div>
