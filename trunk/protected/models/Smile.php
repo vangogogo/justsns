@@ -131,7 +131,6 @@ class Smile extends CActiveRecord
 			$img = sprintf("<img title='%s' src='%s%s'>",$value['title'],$path,$value['filename']);
 			$content = str_replace($value['emotion'],$img,htmlspecialchars_decode($content) );
 		}
-		var_dump($content);die("fdsfds");
 		return $content;
 	}
 	
