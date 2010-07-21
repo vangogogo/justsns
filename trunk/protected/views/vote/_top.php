@@ -1,6 +1,6 @@
 <?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/poll.css');?>
 <div class=page_title> <!-- page_title begin -->
-	<div class="tit"><img src="<?php echo PUBLIC_URL;?>themes/blue/images/apps/ico_app06.gif" class="img" />投票</div>
+	<div class="tit"><img src="<?php echo THEME_URL;?>images/apps/ico_app06.gif" class="img" />投票</div>
 	<div class="c"></div>
 </div><!-- page_title end -->
 <!-- 切换标签 begin  -->

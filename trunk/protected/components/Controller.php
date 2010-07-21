@@ -21,7 +21,7 @@ class Controller extends CController
 		$this->uid = Yii::app()->request->getQuery('uid');
 		
 		define('PUBLIC_URL',Yii::app()->request->baseUrl.'/');
-		define('THEME_URL',Yii::app()->theme->baseUrl);
+		define('THEME_URL',Yii::app()->theme->baseUrl.'/');
 		
 		if(!Yii::app()->user->isGuest)
 		{

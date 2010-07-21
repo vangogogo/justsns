@@ -15,7 +15,7 @@
 					<?php echo User::model()->getUserName($topic['uid']);?>
 				</a>
 				<br>
-				<img alt="管理员" src="http://localhost/thinksns/public/themes/blue/images/icon/groupicon/admin.png">
+				<img alt="管理员" src="<?php echo THEME_URL?>images/icon/groupicon/admin.png">
 			</div>
 			<div style="width: 80%;" class="left">
 				<div class="cGray2 lh30">

@@ -3,7 +3,7 @@
 公用样式部分
 */
 * { word-wrap:break-word }
-body { background-color:#fff; font:12px Arial, Verdana, Helvetica, sans-serif; text-align:center; color:#333; }
+body { background-color:#fff; font:12px Arial, Verdana, Helvetica, sans-serif;  color:#333; }
 body, div, dl, dt, dd, ul, ol, li, pre, form, fieldset, blockquote, h1, h2, h3, h4, h5, h6 { padding:0; margin:0 }
 h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 table, td, tr, th { font-size:12px }
