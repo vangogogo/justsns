@@ -349,4 +349,22 @@ class User extends CActiveRecord
 		}
 		return $friends;
 	}
+	
+	
+	public function getUserFriendGroups()
+	{
+		
+		//初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='id';
+		$criteria->condition="uid=0 OR uid=:uid";
+		$criteria->params=array(':uid'=>Yii::app()->user->id);
+
+		$model = new FriendGroup();
+		$groups = $model->findAll($criteria);
+		
+		return $groups;
+	}
+	
+	
 }

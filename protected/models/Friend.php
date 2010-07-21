@@ -147,28 +147,42 @@ class Friend extends CActiveRecord
 	/**
 	 * 好友数
 	 */	
-	public function getFriendNumber($uid = '',$gid = 0)
+	public function countGroupFriend($uid = '',$gid = 0)
 	{
 		if(empty($uid))
 		{
 			$uid = Yii::app()->user->id;
 		}
 		$criteria=new CDbCriteria;
-		$criteria->condition = 'uid=:uid ';
+		$criteria->condition = 't.uid=:uid AND status= 1';
 		$criteria->params = array(':uid'=>$uid);
-		if(empty($gid))
-		{
-			$criteria->addCondition('status= 1');
-			$count = Friend::model()->count($criteria);
-		}
-		else
+		
+		$table_name = FriendBelongGroup::model()->tableName();
+		$criteria->join = "left join {$table_name} ON {$table_name}.uid = t.uid ";
+		
+		if(!empty($gid))
 		{
 			$criteria->addCondition('gid='.$gid);
-			$count = FriendBelongGroup::model()->count($criteria);
 		}
-
-
+		$count = Friend::model()->count($criteria);
 		return $count;
+	}
+	
+	/**
+	 * 获得用户的某个好友的分组情况
+	 * @param int $uid
+	 * @param int $fuid
+	 * @return Ambigous <mixed, multitype:, NULL, unknown>
+	 */
+	public function getGroupsForFriend(int $uid,int $fuid)
+	{
+		$model =  new FriendBelongGroup();
+		$criteria=new CDbCriteria;
+		$criteria->condition = 't.uid=:uid AND t.fuid=:fuid';
+		$criteria->params = array(':uid'=>$uid,':fuid'=>$fuid);
+
+		$groups = $model->findAll($criteria);
+		return $groups;
 	}
 	
 	public function getFriendRelation($uid,$fuid)
@@ -191,20 +205,56 @@ class Friend extends CActiveRecord
 
 	public function delFriend()
 	{
-		if(!$this->getIsNewRecord())
+		$result = $this->delete();
+		return $result;
+	}
+	
+	/**
+	 * 获得用户的所有好友分组列表
+	 * @param unknown_type $uid
+	 * @return Ambigous <mixed, multitype:, NULL, unknown>
+	 */
+	public function getFriendGroups($uid)
+	{
+		if(empty($uid))
 		{
-			Yii::trace(get_class($this).'.delete()','system.db.ar.CActiveRecord');
-			if($this->beforeDelete())
-			{
-				$this->is_del = 1;
-				$result = $this->save();
-				$this->afterDelete();
-				return $result;
-			}
-			else
-				return false;
+			$uid = Yii::app()->user->id;
 		}
-		else
-			throw new CDbException(Yii::t('yii','The active record cannot be deleted because it is new.'));
-	}	
+		//初始化
+		$criteria=new CDbCriteria;
+		$criteria->order='id';
+		$criteria->condition="uid=0 OR uid=:uid";
+		$criteria->params=array(':uid'=>$uid);
+
+		$model = new FriendGroup();
+		$groups = $model->findAll($criteria);
+		
+		return $groups;
+	}
+	
+	public function getGroupsName(int $uid,int $fuid)
+	{
+		$groups = $this->getFriendGroups($uid);
+		$text = '未分组';
+		if(!empty($groups))
+		{
+
+			$groups_arr = CHtml::listData($groups, 'id', 'name');
+			$friend_groups = $this->getGroupsForFriend($uid,$fuid);
+			$arr = array();
+			if(!empty($friend_groups))
+			{
+				foreach($friend_groups as $friend_group)
+				{
+					$gid = $friend_group['gid'];
+					$arr[$gid] = $groups_arr[$gid];
+				}
+				if(is_array($arr))
+				{
+					$text = implode($arr, ',');
+					echo $text;
+				}
+			}
+		}
+	}
 }
