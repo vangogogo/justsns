@@ -13,14 +13,8 @@ class WFriendGroup extends CWidget
 
 		$uid = intval($_GET["uid"]);
 
-		//初始化
-		$criteria=new CDbCriteria;
-		$criteria->order='id';
-		$criteria->condition="uid=0 OR uid=:uid";
-		$criteria->params=array(':uid'=>Yii::app()->user->id);
-
-		$model = new FriendGroup();
-		$groups = $model->findAll($criteria);
+		$model = new User();
+		$groups = $model->getUserFriendGroups();
 
 		if($_GET["uid"]) $other = "/uid/".$_GET["uid"];
 

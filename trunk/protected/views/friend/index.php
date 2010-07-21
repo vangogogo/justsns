@@ -23,8 +23,9 @@
 
 					<p class="cGray2 lh20">分组：
 						<?php 
+						echo Friend::model()->getGroupsName($uid,$friend['id']);
 						if($is_me){
-							echo CHtml::link('分组',array('/friend/group','id'=>$friend['id']),array('class'=>'thickbox','title'=>'修改好友分组'));
+							echo CHtml::link('分组',array('/friend/group','fuid'=>$friend['id']),array('class'=>'thickbox','title'=>'修改好友分组'));
 						}
 						else echo CHtml::encode('分组');
 						?>
@@ -32,9 +33,6 @@
 					<p class="cGray2 lh20"><span class="wn">心情：</span><?php echo $friend['mini'];?></p>
 				</div>
 				<div class="left" style="width:60px;">
-					<p class="lh20">
-						<?php echo CHtml::link('查看空间',array('/space/','uid'=>$friend['id']));?>
-					</p>
 					<p class="lh20">
 						<?php echo CHtml::link('发送短信',array('/notify/write','uid'=>$friend['id']));?>
 					</p>
