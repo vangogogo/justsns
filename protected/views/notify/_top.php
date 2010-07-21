@@ -1,6 +1,6 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/notify.css');?>
 <div class=page_title> <!-- page_title begin -->
-	<h2><img src="<?php echo Yii::app()->baseUrl;?>/images/mail_down.gif" />消息</h2>
+	<h2><img src="<?php echo PUBLIC_URL?>/images/mail_down.gif" />消息</h2>
 	<div class="c"></div>
 </div><!-- page_title end -->
 <!-- 切换标签 begin  -->
