@@ -14,10 +14,10 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group
 		<title>
 			<?php echo CHtml::encode($this->pageTitle); ?>
 		</title>
-	</head>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript">
-	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" />
+		
+	</head>
 	<body>
 		<div id="head">
 			<div id="logo">

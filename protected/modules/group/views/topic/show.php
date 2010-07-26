@@ -16,7 +16,8 @@
 							来自:
 							<a href="<?php echo $this->createUrl('/space/',array('uid'=>$topic['uid']));?>"  class="tips">
 								<?php echo User::model()->getUserName($topic['uid']);?>
-								</a>
+							</a>
+						</h3>
 						<br/>
 						<div class="allcontent">
 							<?php echo $topic->getTopicContent();?>
@@ -96,6 +97,24 @@
 		<div class="clear01">
 		</div>
 		<h3 align="right">你好，请 <a href="/user/login.html">登录</a> 或 <a href="/user/register.html">注册</a></h3>
+
+		<?php if($post_access):?>
+			<?php if(!empty($_GET['post'])){?>
+			<div class="color-gray">
+				<?php echo CHtml::link('继续发言',array('topic/show','tid'=>$topic['id'],'page'=>$page,'#'=>'last'),array('id'=>'last'));?>
+			</div>
+			<?php }else{?>
+
+			<div style="width: 80%;" class="left">
+				<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
+			</div>
+
+			<?php }?>
+		<?php endif;?>
+		
+		<div class="baikeUserPage" style="text-align:center;">
+			<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
+		</div>		
 	</div>
 	<div id="topicmain_r">
 		<h2><a href="/group/">&gt; 小组首页</a></h2>
