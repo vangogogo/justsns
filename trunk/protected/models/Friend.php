@@ -174,7 +174,7 @@ class Friend extends CActiveRecord
 	 * @param int $fuid
 	 * @return Ambigous <mixed, multitype:, NULL, unknown>
 	 */
-	public function getGroupsForFriend(int $uid,int $fuid)
+	public function getGroupsForFriend($uid,$fuid)
 	{
 		$model =  new FriendBelongGroup();
 		$criteria=new CDbCriteria;
@@ -232,7 +232,7 @@ class Friend extends CActiveRecord
 		return $groups;
 	}
 	
-	public function getGroupsName(int $uid,int $fuid)
+	public function getGroupsName($uid,$fuid)
 	{
 		$groups = $this->getFriendGroups($uid);
 		$text = '未分组';

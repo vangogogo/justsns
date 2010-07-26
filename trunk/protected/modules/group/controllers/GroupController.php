@@ -37,7 +37,7 @@ class GroupController extends Controller
 			'adminList'=>$adminList,
 			'memberList'=>$memberList,
 		);
-		$this->render('group',$data);
+		$this->render('show',$data);
 	}
 	/*
 	 * 小组的所有话题
