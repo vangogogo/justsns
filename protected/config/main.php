@@ -174,7 +174,7 @@ return array(
 			"layout"=>"application.views.layouts.main",
 		),
 		'group'=>array(
-			"layout"=>"application.views.layouts.main",
+			"layout"=>"main",
 			//"defaultController"=>"group"
 		),
 		'gift'=>array(

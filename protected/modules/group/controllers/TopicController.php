@@ -98,7 +98,7 @@ class TopicController extends Controller
 		$topic = $model->loadTopic($tid);
 		//相关话题求助
 		$group = $topic->group;
-		$topics = $group->getGroupNewThreads();
+		$new_topics = $group->getGroupNewThreads();
 		//默认回复
 		$GroupPost = $this->addPost();
 		$GroupPost->gid = $topic->gid;
@@ -124,6 +124,7 @@ class TopicController extends Controller
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
+			'new_topics'=>$new_topics,
 			'GroupPost'=>$GroupPost,
 			'post_list'=>$post_list,
 			'post_pages'=>$post_pages,
