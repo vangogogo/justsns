@@ -77,40 +77,11 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group
 		<div class="height02 clear01">
 		</div>
 		<div id="foot">
-			<div>
-				<a href="/about/" target="_blank">关于我们</a>
-				<a href="/change.html" target="_blank">发展成长</a>
-				<a href="/group/advice/" target="_blank">意见反馈</a>
-				<a href="/about/policy.html" target="_blank">隐私政策</a>
-				<a href="mailto:webmaster@u148.net" target="_blank">联系我们</a>
-				<a href="/links/index.html" target="_blank">友情链接</a>
-				<a href="/about/help.html" target="_blank">帮助中心</a>
-			</div>
-			<div>
-				&copy; 2007-2012 有意思吧版权所有 <a href="http://www.miibeian.gov.cn" target="_blank"><span class="color02">鲁ICP备07012645号</span></a>
-			</div>
-		</div>
-		<div style="display: none;">
-			<script language="JavaScript">
-				<!--
-				function killErrors(){
-					return true;
-				}
-				
-				window.onerror = killErrors;
-				-->
-			</script>
-			<!--Google统计代码-->
-			<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-			</script>
-			<script type="text/javascript">
-				_uacct = "UA-2063560-1";
-				urchinTracker();
-			</script>
-			<!--Google统计代码-->
-			<script src="http://s7.cnzz.com/stat.php?id=1305626&web_id=1305626" language="JavaScript" charset="gb2312">
-			</script>
-			<!--script language="javascript" type="text/javascript" src="http://js.users.51.la/1497215.js"></script-->
+			<div id="footer">
+				Copyright &copy; <?php echo date('Y'); ?> by LockPHP.
+				All Rights Reserved.
+				<?php echo Yii::powered(); ?>
+			</div><!-- footer -->
 		</div>
 	</body>
 </html>

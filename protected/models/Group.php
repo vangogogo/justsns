@@ -424,18 +424,48 @@ class Group extends CActiveRecord
 		return $members;
 	}
 	
-	public function isAdmin()
+	public function loadMember($uid)
 	{
-		return true;
+		$gid = $this->id;
+		if(empty($uid))
+		{
+			$uid = Yii::app()->user->id;
+		}
+		$model = new GroupMember();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" 1 AND gid = :gid AND uid = :uid";
+		$criteria->params = array(':gid'=>$gid,':uid'=>$uid);
+		$member = $model->find($criteria);
+		return $member;
 	}
 	
-	public function isMember()
+	public function isAdmin($uid)
 	{
-		return true;
+		$member = $this->loadMember($uid);
+		if($member->level = 1)
+		{
+			return true;
+		}
+		return false;
 	}
-	public function isCreater()
+	
+	public function isMember($uid)
 	{
-		return true;
+		$member = $this->loadMember($uid);
+		if($member->level = 2)
+		{
+			return true;
+		}
+		return false;
+	}
+	public function isCreater($uid)
+	{
+		$member = $this->loadMember($uid);
+		if($member->level = 3)
+		{
+			return true;
+		}
+		return false;
 	}
 	/**
 	 * 读取话题
