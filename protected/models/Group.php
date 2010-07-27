@@ -613,4 +613,52 @@ class Group extends CActiveRecord
 		$data = $this->getGroups($params, $limit);
 		return $data['group_list'];
 	}
+	
+	public function countGroups($params = array())
+	{
+		
+		if(!isset($params['status']))
+		{
+			$params['status'] = 1;
+		}
+		if(!isset($params['is_delete']))
+		{
+			$params['is_del'] = 0;
+		}
+			
+		$model = new Group();
+		$criteria=new CDbCriteria;
+		$criteria->condition.="1";
+		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		if(!empty($limit))
+		{
+			$criteria->limit = $limit;
+		}
+		if(!empty($params))
+		{
+			$array = array(
+				'id','uid','cid0','cid1','type','status','is_del'
+				);
+				foreach($params as $key => $value)
+				{
+					if(in_array($key,$array))
+					{
+						$criteria->condition.=" and $key=:$key";
+						$criteria->params[':'.$key]=$value;
+					}
+				}
+		}
+		$pageSize = $params['pageSize'];
+		if(!empty($pageSize))
+		{
+			$page = $params['page'];
+			$_GET['page'] = $page;
+			$total = $model->count($criteria);
+			$pages=new CPagination($total);
+			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
+			$pages->applyLimit($criteria);
+		}
+		$count=$model->count($criteria);
+		return $count;
+	}
 }
