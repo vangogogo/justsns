@@ -69,7 +69,8 @@ class TopicController extends Controller
 		$model = new GroupTopic();
 		$tid = Yii::app()->request->getQuery('tid');
 		$model = $model->loadTopic($tid);
-		$group = $topic->group;
+		$gid = $model->gid;
+		$group = Group::model()->loadGroup($gid);
 		
 		if(!empty($_POST['GroupTopic']))
 		{
@@ -97,7 +98,8 @@ class TopicController extends Controller
 		$tid = Yii::app()->request->getQuery('tid');
 		$topic = $model->loadTopic($tid);
 		//相关话题求助
-		$group = $topic->group;
+		$gid = $topic->gid;
+		$group = Group::model()->loadGroup($gid);
 		$new_topics = $group->getGroupNewThreads();
 		//默认回复
 		$GroupPost = $this->addPost();
@@ -105,7 +107,7 @@ class TopicController extends Controller
 		$GroupPost->tid = $topic->id;
 		
 		$page = $_GET['page']?$_GET['page']:1;
-		$params = array('tid'=>$tid,'pageSize'=>10,'is_del'=>0);
+		$params = array('tid'=>$tid,'pageSize'=>100,'is_del'=>0);
 
 		$params['page'] = $page;
 		$post_data = $group->getGroupPosts($params);
@@ -124,6 +126,7 @@ class TopicController extends Controller
 		//不存在则提示..访问内容不存在.
 		$data = array(
 			'topic'=>$topic,
+			'group'=>$group,
 			'new_topics'=>$new_topics,
 			'GroupPost'=>$GroupPost,
 			'post_list'=>$post_list,
