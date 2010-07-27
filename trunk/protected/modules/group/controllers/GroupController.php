@@ -3,14 +3,18 @@
 class GroupController extends Controller
 {
 	private $_model;
-
-	public $defaultAction = 'view';
 	/**
 	 * 小组首页
 	 */
 	public function actionIndex()
 	{
-		echo "index";
+		$model = new Group();
+		$new_groups =$model->getNewGroups();
+		$groups_count = $model->countGroups();
+		$data = array(
+			'new_groups'=>$new_groups,
+			'groups_count'=>$groups_count,
+		);
 		$this->render('index',$data);
 	}
 	

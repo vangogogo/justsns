@@ -45,8 +45,6 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/print
 
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/public.css');
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
-
-//Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/packed_douban229.css');
 ?>	
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <!--[if lt IE 8]>
@@ -104,7 +102,7 @@ $(document).ready(function() {
 						array('label'=>'首页', 'url'=>array('/site/index')),
 						array('label'=>'个人空间', 'url'=>array('/space', 'uid'=>Yii::app()->user->id)),
 						array('label'=>'好友', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
-						array('label'=>'随便看看', 'url'=>array('/site/contact')),
+						array('label'=>'小组', 'url'=>array('/group')),
 						array('label'=>'信息', 'url'=>array('/notify/inbox'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $notice_item),
 					),
 					'submenuHtmlOptions'=>array('class'=>'dropmenu'),
