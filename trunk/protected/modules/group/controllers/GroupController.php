@@ -4,7 +4,7 @@ class GroupController extends Controller
 {
 	private $_model;
 	/**
-	 * 小组首页
+	 * 小组列表页
 	 */
 	public function actionIndex()
 	{
@@ -46,6 +46,7 @@ class GroupController extends Controller
 		);
 		$this->render('show',$data);
 	}
+	
 	/*
 	 * 小组的所有话题
 	 */

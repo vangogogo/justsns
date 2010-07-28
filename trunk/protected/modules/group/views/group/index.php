@@ -6,9 +6,9 @@
 			<?php foreach($new_groups as $group):?>
 			<li>
 				<div id="image">
-					<a href="/group/68/"><img src="http://img.u148.net/ghead/2008/d2007121604631.jpg" /></a>
+					<?php echo CHtml::link('<img src="http://img.u148.net/ghead/2008/d2007121604631.jpg" />',array('/group/group/show','gid'=>$group['id']));?>
 				</div>
-				<?php echo CHtml::link($group['name'],array('group/show','gid'=>$group['id']));?>
+					<?php echo CHtml::link($group['name'],array('/group/group/show','gid'=>$group['id']));?>
 				(<?php echo CHtml::encode($group['threadcount'])?>)
 			</li>
 			<?php endforeach;?>
