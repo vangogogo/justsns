@@ -3,6 +3,7 @@
 class GroupTopic extends CActiveRecord
 {
 	public $content_temp;
+	public $group_name;
 	/**
 	 * The followings are the available columns in table 'group_topic':
 	 * @var integer $id
@@ -201,6 +202,9 @@ class GroupTopic extends CActiveRecord
 	{
 		$content = $this->getTopicContent();
 		$this->content_temp = $content;
+		
+		$group = Group::model()->loadGroup($this->gid);
+		$this->group_name = $group->name;
 		return true;
 	}
 	
@@ -277,6 +281,5 @@ class GroupTopic extends CActiveRecord
 			}
 		}
 		
-	}	
-	
+	}
 }

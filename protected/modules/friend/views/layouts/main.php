@@ -7,13 +7,23 @@
 
 Yii::app()->clientScript->registerCoreScript('jquery');
 
+//MAIN JS
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
+//pnotify
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.js');
+Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.default.css');
+
+//Blueprint CSS Framework 0.9
+Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/screen.css');
+
+//MAin CSS
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group2.css');
 
 		?>
 		<title>
 			<?php echo CHtml::encode($this->pageTitle); ?>
 		</title>
+		
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" />
 		
@@ -21,55 +31,65 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group
 	<body>
 		<div id="head">
 			<div id="logo">
-				<a href="/"><img src="/images/logo.gif" alt="有意思吧首页" border="0" /></a>
+				<a href="/"><img src="/images/logo.gif" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" border="0" /></a>
 			</div>
 			<div id="headright">
 				<div id="hello">
+					<?php if(Yii::app()->user->isGuest) {?>
+						<?php echo CHtml::link('注册',array('/site/reg'));?> ┆ 
+						<?php echo CHtml::link('登陆',array('/site/login'));?> ┆ 
+						<?php echo CHtml::link('帮助',array('/site/help'));?>
+					<?php }else{?>
+						<?php echo CHtml::link('管理',array('/admin'));?> ┆ 
+						<?php echo CHtml::link('邀请',array('/invite'));?> ┆ 
+						<?php echo CHtml::link('账号',array('/account'));?> ┆ 
+						<?php echo CHtml::link('资料',array('/info'));?> ┆ 
+						<?php echo CHtml::link('退出',array('/site/logout'));?>
+					<?php }?>
 				</div>
 				<div id="menu">
-					<ul>
-						<li id="index">
-							<a href="/">首页</a>
-						</li>
-						<li id="video">
-							<a href="/video.html">影像</a>
-						</li>
-						<li id="image">
-							<a href="/image.html">图画</a>
-						</li>
-						<li id="game">
-							<a href="/game.html">游戏</a>
-						</li>
-						<li id="audio">
-							<a href="/audio.html">音频</a>
-						</li>
-						<li id="text">
-							<a href="/text.html">文字</a>
-						</li>
-						<li id="mix">
-							<a href="/mix.html">杂碎</a>
-						</li>
-						<li id="union">
-							<a href="/union.html">铺子</a>
-						</li>
-						<li id="group">
-							<a href="/group/">小组</a>
-						</li>
-						<!--<li id="film"><a href="http://film.u148.net/" target="_blank">电影</a></li> -->
-					</ul>
+					<?php
+					if(!Yii::app()->user->isGuest) {
+						$friend_item = array(
+							array('label'=>'我的好友', 'url'=>array('/friend/index')),
+							array('label'=>'好友屏蔽', 'url'=>array('/friend/ping')),
+							array('label'=>'访问脚印', 'url'=>array('/friend/track')),
+							array('label'=>'查找朋友', 'url'=>array('/friend/find')),
+							array('label'=>'邀请好友', 'url'=>array('/invite')),
+						);
+						$notice_item = array(
+							array('label'=>'短消息', 'url'=>array('/notify/inbox')),
+							array('label'=>'系统通知', 'url'=>array('/notify/index','type'=>'system')),
+							array('label'=>'好友请求', 'url'=>array('/notify/index','type'=>'friend')),
+							array('label'=>'留言板', 'url'=>array('/site/page')),
+						);
+						$this->widget('zii.widgets.CMenu',array(
+						'items'=>array(
+							array('label'=>'首页', 'url'=>array('/site/index')),
+							array('label'=>'个人空间', 'url'=>array('/space', 'uid'=>Yii::app()->user->id)),
+							array('label'=>'好友', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
+							array('label'=>'小组', 'url'=>array('/group')),
+							array('label'=>'信息', 'url'=>array('/notify/inbox'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $notice_item),
+						),
+						'submenuHtmlOptions'=>array('class'=>'dropmenu'),
+						));
+					}
+					else
+					{
+						$this->widget('zii.widgets.CMenu',array(
+						'items'=>array(
+							array('label'=>'首页', 'url'=>array('/site/index')),
+							array('label'=>'随便看看', 'url'=>array('/site/contact')),
+						),
+						'submenuHtmlOptions'=>array('class'=>'dropmenu'),
+						));
+					}
+					 ?>
 				</div>
 			</div>
 		</div>
 		<div class="clear01">
 		</div>
-		<script type="text/javascript" language="javascript">
-			$(function(){
-				validateLogin();
-			});
-		</script>
-		<script type="text/javascript" language="javascript">
-			setHeader("group");
-		</script>
 		<div id="maincon">
 			<?php echo $content?>
 		</div>
