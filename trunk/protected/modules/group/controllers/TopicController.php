@@ -54,9 +54,9 @@ class TopicController extends Controller
 			}
 			//$model->validate();
 		}
-		
 		$data = array(
 			'form'=>$model,
+			'group'=>$group,
 		);
 		$this->render('create',$data);
 	}
@@ -85,6 +85,7 @@ class TopicController extends Controller
 		
 		$data = array(
 			'form'=>$model,
+			'group'=>$group,
 		);
 		$this->render('create',$data);
 	}

@@ -63,22 +63,24 @@
 			<?php }?>
 
 		</table>
+		<?php if(empty($_GET['page']) AND $page_count<=1){?>
 		<div class="dislib">
-			<?php echo CHtml::link('> 更多小组话题',array('group/discussion','gid'=>$group['id']));?>
+			<?php echo CHtml::link('> 更多小组话题',array('group/show','gid'=>$group['id'],'page'=>1));?>
 		</div>
+		<?php }else{?>
+		<div class="baikeUserPage">
+			<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
+		</div>
+		<?php }?>
 	</div>
 
 	<div id="maincon_r">
-		<h2>
-			<?php echo CHtml::link('> 小组首页',array('/group'));?>
-		</h2>
-		<br/>
-		<h2><?php echo CHtml::link('> 浏览所有成员',array('group/member','gid'=>$group['id']));?> (3390)</h2>
-		<br/>
+		<h2><?php echo CHtml::link('> 小组首页',array('/group'));?></h2>
+		<h2><?php echo CHtml::link('> 发起话题',array('topic/create','gid'=>$group['id']));?></h2>
+		<h2><?php echo CHtml::link('> 浏览所有成员',array('group/member','gid'=>$group['id']));?> (<?php echo $group['membercount']?>)</h2>
+		<h2><?php echo CHtml::link('> 退出小组',array('group/outGroup','gid'=>$group['id']));?></h2>
 		<?php if(!empty($group_list)):?>
-		<h2>
-		本小组油条还喜欢去
-		</h2>
+		<h2>本小组油条还喜欢去</h2>
 		<?php $this->renderPartial('_group_list',array('group_list'=>$group_list));?>
 		<br/>
 		<?php endif;?>
