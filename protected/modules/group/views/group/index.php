@@ -1,19 +1,7 @@
 <div id="maincon_l">
 	<?php if(!empty($new_groups)):?>
 	<h2>最活跃的小组 ······</h2>
-	<div id="grouplist">
-		<ul>
-			<?php foreach($new_groups as $group):?>
-			<li>
-				<div id="image">
-					<?php echo CHtml::link('<img src="http://img.u148.net/ghead/2008/d2007121604631.jpg" />',array('/group/group/show','gid'=>$group['id']));?>
-				</div>
-					<?php echo CHtml::link($group['name'],array('/group/group/show','gid'=>$group['id']));?>
-				(<?php echo CHtml::encode($group['threadcount'])?>)
-			</li>
-			<?php endforeach;?>
-		</ul>
-	</div>
+	<?php $this->renderPartial('_group_list',array('group_list'=>$new_groups));?>
 	<br/>
 	<br/>
 	<?php endif;?>
@@ -47,7 +35,7 @@
 				<?php echo CHtml::link($topic['group_name'],array('/group/group/show','gid'=>$topic['gid']));?>
 			</td>
 			<td>
-				<?php echo CHtml::link($topic['name'],array('space','uid'=>$topic['uid']));?>
+				<?php echo CHtml::link($topic['name'],array('/space','uid'=>$topic['uid']));?>
 			</td>
 			<td>
 				<?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?>

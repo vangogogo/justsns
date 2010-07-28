@@ -47,7 +47,7 @@
 					<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
 				</td>
 				<td>
-					<?php echo CHtml::link($topic['name'],array('space','uid'=>$topic['uid']));?>
+					<?php echo CHtml::link($topic['name'],array('/space','uid'=>$topic['uid']));?>
 				</td>
 				<td>
 					<?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?>
@@ -79,19 +79,7 @@
 		<h2>
 		本小组油条还喜欢去
 		</h2>
-		<div id="grouplist">
-			<ul>
-				<?php foreach($group_list as $g):?>
-				<li>
-					<div id="image">
-						<a href="/group/funny/"><img src="http://img.u148.net/ghead/2008/920071126145636.jpg" /></a>
-					</div>
-					<a href="/group/funny/">咦，有个笑话</a>(2611)
-				</li>
-				<?php endforeach;?>
-			</ul>
-			
-		</div>
+		<?php $this->renderPartial('_group_list',array('group_list'=>$group_list));?>
 		<br/>
 		<?php endif;?>
 	</div>
