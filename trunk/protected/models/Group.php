@@ -495,17 +495,15 @@ class Group extends CActiveRecord
 		{
 			$array = array(
 				'pid','type'
-				);
-				foreach($params as $key => $value)
+			);
+			foreach($params as $key => $value)
+			{
+				if(in_array($key,$array))
 				{
-					if(in_array($key,$array))
-					{
-							
-						$criteria->condition.=" and $key=:$key";
-						$criteria->params[':'.$key]=$value;
-					}
+					$criteria->condition.=" and $key=:$key";
+					$criteria->params[':'.$key]=$value;
 				}
-					
+			}
 		}
 		$models=$model->findAll($criteria);
 		return $models;

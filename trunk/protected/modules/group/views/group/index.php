@@ -36,23 +36,27 @@
 				最后回应
 			</td>
 		</tr>
+		<?php foreach($threads as $topic):?>
 		<tr>
 			<td>
-				<a href="/topic/14027.html">如果可以选择，下辈子你想成为什么</a>
+				<?php if($topic['top']):?><span class="zd">顶</span><?php endif;?>
+				<?php if($topic['dist']):?><span class="jh">精</span><?php endif;?>
+				<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
 			</td>
 			<td>
-				<a href="/group/u149/">童心未泯</a>
+				<?php echo CHtml::link($topic['group_name'],array('/group/group/show','gid'=>$topic['gid']));?>
 			</td>
 			<td>
-				五月&amp;莲声
+				<?php echo CHtml::link($topic['name'],array('space','uid'=>$topic['uid']));?>
 			</td>
 			<td>
-				7
+				<?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?>
 			</td>
 			<td align="right">
-				<span class="color02">2010-07-25 23:51</span>
+				<span class="color02"><?php echo friendlyDate('m-d H:i',$topic['replytime'])?></span>
 			</td>
 		</tr>
+		<?php endforeach;?>
 	</table>
 	<div class="height01">
 	</div>

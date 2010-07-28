@@ -11,9 +11,12 @@ class GroupController extends Controller
 		$model = new Group();
 		$new_groups =$model->getNewGroups();
 		$groups_count = $model->countGroups();
+		$d = $model->getGroupThreads(array(),12);
+		$threads = $d['threads'];
 		$data = array(
 			'new_groups'=>$new_groups,
 			'groups_count'=>$groups_count,
+			'threads'=>$threads,
 		);
 		$this->render('index',$data);
 	}
