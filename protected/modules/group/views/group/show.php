@@ -64,12 +64,14 @@
 
 		</table>
 		<div class="dislib">
-			<?php echo CHtml::link('&gt; 更多小组话题',array('group/discussion','gid'=>$group['id']));?>
+			<?php echo CHtml::link('> 更多小组话题',array('group/discussion','gid'=>$group['id']));?>
 		</div>
 	</div>
 
 	<div id="maincon_r">
-		<h2><a href="/group/">&gt; 小组首页</a></h2>
+		<h2>
+			<?php echo CHtml::link('> 小组首页',array('/group'));?>
+		</h2>
 		<br/>
 		<h2><?php echo CHtml::link('> 浏览所有成员',array('group/member','gid'=>$group['id']));?> (3390)</h2>
 		<br/>

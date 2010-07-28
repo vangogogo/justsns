@@ -117,7 +117,7 @@
 		</div>		
 	</div>
 	<div id="topicmain_r">
-		<h2><a href="/group/">&gt; 小组首页</a></h2>
+		<h2><?php echo CHtml::link('> 小组首页',array('/group'));?></h2>
 		<br/>
 		<h2><?php echo CHtml::link('回到'.$group['name'],array('/group/group/show','gid'=>$topic['gid']));?></h2>
 		<br/>
