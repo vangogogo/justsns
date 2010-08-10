@@ -21,7 +21,7 @@ function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') 
         }elseif( $dTime >= 3600 && $dDay == 0  ) {
             return intval($dTime/3600)."小时前";
         }elseif($dYear==0) {
-            return date("m-d H:i",$sTime);
+            return date("Y-m-d H:i",$sTime);
         }else {
             return date($show,$sTime);
         }

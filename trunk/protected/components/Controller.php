@@ -67,12 +67,13 @@ class Controller extends CController
 			$route=isset($url[0]) ? $url[0] : '';
 			$url=$this->createUrl($route,array_splice($url,1));
 		}
-		return $this->render('/redirect', array(
+		$this->render('/redirect', array(
 			'message' => $message,
 			'url' => $url,
 			'delay' => $delay,
 			'script' => $script,
 			'type' => $type,
 		));
+		exit;
 	}
 }

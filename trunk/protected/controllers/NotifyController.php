@@ -2,6 +2,7 @@
 
 class NotifyController extends Controller
 {
+	
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -59,9 +60,9 @@ class NotifyController extends Controller
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime';
-		$criteria->condition="t.toUserId =:uid";
+		$criteria->condition="t.toUserId =:uid AND is_del = 0";
 		$criteria->params=array(':uid'=>$uid);
-
+		$criteria->order = 'ctime DESC';
 
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
@@ -89,15 +90,15 @@ class NotifyController extends Controller
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime';
-		$criteria->condition="t.fromUserId =:uid";
+		$criteria->condition="t.fromUserId =:uid AND is_del = 0";
 		$criteria->params=array(':uid'=>$uid);
-
+		$criteria->order = 'ctime DESC';
 
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
 		$pages->pageSize=20;
-		$pages->applyLimit($criteria);		
+		$pages->applyLimit($criteria);
 		//获取数据集
 		$msgs = $model->findAll($criteria);
 
@@ -125,27 +126,66 @@ class NotifyController extends Controller
 		{
 			$friend_ids = $_POST['friend_ids'];
 			
-			if(empty($friend_ids))
+			if(!empty($friend_ids))
 			{
+				//先对某个用户发送问候
+				foreach($friend_ids as $toUserid)
+				{
+					$model=new Msg();
+					$model->attributes=$_POST['Msg'];
+					$model->toUserId = $toUserid;
+					$model->fromUserId = $mid;
+					
+					$result = $model->save();
+				}
+				if($result == true)
+				{
+					$this->redirectMessage('发送短信息成功！',array('outbox'),20);
+				}
 				//请选择好友
-				throw new CHttpException(404,'请选择好友.');
+				//throw new CHttpException(404,'请选择好友.');
 			}
-			//先对某个用户发送问候
-			foreach($friend_ids as $toUserid)
-			{
-				$model=new Msg();
-				$model->attributes=$_POST['Msg'];
-				$model->toUserId = $toUserid;
-				$model->fromUserId = $mid;
-				$model->save();
-			}
-
 
 		}
 		$data = array(
 			'toUserFace'=>$toUserFace,
 			'toUserName'=>$toUserName,
+			'model'=>$model,
 		);
 		$this->render('write',$data);
-	}		
+	}
+	
+	public function actionShow()
+	{
+		$msg_id = Yii::app()->request->getQuery('msg_id');
+		$model =  new Msg();
+		$msg = $model->findByPk($msg_id);
+		$mid = $this->mid;
+		if($msg->fromUserId != $mid AND $msg->toUserId != $mid)
+		{
+			//请选择好友
+			throw new CHttpException(404,'你没有权限访问这个页面。');
+		}
+		
+		$uid = $msg->toUserId == $mid?$msg->fromUserId:$msg->toUserId;
+		$user = User::model()->findByPk($uid);
+		
+		$msg->readMsg();
+		
+		$data = array(
+			'msg'=>$msg,
+			'user'=>$user,
+			'uid'=>$uid,
+		);
+		$this->render('show',$data);
+	}
+	
+	public function actionDoDelMsg()
+	{
+		$msg_id = Yii::app()->request->getQuery('msg_id');
+		$model = new Msg();
+		$msg = $model->loadMsg($msg_id);
+		$return = $msg->delMsg();
+		echo $return;
+	}
 }

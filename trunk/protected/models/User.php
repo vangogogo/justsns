@@ -187,6 +187,42 @@ class User extends CActiveRecord
 		}
 	}
 
+	public function getSpaceUrl($name = '',$title = '')
+	{
+		$uid = $this->id;
+		$url = Yii::app()->createUrl('/space/',array('uid'=>$uid));
+		return $url;
+	}
+	
+	public function getSpaceUrlWithName($showface = 0)
+	{
+		$user = $this;
+		$uid = $user->id;
+		$username = $user->getUserName();
+		if($showface == 1)
+		{
+			$src = $user->getUserFace();
+			$name = CHtml::image($src,$username);
+		}
+		else
+		{
+			$name = $username;
+		}
+		$url = CHtml::link($name,array('/space','uid'=>$uid),array('title'=>$username));
+
+		return $url;
+	}
+	
+	public function getSpaceUrlWithFace($showTip = 0)
+	{
+
+		$url = $this->getSpaceUrlWithName(1);
+		$html = '<span class="headpic50">';
+		$html .= $url;
+		$html .= '</span>';
+
+		return $html;
+	}
 	/**
 	 * 检查邮箱是否存在
 	 */
