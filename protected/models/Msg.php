@@ -44,6 +44,7 @@ class Msg extends CActiveRecord
 			array('fromUserId, toUserId, ctime, is_read, replyMsgId, is_new, is_del', 'numerical', 'integerOnly'=>true),
 			array('subject', 'length', 'max'=>255),
 			array('content', 'safe'),
+			array('subject, content, toUserId', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, fromUserId, toUserId, subject, content, ctime, is_read, replyMsgId, is_new, is_del', 'safe', 'on'=>'search'),
@@ -58,6 +59,8 @@ class Msg extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'fromUser'=>array(self::BELONGS_TO, 'User', 'fromUserId'),
+			'toUser'=>array(self::BELONGS_TO, 'User', 'toUserId'),
 		);
 	}
 
@@ -114,5 +117,57 @@ class Msg extends CActiveRecord
 		return new CActiveDataProvider('Msg', array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	/**
+	 * Prepares attributes before performing validation.
+	 */
+	protected function beforeValidate()
+	{
+		if($this->isNewRecord)
+		{
+			$this->fromUserId=Yii::app()->user->id;
+			$this->is_read = 0;
+			$this->ctime = time();
+			$this->is_del = 0;
+		}
+
+		return true;
+	}
+	/**
+	 * 读信息
+	 */
+	public function readMsg()
+	{
+		if($this->is_read == 0 AND $this->toUserId == Yii::app()->user->id)
+		{
+			$this->is_read = 1;
+			$this->save();
+		}
+	}
+	
+	/**
+	 * 读取话题
+	 */
+	public function loadMsg($id=null)
+	{
+		if($id!==null || isset($_POST['tid']))
+			$model=$this->findbyPk($id!==null ? $id : $_POST['tid']);
+		if($model===null)
+			throw new CHttpException(404,'该话题不存在.');
+		if($model->is_del != 0)
+			throw new CHttpException(404,'该话题不存在或被删除.');
+		return $model;
+	}	
+	
+	public function delMsg()
+	{
+		if($this->fromUserId == Yii::app()->user->id OR $this->toUserId == Yii::app()->user->id)
+		{
+			$this->is_del = 1;
+			$this->save();
+			return true;
+		}
+		return false;
 	}
 }
