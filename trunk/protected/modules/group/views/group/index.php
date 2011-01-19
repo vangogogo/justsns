@@ -1,4 +1,4 @@
-<div class="grid_16">
+<div class="grid_15 suffix_1">
 	<?php if(!empty($new_groups)):?>
 	<h2>最活跃的小组 ······</h2>
 	<?php $this->renderPartial('_group_list',array('group_list'=>$new_groups));?>
