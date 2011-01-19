@@ -122,7 +122,7 @@ class TopicController extends Controller
 		}
 
 		//访问量+1
-		$topic->updateCounters(array('viewcount'=>+1));
+		//$topic->updateCounters(array('viewcount'=>+1));
 		
 		//不存在则提示..访问内容不存在.
 		$data = array(

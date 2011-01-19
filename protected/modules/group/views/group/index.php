@@ -38,7 +38,7 @@
 				<?php echo CHtml::link($topic['name'],array('/space','uid'=>$topic['uid']));?>
 			</td>
 			<td>
-				<?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?>
+				<?php echo $topic['postcount']?>
 			</td>
 			<td align="right">
 				<span class="color02"><?php echo friendlyDate('m-d H:i',$topic['replytime'])?></span>
@@ -46,8 +46,6 @@
 		</tr>
 		<?php endforeach;?>
 	</table>
-	<div class="height01">
-	</div>
 	<div class="dislib">
 		<a href="/group/list.html">&gt; 更多话题</a>
 	</div>
@@ -55,5 +53,5 @@
 	<br/>
 </div>
 <div class="grid_8">
-	<?php $this->widget('WGroupShowSidebar',array('gid'=>$group['id'])); ?>
+	<?php $this->widget('WGroupSidebar'); ?>
 </div>
