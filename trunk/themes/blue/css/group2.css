@@ -100,10 +100,9 @@ a.style01:active,a.style01:hover {text-decoration:none;color:#F90;}
 
 
 
-#maincon_r {float:right;width:360px;overflow:hidden;display:inline;}
-#maincon_rl1 {width:360px;overflow:hidden;margin:10px 0;}
-#maincon_rl1 ul {width:360px;list-style:none;}
-#maincon_rl1 ul li {width:325px;height:30px;line-height:30px;padding:10px 0 0 25px;font-size:12px;background:url(/images/group/dot01.gif) no-repeat 6px 18px;border-bottom:#DDD 1px dashed;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+
+
+#maincon_rl1 ul li {border-bottom: 1px dashed #DDD;;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin:20px 0px;}
 #sgroup {background:#FFF;width:340px;height:50px;overflow:hidden; margin:10px 0 20px 0;text-align:center;padding-top:20px; border:#F2F9FC 10px solid;}
 
 

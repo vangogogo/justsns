@@ -1,9 +1,7 @@
-<div id="topicmain">
+<div class="grid_15 suffix_1">
 	<h1><?php echo $topic['title']?></h1>
 	<br/>
-	<br/>
-	<div id="topicmain_l">
-		<div id="content">
+
 			<table class="groupintro_t">
 				<tr>
 					<td width="76">
@@ -53,8 +51,8 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-		<div id="reply">
+
+		<div  class="grid_15 prefix_1 ">
 			<?php if(!empty($post_list)):?>
 			<table class="groupintro_t">
 				<?php foreach($post_list as $key => $post):?>
@@ -94,10 +92,7 @@
 			<?php endif ?>
 		</div>
 
-		<div class="clear01">
-		</div>
 		<h3 align="right">你好，请 <a href="/user/login.html">登录</a> 或 <a href="/user/register.html">注册</a></h3>
-
 		<?php if($post_access):?>
 			<?php if(!empty($_GET['post'])){?>
 			<div class="color-gray">
@@ -105,7 +100,8 @@
 			</div>
 			<?php }else{?>
 
-			<div style="width: 80%;" class="left">
+			<div  class="grid_15  ">
+				<h2>你的回应</h2>
 				<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
 			</div>
 
@@ -114,9 +110,8 @@
 		
 		<div class="baikeUserPage" style="text-align:center;">
 			<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
-		</div>		
-	</div>
-	<div id="topicmain_r">
-		<?php require '_right.php';?>
-	</div>
+		</div>
+</div>	
+<div class="grid_8">
+	<?php require '_right.php';?>
 </div>

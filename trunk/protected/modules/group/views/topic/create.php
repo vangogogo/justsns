@@ -1,4 +1,4 @@
-<div id="topicmain_l">
+<div class="grid_16">
 <?php
 	echo EHtml::beginForm();
 	EHtml::setOptions(array(
@@ -42,6 +42,6 @@
 </div><!-- 修改密码 end  -->
 <?php echo EHtml::endForm();?>
 
-<div id="topicmain_r">
+<div class="grid_8">
 	<?php require '_right.php';?>
 </div>
