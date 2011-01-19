@@ -1,4 +1,4 @@
-<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group.css');?>
+
 
 <div class=page_title> <!-- page_title begin -->
 	<div class="tit"><img src="<?php echo THEME_URL;?>images/apps/ico_app05.gif" class="img" /><?php echo Yii::t('sns', 'group');?></div>
