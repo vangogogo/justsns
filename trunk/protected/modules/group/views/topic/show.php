@@ -52,7 +52,7 @@
 				</tr>
 			</table>
 
-		<div  class="grid_15 prefix_1 ">
+		<div  class="grid_15 prefix_1">
 			<?php if(!empty($post_list)):?>
 			<table class="groupintro_t">
 				<?php foreach($post_list as $key => $post):?>
@@ -70,8 +70,6 @@
 									<?php echo User::model()->getUserName($post['uid']);?>
 								</a>
 							</h4>
-							<div class="height01">
-							</div>
 							<div id="comment_<?php echo $post['id']?>" class="allcontent">
 								<?php echo h(stripslashes($post['content']));?>
 							</div>
@@ -107,11 +105,11 @@
 
 			<?php }?>
 		<?php endif;?>
-		
+
 		<div class="baikeUserPage" style="text-align:center;">
 			<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
 		</div>
 </div>	
 <div class="grid_8">
-	<?php require '_right.php';?>
+	<?php $this->widget('WGroupTopicSidebar',array('gid'=>$group['id'])); ?>
 </div>

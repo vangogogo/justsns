@@ -43,5 +43,5 @@
 <?php echo EHtml::endForm();?>
 
 <div class="grid_8">
-	<?php require '_right.php';?>
+	<?php $this->widget('WGroupTopicSidebar',array('gid'=>$group['id'])); ?>
 </div>
