@@ -119,6 +119,7 @@ return array(
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
 				'group/create/<gid:\d+>'=>'group/group/create',
 				'group/new_topic/<gid:\d+>'=>'group/topic/create',
+				'group/new_group'=>'group/group/create',
 				
 			),
 		),

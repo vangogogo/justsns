@@ -1,22 +1,22 @@
-* {margin:0;padding:0;}
 
-body {background:#FFF url(/images/top_bg.gif) center top no-repeat;	margin: 0;}
 
-body,td,th {font-family: Arial, Verdana, Helvetica, sans-serif;font-size: 12px;color:#333;line-height:18px;}
+/* 公用部分 */
+body,div,p,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,select,input,textarea,blockquote,table,th,td{margin:0;padding:0;}
+body {background:#FFF url(/images/top_bg.gif) center top no-repeat;}
+body,td,th {font-family: Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#333;line-height:20px;}
+a:link,a:visited {text-decoration:none;color:#369;}
+a:active,a:hover {background-color:#039;color:#FFF;}
+img {border:0;}
+::selection {color:#FFF;background:#039;}
+::-moz-selection{color:#FFF;background:#039;}
 
-a:link {text-decoration:none;color:#336699;}
-a:visited {text-decoration:none;color:#006699;}
-a:active,a:hover {text-decoration:none;color:#FFF;background:#007B9F;}
-
-#logo a:link,#logo a:visited {text-decoration:none;background:transparent;}
-#logo a:active,#logo a:hover {text-decoration:none;background:transparent;}
-
-h1 {margin:10px 0 0 0;display:inline;font-size:26px;font-weight:bold;line-height:30px;height:30px;}
-h2 {font-size:14px;color:#F90;font-weight:normal;line-height:20px;height:20px;}
+h1 {font-size:20px;color:#333;font-weight:bold;line-height:30px;height:30px;margin:20px 0 10px;}
+h2 {font-size:14px;color:#F90;line-height:22px;font-weight:normal;height:22px;margin:15px 0 12px;white-space:nowrap;}
+h2 span {font-size:12px;color:#999;display:-moz-inline-box;display:inline-block;*display:inline;zoom:1;background:url(/images/u148_main_bg.gif) 12px -231px no-repeat;padding-left:60px;}
+h2 strong {color:#F90;}
 h3 {font-size:14px;font-weight:normal;line-height:20px;height:20px;}
 h4 {font-size:12px;width:100%;font-weight:normal;line-height:20px;height:20px;background:#F2F9FC;}
 h5 {font-size:14px;width:100%;font-weight:normal;line-height:20px;height:20px;background:#F2F9FC; margin-bottom:10px;}
-.clear01 {clear:both;}
 
 
 .style01 {text-decoration:underline;color:#F90;}
@@ -37,7 +37,9 @@ a.style01:active,a.style01:hover {text-decoration:none;color:#F90;}
 .headline {width:960px;height:1px;margin:0 auto;overflow:hidden;border-top:#DFEEFF 1px dashed;position:relative;top:-7px;}
 
 
-
+.menu {width:595px;height:40px;font-size:14px;margin:15px auto 0 auto;overflow:hidden;}
+.menu a {display:-moz-inline-box;display:inline-block;*display:inline;zoom:1;width:50px;height:40px;line-height:36px;color:#069;margin:0 8px;text-align:center;overflow:hidden;}
+.menu .selected,.menu a:active,.menu a:hover {background:url(/images/u148_main_bg.gif) scroll -250px 0 no-repeat;color:#069;text-decoration:none;}
 
 #topicmain {width:960px;overflow:hidden;margin:20px auto;}
 #topicmain_l {float:left;width:600px;overflow:hidden;display:inline;word-break:break-all;word-wrap:break-word;}
@@ -70,7 +72,7 @@ a.style01:active,a.style01:hover {text-decoration:none;color:#F90;}
 
 
 
-/*------------ʽ------------*/
+/*------------式------------*/
 #content {background:#FFF;width:100%;}
 #error_con {background:#FFF url(/images/group/error_bg.gif) right 40px no-repeat;width:100%;height:280px;line-height:20px;}
 .newtopic_ft {width:80%;}
@@ -84,7 +86,7 @@ a.style01:active,a.style01:hover {text-decoration:none;color:#F90;}
 .create_f1 {width:80px;}
 
 
-/*------------ҳʽ------------*/
+/*------------页式------------*/
 .pageli {margin:10px 0;text-align:center;}
 .pageli a {border:#8db5d7 1px solid;padding:2px 5px;margin-right:5px;text-decoration:none;}
 .pageli a:hover,.pageli a:active {border:#F90 1px solid;background:#FFF;padding:2px 5px;margin-right:5px;text-decoration:none;color:#C00;}
@@ -106,7 +108,7 @@ a.style01:active,a.style01:hover {text-decoration:none;color:#F90;}
 #sgroup {background:#FFF;width:340px;height:50px;overflow:hidden; margin:10px 0 20px 0;text-align:center;padding-top:20px; border:#F2F9FC 10px solid;}
 
 
-/*------------Ϣ------------*/
+/*------------息------------*/
 #utiao_info {background:#F2F9FC;width:270px;line-height:20px;overflow:hidden; margin:10px 0 20px 0;text-align:left; padding:15px;word-break:break-all;word-wrap:break-word;}
 #utiao_info #uhead {float:right;margin:5px 5px 0 0;display:inline;}
 #utiao_info #uhead img {width:48px;height:48px;padding:1px;border:#DDD 1px solid;background:#FFF;}

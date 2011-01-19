@@ -1,24 +1,10 @@
-<table class="disli">
+<table class="topiclist">
 	<tr>
-		<td>
-			话题
-		</td>
-		<?php if(!isset($no_group)):?>
-		<td>
-			小组
-		</td>
-		<?php endif;?>
-		<?php if(!isset($no_author)):?>
-		<td>
-			作者
-		</td>
-		<?php endif;?>
-		<td width="36">
-			回应
-		</td>
-		<td width="110" align=right>
-			最后回应
-		</td>
+		<th>话题</th>
+		<?php if(!isset($no_group)):?><th width="100">小组</th><?php endif;?>
+		<?php if(!isset($no_author)):?><th width="90">作者</th><?php endif;?>
+		<th width="36">回应</th>
+		<th width="80" class="alignr">最后回应</th>
 	</tr>
 	<?php foreach($threads as $topic):?>
 	<tr>

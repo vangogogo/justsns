@@ -6,51 +6,13 @@
 	<br/>
 	<?php endif;?>
 	<h2>小组的最近话题 ······</h2>
-	<table class="disli">
-		<tr>
-			<td>
-				话题
-			</td>
-			<td>
-				小组
-			</td>
-			<td>
-				作者
-			</td>
-			<td width="36">
-				回应
-			</td>
-			<td width="110" align=right>
-				最后回应
-			</td>
-		</tr>
-		<?php foreach($threads as $topic):?>
-		<tr>
-			<td>
-				<?php if($topic['top']):?><span class="zd">顶</span><?php endif;?>
-				<?php if($topic['dist']):?><span class="jh">精</span><?php endif;?>
-				<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
-			</td>
-			<td>
-				<?php echo CHtml::link($topic['group_name'],array('/group/group/show','gid'=>$topic['gid']));?>
-			</td>
-			<td>
-				<?php echo CHtml::link($topic['name'],array('/space','uid'=>$topic['uid']));?>
-			</td>
-			<td>
-				<?php echo $topic['postcount']?>
-			</td>
-			<td align="right">
-				<span class="color02"><?php echo friendlyDate('m-d H:i',$topic['replytime'])?></span>
-			</td>
-		</tr>
-		<?php endforeach;?>
-	</table>
-	<div class="dislib">
+	<?php
+		//话题列表
+		$this->renderPartial('../topic/_list',array('threads'=>$threads,'group'=>$group));
+	?>
+	<div class="topicbottom">
 		<a href="/group/list.html">&gt; 更多话题</a>
 	</div>
-	<br/>
-	<br/>
 </div>
 <div class="grid_8">
 	<?php $this->widget('WGroupSidebar'); ?>

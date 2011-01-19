@@ -23,7 +23,7 @@
 	'skin'=>'v2',
 ));*/ ?>
 <?php echo EHtml::errorSummary($model);?>
-<?php echo EHtml::activeTextArea($model,'content');?>
+<?php echo EHtml::activeTextArea($model,'content',array('class'=>'reply_form'));?>
 <br/>
 <?php echo EHtml::activeHiddenField($model,'gid');?>
 <?php echo EHtml::activeHiddenField($model,'tid');?>
