@@ -13,7 +13,7 @@
 	$cs->registerCssFile('/css/960gs/reset.css');
 	
 	//$cs->registerCssFile('/css/group.css');
-	
+	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
 	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/group2.css');
 ?>	
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -36,7 +36,14 @@
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
-</div>
+	
+	<!-- start.footer -->
+	<div id="footer">
+		Copyright &copy; <?php echo date('Y'); ?> by LockPHP.
+		All Rights Reserved.
+		<?php echo Yii::powered(); ?>
+	</div>
+	<!-- end.footer -->
 <!-- end .container_24 -->
 </body>
 </html>

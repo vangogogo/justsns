@@ -1,4 +1,4 @@
-<div id="topicmain_r">
+
 	<h2><?php echo CHtml::link('> 小组首页',array('/group'));?></h2>
 	<br/>
 	<h2><?php echo CHtml::link('回'.$group['name'].'小组',array('/group/group/show','gid'=>$topic['gid']));?></h2>
@@ -17,4 +17,3 @@
 	</div>
 	<br/>
 	<?php endif ?>
-</div>
