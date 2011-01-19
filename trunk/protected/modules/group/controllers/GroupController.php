@@ -25,7 +25,7 @@ class GroupController extends Controller
 	}
 	
 	/**
-	 * 小组首页
+	 * 小组首页,到了某个小组
 	 */
 	public function actionShow()
 	{
@@ -102,5 +102,15 @@ class GroupController extends Controller
 		$model = new Group();
 		$params = $_POST['params'];
 		$exam = $model->getGroupCategory($params);
+	}
+	
+	public function actionMyTopic()
+	{
+		$params = array(
+			'uid'=>Yii::app()->user->id,
+		);
+		$model = new Group();
+		$data = $model->getGroupThreads($params,20);
+		$this->render('MyTopic',$data);	
 	}
 }

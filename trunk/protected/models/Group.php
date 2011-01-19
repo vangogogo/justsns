@@ -475,7 +475,7 @@ class Group extends CActiveRecord
 		if($id!==null || isset($_POST['gid']))
 			$model=$this->findbyPk($id!==null ? $id : $_POST['gid']);
 		if($model===null)
-			throw new CHttpException(404,'该话题不存在.');
+			throw new CHttpException(404,'该话题不存在或已经被删除.');
 		return $model;
 	}
 	

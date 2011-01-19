@@ -62,11 +62,11 @@
 		<?php }?>
 
 	</table>
-	<?php if(empty($_GET['page']) AND $page_count<=1){?>
+	<?php if(empty($_GET['page'])){ if($page_count>1):?>
 	<div class="dislib">
-		<?php echo CHtml::link('> 更多小组话题',array('group/show','gid'=>$group['id'],'page'=>1));?>
+		<?php echo CHtml::link('> 更多小组话题',array('group/show','gid'=>$group['id'],'page'=>2));?>
 	</div>
-	<?php }else{?>
+	<?php endif;}else{?>
 	<div class="baikeUserPage">
 		<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
 	</div>

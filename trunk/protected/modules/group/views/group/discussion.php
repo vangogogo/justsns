@@ -1,4 +1,4 @@
 <?php
 	//话题列表
-	$this->renderPartial('../topic/list',array('threads'=>$threads,'group'=>$group));
+	$this->renderPartial('../topic/_list',array('threads'=>$threads,'group'=>$group));
 ?>
