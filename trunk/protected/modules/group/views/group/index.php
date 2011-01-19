@@ -55,5 +55,5 @@
 	<br/>
 </div>
 <div class="grid_8">
-	<?php $this->widget('WGroupSidebar'); ?>
+	<?php $this->widget('WGroupShowSidebar',array('gid'=>$group['id'])); ?>
 </div>
