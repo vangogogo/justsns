@@ -3,12 +3,12 @@
 		<td>
 			话题
 		</td>
-		<?php if(isset($no_group)):?>
+		<?php if(!isset($no_group)):?>
 		<td>
 			小组
 		</td>
 		<?php endif;?>
-		<?php if(isset($no_author)):?>
+		<?php if(!isset($no_author)):?>
 		<td>
 			作者
 		</td>
@@ -27,12 +27,12 @@
 			<?php if($topic['dist']):?><span class="jh">精</span><?php endif;?>
 			<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
 		</td>
-		<?php if(isset($no_group)):?>
+		<?php if(!isset($no_group)):?>
 		<td>
 			<?php echo CHtml::link($topic['group_name'],array('/group/group/show','gid'=>$topic['gid']));?>
 		</td>
 		<?php endif;?>
-		<?php if(isset($no_author)):?>
+		<?php if(!isset($no_author)):?>
 		<td>
 			<?php echo CHtml::link($topic['name'],array('/space','uid'=>$topic['uid']));?>
 		</td>
