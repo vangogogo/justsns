@@ -15,5 +15,10 @@
 	</div>
 </div>
 <div class="grid_8">
+	<img class="cover" src="/images/imgad.jpg" />
+	<br/>
 	<?php $this->widget('WGroupSidebar'); ?>
+    <img class="cover" src="/images/tmp_ads1.jpg" />
+   
+    
 </div>
