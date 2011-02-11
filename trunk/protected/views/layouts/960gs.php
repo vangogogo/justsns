@@ -6,17 +6,17 @@
 <title>960 Grid System &mdash; Demo</title>
 <?php
 	$cs = Yii::app()->clientScript;
-	
+
 	$cs->registerCoreScript('jquery');
 	$cs->registerCoreScript('jquery.ui');
-	
+
 	$cs->registerCssFile('/css/960gs/reset.css');
 	$cs->registerCssFile('/css/960gs/960_24_col.css');
 	$cs->registerCssFile('/css/style.css');
-	
+
 	//$cs->registerCssFile('/css/group.css');
-	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
-	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/group.css');
+	//$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
+
 ?>
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/flick/jquery-ui.css" />
 
@@ -29,13 +29,13 @@
 
 <body>
 
-<?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>	
+<?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>
 <div class="container_24">
 	<h2>24 Column Grid</h2>
-	
+
 		<!-- header -->
 		<div class="header">
-			<div class="logo i-a-sn fl"><a href="http://<?php echo SUB_DOMAIN_main;?>" title="返回首页"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/site/logo.png" /></a></div>
+			<div class="logo i-a-sn fl"><a href="http://<?php echo SUB_DOMAIN_main;?>" title="返回首页">hello world</a></div>
 
 			<!-- menu -->
 			<div class="menu cb i-a-sn i-a-b">
@@ -46,7 +46,7 @@
 							array('label'=>'小组', 'url'=>array('/group/group/index')),
 							array('label'=>'个人空间', 'url'=>array('/space')),
 							array('label'=>'使用帮助', 'url'=>array('/help'),itemOptions=>array('class'=>'help')),
-	
+
 						),
 					)); ?>
 			</div>
@@ -57,7 +57,7 @@
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
-	
+
 	<!-- start.footer -->
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by LockPHP.
@@ -65,7 +65,7 @@
 		<?php echo Yii::powered(); ?>
 	</div>
 	<!-- end.footer -->
-</div>	
+</div>
 <!-- end .container_24 -->
 </body>
 </html>
