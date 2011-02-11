@@ -14,6 +14,9 @@ function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') 
     	return date($show,$sTime);
     }
     if($type=='normal') {
+         if( $dTime < 3 ){
+            return "刚刚";
+         }
         if( $dTime < 60 ) {
             return $dTime."秒前";
         }elseif( $dTime < 3600 ) {
@@ -21,7 +24,7 @@ function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') 
         }elseif( $dTime >= 3600 && $dDay == 0  ) {
             return intval($dTime/3600)."小时前";
         }elseif($dYear==0) {
-            return date("Y-m-d H:i",$sTime);
+            return date($show,$sTime);
         }else {
             return date($show,$sTime);
         }
