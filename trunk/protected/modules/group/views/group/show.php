@@ -1,5 +1,5 @@
+<h1><?php echo $group['name'];?></h1>
 <div class="grid_15 suffix_1">
-	<h1><?php echo $group['name'];?></h1>
 	<div class="groupintro radius">
 		<?php echo $group['logo'];?>
 		<?php echo $group['intro'];?>

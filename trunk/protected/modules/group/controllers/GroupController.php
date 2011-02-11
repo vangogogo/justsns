@@ -97,6 +97,30 @@ class GroupController extends Controller
 		);
 		$this->render('create',$data);	
 	}
+	 public function actionUpdate()
+	{
+		$uid = Yii::app()->user->id;
+		
+		$model = new Group();
+		$model->scenario = 'create';
+		$category_list = $model->getGroupCategory();
+		$category_list = CHtml::listData($category_list,'id','title');
+		
+		if(!empty($_POST['Group']))
+		{
+			$attributes = $_POST['Group'];
+			$model->attributes = $attributes;
+			$model->validate();
+		}
+		
+		$data = array(
+			'owner'=>$owner,
+			'is_me'=>$is_me,
+			'form'=>$model,
+			'category_list'=>$category_list,
+		);
+		$this->render('update',$data);	
+	}	
 	public function actionGetGroupCategory()
 	{
 		$model = new Group();

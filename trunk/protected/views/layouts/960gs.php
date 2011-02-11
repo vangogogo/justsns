@@ -12,12 +12,14 @@
 	
 	$cs->registerCssFile('/css/960gs/reset.css');
 	$cs->registerCssFile('/css/960gs/960_24_col.css');
+	$cs->registerCssFile('/css/style.css');
 	
 	//$cs->registerCssFile('/css/group.css');
 	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
 	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/group.css');
-
 ?>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/flick/jquery-ui.css" />
+
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <!--[if lt IE 8]>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/ie.css" media="screen, projection" />
@@ -26,14 +28,32 @@
 </head>
 
 <body>
-<h1>
-	<a href="http://960.gs/">960 Grid System</a>
-</h1>
+
+<?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>	
 <div class="container_24">
 	<h2>24 Column Grid</h2>
-	<div class="menu">
-		<a href="/">首页</a><a href="/video.html">影像</a><a href="/image.html">图画</a><a href="/game.html">游戏</a><a href="/audio.html">音频</a><a href="/text.html">文字</a><a href="/mix.html">杂碎</a><a href="/union.html">铺子</a><a href="/group/" class="selected">小组</a>
-	</div>
+	
+		<!-- header -->
+		<div class="header">
+			<div class="logo i-a-sn fl"><a href="http://<?php echo SUB_DOMAIN_main;?>" title="返回首页"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/site/logo.png" /></a></div>
+
+			<!-- menu -->
+			<div class="menu cb i-a-sn i-a-b">
+					<?php $this->widget('zii.widgets.CMenu',array(
+						'items'=>array(
+							array('label'=>'首页', 'url'=>array('/')),
+							array('label'=>'影像', 'url'=>array('/movie')),
+							array('label'=>'小组', 'url'=>array('/group/group/index')),
+							array('label'=>'个人空间', 'url'=>array('/space')),
+							array('label'=>'使用帮助', 'url'=>array('/help'),itemOptions=>array('class'=>'help')),
+	
+						),
+					)); ?>
+			</div>
+			<!-- /menu -->
+		</div>
+		<!-- /header -->
+
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
