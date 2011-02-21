@@ -2,7 +2,7 @@
 	include('_top.php');
 ?>
 <div class="grid-16-8 clearfix">
-	<div class="article">
+	<div class="grid_16">
 		<div class="MessageBox">
 			<div class="MList border"><!-- 好友日志 begin  -->
 				<div class="MenuSub pl5">
@@ -70,7 +70,7 @@
 			</div><!-- 好友日志 end  -->
 		</div>
 	</div>
-	<div class="aside">
+	<div class="grid_8">
 		<p class="pl2">
 			&gt; <a href="/notify/">回我的收件箱</a>
 		</p>

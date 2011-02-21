@@ -2,7 +2,10 @@
 
 class NotifyController extends Controller
 {
-	
+	public function beforeAction() {
+        $this->layout = '960gs';
+        return true;
+    }
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -21,7 +24,7 @@ class NotifyController extends Controller
 		$criteria->order='ctime';
 		$criteria->condition="t.uid=:uid";
 		$criteria->params=array(':uid'=>$uid);
-		
+
 
 		if(!array_key_exists($type,$type_arr))
 		{
@@ -37,10 +40,10 @@ class NotifyController extends Controller
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
 		$pages->pageSize=20;
-		$pages->applyLimit($criteria);		
+		$pages->applyLimit($criteria);
 		//获取数据集
 		$notifys = $model->findAll($criteria);
-		
+
 		$data = array(
 			'type'=>$type,
 			'type_arr'=>$type_arr,
@@ -49,12 +52,12 @@ class NotifyController extends Controller
 		);
 		$this->render('index',$data);
 	}
-	
+
 	public function actionInbox()
 	{
 		$msgs = array();
 		$user = new User();
-		
+
 		$uid = Yii::app()->user->id;
 		$model = new Msg();
 		 //初始化
@@ -68,23 +71,23 @@ class NotifyController extends Controller
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
 		$pages->pageSize=20;
-		$pages->applyLimit($criteria);		
+		$pages->applyLimit($criteria);
 		//获取数据集
 		$msgs = $model->findAll($criteria);
 
-		
+
 		$data = array(
 			'msgs'=>$msgs,
 			'user'=>$user,
 		);
 		$this->render('inbox',$data);
 	}
-	
+
 	public function actionOutbox()
 	{
 		$msgs = array();
 		$user = new User();
-		
+
 		$uid = Yii::app()->user->id;
 		$model = new Msg();
 		 //初始化
@@ -102,14 +105,14 @@ class NotifyController extends Controller
 		//获取数据集
 		$msgs = $model->findAll($criteria);
 
-		
+
 		$data = array(
 			'msgs'=>$msgs,
 			'user'=>$user,
 		);
 		$this->render('inbox',$data);
-	}	
-	
+	}
+
 	public function actionWrite()
 	{
 		$uid = Yii::app()->request->getQuery('uid');
@@ -119,13 +122,13 @@ class NotifyController extends Controller
             $toUserName = $user->getUserName($uid);
         }
         $mid = Yii::app()->user->id;
-        
+
         $model = new Msg();
-        
+
 		if(isset($_POST['Msg']))
 		{
 			$friend_ids = $_POST['friend_ids'];
-			
+
 			if(!empty($friend_ids))
 			{
 				//先对某个用户发送问候
@@ -135,7 +138,7 @@ class NotifyController extends Controller
 					$model->attributes=$_POST['Msg'];
 					$model->toUserId = $toUserid;
 					$model->fromUserId = $mid;
-					
+
 					$result = $model->save();
 				}
 				if($result == true)
@@ -154,7 +157,7 @@ class NotifyController extends Controller
 		);
 		$this->render('write',$data);
 	}
-	
+
 	public function actionShow()
 	{
 		$msg_id = Yii::app()->request->getQuery('msg_id');
@@ -166,12 +169,12 @@ class NotifyController extends Controller
 			//请选择好友
 			throw new CHttpException(404,'你没有权限访问这个页面。');
 		}
-		
+
 		$uid = $msg->toUserId == $mid?$msg->fromUserId:$msg->toUserId;
 		$user = User::model()->findByPk($uid);
-		
+
 		$msg->readMsg();
-		
+
 		$data = array(
 			'msg'=>$msg,
 			'user'=>$user,
@@ -179,7 +182,7 @@ class NotifyController extends Controller
 		);
 		$this->render('show',$data);
 	}
-	
+
 	public function actionDoDelMsg()
 	{
 		$msg_id = Yii::app()->request->getQuery('msg_id');

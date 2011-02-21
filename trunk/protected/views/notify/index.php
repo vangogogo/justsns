@@ -47,21 +47,9 @@
 </script>
 
 <div class="BlogBox">
-	<div class="sidebar pt10">
-	<div class="FSort">
-	<div class="tit">通知类别</div>
-		<ul>
-			<?php foreach($type_arr as $key => $name){?>
-			<li <?php if($type == $key)  echo 'class="on"';?>>
-				<?php echo CHtml::link($name,array('/notify/index','type'=>$key));?>
-			</li>
-			<?php }?>
-		</ul>
-		<div class="btm"></div>
-		</div>
-	</div>
+    <div class="grid_19"><!-- 通知列表 begin  -->
+        <hr/>
 	<?php if(!empty($notifys)){?>
-	<div class="MList" style="width:640px;"><!-- 通知列表 begin  -->
 		<ul>
 			<?php foreach($notifys as $key => $notify){?>
 			<li class="btmlineD" id="notify_<?php echo $notify->id;?>">
@@ -81,7 +69,7 @@
 				<div>
 				<div class="right alR">
 						<!-- TIP -->
-						<?php 
+						<?php
 						/*
 							if($notify["new"]>=2 &&  $notify["deal"]){
 							echo '<div class="tip">';
@@ -117,8 +105,21 @@
 		<div class="baikeUserPage">
 			<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
 		</div>
-	</div><!-- 通知列表 end  -->
 	<?php }?>
+    </div><!-- 通知列表 end  -->
+	<div class="grid_5 pt10">
+        <div class="FSort">
+            <div class="tit">通知类别</div>
+            <ul>
+                <?php foreach($type_arr as $key => $name){?>
+                <li <?php if($type == $key)  echo 'class="on"';?>>
+                    <?php echo CHtml::link($name,array('/notify/index','type'=>$key));?>
+                </li>
+                <?php }?>
+            </ul>
+            <div class="btm"></div>
+		</div>
+	</div>
 </div>
 
 
