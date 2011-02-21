@@ -1,5 +1,4 @@
 /* 公用部分 */
-body,div,p,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,select,input,textarea,blockquote,table,th,td{margin:0;padding:0;}
 body,td,th {font-family: Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#333;line-height:20px;}
 a:link,a:visited {text-decoration:none;color:#369;}
 a:active,a:hover {background-color:#039;color:#FFF;}
@@ -175,6 +174,6 @@ a.link4:active,a.link4:hover {background:#039;color:#FFF;}
 a.link5:link,a.link5:visited {text-decoration:none;color:#FF0084;}
 a.link5:active,a.link5:hover {background:#FF0084;color:#FFF;}
 
-.foot {width:950px;margin:30px auto 0 auto;overflow:hidden;line-height:26px;color:#999;background:url(/images/u148_main_bg.gif) center -520px no-repeat;padding:20px 0;text-align:center;}
-.foot a:link,.foot a:visited {text-decoration:none;color:#333;}
-.foot a:active,.foot a:hover {background:#039;color:#FFF;}
+/* 尾部内容样式 */
+#footer { clear:both; width:960px; border-top-width:1px; border-top-style:solid; border-top-color:#CCCCCC; line-height:30px; text-align:left; color:#666666; margin: 15px auto 0; }
+#footer .menu { float:right; color:#005FAB; }

@@ -114,7 +114,7 @@ p {margin:14px 0;}
 .page A.prev { border-bottom:#ccdbe4 2px solid; border-left:#ccdbe4 2px solid; border-right:#ccdbe4 2px solid; border-top:#ccdbe4 2px solid; margin:0px 10px 0px 0px }
 .page A.prev:hover { border-bottom:#2b55af 2px solid; border-left:#2b55af 2px solid; border-right:#2b55af 2px solid; border-top:#2b55af 2px solid }
 /* 右边分类列表 */
-.sidebar { float:right; width:175px; }
+
 .sidebar p { padding:5px 0; margin:0 8px; }
 .FSort { width:175px; background:#fbfbfb url(../images/FSort_bg.gif) repeat-y 0px 0px; margin-bottom:10px; }
 .FSort .tit { line-height:28px; height:28px; font-size:13px; font-weight:bold; background: #fbfbfb url(../images/FSort_tit.gif) no-repeat 0px 0px; padding: 0px 0px 0px 14px; margin: 0px; }
@@ -222,7 +222,7 @@ p {margin:14px 0;}
 .adjunct_list h2 { background-image: url(../images/ico_adjunct.gif); background-repeat: no-repeat; background-position: left center; font-size: 12px; font-weight: bold; padding-left: 20px; line-height: 25px; margin: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; }
 .adjunct_list p { font-size: 12px; line-height: 20px; margin: 0px; padding: 0px; }
 #attach_upload_data p { margin:0; padding:0; line-height:25px; }
-/* 个人信息提示 */ 
+/* 个人信息提示 */
 .pop_box{ background-color: #FFF; }
 .pop_box dl { font-size: 12px; line-height: 180%; margin: 0px; padding: 0px; list-style-type: none; text-align: left; }
 .pop_box dt{ background-color: #F1F6FF; padding: 3px; }
@@ -233,7 +233,7 @@ p {margin:14px 0;}
 .pop_box ul{ clear: both; background-color: #f1f6ff; display: block; height: 30px; list-style-type: none; margin: 0px; padding: 0px; text-align: left; }
 .pop_box ul li{ float: left; padding-top: 7px; padding-left: 10px; }
 .pop_box ul li img{ border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; height: 16px; width: 16px; }
-/* 心情回复 */ 
+/* 心情回复 */
 .bg_huifu { background-image: url(../images/bg_huifu.gif); background-repeat: no-repeat; background-position: left top; padding-top: 5px; }
 .gd { border:1px solid #C6DDEE;height:100px;line-height:25px;overflow:auto;padding:5px;width:353px;}
 /*

@@ -2,7 +2,7 @@
 	include('_top.php');
 ?>
 <div class="grid-16-8 clearfix">
-	<div class="article">
+	<div class="grid_16">
 		<table width="100%">
 			<tr>
 				<td width="75" valign="top">
@@ -13,7 +13,7 @@
 					<span class="pl2">来自: </span>
 					<span class="pl2"><?php echo User::model()->getSpaceUrlWithName($msg->fromUserId);?></span>
 					<?php endif;?>
-					
+
 					<?php if($msg->fromUserId == Yii::app()->user->id):?>
 					<span class="pl2">发往: </span>
 					<span class="pl2"><?php echo User::model()->getSpaceUrlWithName($msg->toUserId);?></span>
@@ -42,7 +42,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="aside">
+	<div class="grid_8">
 		<p class="pl2">
 			&gt; <a href="/notify/">回我的收件箱</a>
 		</p>

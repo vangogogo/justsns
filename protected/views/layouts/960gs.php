@@ -15,10 +15,10 @@
 	$cs->registerCssFile('/css/style.css');
 
 	//$cs->registerCssFile('/css/group.css');
-	//$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
+	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
 
 ?>
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/flick/jquery-ui.css" />
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/flick/jquery-ui.css" />
 
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <!--[if lt IE 8]>
