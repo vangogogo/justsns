@@ -5,9 +5,9 @@ class DatabaseConfig
 	{
 		return array(
 			'class'=>'CDbConnection',
-			'connectionString'=>'mysql:host=127.0.0.1;port=3306;dbname=yiisns',
+			'connectionString'=>'mysql:host=localhost;port=3306;dbname=yiisns',
 			'username'=>'root',
-			'password'=>'123456',
+			'password'=>'111111',
 			'charset' => 'utf8',
 			'enabled' => true,
 			'tablePrefix'=>'yiisns_',
