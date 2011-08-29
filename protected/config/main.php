@@ -23,6 +23,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        
 		'application.extensions.jformvalidate.*', //our extension
 		'application.extensions.CUplodifyWidget.*',
 		'application.extensions.CDropDownMenu.*', //our extension
@@ -166,21 +167,19 @@ return array(
 
 
 		'blog'=>array(
-			"layout"=>"application.views.layouts.main",
+			#"layout"=>"application.views.layouts.main",
 		),
 		'admin'=>array(
-			"layout"=>"application.views.layouts.main",
+			#"layout"=>"application.views.layouts.main",
 		),
 		'user'=>array(
-			"layout"=>"application.views.layouts.main",
+			#"layout"=>"application.views.layouts.main",
 		),
 		'group'=>array(
-			"layout"=>"main",
-			"layout"=>"application.views.layouts.960gs",
 			"defaultController"=>"group"
 		),
 		'gift'=>array(
-			'layout'=>'application.views.layouts.main',
+			#'layout'=>'application.views.layouts.main',
 //			"defaultController"=>"gift",
 		),
 	),

@@ -59,6 +59,20 @@ class GroupController extends Controller
 		);
 		$this->render('show',$data);
 	}
+
+	/**
+	 * 小组首页,到了某个小组
+	 */
+	public function actionList()
+	{
+		$model = new Group();
+		$group_list =$model->getNewGroups($params);
+		$data = array(
+			'group_list'=>$group_list,
+		);
+		$this->render('list',$data);
+	}
+
 	/**
 	 * 小组的所有话题
 	 */	

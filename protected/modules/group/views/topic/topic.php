@@ -16,7 +16,7 @@
 				</a>
 				<br>
 				<img alt="管理员" src="<?php echo THEME_URL?>images/icon/groupicon/admin.png">
-			</div>
+			</div>	
 			<div style="width: 80%;" class="left">
 				<div class="cGray2 lh30">
 					<div class="right">

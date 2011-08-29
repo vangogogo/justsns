@@ -1,4 +1,4 @@
-<div class="cr"><!-- cr begin  -->
+<div class="grid_8">
 	<div class="UserList">
 		<?php echo CHtml::beginForm(array('friend/list'),'get',array('class'=>'form_validator','id'=>'list_fri'))?>
 			<input type="hidden" name="type" value="info" id="sub_type">

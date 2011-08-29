@@ -1,4 +1,4 @@
-<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/mood.css');?>
+<?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/mood.css');?>
 <?php Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl.'/js/mini.js');?>
 <!-- page_title begin -->
 <div class=page_title>

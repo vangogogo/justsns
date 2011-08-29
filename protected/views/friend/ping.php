@@ -1,7 +1,7 @@
 <?php
     include('_top.php');
 ?>
-<div class="friendBox">
+<div class="grid_15 suffix_1">
 	<div class="FList mt10"><!-- 好友屏蔽 begin  -->
 		<h2 class="fB lh30 btmline">屏蔽以下用户的动态</h2>
 		<ul style="margin-top:10px;">

@@ -1,11 +1,9 @@
 <?php
 	include('_top.php');
 ?>
-<div class="sidebar pt10">
-	<?php if(!Yii::app()->user->isGuest) $this->widget('WFriendGroup'); ?>
-</div>
-
-<div class="FList"><!-- 我的好友 begin  -->
+<div class="grid_15 suffix_1">
+11
+    <?php if(!empty($friends)):?>
 	<ul style="padding: 0px;margin: 10px auto 0px auto;">
 		<?php foreach($friends as $friend){?>
 			<li class="btmlineD li pb10 pt5" id="fri_<?php echo $friend['id']?>" >
@@ -49,5 +47,10 @@
 	<div class="baikeUserPage">
 		<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
 	</div>
+    <?php endif;?>
 
 </div><!-- 我的好友 end  -->
+<div class="grid_8">
+	<?php if(!Yii::app()->user->isGuest) $this->widget('WFriendGroup'); ?>
+</div>
+

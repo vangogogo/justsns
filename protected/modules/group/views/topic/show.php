@@ -1,7 +1,6 @@
-	<h1><?php echo $topic['title']?></h1>
+<h1><?php echo $topic['title']?></h1>
 <div class="grid_15 suffix_1">
 	<div class="height1"></div>
-
 	<table class="topic_content">
 		<tr>
 			<td width="65">
@@ -14,7 +13,11 @@
 					</a>
 				</h3>
 				<div class="content">
-					<?php echo $topic->getTopicContent();?>
+		            <?php
+			            $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
+			            echo $topic->getTopicContent();
+			            $this->endWidget();
+		            ?>
 				</div>
 				<div class="height2"></div>
 				<div id="operate">
@@ -33,23 +36,15 @@
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
 					<?php } ?>
 
-					<?php if($topic['lock'] == 1 || !$actor_level){ ?>   <?php } else{ ?>
-						<a href="javascript:quote(<?php echo ($topic['pid']); ?>)">引用</a> ┊
-					<?php } ?>
-				
-					<?php if($isCollect && $this->mid) { ?>
-						<a href="javascript:cancel_collect(<?php echo ($gid); ?>,<?php echo ($topic['id']); ?>)">取消收藏</a>
-
-					<?php } elseif($this->mid) { ?>
-						<a href="javascript:collect(<?php echo ($gid); ?>,<?php echo ($topic['id']); ?>)">收藏</a>
-					<?php } ?>
+                    <?php $this->widget('WUserCollect',array('object_id'=>$topic['id'],'object_type'=>'topic'));?>
 				</div>
 			</td>
 		</tr>
 	</table>
 
+    <?php if(!empty($post_list)):?>
 	<div  class="grid_14 prefix_1">
-		<?php if(!empty($post_list)):?>
+		
 		<table class="topic_reply">
 			<?php foreach($post_list as $key => $post):?>
 				<tr>
@@ -67,7 +62,12 @@
 							</a>
 						</h4>
 						<div id="comment_<?php echo$post['id'];?>" class="content">
-							<?php echo h(stripslashes($post['content']));?>
+	                    <?php
+		                    $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
+		                    echo h(stripslashes($post['content']));
+		                    $this->endWidget();
+	                    ?>
+
 						</div>
 						<textarea id="comment_txt_<?php echo$topic['id'];?>" style="display:none;">子非鱼，焉知鱼之乐。</textarea>
 						<div id="operate_<?php echo$topic['id'];?>" class="operate">
@@ -83,12 +83,15 @@
 				</tr>
 			<?php endforeach;?>
 		</table>
-		<?php endif ?>
+		
 	</div>
 		
 	<div class="pageli">
 		<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
 	</div>
+
+    <?php endif ?>
+
 	<div class="height2"></div>
 	<div class="height1"></div>
 	<div align="right">
@@ -101,7 +104,7 @@
 		</div>
 		<?php }else{?>
 
-		<div class="topic_reply">
+		<div class="topic_reply" id="last">
 			<h2>你的回应</h2>
 			<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
 		</div>

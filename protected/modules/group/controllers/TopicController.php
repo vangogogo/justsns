@@ -41,25 +41,35 @@ class TopicController extends Controller
 		$group = $model->loadGroup($gid);
 		
 		$model = new GroupTopic();
-		$model->scenario = 'create';
+        $this->performAjaxValidation($model);
 
 		
 		if(!empty($_POST['GroupTopic']))
 		{
 			$attributes = $_POST['GroupTopic'];
 			$model = $group->addTopic($attributes);
-			if(empty($topic->errors))
+
+			if(empty($model->errors))
 			{
 				$this->redirect(array('show','tid'=>$model->id));
 			}
 			//$model->validate();
 		}
 		$data = array(
-			'form'=>$model,
+			'model'=>$model,
 			'group'=>$group,
 		);
-		$this->render('create',$data);
+		$this->render('_form',$data);
 	}
+
+    protected function performAjaxValidation($model)
+    {
+       if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+       {
+           echo CActiveForm::validate($model);
+           Yii::app()->end();
+       }
+    }
 
 	/**
 	 * 编辑话题
@@ -67,6 +77,8 @@ class TopicController extends Controller
 	public function actionEdit()
 	{
 		$model = new GroupTopic();
+        $this->performAjaxValidation($model);
+
 		$tid = Yii::app()->request->getQuery('tid');
 		$model = $model->loadTopic($tid);
 		$gid = $model->gid;
@@ -84,10 +96,10 @@ class TopicController extends Controller
 		}
 		
 		$data = array(
-			'form'=>$model,
+			'model'=>$model,
 			'group'=>$group,
 		);
-		$this->render('create',$data);
+		$this->render('_form',$data);
 	}
 		
 	/**

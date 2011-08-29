@@ -1,6 +1,6 @@
 $(function(){
 	//AJAX全局事件
-	
+	/*
 	$("body").bind("ajaxStart", function(){
 		AjaxSend();
 	}).bind("ajaxSuccess", function(e, xhr, o){
@@ -13,7 +13,7 @@ $(function(){
 	}).bind("ajaxError", function(){
 		AjaxError();
 	});
-	
+	*/
 	/*
 	 事件的顺序如下：
 	 ajaxStart 全局事件

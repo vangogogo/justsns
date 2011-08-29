@@ -1,7 +1,7 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
-<?php include('_right.php');?>
 
-<div class="cc">
+
+<div class="grid_15 suffix_1">
 	<div class="user_info"><!-- 用户资料 begin  -->
 		<div class="user_img">
 			<div class="img" id="host_face"><img src="<?php echo $owner->getUserFace($uid,'middle');?>" /></div>
@@ -170,4 +170,4 @@ $vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
 	<?php } ?> <!--隐私控制end-->
 
 </div>
-<div class="c"></div>
+<?php include('_right.php');?>

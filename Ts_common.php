@@ -1,4 +1,14 @@
 <?php
+/**
+* 判断是否登录，没有登录打印_showLogin
+*/
+function _cklogin() {
+	if(Yii::app()->user->isGuest)
+	{
+		echo ' _showLogin';
+	}
+}
+
 function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') {
     if(!$sTime) {
     	return '';
@@ -545,6 +555,7 @@ function safeEncoding($string,$outEncoding = 'UTF-8') {
 
 
 //获取好友分组
+
 function getFriGroup($uid,$fuid) {
 
 //好友的分组ID
