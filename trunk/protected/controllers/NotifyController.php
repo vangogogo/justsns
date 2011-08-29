@@ -1,11 +1,6 @@
 <?php
-
 class NotifyController extends Controller
 {
-	public function beforeAction() {
-        $this->layout = '960gs';
-        return true;
-    }
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.

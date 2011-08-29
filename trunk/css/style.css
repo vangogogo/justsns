@@ -92,7 +92,7 @@ h5 {font-size:14px;width:100%;font-weight:normal;line-height:20px;height:20px;ba
 .topic_content tr td {line-height:22px;padding:5px 0;text-align:left;vertical-align:top;}
 .topic_content tr td h3 {font-size:14px;font-weight:normal;line-height:22px;height:22px;}
 .topic_reply {}
-.topic_reply tr td {line-height:22px;padding:5px 0;text-align:left;vertical-align:top;}
+.topic_reply tr td {line-height:22px;padding:10px 0;text-align:left;vertical-align:top;}
 .topic_reply tr td h4 {font-size:12px;width:450px;font-weight:normal;line-height:20px;height:20px;background:#F2F9FC;padding:0 10px;}
 .topic_content tr td img,.topic_reply tr td img {width:48px;height:48px;}
 .topic_content tr td .content {width:490px;padding:10px 15px;white-space:normal;word-break:break-all;word-wrap:break-word;}
@@ -177,3 +177,38 @@ a.link5:active,a.link5:hover {background:#FF0084;color:#FFF;}
 /* 尾部内容样式 */
 #footer { clear:both; width:960px; border-top-width:1px; border-top-style:solid; border-top-color:#CCCCCC; line-height:30px; text-align:left; color:#666666; margin: 15px auto 0; }
 #footer .menu { float:right; color:#005FAB; }
+
+.btn-fav {
+display: inline-block;
+zoom: 1;
+padding: 0 8px 0 30px;
+vertical-align: middle;
+height: 19px;
+line-height: 19px;
+line-height: 21px	9;
+overflow: hidden;
+border: 1px solid #EDCEBA;
+margin-left: 4px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+}
+
+.fav-delete, .fav-delete:link, .fav-delete:hover {background:#FFF0E2 url(../images/ic_like.png) no-repeat 8px -17px;}
+.fav-add, .fav-add:link, .fav-add:hover {background:#FFF0E2 url(../images/ic_like.png) no-repeat 8px 3px;}
+
+
+a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0E2;color: #99776B;}
+a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0E2;color: #99776B;}
+
+/* default input默认样式 */
+input.t_input,textarea.t_input{ -webkit-border-radius: 4px; border-radius: 4px; border:1px solid #D5D5D5; padding:7px; background:#fff;}
+input.ac{background-color:#FFFFE5}
+input.err{background-color:#FDE5D4}
+textarea.t_area {width:80%;height:180px;}
+
+/* 表单输入 */
+.row {margin-bottom:10px}
+.row label{display: inline-block; width:60px }
+.row h2.tit{display:inline}
+

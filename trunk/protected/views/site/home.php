@@ -1,5 +1,5 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/index.css');?>
-<?php include('_right.php');?>
+
 <script>
 $(document).ready(function() { 
 	
@@ -29,7 +29,7 @@ $(document).ready(function() {
 }); 
 
 </script>
-<div class="cc">
+<div class="grid_15 suffix_1">
 	<div class="user_info"><!-- 用户资料 begin  -->
 
 		<div class="user_img">
@@ -95,4 +95,4 @@ $(document).ready(function() {
 	</div><!-- 好友心情 end  -->
 
 </div>
-<div class="c"></div>
+<?php include('_right.php');?>

@@ -2,7 +2,6 @@
 
 class GroupTopic extends CActiveRecord
 {
-	public $content_temp;
 	public $group_name;
 	/**
 	 * The followings are the available columns in table 'group_topic':
@@ -55,12 +54,13 @@ class GroupTopic extends CActiveRecord
 			array('gid, uid, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>36),
 			array('title', 'length', 'max'=>255),
+            array('title,content','required'),
 			array('attach', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, gid, uid, name, title, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del, attach', 'safe', 'on'=>'search'),
 
-			array('title,content_temp','required', 'on' => 'create'),
+
 			//array('name', 'checkGroupName', 'on'=> 'create'),
 		);
 	}
@@ -77,8 +77,6 @@ class GroupTopic extends CActiveRecord
 			'group' => array(self::BELONGS_TO, 'Group', 'gid'),
 			'comments' => array(self::HAS_MANY, 'GroupPost', 'tid', 'condition'=>'comments.status= 1', 'order'=>'comments.ctime DESC'),
 			'commentCount' => array(self::STAT, 'GroupPost', 'tid', 'condition'=>'group_post.status= 1'),
-		
-			'content' => array(self::HAS_ONE, 'GroupPost', 'tid', 'condition'=>'content.istopic= 1'),
 		);
 	}
 
@@ -105,6 +103,7 @@ class GroupTopic extends CActiveRecord
 			'isrecom' => 'Isrecom',
 			'is_del' => '是否删除',
 			'attach' => '附件',
+            'content'=>'内容',
 		);
 	}
 	
@@ -199,10 +198,7 @@ class GroupTopic extends CActiveRecord
 	}
 	
 	public function afterFind()
-	{
-		$content = $this->getTopicContent();
-		$this->content_temp = $content;
-		
+	{		
 		$group = Group::model()->loadGroup($this->gid);
 		$this->group_name = $group->name;
 		return true;
@@ -211,21 +207,20 @@ class GroupTopic extends CActiveRecord
 	public function getTopicContent()
 	{
 		//TODO 缓存
-		return $this->content->content;
+		return $this->content;
 	}
 	
 	public function addTopic($params)
 	{
 		$this->attributes = $params;
-		$this->content_temp = $params['content_temp'];
 		$this->save();
+
 		return $this;
 	}
 
 	public function setTopic($params)
 	{
 		$this->attributes = $params;
-		$this->content_temp = $params['content_temp'];
 		$this->save();
 		return $this;
 	}
@@ -245,27 +240,6 @@ class GroupTopic extends CActiveRecord
 	 */
 	protected function afterSave() 
 	{
-		if($this->isNewRecord)
-		{
-			$post = new GroupPost();
-
-			$data = array(
-				'gid' => $this->gid,
-				'uid' => $this->uid,
-				'tid' => $this->id,
-				'istopic' => 1,
-			);
-			$post->attributes=$data;
-			$post->content = $this->content_temp;
-			$post->save();
-		}
-		else 
-		{
-			$post = $this->content;
-			$post->content = $this->content_temp;
-			$post->save();
-		}
-
 		//标签更新,无条件判定
 		if(0)
 		{

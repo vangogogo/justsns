@@ -1,17 +1,22 @@
-<?php $this->beginContent(); ?>
-	<div id="content_main" class="clearfix">
-	
-		<div class="span-4" id="sidebar">
-			<?php if(!Yii::app()->user->isGuest) $this->widget('UserApp'); ?>
+<?php $this->beginContent('//layouts/main'); ?>
+<div class="container">
+	<div class="span-18">
+		<div id="content">
+			<?php echo $content; ?>
+		</div><!-- content -->
+	</div>
+	<div class="span-6 last">
+		<div id="sidebar">
+			<?php if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); ?>
 
-		</div>
-		<div class="span-21 last" id="main">
-			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-				'homeLink'=>CHtml::link('首页',Yii::app()->homeUrl), 
-				'links'=>$this->breadcrumbs,
-			)); ?><!-- breadcrumbs -->
-			
-		<?php echo $content; ?>
-		</div>
-	</div><!-- content -->
+			<?php $this->widget('TagCloud', array(
+				'maxTags'=>Yii::app()->params['tagCloudCount'],
+			)); ?>
+
+			<?php $this->widget('RecentComments', array(
+				'maxComments'=>Yii::app()->params['recentCommentCount'],
+			)); ?>
+		</div><!-- sidebar -->
+	</div>
+</div>
 <?php $this->endContent(); ?>

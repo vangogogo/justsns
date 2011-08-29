@@ -8,6 +8,7 @@
 	<!-- SiteSearch Google -->
 </div>
 <br/>
-<h2><a href="/group/glist.html">&gt; 浏览所有 <?php echo $groups_count?> 个小组</a></h2>
+<h2>
+<a href="<?php echo Yii::app()->createUrl('/group/group/list')?>">&gt; 浏览所有 <?php echo $groups_count?> 个小组</a></h2>
 <br/>
 <br/>

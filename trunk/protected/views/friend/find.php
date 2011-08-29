@@ -1,7 +1,7 @@
 <?php
 include('_top.php');
 ?>
-<div class="friendBox">
+<div class="grid_15 suffix_1">
 	<div class="FList"><!-- 访问脚印 begin  -->
 	<ul>	
 		<li class="btmlineD f14px lh25" style="padding:20px 0px;">

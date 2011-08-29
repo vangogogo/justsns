@@ -1,8 +1,8 @@
 <?php
 	include('_top.php');
 ?>
-<div class="friendBox">
-	<div style="width:700px;">
+<div class="grid_15 suffix_1">
+	<div class="friendBox">
 		<div class="menuA" onmouseover="this.className='menuB'" onmouseout="this.className='menuA'">
 			<h2 class="f14px fB lh35">
 				<?php echo CHtml::link('导入邮箱的通讯录至邀请名单',array('postOffice','gid'=>$gid));?>

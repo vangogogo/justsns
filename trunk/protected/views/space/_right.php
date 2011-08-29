@@ -1,4 +1,4 @@
-<div class="cr"><!-- cr begin  -->
+<div class="grid_8">
 	<div class="UserList">
 	   <form action="__APP__" method="get"  id="list_fri" class="form_validator">
 			<input type="hidden" name="s" value="/Friend/lists" >
