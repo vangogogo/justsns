@@ -227,7 +227,7 @@ class GroupTopic extends CActiveRecord
 	
 	public function delTopic()
 	{
-		if($this->uid == Yii::app()->user->id)
+		if($this->uid == Yii::app()->user->id OR 1)
 		{
 			$this->is_del = 1;
 			$this->save();

@@ -43,8 +43,7 @@
 	</table>
 
     <?php if(!empty($post_list)):?>
-	<div  class="grid_14 prefix_1">
-		
+	<div  class=" prefix_1 clearfix">
 		<table class="topic_reply">
 			<?php foreach($post_list as $key => $post):?>
 				<tr>
@@ -76,7 +75,7 @@
 							<?php } ?>
 							<?php if($this->mid == $post['uid'] || $isadmin){ ?>
 								<?php //echo CHtml::link('编辑',array('topic/editPost','pid'=>$post['id']),array('class'=>'a_confirm_link'));?>
-								<?php echo CHtml::link('删除',array('topic/doDelPost','pid'=>$post['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?>
+								<?php echo CHtml::link('> 删除',array('topic/doDelPost','tid'=>$post['tid'],'pid'=>$post['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?>
 							<?php } ?>
 						</div>
 					</td>
@@ -85,32 +84,30 @@
 		</table>
 		
 	</div>
-		
-	<div class="pageli">
-		<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
-	</div>
+
+	<?php $this->widget('CLinkPager',array('pages'=>$post_pages)); ?>
 
     <?php endif ?>
 
-	<div class="height2"></div>
-	<div class="height1"></div>
+    <?php if(Yii::app()->user->isGuest):?>
 	<div align="right">
-		你好，请 <a href="/user/login.html">登录</a> 或 <a href="/user/register.html">注册</a> 后加入该小组发言
+		你好，请 <?php echo CHtml::link('登录',Yii::app()->user->loginUrl);?> 或 <a href="/user/register.html">注册</a> 后加入该小组发言
 	</div>
-	<?php if($post_access):?>
+    <?php endif;?>
+
+	<?php if(!Yii::app()->user->isGuest AND $post_access):?>
 		<?php if(!empty($_GET['post'])){?>
 		<div class="color-gray">
 			<?php echo CHtml::link('继续发言',array('topic/show','tid'=>$topic['id'],'page'=>$page,'#'=>'last'),array('id'=>'last'));?>
 		</div>
 		<?php }else{?>
-
-		<div class="topic_reply" id="last">
 			<h2>你的回应</h2>
+		<div class="topic_reply" id="last">
 			<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
 		</div>
 
 		<?php }?>
-	<?php endif;?>
+    <?php endif;?>
 
 </div>	
 <div class="grid_8">
