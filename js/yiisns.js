@@ -66,6 +66,8 @@ $(function(){
 		Confirm({
 			message: message,
 			handler: function(button){
+                window.location.href=url;
+                /*
 				$.get(url, '', function(result){
 					if(result == 1)
 					{
@@ -79,8 +81,8 @@ $(function(){
 					{
 						Alert(result)
 					}
-					
 				});
+                */
 			}
 		});
 		return false;

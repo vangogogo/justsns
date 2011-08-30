@@ -230,8 +230,17 @@ class TopicController extends Controller
 		$id = $_GET['tid'];
 		$model = new GroupTopic();
 		$topic = $model->loadTopic($id);
+        $gid = $topic['gid'];
 		$return = $topic->delTopic();
-		echo $return;
+
+        if(Yii::app()->request->isAjaxRequest)
+        {
+		    echo !$return?-1:1;
+        }
+        else
+        {
+            $this->redirect(array('group/show','gid'=>$gid));
+        }
 	}
 	
 	/**
@@ -240,10 +249,20 @@ class TopicController extends Controller
 	public function actionDoDelPost()
 	{
 		$id = $_GET['pid'];
+        $tid = $_GET['tid'];
+
 		$model = new GroupPost();
 		$post = $model->loadPost($id);
+        $tid = $post['tid'];
 		$return = $post->delPost();
-		echo !$return?-1:1;
+        if(Yii::app()->request->isAjaxRequest)
+        {
+		    echo !$return?-1:1;
+        }
+        else
+        {
+            $this->redirect(array('show','tid'=>$tid,'remove'=>'ok'));
+        }
 	}
 	
 	/**
