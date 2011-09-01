@@ -33,10 +33,23 @@ return array(
 
 	// application components
 	'components'=>array(
-		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
-		),
+        // 用户组件
+        'user'=>array(
+            // 允许cookie自动登录 并保存到runtime/state.bin
+            'allowAutoLogin'=>true,
+
+            // session 前缀,单点登录与区分前后台登录时可以用到
+            #'stateKeyPrefix'=> 'f_site',
+
+            // 登录链接 Yii::app()->user->loginUrl
+            'loginUrl'=> array('/user/login'),
+
+            //cookie 验证
+            #'identityCookie'=>array('domain'=>'.'.ALL_DOMAIN,),
+            
+            //自动刷新 cookie
+            #'autoRenewCookie'=>true,
+        ),
 		'db'=>DatabaseConfig::dbinfo(),
 		/*
 		'db'=>array(
@@ -65,11 +78,11 @@ return array(
 					'levels'=>'error, warning, log',
 				),
 				// uncomment the following to show log messages on web pages
-				
+				/*
 				array(
 					'class'=>'CWebLogRoute',
 				),
-				/*
+				
 				array( // configuration for the toolbar
 				  'class'=>'XWebDebugRouter',
 				  'config'=>'alignLeft, opaque, runInDebug, fixedPos, collapsed, yamlStyle',
@@ -188,8 +201,9 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'huanghuibin@gmail.com',
 		'upload_dir'=>'/uploads/images/',
-		'uploadPath'=>$path.'/uploads/images/'
+		'uploadPath'=>$path.'/uploads/images/',
+        'site_name'=>'站点',
 	),
 );
