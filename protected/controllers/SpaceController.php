@@ -2,6 +2,32 @@
 
 class SpaceController extends Controller
 {
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+
+			array('allow', // allow authenticated users to access all actions
+				'users'=>array('@'),
+                'actions'=>array('index','mine'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -45,4 +71,10 @@ class SpaceController extends Controller
 		);
 		$this->render('index',$data);
 	}
+
+    public function actionMine()
+    {
+        $uid = Yii::app()->user->id;
+        $this->redirect(array('index','uid'=>$uid));
+    }
 }

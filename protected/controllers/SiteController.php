@@ -40,7 +40,7 @@ class SiteController extends Controller
 		$notify_num = array(0);
 		$uid = Yii::app()->user->id;
 		//用户信息
-		$owner = User::model()->with(array('mini'))->findByPk($uid);
+		$owner = User::model()->findByPk($uid);
 		
 		//8个应用
 		$apps = App::model()->findAll();
@@ -270,5 +270,14 @@ class SiteController extends Controller
 		else
 			$this->render('area',$data);
 	}
+
+    protected function performAjaxValidation($model)
+    {
+       if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+       {
+           echo CActiveForm::validate($model);
+           Yii::app()->end();
+       }
+    }
 		
 }

@@ -21,12 +21,12 @@
 abstract class YiicmsActiveRecord extends CActiveRecord
 {
 	const PAGE_SIZE = 10;
-	
+
 	public function behaviors()
 	{
 		return array(
 			// YII AR的事件行为
-			'YiicmsActiveRecordBehavior',
+			#'YiicmsActiveRecordBehavior',
 			// 时间
 			'CTimestampBehavior' => array(
 				'class' => 'zii.behaviors.CTimestampBehavior',
@@ -34,7 +34,7 @@ abstract class YiicmsActiveRecord extends CActiveRecord
 				'updateAttribute' => 'update_time',
 			)
 		);
-		
+
 	}
 	/**
 	* 系统日志的信息分类
@@ -77,7 +77,7 @@ abstract class YiicmsActiveRecord extends CActiveRecord
 	}
 	/**
 	* 获得某行记录的缓存键值，做缓存的键值
-	*/	
+	*/
 	public function getCacheKey($pk = '')
 	{
 		$modelclass = $this->getModelClass();
@@ -91,6 +91,7 @@ abstract class YiicmsActiveRecord extends CActiveRecord
 	* 重写findByPk方法,如果缓存存在数据，则直接读取缓存
 	* 在YiicmsActiveRecordBehavior中，一旦有数据更新则删除缓存
 	*/
+	/*
 	public function findByPk($pk,$condition='',$params=array())
 	{
 		$key = $this->getCacheKey($pk);
@@ -106,7 +107,8 @@ abstract class YiicmsActiveRecord extends CActiveRecord
 		}
 		return $resource;
 	}
-	
+	*/
+
 	public function scopes()
 	{
 		return array(
@@ -118,19 +120,35 @@ abstract class YiicmsActiveRecord extends CActiveRecord
 			),
 		);
 	}
-	
+
 	public function deleteMark()
 	{
 		$this->is_delete = 1;
 		$this->save();
 		return $this;
 	}
-	
+
 	public function resetMark()
 	{
 		$this->is_delete = 0;
 		$this->save();
 		return $this;
 	}
-	
+
+     /**
+     * 根据主键获得讲座
+     * @param int $lecture_id 讲座id
+     * @throws CHttpException
+     * @return null
+     */
+    public function loadByPk($pk)
+    {
+        $model = $this->findByPk($pk);
+        if(empty($model) or $model->is_delete == 1)
+        {
+            // 该文章已删除或不存在
+            throw new CHttpException(404,'...你想访问的页面不存在.');
+        }
+        return $model;
+    }
 }

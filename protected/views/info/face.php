@@ -1,8 +1,13 @@
 <?php
 	include('_top.php');
 ?>
-<?php echo Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/js/kxthumb/main.css');?>
-<?php echo Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/kxthumb/thumb.js');?>
+<?php
+	$cs = Yii::app()->clientScript;
+
+	$cs->registerCssFile('/js/kxthumb/main.css');
+	$cs->registerScriptFile('/js/kxthumb/thumb.js');
+?>
+
 
 <table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:20px;" >
 	<tr>

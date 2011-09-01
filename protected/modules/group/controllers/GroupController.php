@@ -37,14 +37,25 @@ class GroupController extends Controller
 		//最近加入
 		$group_members = $group->getGroupNewMembers();
 		
+
+
+
 		//话题
 		$params = array('pageSize'=>20,'page'=>$_GET['page']);
 		$d =$model->getGroupThreads($params);
 
 		$threads = $d['threads'];
 		$pages = $d['pages'];
-		
+
+		$_model=new GroupTopic('search');
+		$_model->unsetAttributes();
+        $_model->gid = $gid;
+        $_model->is_del = 0;
+        $_dataProvider = $_model->search();
+        $threads = $_dataProvider->getData();
+        $pages = $_dataProvider->getPagination();
 		$page_count = $pages->getPageCount();
+
 
 		$adminList = array();
 		$memberList = array();
@@ -57,6 +68,9 @@ class GroupController extends Controller
 			'pages'=>$pages,
 			'page_count'=>$page_count,
 		);
+
+
+
 		$this->render('show',$data);
 	}
 
