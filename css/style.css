@@ -205,13 +205,37 @@ input.ac{background-color:#FFFFE5}
 input.err{background-color:#FDE5D4}
 textarea.t_area {width:80%;height:180px;}
 
+.row input:hover, .t_input:hover { border: 1px solid #B9B9B9;}
+.row input:focus, .t_input:focus { background:#FFFFE5; border: 1px solid #D5D5D5;}
+
+.row label.rememberMe { width:200px;}
+.captcha-item .t_input { width: 95px;}
+
+.errorMessage { padding-left: 24px; color: #FE2617;  display: inline; background: url(../images/hint.gif) no-repeat 3px;}
+
+.successMessage {
+    border: 1px solid #FAF3CA;
+    padding: 10px;
+    margin-bottom: 10px;
+    background:#FFF6BF none repeat scroll 0 0;
+    border-color:#FFD324;
+    color:#514721;
+}
+
+.hint { padding-left: 10px; color: #808080;  display: inline;}
+div.error p.hint,div.success p.hint {display:none;}
+
+/* default input默认样式 */
+.row input{ -webkit-border-radius: 4px; border-radius: 4px; border:1px solid #D5D5D5; padding:7px; background:#fff;}
+
+
 .btn{display:inline-block; font-size:12px; color:#FFF; padding:5px; cursor:pointer; text-align:center;background-color:#A5CB6F !important;margin-right:10px; line-height:1em;border:0; *zoom:1; _vertical-align:middle;}
 .btn:hover{color:#fff;background-color:#8EBE4B !important; _zoom:1;}
 .btn:active{color:#fff;background-color:#7AA73C !important}
 .btn a{color:#fff}
 
 /* 表单输入 */
-.row {margin-bottom:10px}
+.row {margin:10px 0;}
 .row label{display: inline-block; width:60px }
 .row h2.tit{display:inline}
 
@@ -279,3 +303,53 @@ textarea.t_area {width:80%;height:180px;}
 .seMood .aeMood-me-reply{ clear:both; margin-left:80px; padding-bottom:20px;}
 .seMood .aeMood-me-reply textarea{ padding:10px; height:60px; width:390px; border:2px solid #77AACF; -moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px; background-color:#F9F9F9; font-size:13px; color:#545454}
 
+div.grid-view {
+}
+div.grid-view div.summary {
+    margin: 0 0 20px;
+    text-align: right;
+}
+div.grid-view table.items {
+}
+div.grid-view table.items tbody {
+}
+div.grid-view table.items tbody tr.odd {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+div.grid-view table.items tbody tr.even {
+}
+div.grid-view table.items tbody tr.selected {
+    background: none repeat scroll 0 0 #CCCCCC;
+}
+div.grid-view table.items th, div.grid-view table.items td {
+    font-size: 12px;
+}
+div.grid-view table.items td {
+    padding: 10px;
+    vertical-align: middle;
+}
+div.grid-view table.items th {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #666666;
+}
+div.grid-view table.items th a {
+    color: #333333;
+}
+div.grid-view table.items th a:hover {
+    color: #669966;
+}
+
+div.grid-view table.items img.magazine_big_pic_thubm, div.grid-view table.items .magazine_small_pic_thubm {
+    margin: 0;
+    width: 36px;
+}
+div.grid-view table.items thead tr.filters {
+    background: none repeat scroll 0 0 #ECFBD5;
+}
+div.grid-view .pager {
+    margin: 20px 0 0;
+    text-align: right;
+}
+table.detail-view th, table.detail-view td {
+    font-size: 12px;
+}

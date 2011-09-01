@@ -6,7 +6,7 @@ a {color:#005FAB;text-decoration:none;}
 .container {width:960px;}
 .column1 #content{background:none;padding:20px;border-left:1px solid #D1D1D1}
 .error_info {display:none;}
-.cc .invalid,input.error,select.error,textarea.error {background:#FBE6F2;border:1px solid #D893A1;color:#996633;}
+.cc .invalid,input.error,select.error,textarea.error {background:#FBE6F2;border:1px solid #D8a3A1;color:#996633;}
 
 textarea, input, select {border:1px solid #DDDDDD;line-height:16px;padding:3px 2px;}
 
