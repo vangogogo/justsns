@@ -65,11 +65,11 @@ return array(
 					'levels'=>'error, warning, log',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
+				
 				array(
 					'class'=>'CWebLogRoute',
 				),
-				
+				/*
 				array( // configuration for the toolbar
 				  'class'=>'XWebDebugRouter',
 				  'config'=>'alignLeft, opaque, runInDebug, fixedPos, collapsed, yamlStyle',

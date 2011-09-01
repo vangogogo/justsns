@@ -1,73 +1,18 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
-
-
 <div class="grid_15 suffix_1">
-	<div class="user_info"><!-- 用户资料 begin  -->
-		<div class="user_img">
-			<div class="img" id="host_face"><img src="<?php echo $owner->getUserFace($uid,'middle');?>" /></div>
-			<div id="my_face" style="display:none"><img src="<?php echo $owner->getUserFace($mid,'small');?>" /></div>
-			<div class="menu bg01">
-				<?php
-					if($uid == $mid){
-						echo CHtml::link('更改头像',array('/info/face'),array('title'=>'更改头像'));
-						echo CHtml::link('隐私设置',array('/privacy'),array('title'=>'隐私设置'));
-						echo CHtml::link('修改账号',array('/account'),array('title'=>'修改账号'));
-						echo CHtml::link('修改资料',array('/info'),array('title'=>'修改资料'));
-					}elseif($mid){
-						echo CHtml::link('详细资料',array('/space/detail','uid'=>$uid),array('title'=>'详细资料'));
-						echo CHtml::link('给TA留言',array('/space/detail','uid'=>$uid),array('title'=>'给TA留言'));
-
-						if($is_friend){
-							echo CHtml::link('发短消息',array('/space/detail','uid'=>$uid),array('title'=>'发短消息'));
-						}else{
-							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友'));
-						}
-					}
-				?>
-				<div class="c"></div>
-			</div>
-		</div>
-		<div class="Linfo">
-			<div class="info">
-				<h2 id="host_name"><?php echo $owner->getUserName($uid).' ';echo User::model()->getUserGroupIcon();?></h2>
-				<h2 id="my_name" style="display:none"><?php echo $owner->getUserName()?></h2>
-				<?php if($space_privacy OR 1){ ?>
-					<p>
-						<span>
-							<?php echo $owner->mini->content;?></span><span><em><?php echo friendlyDate('Y-m-d H:i',$owner->mini->ctime);?></em></span><span>
-							<?php echo CHtml::link('更多',array('/mini/index','uid'=>$uid));?>
-						</span>
-					</p>
-				<?php } ?>
-
-				<?php if($space_privacy){ ?>	 <!--隐私控制-->
-				<ul>
-					<?php if(!empty($rank)){ ?><li><span class="l cGray2">等级：</span><span class="r cBlue" style="margin-top:6px;"><img src="<?php echo THEME_URL; ?>/images/group/{$rank['icon']}" title="{$rank['name']}" alt="{$rank['name']}"/></span></li><?php } ?>
-					<volist name="credit" id="vo" k="key">
-						<li><span class="l cGray2">{$key}：</span><span class="r cBlue">{$vo}</span></li>
-					</volist>
-				</ul>
-				<ul>
-					<?php foreach($userInfo as $k=>$v){ ?>
-					<li><span class="l cGray2">{$k}：</span><span class="r cBlue">{$v}</span></li>
-					<?php } ?>
-				</ul>
-				<?php } ?>
-			</div>
-		</div>
-	</div><!-- 用户资料 end  -->
 	<!--用户应用-->
-	<div class="system_info">
-		<?php if(!empty($apps)) foreach($apps as $vo){?>
-			<?php $app_num = isset( $apps_num[$vo['enname']] )?$apps_num[$vo['enname']]:0;
-$vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
-				 if(empty($vo['uid_url'])) continue;
-			 ?>
-			<span>
-				<?php echo CHtml::image(Yii::app()->theme->baseUrl.'/images/apps/'.$vo['icon'],$vo['name']);?>
-				<?php echo CHtml::link('XX个'.$vo['name'],array('/'.$app['enname']))?>
-			</span>
-		<?php }?>
+    <div class="system_info2 clearfix">
+        <ul class="seNav cf">
+		    <?php if(!empty($apps)) foreach($apps as $vo){ ?>
+			    <?php $app_num = isset( $apps_num[$vo['enname']] )?$apps_num[$vo['enname']]:0;
+    $vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
+				     if(empty($vo['uid_url'])) continue;
+			     ?>
+			    <li class="">
+				    <?php echo CHtml::link($vo['name'],array('space/'.$vo['enname'],'uid'=>$uid))?>
+			    </li>
+		    <?php }?>
+        </ul>
 	</div>
 	<!--用户应用end-->
 
@@ -169,5 +114,24 @@ $vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
 
 	<?php } ?> <!--隐私控制end-->
 
+
+	<!-- 留言板 end  -->
+	<?php $this->widget('WPeopleBoardForm',
+				array(
+					'params' => array('object_id'=>$uid,'object_type'=>'space'),
+					'htmlOptions'=>array('showSubmit'=>true,'id'=>'#message-form2')
+				)
+			);
+			// view文件位于\lifedu\protected\components\views\WPeopleBoard.php 页面端可传递参数为seClassName和head cferTitle 'htmlOptions'=>array('seClassName'=>'seBoard','head cferTitle'=>'留言板')
+	?>
+
+	<?php $this->widget('WPeopleBoard',
+				array(
+					'params' => array('object_id'=>$uid,'object_type'=>'space','limit'=>10,'more_link'=>$this->createUrl('lecturer/board',array('id'=>$lecturer->primaryKey))),
+					'htmlOptions'=>array()
+				)
+			);
+			// view文件位于\lifedu\protected\components\views\WPeopleBoard.php 页面端可传递参数为seClassName和head cferTitle 'htmlOptions'=>array('seClassName'=>'seBoard','head cferTitle'=>'留言板')
+	?>
 </div>
 <?php include('_right.php');?>

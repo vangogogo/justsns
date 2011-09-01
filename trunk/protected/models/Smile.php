@@ -2,6 +2,7 @@
 
 class Smile extends CActiveRecord
 {
+    static $icon_list;
 	/**
 	 * The followings are the available columns in table 'smile':
 	 * @var integer $id
@@ -120,7 +121,8 @@ class Smile extends CActiveRecord
 	 * @access private
 	 * @return void
 	 */
-	public function replaceContent($content,$temp=null ){
+	public function replaceContent($content,$temp=null )
+    {
 		$smiletype = 'mini';
 		$public = isset( $temp )?$temp:PUBLIC_URL;
 		$path   = $public."images/biaoqing/".$smiletype."/";//路径
@@ -137,13 +139,17 @@ class Smile extends CActiveRecord
 	
 	public function getIconList()
 	{
-		$cache_key = md5('getIconList');
-		$icon_list = Yii::app()->cache->get($cache_key);
-		if(empty($icon_list))
-		{
-			$icon_list = self::model()->findAll();
-			Yii::app()->cache->set($cache_key,$icon_list);
-		}
-		return $icon_list;
+        if(empty(self::$icon_list))
+        {
+		    $cache_key = md5('getIconList');
+		    $icon_list = Yii::app()->cache->get($cache_key);
+		    if(empty($icon_list))
+		    {
+			    $icon_list = self::model()->findAll();
+			    Yii::app()->cache->set($cache_key,$icon_list);
+		    }
+            self::$icon_list = $icon_list;
+        }
+		return self::$icon_list;
 	}	
 }

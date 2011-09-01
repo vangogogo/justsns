@@ -4,6 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <title>960 Grid System &mdash; Demo</title>
+
+	<script type="text/javascript">
+	<!--
+		//指定当前组模块URL地址
+		var	URL			=	'/index.php?r=/Index';
+		var	APP			=	'/';
+		var	PUBLIC		=	'http://www.yiisns.com/public';
+		var	ROOT		=	'http://www.yiisns.com';
+		var TS			=	'http://www.yiisns.com/';
+		var MID			=	'0';
+		var NEED_LOGIN	=	'0';
+		var expire		=	'3600';
+		var TPIS		=	'0';
+	//-->
+	</script>
+
 <?php
 	$cs = Yii::app()->clientScript;
 
