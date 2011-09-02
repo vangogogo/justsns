@@ -6,6 +6,7 @@ img {border:0;}
 ::selection {color:#333;background:#E1ECF4;}
 ::-moz-selection{color:#333;background:#E1ECF4;}
 
+.container {width:960px;min-height:400px;}
 /* link style 1 */
 .ls1 a{color:#333 !important}
 .ls1 a:hover{color:#f90 !important}
@@ -208,7 +209,7 @@ textarea.t_area {width:80%;height:180px;}
 .row input:hover, .t_input:hover { border: 1px solid #B9B9B9;}
 .row input:focus, .t_input:focus { background:#FFFFE5; border: 1px solid #D5D5D5;}
 
-.row label.rememberMe { width:200px;}
+.row label.rememberMe { width:auto;}
 .captcha-item .t_input { width: 95px;}
 
 .errorMessage { padding-left: 24px; color: #FE2617;  display: inline; background: url(../images/hint.gif) no-repeat 3px;}

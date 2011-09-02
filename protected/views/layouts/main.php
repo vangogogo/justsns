@@ -51,17 +51,20 @@
 <div class="container_24">
 		<!-- header -->
 		<div class="header">
-			<div class="logo i-a-sn fl"><a href="http://<?php echo SUB_DOMAIN_main;?>" title="返回首页">LOGO</a></div>
+			<div class="logo i-a-sn fl"><a href="http://<?php echo SUB_DOMAIN_main;?>" title="返回首页">
+
+            </a></div>
 
 			<!-- menu -->
 			<div class="menu cb i-a-sn i-a-b">
 					<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
 						array('label'=>'首页', 'url'=>array('/site/index')),
-						array('label'=>'个人空间', 'url'=>array('/space/mine')),
-						array('label'=>'好友', 'url'=>array('/friend/index'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
-						array('label'=>'小组', 'url'=>array('/group')),
-						array('label'=>'信息', 'url'=>array('/notify/inbox'),'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $notice_item),
+						array('label'=>'联系我们', 'url'=>array('/site/contact'),'visible'=>Yii::app()->user->isGuest),
+						array('label'=>'个人空间', 'url'=>array('/space/mine'),'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'好友', 'url'=>array('/friend/index'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
+						array('label'=>'小组', 'url'=>array('/group'),'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'信息', 'url'=>array('/notify/inbox'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $notice_item),
 					),
 					)); ?>
 			</div>

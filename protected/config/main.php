@@ -7,7 +7,7 @@ require('DatabaseConfig.php');
 // CWebApplication properties can be configured here.
 $path=dirname(dirname(dirname(__FILE__)));
 
-return array(
+$config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Yii TEST',
 
@@ -33,6 +33,18 @@ return array(
 
 	// application components
 	'components'=>array(
+        'SAEOAuth' => array(
+            'WB_AKEY' => '1500340182',
+            'WB_SKEY' => 'c09b0ad5183707679d79e8bc24259c8c',
+            'callback' => '/user/weibo/callback',
+            'class'=>'SAEOAuth',
+        ),
+        'request'=>array(
+            //Cookie攻击的防范
+            'enableCookieValidation'=>true,
+            //跨站请求伪造(简称CSRF)攻击 防范
+            #'enableCsrfValidation'=>true,
+        ),
         // 用户组件
         'user'=>array(
             // 允许cookie自动登录 并保存到runtime/state.bin
@@ -50,26 +62,55 @@ return array(
             //自动刷新 cookie
             #'autoRenewCookie'=>true,
         ),
-		'db'=>DatabaseConfig::dbinfo(),
-		/*
-		'db'=>array(
-			'connectionString' => 'sqlite:protected/data/testdrive.db',
-		),
-		*/
-		// uncomment the following to use a MySQL database
-		/*
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
-		*/
+        'db'=>array(
+            //配置为 SAEDbConnection 则不必考虑用户名密码 并自动读写分离
+            #'class'=>'SAEDbConnection',
+            'connectionString' => 'mysql:host=localhost;port=3306;dbname=yiisns',
+            'username' => 'root',
+            'password' => '111111',
+            #'connectionString' => 'sqlite:protected/data/blog.db',
+            'charset' => 'utf8',
+			'tablePrefix'=>'yiisns_',
+            'emulatePrepare' => true,
+            'schemaCachingDuration'=>3600,
+        ),
+        'session'=>array(
+            'class' => 'CDbHttpSession',
+            'connectionID' => 'db',
+            #'cookieParams' => array('domain' => '.'.ALL_DOMAIN, 'lifetime' => 0),
+            #'timeout' => 3600,
+            #'sessionName' => 'session'
+        ),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+        'urlManager'=>array(
+            // 静态化
+            //'urlSuffix'=>'.html',
+            //路径模式的URL,方便SEO,搜索引擎搜索
+             'urlFormat'=>'path',
+            //不显示脚本名 index.php
+            'showScriptName'=>false,
+            //主域名 直接访问controllers
+            #'baseUrl'=>'http://'.SUB_DOMAIN_main,
+            'rules'=>array(
+                //assets目录发布到web，使用path路径，浏览器会认为是静态文件*达到http304的目的
+                'assets/<path:.*?>'=>'site/assets',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+
+				'space/uid/<uid:\d+>'=>'space/index',
+				'post/<pid:\d+>'=>'post/show',
+
+				'group/<gid:\d+>'=>'group/group/show',
+				'group/topic/<tid:\d+>'=>'group/topic/show',
+				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
+				'group/create/<gid:\d+>'=>'group/group/create',
+				'group/new_topic/<gid:\d+>'=>'group/topic/create',
+				'group/new_group'=>'group/group/create',
+            ),
+        ),
+
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -91,10 +132,13 @@ return array(
 				*/
 			),
 		),
-		'cache'=>array(
-			'class'=>'system.caching.CFileCache',
-			'directoryLevel'=>'2',
-		),
+        
+        'cache'=>array(
+            //如果没有必要，不用修改缓存配置。 SAE不支持本地文件的IO处理 已经提供了memcache
+            'class'=>'CFileCache',
+            'directoryLevel'=>'2',
+        ),
+        
 		'authManager'=>array(
 			// The type of Manager (Database)
 			'class'=>'CDbAuthManager',
@@ -108,40 +152,13 @@ return array(
 			'itemChildTable'=>'auth_item_child',
 		),
 
-				// url
-		'urlManager'=>array(
-			// the URL format. It must be either 'path' or 'get'.
-			// path: index.php/controller/action/attribute/value
-			// get: index.php?r=controller/action&attribute=value
-			'urlFormat'=>'path',
-			// show www.example.com/index.php/controller/action
-			// or just www.example.com/controller/action
-			'showScriptName' => false,
-			// rules to redirect a specific url to the controller you want
-			// see: http://www.yiiframework.com/doc/guide/topics.url
-			'rules'=>array(
-				// www.example.com/home instead of www.example.com/site/index
-				//'home'=>'site/index',
-				//'http://<_s:(user|admin|group)+>.yiisns.com<_t:.*>/*'=>'<_s><_t>',
-				//'http://<_m:(user|space|group)>.yiisns.com<_q:.*>/*’=>’<_m><_q>',
-		
-				'space/uid/<uid:\d+>'=>'space/index',
-				'post/<pid:\d+>'=>'post/show',
-
-				'group/<gid:\d+>'=>'group/group/show',
-				'group/topic/<tid:\d+>'=>'group/topic/show',
-				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
-				'group/create/<gid:\d+>'=>'group/group/create',
-				'group/new_topic/<gid:\d+>'=>'group/topic/create',
-				'group/new_group'=>'group/group/create',
-				
-			),
-		),
-		//验证模块
-		'jformvalidate' => array (
-			'class' => 'application.extensions.jformvalidate.EJFValidate',
-			'enable' => true
-		),		
+        'image'=>array(
+            'class'=>'application.extensions.image.CImageComponent',
+            // GD or ImageMagick
+            'driver'=>'GD',
+            // ImageMagick setup path
+            #'params'=>array('directory'=>'D:/Program Files/ImageMagick-6.4.8-Q16'),
+        ),
 	),
 
 	// application modules
@@ -150,35 +167,6 @@ return array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'yiidev',
 		),
-		
-		'srbac' => array( 
-			'userclass'=>'User', //optional defaults to User 
-			'userid'=>'id', //optional defaults to userid 
-			'username'=>'username', //optional defaults to username 
-			'debug'=>true, //optional defaults to false 
-			'pageSize'=>10, //optional defaults to 15 
-			'superUser' =>'Authority', //optional defaults to Authorizer 
-			'css'=>'srbac.css',  //optional defaults to srbac.css 
-			'layout'=> 	'application.views.layouts.main', //optional defaults to  // application.views.layouts.main, must be an existing alias 
-			'notAuthorizedView'=> 'srbac.views.authitem.unauthorized ', // optional defaults to //srbac.views.authitem.unauthorized, must be an existing alias 
-			'alwaysAllowed'=>array(			 //optional defaults to gui 
-				'SiteLogin','SiteLogout','SiteIndex','SiteAdmin', 
-				'SiteError', 'SiteContact'), 
-			'userActions'=>array(//optional defaults to empty array 
-				'Show','View','List'), 
-			'listBoxNumberOfLines' => 15,  //optional defaults to 10 
-			'imagesPath' => 'srbac.images', //optional defaults to srbac.images 
-			'imagesPack'=>'noia', //optional defaults to noia 
-			'iconText'=>true, //optional defaults to false 
-			'header'=>'srbac.views.authitem.header', //optional defaults to // srbac.views.authitem.header, must be an existing alias 
-			'footer'=>'srbac.views.authitem.footer', //optional defaults to // srbac.views.authitem.footer, must be an existing alias 
-			
-			'showHeader'=>true, //optional defaults to false 
-			'showFooter'=>true, //optional defaults to false 
-			'alwaysAllowedPath'=>'srbac.components', //optional defaults to srbac.components // must be an existing alias 
-		),
-
-
 		'blog'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),
@@ -196,14 +184,22 @@ return array(
 //			"defaultController"=>"gift",
 		),
 	),
-
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'huanghuibin@gmail.com',
-		'upload_dir'=>'/uploads/images/',
-		'uploadPath'=>$path.'/uploads/images/',
-        'site_name'=>'站点',
-	),
+    'params'=>require(dirname(__FILE__).'/params.php'),
 );
+#$config['components']['assetManager'] = array('class' => 'SAEAssetManager','assetsAction'=> 'site/assets');
+//如果定义了常量，则默认为在SAE环境中
+if(defined('SAE_TMP_PATH'))
+{
+    //SAE 不支持I/O
+    $config['runtimePath'] = SAE_TMP_PATH;
+    //配置为 SAEDbConnection 则不必考虑用户名密码 并自动读写分离
+    $config['components']['db']['class'] = 'SAEDbConnection';
+    //SAE不支持I/O 使用storage 存储 assets。 如果在正式环境，请将发布到assets的css/js做合并，直接放到app目录下，storage的分钟限额为5000，app为200000
+    //最新的SAE 不使用storage 而是在siteController中，导入了一个SAEAssetsAction，通过 site/assets?path=aaa.txt ，将文件内容输出到web端，来访问实际的 aaa.txt 文件，
+    $config['components']['assetManager'] = array('class' => 'SAEAssetManager','assetsAction'=> 'site/assets');
+    //如果没有必要，不用修改缓存配置。 SAE不支持本地文件的IO处理 已经提供了memcache
+    $config['components']['cache'] = array('class'=> 'SAEMemCache');
+	//SAE 不支持直接本地IO,又不想使用sae_debu(),直接改为db记录
+	$config['components']['log']['routes']['base'] = array('class'=>'SAELogRoute','levels'=>'error, warning');
+}
+return $config;

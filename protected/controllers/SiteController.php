@@ -191,34 +191,7 @@ class SiteController extends Controller
 		// display the login form
 		$this->render('reg',$data);
 	}
-	//用户名检查
-	public function actioncheckUsername()
-	{
-	
-		if(Yii::app()->request->isAjaxRequest OR 1) {
-			if(isset($_GET['User'])) {
-				$form=new User();
-				$form->scenario = 'reg';
-				$form->setAttributes($_GET['user'],false);
-				
-				echo CJavaScript::jsonEncode($form->checkUsername());
-			}
-		}
-	}
-	//Email检查
-	public function actioncheckEmail()
-	{
-	
-		if(Yii::app()->request->isAjaxRequest OR 1) {
-			if(isset($_GET['user'])) {
-				$form=new User();
-				$form->scenario = 'reg';
-				$form->setAttributes($_GET['user'],false);
-				
-				echo CJavaScript::jsonEncode($form->checkEmail());
-			}
-		}
-	}
+
 		//获取地区显示页面
 	public function actionGetArea()
 	{
@@ -279,5 +252,4 @@ class SiteController extends Controller
            Yii::app()->end();
        }
     }
-		
 }
