@@ -4,8 +4,10 @@
 	
 		<div class="grid_16 usermenu">
 			<ul>
-			
-				<li class="on"><a href="http://www.douban.com/">豆瓣社区</a></li>
+				<li class=""><a href="http://www.yiiframework.com/doc/guide/1.1/zh_cn/index" title="Yii官方文档" target="_blank">Yii官方文档</a></li>
+				<li class=""><a href="http://www.yiiframework.com/extensions" title="Yii官方扩展" target="_blank">Yii官方扩展</a></li>
+				<li class="ls4"><a href="http://yiibook.com/" title="应用Yii1.1和PHP5进行敏捷Web开发" class="icm" target="_blank">Yii Book</a></li>
+				<li class="ls4"><a href="http://yiidemo.sinaapp.com/" title="yii demo 原有的" class="icm" target="_blank">Yii Demo</a></li>
 
 			</ul>
 		</div>
