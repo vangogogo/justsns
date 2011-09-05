@@ -1,4 +1,19 @@
 $(function(){
+
+	$("a.thickbox").fancybox({
+        
+		'scrolling'	      : 'no',
+		'speedIn'				: 1,
+		'speedOut'				: 1,			
+		'changeSpeed'			: 10,
+		'changeFade'			: 10,
+		'href'            : $(this).href,
+		 ajax             : {
+			type : "GET"
+		}
+		
+	});	
+
 	//AJAX全局事件
 	/*
 	$("body").bind("ajaxStart", function(){
