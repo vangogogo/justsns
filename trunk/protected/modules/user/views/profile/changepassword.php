@@ -51,6 +51,7 @@ $this->menu=array(
 	
 	
 	<div class="row submit">
+    <label></label>
 	<?php echo CHtml::submitButton(UserModule::t("Save"),array('class'=>'btn')); ?>
 	</div>
 

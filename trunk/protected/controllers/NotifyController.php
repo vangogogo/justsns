@@ -1,6 +1,7 @@
 <?php
 class NotifyController extends Controller
 {
+    public $layout = 'application.views.notify.layout_notify';
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -110,15 +111,20 @@ class NotifyController extends Controller
 
 	public function actionWrite()
 	{
+        $model = new Msg();
+         $this->performAjaxValidation($model);
+
 		$uid = Yii::app()->request->getQuery('uid');
         if($uid){
         	$user = new User();
             $toUserFace = $user->getUserFace($uid);
             $toUserName = $user->getUserName($uid);
+
+            $model->toUserId = $uid;
         }
         $mid = Yii::app()->user->id;
 
-        $model = new Msg();
+
 
 		if(isset($_POST['Msg']))
 		{
@@ -148,6 +154,7 @@ class NotifyController extends Controller
 		$data = array(
 			'toUserFace'=>$toUserFace,
 			'toUserName'=>$toUserName,
+            'toUserId'=>$uid,
 			'model'=>$model,
 		);
 		$this->render('write',$data);
@@ -184,6 +191,16 @@ class NotifyController extends Controller
 		$model = new Msg();
 		$msg = $model->loadMsg($msg_id);
 		$return = $msg->delMsg();
-		echo $return;
+        YiicmsHelper::goBack();
+		#echo $return;
+	}
+	public function actionDoDelNotify()
+	{
+		$msg_id = Yii::app()->request->getQuery('notify_id');
+		$model = new Notify();
+		$notify = $model->loadMsg($msg_id);
+		$return = $msg->delNotify();
+        YiicmsHelper::goBack();
+		#echo $return;
 	}
 }

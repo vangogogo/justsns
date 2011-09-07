@@ -89,7 +89,7 @@ p {margin:14px 0;}
 .data ul { padding: 0px; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; }
 .data ul li { clear: both; overflow: hidden; width: 100%; line-height: 24px; margin: 5px 0; }
 /* TAB */
-.tab-menu { background-image:url(../images/tab_line_bg.gif); background-repeat:repeat-x; background-position:0px bottom; clear:both; height: 35px; width: 100%; overflow: visible; white-space: nowrap; }
+.tab-menu { background-image:url(../images/tab_line_bg.gif); background-repeat:repeat-x; background-position:0px bottom; clear:both; height: 35px; width: 100%; overflow: visible; white-space: nowrap;margin-bottom: 15px; }
 .tab-menu ul { margin-left: 10px; height: 27px; padding-top:8px; }
 .tab-menu li { float:left; margin-right: 5px; }
 .tab-menu li a { height:27px; line-height:27px; background-image:url(../images/tab_menu.gif); background-repeat:no-repeat; background-position:left center; float:left; padding-left:10px; text-decoration:none; display:block }

@@ -1,25 +1,59 @@
-<?php
-	include('_top.php');
-?>
-<div class="grid_15 suffix_1">
-11
+<!-- 切换标签 begin  -->
+<div class="tab-menu">
+	<?php
+		$uid = Yii::app()->request->getParam('uid');
+		
+		if(!empty($uid)) {
+			$is_me = ($this->mid == $uid);
+		}else {
+			$uid = $this->mid;
+			$is_me = true;
+		}	
+		
+		if($is_me)
+		{
+			$items =array(
+				array('label'=>'<span>全部</span>', 'url'=>array('/friend/index','gid'=>0)),
+			);
+            if(!empty($friendGroup))
+            {
+                foreach($friendGroup as $tmp)
+                {
+                    $items[]= array('label'=>'<span>'.$tmp['name'].'</span>', 'url'=>array('/friend/index','gid'=>$tmp['id']));
+                }
+            }
+		}
+		else
+		{
+			$items =array(
+				array('label'=>'<span>TA的好友</span>', 'url'=>array('/friend/index','uid'=>$uid)),
+				array('label'=>'<span>邀请好友</span>', 'url'=>array('/invite/index')),
+			);
+		}
+		
+		$this->widget('zii.widgets.CMenu',array(
+		'items'=>$items,
+		'activeCssClass'=>'on',
+		'encodeLabel'=>false,
+		));
+
+
+	?>
+</div>
+
     <?php if(!empty($friends)):?>
-	<ul style="padding: 0px;margin: 10px auto 0px auto;">
+	<ul class="user-list" style="padding: 0px;margin: 10px auto 0px auto;">
 		<?php foreach($friends as $friend){?>
-			<li class="btmlineD li pb10 pt5" id="fri_<?php echo $friend['id']?>" >
+			<li class="info" id="fri_<?php echo $friend['id']?>" >
 				<div class="left" style="width:70px;">
-					<span class="headpic50">
-					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$friend['id']));?>"  class="tips">
-						<img src="<?php echo $friend['face'];?>" />
-					</a>
-					</span>
+                    <?php $this->widget('WUserFace',array('uid'=>$friend['id']));?>
 				</div>
-				<div class="left" style="width:450px; margin-right:50px;">
+				<div class="left" style="width:380px; margin-right:30px;">
 					<p class="lh20">
 						<?php echo CHtml::link($friend['username'],array('/space/','uid'=>$friend['id']),array('id'=>'fname_'.$friend['id']));?>
 					</p>
 
-					<p class="cGray2 lh20">分组：
+					<p class="cGray2 lh20"> 分组：
 						<?php 
 						echo Friend::model()->getGroupsName($uid,$friend['id']);
 						if($is_me){
@@ -27,8 +61,11 @@
 						}
 						else echo CHtml::encode('分组');
 						?>
+
 					</p>
-					<p class="cGray2 lh20"><span class="wn">心情：</span><?php echo $friend['mini'];?></p>
+                    <p>
+                        <span class="wn">心情：</span><?php echo $friend['mini'];?>
+                    </p>
 				</div>
 				<div class="left" style="width:60px;">
 					<p class="lh20">
@@ -48,9 +85,4 @@
 		<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
 	</div>
     <?php endif;?>
-
-</div><!-- 我的好友 end  -->
-<div class="grid_8">
-	<?php if(!Yii::app()->user->isGuest) $this->widget('WFriendGroup'); ?>
-</div>
 

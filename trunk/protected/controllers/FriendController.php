@@ -4,11 +4,8 @@ class FriendController extends Controller
 {
 	const PAGE_SIZE=20;
 	
-	public function init()
-	{
-		parent::init();
-		Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/friend.css');
-	}
+    public $layout = 'application.views.friend.layout_friend';
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -57,6 +54,10 @@ class FriendController extends Controller
 			}
 		}
 
+		$criteria=new CDbCriteria;
+		$criteria->condition = '(uid=:uid OR uid = 0) AND id != 1';
+		$criteria->params = array(':uid'=>Yii::app()->user->id);
+		$friendGroup = FriendGroup::model()->findAll($criteria);
 
 		//在线人数
 		$online = 0;
@@ -69,6 +70,7 @@ class FriendController extends Controller
 			'pages' => $pages,
 			'total' => $total,
 			'online' => $online,
+            'friendGroup'=>$friendGroup,
 		);
 		
 		
@@ -90,7 +92,7 @@ class FriendController extends Controller
 	{
 		//检查是否好友
 		$uid = Yii::app()->user->id;
-		$fuid = Yii::app()->request->getParam('uid');
+		$fuid = Yii::app()->request->getParam('fuid');
 
 		$criteria=new CDbCriteria;
 		$criteria->condition = 'uid=:uid AND fuid=:fuid';
@@ -476,10 +478,10 @@ class FriendController extends Controller
 		echo '('.CJSON::encode($models).')';
 	}
 
-	public function actionGetCountUrl() {
+	public function actionGetCountFriends() 
+    {
 		$gid = Yii::app()->request->getParam('typeId');		
-		
-		echo Friend::model()->getFriendNumber(Yii::app()->user->id,$gid);
+		echo Friend::model()->countGroupFriend(Yii::app()->user->id,$gid);
 	}
 	
 	//分组功能

@@ -7,6 +7,7 @@ class Controller extends CController
 {
 	public $menu=array();
 	public $breadcrumbs=array();
+    public $layout='//layouts/column1';
 
 	public $mid = 0;
 	public $uid = 0;
@@ -18,7 +19,7 @@ class Controller extends CController
 		
 		define('PUBLIC_URL',Yii::app()->request->baseUrl.'/');
 		define('THEME_URL',Yii::app()->theme->baseUrl.'/');
-		
+		/*
 		if(!Yii::app()->user->isGuest)
 		{
 			$this->layout='application.views.layouts.column2';
@@ -28,6 +29,7 @@ class Controller extends CController
 			$this->layout='application.views.layouts.column1';
 		}
 		$this->layout='application.views.layouts.column1';
+        */
 	}
 
 	public function actions()
@@ -72,4 +74,13 @@ class Controller extends CController
 		));
 		exit;
 	}
+
+    protected function performAjaxValidation($model)
+    {
+       if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+       {
+           echo CActiveForm::validate($model);
+           Yii::app()->end();
+       }
+    }
 }

@@ -59,6 +59,7 @@
 	</div>
 
 	<div class="row buttons">
+        <label></label>
 		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
 	</div>
 

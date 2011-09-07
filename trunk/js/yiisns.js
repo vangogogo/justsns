@@ -1,5 +1,7 @@
 $(function(){
-
+    $( "input:submit, button, input.btn").button();
+//	$( "input:submit, a, button, input.btn", ".demo" ).button();
+//	$( "a", ".demo" ).click(function() { return false; });
 	$("a.thickbox").fancybox({
         
 		'scrolling'	      : 'no',

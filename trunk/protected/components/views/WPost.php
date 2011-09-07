@@ -11,9 +11,9 @@
     <?php echo CHtml::errorSummary($model);?>
     <?php echo $form->error($model,'content'); ?>
 
-    <?php echo $form->textArea($model,'content',array('class'=>'reply_form'));?>
+    <?php echo $form->textArea($model,'content',array('class'=>'t_input t_area reply_form'));?>
     <?php echo $form->hiddenField($model,'gid');?>
     <?php echo $form->hiddenField($model,'tid');?>
     <br/>
-    <?php echo CHtml::submitButton('加上去',array('class'=>'btn_b')); ?>
+    <?php echo CHtml::submitButton('加上去',array('class'=>'btn')); ?>
 <?php $this->endWidget();?>

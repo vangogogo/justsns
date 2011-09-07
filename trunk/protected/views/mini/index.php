@@ -1,10 +1,7 @@
 <?php
 	include('_top.php');
 ?>
-<div class="Friend">
-	<div class="sidebar mt10">
-		<?php if(!Yii::app()->user->isGuest) $this->widget('WFileAway',array('url'=>'mini/'.$this->action->id)); ?><!-- 好友分组 -->
-	</div>
+<div class="grid_15 suffix_1">
 	<!-- 好友心情 begin  -->
 	<div class="FList">
 		<?php
@@ -13,4 +10,7 @@
 		?>	
 	</div>
 	<!-- 好友心情 end  -->
+</div>
+<div class="grid_8">
+	<?php if(!Yii::app()->user->isGuest) $this->widget('WFileAway',array('url'=>'mini/'.$this->action->id)); ?><!-- 好友分组 -->
 </div>

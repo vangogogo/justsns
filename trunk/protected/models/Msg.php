@@ -73,8 +73,8 @@ class Msg extends CActiveRecord
 			'id' => 'Id',
 			'fromUserId' => 'From User',
 			'toUserId' => 'To User',
-			'subject' => 'Subject',
-			'content' => 'Content',
+			'subject' => '标题',
+			'content' => '内容',
 			'ctime' => 'Ctime',
 			'is_read' => 'Is Read',
 			'replyMsgId' => 'Reply Msg',
@@ -162,6 +162,7 @@ class Msg extends CActiveRecord
 	
 	public function delMsg()
 	{
+        return false;
 		if($this->fromUserId == Yii::app()->user->id OR $this->toUserId == Yii::app()->user->id)
 		{
 			$this->is_del = 1;
