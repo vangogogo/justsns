@@ -1,14 +1,4 @@
-<?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/mood.css');?>
-<?php Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl.'/js/mini.js');?>
-<!-- page_title begin -->
-<div class=page_title>
-	<div class="tit"><img src="<?php echo THEME_URL;?>images/apps/ico_app04.gif" class="img" /><?php echo Yii::t('sns', 'mini');?></div>
-	<?php
-		$this->widget('WMini');
-	?>
-	<div class="c"></div>
-</div>
-<!-- page_title end -->
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/mini.js');?>
 <!-- 切换标签 begin  -->
 <div class="tab-menu">
 	<?php

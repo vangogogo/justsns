@@ -7,6 +7,8 @@ $config=dirname(__FILE__).'/protected/config/main.php';
 // remove the following line when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 
+define('SUB_DOMAIN','www.yiisns.com');
+
 include('Ts_common.php');
 
 require_once($yii);

@@ -1,11 +1,7 @@
 <?php if(!empty($mini_list)) foreach($mini_list as $vo){?>
 <div class="Fli" id="Fli<?php echo $vo['id'];?>">
 	<div class="c1">
-		<span class="headpic50">
-			<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>"  class="tips">
-				<img src="<?php echo User::model()->getUserFace($vo['uid'],'middle');?>" />
-			</a>
-		</span>
+		<?php $this->Widget('WUserFace',array('uid'=>$vo['uid']));?>
 	</div>
 	<div class="c2 bg_ico_arrow">
 		<div class="MC bg01" id="MCG<?php echo $vo['id'];?>">

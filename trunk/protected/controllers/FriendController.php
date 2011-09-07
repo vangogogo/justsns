@@ -12,6 +12,8 @@ class FriendController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->setPageTitle('我的好友'); 
+
 		$gid = Yii::app()->request->getParam('gid');
 		$uid = Yii::app()->request->getParam('uid');
 		
@@ -34,6 +36,10 @@ class FriendController extends Controller
 			$criteria->join = "left join {{friend_belong_group}} on {{friend_belong_group}}.uid = t.uid ";
 			$criteria->addCondition('gid='.$gid);
 		}
+        else
+        {
+            $_GET['gid'] = 0;
+        }
 		
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
@@ -104,7 +110,7 @@ class FriendController extends Controller
 			//throw new CHttpException(404,'不是好友.');
 			echo '不是好友';
 			exit;
-		}	
+		}
 				
 		$criteria=new CDbCriteria;
 		$criteria->condition = '(uid=:uid OR uid = 0) AND id != 1';
@@ -339,6 +345,7 @@ class FriendController extends Controller
 	 */
 	public function actionPing()
 	{
+        $this->setPageTitle('黑名单'); 
 		$data = array();
 		$this->render('ping',$data);
 	}
