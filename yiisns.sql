@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.3.7
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2010 年 07 月 02 日 03:59
--- 服务器版本: 5.1.41
--- PHP 版本: 5.3.1
+-- 生成日期: 2011 年 09 月 07 日 17:33
+-- 服务器版本: 5.1.54
+-- PHP 版本: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -723,6 +723,27 @@ CREATE TABLE IF NOT EXISTS `photo_mark` (
 -- 转存表中的数据 `photo_mark`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `YiiSession`
+--
+
+CREATE TABLE IF NOT EXISTS `YiiSession` (
+  `id` char(32) NOT NULL,
+  `expire` int(11) DEFAULT NULL,
+  `data` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `YiiSession`
+--
+
+INSERT INTO `YiiSession` (`id`, `expire`, `data`) VALUES
+('8e1b6eabffb1a301793118976b78cd83', 1315387924, ''),
+('f89ab8d3dadf6737c87b4393aed92725', 1315389325, '5f65a6da9fbafb06a060fa6f0e07da01__id|s:1:"1";5f65a6da9fbafb06a060fa6f0e07da01__name|s:5:"admin";5f65a6da9fbafb06a060fa6f0e07da01__states|a:0:{}');
 
 -- --------------------------------------------------------
 
@@ -4305,7 +4326,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_comment` (
   PRIMARY KEY (`id`),
   KEY `type` (`type`),
   KEY `appid` (`appid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 --
 -- 转存表中的数据 `yiisns_comment`
@@ -4383,7 +4404,9 @@ INSERT INTO `yiisns_comment` (`id`, `type`, `appid`, `name`, `uid`, `comment`, `
 (69, 'mini', 18, '管理员', 1, '法大赛', 1277105541, 0, 0, 0),
 (70, 'mini', 18, '管理员', 1, '防盗锁', 1277105543, 0, 0, 0),
 (71, 'mini', 18, '管理员', 1, '放大萨', 1277105545, 0, 0, 0),
-(72, 'mini', 11, '管理员', 1, '回复管理员:法大赛', 1277105911, 0, 0, 0);
+(72, 'mini', 11, '管理员', 1, '回复管理员:法大赛', 1277105911, 0, 0, 0),
+(73, 'mini', 58, 'admin', 1, '123', 1315384377, 0, 0, 0),
+(74, 'mini', 58, 'admin', 1, '@admin:321', 1315384381, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -4472,9 +4495,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_friend_belong_group` (
 
 INSERT INTO `yiisns_friend_belong_group` (`uid`, `fuid`, `gid`) VALUES
 (1, 3, 6),
-(1, 3, 4),
-(1, 1, 8),
-(1, 1, 6),
+(1, 2, 17),
 (1, 2, 2);
 
 -- --------------------------------------------------------
@@ -4488,7 +4509,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_friend_group` (
   `uid` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='个人好友分组列表' AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='个人好友分组列表' AUTO_INCREMENT=18 ;
 
 --
 -- 转存表中的数据 `yiisns_friend_group`
@@ -4496,14 +4517,8 @@ CREATE TABLE IF NOT EXISTS `yiisns_friend_group` (
 
 INSERT INTO `yiisns_friend_group` (`id`, `uid`, `name`) VALUES
 (1, 0, '未分组'),
-(2, 0, '通过本站认识'),
-(3, 0, '通过活动认识'),
-(4, 0, '通过朋友认识'),
-(5, 0, '亲人'),
-(6, 0, '同事'),
-(7, 0, '同学'),
-(8, 0, '不认识'),
-(9, 0, '其他');
+(2, 0, '朋友'),
+(17, 1, '你懂的');
 
 -- --------------------------------------------------------
 
@@ -4713,7 +4728,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_group` (
 --
 
 INSERT INTO `yiisns_group` (`id`, `uid`, `name`, `intro`, `logo`, `announce`, `cid0`, `cid1`, `membercount`, `threadcount`, `postcount`, `type`, `need_invite`, `need_verify`, `actor_level`, `brower_level`, `openUploadFile`, `whoUploadFile`, `openAlbum`, `whoCreateAlbum`, `whoUploadPic`, `anno`, `ipshow`, `invitepriv`, `createalbumpriv`, `uploadpicpriv`, `ctime`, `mtime`, `status`, `isrecom`, `is_del`) VALUES
-(1, 1, '第一个群组', '一点结束少', '', '公告', 2, 0, 0, 5, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260696662, 0, 1, 0, 0),
+(1, 1, '第一个群组', '一点结束少', '', '公告', 2, 0, 0, 28, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260696662, 1314866891, 1, 0, 0),
 (2, 1, '群组额', '啊打', '', '', 2, 0, 0, 0, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260718138, 0, 1, 0, 0),
 (3, 1, '测试', '发生', '', '', 2, NULL, 0, 0, 0, 'open', 0, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1260721712, 0, 1, 0, 0);
 
@@ -4847,7 +4862,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_group_post` (
   `attach` text,
   PRIMARY KEY (`id`),
   KEY `gid` (`gid`,`tid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
 
 --
 -- 转存表中的数据 `yiisns_group_post`
@@ -4855,9 +4870,9 @@ CREATE TABLE IF NOT EXISTS `yiisns_group_post` (
 
 INSERT INTO `yiisns_group_post` (`id`, `gid`, `uid`, `tid`, `content`, `ip`, `istopic`, `ctime`, `status`, `quote`, `is_del`, `attach`) VALUES
 (1, 1, 1, 1, '话题测试', '127.0.0.1', 1, 1260714935, 0, 0, '0', NULL),
-(2, 1, 1, 1, '发大水', '127.0.0.1', 0, 1260714991, 0, 0, '0', NULL),
+(2, 1, 1, 1, '发大水', '127.0.0.1', 0, 1260714991, 0, 0, '1', NULL),
 (3, 1, 1, 2, '飞啊都是', '127.0.0.1', 1, 1260715333, 0, 0, '0', NULL),
-(4, 1, 1, 2, '回复一下', '127.0.0.1', 0, 1260718453, 0, 0, '0', NULL),
+(4, 1, 1, 2, '回复一下', '127.0.0.1', 0, 1260718453, 0, 0, '1', NULL),
 (5, 1, 1, 2, 'dsfasad', '123.120.76.235', 0, 1260721815, 0, 0, '0', NULL),
 (6, 1, 1, 2, 'sdfsaf', '123.120.76.235', 0, 1260723184, 0, 0, '0', NULL),
 (7, 1, 1, 2, '恢复', '218.17.180.74', 0, 1260723243, 0, 0, '0', NULL),
@@ -4873,21 +4888,53 @@ INSERT INTO `yiisns_group_post` (`id`, `gid`, `uid`, `tid`, `content`, `ip`, `is
 (17, 1, 1, 9, 'eeeeeeeeee222', '127.0.0.1', 1, 1277799677, 0, 0, '0', NULL),
 (18, NULL, 1, NULL, 'fds', '127.0.0.1', 0, 1277969462, 0, 0, '0', NULL),
 (19, NULL, 1, NULL, 'fds', '127.0.0.1', 0, 1277969462, 0, 0, '0', NULL),
-(20, 1, 1, 1, 'fas', '127.0.0.1', 0, 1277969762, 0, 0, '0', NULL),
-(21, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969790, 0, 0, '0', NULL),
-(22, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969792, 0, 0, '0', NULL),
-(23, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969792, 0, 0, '0', NULL),
-(24, 1, 1, 1, '22', '127.0.0.1', 0, 1277973245, 0, 0, '0', NULL),
-(25, 1, 1, 1, 'fds', '127.0.0.1', 0, 1277973264, 0, 0, '0', NULL),
-(26, 1, 1, 1, 'fds', '127.0.0.1', 0, 1277973266, 0, 0, '0', NULL),
-(27, 1, 1, 1, 'fdsfdas', '127.0.0.1', 0, 1277973268, 0, 0, '0', NULL),
-(28, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973393, 0, 0, '0', NULL),
-(29, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973396, 0, 0, '0', NULL),
-(30, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973397, 0, 0, '0', NULL),
-(31, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973398, 0, 0, '0', NULL),
-(32, 1, 1, 1, 'fdas', '127.0.0.1', 0, 1277973417, 0, 0, '0', NULL),
-(33, 1, 1, 1, 'hh', '127.0.0.1', 0, 1277974670, 0, 0, '0', NULL),
-(34, 1, 1, 1, 'hhhh', '127.0.0.1', 0, 1277974673, 0, 0, '0', NULL);
+(20, 1, 1, 1, 'fas', '127.0.0.1', 0, 1277969762, 0, 0, '1', NULL),
+(21, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969790, 0, 0, '1', NULL),
+(22, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969792, 0, 0, '1', NULL),
+(23, 1, 1, 1, '我的那日哦你个', '127.0.0.1', 0, 1277969792, 0, 0, '1', NULL),
+(24, 1, 1, 1, '22', '127.0.0.1', 0, 1277973245, 0, 0, '1', NULL),
+(25, 1, 1, 1, 'fds', '127.0.0.1', 0, 1277973264, 0, 0, '1', NULL),
+(26, 1, 1, 1, 'fds', '127.0.0.1', 0, 1277973266, 0, 0, '1', NULL),
+(27, 1, 1, 1, 'fdsfdas', '127.0.0.1', 0, 1277973268, 0, 0, '1', NULL),
+(28, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973393, 0, 0, '1', NULL),
+(29, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973396, 0, 0, '1', NULL),
+(30, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973397, 0, 0, '1', NULL),
+(31, 1, 1, 1, 'fasd', '127.0.0.1', 0, 1277973398, 0, 0, '1', NULL),
+(32, 1, 1, 1, 'fdas', '127.0.0.1', 0, 1277973417, 0, 0, '1', NULL),
+(33, 1, 1, 1, 'hh', '127.0.0.1', 0, 1277974670, 0, 0, '1', NULL),
+(34, 1, 1, 1, 'hhhh', '127.0.0.1', 0, 1277974673, 0, 0, '1', NULL),
+(35, 1, 1, 1, '55', '127.0.0.1', 0, 1314173108, 0, 0, '1', NULL),
+(36, 1, 1, 1, '68', '127.0.0.1', 0, 1314173113, 0, 0, '1', NULL),
+(37, 1, 1, 10, '请稍后重新载入此网页。 检查您的 Internet 连接。重新启动所有路由器、调制解调器或其他 正在使用的网络设备。 检查您的 DNS 设置。如果对本提示不能理解， 请联系您的网络管理员。 请尝试按这些步骤禁用网络预测: 访问 “扳手”菜单 > 偏好设置 > 高级选项 并取消选中“预测网络行为，提高页面加载性能”。 如果未能解决问题，我们推荐您重新选中该选项以提升性能。 尝试在防火墙或反病毒软件设置中将 Chromium 添加为受批准的程序。 如果已经是已批准程序，请尝试从受批准程序列表中删除并重新添加。 如果您使用代理服务器，检查您的代理设置或让网络管理员确认代理服务器正常工作。 如果您确信不应使用代理服务器，请尝试以下步骤: 访问 扳手菜单 > 偏好设置 > 高级设置 > 更改代理设置 并确保您的配置已设为“无代理”或“直接连接”。 ', '127.0.0.1', 1, 1314598919, 0, 0, '0', NULL),
+(38, 1, 1, 10, '请稍后重新载入此网页。\r\n检查您的 Internet 连接。重新启动所有路由器、调制解调器或其他 正在使用的网络设备。\r\n检查您的 DNS 设置。如果对本提示不能理解， 请联系您的网络管理员。\r\n请尝试按这些步骤禁用网络预测: 访问 “扳手”菜单 > 偏好设置 > 高级选项 并取消选中“预测网络行为，提高页面加载性能”。 如果未能解决问题，我们推荐您重新选中该选项以提升性能。\r\n尝试在防火墙或反病毒软件设置中将 Chromium 添加为受批准的程序。 如果已经是已批准程序，请尝试从受批准程序列表中删除并重新添加。\r\n如果您使用代理服务器，检查您的代理设置或让网络管理员确认代理服务器正常工作。\r\n如果您确信不应使用代理服务器，请尝试以下步骤: 访问 扳手菜单 > 偏好设置 > 高级设置 > 更改代理设置 并确保您的配置已设为“无代理”或“直接连接”。\r\n', '127.0.0.1', 0, 1314598929, 0, 0, '0', NULL),
+(39, 1, 1, 17, 'sssssssssssss', '127.0.0.1', 1, 1314602413, 0, 0, '0', NULL),
+(40, 1, 1, 3, '255', '127.0.0.1', 0, 1314670742, 0, 0, '1', NULL),
+(41, 1, 1, 2, '8888888', '127.0.0.1', 0, 1314670759, 0, 0, '0', NULL),
+(42, 1, 1, 2, '999', '127.0.0.1', 0, 1314671135, 0, 0, '0', NULL),
+(43, 1, 1, 3, '111', '127.0.0.1', 0, 1314671280, 0, 0, '1', NULL),
+(44, 1, 1, 3, '8888', '127.0.0.1', 0, 1314671296, 0, 0, '1', NULL),
+(45, 1, 1, 3, '///', '127.0.0.1', 0, 1314671473, 0, 0, '1', NULL),
+(46, 1, 1, 3, '8987', '127.0.0.1', 0, 1314671535, 0, 0, '1', NULL),
+(47, 1, 1, 3, '877', '127.0.0.1', 0, 1314671552, 0, 0, '1', NULL),
+(48, 1, 1, 3, '312312', '127.0.0.1', 0, 1314671627, 0, 0, '1', NULL),
+(49, 1, 1, 3, 'fdasfdas', '127.0.0.1', 0, 1314671631, 0, 0, '1', NULL),
+(50, 1, 1, 3, '555', '127.0.0.1', 0, 1314671684, 0, 0, '1', NULL),
+(51, 1, 1, 3, '688', '127.0.0.1', 0, 1314671692, 0, 0, '1', NULL),
+(52, 1, 1, 3, '1123', '127.0.0.1', 0, 1314671696, 0, 0, '1', NULL),
+(53, 1, 1, 3, '5654', '127.0.0.1', 0, 1314672237, 0, 0, '1', NULL),
+(54, 1, 1, 1, '456', '127.0.0.1', 0, 1314674334, 0, 0, '1', NULL),
+(55, 1, 1, 1, '8987', '127.0.0.1', 0, 1314674337, 0, 0, '1', NULL),
+(56, 1, 1, 1, 'as', '127.0.0.1', 0, 1314674357, 0, 0, '1', NULL),
+(57, 1, 1, 1, '232', '127.0.0.1', 0, 1314674362, 0, 0, '1', NULL),
+(58, 1, 1, 3, 'fd', '127.0.0.1', 0, 1314675526, 0, 0, '1', NULL),
+(59, 1, 1, 3, 'sa', '127.0.0.1', 0, 1314675531, 0, 0, '1', NULL),
+(60, 1, 1, 3, 'rere', '127.0.0.1', 0, 1314675534, 0, 0, '1', NULL),
+(61, 1, 1, 3, 'sssssssssssss', '127.0.0.1', 0, 1314675538, 0, 0, '1', NULL),
+(62, 1, 1, 3, '在Yii中经常要生成URL，不管是为了自动跳转还是仅仅是一个链接。下面对Yii中的URL生成做了一个总结。\r\n\r\n提示：以下controllerX代表控制器X，actionX代表方法X。\r\n\r\n在Controller::action中，我们要输出一个链接，可以这样做：\r\n\r\n$this->createUrl(‘actionName’, array(‘params01′=>’value01′, ‘params02′=>’value02′) );\r\n\r\n//Controller::createUrl($route,$params=array(),$ampersand=’&’)\r\n\r\n\r\n第一个参数是一个字符串，值为路由名。比如action01、controller01/action01等格式。 \r\n第二个参数是一个数组，值为所有参数的key=>value对。 \r\n第三个参数是URL中每对参数之间的分隔符，一般默认为&不做修改。\r\n\r\n假设我们在Controller01::action01中，想要生成指向action02的URL，可以这样做：\r\n\r\n$this->createUrl(‘action02′ );\r\n\r\n假设我们在Controller01::action01中，想要生成指向controller02::action02的URL，可以这样做：\r\n\r\n$this->createUrl(‘action02/action02′ );', '127.0.0.1', 0, 1314675574, 0, 0, '0', NULL),
+(63, 1, 1, 3, '456', '127.0.0.1', 0, 1314685379, 0, 0, '0', NULL),
+(64, 1, 1, 3, '456', '127.0.0.1', 0, 1314685379, 0, 0, '0', NULL),
+(65, 1, 1, 32, '232', '127.0.0.1', 0, 1314690558, 0, 0, '0', NULL),
+(66, 1, 1, 34, '33', '127.0.0.1', 0, 1315357229, 0, 0, '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -4900,7 +4947,8 @@ CREATE TABLE IF NOT EXISTS `yiisns_group_topic` (
   `gid` int(11) unsigned DEFAULT NULL,
   `uid` int(11) unsigned DEFAULT NULL,
   `name` varchar(36) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
+  `title` varchar(255) NOT NULL COMMENT '标题',
+  `content` text NOT NULL COMMENT '内容',
   `viewcount` smallint(6) unsigned NOT NULL DEFAULT '0',
   `postcount` smallint(6) unsigned NOT NULL DEFAULT '0',
   `dist` tinyint(1) NOT NULL DEFAULT '0',
@@ -4916,19 +4964,37 @@ CREATE TABLE IF NOT EXISTS `yiisns_group_topic` (
   PRIMARY KEY (`id`),
   KEY `gid` (`gid`),
   KEY `gid_2` (`gid`,`uid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- 转存表中的数据 `yiisns_group_topic`
 --
 
-INSERT INTO `yiisns_group_topic` (`id`, `gid`, `uid`, `name`, `title`, `viewcount`, `postcount`, `dist`, `top`, `lock`, `ctime`, `replytime`, `mtime`, `status`, `isrecom`, `is_del`, `attach`) VALUES
-(1, 1, 1, 'Guest', '话题测试', 410, 1, 1, 1, 1, 1260714935, 2147483647, 1277869333, 0, 0, 0, NULL),
-(2, 1, 1, 'Guest', '求助的', 402, 8, 0, 0, 0, 1260715333, 2147483647, 0, 1, 0, 0, NULL),
-(3, 1, 3, 'demo', 'fasf', 316, 3, 0, 0, 0, 1260782050, 2147483647, 0, 0, 0, 0, NULL),
-(9, 1, 1, '管理员', 'fdas', 271, 0, 0, 0, 0, 1277799677, 0, 1277804586, 0, 0, 0, NULL),
-(8, 1, 1, '管理员', 'fdas', 272, 0, 0, 0, 0, 1277799579, 0, 0, 0, 0, 0, NULL),
-(7, 1, 1, '管理员', 'fsda', 273, 0, 0, 0, 0, 1277797803, 0, 0, 0, 0, 0, NULL);
+INSERT INTO `yiisns_group_topic` (`id`, `gid`, `uid`, `name`, `title`, `content`, `viewcount`, `postcount`, `dist`, `top`, `lock`, `ctime`, `replytime`, `mtime`, `status`, `isrecom`, `is_del`, `attach`) VALUES
+(1, 1, 1, 'Guest', '话题测试', '你好', 410, 65521, 1, 1, 1, 1260714935, 1314674362, 1314674400, 0, 0, 1, NULL),
+(2, 1, 1, 'Guest', '求助的', '你好', 402, 9, 0, 0, 0, 1260715333, 1314671135, 1314673323, 1, 0, 1, NULL),
+(3, 1, 3, 'demo', 'fasf', '你好', 316, 65530, 0, 0, 0, 1260782050, 1314685379, 1314685379, 0, 0, 0, NULL),
+(9, 1, 1, '管理员', 'fdas', '你好', 271, 0, 0, 0, 0, 1277799677, 0, 1314673215, 0, 0, 1, NULL),
+(8, 1, 1, '管理员', 'fdas', '你好', 272, 0, 0, 0, 0, 1277799579, 0, 1314673309, 0, 0, 1, NULL),
+(7, 1, 1, '管理员', 'fsda', '你好', 273, 0, 0, 0, 0, 1277797803, 0, 1314673297, 0, 0, 1, NULL),
+(17, 1, 1, '管理员', 'sssss', '你好', 0, 0, 0, 0, 0, 1314602413, 1314602413, 1314673304, 0, 0, 1, NULL),
+(18, 1, 1, '管理员', '123', '你好', 0, 0, 0, 0, 0, 1314602679, 1314602679, 1314673316, 0, 0, 1, NULL),
+(19, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605948, 1314605948, 1314609294, 0, 0, 1, NULL),
+(20, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605949, 1314605949, 1314608952, 0, 0, 1, NULL),
+(21, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605950, 1314605950, 1314609288, 0, 0, 1, NULL),
+(22, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605951, 1314605951, 1314608927, 0, 0, 1, NULL),
+(23, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605951, 1314605951, 1314609282, 0, 0, 1, NULL),
+(24, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605952, 1314605952, 1314608022, 0, 0, 1, NULL),
+(25, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605955, 1314605955, 1314608897, 0, 0, 1, NULL),
+(26, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605955, 1314605955, 1314608934, 0, 0, 1, NULL),
+(27, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605955, 1314605955, 1314609273, 0, 0, 1, NULL),
+(28, 1, 1, '管理员', '13', '你好', 0, 0, 0, 0, 0, 1314605955, 1314605955, 1314609816, 0, 0, 1, NULL),
+(29, 1, 1, '管理员', '55', '你好', 0, 0, 0, 0, 0, 1314606038, 1314606038, 1314606064, 0, 0, 1, NULL),
+(30, 1, 1, '管理员', '23', '你好', 0, 0, 0, 0, 0, 1314672591, 1314672591, 1314672595, 0, 0, 1, NULL),
+(31, 1, 1, '管理员', '23', '你好', 0, 0, 0, 0, 0, 1314672624, 1314672624, 1314672660, 0, 0, 1, NULL),
+(32, 1, 1, '管理员', '6', '6', 0, 1, 0, 0, 0, 1314685765, 1314690558, 1314690558, 0, 0, 0, NULL),
+(33, 1, NULL, NULL, 'f', 'df', 0, 0, 0, 0, 0, 1314844043, 1314844043, 0, 0, 0, 0, NULL),
+(34, 1, NULL, NULL, '444', '1234', 0, 1, 0, 0, 0, 1314866891, 1315357229, 1315357229, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -4942,7 +5008,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_login_record` (
   `login_ip` varchar(15) DEFAULT NULL,
   `login_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=109 ;
 
 --
 -- 转存表中的数据 `yiisns_login_record`
@@ -5025,7 +5091,38 @@ INSERT INTO `yiisns_login_record` (`id`, `uid`, `login_ip`, `login_time`) VALUES
 (74, 1, '127.0.0.1', 1277348052),
 (75, 1, '127.0.0.1', 1277352301),
 (76, 1, '127.0.0.1', 1277695411),
-(77, 1, '127.0.0.1', 1277713864);
+(77, 1, '127.0.0.1', 1277713864),
+(78, 1, '127.0.0.1', 1314156542),
+(79, 1, '127.0.0.1', 1314598880),
+(80, 1, '127.0.0.1', 1314670728),
+(81, 1, '127.0.0.1', 1314684326),
+(82, 1, '127.0.0.1', 1314684326),
+(83, 1, '127.0.0.1', 1314684326),
+(84, 1, '127.0.0.1', 1314684327),
+(85, 1, '127.0.0.1', 1314684327),
+(86, 1, '127.0.0.1', 1314684348),
+(87, 1, '127.0.0.1', 1314684413),
+(88, 1, '127.0.0.1', 1314684434),
+(89, 1, '127.0.0.1', 1314684443),
+(90, 1, '127.0.0.1', 1314684469),
+(91, 1, '127.0.0.1', 1314684472),
+(92, 1, '127.0.0.1', 1314684473),
+(93, 1, '127.0.0.1', 1314684473),
+(94, 1, '127.0.0.1', 1314684473),
+(95, 1, '127.0.0.1', 1314684474),
+(96, 1, '127.0.0.1', 1314684474),
+(97, 1, '127.0.0.1', 1314684480),
+(98, 1, '127.0.0.1', 1314684480),
+(99, 1, '127.0.0.1', 1314684480),
+(100, 1, '127.0.0.1', 1314684481),
+(101, 1, '127.0.0.1', 1314684481),
+(102, 1, '127.0.0.1', 1314684481),
+(103, 1, '127.0.0.1', 1314684481),
+(104, 1, '127.0.0.1', 1314684482),
+(105, 1, '127.0.0.1', 1314684484),
+(106, 1, '127.0.0.1', 1314684521),
+(107, 1, '127.0.0.1', 1314855556),
+(108, 1, '127.0.0.1', 1314953399);
 
 -- --------------------------------------------------------
 
@@ -5047,7 +5144,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_mini` (
   PRIMARY KEY (`id`),
   KEY `userId` (`uid`),
   KEY `replay_numbel` (`replay_numbel`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
 -- 转存表中的数据 `yiisns_mini`
@@ -5085,7 +5182,7 @@ INSERT INTO `yiisns_mini` (`id`, `uid`, `name`, `type`, `content`, `tagId`, `cti
 (29, 1, '管理员', 1, '<img title=''大哭'' src=''/yiisns/images/biaoqing/mini/cry.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''><img title=''憨笑'' src=''/yiisns/images/biaoqing/mini/biggrin.gif''> fsd', NULL, 1277106608, -1, 0, 0),
 (30, 1, '管理员', 1, '<img title=''折磨'' src=''/yiisns/images/biaoqing/mini/mad.gif''><img title=''惊恐'' src=''/yiisns/images/biaoqing/mini/funk.gif''><img title=''握手'' src=''/yiisns/images/biaoqing/mini/handshake.gif''>fdsee', NULL, 1277106925, -1, 0, 0),
 (31, 1, '管理员', 1, 'eeexcggg/可爱', NULL, 1277107111, 0, 0, 0),
-(32, 1, '管理员', 1, '/憨笑434打发发发/惊恐', NULL, 1277189462, 0, 0, 0),
+(32, 1, '管理员', 1, '<img title=''憨笑'' src=''/images/biaoqing/mini/biggrin.gif''>434打发发发<img title=''惊恐'' src=''/images/biaoqing/mini/funk.gif''>', NULL, 1277189462, -1, 0, 0),
 (33, 1, '管理员', 1, 'f', NULL, 1277704186, 0, 0, 0),
 (34, 1, '管理员', 1, 'e', NULL, 1277704187, 0, 0, 0),
 (35, 1, '管理员', 1, 'ww', NULL, 1277704189, 0, 0, 0),
@@ -5094,7 +5191,25 @@ INSERT INTO `yiisns_mini` (`id`, `uid`, `name`, `type`, `content`, `tagId`, `cti
 (38, 1, '管理员', 1, 'eeeeeeeee', NULL, 1277704199, 0, 0, 0),
 (39, 1, '管理员', 1, 'ffffffffff', NULL, 1277704215, 0, 0, 0),
 (40, 1, '管理员', 1, 'eee', NULL, 1277704217, 0, 0, 0),
-(41, 1, '管理员', 1, 'zcvzx', NULL, 1277704218, 0, 0, 0);
+(41, 1, '管理员', 1, 'zcvzx', NULL, 1277704218, 0, 0, 0),
+(42, 1, '管理员', 1, '4', NULL, 1314164845, 0, 0, 0),
+(43, 1, '管理员', 1, '55', NULL, 1314164847, 0, 0, 0),
+(44, 1, '管理员', 1, '/难过', NULL, 1314165116, 0, 0, 0),
+(45, 1, '管理员', 1, '11', NULL, 1314671143, -1, 0, 0),
+(46, 1, '管理员', 1, '456', NULL, 1314671145, -1, 0, 0),
+(47, 1, '管理员', 1, '<img title=''呲牙'' src=''/images/biaoqing/mini/lol.gif''>', NULL, 1314675981, -1, 0, 0),
+(48, 1, '管理员', 1, '/折磨', NULL, 1314677796, 0, 0, 0),
+(49, 1, '管理员', 1, '/可爱', NULL, 1314685338, 0, 0, 0),
+(50, 1, '管理员', 1, '14444444444', NULL, 1314685355, 0, 0, 0),
+(51, 1, '管理员', 1, '/憨笑', NULL, 1314687457, 0, 0, 0),
+(52, 1, '管理员', 1, '/大哭', NULL, 1314842020, 0, 0, 0),
+(53, 1, '管理员', 1, '/难过', NULL, 1314943510, 0, 0, 0),
+(54, 1, '管理员', 1, '/难过', NULL, 1315289541, 0, 0, 0),
+(55, 1, '管理员', 1, '/偷笑', NULL, 1315357258, 0, 0, 0),
+(56, 1, '管理员', 1, '/难过/憨笑', NULL, 1315360651, 0, 0, 0),
+(57, 1, '管理员', 1, '/惊恐', NULL, 1315362705, 0, 0, 0),
+(58, 1, '管理员', 1, '/憨笑', NULL, 1315380232, 0, 0, 0),
+(59, 1, '管理员', 1, '/可爱', NULL, 1315384875, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5114,16 +5229,17 @@ CREATE TABLE IF NOT EXISTS `yiisns_msg` (
   `is_new` tinyint(1) NOT NULL DEFAULT '1',
   `is_del` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `yiisns_msg`
 --
 
 INSERT INTO `yiisns_msg` (`id`, `fromUserId`, `toUserId`, `subject`, `content`, `ctime`, `is_read`, `replyMsgId`, `is_new`, `is_del`) VALUES
-(1, 1, 2, '323', '5', 1267242456, 0, NULL, 1, 0),
-(2, 2, 1, '99999', '5', 1267242456, 0, NULL, 1, 0),
-(3, 1, 2, 'fas', 'fasd', NULL, 0, NULL, 1, 0);
+(1, 1, 2, '323', '5', 1267242456, 0, NULL, 1, 1),
+(2, 2, 1, '99999', '5', 1267242456, 1, NULL, 1, 1),
+(3, 1, 2, 'fas', 'fasd', NULL, 0, NULL, 1, 1),
+(4, 1, 2, '关于活动千人仪式看《海洋》，20元全城召集人类朋友：临开始前最后一条通知', '　1、网上订票的现在已经可以去华夏艺术中心窗口取票了。早点取，免得当日排队。 \r\n　　2、当日会预留150张票发售，票价也是20元，有无法提前购票的朋友，请当日早点去购买。\r\n　　3、另外二楼有100个靠前的座位留待备用，其余厅在接近时间也会安排《海洋》的放映。以免有些朋友去晚了没票观看。 \r\n　　4、请关注我们深圳独立电影社的豆瓣小站。我们活动不断。不止《海洋》里才有驱逐、关押和伤害，人类世界的地面上也有，甚至更多。欢迎周六看完《海洋》的朋友移步华侨城创意园OCT-LOFT的凉茶铺（迷食对面），观看赵亮的纪录片作品《告别圆明园》。\r\n　　\r\n　　本活动链接:http://www.douban.com/event/14456111/', 1315290553, 0, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5158,6 +5274,143 @@ INSERT INTO `yiisns_notify` (`id`, `uid`, `type`, `new`, `authorid`, `author`, `
 (5, 3, 'agree_friend', 1, 1, '管理员', 'N;', 'N;', '', 1260968622, 'friend', 0),
 (6, 2, 'group_create', 1, 1, '管理员', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:4:{s:5:"actor";s:9:"管理员";s:3:"mid";i:1;s:5:"title";s:4:"fsda";s:4:"code";s:32:"573b2e71dfb931ffa6092286cf8902ee";}', '', 1264079378, 'notification', 12),
 (7, 3, 'group_create', 1, 1, '管理员', 'a:1:{s:5:"actor";s:9:"管理员";}', 'a:4:{s:5:"actor";s:9:"管理员";s:3:"mid";i:1;s:5:"title";s:4:"fsda";s:4:"code";s:32:"573b2e71dfb931ffa6092286cf8902ee";}', '', 1264079378, 'notification', 12);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yiisns_people_board`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_people_board` (
+  `board_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '留言自增ID',
+  `uid` int(11) NOT NULL COMMENT '留言人ID',
+  `object_type` char(20) NOT NULL COMMENT '对象类型，杂志，讲座，书籍',
+  `object_id` int(11) NOT NULL COMMENT '关联文章ID',
+  `name` char(50) NOT NULL COMMENT '用户姓名',
+  `board_content` text NOT NULL COMMENT '留言内容',
+  `board_reply` text COMMENT '留言回复',
+  `view_count` int(11) NOT NULL DEFAULT '0' COMMENT '浏览次数',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `is_delete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已删除',
+  PRIMARY KEY (`board_id`),
+  KEY `user_id` (`uid`,`object_type`,`object_id`),
+  KEY `article_id` (`object_type`,`object_id`,`is_delete`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='留言板' AUTO_INCREMENT=542 ;
+
+--
+-- 转存表中的数据 `yiisns_people_board`
+--
+
+INSERT INTO `yiisns_people_board` (`board_id`, `uid`, `object_type`, `object_id`, `name`, `board_content`, `board_reply`, `view_count`, `create_time`, `update_time`, `is_delete`) VALUES
+(531, 1, 'space', 1, '管理员', 'aaa', NULL, 0, '2011-08-30 12:05:11', '2011-08-30 14:48:33', 1),
+(532, 1, 'space', 1, '管理员', 'aaa', NULL, 0, '2011-08-30 12:05:22', '2011-08-30 14:48:37', 1),
+(533, 1, 'space', 1, '管理员', '55555555', NULL, 0, '2011-08-30 12:16:04', '2011-08-30 14:48:30', 1),
+(534, 1, 'space', 1, '管理员', 'jgh', NULL, 0, '2011-08-30 14:48:40', '2011-08-30 14:48:43', 1),
+(535, 1, 'space', 1, '管理员', '444', NULL, 0, '2011-08-30 14:48:46', '0000-00-00 00:00:00', 0),
+(536, 1, 'space', 1, '管理员', 'jhg', NULL, 0, '2011-08-30 14:48:49', '2011-08-30 14:48:53', 1),
+(537, 1, 'space', 2, '管理员', '666', NULL, 0, '2011-08-30 14:58:14', '0000-00-00 00:00:00', 0),
+(538, 1, 'space', 1, '管理员', '123', NULL, 0, '2011-08-30 15:05:49', '0000-00-00 00:00:00', 0),
+(539, 1, 'space', 1, '管理员', '456', NULL, 0, '2011-08-30 15:05:52', '0000-00-00 00:00:00', 0),
+(540, 1, 'space', 2, '管理员', 'bvb', NULL, 0, '2011-09-06 16:11:41', '0000-00-00 00:00:00', 0),
+(541, 1, 'space', 3, '管理员', '789', NULL, 0, '2011-09-06 16:12:00', '0000-00-00 00:00:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yiisns_people_contact`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_people_contact` (
+  `people_contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `uid` mediumint(9) DEFAULT NULL COMMENT '用户ID',
+  `object_type` char(20) NOT NULL COMMENT '类型名，有关注人，关注导师，关注课程',
+  `object_id` int(11) DEFAULT NULL COMMENT '某个类型的id，如果是用户则是user_id',
+  `contact_group` int(11) DEFAULT NULL COMMENT '关注分组',
+  `ip` varchar(255) DEFAULT NULL COMMENT '用户IP地址',
+  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_time` timestamp NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  `is_delete` tinyint(1) DEFAULT '0' COMMENT '是否删除',
+  PRIMARY KEY (`people_contact_id`),
+  KEY `object_type` (`object_type`,`object_id`,`uid`),
+  KEY `user_id` (`uid`,`is_delete`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户关注表，关注用户，关注导师' AUTO_INCREMENT=42 ;
+
+--
+-- 转存表中的数据 `yiisns_people_contact`
+--
+
+INSERT INTO `yiisns_people_contact` (`people_contact_id`, `uid`, `object_type`, `object_id`, `contact_group`, `ip`, `update_time`, `create_time`, `is_delete`) VALUES
+(28, 1, 'topic', 1, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(22, 1, 'topic', 2, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(31, NULL, 'topic', 2, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(36, 1, 'topic', 29, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(37, 1, 'topic', 24, NULL, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yiisns_profiles`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_profiles` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `current_province` int(10) NOT NULL DEFAULT '0',
+  `current_city` int(10) NOT NULL DEFAULT '0',
+  `current_area` int(10) NOT NULL DEFAULT '0',
+  `location` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `yiisns_profiles`
+--
+
+INSERT INTO `yiisns_profiles` (`user_id`, `name`, `current_province`, `current_city`, `current_area`, `location`) VALUES
+(1, '梦众神', 44, 3, 0, '广东 深圳'),
+(2, '', 0, 0, 0, ''),
+(3, '', 0, 0, 0, ''),
+(4, '', 0, 0, 0, ''),
+(5, '梦众神', 44, 3, 0, '广东 深圳');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `yiisns_profiles_fields`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_profiles_fields` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `varname` varchar(50) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `field_type` varchar(50) NOT NULL,
+  `field_size` int(3) NOT NULL DEFAULT '0',
+  `field_size_min` int(3) NOT NULL DEFAULT '0',
+  `required` int(1) NOT NULL DEFAULT '0',
+  `match` varchar(255) NOT NULL DEFAULT '',
+  `range` varchar(255) NOT NULL DEFAULT '',
+  `error_message` varchar(255) NOT NULL DEFAULT '',
+  `other_validator` varchar(5000) NOT NULL DEFAULT '',
+  `default` varchar(255) NOT NULL DEFAULT '',
+  `widget` varchar(255) NOT NULL DEFAULT '',
+  `widgetparams` varchar(5000) NOT NULL DEFAULT '',
+  `position` int(3) NOT NULL DEFAULT '0',
+  `visible` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `varname` (`varname`,`widget`,`visible`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `yiisns_profiles_fields`
+--
+
+INSERT INTO `yiisns_profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_size`, `field_size_min`, `required`, `match`, `range`, `error_message`, `other_validator`, `default`, `widget`, `widgetparams`, `position`, `visible`) VALUES
+(4, 'current_province', '省份', 'INTEGER', 10, 0, 0, '', '', '', '', '0', '', '', 0, 3),
+(5, 'current_city', '城市', 'INTEGER', 10, 0, 0, '', '', '', '', '0', '', '', 0, 3),
+(3, 'name', '名号', 'VARCHAR', 255, 0, 1, '', '', '', '', '', '', '', 0, 3),
+(6, 'current_area', '地区', 'INTEGER', 10, 0, 0, '', '', '', '', '0', '', '', 0, 3),
+(7, 'location', '所在地', 'VARCHAR', 255, 0, 0, '', '', '', '', '', '', '', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -5240,6 +5493,41 @@ INSERT INTO `yiisns_user` (`id`, `email`, `password`, `username`, `handle`, `sex
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `yiisns_users`
+--
+
+CREATE TABLE IF NOT EXISTS `yiisns_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `activkey` varchar(128) NOT NULL DEFAULT '',
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastvisit_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `superuser` int(1) NOT NULL DEFAULT '0',
+  `status` int(1) NOT NULL DEFAULT '0',
+  `sina_id` int(11) NOT NULL COMMENT '新浪id',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
+  KEY `status` (`status`),
+  KEY `superuser` (`superuser`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `yiisns_users`
+--
+
+INSERT INTO `yiisns_users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`, `sina_id`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'huanghuibin@gmail.com', '7a5dbbf6ae20a656ac548aaf65b4ee31', '2011-08-24 11:39:05', '2011-09-01 17:02:57', 1, 1, 1746698930),
+(2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '49cf1717552741cdb4d2a4d4e89dcab9', '2011-08-24 11:39:05', '2011-09-01 10:59:05', 0, 0, 0),
+(3, 'test', '098f6bcd4621d373cade4e832627b4f6', 'huanghuibin555@gmail.com', '5f624d26bf6800d784e794e29f01ee42', '2011-09-01 11:31:30', '0000-00-00 00:00:00', 0, 0, 0),
+(4, 'test2', '14e1b600b1fd579f47433b88e8d85291', 'test@aa.com', 'a49818bba39f8513304194a902d35b0d', '2011-09-01 11:38:15', '0000-00-00 00:00:00', 0, 0, 0),
+(5, '1746698930', 'f3cd3a30041fb6bb38da8bda843de5ba', '', '51b7a5a3b95b934f27fbfa3e3b2a8912', '2011-09-02 15:53:04', '0000-00-00 00:00:00', 0, 0, 1746698930);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `yiisns_user_app`
 --
 
@@ -5269,7 +5557,7 @@ CREATE TABLE IF NOT EXISTS `yiisns_user_online` (
   `activeTime` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='在线用户' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='在线用户' AUTO_INCREMENT=1 ;
 
 --
 -- 转存表中的数据 `yiisns_user_online`
