@@ -97,7 +97,7 @@ $config = array(
             'rules'=>array(
                 //assets目录发布到web，使用path路径，浏览器会认为是静态文件*达到http304的目的
                 'assets/<path:.*?>'=>'site/assets',
-                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                
 
 				'space/uid/<uid:\d+>'=>'space/index',
 				'post/<pid:\d+>'=>'post/show',
@@ -108,6 +108,8 @@ $config = array(
 				'group/create/<gid:\d+>'=>'group/group/create',
 				'group/new_topic/<gid:\d+>'=>'group/topic/create',
 				'group/new_group'=>'group/group/create',
+
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ),
         ),
 

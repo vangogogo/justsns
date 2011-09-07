@@ -153,15 +153,19 @@ class Friend extends CActiveRecord
 		{
 			$uid = Yii::app()->user->id;
 		}
+
+
+
 		$criteria=new CDbCriteria;
 		$criteria->condition = 't.uid=:uid AND status= 1';
 		$criteria->params = array(':uid'=>$uid);
 		
-		$table_name = FriendBelongGroup::model()->tableName();
-		$criteria->join = "left join {$table_name} ON {$table_name}.uid = t.uid ";
+
 		
 		if(!empty($gid))
 		{
+		    $table_name = FriendBelongGroup::model()->tableName();
+		    $criteria->join = "left join {$table_name} ON {$table_name}.uid = t.uid ";
 			$criteria->addCondition('gid='.$gid);
 		}
 		$count = Friend::model()->count($criteria);

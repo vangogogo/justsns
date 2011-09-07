@@ -129,5 +129,29 @@ class Notify extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	/**
+	 * 读取话题
+	 */
+	public function loadNotify($id=null)
+	{
+		if($id!==null || isset($_POST['tid']))
+			$model=$this->findbyPk($id!==null ? $id : $_POST['tid']);
+		if($model===null)
+			throw new CHttpException(404,'该话题不存在.');
+		if($model->is_del != 0)
+			throw new CHttpException(404,'该话题不存在或被删除.');
+		return $model;
+	}	
+	
+	public function delNotify()
+	{
+		if($this->fromUserId == Yii::app()->user->id OR $this->toUserId == Yii::app()->user->id)
+		{
+			$this->is_del = 1;
+			$this->save();
+			return true;
+		}
+		return false;
+	}
 	
 }

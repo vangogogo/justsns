@@ -31,10 +31,13 @@
 	$cs->registerCssFile('/css/style.css');
 
 	//$cs->registerCssFile('/css/group.css');
-	$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
+	#$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
-    $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.js');
-    $cs->registerCssFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.default.css');
+    #$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.js');
+    #$cs->registerCssFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.default.css');
+    $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.4.js');
+    $cs->registerCssFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.4.css');
+
 ?>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/flick/jquery-ui.css" />
 

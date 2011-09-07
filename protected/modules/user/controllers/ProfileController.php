@@ -15,12 +15,37 @@ class ProfileController extends Controller
 	public function actionProfile()
 	{
 		$model = $this->loadUser();
-	    $this->render('profile',array(
-	    	'model'=>$model,
-			'profile'=>$model->profile,
-	    ));
+		$profile=$model->profile;
+		$this->performAjaxValidation(array($model,$profile));
+		if(isset($_POST['Profile']))
+		{
+			#$model->attributes=$_POST['User'];
+			$profile->attributes=$_POST['Profile'];
+
+			if($model->validate()&&$profile->validate()) {
+				$profile->save();
+				$this->refresh();
+			} else $profile->validate();
+		}
+
+		$this->render('profile',array(
+			'model'=>$model,
+			'profile'=>$profile,
+		));
 	}
 
+	/**
+     * Performs the AJAX validation.
+     * @param CModel the model to be validated
+     */
+    protected function performAjaxValidation($validate)
+    {
+        if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+        {
+            echo CActiveForm::validate($validate);
+            Yii::app()->end();
+        }
+    }
 
 	/**
 	 * Updates a particular model.

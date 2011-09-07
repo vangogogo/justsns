@@ -3,7 +3,7 @@
  * CActiveForm class file.
  */
 
-class UActiveForm extends YiicmsActiveForm
+class UActiveForm extends CActiveForm
 {
 
 	public $disableAjaxValidationAttributes = array();

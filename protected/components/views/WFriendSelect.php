@@ -31,7 +31,7 @@
 
 			ajaxUrl: "<?php echo Yii::app()->createUrl('/friend/ajax')?>",
 			ajaxLoadAllUrl: "<?php echo Yii::app()->createUrl('/friend/getAllFriends')?>",
-			ajaxGetCountUrl: "<?php echo Yii::app()->createUrl('/friend/getCountUrl')?>",
+			ajaxGetCountUrl: "<?php echo Yii::app()->createUrl('/friend/getCountFriends')?>",
 			ajaxGetFriendTypeUrl: "<?php echo Yii::app()->createUrl('/friend/getFriendType')?>",
 			selectCallBack:function(fid, name, image) {
 				Alert("您选择的好友ID为"+fid);
@@ -57,7 +57,7 @@ function cancelAll(){Alert('456');
 <div id="ui-fs<?php echo $id;?>" class="ui-fs">
 	<div class="ui-fs-result clearfix" style="display:none;"></div>
 	<div class="ui-fs-input">
-		<input type="text" value="输入好友姓名" maxlength="30" />
+		<input type="text" value="输入好友姓名" maxlength="30" class="t_input" />
 		<a class="ui-fs-icon" href="javascript:void(0)" title="查看所有好友">查看所有好友</a>
 	</div>
 	<div class="ui-fs-list">

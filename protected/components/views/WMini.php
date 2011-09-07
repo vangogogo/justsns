@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		</div>
-		<div class="left pt5 pl5"><input type="submit" class="btn_big" onclick="doAdd()" value="发布" /></div>
+		<div class="left pt5 pl5"><input type="submit" class="btn btn_big" onclick="doAdd()" value="发布" /></div>
 		<div class="c" ></div>
 	</div>
 </div>

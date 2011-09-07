@@ -1,56 +1,68 @@
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");
-$this->breadcrumbs=array(
-	UserModule::t("Profile"),
-);
-$this->menu=array(
-	((UserModule::isAdmin())
-		?array('label'=>UserModule::t('Manage Users'), 'url'=>array('/user/admin'))
-		:array()),
-    array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
-    array('label'=>UserModule::t('Edit'), 'url'=>array('edit')),
-    array('label'=>UserModule::t('Change password'), 'url'=>array('changepassword')),
-    array('label'=>UserModule::t('Logout'), 'url'=>array('/user/logout')),
-);
-?><h1><?php echo UserModule::t('Your profile'); ?></h1>
+<h1><?php echo UserModule::t('Your profile'); ?></h1>
+    <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
+    <div class="successMessage">
+	    <?php echo Yii::app()->user->getFlash('profileMessage'); ?>
+    </div>
+    <?php endif; ?>
+<div class="form">
 
-<?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
-<div class="successMessage">
-	<?php echo Yii::app()->user->getFlash('profileMessage'); ?>
-</div>
-<?php endif; ?>
-<table class="dataGrid">
-	<tr>
-		<th class="label"><?php echo CHtml::encode($model->getAttributeLabel('username')); ?></th>
-	    <td><?php echo CHtml::encode($model->username); ?></td>
-	</tr>
-	<?php 
-		$profileFields=ProfileField::model()->forOwner()->sort()->findAll();
-		if ($profileFields) {
-			foreach($profileFields as $field) {
-				//echo "<pre>"; print_r($profile); die();
-			?>
-	<tr>
-		<th class="label"><?php echo CHtml::encode(UserModule::t($field->title)); ?></th>
-    	<td><?php echo (($field->widgetView($profile))?$field->widgetView($profile):CHtml::encode((($field->range)?Profile::range($field->range,$profile->getAttribute($field->varname)):$profile->getAttribute($field->varname)))); ?></td>
-	</tr>
-			<?php
-			}//$profile->getAttribute($field->varname)
-		}
-	?>
-	<tr>
-		<th class="label"><?php echo CHtml::encode($model->getAttributeLabel('email')); ?></th>
-    	<td><?php echo CHtml::encode($model->email); ?></td>
-	</tr>
-	<tr>
-		<th class="label"><?php echo CHtml::encode($model->getAttributeLabel('create_at')); ?></th>
-    	<td><?php echo $model->create_at; ?></td>
-	</tr>
-	<tr>
-		<th class="label"><?php echo CHtml::encode($model->getAttributeLabel('lastvisit_at')); ?></th>
-    	<td><?php echo $model->lastvisit_at; ?></td>
-	</tr>
-	<tr>
-		<th class="label"><?php echo CHtml::encode($model->getAttributeLabel('status')); ?></th>
-    	<td><?php echo CHtml::encode(User::itemAlias("UserStatus",$model->status)); ?></td>
-	</tr>
-</table>
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'user-form',
+	'enableAjaxValidation'=>true,
+	'htmlOptions' => array('enctype'=>'multipart/form-data'),
+));
+?>
+
+
+	<?php echo $form->errorSummary(array($model,$profile)); ?>
+
+	<div class="row">
+		<?php echo $form->label($profile,'name'); ?>
+		<?php echo $form->textField($profile,'name',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($profile,'name'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'email'); ?>
+		<?php echo $model->email; ?> <?php #echo CHtml::link('修改',array('editEmail'));?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($profile,'location'); ?>
+		<?php echo $form->textField($profile,'location'); ?>
+		<?php echo $form->error($profile,'location'); ?>
+	</div>
+
+	<div class="row">
+		<label> </label>
+        <?php $this->widget('ext.yii-gravatar.YiiGravatar', array(
+            'email'=>$model->email,
+            'size'=>80,
+            'defaultImage'=>'http://www.amsn-project.net/images/download-linux.png',
+            'secure'=>false,
+            'rating'=>'r',
+            'emailHashed'=>false,
+            'htmlOptions'=>array(
+                'alt'=>'Gravatar image',
+                'title'=>'Gravatar image',
+            )
+        )); ?>
+
+	</div>
+
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'password'); ?>
+		 <?php echo CHtml::link('修改密码',array('Profile/Changepassword'));?>
+		<?php echo $form->error($model,'password'); ?>
+	</div>
+
+	<div class="row buttons">
+        <label></label>
+		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+
+</div><!-- form -->

@@ -29,7 +29,7 @@
 			<?php echo EHtml::activeTextArea($model,'content_temp',array('class'=>'t_input t_area')); ?>
 		</div>
 		<div class="row">
-            <?php echo CHtml::submitButton('确认',array('class'=>'btn_b')); ?>
+            <?php echo CHtml::submitButton('确认',array('class'=>'btn')); ?>
 		</div>
     </div>
 <?php echo EHtml::endForm();?>
