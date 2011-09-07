@@ -1,6 +1,8 @@
 var oddReply = "";
 var lastinput = "";
 var touid = 0;
+
+var doAddReply_url = TS+"/mini/doAddReply";
 $(document).ready(function() {
 	$(".input_box > textarea").val("添加回复");
 	$('#mini-coment').click(function() {
@@ -239,7 +241,7 @@ function replyComment(appid, more, mid) {
 	var content = $('#input' + appid).val();
 	var name = $('#name').val();
 	var page = $('#page').val();
-
+    var js_token = 0;
 	showmore = $('#button' + id).attr('showmore');
 	$("#button" + appid).attr('readonly', true).val("loading...");
 	// 只需要直接返回新的回复html格式就可以

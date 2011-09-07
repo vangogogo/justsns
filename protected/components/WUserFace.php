@@ -14,16 +14,18 @@ class WUserFace extends CWidget
         
         //男或女
 		if( !$user['sex'] ) {
-			$default_img = Yii::app()->theme->baseUrl."/images/pic2.gif";
+			$default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic2.gif";
 		}else {
-			$default_img = Yii::app()->theme->baseUrl."/images/pic1.gif";
+			$default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic1.gif";
 		}
+        $url = Yii::app()->controller->createUrl('/space',array('uid'=>$this->uid));
 
-        echo '<span class="headpic50">';
+        echo '<span class="headpic50"><a href="'.$url.'">';
         $this->widget('ext.yii-gravatar.YiiGravatar', array(
             'email'=>$user['email'],
             'size'=>$this->size,
             'defaultImage'=>'http://www.amsn-project.net/images/download-linux2.png',
+            'defaultImage'=>'http://'.$default_img,
             'secure'=>false,
             'rating'=>'r',
             'emailHashed'=>false,
@@ -32,7 +34,7 @@ class WUserFace extends CWidget
                 'title'=>$user['username'],
             )
         ));
-        echo '</span>';
+        echo '</a></span>';
 
 	}
 }

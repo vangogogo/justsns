@@ -2,9 +2,7 @@
 <?php foreach($comments as $vo):?>
 <div class="RLI btmline" id="RLI<?php echo $vo['id'];?>" >
 	<div class="user_img">
-		<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$vo['uid']));?>"  class="tips">
-			<img src="<?php echo User::model()->getUserFace($vo['uid'],'middle');?>" />
-		</a>
+        <?php $this->Widget('WUserFace',array('uid'=>$vo['uid']));?>
 	</div>
 	<div class="RLC">
 		<h4>

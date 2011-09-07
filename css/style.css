@@ -74,7 +74,7 @@ h3 {font-size:14px;font-weight:normal;line-height:20px;height:20px;}
 h4 {font-size:12px;width:100%;font-weight:normal;line-height:20px;height:20px;background:#F2F9FC;}
 h5 {font-size:14px;width:100%;font-weight:normal;line-height:20px;height:20px;background:#F2F9FC; margin-bottom:10px;}
 
-.head {margin:0 auto;width:950px;height:60px;overflow:hidden;}
+.head {margin:0 auto;height:60px;overflow:hidden;}
 .head .logo {float:left;margin:15px 0 0 0;overflow:hidden;}
 .head .logo a {background:url(/images/u148_main_bg.gif) no-repeat 0 0 transparent;width:180px;height:40px;display:block;line-height:10em;}
 .head .logo a:hover {background:url(/images/u148_main_bg.gif) no-repeat 0 0 transparent;}
@@ -243,7 +243,7 @@ textarea.t_area {width:80%;height:180px;}
 div.error p.hint,div.success p.hint {display:none;}
 
 /* default input默认样式 */
-.row input{ -webkit-border-radius: 4px; border-radius: 4px; border:1px solid #D5D5D5; padding:7px; }
+.row input{ -webkit-border-radius: 4px; border-radius: 4px; border:1px solid #D5D5D5; padding:6px; }
 
 /*
 .btn{display:inline-block; font-size:12px; color:#FFF; padding:5px; cursor:pointer; text-align:center;background-color:#A5CB6F !important;margin-right:10px; line-height:1em;border:0; *zoom:1; _vertical-align:middle;}
@@ -354,12 +354,48 @@ div.error p.hint,div.success p.hint {display:none;}
 .phiz { position:absolute; z-index:200; width: 310px; background-color: #FFFDD7; border: 1px solid #FFFF99; }
 .phiz .ico_link { border:1px solid #CCCCCC; padding:2px; background-color: #FFFFFF; float: left; margin: 1px; width:20px; height:20px; overflow:hidden; text-align:center; }
 
+/* Yii 分页 */
+div.cpage {text-indent:-9999px;text-align: center;margin: -10px auto 20px auto}
+ul.yiiPager {overflow: auto; line-height: 20px;text-indent:0;font-size:12px;}
+ul.yiiPager li {
+display:inline-block;
+
+/*IE67 display:inline-block support*/
+zoom:1;
+*display:inline;
+*+margin: 0 5px 0 0;
+
+border:1px solid #EEEEEE;
+padding:0
+}
+ul.yiiPager li.selected {background:none repeat scroll 0 0 #97BB3F;border-color:#87A739;}
+ul.yiiPager li a:link {
+    ppadding:3px 12px;
+    padding:3px 10px 0;
+    font-weight: normal;
+    display:block;
+    zoom:1;
+    *display:inline;
+    background:none;
+    border:0;
+    margin:0;
+    color:#2C629E
+}
+ul.yiiPager li a:hover {background:#ccc}
+ul.yiiPager li.selected a {background:none repeat scroll 0 0 #97BB3F;color:#fff}
+
+
 
 .user-list .info p {
     position: relative;
     margin: 0;
     color: #999;
     line-height: 18px;
+}
+.user-list li {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #EEE;
 }
 
 div.grid-view {
@@ -441,3 +477,8 @@ padding: 15px 31px;
 }
 
 set-group-list{display:none;position:absolute;z-index:999;top:17px;padding:6px 0 10px;width:170px;background:#fff;border:1px solid #d0dcd6}.set-group-list li{margin:0 0 1px;padding:2px 10px;#padding:1px 10px 3px;-moz-user-select:none;-webkit-user-select:none}.set-group-list li:hover,.set-group-list li.hover{color:#fff;background:#858585;#border:0}.set-group-list label{margin-left:2px;vertical-align:middle}.set-group-list input{*margin-right:0}.set-group-list .last{padding:6px 10px 0;margin:0}.set-group-list .last:hover{background:#fff;color:#333}.set-group-list .tips{display:block;color:#fab0b6;margin:0 0 0 16px}.set-group-list .tlimit{color:#fab0b6;margin:2px 0 0}.set-group-list .create-new{display:block;color:#333;padding:0 0 0 13px;_height:14px;background:url(/pics/icon-add.png) no-repeat 0 center}.input-create{border:1px solid #d0dcd6;padding:4px 3px 3px;color:#666;width:142px}.brown-border{border-color:#e2d0c1}.user-opt .set-group-list{margin-left:-154px;background:#fff;border:1px solid #e2d0c1}
+
+/* 用户列表 */
+
+.UserList .ListBox ul { overflow: hidden; clear: both; width: 247px; margin-left: 5px; padding: 0; }
+.UserList .ListBox ul li { width: 80px; float: left; text-align: center; padding: 0px; margin-top: 0 0 5px 0; }

@@ -8,6 +8,8 @@ class NotifyController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->setPageTitle('通知'); 
+
 		$type = Yii::app()->request->getQuery('type');
 		$type_arr = Notify::model()->type_arr;
 		$user = new User();
@@ -51,6 +53,8 @@ class NotifyController extends Controller
 
 	public function actionInbox()
 	{
+        $this->setPageTitle('收件箱'); 
+
 		$msgs = array();
 		$user = new User();
 
@@ -81,6 +85,8 @@ class NotifyController extends Controller
 
 	public function actionOutbox()
 	{
+        $this->setPageTitle('发件箱'); 
+
 		$msgs = array();
 		$user = new User();
 
@@ -111,6 +117,8 @@ class NotifyController extends Controller
 
 	public function actionWrite()
 	{
+        $this->setPageTitle('写短消息'); 
+
         $model = new Msg();
          $this->performAjaxValidation($model);
 

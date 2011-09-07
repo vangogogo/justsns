@@ -1,14 +1,15 @@
 <div class="grid_8">
-	<div class="UserList">
-		<?php echo CHtml::beginForm(array('friend/list'),'get',array('class'=>'form_validator','id'=>'list_fri'))?>
+	<div class="sidebar">
+	   <form action="__APP__" method="get"  id="list_fri" class="form_validator">
+			<input type="hidden" name="s" value="/Friend/lists" >
 			<input type="hidden" name="type" value="info" id="sub_type">
-			<div class="tit">搜索用户</div>
-			<div class="ListBox">
-			<div ><div style="float:left; width:170px; padding-left:10px;"><input name="name" class="TextH20" style="width:165px; margin-right:5px;" type="text"  onblur="this.className='TextH20'" onfocus="this.className='Text2'" /></div><div style="float:left;" ><input type="submit" class="btn_b hander" value="找 人" /></div>
+			<h2>搜索用户</h2>
+			<div class="row">
+			<div style="float:left; width:200px; padding-left:10px;"><input name="name" class="t_input" style="width:165px; margin-right:5px;" type="text"  onblur="this.className='TextH20'" onfocus="this.className='Text2'" /></div>
+            <div style="float:left;" ><input type="submit" class="btn_b hander" value="找 人" /></div>
 			</div>
-			</div>
-			<div class="btm"></div>
-		<?php echo Chtml::endForm();?>
+
+		</form>
 	</div>
 	<?php if(!isset($space_privacy) || $space_privacy){ ?>
 
@@ -40,7 +41,7 @@
 	<?php } ?>
 
 	<div class="UserList">
-		<div class="tit"><span class="right"></span>你可能认识的人</div>
+		<h2><span class="right"></span>你可能认识的人</h2>
 		<div class="ListBox">
 			<?php if(!empty($may)){ ?>
 			<ul>
@@ -58,21 +59,18 @@
 
 	
 	<div class="UserList">
-		<div class="tit"><?php if(!isset($space_privacy) || $space_privacy){ ?><span class="right">
+		<h2><?php if(!isset($space_privacy) || $space_privacy){ ?><span class="right">
 		<?php echo CHtml::link('>>更多',array('friend/index','uid'=>$uid),array('class'=>'cGray2'));?>
 
-		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</div>
+		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</h2>
 		<div class="ListBox">
 			<?php if(!empty($friend_list)){ ?>
 			<ul>
 				<?php foreach($friend_list as $user){?>
 					<li>
-						<span>
-						<?php if(!isset($space_privacy) || $space_privacy){ ?><a href="<?php echo $this->createUrl('/space/',array('uid'=>$user['id']));?>"  class="tips"><img src="<?php echo $user['face'];?>" /></a>
-						<?php } ?>
-						</span>
+                        <?php $this->Widget('WUserFace',array('uid'=>$user['id']));?>
 						<?php if(!isset($space_privacy) || $space_privacy){ ?>
-							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$user['id']));?></div>
+							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$friend['id']));?></div>
 						<?php }else{ ?>
 							<div class="name">{$user.id|isOnlineIcon}{$user.name}</div>
 						<?php } ?>

@@ -42,13 +42,13 @@
 </div>
 
     <?php if(!empty($friends)):?>
-	<ul class="user-list" style="padding: 0px;margin: 10px auto 0px auto;">
+	<ul class="user-list">
 		<?php foreach($friends as $friend){?>
 			<li class="info" id="fri_<?php echo $friend['id']?>" >
 				<div class="left" style="width:70px;">
                     <?php $this->widget('WUserFace',array('uid'=>$friend['id']));?>
 				</div>
-				<div class="left" style="width:380px; margin-right:30px;">
+				<div class="left" style="width:400px; margin-right:30px;">
 					<p class="lh20">
 						<?php echo CHtml::link($friend['username'],array('/space/','uid'=>$friend['id']),array('id'=>'fname_'.$friend['id']));?>
 					</p>
@@ -76,7 +76,7 @@
 						<?php if($is_me) echo CHtml::link('解除关系',array('/friend/DoDelFriend','uid'=>$friend['id']),array('class'=>'a_confirm_link','title'=>'确认解除关系?'));?>
 					</p>
 				</div>
-				<div class="c"></div>
+				<div class="clear"></div>
 			</li>
 		<?php }?>
 	</ul>
