@@ -8,6 +8,9 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->redirect('user/profile');
+
+
 		$model = $this->loadUser();
 		$profile=$model->profile;
 		$this->performAjaxValidation(array($model,$profile));

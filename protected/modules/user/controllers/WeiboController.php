@@ -2,7 +2,7 @@
 
 class WeiboController extends Controller
 {
-	public $defaultAction = 'registration';
+	public $defaultAction = 'index';
 
     public $layout = 'user.views.weibo.layout_weibo';
 	/**
@@ -80,52 +80,16 @@ class WeiboController extends Controller
 	/**
 	 * Displays the login page
 	 */
-	public function actionWeibo()
+	public function actionIndex()
 	{
+        $this->pageTitle = '我的微薄';
 		$SAEOAuth = Yii::app()->SAEOAuth;
 		$client = $SAEOAuth->getSinaClient();
 
         $sina_id = $SAEOAuth->getUserID();
         $sina_info = $client->show_user($sina_id);
-        print_r($sina_info);
-        $count = 200;
-        $page = 1;
-        $ms = array();
-        while($tmp<=1)
-        {
-            echo $page;
-            $tmp = $client->mentions($page,$count);
-            $ms += $tmp;
-            $tmp_count = count($tmp);
-            $page ++;
-        }
-        $sum = count($ms);
-
-        if(!empty($ms))
-        {
-            foreach($ms as $one)
-            {
-                $user = $one['user'];
-                $uid = $user['id'];
-                $user_list[$uid] = $user;
-                $user_count_list[$uid] ++;
-            }
-        }
-        if(!empty($user_count_list))
-        {
-            foreach($user_count_list as $uid => $count)
-            {
-                if($count <=3 OR $uid == $sina_id)
-                    unset($user_count_list[$uid]);
-
-                
-            }
-        }
-        arsort($user_count_list);
-
         $data = array(
-            'user_list'=>$user_list,
-            'user_count_list'=>$user_count_list,
+            'sina_info'=>$sina_info,
         );
 
 		$this->render('weibo',$data);
@@ -146,7 +110,6 @@ class WeiboController extends Controller
         $ms = array();
         while($tmp<=1)
         {
-            echo $page;
             $tmp = $client->mentions($page,$count);
             $ms += $tmp;
             $tmp_count = count($tmp);
@@ -164,21 +127,35 @@ class WeiboController extends Controller
                 $user_count_list[$uid] ++;
             }
         }
+        arsort($user_count_list);
+
         if(!empty($user_count_list))
         {
             foreach($user_count_list as $uid => $count)
             {
                 if($count <=3 OR $uid == $sina_id)
-                    unset($user_count_list[$uid]);
-
-                
+                    unset($user_count_list[$uid]);                
             }
         }
-        arsort($user_count_list);
+
+        if(!empty($user_count_list))
+        {
+            foreach($user_count_list as $uid => $count)
+            {
+                $user = $user_list[$uid];
+                $sex_count[$user['gender']]++;
+            }
+        }
+        //统计
+        
+        
+        print_r($sex_count);
+
 
         $data = array(
             'user_list'=>$user_list,
             'user_count_list'=>$user_count_list,
+            'sex_count'=>$sex_count,
         );
 
 		$this->render('atme',$data);

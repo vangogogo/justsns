@@ -55,7 +55,12 @@ class SiteController extends Controller
 		{
 			$is_me = true;
 		}
-		
+		$notify_num = array(
+            'notification'=>0,
+            'message'=>0,
+            'friend'=>0,
+            'wall'=>0,
+        );
 		$may_users = array();
 		
 		//空间主人的好友

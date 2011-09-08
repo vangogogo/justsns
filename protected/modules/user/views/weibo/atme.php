@@ -1,3 +1,10 @@
+
+<table>
+    <tr>
+        <td><?php echo $sex_count['m'];?></td><td></td>
+    </tr>
+</table>
+
     <?php if(!empty($user_count_list)):?>
 	<ul class="user-list">
 		<?php foreach($user_count_list as $uid => $count){ $user = $user_list[$uid];$name=$user['name']; ?>
