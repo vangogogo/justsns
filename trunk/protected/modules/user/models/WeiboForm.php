@@ -5,6 +5,7 @@
  * user registration form data. It is used by the 'registration' action of 'UserController'.
  */
 class WeiboForm extends User {
+
 	public $verifyPassword;
 	
 	public function rules() {
@@ -70,6 +71,7 @@ class WeiboForm extends User {
         $profile->location = $sina_info['location'];
         $profile->current_province = $sina_info['province'];
         $profile->current_city = $sina_info['city'];
+        $profile->avatar = $sina_info['profile_image_url'];
         $profile->save();
 
         $username = $user->username;

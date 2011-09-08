@@ -111,7 +111,7 @@ h5 {font-size:14px;width:100%;font-weight:normal;line-height:20px;height:20px;ba
 .topic_reply {}
 .topic_reply tr td {line-height:22px;padding:10px 0;text-align:left;vertical-align:top;}
 .topic_reply tr td h4 {font-size:12px;width:450px;font-weight:normal;line-height:20px;height:20px;background:#F2F9FC;padding:0 10px;}
-.topic_content tr td img,.topic_reply tr td img {width:48px;height:48px;}
+
 .topic_content tr td .content {width:490px;padding:10px 15px;white-space:normal;word-break:break-all;word-wrap:break-word;}
 .topic_reply tr td .content {width:440px;padding:15px;white-space:normal;word-break:break-all;word-wrap:break-word;}
 .reply_form {width:440px;height:120px;overflow-x:hidden;overflow-y:auto;margin:10px 15px;font-size:14px;line-height:26px;}

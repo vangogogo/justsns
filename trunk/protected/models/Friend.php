@@ -261,4 +261,11 @@ class Friend extends CActiveRecord
 			}
 		}
 	}
+	/**
+	 * 获得用户心情
+	 */
+	public function getUserMini()
+	{
+		return $this->user->getUserMini();
+	}
 }

@@ -11,15 +11,26 @@ class WUserFace extends CWidget
 	public function run()
 	{
 		$user = User::model()->findByPk($this->uid);
-        
-        //男或女
-		if( !$user['sex'] ) {
-			$default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic2.gif";
-		}else {
-			$default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic1.gif";
-		}
+        $avatar = $user->profile->avatar;
+        $name = $user->profile->name;
         $url = Yii::app()->controller->createUrl('/space',array('uid'=>$this->uid));
+        if(!empty($avatar))
+        {
+            echo '<span class="headpic50"><a href="'.$url.'">';
+            echo "<img src='{$avatar}' alt='{$name}' title='{$name}' />";
+            echo '</a></span>';
+            return ;
+        }
+        else
+        {
+            //男或女
+		    if($user->profile->sex == 1) {
+			    $default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic1.gif";
+		    }else {
+			    $default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic2.gif";
+		    }
 
+        }
         echo '<span class="headpic50"><a href="'.$url.'">';
         $this->widget('ext.yii-gravatar.YiiGravatar', array(
             'email'=>$user['email'],

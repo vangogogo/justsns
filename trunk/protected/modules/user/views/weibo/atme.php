@@ -11,14 +11,14 @@
 ?>
 
 	            </div>
-	            <div class="left" style="width:400px; margin-right:30px;">
+	            <div class="left" style="width:340px; margin-right:80px;">
 		            <p class="lh20">
 			            <?php echo CHtml::link($name,array('/space/','uid'=>$uid),array('id'=>'fname_'.$uid));?>
 		            </p>
 
 
-                    <p>
-                        <span class="wn">心情：</span><?php echo $user['description'];?>
+                    <p class="wn">
+                        <span class="">心情：</span><?php echo $user['description'];?>
                     </p>
 	            </div>
 	            <div class="left" style="width:100px;">
@@ -37,6 +37,9 @@
 .atcount{
     font-size:30px;
     color:#E88400;
+}
+.user-list .info p.wn {
+    color:#555;
 }
 </style>
 

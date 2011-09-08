@@ -1,4 +1,5 @@
-	<div class="FList mt10"><!-- 好友屏蔽 begin  -->
+	<div class="mt10"><!-- 好友屏蔽 begin  -->
+
 		<h2 class="fB lh30 btmline">屏蔽以下用户的动态</h2>
 		<ul style="margin-top:10px;">
 			<li class="li">
@@ -12,23 +13,18 @@
 				<div class="c"></div>
 			</li>
 		</ul>
-		<br /><br />
-		<h2 class="fB lh30 btmline">已屏蔽动态的用户</h2>
+        <div class="clear"></div>
+		
+        <?php if(!empty($black_friends)):?>
+        <h2>已屏蔽动态的用户</h2>
 		<ul>
-			<volist name="pings" id="ping">
-				<li class="btmlineD li pb10" id="ping_{$ping.fuid}">
-					<div class="left" style="width:77px;;"><span class="headpic50"><img src="{$ping.fuid|getUserFace}" /></span></div>
-					<div class="left" style="width:450px; margin-right:40px;">
-						<p class="lh20" style="margin-bottom:5px;"><strong><a href="#">{$ping.fuid|getUserName}</a></strong></p>
-						<p class="cGray2 lh20">心情：{$ping.fuid|getUserMini}</p>
-					</div>
-					<div class="left alR" style="width:65px;">
-						<p class="lh30"><a href="javascript:removePing({$ping.fuid})">解除屏蔽</a></p>
-					</div>
-					<div class="c"></div>
-				</li>
-			</volist>
+		    <?php foreach($black_friends as $friend){?>
+                <?php $this->renderPartial('_friend_list',array('friend'=>$friend,'uid'=>$uid,'is_me'=>$is_me));?>
+		    <?php }?>
 		</ul>
-		<div class="page">{$page}</div>
+        <?php endif;?>
+	    <div class="baikeUserPage">
+		    <?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
+	    </div>
 	</div><!-- 好友屏蔽 end  -->
 

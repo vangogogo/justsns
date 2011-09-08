@@ -4,7 +4,7 @@
 	<table class="topic_content">
 		<tr>
 			<td width="65">
-				<img title="<?php echo User::model()->getUserName($topic['uid']);?>" src="<?php echo User::model()->getUserFace($topic['uid'],'middle');?>" />
+				<?php $this->widget('WUserFace',array('uid'=>$topic['uid'])); ?>
 			</td>
 			<td>
 				<h3><?php echo friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　
@@ -49,9 +49,7 @@
 				<tr>
 					<td width="65">
 						
-							<a href="<?php echo $this->createUrl('/space/',array('uid'=>$post['uid']));?>"  class="tips">
-								<img title="<?php echo User::model()->getUserName($post['uid']);?>" src="<?php echo User::model()->getUserFace($topic['uid'],'middle');?>" />
-							</a>
+<?php $this->widget('WUserFace',array('uid'=>$post['uid'])); ?>
 
 					</td>
 					<td>

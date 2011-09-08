@@ -29,6 +29,7 @@ $config = array(
 		'application.extensions.CDropDownMenu.*', //our extension
 		'application.extensions.yiidebugtb.*', //our extension
 
+		'application.modules.user.models.*',
 	),
 
 	// application components
@@ -72,7 +73,7 @@ $config = array(
             'charset' => 'utf8',
 			'tablePrefix'=>'yiisns_',
             'emulatePrepare' => true,
-            'schemaCachingDuration'=>3600,
+            #'schemaCachingDuration'=>3600,
         ),
         'session'=>array(
             'class' => 'CDbHttpSession',
