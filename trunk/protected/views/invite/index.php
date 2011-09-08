@@ -1,6 +1,6 @@
 <h1><?php echo $this->pageTitle;?></h1>
 <div class="grid_23 suffix_1">
-    <?php include('_top.php');?>
+
 	<div class="friendBox">
 		<div class="menuA" onmouseover="this.className='menuB'" onmouseout="this.className='menuA'">
 			<h2 class="f14px fB lh35">

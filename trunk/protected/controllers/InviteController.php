@@ -8,6 +8,7 @@ class InviteController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->pageTitle = '邀请好友';
 		$model=new User();
 		$uid = Yii::app()->user->id;
 		$form = $model->findByPk($uid);

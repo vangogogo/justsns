@@ -14,7 +14,7 @@
 ?>
 
 
-	<?php echo $form->errorSummary(array($model,$profile)); ?>
+	<?php #echo $form->errorSummary(array($model,$profile)); ?>
 
 	<div class="row">
 		<?php echo $form->label($profile,'name'); ?>
@@ -24,7 +24,11 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'email'); ?>
+        <?php if(!empty($model->email)):?>
 		<?php echo $model->email; ?> <?php #echo CHtml::link('修改',array('editEmail'));?>
+        <?php else:?>
+        <?php echo $form->textField($model,'email',array('size'=>20,'maxlength'=>20)); ?>
+        <?php endif;?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 

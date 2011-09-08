@@ -59,7 +59,7 @@
 			<div class="menu cb i-a-sn i-a-b">
 					<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'首页', 'url'=>array('/site/index')),
+						array('label'=>'首页', 'url'=>array('/user/weibo')),
 						array('label'=>'联系我们', 'url'=>array('/site/contact'),'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'个人空间', 'url'=>array('/space/mine'),'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'好友', 'url'=>array('/friend/index'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
