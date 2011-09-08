@@ -3,7 +3,8 @@
 class WeiboController extends Controller
 {
 	public $defaultAction = 'registration';
-	
+
+    public $layout = 'user.views.weibo.layout_weibo';
 	/**
 	 * Declares class-based actions.
 	 */
@@ -87,7 +88,99 @@ class WeiboController extends Controller
         $sina_id = $SAEOAuth->getUserID();
         $sina_info = $client->show_user($sina_id);
         print_r($sina_info);
-		$ms  = $client->home_timeline(); // done
-		$this->render('weibo',array('ms'=>$ms));
+        $count = 200;
+        $page = 1;
+        $ms = array();
+        while($tmp<=1)
+        {
+            echo $page;
+            $tmp = $client->mentions($page,$count);
+            $ms += $tmp;
+            $tmp_count = count($tmp);
+            $page ++;
+        }
+        $sum = count($ms);
+
+        if(!empty($ms))
+        {
+            foreach($ms as $one)
+            {
+                $user = $one['user'];
+                $uid = $user['id'];
+                $user_list[$uid] = $user;
+                $user_count_list[$uid] ++;
+            }
+        }
+        if(!empty($user_count_list))
+        {
+            foreach($user_count_list as $uid => $count)
+            {
+                if($count <=3 OR $uid == $sina_id)
+                    unset($user_count_list[$uid]);
+
+                
+            }
+        }
+        arsort($user_count_list);
+
+        $data = array(
+            'user_list'=>$user_list,
+            'user_count_list'=>$user_count_list,
+        );
+
+		$this->render('weibo',$data);
 	}
+
+    public function actionAtme()
+    {
+
+        $this->pageTitle = '最爱@我';
+		$SAEOAuth = Yii::app()->SAEOAuth;
+		$client = $SAEOAuth->getSinaClient();
+
+        $sina_id = $SAEOAuth->getUserID();
+        $sina_info = $client->show_user($sina_id);
+        print_r($sina_info);
+        $count = 200;
+        $page = 1;
+        $ms = array();
+        while($tmp<=1)
+        {
+            echo $page;
+            $tmp = $client->mentions($page,$count);
+            $ms += $tmp;
+            $tmp_count = count($tmp);
+            $page ++;
+        }
+        $sum = count($ms);
+
+        if(!empty($ms))
+        {
+            foreach($ms as $one)
+            {
+                $user = $one['user'];
+                $uid = $user['id'];
+                $user_list[$uid] = $user;
+                $user_count_list[$uid] ++;
+            }
+        }
+        if(!empty($user_count_list))
+        {
+            foreach($user_count_list as $uid => $count)
+            {
+                if($count <=3 OR $uid == $sina_id)
+                    unset($user_count_list[$uid]);
+
+                
+            }
+        }
+        arsort($user_count_list);
+
+        $data = array(
+            'user_list'=>$user_list,
+            'user_count_list'=>$user_count_list,
+        );
+
+		$this->render('atme',$data);
+    }
 }

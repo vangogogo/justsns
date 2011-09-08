@@ -56,7 +56,7 @@ class FriendController extends Controller
 			{
 				$user = $value->user;
 				if(!empty($user))
-					$friends[$key] = $user->getUserInfo();
+					$friends[$key] = $user;
 			}
 		}
 
@@ -266,6 +266,7 @@ class FriendController extends Controller
 		$fuid = Yii::app()->request->getParam('uid');
 		$relation = $model->getFriendRelation($uid, $fuid);
 		$return = $relation->delFriend();
+        YiicmsHelper::goBack();
 		echo !$return?-1:1;
 
 	}
@@ -355,6 +356,8 @@ class FriendController extends Controller
 	 */
 	public function actionFind()
 	{
+        $this->setPageTitle('搜索好友'); 
+
 		$online = Yii::app()->request->getParam('online');		
 
 		$criteria=new CDbCriteria;
@@ -372,13 +375,19 @@ class FriendController extends Controller
 		{
 			$total=User::model()->count($criteria);
 		}
+        $keyword = Yii::app()->request->getParam('keyword');
+        if(!empty($keyword))
+        {
+            $criteria->condition = " username like '%{$keyword}%' or email like '%{$keyword}%' ";
+            #$criteria->params = array(':keyword'=>"%{$keyword}%");
+        }
 
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
 		$users = User::model()->with($withOption)->together()->findAll($criteria);
-		
+
 		$data = array(
 			'users' => $users,
 			'pages' => $pages

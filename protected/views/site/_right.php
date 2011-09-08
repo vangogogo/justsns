@@ -1,15 +1,6 @@
 <div class="grid_8">
 	<div class="sidebar">
-	   <form action="__APP__" method="get"  id="list_fri" class="form_validator">
-			<input type="hidden" name="s" value="/Friend/lists" >
-			<input type="hidden" name="type" value="info" id="sub_type">
-			<h2>搜索用户</h2>
-			<div class="row">
-			<div style="float:left; width:200px; padding-left:10px;"><input name="name" class="t_input" style="width:165px; margin-right:5px;" type="text"  onblur="this.className='TextH20'" onfocus="this.className='Text2'" /></div>
-            <div style="float:left;" ><input type="submit" class="btn_b hander" value="找 人" /></div>
-			</div>
-
-		</form>
+        <?php $this->Widget('WFriendFind');?>
 	</div>
 	<?php if(!isset($space_privacy) || $space_privacy){ ?>
 

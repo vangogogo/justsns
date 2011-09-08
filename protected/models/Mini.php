@@ -217,5 +217,12 @@ class Mini extends CActiveRecord
 		}
 		return false;
 	}
+    public function afterSave()
+    {
+        $mini = $this->content;
+        $user = User::model()->findByPk($this->uid);
+        $user->profile->mini = $mini;
+        $user->profile->save();
 
+    }
 }

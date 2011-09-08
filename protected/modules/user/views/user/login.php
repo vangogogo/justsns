@@ -58,6 +58,7 @@ $this->breadcrumbs=array(
 <?php $this->endWidget(); ?>
 </div><!-- form -->
 
+<a href="<?php echo Yii::app()->createUrl('/user/weibo/login')?>"><img src="/images/weibo_login_btn.png" alt="用新浪微博帐号登录"></a>
 
 <?php
 $form = new CForm(array(
