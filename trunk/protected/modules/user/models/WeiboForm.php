@@ -38,49 +38,65 @@ class WeiboForm extends User {
         $sina_id = $SAEOAuth->getUserID();
         $sina_info = $client->show_user($sina_id);
 
-        $model = new WeiboForm;
-        $user = $model->getUserBySinaID($sina_id);
-        if(empty($user))
-        {
-            $username = $sina_id;
-            $password = '';
 
-            $model->username = $sina_id;
-            $model->password = $password;
-            $model->verifyPassword = $password;
+            $model = new WeiboForm;
+            $user = $model->getUserBySinaID($sina_id);
+            if(empty($user))
+            {
+                if(Yii::app()->user->isGuest)
+                {
+                $username = $sina_id;
+                $password = '';
 
-		    $soucePassword = $model->password;
-		    $model->activkey=UserModule::encrypting(microtime().$model->password);
-		    $model->password=UserModule::encrypting($model->password);
-		    $model->verifyPassword=UserModule::encrypting($model->verifyPassword);
-		    $model->superuser=0;
-		    $model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
-            $model->sina_id = $sina_id;
+                $model->username = $sina_id;
+                $model->password = $password;
+                $model->verifyPassword = $password;
 
-            $model->save();
-            $user = $model;
-        }
-        $profile = $user->profile;
-        if(empty($profile))
-        {
-            $profile = new Profile;
-            $profile->user_id=$model->id;
-        }
+		        $soucePassword = $model->password;
+		        $model->activkey=UserModule::encrypting(microtime().$model->password);
+		        $model->password=UserModule::encrypting($model->password);
+		        $model->verifyPassword=UserModule::encrypting($model->verifyPassword);
+		        $model->superuser=0;
+		        $model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
+                $model->sina_id = $sina_id;
 
-        $profile->name = $sina_info['name'];
-        $profile->location = $sina_info['location'];
-        $profile->current_province = $sina_info['province'];
-        $profile->current_city = $sina_info['city'];
-        $profile->avatar = $sina_info['profile_image_url'];
-        $profile->save();
+                $model->save();
+                $user = $model;
+                }
+                else
+                {
+                    
+                    $user = User::model()->findByPk(Yii::app()->user->id);
+                    $user->sina_id = $sina_id;
 
-        $username = $user->username;
-        $password = $user->password;
-		$identity=new UserIdentity($username,$password);
-		$identity->authenticateWeibo();
-		//必须设置默认时间，才能多域名共享登录session
-		#$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
-		Yii::app()->user->login($identity,$duration);
+                    $user->save();
+                }
+            }
+            else
+            {
+                $profile = $user->profile;
+                if(empty($profile))
+                {
+                    $profile = new Profile;
+                    $profile->user_id=$model->id;
+                }
+
+                $profile->name = $sina_info['name'];
+                $profile->location = $sina_info['location'];
+                $profile->current_province = $sina_info['province'];
+                $profile->current_city = $sina_info['city'];
+                $profile->avatar = $sina_info['profile_image_url'];
+                $profile->save();
+
+                $username = $user->username;
+                $password = $user->password;
+		        $identity=new UserIdentity($username,$password);
+		        $identity->authenticateWeibo();
+		        //必须设置默认时间，才能多域名共享登录session
+		        #$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+		        Yii::app()->user->login($identity,$duration);
+            }
+        
     }
 	
 }
