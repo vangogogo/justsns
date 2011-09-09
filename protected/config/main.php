@@ -9,7 +9,7 @@ $path=dirname(dirname(dirname(__FILE__)));
 
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Yii TEST',
+	'name'=>'YII测试应用',
 
 	'timeZone' => 'Asia/Shanghai',
 	//'sourceLanguage'=>'zh_cn',

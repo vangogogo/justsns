@@ -21,7 +21,9 @@ class WeiboController extends Controller
 
 	public function filters()
 	{
-
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
 	}
 
 	/**
@@ -32,14 +34,19 @@ class WeiboController extends Controller
 	public function accessRules()
 	{
 		return array(
-            
-			array('allow', // allow authenticated users to access all actions
-				'users'=>array('@'),
-                'actions'=>array('index','sms','SendTeacherDaySms'),
-			),
-			array('deny',  // deny all users
+            array('allow',  // deny all users
 				'users'=>array('*'),
-                'actions'=>array('login'),
+                'actions'=>array('login','callback'),
+			),
+			//已经登录用户不允许访问 登录页面与注册页面
+			array('deny', // allow authenticated users to access all actions
+				'actions'=>array('login','signup'),
+				'users'=>array('@'),
+			),
+			//非登录用户 不允许访问退出页面
+			array('deny',  // deny all users
+				'users'=>array('guest'),
+                'actions'=>array('index'),
 			),
 		);
 	}
@@ -74,7 +81,7 @@ class WeiboController extends Controller
 		{
             $model = new WeiboForm;
             $model->loginBySina();
-			$this->redirect('index');
+			$this->redirect('atme');
 		}
     }
 	/**
@@ -87,12 +94,17 @@ class WeiboController extends Controller
 		$client = $SAEOAuth->getSinaClient();
 
         $sina_id = $SAEOAuth->getUserID();
+        if(empty($sina_id))
+        {
+           $this->actionLogin(); 
+        }
         $sina_info = $client->show_user($sina_id);
+
         $data = array(
             'sina_info'=>$sina_info,
         );
 
-		$this->render('atme',$data);
+		$this->render('weibo',$data);
 	}
 
     public function actionAtme()
@@ -103,6 +115,11 @@ class WeiboController extends Controller
 		$client = $SAEOAuth->getSinaClient();
 
         $sina_id = $SAEOAuth->getUserID();
+        if(empty($sina_id))
+        {
+           $this->actionLogin(); 
+        }
+
         $sina_info = $client->show_user($sina_id);
         #print_r($sina_info);
         $count = 200;
@@ -148,7 +165,7 @@ class WeiboController extends Controller
                 $weibo_count[$user['gender']]+=$count;
             }
         }
-        
+
         //统计
         if(!empty($sex_count))
         {
