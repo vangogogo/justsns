@@ -92,7 +92,7 @@ class WeiboController extends Controller
             'sina_info'=>$sina_info,
         );
 
-		$this->render('weibo',$data);
+		$this->render('atme',$data);
 	}
 
     public function actionAtme()
