@@ -1,8 +1,28 @@
 
-<table>
+<table class="mytable">
+    <caption>最爱@你的人，无责任统计:<span class="random_text"><?php echo $message?></span></caption>
+    <thead>
     <tr>
-        <td><?php echo $sex_count['m'];?></td><td></td>
+        <th class="nobg" width="80">性别</th><th width="80">男</th>        <th width="80">女</th>
+
     </tr>
+    </thead>
+    <tr>
+        <th class="spec">人数</th><td><?php echo $sex_count['m'];?></td>       <td><?php echo $sex_count['f'];?></td> 
+
+    </tr>
+    <tr class="alt">
+        <th class="spec">微薄数</th><td><?php echo $weibo_count['m'];?></td>       <td><?php echo $weibo_count['f'];?></td> 
+
+    </tr>
+    <tfoot>
+    <tr>
+        <th class="spec" colspan="5"><span class="goodMessage">
+        悄悄和你说啊：<span class="random_text"><?php echo $random_text;?></span>.记得不要告诉其他人
+        </span> </th>
+    </tr>
+    </tfoot>
+
 </table>
 
     <?php if(!empty($user_count_list)):?>
@@ -43,6 +63,10 @@
 <style>
 .atcount{
     font-size:30px;
+    color:#E88400;
+}
+.random_text{
+    font-size:16px;
     color:#E88400;
 }
 .user-list .info p.wn {
