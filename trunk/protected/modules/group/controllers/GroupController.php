@@ -12,7 +12,7 @@ class GroupController extends Controller
 		$model = new Group();
 		$params = array('pageSize'=>1);		
 		$new_groups =$model->getNewGroups($params);
-		#$groups_count = $model->countGroups();
+		$groups_count = 0;
 		$d = $model->getGroupThreads(array(),12);
 		$threads = $d['threads'];
 		$pages = $d['pages'];
@@ -42,7 +42,7 @@ class GroupController extends Controller
 
 
 		//话题
-		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$_GET['page']);
+		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>Yii::app()->request->getParam('page'));
 		$d =$model->getGroupThreads($params);
 
 		$threads = $d['threads'];
@@ -69,8 +69,8 @@ class GroupController extends Controller
 	public function actionList()
 	{
 		$model = new Group();
-
-		$params = array('pageSize'=>20,'page'=>$_GET['page']);
+		$page = Yii::app()->request->getParam('page');
+		$params = array('pageSize'=>20,'page'=>$page);
 		$data = $model->getGroups($params);
 
 		$this->render('list',$data);
@@ -82,6 +82,7 @@ class GroupController extends Controller
 	public function actionDiscussion()
 	{
 		$model = new Group();
+
 		$group = $model->loadGroup($_GET['gid']);
 		//话题
 		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$_GET['page']);

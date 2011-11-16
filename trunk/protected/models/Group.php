@@ -285,7 +285,7 @@ class Group extends YiicmsActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->condition.=" gid = :gid";
 		$criteria->params[':gid']=$gid;
-		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		$criteria->order = !empty($params['order'])?$params['order']:'t.ctime';
 		if(!empty($limit))
 		{
 			$criteria->limit = $limit;
@@ -304,9 +304,10 @@ class Group extends YiicmsActiveRecord
 					}
 				}
 		}
-		$pageSize = $params['pageSize'];
-		if(!empty($pageSize))
+		$pages = '';
+		if(!empty($params['pageSize']))
 		{
+			$pageSize = $params['pageSize'];
 			$page = $params['page'];
 			$_GET['page'] = $page;
 			$total = $model->count($criteria);
@@ -537,7 +538,7 @@ class Group extends YiicmsActiveRecord
 		$model = new GroupPost();
 		$criteria=new CDbCriteria;
 		$criteria->condition.="1 AND istopic = 0";
-		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		$criteria->order = !empty($params['order'])?$params['order']:'t.ctime';
 		if(!empty($limit))
 		{
 			$criteria->limit = $limit;
@@ -556,7 +557,8 @@ class Group extends YiicmsActiveRecord
 					}
 				}
 		}
-        if(!empty($limit))
+
+        if(empty($limit))
         {
 		    $pageSize = $params['pageSize'];
 		    if(!empty($pageSize))
@@ -592,7 +594,7 @@ class Group extends YiicmsActiveRecord
 		$model = new Group();
 		$criteria=new CDbCriteria;
 		$criteria->condition.="1";
-		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		$criteria->order = !empty($params['order'])?$params['order']:'t.ctime';
 		if(!empty($limit))
 		{
 			$criteria->limit = $limit;
@@ -655,7 +657,7 @@ class Group extends YiicmsActiveRecord
 		$model = new Group();
 		$criteria=new CDbCriteria;
 		$criteria->condition.="1";
-		$criteria->order = !empty($params['order'])?$params['order']:'ctime';
+		$criteria->order = !empty($params['order'])?$params['order']:'t.ctime';
 		if(!empty($limit))
 		{
 			$criteria->limit = $limit;
@@ -674,9 +676,10 @@ class Group extends YiicmsActiveRecord
 					}
 				}
 		}
-		$pageSize = $params['pageSize'];
-		if(!empty($pageSize))
+
+		if(!empty($params['pageSize']))
 		{
+			$pageSize = $params['pageSize'];
 			$page = $params['page'];
 			$_GET['page'] = $page;
 			$total = $model->count($criteria);
