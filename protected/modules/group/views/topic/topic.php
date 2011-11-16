@@ -40,7 +40,7 @@
 
 					<?php } ?>
 
-					<?php if($topic['lock'] == 1 || !$actor_level){ ?>   <?php } else{ ?>
+					<?php if($topic['lock'] == 1 || empty($actor_level)){ ?>   <?php } else{ ?>
 						<a href="javascript:quote(<?php echo ($topic['pid']); ?>)">引用</a> ┊
 					<?php } ?>
 				
@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<div class="lh35 alR">
-					<?php if($topic['lock'] == 1 || !$actor_level || 1){ ?>   <?php } else{  ?>
+					<?php if($topic['lock'] == 1 || empty($actor_level) || 1){ ?>   <?php } else{  ?>
 					<a href="javascript:quote({$post['id']})">引用</a> ┊ 
 					<?php } ?>
 					<?php if($this->mid == $post['uid'] || $isadmin){ ?>

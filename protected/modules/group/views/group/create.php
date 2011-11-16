@@ -1,10 +1,10 @@
-<div class="grid_15 suffix_1">
+<div class="content">
 	<?php
 		//话题列表
 		$this->renderPartial('_form',array('model'=>$group,'category_list'=>$category_list));
 	?>
 </div>
-<div class="grid_8">
+<div class="sidebar">
 
     
     <p class="m">真的要建一个新的小组吗？</p>

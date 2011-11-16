@@ -1,5 +1,5 @@
 <h1><?php echo $group['name'];?></h1>
-<div class="grid_15 suffix_1">
+<div class="content">
 	<div class="groupintro radius">
 		<?php echo $group['logo'];?>
 
@@ -24,6 +24,6 @@
 		<?php endif;?>
 	</div>
 </div>
-<div class="grid_8">
+<div class="sidebar">
 	<?php $this->widget('WGroupShowSidebar',array('gid'=>$group['id'])); ?>
 </div>

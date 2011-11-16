@@ -7,10 +7,10 @@
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="container">
     <?php if(!empty($this->pageTitle)):?><h1><?php echo $this->pageTitle;?></h1><?php endif;?>
-	<div class="grid_15 suffix_1">
+	<div class="content">
 		<?php echo $content; ?>
 	</div>
-	<div class="grid_8">
+	<div class="sidebar">
 	    <h2><?php echo CHtml::link('> 礼物中心',array('gift/index'));?></h2>
 	    <h2><?php echo CHtml::link('> 收到的礼物',array('gift/reciveBox'));?></h2>
 	    <h2><?php echo CHtml::link('> 送出的礼物',array('gift/sendBox'));?></h2>

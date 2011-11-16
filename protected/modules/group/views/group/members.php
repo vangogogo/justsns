@@ -1,5 +1,5 @@
 <h1><?php echo $group['name'];?></h1>
-<div class="grid_15 suffix_1">
+<div class="content">
     <?php if(!empty($members)):?>
     <div class="obss">
         <?php foreach($members as $member):?>
@@ -16,6 +16,6 @@
     </div>
     <?php endif;?>
 </div>
-<div class="grid_8">
+<div class="sidebar">
 	<?php $this->widget('WGroupShowSidebar',array('gid'=>$group['id'])); ?>
 </div>
