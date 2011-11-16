@@ -1,5 +1,5 @@
 <h1><?php echo $topic['title']?></h1>
-<div class="grid_15 suffix_1">
+<div class="content">
 	<div class="height1"></div>
 	<table class="topic_content">
 		<tr>
@@ -68,7 +68,7 @@
 						</div>
 						<textarea id="comment_txt_<?php echo$topic['id'];?>" style="display:none;">子非鱼，焉知鱼之乐。</textarea>
 						<div id="operate_<?php echo$topic['id'];?>" class="operate">
-							<?php if($topic['lock'] == 1 || !$actor_level || 1){ ?>   <?php } else{  ?>
+							<?php if($topic['lock'] == 1 || empty($actor_level) || 1){ ?>   <?php } else{  ?>
 							<a href="javascript:quote({$post['id']})">引用</a> ┊ 
 							<?php } ?>
 							<?php if($this->mid == $post['uid'] || $isadmin){ ?>
@@ -108,6 +108,6 @@
     <?php endif;?>
 
 </div>	
-<div class="grid_8">
+<div class="sidebar">
 	<?php $this->widget('WGroupTopicSidebar',array('gid'=>$group['id'])); ?>
 </div>

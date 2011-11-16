@@ -1,7 +1,7 @@
 <?php
 	include('_top.php');
 ?>
-<div class="grid_15 suffix_1">
+<div class="content">
 	<!-- 好友心情 begin  -->
 	<div class="FList">
 		<?php
@@ -11,6 +11,6 @@
 	</div>
 	<!-- 好友心情 end  -->
 </div>
-<div class="grid_8">
+<div class="sidebar">
 	<?php if(!Yii::app()->user->isGuest) $this->widget('WFileAway',array('url'=>'mini/'.$this->action->id)); ?><!-- 好友分组 -->
 </div>

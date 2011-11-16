@@ -1,4 +1,4 @@
-<div class="grid_15 suffix_1">
+<div class="content">
 	<?php if(!empty($new_groups)):?>
 	<h2>最活跃的小组 ······</h2>
 	<?php $this->renderPartial('_group_list',array('group_list'=>$new_groups));?>
@@ -14,7 +14,7 @@
 		<a href="/group/list.html">&gt; 更多话题</a>
 	</div>
 </div>
-<div class="grid_8">
+<div class="sidebar">
 	<img class="cover" src="/images/imgad.jpg" />
 	<br/>
 	<?php $this->widget('WGroupSidebar'); ?>

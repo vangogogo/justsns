@@ -1,4 +1,4 @@
-<div class="grid_15 suffix_1">
+<div class="content">
 	<?php
 		//话题列表
 		$this->renderPartial('../topic/_list',array('no_group'=>1,'threads'=>$threads,'group'=>$group));
@@ -7,6 +7,6 @@
 		<?php $this->widget('ext.bootstrap.widgets.BootPager',array('pages'=>$pages)); ?>
 	</div>
 </div>
-<div class="grid_8">
+<div class="sidebar">
 	<?php $this->widget('WGroupShowSidebar',array('gid'=>$group['id'])); ?>
 </div>

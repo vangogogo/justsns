@@ -1,4 +1,4 @@
-<div class="grid_15 suffix_1">
+<div class="content">
 	<h2>我最近回应的话题 ······</h2>
 	<div class="zbar clearfix">
 		<div>
@@ -20,6 +20,6 @@
 	<?php endif;?>
 
 </div>
-<div class="grid_8">
+<div class="sidebar">
 	<?php $this->widget('WGroupSidebar'); ?>
 </div>
