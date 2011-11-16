@@ -27,6 +27,8 @@
 
 	.media-grid img.big {width:180px;height:180px;}
 	.media-grid img.small {width:50px;height:50px;}
+
+	h2 {font-size:14px;font-weight:400;}
 	</style>
 
 <?php
