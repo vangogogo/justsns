@@ -31,7 +31,7 @@
 			<div class="input">
               <div class="input-prepend">
                 <span class="add-on">@</span>
-                <input class="medium  disabled" id="prependedInput" name="" size="8" type="text" value="<?php echo $toUserName;?>">
+                <input class="medium  disabled" disabled id="prependedInput" name="" size="8" type="text" value="<?php echo $toUserName;?>">
               </div>
 
             </div>

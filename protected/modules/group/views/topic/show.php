@@ -21,7 +21,7 @@
 				</div>
 				<div class="height2"></div>
 				<div id="operate">
-					<?php if($isadmin) { ?>
+					<?php if(!empty($isadmin)) { ?>
 						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']));?> ┊ 
 						
 						<?php $array = array('dist'=>'精华','top'=>'置顶','lock'=>'锁定');?>

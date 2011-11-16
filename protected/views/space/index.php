@@ -1,7 +1,7 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
-<div class="row">
 
-<div class="span11">
+
+<div class="content">
 <!--用户应用-->
 <div class="tab-menu">
 	<?php $items = array();if(!empty($apps)) foreach($apps as $vo): 
@@ -139,4 +139,3 @@
 	?>
 </div>
 <?php include('_right.php');?>
-</div>

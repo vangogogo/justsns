@@ -83,6 +83,9 @@
 )); ?>
 
 <?php echo Yii::app()->bootstrap->registerBootstrap(); ?>
+<?php $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
+    'selector'=>'a[title]',
+)); ?>
 </head>
 
 <body>

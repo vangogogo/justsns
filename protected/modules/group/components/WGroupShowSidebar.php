@@ -17,7 +17,7 @@ class WGroupShowSidebar extends CWidget
 
 		$data = array(
 			'group'=>$group,
-			'group_list'=>$group_list,
+			#'group_list'=>$group_list,
 		);
 		$this->render('WGroupShowSidebar',$data);
 	}

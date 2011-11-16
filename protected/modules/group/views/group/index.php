@@ -8,7 +8,7 @@
 	<h2>小组的最近话题 ······</h2>
 	<?php
 		//话题列表
-		$this->renderPartial('../topic/_list',array('threads'=>$threads,'group'=>$group));
+		$this->renderPartial('../topic/_list',array('threads'=>$threads));
 	?>
 	<div class="topicbottom">
 		<a href="/group/list.html">&gt; 更多话题</a>

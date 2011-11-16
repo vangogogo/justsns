@@ -119,7 +119,7 @@ class TopicController extends Controller
 		$GroupPost->gid = $topic->gid;
 		$GroupPost->tid = $topic->id;
 		
-		$page = $_GET['page']?$_GET['page']:1;
+		$page = !empty($_GET['page'])?$_GET['page']:1;
 		$params = array('tid'=>$tid,'pageSize'=>100,'is_del'=>0);
 
 		$params['page'] = $page;
@@ -140,7 +140,7 @@ class TopicController extends Controller
 		$data = array(
 			'topic'=>$topic,
 			'group'=>$group,
-			'new_topics'=>$new_topics,
+			#'new_topics'=>$new_topics,
 			'GroupPost'=>$GroupPost,
 			'post_list'=>$post_list,
 			'post_pages'=>$post_pages,
@@ -155,9 +155,10 @@ class TopicController extends Controller
 	protected function addPost()
 	{
 		$model = new GroupPost();
-		$params = $_POST['GroupPost'];
-		if(!empty($params))
+
+		if(!empty($_POST['GroupPost']))
 		{
+			$params = $_POST['GroupPost'];
 			$post = $model->addPost($params);
 			if(empty($post->errors))
 			{

@@ -3,7 +3,7 @@
     ?>
 	<table width="100%">
 		<tr>
-			<td width="75" valign="top"> 
+			<td width="75" valign="top" class="media-grid"> 
                 <?php $this->widget('WUserFace', array('uid'=>$user->id)); ?>
 			</td>
 			<td valign="top">
@@ -15,7 +15,7 @@
 				<span class="pl2">发往: <?php echo User::model()->getUserName($msg->toUserId);?></a></span>
 				<?php endif;?>
 				<br>
-				<span class="pl2">时间: <?php echo date('Y-m-d H:s',$msg->ctime)?></span>
+				<span class="pl2">时间: <?php echo date('Y-m-d H:s',strtotime($msg->ctime))?></span>
 				<br>
 				<br>
 				<div class="ul">
