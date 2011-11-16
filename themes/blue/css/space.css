@@ -4,7 +4,7 @@
 个人首页
 */
 .user_info { padding-bottom: 10px; width: 100%; overflow: hidden; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dfdfdf; }
-.user_info .user_img { width:120px; float:left; overflow: hidden; }
+.user_info .user_img {  float:left; overflow: hidden; }
 .user_info .user_img .img { height: 112px; width: 112px; margin-right: auto; margin-left: auto; display: block; text-align: center; background-image: url(../images/user_img_bg.gif); background-repeat: no-repeat; background-position: 0px 0px; overflow: hidden; }
 .user_info .user_img .img img { height: 100px; width: 100px; margin-top: 5px; border: 1px solid #FFFFFF; }
 .user_info .user_img .menu { display: block; margin-top: 10px; padding: 0px; width: 120px; }

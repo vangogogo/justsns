@@ -1,7 +1,7 @@
 <div class="sidebar">
 	<div class="user_info"><!-- 用户资料 begin  -->
 		<div class="user_img">
-			<div class="img" id="host_face">
+			<div id="host_face">
                 <?php $this->widget('WUserFace', array('uid'=>$uid,'size'=>'big')); ?>
             </div>
 			<div id="my_face" style="display:none"><img src="<?php echo $owner->getUserFace($mid,'small');?>" /></div>

@@ -1,0 +1,82 @@
+.astro-thumbnail{ float:left; margin: 2px; padding:1px;  height:120px; border:1px solid #C5C5C5;}
+
+.astro {float:left; width:105px; margin:8px 8px; padding:5px 12px; border:1px solid #E6E6E6; background-color:#F5F6F7; border-radius:5px 5px; -moz-border-radius:5px 5px; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; -webkit-border-bottom-left-radius:5px; -webkit-border-bottom-right-radius:5px;}
+.astro_on { border:1px solid #DDD; background:#FFF}
+.astro h2 { display:block;}
+.astro_on h2 {color:#FF0242}
+
+.astro_date {font-size:10px;display:none;}
+h1 a:link,h1 a:visited{
+font-weight: 100;
+line-height: 22px;
+font-size: 22px;
+color: #D97249;
+}
+
+.astro_content {
+position: relative;
+max-width: 360px;
+_width: 350px;
+font-size: 13px;
+color: #555;
+padding: 10px 15px;
+background-color: #F4F8FD;
+border: 1px solid #EAF1FB;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+zoom: 1;
+margin:8px ;
+}
+
+.picInfo .picInfo-pic{ float:left;}
+.picInfo .picInfo-pic img{ display:block; width:148px; height:auto; border:1px solid #EEE;}
+.picInfo .picInfo-info{ margin-left:148px; padding:0 18px 0 23px;}
+.picInfo .picInfo-info .picInfo-info-head{ height:25px;}
+.picInfo .picInfo-info .picInfo-info-head h3{ font-size:16px; float:left;}
+.picInfo .picInfo-info .picInfo-info-head span{ float:right;}
+.picInfo .picInfo-info .picInfo-info-head span a{ padding:0 3px;}
+.picInfo .picInfo-info .picInfo-info-con{ padding-top:5px;}
+.picInfo .picInfo-more{ clear:both; padding-top:10px;}
+.picInfo .picInfo-more .picInfo-more-c1{float: left; width: 170px;}
+.picInfo .picInfo-more .picInfo-more-c2{ line-height:22px;}
+.picInfo .picInfo-more .picInfo-more-c2 span{ padding-right:15px;}
+
+.picInfo .fc_gray span{
+    min-width:120px;
+    display:inline-block;
+}
+
+.ginfo .istar, .ginfo .istar span {background: url(../images/level_star.gif) repeat-x; width:100px; overflow:auto;}
+.ginfo .istar { float:left;}
+.ginfo .istar span{width:0;display:inline-block;height:18px;background-position: 0 -28px}
+.ginfo .istar .star1 {width:20px;}
+.ginfo .istar .star2 {width:40px;}
+.ginfo .istar .star3 {width:60px;}
+.ginfo .istar .star4 {width:80px;}
+.ginfo .istar .star5 {width:100px;}
+
+.ginfo label{
+
+font-size: 14px;
+width: 80px;
+display: block;
+float: left;
+width: 50px;
+color: #666;
+}
+.ginfo li {
+padding: 0 10px;
+line-height: 25px;
+margin-top: 0px;
+overflow: auto;
+
+}
+
+.span3 .astro-thumbnail{
+	width:148px;
+	height:auto;
+}
+.astro_dl dt {
+margin: 16px 0 8px 0;
+}
