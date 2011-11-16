@@ -42,7 +42,7 @@ class WUserFace extends CWidget
 		    }
         }
         echo '<span class="media-grid"><a href="'.$url.'">';
-        echo "<img class='thumbnail' src='{$avatar}' alt='{$name}' title='{$name}' width='50' height='50' />";
+        echo "<img class='thumbnail {$this->size}' src='{$avatar}' alt='{$name}' title='{$name}' />";
         echo '</a></span>';
         return ;
 

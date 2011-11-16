@@ -24,6 +24,9 @@
 	.container-fruid:after{clear:both;}
 	.container-fruid>.sidebar{display: inline;float: left;margin-left: 20px;width: 280px;}
 	.container-fruid>.content{display: inline;float: left;margin-left: 20px;width: 640px;}
+
+	.media-grid img.big {width:180px;height:180px;}
+	.media-grid img.small {width:50px;height:50px;}
 	</style>
 
 <?php
