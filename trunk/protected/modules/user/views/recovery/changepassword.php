@@ -29,6 +29,7 @@ $this->breadcrumbs=array(
 	
 	
 	<div class="row submit">
+    <label></label>
 	<?php echo CHtml::submitButton(UserModule::t("Save")); ?>
 	</div>
 

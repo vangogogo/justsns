@@ -1,7 +1,9 @@
-<div class="grid_8">
+<div class="span5">
 	<div class="user_info"><!-- 用户资料 begin  -->
 		<div class="user_img">
-			<div class="img" id="host_face"><img src="<?php echo $owner->getUserFace($uid,'middle');?>" /></div>
+			<div class="img" id="host_face">
+                <?php $this->widget('WUserFace', array('uid'=>$uid,'size'=>'big')); ?>
+            </div>
 			<div id="my_face" style="display:none"><img src="<?php echo $owner->getUserFace($mid,'small');?>" /></div>
 			<div class="menu bg01">
 				<?php
@@ -11,13 +13,13 @@
 						echo CHtml::link('修改账号',array('/account'),array('title'=>'修改账号'));
 						echo CHtml::link('修改资料',array('/info'),array('title'=>'修改资料'));
 					}elseif($mid){
-						echo CHtml::link('详细资料',array('/space/detail','uid'=>$uid),array('title'=>'详细资料'));
-						echo CHtml::link('给TA留言',array('/space/detail','uid'=>$uid),array('title'=>'给TA留言'));
+						#echo CHtml::link('详细资料',array('/space/detail','uid'=>$uid),array('title'=>'详细资料'));
+						echo CHtml::link('给TA留言',array('/notify/write','uid'=>$uid),array('title'=>'给TA留言'));
 
-						if($is_friend){
-							echo CHtml::link('发短消息',array('/space/detail','uid'=>$uid),array('title'=>'发短消息'));
+						if(!empty($is_friend)){
+							echo CHtml::link('发短消息',array('/notify/write','uid'=>$uid),array('title'=>'发短消息'));
 						}else{
-							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友'));
+							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友','class'=>'thickbox'));
 						}
 					}
 				?>
@@ -28,7 +30,7 @@
 			<div class="info">
 				<h2 id="host_name"><?php echo $owner->getUserName($uid).' ';echo User::model()->getUserGroupIcon();?></h2>
 				<h2 id="my_name" style="display:none"><?php echo $owner->getUserName()?></h2>
-				<?php if($space_privacy OR 1){ ?>
+				<?php if(!empty($space_privacy) OR 1){ ?>
 					<p>
 						<span>
 							<?php echo $owner->getUserMini();?></span><span></span><span>
@@ -37,7 +39,7 @@
 					</p>
 				<?php } ?>
 
-				<?php if($space_privacy){ ?>	 <!--隐私控制-->
+				<?php if(!empty($space_privacy)){ ?>	 <!--隐私控制-->
 				<ul>
 					<?php if(!empty($rank)){ ?><li><span class="l cGray2">等级：</span><span class="r cBlue" style="margin-top:6px;"><img src="<?php echo THEME_URL; ?>/images/group/{$rank['icon']}" title="{$rank['name']}" alt="{$rank['name']}"/></span></li><?php } ?>
 					<volist name="credit" id="vo" k="key">
@@ -85,11 +87,11 @@
 
 
 	<?php } ?>
-
+    <?php if(!empty($may)){ ?>
 	<div class="UserList">
 		<h2><span class="right"></span>你可能认识的人</h2>
 		<div class="ListBox">
-			<?php if(!empty($may)){ ?>
+			
 			<ul>
 				<?php foreach($may_users as $user){?>
 					<li>
@@ -98,11 +100,11 @@
 					</li>
 				<?php }?>
 			</ul>
-			<?php }?>
+
 		</div>
 		<div class="btm"></div>
 	</div>
-
+	<?php }?>
 	
 	<div class="UserList">
 		<h2><?php if(!isset($space_privacy) || $space_privacy){ ?><span class="right">
@@ -116,7 +118,7 @@
 					<li>
                         <?php $this->Widget('WUserFace',array('uid'=>$user['id']));?>
 						<?php if(!isset($space_privacy) || $space_privacy){ ?>
-							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$friend['id']));?></div>
+							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$user['id']));?></div>
 						<?php }else{ ?>
 							<div class="name">{$user.id|isOnlineIcon}{$user.name}</div>
 						<?php } ?>

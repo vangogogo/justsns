@@ -2,6 +2,7 @@
 
 class User extends SNSUser
 {
+    static $_static_user = array();
 	const STATUS_NOACTIVE=0;
 	const STATUS_ACTIVE=1;
 	const STATUS_BANNED=-1;
@@ -20,7 +21,7 @@ class User extends SNSUser
 	 * @var integer $lastvisit
 	 * @var integer $superuser
 	 * @var integer $status
-     * @var timestamp $create_at
+     * @var timestamp $ctime
      * @var timestamp $lastvisit_at
 	 */
 
@@ -58,11 +59,11 @@ class User extends SNSUser
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => UserModule::t("Incorrect symbols (A-z0-9).")),
 			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANNED)),
 			array('superuser', 'in', 'range'=>array(0,1)),
-            array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
+            array('ctime', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
 			array('username, email, superuser, status', 'required'),
-			array('superuser, status', 'numerical', 'integerOnly'=>true),
-			array('id, username, password, email, activkey, create_at, lastvisit_at, superuser, status, sina_id', 'safe', 'on'=>'search'),
+			array('superuser, status, sina_id', 'numerical', 'integerOnly'=>true),
+			array('id, username, password, email, activkey, ctime, lastvisit_at, superuser, status, sina_id', 'safe', 'on'=>'search'),
 		):((Yii::app()->user->id==$this->id)?array(
 			array('username, email', 'required'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => UserModule::t("Incorrect username (length between 3 and 20 characters).")),
@@ -98,7 +99,7 @@ class User extends SNSUser
 			'verifyCode'=>UserModule::t("Verification Code"),
 			'activkey' => UserModule::t("activation key"),
 			'createtime' => UserModule::t("Registration date"),
-			'create_at' => UserModule::t("Registration date"),
+			'ctime' => UserModule::t("Registration date"),
 			'lastvisit' => UserModule::t("Last visit"),
 			'lastvisit_at' => UserModule::t("Last visit"),
 			'superuser' => UserModule::t("Superuser"),
@@ -122,7 +123,7 @@ class User extends SNSUser
                 'condition'=>'superuser=1',
             ),
             'notsafe'=>array(
-            	'select' => 'id, username, password, email, activkey, create_at, lastvisit_at, superuser, status',
+            	'select' => 'id, username, password, email, activkey, ctime, lastvisit_at, superuser, status, sina_id',
             ),
         );
     }
@@ -131,7 +132,7 @@ class User extends SNSUser
     {
         return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope,array(
             'alias'=>'user',
-            'select' => 'user.id, user.username, user.email, user.create_at, user.lastvisit_at, user.superuser, user.status',
+            'select' => 'user.id, user.username, user.email, user.ctime, user.lastvisit_at, user.superuser, user.status, user.sina_id',
         ));
     }
 	
@@ -169,7 +170,7 @@ class User extends SNSUser
         $criteria->compare('password',$this->password);
         $criteria->compare('email',$this->email,true);
         $criteria->compare('activkey',$this->activkey);
-        $criteria->compare('create_at',$this->create_at);
+        $criteria->compare('ctime',$this->ctime);
         $criteria->compare('lastvisit_at',$this->lastvisit_at);
         $criteria->compare('superuser',$this->superuser);
         $criteria->compare('status',$this->status);
@@ -183,11 +184,11 @@ class User extends SNSUser
     }
 
     public function getCreatetime() {
-        return strtotime($this->create_at);
+        return strtotime($this->ctime);
     }
 
     public function setCreatetime($value) {
-        $this->create_at=date('Y-m-d H:i:s',$value);
+        $this->ctime=date('Y-m-d H:i:s',$value);
     }
 
     public function getLastvisit() {

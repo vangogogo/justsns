@@ -32,7 +32,7 @@
 	</script>
 	
 	<span id="people_Contact_<?php echo $object_type?>_<?php echo $object_id?>">
-        <a class="btn-fav <?php echo empty($isCollect)?'fav-add':'fav-delete';?>" title="标为喜欢?" href="#" data-oid="<?php echo $object_id?>" data-otype="<?php echo $object_type?>"><?php echo empty($isCollect)?'收藏':'收藏';?></a>
+        <a class="btn-fav <?php echo empty($isCollect)?'fav-add':'fav-delete';?>" title="标为喜欢?" href="#collect-do" data-oid="<?php echo $object_id?>" data-otype="<?php echo $object_type?>"><?php echo empty($isCollect)?'收藏':'收藏';?></a>
 	</span>
 
 

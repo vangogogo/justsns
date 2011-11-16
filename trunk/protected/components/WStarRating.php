@@ -17,9 +17,12 @@ class WStarRating extends CStarRating
 			$cs=Yii::app()->clientScript;
 			$cs->scriptMap=array(
 				'jquery.js'=>false,
-
 			);
 		}
+        if(empty($this->name))
+        {
+            $this->name = 'StarRating_'.$this->object_type.'_'.$this->object_id;
+        }
 
 		if($this->readOnly)
 		{

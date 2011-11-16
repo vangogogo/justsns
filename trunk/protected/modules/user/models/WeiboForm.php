@@ -7,6 +7,7 @@
 class WeiboForm extends User {
 
 	public $verifyPassword;
+    public $ctime;
 	
 	public function rules() {
 		$rules = array(
@@ -43,25 +44,25 @@ class WeiboForm extends User {
             $user = $model->getUserBySinaID($sina_id);
             if(empty($user))
             {
-                if(Yii::app()->user->isGuest)
+                if(Yii::app()->user->isGuest OR 1)
                 {
-                $username = $sina_id;
-                $password = '';
+					$username = $sina_id;
+					$password = '123456';
 
-                $model->username = $sina_id;
-                $model->password = $password;
-                $model->verifyPassword = $password;
+					$model->username = $sina_id;
+					$model->password = $password;
+					$model->verifyPassword = $password;
 
-		        $soucePassword = $model->password;
-		        $model->activkey=UserModule::encrypting(microtime().$model->password);
-		        $model->password=UserModule::encrypting($model->password);
-		        $model->verifyPassword=UserModule::encrypting($model->verifyPassword);
-		        $model->superuser=0;
-		        $model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
-                $model->sina_id = $sina_id;
-
-                $model->save();
-                $user = $model;
+					$soucePassword = $model->password;
+					$model->activkey=UserModule::encrypting(microtime().$model->password);
+					$model->password=UserModule::encrypting($model->password);
+					$model->verifyPassword=UserModule::encrypting($model->verifyPassword);
+					$model->superuser=0;
+					$model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
+					$model->sina_id = $sina_id;
+					$model->email = $sina_id.'@hhb.com';
+					$model->save();
+					$user = $model;
                 }
                 else
                 {
@@ -72,8 +73,7 @@ class WeiboForm extends User {
                     $user->save();
                 }
             }
-            else
-            {
+
                 $profile = $user->profile;
                 if(empty($profile))
                 {
@@ -95,7 +95,7 @@ class WeiboForm extends User {
 		        //必须设置默认时间，才能多域名共享登录session
 		        #$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
 		        Yii::app()->user->login($identity,$duration);
-            }
+
         
     }
 	

@@ -1,7 +1,7 @@
-<div class="grid_8">
-	<div class="sidebar">
+<div class="sidebar">
+
         <?php $this->Widget('WFriendFind');?>
-	</div>
+
 	<?php if(!isset($space_privacy) || $space_privacy){ ?>
 
 	<?php if($visitors){ ?>
@@ -56,15 +56,10 @@
 		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</h2>
 		<div class="ListBox">
 			<?php if(!empty($friend_list)){ ?>
-			<ul>
+			<ul class="media-grid">
 				<?php foreach($friend_list as $user){?>
 					<li>
                         <?php $this->Widget('WUserFace',array('uid'=>$user['id']));?>
-						<?php if(!isset($space_privacy) || $space_privacy){ ?>
-							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$friend['id']));?></div>
-						<?php }else{ ?>
-							<div class="name">{$user.id|isOnlineIcon}{$user.name}</div>
-						<?php } ?>
 					</li>
 				<?php }?>
 			</ul>

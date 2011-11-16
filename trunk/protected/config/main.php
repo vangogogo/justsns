@@ -9,7 +9,7 @@ $path=dirname(dirname(dirname(__FILE__)));
 
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'YII测试应用',
+	'name'=>'yiisns',
 
 	'timeZone' => 'Asia/Shanghai',
 	//'sourceLanguage'=>'zh_cn',
@@ -24,22 +24,47 @@ $config = array(
 		'application.models.*',
 		'application.components.*',
         
-		'application.extensions.jformvalidate.*', //our extension
+		'application.extensions.helpers.*', //our extension
+		'application.extensions.YiiMongoDbSuite.*', //our extension
+
 		'application.extensions.CUplodifyWidget.*',
 		'application.extensions.CDropDownMenu.*', //our extension
 		'application.extensions.yiidebugtb.*', //our extension
 
+		'application.extensions.yiicms.*', 
 		'application.modules.user.models.*',
+		'application.modules.user.components.*',
+		'application.modules.rights.models.*',
+        'application.modules.rights.components.*',  
+
+		'ext.bootstrap.components.*',
+        'application.modules.astro.models.*',
+
 	),
 
 	// application components
 	'components'=>array(
+		'bootstrap'=>array('class'=>'ext.bootstrap.components.Bootstrap'),
+        'mongodb' => array(
+            'class'            => 'EMongoDB',
+            'connectionString' => 'mongodb://admin:ho2p4e6j8y@192.168.1.222',
+            'dbName'           => 'myDatabaseName',
+            'fsyncFlag'        => true,
+            'safeFlag'         => true,
+            'useCursor'        => false
+        ),
         'SAEOAuth' => array(
             'WB_AKEY' => '1500340182',
             'WB_SKEY' => 'c09b0ad5183707679d79e8bc24259c8c',
             'callback' => '/user/weibo/callback',
             'class'=>'SAEOAuth',
         ),
+        'mailer' => array(
+            'class' => 'application.extensions.mailer.EMailer',
+            'pathViews' => 'application.views.email',
+            'pathLayouts' => 'application.views.email.layouts'
+        ),
+
         'request'=>array(
             //Cookie攻击的防范
             'enableCookieValidation'=>true,
@@ -50,7 +75,7 @@ $config = array(
         'user'=>array(
             // 允许cookie自动登录 并保存到runtime/state.bin
             'allowAutoLogin'=>true,
-
+			//'class'=>'RightsWebUser',
             // session 前缀,单点登录与区分前后台登录时可以用到
             #'stateKeyPrefix'=> 'f_site',
 
@@ -73,7 +98,11 @@ $config = array(
             'charset' => 'utf8',
 			'tablePrefix'=>'yiisns_',
             'emulatePrepare' => true,
-            #'schemaCachingDuration'=>3600,
+            //开启sql 记录
+            'enableProfiling'=>true,
+            'enableParamLogging'=>true,
+            //cache
+            'schemaCachingDuration'=>3600,
         ),
         'session'=>array(
             'class' => 'CDbHttpSession',
@@ -100,27 +129,46 @@ $config = array(
                 'assets/<path:.*?>'=>'site/assets',
                 
 
-				'space/uid/<uid:\d+>'=>'space/index',
+				'space/<uid:\d+>'=>'space/index',
 				'post/<pid:\d+>'=>'post/show',
 
 				'group/<gid:\d+>'=>'group/group/show',
 				'group/topic/<tid:\d+>'=>'group/topic/show',
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
 				'group/create/<gid:\d+>'=>'group/group/create',
-				'group/new_topic/<gid:\d+>'=>'group/topic/create',
+				'group/<gid:\d+>/new_topic'=>'group/topic/create',
 				'group/new_group'=>'group/group/create',
+/*
+				'http://'.SUB_DOMAIN_mentor.'<_q:.*>/<controller:(book|video|course|mentor)>/<id:\d+>/'=>'mentor<_q>/<controller>/view',
+				'http://'.SUB_DOMAIN_mentor.'<_q:.*>/lecturer/<id:\d+>/'=>'mentor<_q>/lecturer/view',
+				'http://'.SUB_DOMAIN_mentor.'<_q:.*>/lecturer/<id:\d+>/board'=>'mentor<_q>/lecturer/board',
+*/
+				#'group/<gid:\d+>/discussion'=>'group/group/discussion',
+
+				'group/<gid:\d+>/<_resource:(discussion|members|balck|update)>/'=>'group/group/<_resource>',
+				'group/topic/<tid:\d+>/<_resource:(update)>/'=>'group/topic/<_resource>',
+
+                'astro/<astro_id:\d+>-<name>-<year:\d+>-<month:\d+>-<day:\d+>.html'=>'astro/default/astro',
+                'astro/<astro_id:\d+>-<name>.html'=>'astro/default/astro',
 
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+
+
             ),
         ),
 
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
+                /*
 				array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning, log',
-				),
+				),*/
+                array(
+                    'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                    'ipFilters'=>array('127.0.0.1'),
+                ),
 				// uncomment the following to show log messages on web pages
 				/*
 				array(
@@ -169,6 +217,9 @@ $config = array(
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'yiidev',
+			'generatorPaths'=>array(
+				'ext.bootstrap.gii', // Since 0.9.1
+			),
 		),
 		'blog'=>array(
 			#"layout"=>"application.views.layouts.main",
@@ -179,13 +230,12 @@ $config = array(
 		'user'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),
+		'rights',
 		'group'=>array(
 			"defaultController"=>"group"
 		),
-		'gift'=>array(
-			#'layout'=>'application.views.layouts.main',
-//			"defaultController"=>"gift",
-		),
+		'gift',
+        'astro',
 	),
     'params'=>require(dirname(__FILE__).'/params.php'),
 );
@@ -196,7 +246,18 @@ if(defined('SAE_TMP_PATH'))
     //SAE 不支持I/O
     $config['runtimePath'] = SAE_TMP_PATH;
     //配置为 SAEDbConnection 则不必考虑用户名密码 并自动读写分离
-    $config['components']['db']['class'] = 'SAEDbConnection';
+    $config['components']['db'] = array(
+            //配置为 SAEDbConnection 则不必考虑用户名密码 并自动读写分离
+            'class'=>'SAEDbConnection',
+            'charset' => 'utf8',
+			'tablePrefix'=>'yiisns_',
+            'emulatePrepare' => true,
+            //开启sql 记录
+            'enableProfiling'=>true,
+            'enableParamLogging'=>true,
+            //cache
+            'schemaCachingDuration'=>3600,
+    );
     //SAE不支持I/O 使用storage 存储 assets。 如果在正式环境，请将发布到assets的css/js做合并，直接放到app目录下，storage的分钟限额为5000，app为200000
     //最新的SAE 不使用storage 而是在siteController中，导入了一个SAEAssetsAction，通过 site/assets?path=aaa.txt ，将文件内容输出到web端，来访问实际的 aaa.txt 文件，
     $config['components']['assetManager'] = array('class' => 'SAEAssetManager','assetsAction'=> 'site/assets');

@@ -28,7 +28,7 @@
 		<input type="hidden" value="<?php echo $object_type;?>" name="object_type">
 		<input type="hidden" value="<?php echo $formhash;?>" name="formhash">
 
-		<button type="submit" class="w_people_board_publish btn <?php _cklogin();?>" style="<?php if($htmlOptions['showSubmit']) echo ''; else echo 'display:none'; ?>"  rel="http://happy.local.test/default/remark/id/231">发 布</button>
+		<input type="submit" value="发 布" class="w_people_board_publish btn <?php _cklogin();?>" style="<?php if($htmlOptions['showSubmit']) echo ''; else echo 'display:none'; ?>" />
 		<?php if($object_type == 'mentor'):?>
 			<label for="<?php echo $htmlOptions['id'];?>_board_pm" ><input type="checkbox" class="aeBody-handle-check"  value="<?php echo $refer?>" name="board_pm" id="<?php echo $htmlOptions['id'];?>_board_pm"><span class="autologin" title="该消息将发送到导师的私人信箱">&nbsp;发送私信</span></label>
 		<?php endif;?>

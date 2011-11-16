@@ -1,3 +1,13 @@
+<img src='<?php echo $weibo_img;?>' alt='' title='' />
+
+<?php if(Yii::app()->user->hasFlash('sendWeibo')): ?>
+<div class="success">
+<?php echo Yii::app()->user->getFlash('sendWeibo'); ?>
+</div>
+<?php else: ?>
+
+<?php echo CHtml::link('>>转发微博',array('/user/weibo/atme','sendWeibo'=>true),array('class'=>'btn'));?>
+<?php endif;?>
 
 <table class="mytable">
     <caption>最爱@你的人，无责任统计:<span class="random_text"><?php echo $message?></span></caption>

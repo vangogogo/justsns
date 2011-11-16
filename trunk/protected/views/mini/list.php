@@ -39,9 +39,16 @@
 		</div>
 		<?php $this->Widget('WReply',array('uid'=>$vo->uid,'id'=>$vo->id,'count'=>$vo->count,'first'=>$vo->first,'last'=>$vo->last));?>
 	</div>
-	<div class="c"></div>
+	<div class="clear"></div>
 </div>
 <?php }?>
 <div class="baikeUserPage">
 	<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
 </div>
+
+<style>
+    .c1 {float:left;width:80px;}
+    .c2 {float:left;width:500px;}
+    .user_img {float:left;width:80px;}
+    .Fli {margin-bottom:8px;}
+</style>

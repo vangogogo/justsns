@@ -1,8 +1,10 @@
 <?php
 
-class Group extends CActiveRecord
+class Group extends YiicmsActiveRecord
 {
 	const PAGE_SIZE=20;
+	const STATUS_NOACTIVE=0;
+	const STATUS_ACTIVE=1;
 	/**
 	 * The followings are the available columns in table 'group':
 	 * @var integer $id
@@ -63,16 +65,16 @@ class Group extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('uid, cid0, cid1, membercount, threadcount, postcount, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
+		array('uid,  membercount, threadcount, postcount, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
 		array('name', 'length', 'max'=>32),
 		array('logo', 'length', 'max'=>255),
 		array('type', 'length', 'max'=>5),
-		array('intro, announce', 'safe'),
+		array('intro, announce, ctime, mtime,cid0, cid1', 'safe'),
 		// The following rule is used by search().
 		// Please remove those attributes that should not be searched.
 		array('id, uid, name, intro, logo, announce, cid0, cid1, membercount, threadcount, postcount, type, need_invite, need_verify, actor_level, brower_level, openUploadFile, whoUploadFile, openAlbum, whoCreateAlbum, whoUploadPic, anno, ipshow, invitepriv, createalbumpriv, uploadpicpriv, ctime, mtime, status, isrecom, is_del', 'safe', 'on'=>'search'),
 			
-		array('name,type,cid0,intro','required', 'on' => 'create'),
+		array('name,type,intro','required'),
 		array('name', 'checkGroupName', 'on'=> 'create'),
 			
 		);
@@ -86,6 +88,7 @@ class Group extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user'=>array(self::BELONGS_TO, 'User', 'uid'),
 		);
 	}
 
@@ -250,6 +253,18 @@ class Group extends CActiveRecord
 		));
 	}
 
+	public function scopes()
+    {
+        return array(
+            'active'=>array(
+                'condition'=>'status='.self::STATUS_ACTIVE,
+            ),
+            'notactive'=>array(
+                'condition'=>'status='.self::STATUS_NOACTIVE,
+            ),
+        );
+    }
+
 	public function addTopic($params)
 	{
 		$model = new GroupTopic();
@@ -284,7 +299,7 @@ class Group extends CActiveRecord
 				{
 					if(in_array($key,$array))
 					{
-						$criteria->condition.=" and $key=:$key";
+						$criteria->condition.=" and t.{$key}=:$key";
 						$criteria->params[':'.$key]=$value;
 					}
 				}
@@ -299,7 +314,7 @@ class Group extends CActiveRecord
 			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
 			$pages->applyLimit($criteria);
 		}
-		$models=$model->findAll($criteria);
+		$models=$model->with('user')->findAll($criteria);
 		$data = array(
 			'members'=>$models,
 			'pages' => $pages,
@@ -351,7 +366,7 @@ class Group extends CActiveRecord
 		return $data;
 	}
 
-	public function getGroupThreads(array $params = array(), $limit = '6')
+	public function getGroupThreads(array $params = array(), $limit = 0)
 	{
 		$gid = $this->id;
 		if(!empty($gid) AND !isset($params))
@@ -380,22 +395,27 @@ class Group extends CActiveRecord
 				{
 					if(in_array($key,$array))
 					{
-						$criteria->condition.=" and $key=:$key";
+						$criteria->condition.=" and t.{$key}=:$key";
 						$criteria->params[':'.$key]=$value;
 					}
 				}
 		}
-		$pageSize = $params['pageSize'];
-		if(!empty($pageSize))
-		{
-			$page = $params['page'];
-			$_GET['page'] = $page;
-			$total = $model->count($criteria);
-			$pages=new CPagination($total);
-			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
-			$pages->applyLimit($criteria);
-		}
-		$models=$model->findAll($criteria);
+
+		    $pages = '';
+		    if(!empty($params['pageSize']))
+		    {
+				$pageSize = $params['pageSize'];
+
+			    $page = $params['page'];
+			    $_GET['page'] = $page;
+			    $total = $model->count($criteria);
+			    $pages=new CPagination($total);
+			    $pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
+			    $pages->applyLimit($criteria);
+		    }
+
+		$models=$model->with('user','group')->findAll($criteria);
+		#$models=$model->findAll($criteria);
 		$data = array(
 			'threads'=>$models,
 			'pages' => $pages,
@@ -473,7 +493,9 @@ class Group extends CActiveRecord
 	public function loadGroup($id=null)
 	{
 		if($id!==null || isset($_POST['gid']))
-			$model=$this->findbyPk($id!==null ? $id : $_POST['gid']);
+        {
+			$model=$this->with('user')->findbyPk($id!==null ? $id : $_POST['gid']);
+        }   
 		if($model===null)
 			throw new CHttpException(404,'该话题不存在或已经被删除.');
 		return $model;
@@ -510,7 +532,7 @@ class Group extends CActiveRecord
 	}
 	
 	
-	public function getGroupPosts(array $params = array(), $limit = '6')
+	public function getGroupPosts(array $params = array(), $limit = 0)
 	{
 		$model = new GroupPost();
 		$criteria=new CDbCriteria;
@@ -534,17 +556,20 @@ class Group extends CActiveRecord
 					}
 				}
 		}
-		$pageSize = $params['pageSize'];
-		if(!empty($pageSize))
-		{
-			$page = $params['page'];
-			$_GET['page'] = $page;
-			$total = $model->count($criteria);
-			$pages=new CPagination($total);
-			$pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
-			$pages->applyLimit($criteria);
-		}
-		$models=$model->findAll($criteria);
+        if(!empty($limit))
+        {
+		    $pageSize = $params['pageSize'];
+		    if(!empty($pageSize))
+		    {
+			    $page = $params['page'];
+			    $_GET['page'] = $page;
+			    $total = $model->count($criteria);
+			    $pages=new CPagination($total);
+			    $pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
+			    $pages->applyLimit($criteria);
+		    }
+        }
+		$models=$model->with('user')->findAll($criteria);
 		$data = array(
 			'post_list'=>$models,
 			'post_pages' => $pages,
@@ -552,7 +577,7 @@ class Group extends CActiveRecord
 		return $data;
 	}
 	
-	public function getGroups($params = array(),$limit)
+	public function getGroups($params = array(),$limit = 0)
 	{
 		
 		if(!isset($params['status']))
@@ -608,8 +633,11 @@ class Group extends CActiveRecord
 	{
 		$params = array();
 		$limit = 16;
-		$data = $this->getGroups($params, $limit);
-		return $data['group_list'];
+        $criteria=new CDbCriteria;
+		$criteria->order = 'ctime';
+		$criteria->limit = $limit;
+        $models = $this->active()->findAll($criteria);
+		return $models;
 	}
 	
 	public function countGroups($params = array())

@@ -24,9 +24,8 @@
 				array('label'=>'<span>TA的心情</span>', 'url'=>array('/friend/index','uid'=>$uid)),
 			);
 		}
-		$this->widget('zii.widgets.CMenu',array(
+		$this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 			'items'=>$items,
-			'activeCssClass'=>'on',
 			'encodeLabel'=>false,
 		));
 	?>

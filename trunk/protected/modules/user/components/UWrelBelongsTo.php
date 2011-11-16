@@ -67,10 +67,13 @@ class UWrelBelongsTo {
 	public function editAttribute($model,$field,$htmlOptions=array()) {
 		$list = array();
 		if ($this->params['emptyField']) $list[0] = $this->params['emptyField'];
-		
+
 		$models = CActiveRecord::model($this->params['modelName'])->findAll();
 		foreach ($models as $m)
-			$list[$m->id] = (($this->params['optionName'])?$m->getAttribute($this->params['optionName']):$m->id);
+        {
+            $attr =  (($this->params['optionName'])?$this->params['optionName']:'id');
+            $list[$m->$attr] = $m->getAttribute($this->params['relationName']);
+        }
 		return CHtml::activeDropDownList($model,$field->varname,$list,$htmlOptions=array());
 	}
 	

@@ -11,7 +11,7 @@ class Friend extends CActiveRecord
 	 * @var string $note
 	 * @var integer $dateline
 	 */
-
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -57,6 +57,7 @@ class Friend extends CActiveRecord
 				'condition'=>'group.gid=:gid AND group.fuid=friend.fuid', 
 				'joinType'=>'INNER JOIN',
 			),
+            'frienBelongdGroup'=>array(self::HAS_MANY, 'FriendBelongGroup', 'uid,fuid'),
 		);
 	}
 
@@ -75,6 +76,15 @@ class Friend extends CActiveRecord
 		);
 	}
 	
+	public function scopes()
+    {
+        return array(
+            'inGroup'=>array(
+                'condition'=>$_GET['gid']?'frienBelongdGroup.gid = '.$_GET['gid']:'',
+            ),
+        );
+    }
+
 	/**
 	 * Prepares attributes before performing validation.
 	 */
@@ -205,7 +215,51 @@ class Friend extends CActiveRecord
 			return $model;
 		}
 	}
-	
+
+    public function addToGroup($gid)
+    {
+        $uid = $this->uid;
+        $fuid = $this->fuid;
+		$model=new FriendBelongGroup;
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'uid=:uid AND fuid=:fuid AND gid = :gid';
+		$criteria->params = array(':uid'=>$uid,':fuid'=>$fuid,':gid'=>$gid);
+        $fbg = $model->find($criteria);
+        if(!empty($fbg))
+        {
+            return true;
+        }
+        else
+        {
+            //
+            $model->fuid = $fuid;
+            $model->uid = $uid;
+            $model->gid = $gid;
+            $rs = $model->save();
+            return $rs; 
+        }
+    }
+
+    public function delFromGroup($gid)
+    {
+        $uid = $this->uid;
+        $fuid = $this->fuid;
+		$model=new FriendBelongGroup;
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'uid=:uid AND fuid=:fuid AND gid = :gid';
+		$criteria->params = array(':uid'=>$uid,':fuid'=>$fuid,':gid'=>$gid);
+        $fbg = $model->find($criteria);
+
+        if(!empty($fbg))
+        {
+            $rs = $fbg->delete();
+            return $rs;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
 	public function delFriend()
 	{
@@ -217,9 +271,19 @@ class Friend extends CActiveRecord
 	 * 获得用户的所有好友分组列表
 	 * @param unknown_type $uid
 	 * @return Ambigous <mixed, multitype:, NULL, unknown>
+        //TODO cache
 	 */
 	public function getFriendGroups($uid)
 	{
+        
+		$key = "getFriendGroups_{$uid}";
+		//Yii::app()->cache->delete($key);
+		$resource=Yii::app()->cache->get($key);
+		if($resource!==false)
+		{
+            return $resource;
+		}
+
 		if(empty($uid))
 		{
 			$uid = Yii::app()->user->id;
@@ -227,12 +291,13 @@ class Friend extends CActiveRecord
 		//初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='id';
-		$criteria->condition="uid=0 OR uid=:uid";
+		$criteria->condition="(uid=0 OR uid=:uid) AND id != 1";
 		$criteria->params=array(':uid'=>$uid);
 
 		$model = new FriendGroup();
 		$groups = $model->findAll($criteria);
-		
+		$resource=Yii::app()->cache->set($key,$groups);
+
 		return $groups;
 	}
 	
@@ -256,7 +321,7 @@ class Friend extends CActiveRecord
 				if(is_array($arr))
 				{
 					$text = implode($arr, ',');
-					echo $text;
+					return $text;
 				}
 			}
 		}

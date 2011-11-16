@@ -14,7 +14,7 @@
 				<?php if($topic['dist']):?><span class="jh">精</span><?php endif;?>
 				<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
 			</td>
-			<td><?php echo CHtml::link($topic['name'],array('space','uid'=>$topic['uid']));?></td>
+			<td><?php echo CHtml::link($topic->group->name,array('space','uid'=>$topic['uid']));?></td>
 			<td><?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?></td>
 			<td class="time"><?php echo friendlyDate('m-d H:i',$topic['replytime'])?></td>
 			<?php endforeach;?>

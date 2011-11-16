@@ -29,7 +29,7 @@ class SAEOAuth extends CComponent
 	*/
 	public function getAuthorizeURL()
 	{
-		session_start();
+		#session_start();
 		$o = new SaeTOAuth($this->WB_AKEY , $this->WB_SKEY);
 		$keys = $o->getRequestToken();
 		$callback = Yii::app()->createAbsoluteUrl($this->callback);
@@ -73,6 +73,7 @@ class SAEOAuth extends CComponent
 		$o = new SaeTOAuth( $this->WB_AKEY , $this->WB_SKEY , $keys['oauth_token'] , $keys['oauth_token_secret']  );
 		$last_key = $o->getAccessToken($_REQUEST['oauth_verifier']);
 		$this->setOAuthData(self::AccessTokenName,$last_key);
+        #var_dump($keys);var_dump($last_key);
 	}
 	/*
 	* 获得sina client 

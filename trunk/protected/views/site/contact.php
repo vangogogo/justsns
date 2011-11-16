@@ -44,7 +44,7 @@ If you have business inquiries or other questions, please fill out the following
 
 	<div class="row">
 		<?php echo CHtml::activeLabelEx($model,'body'); ?>
-		<?php echo CHtml::activeTextArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo CHtml::activeTextArea($model,'body',array('rows'=>6, 'cols'=>50,'class'=>'t_input')); ?>
 	</div>
 
 	<?php if(extension_loaded('gd')): ?>

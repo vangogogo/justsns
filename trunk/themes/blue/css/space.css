@@ -9,7 +9,7 @@
 .user_info .user_img .img img { height: 100px; width: 100px; margin-top: 5px; border: 1px solid #FFFFFF; }
 .user_info .user_img .menu { display: block; margin-top: 10px; padding: 0px; width: 120px; }
 .user_info .user_img .menu a { width: 60px; text-align: center; line-height: 25px; display: block; float: left; }
-.user_info .Linfo { text-align:left; overflow: hidden; float: left; margin-left: 8px; width: 430px; }
+.user_info .Linfo { text-align:left; overflow: hidden; float: left; margin-left: 8px; width: 100%; }
 .user_info .Linfo .info { }
 .user_info .Linfo .info h2 { font-size: 14px; font-weight: bold; }
 .user_info .Linfo .info p { font-size: 12px; padding: 0px; margin: 10px 0 10px 0; color: #666; }

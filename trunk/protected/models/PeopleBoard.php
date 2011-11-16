@@ -11,8 +11,8 @@
  * @property string $name
  * @property string $board_content
  * @property integer $view_count
- * @property string $create_time
- * @property string $update_time
+ * @property string $ctime
+ * @property string $mtime
  * @property integer $is_delete
  */
 class PeopleBoard extends YiicmsActiveRecord
@@ -46,10 +46,10 @@ class PeopleBoard extends YiicmsActiveRecord
 			array('uid, object_id, view_count, is_delete', 'numerical', 'integerOnly'=>true),
 			array('object_type', 'length', 'max'=>20),
 			array('name', 'length', 'max'=>50),
-			array('update_time, create_time', 'safe'),
+			array('mtime, ctime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('board_id, uid, object_type, object_id, name, board_content, view_count, create_time, update_time, is_delete', 'safe', 'on'=>'search'),
+			array('board_id, uid, object_type, object_id, name, board_content, view_count, ctime, mtime, is_delete', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,8 +78,8 @@ class PeopleBoard extends YiicmsActiveRecord
 			'name' => Yii::t('admin','User Name'),
 			'board_content' => Yii::t('admin','Board Content'),
 			'view_count' => Yii::t('admin','View Count'),
-			'create_time' => Yii::t('admin','Create Time'),
-			'update_time' => Yii::t('admin','Update Time'),
+			'ctime' => Yii::t('admin','Create Time'),
+			'mtime' => Yii::t('admin','Update Time'),
 			'is_delete' => Yii::t('admin','Is Delete'),
 		);
 	}
@@ -102,8 +102,8 @@ class PeopleBoard extends YiicmsActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('board_content',$this->board_content,true);
 		$criteria->compare('view_count',$this->view_count);
-		$criteria->compare('create_time',$this->create_time,true);
-		$criteria->compare('update_time',$this->update_time,true);
+		$criteria->compare('ctime',$this->ctime,true);
+		$criteria->compare('mtime',$this->mtime,true);
 		$criteria->compare('is_delete',$this->is_delete);
 		if($this->is_delete == NULL)
 		{
@@ -127,14 +127,18 @@ class PeopleBoard extends YiicmsActiveRecord
 
         if(!empty($params))
         {
-			$criteria->compare('uid',$params['uid']);
-			$criteria->compare('object_type',$params['object_type']);
-			$criteria->compare('object_id',$params['object_id']);
-			$criteria->compare('name',$params['name'],true);
+			$arr = array('uid','object_type','object_id','name');
+			foreach($arr as $one)
+			{
+				if(!empty($params['uid']))
+				{
+					$criteria->compare('uid',$params['uid']);
+				}
+			}
         }
 		if(empty($params['order']))
 		{
-			$criteria->order = 'create_time DESC';
+			$criteria->order = 'ctime DESC';
 		}
         if(!empty($params['page']))
         {
@@ -142,16 +146,17 @@ class PeopleBoard extends YiicmsActiveRecord
         }
 		$model = self::model();
 
-
+		$total= $model->count($criteria);
 		if(!empty($params['limit']))
 		{
 			$criteria->limit = $params['limit'];
+			$pagecount = 0;
+			$pages = null;
 		}
 		else
 		{
 			// 分页
 			$pageSize = $params['pageSize']?$params['pageSize']:self::PAGE_SIZE;
-			$total= $model->count($criteria);
 			$pages=new CPagination($total);
 			$pages->pageSize=$pageSize;
 			$pagecount = ceil($total/$pageSize);
@@ -185,7 +190,7 @@ class PeopleBoard extends YiicmsActiveRecord
 		{
 			$this->uid=Yii::app()->user->id;
 			$time = time();
-			$this->create_time= date('Y-m-d H:i:s');
+			$this->ctime= date('Y-m-d H:i:s');
 			
 			$user = User::model()->findByPk($this->uid);
 			if(empty($user))
@@ -198,7 +203,7 @@ class PeopleBoard extends YiicmsActiveRecord
 			}
 		}
 		else
-			$this->update_time= date('Y-m-d H:i:s');
+			$this->mtime= date('Y-m-d H:i:s');
 		return true;
 	}
     /**

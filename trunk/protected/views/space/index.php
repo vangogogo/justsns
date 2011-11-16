@@ -1,22 +1,26 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
-<div class="grid_15 suffix_1">
-	<!--用户应用-->
-    <div class="system_info2 clearfix">
-        <ul class="seNav cf">
-		    <?php if(!empty($apps)) foreach($apps as $vo){ ?>
-			    <?php $app_num = isset( $apps_num[$vo['enname']] )?$apps_num[$vo['enname']]:0;
-    $vo['name'] = '相册' == $vo['name'] ? '相片':$vo['name'];
-				     if(empty($vo['uid_url'])) continue;
-			     ?>
-			    <li class="">
-				    <?php echo CHtml::link($vo['name'],array('space/'.$vo['enname'],'uid'=>$uid))?>
-			    </li>
-		    <?php }?>
-        </ul>
-	</div>
-	<!--用户应用end-->
+<div class="row">
 
-	<?php if(!$space_privacy){ ?>
+<div class="span11">
+<!--用户应用-->
+<div class="tab-menu">
+	<?php $items = array();if(!empty($apps)) foreach($apps as $vo): 
+			$one = array(
+				'label'=>$vo['name'],
+				'url'=>array('/'.$vo['enname'].'/index','uid'=>$uid),
+			);
+			$items[] = $one;
+		endforeach;
+	?>
+
+	<?php $this->widget('ext.bootstrap.widgets.menu.BootPills',array(
+		'items'=>$items,
+		'encodeLabel'=>false,
+	)); ?>
+</div>
+<!--用户应用end-->
+
+	<?php if(!empty($space_privacy)){ ?>
 	<br/>
 	<?php if($is_hide){ ?>
 	<div style="display: block;" class="ta_wqfw" id="limitdiv">{$uid|getUserName}的个人主页目前处于隐藏状态。</div>
@@ -28,7 +32,7 @@
 	<?php } ?>
 
 
-	<?php if($space_privacy){ ?>	 <!--隐私控制-->
+	<?php if(empty($space_privacy)){ ?>	 <!--隐私控制-->
 
 	<div class="Feed"><!-- 个人动态 begin  -->
 		<div class="tab-menu"><!-- 切换标签 begin  -->
@@ -44,7 +48,7 @@
 	</div><!-- 个人动态 end  -->
 
 
-	<?php if($wall_privacy){ ?>
+	<?php if(!empty($wall_privacy)){ ?>
 	<div class="Guestbook" id="wall"><!-- 留言板 begin  -->
 		<div class="tit"><span class="pl5">留言板</span></div>
 		<div class="GB_box">
@@ -127,7 +131,7 @@
 
 	<?php $this->widget('WPeopleBoard',
 				array(
-					'params' => array('object_id'=>$uid,'object_type'=>'space','limit'=>10,'more_link'=>$this->createUrl('lecturer/board',array('id'=>$lecturer->primaryKey))),
+					'params' => array('object_id'=>$uid,'object_type'=>'space','limit'=>10,'more_link'=>$this->createUrl('lecturer/board',array('id'=>$uid))),
 					'htmlOptions'=>array()
 				)
 			);
@@ -135,3 +139,4 @@
 	?>
 </div>
 <?php include('_right.php');?>
+</div>

@@ -15,7 +15,7 @@ class WTopBar extends CWidget
 	protected function renderContent()
 	{
 		//用户状态
-
+		$data = array();
 		$this->render('WTopBar',$data);
 	}
 }

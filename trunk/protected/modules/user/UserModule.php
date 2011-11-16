@@ -216,6 +216,49 @@ class UserModule extends CWebModule
 	 * Send mail method
 	 */
 	public static function sendMail($email,$subject,$message) {
+        //发送邮件
+        $adminEmail = Yii::app()->params['adminEmail'];
+        $adminEmail = 'yii4sae@sina.com';
+        $smtp_host = "smtp.sina.com";
+        $smtp_username  = 'yii4sae@sina.com';
+        $smtp_password  = '123456';
+		/*
+		$mail->quickSend( 
+			"huanghuibin@gmail.com" ,
+			"邮件标题" ,
+			"邮件内容" ,
+			"yii4sae@gmail.com" ,
+			"yiiforsae" 
+		);
+		*/
+        if(defined('SAE_TMP_PATH'))
+        {
+            $mail = new SaeMail();
+		    $rs = $mail->quickSend($email,$subject,$message,$smtp_username,$smtp_password);
+            return $rs;	
+        }
+
+        $mail = Yii::app()->mailer;
+        $mail->SetLanguage('zh_cn');
+
+        $mail->IsSMTP();                                      // set mailer to use SMTP
+        $mail->Host = $smtp_host;  // specify main and backup server
+        $mail->SMTPAuth = true;     // turn on SMTP authentication
+        $mail->Username = $smtp_username;  // SMTP username
+        $mail->Password = $smtp_password; // SMTP password
+        $mail->CharSet = 'utf-8';
+        #$mail->Port = 465;
+
+        $mail->From = $adminEmail;
+        $mail->FromName = 'admin';
+        $mail->AddReplyTo($adminEmail);
+        $mail->AddAddress($email);
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $rs = $mail->Send();
+
+        return $rs;
+
     	$adminEmail = Yii::app()->params['adminEmail'];
 	    $headers = "MIME-Version: 1.0\r\nFrom: $adminEmail\r\nReply-To: $adminEmail\r\nContent-Type: text/html; charset=utf-8";
 	    $message = wordwrap($message, 70);

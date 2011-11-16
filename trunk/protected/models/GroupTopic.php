@@ -1,6 +1,6 @@
 <?php
 
-class GroupTopic extends CActiveRecord
+class GroupTopic extends YiicmsActiveRecord
 {
 	public $group_name;
 	/**
@@ -51,11 +51,11 @@ class GroupTopic extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('gid, uid, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
+			array('gid, uid, viewcount, postcount, dist, top, lock, status, isrecom, is_del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>36),
 			array('title', 'length', 'max'=>255),
             array('title,content','required'),
-			array('attach', 'safe'),
+			array('attach, ctime, replytime, mtime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, gid, uid, name, title, viewcount, postcount, dist, top, lock, ctime, replytime, mtime, status, isrecom, is_del, attach', 'safe', 'on'=>'search'),
@@ -73,7 +73,8 @@ class GroupTopic extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'author' => array(self::BELONGS_TO, 'user', 'uid'),
+			'author' => array(self::BELONGS_TO, 'User', 'uid'),
+            'user' => array(self::BELONGS_TO, 'User', 'uid'),
 			'group' => array(self::BELONGS_TO, 'Group', 'gid'),
 			'comments' => array(self::HAS_MANY, 'GroupPost', 'tid', 'condition'=>'comments.status= 1', 'order'=>'comments.ctime DESC'),
 			'commentCount' => array(self::STAT, 'GroupPost', 'tid', 'condition'=>'group_post.status= 1'),
@@ -163,11 +164,7 @@ class GroupTopic extends CActiveRecord
 	{
 		if($this->isNewRecord)
 		{
-			$this->uid=Yii::app()->user->id;
-			$time = time();
-			$this->ctime=$time;
-			$this->replytime=$time;
-			
+			$this->uid=Yii::app()->user->id;		
 			$user = User::model()->findByPk($this->uid);
 			if(empty($user))
 			{
@@ -179,8 +176,6 @@ class GroupTopic extends CActiveRecord
 			}
 			$this->status = 0;
 		}
-		else
-			$this->mtime=time();
 		return true;
 	}
 	/**
@@ -189,20 +184,14 @@ class GroupTopic extends CActiveRecord
 	public function loadTopic($id=null)
 	{
 		if($id!==null || isset($_POST['tid']))
-			$model=$this->findbyPk($id!==null ? $id : $_POST['tid']);
+			$model=$this->with('user')->findbyPk($id!==null ? $id : $_POST['tid']);
 		if($model===null)
 			throw new CHttpException(404,'该话题不存在.');
 		if($model->is_del != 0)
 			throw new CHttpException(404,'该话题不存在或被删除.');
 		return $model;
 	}
-	
-	public function afterFind()
-	{		
-		$group = Group::model()->loadGroup($this->gid);
-		$this->group_name = $group->name;
-		return true;
-	}
+
 	
 	public function getTopicContent()
 	{

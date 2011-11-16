@@ -76,7 +76,7 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/group
 					}
 					else
 					{
-						$this->widget('zii.widgets.CMenu',array(
+						$this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 						'items'=>array(
 							array('label'=>'首页', 'url'=>array('/site/index')),
 							array('label'=>'随便看看', 'url'=>array('/site/contact')),

@@ -1,39 +1,33 @@
 <!-- top_bar -->
-<div class="topbar">
-	<div class="container_24">
-	
-		<div class="grid_16 usermenu">
-			<ul>
-				<li class=""><a href="http://www.yiiframework.com/doc/guide/1.1/zh_cn/index" title="Yii官方文档" target="_blank">Yii官方文档</a></li>
-				<li class=""><a href="http://www.yiiframework.com/extensions" title="Yii官方扩展" target="_blank">Yii官方扩展</a></li>
-				<li class="ls4"><a href="http://yiibook.com/" title="应用Yii1.1和PHP5进行敏捷Web开发" class="icm" target="_blank">Yii Book</a></li>
-				<li class="ls4"><a href="http://yiidemo.sinaapp.com/" title="yii demo 原有的" class="icm" target="_blank">Yii Demo</a></li>
-
-			</ul>
-		</div>
-		<div class="grid_8 usermenu">
-			<ul style="float:right;">
-
-				<?php if(Yii::app()->user->isGuest):?>
-					<li class="ls2">
-						<?php echo CHtml::link('登录',Yii::app()->user->loginUrl);?>
-					</li>
-					<li>
-						<?php echo CHtml::link('注册',array('/user/registration'));?>
-					</li>
-				<?php else: ?>
-					<li>
-						<?php if(1==2): ?>
-							<a href="javascript:void(0)" title="未读消息" class="icm msg"></a>
-						<?php endif; ?>
-					</li>
-					<li class="user_panel">
-                        <?php echo CHtml::link(Yii::app()->user->name,array('/user'),array());?>
-						<?php echo CHtml::link('退出',array('/user/logout'),array('id'=>'logout','class'=>""));?>
-					</li>
-				<?php endif;?>
-			</ul>
-		</div>
-	</div>
-</div>
+<?php
+		$array = array('adobe.com','default','flickr.com','lwis.celebrity','mtv.com','nvidia.com','vimeo.com');
+      $this->widget('ext.bootstrap.widgets.BootTopbar',array(
+        #'themeCssFile' => $array[6].'/default.css',
+        'items'=>array(
+            array('label'=>'首页', 'url'=>array('/site')),
+            array('label'=>'星座', 'url'=>array('/astro'), 'items'=>array(
+				array('label'=>'个人空间', 'url'=>array('/space/mine'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'好友', 'url'=>array('/friend/index'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow')),
+				array('label'=>'小组', 'url'=>array('/group'),'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'谁最@我', 'url'=>array('/user/weibo')),
+            )),
+            array('label'=>'Yii官方文档', 'url'=>'http://www.yiiframework.com/doc/guide/1.1/zh_cn/index','linkOptions'=>array('target'=>'_blank'), 'items'=>array(
+                array('label'=>'Yii官方扩展', 'url'=>'http://www.yiiframework.com/extensions','linkOptions'=>array('target'=>'_blank')),
+                array('label'=>'Yii Book', 'url'=>'http://yiibook.com/','linkOptions'=>array('target'=>'_blank')),
+                array('label'=>'Yii Demo', 'url'=>'http://yiidemo.sinaapp.com/','linkOptions'=>array('target'=>'_blank')),
+            )),
+            array('label'=>'联系我们', 'url'=>array('/site/contact'),'visible'=>Yii::app()->user->isGuest),
+        ),
+		'items2'=>Yii::app()->user->isGuest?array(
+			array('label'=>'登录', 'url'=>Yii::app()->user->loginUrl,'visible'=>!Yii::app()->user->isGuest),
+			array('label'=>'注册', 'url'=>array('/user/registration'),'visible'=>!Yii::app()->user->isGuest),
+		):
+		array(
+			array('label'=>'短信箱', 'url'=>array('/notify'),'visible'=>Yii::app()->user->isGuest),
+			array('label'=>Yii::app()->user->name, 'url'=>array('/user'),'visible'=>Yii::app()->user->isGuest),
+			array('label'=>'退出', 'url'=>array('/user/logout'),'visible'=>Yii::app()->user->isGuest),
+		)		
+		,
+    )); 
+?>
 <!-- /top_bar -->

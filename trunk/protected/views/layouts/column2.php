@@ -1,5 +1,5 @@
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="container">
+
 
 	<div class="grid_15 suffix_1">
 		<div id="content22">
@@ -11,5 +11,5 @@
 
 		</div><!-- sidebar -->
 	</div>
-</div>
+
 <?php $this->endContent(); ?>

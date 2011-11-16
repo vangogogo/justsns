@@ -47,6 +47,7 @@ class NotifyController extends Controller
 			'type_arr'=>$type_arr,
 			'notifys'=>$notifys,
 			'user'=>$user,
+			'pages'=>$pages,
 		);
 		$this->render('index',$data);
 	}
@@ -79,6 +80,7 @@ class NotifyController extends Controller
 		$data = array(
 			'msgs'=>$msgs,
 			'user'=>$user,
+			'pages'=>$pages,
 		);
 		$this->render('inbox',$data);
 	}
@@ -111,6 +113,7 @@ class NotifyController extends Controller
 		$data = array(
 			'msgs'=>$msgs,
 			'user'=>$user,
+			'pages'=>$pages,
 		);
 		$this->render('inbox',$data);
 	}
@@ -120,7 +123,7 @@ class NotifyController extends Controller
         $this->setPageTitle('写短消息'); 
 
         $model = new Msg();
-         $this->performAjaxValidation($model);
+        $this->performAjaxValidation($model);
 
 		$uid = Yii::app()->request->getQuery('uid');
         if($uid){
@@ -130,8 +133,26 @@ class NotifyController extends Controller
 
             $model->toUserId = $uid;
         }
+
+		$replyMsgId = Yii::app()->request->getQuery('replyMsgId');
+        if($replyMsgId){
+            $model->replyMsgId = $replyMsgId;
+        }
+
         $mid = Yii::app()->user->id;
 
+		if(!empty($_POST['Msg']))
+		{
+			$attributes = $_POST['Msg'];
+            $model->attributes = $attributes;
+            $model->save();
+
+			if(empty($model->errors))
+			{
+				$this->redirect(array('show','msg_id'=>$model->primaryKey));
+			}
+			//$model->validate();
+		}
 
 
 		if(isset($_POST['Msg']))
@@ -179,6 +200,9 @@ class NotifyController extends Controller
 			//请选择好友
 			throw new CHttpException(404,'你没有权限访问这个页面。');
 		}
+
+        
+
 
 		$uid = $msg->toUserId == $mid?$msg->fromUserId:$msg->toUserId;
 		$user = User::model()->findByPk($uid);

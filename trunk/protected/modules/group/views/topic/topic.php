@@ -3,12 +3,7 @@
 		<h3><span class="right mr5"><input type="button" id="BtnShare_1" onclick="sharePop('1','/thinksns/apps/group/index.php?s=/Topic','1')" class="BtnShare" value="分享"></span><span style="line-height: 30px;">主题：<?php echo $topic['title']?></span></h3>
 		<div class="li pt10">
 			<div style="width: 8%;" class="left">
-				<span class="headpic50">
-					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$topic['uid']));?>"  class="tips">
-						<img title="<?php echo User::model()->getUserName($topic['uid']);?>" src="<?php echo User::model()->getUserFace($topic['uid'],'middle');?>" />
-					</a>
-				</span>
-				<br>
+				<?php $this->widget('WUserFace',array('uid'=>$post['uid']));?>
 			</div>
 			<div style="width: 12%; overflow: hidden;" class="left lh30">
 				<a href="<?php echo $this->createUrl('/space/',array('uid'=>$topic['uid']));?>"  class="tips">
@@ -63,11 +58,7 @@
 		<?php foreach($post_list as $key => $post):?>
 		<div class="li pt10 topline">
 			<div class="left" style="width:8%;">
-				<span class="headpic50">
-					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$post['uid']));?>"  class="tips">
-						<img title="<?php echo User::model()->getUserName($post['uid']);?>" src="<?php echo User::model()->getUserFace($topic['uid'],'middle');?>" />
-					</a>
-				</span>
+				<?php $this->widget('WUserFace',array('uid'=>$post['uid']));?>
 				<br />
 			</div>
 			<div style="width: 12%; overflow: hidden;" class="left lh30">

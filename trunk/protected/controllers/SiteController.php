@@ -20,6 +20,9 @@ class SiteController extends Controller
 			'page'=>array(
 				'class'=>'CViewAction',
 			),
+			'assets'=>array(
+				'class'=>'SAEAssetsAction',
+			),
 		);
 	}
 	public function actionIndex()
@@ -65,6 +68,7 @@ class SiteController extends Controller
 		
 		//空间主人的好友
 		$friend_list = $owner->getUserFriends($uid);
+
 		$visitors = array();
 		$data = array(
 			'owner'=>$owner,

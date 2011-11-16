@@ -31,9 +31,8 @@
 			);
 		}
 
-		$this->widget('zii.widgets.CMenu',array(
+		$this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 		'items'=>$items,
-		'activeCssClass'=>'on',
 		'encodeLabel'=>false,
 		));
 

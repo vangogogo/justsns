@@ -1,87 +1,106 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<script type="text/javascript">
-	<!--
-		//指定当前组模块URL地址
-		var	URL			=	'/index.php?r=/Index';
-		var	APP			=	'/';
-		var	PUBLIC		=	'http://www.yiisns.com/public';
-		var	ROOT		=	'http://www.yiisns.com';
-		var TS			=	'http://www.yiisns.com/';
-		var MID			=	'0';
-		var NEED_LOGIN	=	'0';
-		var expire		=	'3600';
-		var TPIS		=	'0';
-	//-->
-	</script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta charset="utf-8">
+	<title>Bootstrap, from Twitter</title>
+
+
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+
+	<style type="text/css">
+	  body {
+		padding-top: 60px;
+	  }
+
+	.container-fruid{zoom:1;margin-left:-20px;}.container-fruid:before,.container-fruid:after{display:table;content:"";zoom:1;}
+	.container-fruid:after{clear:both;}
+	.container-fruid>.sidebar{display: inline;float: left;margin-left: 20px;width: 280px;}
+	.container-fruid>.content{display: inline;float: left;margin-left: 20px;width: 640px;}
+	</style>
+
 <?php
 	$cs = Yii::app()->clientScript;
 
 	$cs->registerCoreScript('jquery');
 	$cs->registerCoreScript('jquery.ui');
 
-	$cs->registerCssFile('/css/960gs/reset.css');
-	$cs->registerCssFile('/css/960gs/960_24_col.css');
-	$cs->registerCssFile('/css/style.css');
+    /*
+    $cs->scriptMap=array(
+        'jquery.js'=>false,
+        'jquery.min.js'=>false,
+        'jquery-ui.min.js'=>false,
+        'jquery.ajaxqueue.js'=>false,
+        'jquery.metadata.js'=>false,
+        'jquery-ui.css'=>false,
+    );
 
-	//$cs->registerCssFile('/css/group.css');
-	#$cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/sns.css');
+    echo CGoogleApi::init();
+    echo CHtml::script(
+        CGoogleApi::load('jquery','1.6.4') . "\n" .
+        CGoogleApi::load('jqueryui','1.8.16')
+        #CGoogleApi::load('jquery.ajaxqueue.js') . "\n" .
+        #CGoogleApi::load('jquery.metadata.js')
+    );
+    */
+    
+
+    #$cs->registerScriptFile('https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js');
+    #$cs->registerScriptFile('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js');
+
+	##$cs->registerCssFile('/css/960gs/reset.css');
+	#$cs->registerCssFile('/css/960gs/960_24_col.css');
+	#$cs->registerCssFile('/css/style.css');
+
+
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
     #$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.js');
     #$cs->registerCssFile(Yii::app()->request->baseUrl.'/js/pnotify/jquery.pnotify.default.css');
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.4.js');
     $cs->registerCssFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.4.css');
+
+
     $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
-    #$cs->registerCoreScript('jquery.ui');
+    #<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css" /> 
+
 ?>
 
 
-<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-<!--[if lt IE 8]>
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/ie.css" media="screen, projection" />
-<![endif]-->
+<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead',array(
+    'httpEquivs'=>array(
+        'Content-Type'=>'text/html; charset=utf-8',
+        #'Content-Language'=>'en-US'
+    ),
+    'defaultDescription'=>'YII实验基地,创造个人价值.',
+    'defaultKeywords'=>'yiis, yii, sae, sina, php, cache, mysql, astro, sns, demo',
+)); ?>
 
+<?php echo Yii::app()->bootstrap->registerBootstrap(); ?>
 </head>
 
 <body>
-
 <?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>
-<div class="container_24">
-		<!-- header -->
-		<div class="header">
-			<div class="logo i-a-sn fl"><a href="http://<?php echo SUB_DOMAIN_main;?>" title="返回首页">
 
-            </a></div>
-
-			<!-- menu -->
-			<div class="menu cb i-a-sn i-a-b">
-					<?php $this->widget('zii.widgets.CMenu',array(
-					'items'=>array(
-						array('label'=>'首页', 'url'=>array('/user/weibo')),
-						array('label'=>'联系我们', 'url'=>array('/site/contact'),'visible'=>Yii::app()->user->isGuest),
-						array('label'=>'个人空间', 'url'=>array('/space/mine'),'visible'=>!Yii::app()->user->isGuest),
-						array('label'=>'好友', 'url'=>array('/friend/index'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $friend_item),
-						array('label'=>'小组', 'url'=>array('/group'),'visible'=>!Yii::app()->user->isGuest),
-						array('label'=>'信息', 'url'=>array('/notify/inbox'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow'), 'items' => $notice_item),
-					),
-					)); ?>
-			</div>
-			<!-- /menu -->
-		</div>
-		<!-- /header -->
-
+<div class="container">
+	<div class="container-fruid">
 	<?php echo $content; ?>
 
-	<div class="clear"></div>
-
 	<!-- start.footer -->
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by LockPHP.
+	</div>
+	<footer>
+		<p>
+		Copyright &copy; <?php echo date('Y'); ?> by <a href="http://blog.lockphp.com" target="_blank">LockPHP</a>.
 		All Rights Reserved.
 		<?php echo Yii::powered(); ?>
-	</div>
+		</p>
+	</footer>
 	<!-- end.footer -->
 </div>
 <!-- end .container_24 -->

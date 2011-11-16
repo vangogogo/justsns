@@ -1,6 +1,6 @@
 <?php
 
-class SNSUser extends CActiveRecord
+class SNSUser extends YiicmsActiveRecord
 {
 
 	/**
@@ -24,7 +24,7 @@ class SNSUser extends CActiveRecord
 	public function getSpaceUrl($name = '',$title = '')
 	{
 		$uid = $this->id;
-		$url = Yii::app()->createUrl('/space/',array('uid'=>$uid));
+		$url = Yii::app()->createUrl('/space/index',array('uid'=>$uid));
 		return $url;
 	}
 	
@@ -42,7 +42,7 @@ class SNSUser extends CActiveRecord
 		{
 			$name = $username;
 		}
-		$url = CHtml::link($name,array('/space','uid'=>$uid),array('title'=>$username));
+		$url = CHtml::link($name,array('/space/index','uid'=>$uid),array('title'=>$username));
 
 		return $url;
 	}
@@ -129,7 +129,7 @@ class SNSUser extends CActiveRecord
 			//男或女
 			//$info =  $api->user_getInfo($uid,"sex");
 			$info = $this->attributes;
-			if( !$info['sex'] ) {
+			if( !empty($info['sex']) ) {
 				return Yii::app()->theme->baseUrl."/images/pic2.gif";
 			}else {
 				return Yii::app()->theme->baseUrl."/images/pic1.gif";
@@ -169,8 +169,12 @@ class SNSUser extends CActiveRecord
 		{
 			$user = User::model()->findByPk($uid);
 		}
-
-		return $user->username;
+        $username = $user->profile->name;
+        if(empty($username))
+        {
+            $username = $user->username;
+        }
+		return $username;
 	}
 
 	public function getUserGroupIcon()

@@ -23,6 +23,7 @@ class ProfileController extends Controller
 			$profile->attributes=$_POST['Profile'];
 
 			if($model->validate()&&$profile->validate()) {
+                $model->save();
 				$profile->save();
 				$this->refresh();
 			} else $profile->validate();
@@ -88,6 +89,7 @@ class ProfileController extends Controller
 	 */
 	public function actionChangepassword() {
 		$model = new UserChangePassword;
+        $model->scenario = 'changePassword';
 		if (Yii::app()->user->id) {
 			
 			// ajax validator
@@ -116,7 +118,45 @@ class ProfileController extends Controller
                         }
 					}
 			}
-			$this->render('changepassword',array('model'=>$model));
+			$this->render('ChangePassword',array('model'=>$model));
+	    }
+	}
+
+	/**
+	 * Change password
+	 */
+	public function actionChangeEmail() {
+		$model = new UserChangePassword;
+        $model->scenario = 'changePassword';
+		if (Yii::app()->user->id) {
+			
+			// ajax validator
+			if(isset($_POST['ajax']) && $_POST['ajax']==='changepassword-form')
+			{
+				echo UActiveForm::validate($model);
+				Yii::app()->end();
+			}
+			
+			if(isset($_POST['UserChangePassword'])) {
+					$model->attributes=$_POST['UserChangePassword'];
+					if($model->validate()) {
+						$new_password = User::model()->notsafe()->findbyPk(Yii::app()->user->id);
+                        //验证旧密码是否正确
+                        if(UserModule::encrypting($_POST['UserChangePassword']['currentPassword']) != $new_password->password)
+                        {
+                            $model->addError('currentPassword','验证错误');
+                        }
+                        else
+                        {
+						    $new_password->password = UserModule::encrypting($model->password);
+						    $new_password->activkey=UserModule::encrypting(microtime().$model->password);
+						    $new_password->save();
+						    Yii::app()->user->setFlash('profileMessage',UserModule::t("New password is saved."));
+						    $this->redirect(array("/user"));
+                        }
+					}
+			}
+			$this->render('ChangeEmail',array('model'=>$model));
 	    }
 	}
 

@@ -20,7 +20,7 @@ return array(
 	'copyrightInfo'=>'Copyright &copy; 2012 by lockphp.com All Rights Reserved.',
 
 	'author'=>'huanghuibin@gmail.com',
-	'homepage'=>'yiis.sinaapp.com',
+	'homepage'=>SUB_DOMAIN,
 	'keywords'=>'yii for sae,yiicms,yii程序共享,yii读写分离,yii教程,yii源码实例.',
 	'description'=>'Yii is a high-performance component-based PHP framework best for Web 2.0 development.新浪SAE是云计算服务商',
 

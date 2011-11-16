@@ -27,56 +27,41 @@ class FriendController extends Controller
 		$model = new Friend();
 		 //初始化
 		$criteria=new CDbCriteria;
-		$criteria->order='id';
-		$criteria->condition="t.uid=:uid";
+		$criteria->order='t.uid';
+		$criteria->condition="t.uid=:uid AND t.status = 1";
 		$criteria->params=array(':uid'=>$uid);
 
 		if(!empty($gid))
 		{
-			$criteria->join = "left join {{friend_belong_group}} on {{friend_belong_group}}.uid = t.uid ";
-			$criteria->addCondition('gid='.$gid);
+			$criteria->join = "left join {{friend_belong_group}} on {{friend_belong_group}}.uid = t.uid and {{friend_belong_group}}.fuid = t.fuid ";
+			$criteria->addCondition("{{friend_belong_group}}.gid=".$gid);
 		}
         else
         {
             $_GET['gid'] = 0;
         }
-		
+
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$friend_list = $model->with('user')->findAll($criteria);
-		//好友信息,获取好友记录等等
-		$friends = array();
-		if(!empty($friend_list))
-		{
-			foreach($friend_list as $key => $value)
-			{
-				$user = $value->user;
-				if(!empty($user))
-					$friends[$key] = $user;
-			}
-		}
+		$friend_list = $model->inGroup($_GET['gid'])->with('frienBelongdGroup')->together()->findAll($criteria);
 
-		$criteria=new CDbCriteria;
-		$criteria->condition = '(uid=:uid OR uid = 0) AND id != 1';
-		$criteria->params = array(':uid'=>Yii::app()->user->id);
-		$friendGroup = FriendGroup::model()->findAll($criteria);
-
+		$friendGroup = $model->getFriendGroups($uid);
 		//在线人数
 		$online = 0;
 
 		$data = array(
 			'is_me' => $is_me,
 			'uid' => $uid,
-			'friends' => $friends,
 			'gid' => $gid,
 			'pages' => $pages,
 			'total' => $total,
 			'online' => $online,
             'friendGroup'=>$friendGroup,
+            'friend_list'=>$friend_list,
 		);
 		
 		
@@ -99,13 +84,11 @@ class FriendController extends Controller
 		//检查是否好友
 		$uid = Yii::app()->user->id;
 		$fuid = Yii::app()->request->getParam('fuid');
+        
+        $model = new Friend();
+		$relation = $model->getFriendRelation($uid, $fuid);
 
-		$criteria=new CDbCriteria;
-		$criteria->condition = 'uid=:uid AND fuid=:fuid';
-		$criteria->params = array(':uid'=>$uid,':fuid'=>$fuid);
-		$model = Friend::model()->find($criteria);
-
-		if(empty($model))
+		if(empty($relation))
 		{
 			//throw new CHttpException(404,'不是好友.');
 			echo '不是好友';
@@ -144,8 +127,10 @@ class FriendController extends Controller
 
 			if(!empty($_POST['FriendBelongGroup']))
 			{
-				foreach($_POST['FriendBelongGroup'] as $gid)
+
+				foreach($_POST['FriendBelongGroup'] as $gid => $boolean)
 				{
+
 					//已经存在则剔除
 					if(in_array($gid,$frienBelongdGroup))
 					{
@@ -196,7 +181,53 @@ class FriendController extends Controller
 		}
 				
 	}
-	
+
+    public function actionAddToGroup()
+    {
+        $model = new Friend();
+		$uid = Yii::app()->user->id;
+		$fuid = Yii::app()->request->getParam('fuid');
+        $gid = Yii::app()->request->getParam('gid');
+
+		$relation = $model->getFriendRelation($uid, $fuid);
+
+		if(empty($relation))
+		{
+			//throw new CHttpException(404,'不是好友.');
+			echo '不是好友';
+			exit;
+		}
+        else
+        {
+            $return = $relation->addToGroup($gid);
+		    echo !$return?-1:1;
+        }
+
+        
+
+    }
+    public function actionDelFromGroup()
+    {
+        $model = new Friend();
+		$uid = Yii::app()->user->id;
+		$fuid = Yii::app()->request->getParam('fuid');
+        $gid = Yii::app()->request->getParam('gid');
+
+		$relation = $model->getFriendRelation($uid, $fuid);
+
+		if(empty($relation))
+		{
+			//throw new CHttpException(404,'不是好友.');
+			echo '不是好友';
+			exit;
+		}
+        else
+        {
+            $return = $relation->delFromGroup($gid);
+		    echo !$return?-1:1;
+        }
+
+    }
 	
 	public function actionFeed()
 	{
@@ -279,13 +310,13 @@ class FriendController extends Controller
 		$model=new Friend;
 		
 		$uid = Yii::app()->user->id;
-		$fuid = Yii::app()->request->getParam('id');
+		$fuid = Yii::app()->request->getParam('uid');
 
 		$msg = '';
 		//不允许加自己好友
 		if($fuid == $uid) 
 		{
-			$msg ='不允许自己加自己好友';
+			$msg ='不允许自己加自己好友...';
 		}
 		
 		$t = Yii::app()->request->getParam('t');
@@ -299,12 +330,12 @@ class FriendController extends Controller
 		$is_add = $model->checkFriendStatus($uid, $fuid);
 		if("1" === $is_add) 
 		{
-			$msg ='你们已经是好友了';
+			$msg ='你们已经是好友了...';
 
 		}
 		elseif("0" === $is_add)
 		{
-			$msg ='等待验证中';
+			$msg ='等待验证中...';
 		}
 
 		//对方已经发过请求了，直接就加为好友
@@ -320,7 +351,10 @@ class FriendController extends Controller
 			$model->attributes=$_POST['Friend'];
 
 			if($model->save())
-				$this->redirect(array('list'));
+            {
+                        YiicmsHelper::goBack();#$this->redirect(array('list'));
+            }
+				
 		}		
 		
 
@@ -381,6 +415,7 @@ class FriendController extends Controller
             $criteria->condition = " username like '%{$keyword}%' or email like '%{$keyword}%' ";
             #$criteria->params = array(':keyword'=>"%{$keyword}%");
         }
+        $withOption[] = 'profile';
 
 		$pages=new CPagination($total);
 		$pages->pageSize=self::PAGE_SIZE;
@@ -469,7 +504,7 @@ class FriendController extends Controller
 		$pages->pageSize=self::PAGE_SIZE;
 		$pages->applyLimit($criteria);
 		//获取数据集
-		$friends=$model->with($withOption)->together()->findAll($criteria);
+		$friends=$model->findAll($criteria);
 		
 		foreach($friends as $key=>$value) {
 				$user = $value->user;
