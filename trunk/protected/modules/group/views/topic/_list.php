@@ -1,4 +1,4 @@
-<table class="topiclist">
+<table class=".zebra-striped">
 	<tr>
 		<th>话题</th>
 		<?php if(!isset($no_group)):?><th width="100">小组</th><?php endif;?>

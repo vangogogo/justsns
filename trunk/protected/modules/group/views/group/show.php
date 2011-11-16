@@ -1,6 +1,7 @@
 <h1><?php echo $group['name'];?></h1>
 <div class="content">
-	<div class="groupintro radius">
+	<div class="alert-message block-message warning">
+		<a class="close" href="#">×</a>
 		<?php echo $group['logo'];?>
 
 		            <?php
@@ -10,7 +11,8 @@
 		            ?>
 
 		<div class="cdate">创建于 <?php echo friendlyDate('m-d H:i',$group['ctime'])?></div>
-	</div>	
+	</div>
+
 	<h2>小组最近话题 ······</h2>
 	<?php
 		//话题列表
