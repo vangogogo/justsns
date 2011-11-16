@@ -1,0 +1,28 @@
+name: yiis
+version: 1
+# URL重写
+handle:
+- rewrite: if(!is_dir() && !is_file()) goto "index.php?%{QUERY_STRING}"
+- expire: if(path ~ ".js$") time 8640000
+- expire: if(path ~ ".css$") time 8640000
+- compress: if(out_header["Content-Length"] >= 500) compress
+- compress: if(out_header["Content-Type"] == "text/html") compress
+#简单认证
+- passwdaccess: if( path ~ "/mycron/" ) passwd "cron:c1r2o3n4"
+
+cron:
+- description: 星座日程
+  url: mycron/astro/astro_day.php
+  schedule: every day of month 05:30
+  timezone: Beijing
+  login: cron@c1r2o3n4
+- description: 星座月份
+  url: mycron/astro/astro_month.php
+  schedule: $1 day of month 08:00
+  timezone: Beijing
+  login: cron@c1r2o3n4
+- description: 星座星期
+  url: mycron/astro/astro_week.php
+  schedule: every saturday of month 01:30
+  timezone: Beijing
+  login: cron@c1r2o3n4

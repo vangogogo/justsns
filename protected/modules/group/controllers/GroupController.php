@@ -85,7 +85,8 @@ class GroupController extends Controller
 
 		$group = $model->loadGroup($_GET['gid']);
 		//话题
-		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$_GET['page']);
+		$page = Yii::app()->request->getParam('page');
+		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$page);
 		$data =$model->getGroupThreads($params);
 		$data['group'] = $group;
 		$this->render('discussion',$data);
