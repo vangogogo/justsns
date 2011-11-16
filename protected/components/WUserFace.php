@@ -41,9 +41,9 @@ class WUserFace extends CWidget
 			    $avatar = 'http://'.SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic2.gif";
 		    }
         }
-        echo '<a href="'.$url.'">';
+        echo '<span class="media-grid"><a href="'.$url.'">';
         echo "<img class='thumbnail' src='{$avatar}' alt='{$name}' title='{$name}' width='50' height='50' />";
-        echo '</a>';
+        echo '</a></span>';
         return ;
 
         echo '<span class="headpic50"><a href="'.$url.'">';

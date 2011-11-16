@@ -56,7 +56,7 @@
 		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</h2>
 		<div class="ListBox">
 			<?php if(!empty($friend_list)){ ?>
-			<ul class="media-grid">
+			<ul class="unstyled">
 				<?php foreach($friend_list as $user){?>
 					<li>
                         <?php $this->Widget('WUserFace',array('uid'=>$user['id']));?>

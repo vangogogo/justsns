@@ -3,7 +3,7 @@
     ?>
 	<table width="100%">
 		<tr>
-			<td width="75" valign="top" class="media-grid"> 
+			<td width="75" valign="top"> 
                 <?php $this->widget('WUserFace', array('uid'=>$user->id)); ?>
 			</td>
 			<td valign="top">
