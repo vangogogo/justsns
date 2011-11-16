@@ -2,8 +2,13 @@
 <div class="grid_15 suffix_1">
 	<div class="groupintro radius">
 		<?php echo $group['logo'];?>
-		<?php echo $group['intro'];?>
-					
+
+		            <?php
+			            $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
+			            echo $group->intro;
+			            $this->endWidget();
+		            ?>
+
 		<div class="cdate">创建于 <?php echo friendlyDate('m-d H:i',$group['ctime'])?></div>
 	</div>	
 	<h2>小组最近话题 ······</h2>
@@ -12,11 +17,11 @@
 		$this->renderPartial('../topic/_list',array('no_group'=>1,'threads'=>$threads,'group'=>$group));
 	?>
 	<div class="topicbottom">
-		<?php if(empty($_GET['page'])){ if($page_count>1):?>
+		<?php if($page_count>1):?>
 		<div class="dislib">
-			<?php echo CHtml::link('> 更多小组话题',array('group/show','gid'=>$group['id'],'page'=>2));?>
+			<?php echo CHtml::link('> 更多小组话题',array('group/discussion','gid'=>$group['id'],'page'=>2));?>
 		</div>
-		<?php endif;}?>
+		<?php endif;?>
 	</div>
 </div>
 <div class="grid_8">

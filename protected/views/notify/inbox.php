@@ -1,6 +1,10 @@
     <?php
 	    include('_top.php');
     ?>
+<?php
+	$cs = Yii::app()->clientScript;
+    $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/msg.js');
+?>
     <?php if(!empty($msgs)):?>
 	<div class="MessageBox">
 		<div class="MList border"><!-- 好友日志 begin  -->
@@ -19,24 +23,24 @@
 						}
 						?>
 						<tr id="msg_<?php echo $msg->id;?>" class="<?php if($msg['is_read'] == 0) echo 'bg01';?>">
-							<td width="24" class="btmline">
+							<td width="24">
 							<input type="checkbox" name="checkbox" id="checkbox" value="<?php echo $msg->id;?>" class='checkbox <?php if($msg["is_read"] == 0) { echo "unread"; }else{ echo "read"; } ?>' />								</td>
-							<td width="24"class="btmline" id="bj_pic_<?php echo $msg->id;?>">
-								<?php if($msg["is_read"]):?>
+							<td width="24" id="bj_pic_<?php echo $msg->id;?>">
+								<?php if($msg["is_read"] == 0):?>
 									<img src="<?php echo PUBLIC_URL;?>images/ico_mail1.gif" alt="未读" width="14" height="10" />
 								<?php else:?>
 									<img src="<?php echo PUBLIC_URL;?>images/ico_mail3.gif" alt="已读" width="14" height="12" />
 								<?php endif;?>
 							</td>
-							<td width="70" class="btmline">
-								<?php echo $msg_user->getSpaceUrlWithFace();?>
+							<td width="70" class="media-grid">
+                                <?php $this->widget('WUserFace', array('uid'=>$msg_user->id)); ?>
 							</td>
-							<td width="184" class="btmline">
+							<td width="184">
 								<?php echo $msg_user->getSpaceUrlWithName();?>
 								<br />
 								<?php echo friendlyDate('Y-m-d H:i',$msg->ctime);?>
 							</td>
-							<td width="473" class="btmline">
+							<td width="473">
 								<?php if($msg["is_read"]){?>
 									<?php echo CHtml::link($msg->subject,array('show','msg_id'=>$msg->id));?>
 								<?php }else{?>
@@ -55,7 +59,7 @@
 
 			<div class="MenuSub pl5">
 				<label for="message_selector">选择:</label>
-				<select id="message_selector2" name="message_selector2" onchange="select_change(this)" class="mt5">
+				<select id="message_selector2" name="message_selector2" onchange="select_change(this)" class="combobox mt5">
 					<option selected="selected" value="^_^">---</option>
 					<option value="unAll">不选</option>
 					<option value="read">已读</option>

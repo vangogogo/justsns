@@ -24,3 +24,7 @@
 		<input type="submit" value="提 交" class="btn_b" name="input" />
 	</div>
 <?php echo EHtml::endForm(); ?> 
+
+<script>
+    
+</script>

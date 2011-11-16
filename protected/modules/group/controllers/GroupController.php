@@ -3,6 +3,7 @@
 class GroupController extends Controller
 {
 	private $_model;
+	const THREAD_PAGE_SIZE=6;
 	/**
 	 * 小组列表页
 	 */
@@ -11,7 +12,7 @@ class GroupController extends Controller
 		$model = new Group();
 		$params = array('pageSize'=>1);		
 		$new_groups =$model->getNewGroups($params);
-		$groups_count = $model->countGroups();
+		#$groups_count = $model->countGroups();
 		$d = $model->getGroupThreads(array(),12);
 		$threads = $d['threads'];
 		$pages = $d['pages'];
@@ -41,21 +42,12 @@ class GroupController extends Controller
 
 
 		//话题
-		$params = array('pageSize'=>20,'page'=>$_GET['page']);
+		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$_GET['page']);
 		$d =$model->getGroupThreads($params);
 
 		$threads = $d['threads'];
 		$pages = $d['pages'];
-
-		$_model=new GroupTopic('search');
-		$_model->unsetAttributes();
-        $_model->gid = $gid;
-        $_model->is_del = 0;
-        $_dataProvider = $_model->search();
-        $threads = $_dataProvider->getData();
-        $pages = $_dataProvider->getPagination();
-		$page_count = $pages->getPageCount();
-
+        $page_count = $pages->getPageSize();
 
 		$adminList = array();
 		$memberList = array();
@@ -68,22 +60,19 @@ class GroupController extends Controller
 			'pages'=>$pages,
 			'page_count'=>$page_count,
 		);
-
-
-
 		$this->render('show',$data);
 	}
 
 	/**
-	 * 小组首页,到了某个小组
+	 * 小组列表页
 	 */
 	public function actionList()
 	{
 		$model = new Group();
-		$group_list =$model->getNewGroups($params);
-		$data = array(
-			'group_list'=>$group_list,
-		);
+
+		$params = array('pageSize'=>20,'page'=>$_GET['page']);
+		$data = $model->getGroups($params);
+
 		$this->render('list',$data);
 	}
 
@@ -94,9 +83,24 @@ class GroupController extends Controller
 	{
 		$model = new Group();
 		$group = $model->loadGroup($_GET['gid']);
-		$data = $group->getGroupThreads();
+		//话题
+		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$_GET['page']);
+		$data =$model->getGroupThreads($params);
 		$data['group'] = $group;
 		$this->render('discussion',$data);
+	}
+	/**
+	 * 小组的所有话题
+	 */	
+	public function actionMembers()
+	{
+		$model = new Group();
+		$group = $model->loadGroup($_GET['gid']);
+		//话题
+		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$_GET['page']);
+		$data =$group->getGroupMembers($params);
+		$data['group'] = $group;
+		$this->render('members',$data);
 	}
 	/**
 	 * 创建小组
@@ -120,7 +124,7 @@ class GroupController extends Controller
 		$data = array(
 			'owner'=>$owner,
 			'is_me'=>$is_me,
-			'form'=>$model,
+			'group'=>$group,
 			'category_list'=>$category_list,
 		);
 		$this->render('create',$data);	
@@ -130,21 +134,24 @@ class GroupController extends Controller
 		$uid = Yii::app()->user->id;
 		
 		$model = new Group();
-		$model->scenario = 'create';
+		$group = $model->loadGroup($_GET['gid']);
+
+        $this->performAjaxValidation($group);
+
 		$category_list = $model->getGroupCategory();
 		$category_list = CHtml::listData($category_list,'id','title');
 		
 		if(!empty($_POST['Group']))
 		{
 			$attributes = $_POST['Group'];
-			$model->attributes = $attributes;
-			$model->validate();
+			$group->attributes = $attributes;
+			$group->save();
 		}
 		
 		$data = array(
 			'owner'=>$owner,
 			'is_me'=>$is_me,
-			'form'=>$model,
+			'group'=>$group,
 			'category_list'=>$category_list,
 		);
 		$this->render('update',$data);	

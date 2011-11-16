@@ -8,8 +8,8 @@
 			</td>
 			<td>
 				<h3><?php echo friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　
-					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$topic['uid']));?>"  class="tips">
-						<?php echo User::model()->getUserName($topic['uid']);?>
+					<a href="<?php echo $this->createUrl('/space/index',array('uid'=>$topic['uid']));?>"  class="tips">
+						<?php echo $topic->user->getUserName();?>
 					</a>
 				</h3>
 				<div class="content">
@@ -32,7 +32,7 @@
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
 					<?php } elseif($this->mid == $topic['uid']) { ?>
 					
-						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']));?> ┊
+						<?php echo CHtml::link('编辑',array('topic/update','tid'=>$topic['id']));?> ┊
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
 					<?php } ?>
 
@@ -54,8 +54,8 @@
 					</td>
 					<td>
 						<h4><?php echo friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　
-							<a href="<?php echo $this->createUrl('/space/',array('uid'=>$topic['uid']));?>"  class="tips">
-								<?php echo User::model()->getUserName($topic['uid']);?>
+							<a href="<?php echo $this->createUrl('/space/index',array('uid'=>$topic['uid']));?>"  class="tips">
+								<?php echo $post->user->getUserName();?>
 							</a>
 						</h4>
 						<div id="comment_<?php echo$post['id'];?>" class="content">

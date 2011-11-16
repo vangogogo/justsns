@@ -3,6 +3,10 @@ var lastinput = "";
 var touid = 0;
 
 var doAddReply_url = TS+"/mini/doAddReply";
+var getReply_url = TS+"/mini/GetReply";
+var doDeleteReply_url = TS+"/mini/DoDeleteReply";
+var doDeleteMini_url = TS+"/mini/DoDeleteMini";
+var getReplyCount_url = TS+"/mini/getReplyCount";
 $(document).ready(function() {
 	$(".input_box > textarea").val("添加回复");
 	$('#mini-coment').click(function() {

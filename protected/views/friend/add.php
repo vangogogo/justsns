@@ -1,38 +1,34 @@
-<div class="grid_20">
+<div class="grid_16">
 	<?php if(!empty($msg)) {		echo $msg;?>
 
 	<?php }else{?>	
 	<div class="con">
-	<?php echo CHtml::beginForm(); ?>
-		<?php echo CHtml::activeHiddenField($model,'fuid');?>
-			<table cellspacing="0" cellpadding="0" border="0" width="100%" style="height: 120px;">
+    <?php $form=$this->beginWidget('CActiveForm', array(
+	    'id'=>'user-form',
+	    'enableAjaxValidation'=>true,
+	    #'disableAjaxValidationAttributes'=>array('LoginForm_verifyCode'),
+	    'clientOptions'=>array(
+		    'validateOnSubmit'=>true,
+	    ),
+	    #'htmlOptions' => array('enctype'=>'multipart/form-data'),
+    )); ?>
 
-				<tr>
-					<td height="100px" width="20%" valign="top">
-						<img src="images/user/pic3.jpg"/>
-					</td>
-					<td width="80%" valign="top" id="tishi">
-						<?php echo CHtml::activeTextArea($model,'note',array('class'=>'Text'));?>
+		<?php echo $form->hiddenField($model,'fuid'); ?>
 
-											
-					</td>
-				</tr>
-			   <!-- <tr id="f_group">
-					<td>分组：</td>
-					<td id="tishi"><select name="gid" id="gid">
-											</select></td>
-				</tr>-->
+        <div class="row">
+            <?php $this->widget('WUserFace', array('uid'=>$model->fuid)); ?>
+        </div>
+        <div class="row">
+			<?php echo $form->textArea($model,'note',array('class'=>'t_input t_area'));?>
+        </div>
 
-			
-		</table>
-			<input type="image" value="提交" id="button" name="button" src="images/system/btnRelease.gif"/>
+	    <div class="row submit">
+            <label></label>
+		    <?php echo CHtml::submitButton('加为好友',array('class'=>'btn')); ?>
+            <input type="button" class="btn_w" value="取 消" />
+	    </div>
 
-			<input type="button"  value="取 消" class="btn_w" name="input2"/>		
-
-		<div id="f_button" class="btm">
-
-		</div>
-	<?php echo CHtml::endForm(); ?> 
+    <?php $this->endWidget(); ?>
 		</div>
 	<?php }?>	
 </div>

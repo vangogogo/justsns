@@ -2,7 +2,8 @@
 class WUserFace extends CWidget
 {
 	public $uid = '';
-    public $size = '48';
+    public $size = 'small';
+    public $user;
 
 	/**
 	 * @author :majc
@@ -10,33 +11,47 @@ class WUserFace extends CWidget
 	 */
 	public function run()
 	{
-		$user = User::model()->findByPk($this->uid);
+        if(empty($this->user))
+        {
+		    $user = User::model()->findByPk($this->uid);
+        }
+        else
+        {
+            $user=$this->user;
+        }
+
         $avatar = $user->profile->avatar;
         $name = $user->profile->name;
-        $url = Yii::app()->controller->createUrl('/space',array('uid'=>$this->uid));
+
+        $url = Yii::app()->controller->createUrl('/space/index',array('uid'=>$this->uid));
+        $span_class = $this->size=='small'?'headpic50':'';
         if(!empty($avatar))
         {
-            echo '<span class="headpic50"><a href="'.$url.'">';
-            echo "<img src='{$avatar}' alt='{$name}' title='{$name}' />";
-            echo '</a></span>';
-            return ;
+            if($this->size != 'small')
+            {
+                $avatar = str_replace('/50/','/180/',$avatar);
+            }
         }
         else
         {
             //男或女
 		    if($user->profile->sex == 1) {
-			    $default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic1.gif";
+			    $avatar = 'http://'.SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic1.gif";
 		    }else {
-			    $default_img = SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic2.gif";
+			    $avatar = 'http://'.SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic2.gif";
 		    }
-
         }
+        echo '<a href="'.$url.'">';
+        echo "<img class='thumbnail' src='{$avatar}' alt='{$name}' title='{$name}' width='50' height='50' />";
+        echo '</a>';
+        return ;
+
         echo '<span class="headpic50"><a href="'.$url.'">';
         $this->widget('ext.yii-gravatar.YiiGravatar', array(
             'email'=>$user['email'],
             'size'=>$this->size,
             'defaultImage'=>'http://www.amsn-project.net/images/download-linux2.png',
-            'defaultImage'=>'http://'.$default_img,
+            'defaultImage'=>$avatar,
             'secure'=>false,
             'rating'=>'r',
             'emailHashed'=>false,

@@ -56,10 +56,10 @@ class TopicController extends Controller
 			//$model->validate();
 		}
 		$data = array(
-			'model'=>$model,
+			'topic'=>$model,
 			'group'=>$group,
 		);
-		$this->render('_form',$data);
+		$this->render('create',$data);
 	}
 
     protected function performAjaxValidation($model)
@@ -74,7 +74,7 @@ class TopicController extends Controller
 	/**
 	 * 编辑话题
 	 */
-	public function actionEdit()
+	public function actionUpdate()
 	{
 		$model = new GroupTopic();
         $this->performAjaxValidation($model);
@@ -96,10 +96,10 @@ class TopicController extends Controller
 		}
 		
 		$data = array(
-			'model'=>$model,
+			'topic'=>$model,
 			'group'=>$group,
 		);
-		$this->render('_form',$data);
+		$this->render('update',$data);
 	}
 		
 	/**
@@ -113,7 +113,7 @@ class TopicController extends Controller
 		//相关话题求助
 		$gid = $topic->gid;
 		$group = Group::model()->loadGroup($gid);
-		$new_topics = $group->getGroupNewThreads();
+
 		//默认回复
 		$GroupPost = $this->addPost();
 		$GroupPost->gid = $topic->gid;

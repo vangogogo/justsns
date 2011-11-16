@@ -20,7 +20,7 @@
 				<span class="time"><?php echo date('Y-m-d H:s',$vo['ctime'])?></span>
 			</span>
 		</h4>
-		<p><?php echo $vo['comment'];?><a href="javascript:reply(<?php echo $vo['uid']?>,<?php echo $vo['appid'];?>)" onclick="">回复</a></p>
+		<p><?php echo $vo['comment'];?> <a href="javascript:reply(<?php echo $vo['uid']?>,<?php echo $vo['appid'];?>)" onclick="">回复</a></p>
 	</div>
 	<div class="c" ></div>
 </div>

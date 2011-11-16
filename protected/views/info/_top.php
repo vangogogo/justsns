@@ -5,7 +5,7 @@
 </div><!-- page_title end -->
 <!-- 切换标签 begin  -->
 <div class="tab-menu">
-	<?php $this->widget('zii.widgets.CMenu',array(
+	<?php $this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 		'items'=>array(
 			array('label'=>'<span>基本资料</span>', 'url'=>array('/info/index')),
 			array('label'=>'<span>个人情况</span>', 'url'=>array('/info/intro')),
@@ -14,7 +14,6 @@
 			array('label'=>'<span>工作情况</span>', 'url'=>array('/info/career')),
 			array('label'=>'<span>上传头像</span>', 'url'=>array('/info/face')),
 		),
-		'activeCssClass'=>'on',
 		'encodeLabel'=>false,
 	)); ?>
 </div>

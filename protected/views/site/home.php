@@ -29,7 +29,7 @@ $(document).ready(function() {
 }); 
 
 </script>
-<div class="grid_15 suffix_1">
+<div class="content">
 	<div class="user_info"><!-- 用户资料 begin  -->
 
 		<div class="user_img">

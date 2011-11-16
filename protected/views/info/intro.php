@@ -1,35 +1,18 @@
-<?php include('_top.php');
-?>
+<?php include('_top.php');?>
 
-<?php
-		echo EHtml::beginForm(); 
-		EHtml::setOptions(array(
-		
-			//'errorLabelContainer' 	=> 'div.container ul',
-			//'errorContainer'		=> 'div.container',
-			'errorElement'			=> "div",
-			//'wrapper' 				=> 'li',
-			'errorClass' 			=> 'invalid',
-			
-			//错误提示
-			'errorPlacement' => 'function(error, element) {element.parents("li").find("div.error_info").show(); var error_label = element.parent("div").next("div").find(".clue p");error.appendTo(error_label);}',
-			//正确显示
-			'success'=>'function(label) { label.parents("div.error_info").hide().prev(".success").show();}',
-			'keyup' 				=> false,
-			'focusout' 				=> true,
-			
-			'highlight' 			=> '
-				function(element,errorClass){
+    <?php $form=$this->beginWidget('CActiveForm', array(
+	    'id'=>'user-form',
+	    'enableAjaxValidation'=>true,
+	    #'disableAjaxValidationAttributes'=>array('LoginForm_verifyCode'),
+	    'clientOptions'=>array(
+		    'validateOnSubmit'=>true,
+	    ),
+	    #'htmlOptions' => array('enctype'=>'multipart/form-data'),
+    )); ?>
 
-			       		$(element).addClass("invalid");
-			       		$(element).parents("li").find("div.error_info").show().prev(".success").hide();					
-			}',
-			'submitHandler' => 'function(form){$.fn.EJFValidate.submitHandler(form);}'
-		));
-		
-?>
 <div class="data jsvform" style="padding-top:30px;"><!-- 修改密码 begin  -->
-<?php echo EHtml::errorSummary($form);?>
+<?php echo $form->errorSummary($model); ?>
+
 	<div style="padding: 10px 0px;" class="lh18 alC border cGray2">
 		为了更好地保护你的账户安全，需要验证你拥有这个Email地址。
 		<br/>
@@ -39,14 +22,14 @@
 		<li>
 			<div class="cl">旧Email：<em>*</em></div>
 			<div class="cc">
-				<?php echo Yii::app()->user->email;?>
+				<?php #echo Yii::app()->user->email;?>
 			</div>
 			<div class="c"></div>
 		</li>
 		<li>
 			<div class="cl">新email：<em>*</em></div>
 			<div class="cc">
-				<?php echo EHtml::activeTextField($form,'email',array('class'=>'t_input','value'=>$form->email)); ?>
+				<?php echo $form->TextField($model,'email',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -66,7 +49,7 @@
 			<div class="cl">验证码：<em>*</em></div>
 			<div class="cc">
 				<?php $this->widget('CCaptcha'); ?><br/>
-				<?php echo EHtml::activeTextField($form,'verifyCode',array('class'=>'t_input')); ?>
+				<?php #echo $form->TextField($model,'verifyCode',array('class'=>'t_input')); ?>
 			</div>
 			<div class="cr">
 				<div class="success hidden">
@@ -83,10 +66,10 @@
 		</li>
 		<?php } ?>
 		<li><div class="cl"><em>&nbsp;</em></div><div class="cc">
-			<?php echo CHtml::submitButton('确认修改',array('class'=>'btn_b')); ?>
+			<?php echo CHtml::submitButton('确认修改',array('class'=>'btn')); ?>
 			</div><div class="cr"></div>
 			<div class="c"></div>
 		</li>
 	</ul>
 </div><!-- 修改密码 end  -->
-<?php echo EHtml::endForm(); ?>
+<?php $this->endWidget(); ?>

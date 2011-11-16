@@ -1,11 +1,11 @@
-<?php include('_top.php');?>
-<div style="margin-left:20px;" class="gift_list">
+<div class="gift_list">
 	<?php foreach($gifts as $gift):?>
 	<div class="gift_box">
-		<div class="left" style="width:90px;">
+		<div class="left" style="width:80px;">
+            <?php $this->widget('WUserFace',array('uid'=>$gift['toUserId'])); ?>
 			<?php echo CHtml::image($this->image_dir.$gift['gift']->img,$gift['gift']->name,array('desc'=>$gift['gift']->desc));?>
 		</div>
-		<div class="left" style="width:560px;">
+		<div class="left" style="width:480px;">
 			<div class="lh20">
 				<?php if($gift['access'] == 3 AND $gift['fromUserId'] != $this->mid)
 					echo CHtml::encode('神秘人士');
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="c">
+		<div class="clear">
 		</div>
 	</div>
 	<?php endforeach;?>

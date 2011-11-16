@@ -9,6 +9,8 @@ class RecoveryController extends Controller
 	 */
 	public function actionRecovery () {
 		$form = new UserRecoveryForm;
+        $this->performAjaxValidation($form);
+
 		if (Yii::app()->user->id) {
 		    	$this->redirect(Yii::app()->controller->module->returnUrl);
 		    } else {

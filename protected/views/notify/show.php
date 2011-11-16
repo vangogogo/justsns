@@ -4,17 +4,15 @@
 	<table width="100%">
 		<tr>
 			<td width="75" valign="top"> 
-				<?php echo $user->getSpaceUrlWithFace($user->id,1);?>
+                <?php $this->widget('WUserFace', array('uid'=>$user->id)); ?>
 			</td>
 			<td valign="top">
 				<?php if($msg->toUserId == Yii::app()->user->id):?>
-				<span class="pl2">来自: </span>
-				<span class="pl2"><?php echo User::model()->getSpaceUrlWithName($msg->fromUserId);?></span>
+				<span class="pl2">来自: <?php echo User::model()->getUserName($msg->fromUserId);?></a></span>
 				<?php endif;?>
 
 				<?php if($msg->fromUserId == Yii::app()->user->id):?>
-				<span class="pl2">发往: </span>
-				<span class="pl2"><?php echo User::model()->getSpaceUrlWithName($msg->toUserId);?></span>
+				<span class="pl2">发往: <?php echo User::model()->getUserName($msg->toUserId);?></a></span>
 				<?php endif;?>
 				<br>
 				<span class="pl2">时间: <?php echo date('Y-m-d H:s',$msg->ctime)?></span>
@@ -32,9 +30,9 @@
 				</div>
 				<p>
 					<?php if($msg->fromUserId != Yii::app()->user->id):?>
-					<input type="submit" value="回复" name="m_reply">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php echo CHtml::link('回复',array('/notify/write','uid'=>$uid,'replyMsgId'=>$msg->primaryKey),array('title'=>'回复','class'=>'btn'));?>
 					<?php endif;?>
-					<input type="submit" value="删除" name="m_delete">
+                    <?php echo CHtml::link('删除',array('doDelMsg','msg_id'=>$msg->id),array('class'=>'btn a_confirm_link','title'=>'确认删除短信息?'))?>
 				</p>
 			</td>
 		</tr>

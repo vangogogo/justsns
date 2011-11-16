@@ -1,49 +1,58 @@
     <?php include('_top.php');?>
 
-    <?php $form=$this->beginWidget('CActiveForm', array(
-	    'id'=>'user-form',
-	    'enableAjaxValidation'=>true,
-	    #'disableAjaxValidationAttributes'=>array('LoginForm_verifyCode'),
-	    'clientOptions'=>array(
-		    'validateOnSubmit'=>true,
-	    ),
-	    #'htmlOptions' => array('enctype'=>'multipart/form-data'),
-    )); ?>
+<?php $form=$this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
+    'id'=>'user-form',
+    'stacked'=>false, // should this be a stacked form?
+    'errorMessageType'=>'block', // how to display errors, inline or block?
+	'enableAjaxValidation'=>true,
+	#'disableAjaxValidationAttributes'=>array('LoginForm_verifyCode'),
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
+	#'htmlOptions' => array('enctype'=>'multipart/form-data'),
+)); ?>
+
     <!-- 写短消息 begin  -->
-    <div class="MList">
+    <?php echo $form->errorSummary($model); ?>
+
+
+
+
+	    <div class="clearfix">
+
+		
+                <div class="media-grid" style="margin:0 38px 0 0;position: absolute;left 20px; width: 80px;">
+				<?php $this->widget('WUserFace', array('uid'=>$model->toUserId)); ?></div>
 
         <?php if(!empty($model->toUserId)):?>
             <?php echo $form->hiddenField($model,'toUserId'); ?>
-	        <div class="row">
-                <label>发送给</label>
-                <span><?php echo $toUserName;?></span>
+				<label>发送给</label>
+                
+			<div class="input">
+              <div class="input-prepend">
+                <span class="add-on">@</span>
+                <input class="medium  disabled" id="prependedInput" name="" size="8" type="text" value="<?php echo $toUserName;?>">
+              </div>
 
-                <?php $this->widget('WUserFace', array('uid'=>$model->toUserId)); ?>
+            </div>
 
-	        </div>
+
+
         <?php else:?>
-	    <div class="row">
-	        <?php #if(!Yii::app()->user->isGuest) $this->widget('WFriendSelect'); ?>
-	    </div>
-        <?php endif;?>
 
-	    <div class="row">
-	        <?php echo $form->labelEx($model,'subject'); ?>
-	        <?php echo $form->textField($model,'subject',array('class'=>'t_input')); ?>
-	        <?php echo $form->error($model,'subject'); ?>
+	        <?php #if(!Yii::app()->user->isGuest) $this->widget('WFriendSelect'); ?>
+
+        <?php endif;?>
 	    </div>
-	
-	    <div class="row">
-            <label></label>
-	        <?php echo $form->textarea($model,'content',array('class'=>'t_input t_area')); ?><br/>
-	        <label></label><?php echo $form->error($model,'content'); ?>
-	    </div>
+			<?php echo $form->textFieldBlock($model,'subject',array('class'=>'span3')); ?>
+
+			<?php echo $form->textAreaBlock($model,'content',array('class'=>'span8','row'=>5)); ?>
 
 	    <div class="row submit">
             <label></label>
 		    <?php echo CHtml::submitButton('发送',array('class'=>'btn')); ?>
-            <input type="button" class="btn_w" onclick="history.back(-1);"value="取 消" />
+            <input type="button" class="btn_w" onclick="history.back(-1);"value="取消" />
 	    </div>
-    </div>
+
 	<!-- 发短消息 end  -->
     <?php $this->endWidget(); ?>

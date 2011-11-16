@@ -31,9 +31,8 @@
 			);
 		}
 		
-		$this->widget('zii.widgets.CMenu',array(
+		$this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 		'items'=>$items,
-		'activeCssClass'=>'on',
 		'encodeLabel'=>false,
 		));
 
@@ -41,10 +40,10 @@
 	?>
 </div>
 
-    <?php if(!empty($friends)):?>
+    <?php if(!empty($friend_list)):?>
 	<ul class="user-list">
-		<?php foreach($friends as $friend){?>
-            <?php $this->renderPartial('_friend_list',array('friend'=>$friend,'uid'=>$uid,'is_me'=>$is_me));?>
+		<?php foreach($friend_list as $friend){?>
+            <?php $this->renderPartial('_friend_list',array('user'=>$friend->user,'friend'=>$friend,'uid'=>$friend['fuid'],'is_me'=>$is_me,'friendGroup'=>$friendGroup));?>
 		<?php }?>
 	</ul>
 
@@ -52,4 +51,3 @@
 		<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
 	</div>
     <?php endif;?>
-

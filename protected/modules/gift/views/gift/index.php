@@ -1,8 +1,7 @@
-<?php include('_top.php'); ?>
 <script type="text/javascript">
 	var url = '__URL__';
 	$(function(){
-		selectItems(1);
+		//selectItems(1);
 		<?php if($_GET["uid"] && $_GET['uid'] != $mid){?>
 				//指定发给某人
 				var uid = <?php echo $user['id']?$user['id']:'';?>;
@@ -15,6 +14,7 @@
 				}
 		<?php }?>
 	});
+
 	function selectItems(id){
 		$('.gift_items').each(function(test){
 			$(this).attr('class','gift_items');
@@ -53,55 +53,58 @@
 		}
 	}
 </script>
-<div style="padding-left:20px;">
-	<div class="f14px fB lh35" style=" margin-top:30px;">
-		选择一个礼物:
-	</div>
-	<div class="tab_lw">
-		<?php foreach ($giftCategory as $key => $category):?>
-			<a href="javascript:void(0)" class="gift_items on" onclick='selectItems(<?php echo $category['id'];?>)' id='item{<?php echo $category['id'];?>}'><?php echo $category['name'];?></a>
-		<?php endforeach;?>
-	</div>
-	<?php foreach ($giftCategory as $key => $category):?>
-		<div class="giftblock" id='gifts<?php echo $category['id'];?>' style="display:none;">
-			<ul>
-				<?php foreach ($category['gifts'] as $key => $gift):?>
-					<li class='gifts hand' title="点击选择" id="gift<?php echo $gift['id'];?>" onclick="sendGift(<?php echo $gift['id'];?>)">
-						<?php echo CHtml::image($this->image_dir.$gift->img,$gift->name,array('desc'=>$gift->desc));?>
-						<br/>
-						<?php echo $gift['name'];?>
-						<br/>
-						限量：<?php echo $gift['num'];?>个
-						<br/>
-						<?php echo '免费';//echo $gift['price'].'个{$config.creditName} ';?>
-					</li>
-				<?php endforeach;?>
-				<div class="c"></div>
-			</ul>
-		</div>
-	<?php endforeach;?>
-	<a name="sendto" id="sendto"></a>
-	<div id='gift_info'></div>
-	<?php echo EHtml::beginForm('','POST',array('onsubmit'=>'return check()'));?>
-		<div style="margin-top:20px;" class="hidden">
-			<h2 class="f14px fB lh30">我目前拥有的{$config.creditName}是： {$money}</h2>
-		</div>
-		<div style="margin-top:30px;">
-			<h2 class="f14px fB lh30">选择接收人：</h2>
-			<div style="width:360px;">
-				<?php $this->widget('WFriendSelect'); ?>
+
+<?php
+foreach ($giftCategory as $key => $category)
+{
+    $cate_name = $category['name'];
+    $tabs[$cate_name] = array(
+        'content'=>$this->renderPartial('_gifts',array('category'=>$category),true),'id'=>$key
+   );
+}
+
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>$tabs,
+    // additional javascript options for the tabs plugin
+    'options'=>array(
+        'collapsible'=>false,
+    ),
+));
+
+?>
+
+
+
+    <div class="clear"></div>
+
+
+
+<?php $form=$this->beginWidget('UActiveForm', array(
+	'id'=>'user-form',
+	'enableAjaxValidation'=>true,
+	#'disableAjaxValidationAttributes'=>array('LoginForm_verifyCode'),
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
+	#'htmlOptions' => array('enctype'=>'multipart/form-data'),
+)); ?>
+
+
+	<a name="sendto" id="sendto"></a>	<div id='gift_info'></div>
+
+			<div class="row">
+                <label class="left">接收人：</label>
+				<div style="width:300px" class="left"><?php $this->widget('WFriendSelect'); ?></div>
 			</div>
-			<div style="margin-top:20px;">
-				<h2 class="f14px fB lh30">附加消息：</h2>
-				<p style="margin:0; padding:0;">
-					不能超过200个字符
-				</p>
-				<?php echo EHtml::activeTextArea($model, 'content', array('cols'=>50,'rows'=>6,'class'=>'Text20','id'=>'sendInfo'));?>
+            <div class="clear"></div>
+			<div class="row">
+				<h2>附加消息</h2>
+				<?php echo $form->textArea($model, 'content', array('class'=>'t_input t_area','id'=>'sendInfo'));?>
 			</div>
 			<div>
-				<div class="lh30 fB f14px">
+				<h2>
 					选择赠送的方式：
-				</div>
+				</h2>
 				<div>
 					<div class="left">
 						<input checked="checked" value="1" id="public" name="GiftUser[access]" type="radio" />
@@ -143,12 +146,11 @@
 							</span>
 						</label>
 					</div>
-					<?php echo EHtml::activeHiddenField($model,'giftId',array('id'=>'gift_id'));?>
+					<?php echo $form->hiddenField($model,'giftId',array('id'=>'gift_id'));?>
 				</div>
 			</div>
-			<div class="mt10">
-				<input type="submit" class="btn_b" style="margin-right:5px;" value="赠送礼物" /><input type="button" class="btn_w" value="取消" />
+            <div class="row">
+				<input type="submit" class="btn" style="margin-right:5px;" value="赠送礼物" /><input type="button" class="btn" value="取消" />
 			</div>
-		</div>
-	<?php echo EHtml::endForm(); ?>
-</div>
+
+<?php $this->endWidget(); ?>

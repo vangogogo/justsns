@@ -2628,7 +2628,7 @@ class SaeTOAuth {
 		curl_setopt($ci, CURLOPT_HTTPHEADER, $header_array2 );
 		curl_setopt($ci, CURLINFO_HEADER_OUT, TRUE );
 
-		//echo $url."<hr/>";
+		#echo $url."<hr/>";
 
 		//curl_setopt($ci, CURLOPT_URL, $url);
 

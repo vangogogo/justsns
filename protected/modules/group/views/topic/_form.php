@@ -1,35 +1,29 @@
-<h1><?php echo $group['name']?>发言</h1>
-<div class="grid_15 suffix_1">
-    <?php $form = $this->beginWidget('CActiveForm', array(
-        'id'=>'user-form',
-        'enableAjaxValidation'=>true,
-        'enableClientValidation'=>true,
-        'focus'=>array($model,'title'),
-        'clientOptions'=>array(
-            'validateOnSubmit'=>true,
-         ),
-    )); ?>
-    <?php echo CHtml::errorSummary($model);?>
-    <?php echo $form->error($model,'title'); ?>
-    <?php echo $form->error($model,'content'); ?>
-    <div class="form">
-	    <div class="row">
-		    <?php echo $form->labelEx($model,'title'); ?>
-		    <?php echo $form->textField($model,'title',array('class'=>'t_input')); ?>
-            <?php #echo $form->error($model,'title'); ?>
-	    </div>
-	    <div class="row">
-		    <label></label>
-		    <?php echo $form->textArea($model,'content',array('class'=>'t_input t_area')); ?>
-            
-	    </div>
-	    <div class="row">
-            <label></label>
-        <?php echo CHtml::submitButton('提交信息',array('class'=>'btn'));?>
-	    </div>
+<?php $form = $this->beginWidget('CActiveForm', array(
+    'id'=>'user-form',
+    #'enableAjaxValidation'=>true,
+    'enableClientValidation'=>true,
+    #'focus'=>array($model,'title'),
+    'clientOptions'=>array(
+        'validateOnSubmit'=>true,
+     ),
+)); ?>
+<?php echo CHtml::errorSummary($model);?>
+<div class="form">
+    <div class="row">
+	    <?php echo $form->labelEx($model,'title'); ?>
+	    <?php echo $form->textField($model,'title',array('class'=>'t_input')); ?>
+        <?php echo $form->error($model,'title'); ?>
     </div>
-    <?php $this->endWidget();?>
+    <div class="row">
+	    <label></label>
+	    <?php echo $form->textArea($model,'content',array('class'=>'t_input t_area')); ?>
+	    <label></label>    <?php echo $form->error($model,'content'); ?>
+    </div>
+    <div class="row">
+        <label></label>
+    <?php echo CHtml::submitButton('发布',array('class'=>'btn'));?>
+    <input type="button" class="btn_w" onclick="history.back(-1);"value="取消" />
+    </div>
 </div>
-<div class="grid_8">
-	<?php $this->widget('WGroupTopicSidebar',array('gid'=>$group['id'])); ?>
-</div>
+<?php $this->endWidget();?>
+

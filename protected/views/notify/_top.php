@@ -7,9 +7,9 @@
 			array('label'=>'<span>通知</span>', 'url'=>array('/notify/index')),
 			array('label'=>'<span>写短消息</span>', 'url'=>array('/notify/write')),
 		);
-		$this->widget('zii.widgets.CMenu',array(
+		$this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 		'items'=>$items,
-		'activeCssClass'=>'on',
+		#'activeCssClass'=>'on',
 		'encodeLabel'=>false,
 		));
 	?>

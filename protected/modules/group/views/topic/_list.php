@@ -15,12 +15,12 @@
 		</td>
 		<?php if(!isset($no_group)):?>
 		<td>
-			<?php echo CHtml::link($topic['group_name'],array('/group/group/show','gid'=>$topic['gid']));?>
+			<?php echo CHtml::link($topic->group->name,array('/group/group/show','gid'=>$topic['gid']));?>
 		</td>
 		<?php endif;?>
 		<?php if(!isset($no_author)):?>
 		<td>
-			<?php echo CHtml::link($topic['name'],array('/space','uid'=>$topic['uid']));?>
+			<?php echo CHtml::link($topic->user->username,array('/space/index','uid'=>$topic['uid']));?>
 		</td>
 		<?php endif;?>
 		<td>

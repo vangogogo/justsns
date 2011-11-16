@@ -1,34 +1,40 @@
-<li class="info" id="fri_<?php echo $friend['id']?>" >
+<li class="info" id="fri_<?php echo $uid?>" >
 	<div class="left" style="width:70px;">
-        <?php $this->widget('WUserFace',array('uid'=>$friend['id']));?>
+        <?php $this->widget('WUserFace',array('uid'=>$uid,'user'=>$user));?>
 	</div>
 	<div class="left" style="width:400px; margin-right:30px;">
 		<p class="lh20">
-			<?php echo CHtml::link($friend['username'],array('/space/','uid'=>$friend['id']),array('id'=>'fname_'.$friend['id']));?>
+			<?php echo CHtml::link($user->getUserName(),array('/space/index','uid'=>$uid),array('id'=>'fname_'.$uid));?>
 		</p>
 
-		<p class="cGray2 lh20"> 分组：
-			<?php 
-			echo Friend::model()->getGroupsName($uid,$friend['id']);
-			if($is_me){
-				echo CHtml::link('分组',array('/friend/group','fuid'=>$friend['id']),array('class'=>'thickbox','title'=>'修改好友分组'));
-			}
-			else echo CHtml::encode('分组');
-			?>
 
-		</p>
-        <p>
-            <span class="wn">心情：</span><?php echo $friend->getUserMini();?>
-        </p>
+
+    <?php if(empty($is_find)):?>
+	<div class="user-group-opt user-opt">
+           <span class="left">分组：</span> 
+        <?php $this->widget('WFriendBelongGroup',array('fuid'=>$uid,'relation'=>$friend));?>
+    </div>
+	<div class="user-group-star">
+            <span class="left">评分：</span> 
+        <?php $this->widget('WStarRating',array('object_type'=>'contact','object_id'=>$uid));?>
+    </div>
+    <?php endif;?>
+
 	</div>
 	<div class="left" style="width:60px;">
 		<p class="lh20">
-			<?php echo CHtml::link('发送短信',array('/notify/write','uid'=>$friend['id']));?>
+			<?php echo CHtml::link('发送短信',array('/notify/write','uid'=>$uid));?>
 		</p>
-		
+
 		<p class="lh20">
-			<?php if($is_me) echo CHtml::link('解除关系',array('/friend/DoDelFriend','uid'=>$friend['id']),array('class'=>'a_confirm_link','title'=>'确认解除关系?'));?>
+			<?php if($is_me) echo CHtml::link('解除关系',array('/friend/DoDelFriend','uid'=>$uid),array('class'=>'a_confirm_link','title'=>'确认解除关系?'));?>
 		</p>
+		<?php if(!empty($user->sina_id)):?>
+	    <p>
+            <a href="http://www.weibo.com/<?php echo $user->sina_id?>" target="_blank">前往微薄</a>
+		</p>
+        <?php endif;?>
 	</div>
 	<div class="clear"></div>
 </li>
+

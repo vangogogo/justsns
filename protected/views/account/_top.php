@@ -7,7 +7,7 @@
 <!-- page_title end -->
 <!-- 切换标签 begin  -->
 <div class="tab-menu">
-	<?php $this->widget('zii.widgets.CMenu',array(
+	<?php $this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 		'items'=>array(
 			array('label'=>'<span>修改密码</span>', 'url'=>array('/account/index')),
 			array('label'=>'<span>修改账号</span>', 'url'=>array('/account/account')),

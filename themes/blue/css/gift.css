@@ -4,7 +4,6 @@
 .tab_lw {
 	height: 30px;
 	background-color: #F3F3F3;
-	width: 692px;
 }
 .tab_lw a {
 	font-size: 14px;
@@ -37,8 +36,7 @@
 	margin-bottom: -2px;
 }
 .giftblock{
-	width:690px;
-	border: 1px solid #CCC;
+	_border: 1px solid #CCC;
 }
 .giftblock ul{
 	width: 100%;
@@ -51,27 +49,18 @@
 	overflow:hidden;
 	text-align:center;
 	white-space:nowrap;
-	height: 150px;
+	height: 120px;
 	margin: 5px;
 	display: block;
-	width: 85px;
+	width: 78px;
 	padding-top: 5px;
 }
 .giftblock ul li.on{
 	border:1px solid #FC3;
-	float:left;
-	line-height:160%;
-	margin:5px;
-	overflow:hidden;
-	text-align:center;
-	white-space:nowrap;
-	height: 150px;
 	background-color: #FFFFCC;
-	width: 85px;
 }
 .gift_list{
 	background-color: #F5F5F5;
-	width: 690px;
 	clear: both;
 	padding-top: 10px;
 	margin-top: 20px;

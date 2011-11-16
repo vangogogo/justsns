@@ -2,8 +2,9 @@
 
 class GiftController extends Controller
 {
+    public $layout = 'gift.views.gift.layout_gift';
 
-	public $defaultAction='create';
+	public $defaultAction='index';
 
 	public $accessOptions = '';
 
@@ -29,6 +30,7 @@ class GiftController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->pageTitle = '礼物中心';
 		$this->processSendGift();
 		$uid = Yii::app()->request->getQuery('uid');
 		if(!empty($uid))
@@ -88,6 +90,7 @@ class GiftController extends Controller
 	 */
 	public function actionReciveBox()
 	{
+        $this->pageTitle = '收到的礼物';
 		$model=new GiftUser;
 		//初始化
 		$criteria=new CDbCriteria;
@@ -115,6 +118,7 @@ class GiftController extends Controller
 	 */
 	public function actionSendBox()
 	{
+        $this->pageTitle = '送出的礼物';
 		$model=new GiftUser;
 
 		//初始化

@@ -10,7 +10,7 @@ class WGroupTopicSidebar extends CWidget
 	{
 		$gid = $this->gid;
 		$group = Group::model()->loadGroup($gid);
-		$new_topics = $group->getGroupNewThreads();
+		$new_topics = Group::model()->getGroupNewThreads();
 		$data = array(
 			'group'=>$group,
 			'new_topics'=>$new_topics,

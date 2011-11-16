@@ -15,6 +15,10 @@ function friendlyDate($show='y-m-d H:i',$sTime,$type = 'normal',$alt = 'false') 
     }
     //sTime=源时间，cTime=当前时间，dTime=时间差
     $cTime		=	time();
+    if(!is_numeric($sTime))
+    {
+        $sTime      =   strtotime($sTime);
+    }
     $dTime		=	$cTime - $sTime;
     $dDay		=	intval(date("Ymd",$cTime)) - intval(date("Ymd",$sTime));
     $dYear		=	intval(date("Y",$cTime)) - intval(date("Y",$sTime));

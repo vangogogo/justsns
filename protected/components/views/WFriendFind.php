@@ -1,7 +1,7 @@
 <?php echo CHtml::beginForm(array('friend/find'),'get'); ?>
 			<h2>搜索用户</h2>
 			<div class="row">
-            <?php $keyword = $_GET['keyword'];
+            <?php $keyword = !empty($_GET['keyword'])?$_GET['keyword']:'';
             $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                 'name'=>'keyword',
                 'value'=>$keyword,

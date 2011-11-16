@@ -47,6 +47,7 @@ class SpaceController extends Controller
 		
 		//是否自己的空间
 		$mid = Yii::app()->user->id;
+		$is_me = false;
 		if($uid == $mid)
 		{
 			$is_me = true;
@@ -56,7 +57,7 @@ class SpaceController extends Controller
 		
 		//空间主人的好友
 		$friend_list = $owner->getUserFriends($uid);
-
+		$visitors  = array();
 		$data = array(
 			'owner'=>$owner,
 			'is_me'=>$is_me,

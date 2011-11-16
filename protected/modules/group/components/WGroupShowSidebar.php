@@ -13,7 +13,7 @@ class WGroupShowSidebar extends CWidget
 		//友情小租
 		//$friend_groups = $group->getGroupNewFriends();
 		//最近加入
-		$group_members = $group->getGroupNewMembers();
+		#$group_members = $group->getGroupNewMembers();
 
 		$data = array(
 			'group'=>$group,

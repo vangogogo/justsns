@@ -1,6 +1,6 @@
 <?php
 
-class GroupPost extends CActiveRecord
+class GroupPost extends YiicmsActiveRecord
 {
 	/**
 	 * The followings are the available columns in table 'group_post':
@@ -43,14 +43,14 @@ class GroupPost extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('gid, uid, tid, istopic, ctime, status, quote', 'numerical', 'integerOnly'=>true),
+			array('gid, uid, tid, istopic, status, quote', 'numerical', 'integerOnly'=>true),
 			array('ip', 'length', 'max'=>16),
 			array('is_del', 'length', 'max'=>1),
-			array('content, attach', 'safe'),
+			array('content, attach, ctime, mtime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, gid, uid, tid, content, ip, istopic, ctime, status, quote, is_del, attach', 'safe', 'on'=>'search'),
-			array('gid, uid, tid, content, ip, istopic, ctime', 'required'),
+			array('gid, uid, tid, content, ip, istopic', 'required'),
 		);
 	}
 
@@ -150,15 +150,9 @@ class GroupPost extends CActiveRecord
 	{
 		if($this->isNewRecord)
 		{
-			$this->ctime = time();
 			$this->uid = Yii::app()->user->id;
 			$this->ip = Yii::app()->request->userHostAddress;
-		}
-		//else
-			//GroupPost 没有修改时间
-			//$this->mtime=time();
-			
-		
+		}			
 		return true;
 	}
 	
