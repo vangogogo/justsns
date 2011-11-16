@@ -21,7 +21,7 @@
 	    <div class="clearfix">
 
 		
-                <div class="media-grid" style="margin:0 38px 0 0;position: absolute;left 20px; width: 80px;">
+                <div style="margin:0 38px 0 0;position: absolute;left 20px; width: 80px;">
 				<?php $this->widget('WUserFace', array('uid'=>$model->toUserId)); ?></div>
 
         <?php if(!empty($model->toUserId)):?>

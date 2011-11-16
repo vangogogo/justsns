@@ -32,7 +32,7 @@
 									<img src="<?php echo PUBLIC_URL;?>images/ico_mail3.gif" alt="已读" width="14" height="12" />
 								<?php endif;?>
 							</td>
-							<td width="70" class="media-grid">
+							<td width="70">
                                 <?php $this->widget('WUserFace', array('uid'=>$msg_user->id)); ?>
 							</td>
 							<td width="184">

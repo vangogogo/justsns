@@ -90,7 +90,7 @@
     <?php if(!empty($may)){ ?>
 	<div class="UserList">
 		<h2><span class="right"></span>你可能认识的人</h2>
-		<div class="media-grid">
+		<div>
 			
 			<ul>
 				<?php foreach($may_users as $user){?>
@@ -111,9 +111,9 @@
 		<?php echo CHtml::link('>>更多',array('friend/index','uid'=>$uid),array('class'=>'cGray2'));?>
 
 		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</h2>
-		<div class="media-grid">
+		<div>
 			<?php if(!empty($friend_list)){ ?>
-			<ul>
+			<ul class="unstyled">
 				<?php foreach($friend_list as $user){?>
 					<li>
                         <?php $this->Widget('WUserFace',array('uid'=>$user['id']));?>
