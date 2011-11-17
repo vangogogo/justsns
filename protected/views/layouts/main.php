@@ -2,40 +2,27 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bootstrap, from Twitter</title>
-
-
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead',array(
+		'httpEquivs'=>array(
+			#'Content-Type'=>'text/html; charset=utf-8',
+			#'Content-Language'=>'en-US'
+		),
+		'defaultDescription'=>'YII实验基地,创造个人价值.',
+		'defaultKeywords'=>'yiis, yii, sae, sina, php, cache, mysql, astro, sns, demo',
+	)); ?>
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-
-	<!-- Le styles -->
-
-	<style type="text/css">
-	  body {
-		padding-top: 60px;
-	  }
-
-	.container-fruid{zoom:1;margin-left:-20px;}.container-fruid:before,.container-fruid:after{display:table;content:"";zoom:1;}
-	.container-fruid:after{clear:both;}
-	.container-fruid>.sidebar{display: inline;float: left;margin-left: 20px;width: 280px;}
-	.container-fruid>.content{display: inline;float: left;margin-left: 20px;width: 640px;}
-
-	.media-grid img.big {width:180px;height:180px;}
-	.media-grid img.small {width:50px;height:50px;}
-
-	h2 {font-size:14px;font-weight:400;}
-	</style>
-
 <?php
+	Yii::app()->bootstrap->registerBootstrap();
+
 	$cs = Yii::app()->clientScript;
 
 	$cs->registerCoreScript('jquery');
 	$cs->registerCoreScript('jquery.ui');
+	$cs->registerCssFile('/css/bootstrap.css');
 
     /*
     $cs->scriptMap=array(
@@ -74,23 +61,15 @@
 
     $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
     #<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css" /> 
-
+	
 ?>
 
-
-<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead',array(
-    'httpEquivs'=>array(
-        'Content-Type'=>'text/html; charset=utf-8',
-        #'Content-Language'=>'en-US'
-    ),
-    'defaultDescription'=>'YII实验基地,创造个人价值.',
-    'defaultKeywords'=>'yiis, yii, sae, sina, php, cache, mysql, astro, sns, demo',
-)); ?>
-
-<?php echo Yii::app()->bootstrap->registerBootstrap(); ?>
-<?php $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
+<?php 
+// tips
+$this->widget('ext.bootstrap.widgets.BootTwipsy',array(
     'selector'=>'a[title]',
-)); ?>
+)); 
+?>
 </head>
 
 <body>
@@ -98,6 +77,7 @@
 
 <div class="container">
 	<div class="container-fruid">
+
 	<?php echo $content; ?>
 
 	<!-- start.footer -->

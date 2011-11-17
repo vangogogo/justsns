@@ -40,9 +40,9 @@
 		<?php echo $form->textField($profile,'location'); ?>
 		<?php echo $form->error($profile,'location'); ?>
 	</div>
-
+	<?php /*
 	<div class="row">
-		<label> </label>
+		<label> &nbsp</label>
         <?php $this->widget('ext.yii-gravatar.YiiGravatar', array(
             'email'=>$model->email,
             'size'=>80,
@@ -57,7 +57,7 @@
         )); ?>
 
 	</div>
-
+	*/ ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>

@@ -9,7 +9,7 @@ $path=dirname(dirname(dirname(__FILE__)));
 
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'yiisns',
+	'name'=>'LockPHP',
 
 	'timeZone' => 'Asia/Shanghai',
 	//'sourceLanguage'=>'zh_cn',
@@ -221,9 +221,7 @@ $config = array(
 				'ext.bootstrap.gii', // Since 0.9.1
 			),
 		),
-		'blog'=>array(
-			#"layout"=>"application.views.layouts.main",
-		),
+		
 		'admin'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),

@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 		if(!Yii::app()->user->isGuest)
 		{
-			$this->redirect(array('site/home'));
+			#$this->redirect(array('site/home'));
 		}
 		$data = array();
 		$this->render('index',$data);
@@ -112,6 +112,8 @@ class SiteController extends Controller
 	{
 		if($error=Yii::app()->errorHandler->error)
 		{
+			$error['delay'] = 3;
+			$error['url'] = $this->getReferUrl();
 			$this->layout='column1';
 			if(Yii::app()->request->isAjaxRequest)
 				$this->renderPartial('error',$error);
@@ -261,4 +263,32 @@ class SiteController extends Controller
            Yii::app()->end();
        }
     }
+
+	public function getReferUrl()
+	{
+		$refer = Yii::app()->request->getParam('refer');
+		if(empty($refer))
+		{
+			//跨域无法跳转
+			//$refer = Yii::app()->user->getReturnUrl();
+		}
+		if(empty($refer))
+		{
+			$refer = Yii::app()->request->urlReferrer;
+			//如果访问前的地址是首页
+			$index_url = 'http://'.SUB_DOMAIN.'/';
+		}
+
+		if(empty($refer))
+		{
+			$refer = Yii::app()->request->baseUrl;
+		}
+		if(empty($refer))
+		{
+			$refer = '/';
+		}
+
+//		var_dump($refer);
+		return $refer;
+	}
 }

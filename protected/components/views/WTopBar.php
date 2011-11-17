@@ -16,7 +16,7 @@
                 array('label'=>'Yii Book', 'url'=>'http://yiibook.com/','linkOptions'=>array('target'=>'_blank')),
                 array('label'=>'Yii Demo', 'url'=>'http://yiidemo.sinaapp.com/','linkOptions'=>array('target'=>'_blank')),
             )),
-            array('label'=>'联系我们', 'url'=>array('/site/contact'),'visible'=>Yii::app()->user->isGuest),
+            array('label'=>'联系我们', 'url'=>array('/site/contact')),
         ),
 		'items2'=>Yii::app()->user->isGuest?array(
 			array('label'=>'登录', 'url'=>Yii::app()->user->loginUrl,'visible'=>!Yii::app()->user->isGuest),
@@ -25,7 +25,10 @@
 		array(
 			array('label'=>'短信箱', 'url'=>array('/notify'),'visible'=>Yii::app()->user->isGuest),
 			array('label'=>Yii::app()->user->name, 'url'=>array('/user'),'visible'=>Yii::app()->user->isGuest),
-			array('label'=>'退出', 'url'=>array('/user/logout'),'visible'=>Yii::app()->user->isGuest),
+			array('label'=>'帐号', 'url'=>array('/user/logout'), 'items'=>array(
+				array('label'=>'我的微博', 'url'=>array('/user/weibo')),
+                array('label'=>'退出', 'url'=>array('/user/logout')),				
+            )),
 		)		
 		,
     )); 
