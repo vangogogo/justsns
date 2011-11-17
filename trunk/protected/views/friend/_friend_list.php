@@ -14,10 +14,7 @@
            <span class="left">分组：</span> 
         <?php $this->widget('WFriendBelongGroup',array('fuid'=>$uid,'relation'=>$friend));?>
     </div>
-	<div class="user-group-star">
-            <span class="left">评分：</span> 
-        <?php $this->widget('WStarRating',array('object_type'=>'contact','object_id'=>$uid));?>
-    </div>
+
     <?php endif;?>
 
 	</div>

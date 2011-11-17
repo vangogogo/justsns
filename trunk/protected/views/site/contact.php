@@ -3,9 +3,42 @@ $this->pageTitle=Yii::app()->name . ' - Contact Us';
 $this->breadcrumbs=array(
 	'Contact',
 );
+
+Yii::app()->user->setFlash('success','成功信息')
 ?>
 
-<h1>Contact Us</h1>
+<?php $this->beginWidget('ext.bootstrap.widgets.BootModal',array(
+    'id'=>'modal',
+    'options'=>array(
+        'title'=>'通知',
+        'backdropClose'=>false, // close the modal when the backdrop is clicked?
+        'escapeClose'=>false, // close the modal when escape is pressed?
+        'open'=>true, // should we open the modal on initialization?
+        'closeTime'=>350,
+        'openTime'=>1000,
+        'buttons'=>array(
+            array(
+                'label'=>'Ok',
+                'class'=>'btn  danger',
+                'click'=>"js:function() {
+                    Alert('hello');
+                }",
+            ),
+            array(
+                'label'=>'Cancel',
+                'class'=>'btn ',
+                'click'=>"js:function() {
+                    Alert('byebye');
+                }",
+            ),
+        ),      
+    ),
+)); ?>
+ 
+123
+ 
+<?php $this->endWidget(); ?>
+<h1>联系我们</h1>
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -21,49 +54,29 @@ If you have business inquiries or other questions, please fill out the following
 
 <div class="form">
 
-<?php echo CHtml::beginForm(); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo CHtml::errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'name'); ?>
-		<?php echo CHtml::activeTextField($model,'name'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'email'); ?>
-		<?php echo CHtml::activeTextField($model,'email'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'subject'); ?>
-		<?php echo CHtml::activeTextField($model,'subject',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'body'); ?>
-		<?php echo CHtml::activeTextArea($model,'body',array('rows'=>6, 'cols'=>50,'class'=>'t_input')); ?>
-	</div>
-
+<?php $form=$this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
+    'id'=>'example-form',
+    'stacked'=>false, // should this be a stacked form?
+    'errorMessageType'=>'block', // how to display errors, inline or block?
+    'enableAjaxValidation'=>false,
+)); ?>
+ 
+    <?php echo $form->textFieldBlock($model,'name',array('class'=>'span3')); ?>
+    <?php echo $form->textFieldBlock($model,'email',array('class'=>'span3')); ?>
+    <?php echo $form->textFieldBlock($model,'subject'); ?>
+	<?php echo $form->textAreaBlock($model,'body'); ?>
 	<?php if(extension_loaded('gd')): ?>
 	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'verifyCode'); ?>
-		<div>
 		<?php $this->widget('CCaptcha'); ?>
-		<?php echo CHtml::activeTextField($model,'verifyCode'); ?>
-		</div>
-		<div class="hint">Please enter the letters as they are shown in the image above.
-		<br/>Letters are not case-sensitive.</div>
+		<?php echo $form->textFieldBlock($model,'verifyCode'); ?>
+		<span class="help-block">Please enter the letters as they are shown in the image above.</span>
 	</div>
 	<?php endif; ?>
-
-	<div class="row submit">
-		<?php echo CHtml::submitButton('Submit'); ?>
-	</div>
-
-<?php echo CHtml::endForm(); ?>
+    <div class="actions">
+        <?php echo BootHtml::submitButton('Submit',array('class'=>'btn danger large')); ?>
+    </div>
+ 
+<?php $this->endWidget(); ?>
 
 </div><!-- form -->
 

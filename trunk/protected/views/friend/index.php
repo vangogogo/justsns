@@ -41,7 +41,7 @@
 </div>
 
     <?php if(!empty($friend_list)):?>
-	<ul class="user-list">
+	<ul class="user-list unstyled">
 		<?php foreach($friend_list as $friend){?>
             <?php $this->renderPartial('_friend_list',array('user'=>$friend->user,'friend'=>$friend,'uid'=>$friend['fuid'],'is_me'=>$is_me,'friendGroup'=>$friendGroup));?>
 		<?php }?>
