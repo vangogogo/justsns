@@ -4,41 +4,15 @@ $this->breadcrumbs=array(
 	'Contact',
 );
 
-Yii::app()->user->setFlash('success','成功信息')
+
 ?>
 
-<?php $this->beginWidget('ext.bootstrap.widgets.BootModal',array(
-    'id'=>'modal',
-    'options'=>array(
-        'title'=>'通知',
-        'backdropClose'=>false, // close the modal when the backdrop is clicked?
-        'escapeClose'=>false, // close the modal when escape is pressed?
-        'open'=>true, // should we open the modal on initialization?
-        'closeTime'=>350,
-        'openTime'=>1000,
-        'buttons'=>array(
-            array(
-                'label'=>'Ok',
-                'class'=>'btn  danger',
-                'click'=>"js:function() {
-                    Alert('hello');
-                }",
-            ),
-            array(
-                'label'=>'Cancel',
-                'class'=>'btn ',
-                'click'=>"js:function() {
-                    Alert('byebye');
-                }",
-            ),
-        ),      
-    ),
-)); ?>
- 
-123
- 
-<?php $this->endWidget(); ?>
-<h1>联系我们</h1>
+<div class="page-header">
+	<h1>联系我们 <small>Contact US</small></h1>
+</div>
+
+<div class="content">
+
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -52,32 +26,50 @@ Yii::app()->user->setFlash('success','成功信息')
 If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
 </p>
 
-<div class="form">
+
 
 <?php $form=$this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
-    'id'=>'example-form',
+    'id'=>'user-form',
     'stacked'=>false, // should this be a stacked form?
-    'errorMessageType'=>'block', // how to display errors, inline or block?
+    'errorMessageType'=>'inline', // how to display errors, inline or block?
     'enableAjaxValidation'=>false,
+    'clientOptions'=>array(
+        'validateOnSubmit'=>true,
+     ),
 )); ?>
- 
-    <?php echo $form->textFieldBlock($model,'name',array('class'=>'span3')); ?>
-    <?php echo $form->textFieldBlock($model,'email',array('class'=>'span3')); ?>
-    <?php echo $form->textFieldBlock($model,'subject'); ?>
-	<?php echo $form->textAreaBlock($model,'body'); ?>
-	<?php if(extension_loaded('gd')): ?>
+<div class="form">
 	<div class="row">
-		<?php $this->widget('CCaptcha'); ?>
-		<?php echo $form->textFieldBlock($model,'verifyCode'); ?>
-		<span class="help-block">Please enter the letters as they are shown in the image above.</span>
+    <?php echo $form->textFieldBlock($model,'name'); ?>
+    <?php echo $form->textFieldBlock($model,'email'); ?>
+    <?php echo $form->textFieldBlock($model,'subject'); ?>
+	<?php echo $form->textAreaBlock($model,'body',array('class'=>'t_area')); ?>
 	</div>
+	<?php if(extension_loaded('gd')): ?>
+	<div class="row captcha-item">
+		<?php echo $form->labelEx($model,'verifyCode'); ?>
+
+
+		<div class="input">
+		
+		<?php $this->widget('CCaptcha'); ?>
+		<br/>
+		<?php echo $form->textField($model,'verifyCode'); ?><?php echo $form->error($model,'verifyCode'); ?>
+		<span class="help-block">Here's some help text</span>
+		</div>
+	</div>
+
 	<?php endif; ?>
     <div class="actions">
-        <?php echo BootHtml::submitButton('Submit',array('class'=>'btn danger large')); ?>
+        <?php echo BootHtml::submitButton('发送',array('class'=>'btn danger large')); ?>
     </div>
- 
+</div><!-- form -->
 <?php $this->endWidget(); ?>
 
-</div><!-- form -->
+
 
 <?php endif; ?>
+
+	</div>
+<div class="sidebar">
+	<h3>Secondary content</h3>
+</div>
