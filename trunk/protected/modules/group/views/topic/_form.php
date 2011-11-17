@@ -1,4 +1,4 @@
-<?php $form = $this->beginWidget('CActiveForm', array(
+<?php $form = $this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
     'id'=>'user-form',
     #'enableAjaxValidation'=>true,
     'enableClientValidation'=>true,
@@ -7,7 +7,7 @@
         'validateOnSubmit'=>true,
      ),
 )); ?>
-<?php echo CHtml::errorSummary($model);?>
+<?php echo $form->errorSummary($model,'','',array('class'=>'alert-message block-message error'));?>
 <div class="form">
     <div class="row">
 	    <?php echo $form->labelEx($model,'title'); ?>
