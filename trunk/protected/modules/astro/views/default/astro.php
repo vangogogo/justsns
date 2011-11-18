@@ -18,9 +18,14 @@ $this->breadcrumbs=array(
 	});
 	</script>
 
-<h1><a href="<?php echo $astro->getUrl();?>" title="<?php echo CHtml::encode($astro->astro_name)?> <?php echo $astro->astro_date?>"><?php echo CHtml::encode($astro->astro_name)?></a> <?php echo $astro->astro_name_en;?>
-<input type="text" id="astro_datepicker" class="t_input " style="width:70px" value="<?php echo date('Y-m-d',strtotime($d_day));?>" />
-</h1>
+	<div class="page-header">
+		<h1><a href="<?php echo $astro->getUrl();?>" title="<?php echo CHtml::encode($astro->astro_name)?> <?php echo $astro->astro_date?>"><?php echo CHtml::encode($astro->astro_name)?></a> <?php echo $astro->astro_name_en;?>
+		<input type="text" id="astro_datepicker" class="t_input " style="width:70px" value="<?php echo date('Y-m-d',strtotime($d_day));?>" />
+		</h1>
+	</div>
+
+
+
 
 <div class="content">
 

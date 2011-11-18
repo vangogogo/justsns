@@ -1,4 +1,7 @@
-<h1><?php echo $topic['title']?></h1>
+<div class="page-header">
+	<h1><?php echo $topic['title']?></h1>
+</div>
+
 <div class="content">
 	<div class="height1"></div>
 	<table class="topic_content">
@@ -12,7 +15,7 @@
 						<?php echo $topic->user->getUserName();?>
 					</a>
 				</h3>
-				<div class="content">
+				<div class="">
 		            <?php
 			            $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
 			            echo $topic->getTopicContent();
@@ -58,7 +61,7 @@
 								<?php echo $post->user->getUserName();?>
 							</a>
 						</h4>
-						<div id="comment_<?php echo$post['id'];?>" class="content">
+						<div id="comment_<?php echo$post['id'];?>" class="">
 	                    <?php
 		                    $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
 		                    echo h(stripslashes($post['content']));

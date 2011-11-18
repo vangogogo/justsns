@@ -3,8 +3,9 @@ $this->breadcrumbs=array(
 	$this->module->id,
 );
 ?>
-
-<h1>12星座</h1>
+<div class="page-header">
+	<h1>12星座</h1>
+</div>
 <div class=" media-grid">
 <?php foreach($astros as $astro):?>
 <div class="">

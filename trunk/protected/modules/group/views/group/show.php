@@ -1,4 +1,7 @@
-<h1><?php echo $group['name'];?></h1>
+<div class="page-header">
+	<h1><?php echo $group['name'];?></h1>
+</div>
+
 <div class="content">
 	<div class="alert-message block-message warning">
 		<a class="close" href="#">×</a>

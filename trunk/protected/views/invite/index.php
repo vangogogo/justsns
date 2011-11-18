@@ -1,4 +1,8 @@
-<h1><?php echo $this->pageTitle;?></h1>
+<?php if(!empty($this->pageTitle)):?>
+	<div class="page-header">
+		<h1><?php echo $this->pageTitle;?></h1>
+	</div>
+<?php endif;?>
 <div class="grid_23 suffix_1">
 
 	<div class="friendBox">
