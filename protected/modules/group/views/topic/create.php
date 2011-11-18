@@ -1,4 +1,4 @@
-<h1><?php echo $group['name']?> 发言</h1>
+<div class="page-header"><h1><?php echo $group['name']?> 发言</h1></div>
 <div class="content">
 <?php
 	//话题列表

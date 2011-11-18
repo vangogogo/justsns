@@ -1,7 +1,12 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/friend.css');?>
 <?php $this->beginContent('//layouts/main'); ?>
 
-    <?php if(!empty($this->pageTitle)):?><h1><?php echo $this->pageTitle;?></h1><?php endif;?>
+<?php if(!empty($this->pageTitle)):?>
+	<div class="page-header">
+		<h1><?php echo $this->pageTitle;?></h1>
+	</div>
+<?php endif;?>
+
 	<div class="content">
 		<?php echo $content; ?>
 	</div>

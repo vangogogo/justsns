@@ -4,7 +4,11 @@ $cs->registerCssFile(Yii::app()->theme->baseUrl.'/css/gift.css');
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gift.js');
 ?>
 <!-- page_title begin -->
-<?php if(!empty($this->pageTitle)):?><h1><?php echo $this->pageTitle;?></h1><?php endif;?>
+    <?php if(!empty($this->pageTitle)):?>
+		<div class="page-header">
+			<h1><?php echo $this->pageTitle;?></h1>
+		</div>
+	<?php endif;?>
 <!-- page_title end -->
 <!-- 切换标签 begin  -->
 <div class="tab-menu">

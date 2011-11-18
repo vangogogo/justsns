@@ -6,7 +6,11 @@
 ?>
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="container">
-    <?php if(!empty($this->pageTitle)):?><h1><?php echo $this->pageTitle;?></h1><?php endif;?>
+    <?php if(!empty($this->pageTitle)):?>
+		<div class="page-header">
+			<h1><?php echo $this->pageTitle;?></h1>
+		</div>
+	<?php endif;?>
 	<div class="content">
 		<?php echo $content; ?>
 	</div>
