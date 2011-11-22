@@ -3,23 +3,35 @@ include('astro_common.php');
 $astros = getAstrosData();
 
 $mysql = new SaeMysql();
-$day = date('Ymd',strtotime("+1 day"));
+#$day = date('Ymd',strtotime("+1 day"));
 
 if(!empty($astros))
 {
-	foreach($astros as $one)
-	{
-		$astro_name = strtolower($one['astro_name_en']);
-		$tmp =getAstroDay($astro_name,$day);
-		$tmp['astro_id'] = $one['astro_id'];
-		$data[] = $tmp;
-		$sql = getAstroDaySql($tmp);
-		$mysql->runSql( $sql );
-	}
-	if( $mysql->errno() != 0 )
-	{
-		print_r( "Error:" . $mysql->errmsg() );
-	}
+    $today = date('Ymd');
+    $start_day = date('Ymd',strtotime("+1 day"));
+    if(ASTRO_INIT == true)
+    {
+        $start_day = '20110311';
+    }
+    for($i=0;$day <= $today;$i++)
+    {
+        $time = strtotime($start_day) + 24*60*60*$i;
+        $day = date('Ymd',$time);
+        echo $day."\n";
+	    foreach($astros as $one)
+	    {
+		    $astro_name = strtolower($one['astro_name_en']);
+		    $tmp =getAstroDay($astro_name,$day);
+		    $tmp['astro_id'] = $one['astro_id'];
+		    $data[] = $tmp;
+		    $sql = getAstroDaySql($tmp);
+		    $mysql->runSql( $sql );
+	    }
+	    if( $mysql->errno() != 0 )
+	    {
+		    print_r( "Error:" . $mysql->errmsg() );
+	    }
+    }
 }
 
 $mysql->closeDb();
@@ -53,6 +65,7 @@ function getAstroDay($astor_name = '',$day = '')
 		$day = date('Ymd',strtotime("+1 day"));
 	}
 	$url = "http://vip.astro.sina.com.cn/astro/view/{$astor_name}/day/{$day}";
+    echo $url."\n";
 	  $ch=curl_init();
 	  curl_setopt($ch,CURLOPT_URL,$url);
 	  curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);

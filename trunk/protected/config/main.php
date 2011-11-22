@@ -224,7 +224,7 @@ $config = array(
 				'ext.bootstrap.gii', // Since 0.9.1
 			),
 		),
-		
+		'api',
 		'admin'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),

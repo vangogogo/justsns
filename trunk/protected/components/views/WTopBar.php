@@ -3,6 +3,7 @@
 		$array = array('adobe.com','default','flickr.com','lwis.celebrity','mtv.com','nvidia.com','vimeo.com');
       $this->widget('ext.bootstrap.widgets.BootTopbar',array(
         #'themeCssFile' => $array[6].'/default.css',
+        'homeUrl'=>'/',
         'items'=>array(
             array('label'=>'首页', 'url'=>'/'),
             array('label'=>'站内应用', 'url'=>array('/app'), 'items'=>array(

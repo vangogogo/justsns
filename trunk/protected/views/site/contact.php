@@ -14,16 +14,16 @@ $this->breadcrumbs=array(
 <div class="content">
 
 
-<?php if(Yii::app()->user->hasFlash('contact')): ?>
-
-<div class="success">
-	<?php echo Yii::app()->user->getFlash('contact'); ?>
-</div>
+<?php if (Yii::app()->user->hasFlash('contact')): ?>
+    <div class="alert-message warning fade in" data-alert="alert">
+        <a class="close" href="#">×</a>
+        <?php echo Yii::app()->user->getFlash('contact'); ?>
+    </div>
 
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+如果你有任何疑问，可以通过一下方式，反馈给我们，谢谢。
 </p>
 
 
@@ -51,10 +51,10 @@ If you have business inquiries or other questions, please fill out the following
 
 		<div class="input">
 		
-		<?php $this->widget('CCaptcha'); ?>
+		<?php $this->widget('CCaptcha',array('clickableImage'=>true,'buttonType'=>'link','showRefreshButton'=>true,'buttonLabel'=>'点击更换验证码','imageOptions'=>array('class'=>'fl', 'title'=>'点击图片可更换验证码'),'buttonOptions'=>array('class'=>'refreshvcode fl','tabindex'=>99))); ?>
 		<br/>
 		<?php echo $form->textField($model,'verifyCode'); ?><?php echo $form->error($model,'verifyCode'); ?>
-		<span class="help-block">Here's some help text</span>
+		<span class="help-block"></span>
 		</div>
 	</div>
 

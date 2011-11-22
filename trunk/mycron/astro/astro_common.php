@@ -26,3 +26,5 @@ if(!defined('SAE_TMP_PATH'))
 {
     include_once "SaeMysql.php";
 }
+
+define('ASTRO_INIT',true);

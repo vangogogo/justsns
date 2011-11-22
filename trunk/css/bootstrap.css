@@ -1,6 +1,6 @@
-  body {
-	padding-top: 60px;
-  }
+body {padding-top: 60px;}
+p {line-height:20px;}
+
 body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Arial,Calibri,Trebuchet MS,Helvetica,Hiragino,STHeiti,Microsoft Jhenghei,sans-serif;color:#444}
 .container> .sidebar{display: inline;float: left;margin-left: 40px;width: 280px;}
 .container> .content{display: inline;float: left;margin-left: 20px;width: 600px;}
