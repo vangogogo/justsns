@@ -58,10 +58,7 @@
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.4.js');
     $cs->registerCssFile(Yii::app()->request->baseUrl.'/js/fancybox/jquery.fancybox-1.3.4.css');
 
-
     $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
-    #<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css" /> 
-	
 ?>
 
 <?php 
@@ -77,9 +74,15 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
 
 <div class="container">
 
+	<?php if (isset($this->breadcrumbs) AND !empty($this->breadcrumbs)):?>
+		<?php $this->widget('ext.bootstrap.widgets.BootCrumb',array(
+			'links'=>$this->breadcrumbs,
+			'separator'=>'/',
+		)); ?>
+	<?php endif?>
 
 	<?php echo $content; ?>
-
+	
 	<!-- start.footer -->
 	<div style="clear:both"></div>
 	<footer>
@@ -91,8 +94,6 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
 		</p>
 	</footer>
 	<!-- end.footer -->
-	
 </div>
-<!-- end .container_24 -->
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	$this->module->id,
+        '星座'=>array('/astro'),
+        CHtml::encode($astro->astro_name),
 );
 ?>
 	<script>
@@ -44,7 +45,7 @@ $this->breadcrumbs=array(
 			</div>
 		</div>
     </div>
-    <div class="span8">
+    <div class="span7">
         <h3><?php echo $week->content;?></h3>
 		<div class="row ginfo">
 			<div class="span4">
@@ -69,7 +70,7 @@ $this->breadcrumbs=array(
 					</li>
 				</ul>
 			</div>
-			<div class="span4">
+			<div class="span3">
 				<ul>
 					<li><span class="label success">幸运星座:</span> <a href="#"><?php echo $day->luck_astro;?></a></li>
 					<li><span class="label success">幸运颜色:</span> <a href="#"><?php echo $day->luck_color;?></a></li>
