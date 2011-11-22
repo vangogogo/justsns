@@ -7,12 +7,17 @@ class ApiModule extends CWebModule
     static private $_uid;
     static private $_oauth;
     private $_debug = false;
+    public $db_dsn;
 	public function init()
 	{
         $api_url = Yii::app()->createAbsoluteUrl('/api');
 
         define('SUB_DOMAIN_api',$api_url);
-        define( "DB_DSN" , 'mysql://sns:w2i4n6g8@192.168.1.222/hopeoauth' );
+        if(empty($this->db_dsn))
+        {
+            throw new CHttpException(401,"db_dsn can't be empty");
+        }
+        define( "DB_DSN" , $this->db_dsn );
 
 		// 设置 CHttpException 的处理 action
         Yii::app()->errorHandler->errorAction = "api/default/error";

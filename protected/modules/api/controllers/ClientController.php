@@ -76,8 +76,10 @@ class ClientController extends Controller
             $password = $_POST['LoginForm']['password'];
 		    $last_key = $o->getXauthAccessToken($username, $password);
 		    $rs = $this->setOAuthData(self::AccessTokenName,$last_key);
-            var_dump($rs);die;
-
+            if(!empty($last_key))
+            {
+                $this->redirect('test');
+            }
         }
 
         $data = array(
@@ -92,10 +94,13 @@ class ClientController extends Controller
 	public function actionTest()
 	{
         $c = $this->getLifeduTClient();
-        //我的好友
-        $ms  = $c->echo_api(); // done
-        var_dump($ms);
+        
+        $api = 'echo_api';
+        $ms  = $c->{$api}(); // done
+
+
         $data = array(
+            'api'=>$api,
             'ms'=>$ms,
         );
 		$this->render('test',$data);
