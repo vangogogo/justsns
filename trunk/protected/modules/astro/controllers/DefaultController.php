@@ -7,7 +7,6 @@ class DefaultController extends Controller
     public function behaviors()
     {
         return array(
-
             'seo'=>array('class'=>'ext.seo.components.SeoControllerBehavior'),
         );
     }

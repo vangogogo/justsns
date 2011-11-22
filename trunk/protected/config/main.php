@@ -129,7 +129,7 @@ $config = array(
                 'assets/<path:.*?>'=>'site/assets',
 
 				'<_resource:(login|logout|help|contact)>'=>'site/<_resource>',
-				'<view:\w+>'=>'site/page',
+				#'<view:\w+>'=>'site/page',
 
 				'space/<uid:\d+>'=>'space/index',
 				'post/<pid:\d+>'=>'post/show',
@@ -152,6 +152,7 @@ $config = array(
 
                 'astro/<astro_id:\d+>-<name>-<year:\d+>-<month:\d+>-<day:\d+>.html'=>'astro/default/astro',
                 'astro/<astro_id:\d+>-<name>.html'=>'astro/default/astro',
+                #'astro/index.html'=>'astro/default/index',
 
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 
