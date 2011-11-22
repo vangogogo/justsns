@@ -4,14 +4,15 @@
       $this->widget('ext.bootstrap.widgets.BootTopbar',array(
         #'themeCssFile' => $array[6].'/default.css',
         'items'=>array(
-            array('label'=>'首页', 'url'=>array('/site')),
+            array('label'=>'首页', 'url'=>array('/')),
             array('label'=>'星座', 'url'=>array('/astro'), 'items'=>array(
 				array('label'=>'个人空间', 'url'=>array('/space/mine'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'好友', 'url'=>array('/friend/index'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow')),
 				array('label'=>'小组', 'url'=>array('/group'),'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'谁最@我', 'url'=>array('/user/weibo')),
             )),
-            array('label'=>'Yii官方文档', 'url'=>'http://www.yiiframework.com/doc/guide/1.1/zh_cn/index','linkOptions'=>array('target'=>'_blank'), 'items'=>array(
+            array('label'=>'社区资源', 'url'=>'http://www.yiiframework.com/doc/guide/1.1/zh_cn/index','linkOptions'=>array('target'=>'_blank'), 'items'=>array(
+				array('label'=>'Yii官方文档', 'url'=>'http://www.yiiframework.com/doc/guide/1.1/zh_cn/index','linkOptions'=>array('target'=>'_blank')),
                 array('label'=>'Yii官方扩展', 'url'=>'http://www.yiiframework.com/extensions','linkOptions'=>array('target'=>'_blank')),
                 array('label'=>'Yii Book', 'url'=>'http://yiibook.com/','linkOptions'=>array('target'=>'_blank')),
                 array('label'=>'Yii Demo', 'url'=>'http://yiidemo.sinaapp.com/','linkOptions'=>array('target'=>'_blank')),

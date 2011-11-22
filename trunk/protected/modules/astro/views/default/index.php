@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	$this->module->id,
+	Yii::t('bootstrap', 'Astro'),
 );
 ?>
 <div class="page-header">
