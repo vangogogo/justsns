@@ -224,7 +224,9 @@ $config = array(
 				'ext.bootstrap.gii', // Since 0.9.1
 			),
 		),
-		'api',
+		'api'=>array(
+            'db_dsn'=>'mysql://root:111111@localhost/yiisns',
+        ),
 		'admin'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),
