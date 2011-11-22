@@ -19,8 +19,8 @@
       </p>
     </div>
     <div class="span-one-third">
-      <h3>Browser support</h3>
-      <p>Bootstrap is tested and supported in major modern browsers like Chrome, Safari, Internet Explorer, and Firefox.</p>
+      <h3>浏览器支持</h3>
+      <p> 作为一个web设计者，不应顺着用户守旧的习惯。IE 已经没有前途了，或许你可以用一个更好的浏览器浏览我们的网站。</p>
       <img src="/images/browsers.png" alt="Tested and supported in Chrome, Safari, Internet Explorer, and Firefox">
       <ul>
         <li>Latest Safari</li>

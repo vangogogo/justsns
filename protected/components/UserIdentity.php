@@ -14,41 +14,40 @@ class UserIdentity extends CUserIdentity
 	 * Authenticates a user.
 	 * @return boolean whether authentication succeeds.
 	 */
-
+	/**
+	 * Authenticates a user.
+	 * The example implementation makes sure if the username and password
+	 * are both 'demo'.
+	 * In practical applications, this should be changed to authenticate
+	 * against some persistent user identity storage (e.g. database).
+	 * @return boolean whether authentication succeeds.
+	 */
 	public function authenticate()
 	{
-		//$user=User::model()->find('LOWER(username)=?',array(strtolower($this->username)));
-		$user=User::model()->find('LOWER(email)=?',array(strtolower($this->username)));
+		if (strpos($this->username,"@")) {
+			$user=User::model()->notsafe()->findByAttributes(array('email'=>$this->username));
+		} else {
+			$user=User::model()->notsafe()->findByAttributes(array('username'=>$this->username));
+		}
 		if($user===null)
-		//$this->errorCode=self::ERROR_USERNAME_INVALID;
-		$this->errorCode=self::ERROR_USERNAME_INVALID;
-		else if(md5($this->password)!==$user->password)
-		$this->errorCode=self::ERROR_PASSWORD_INVALID;
-		else
-		{
+			if (strpos($this->username,"@")) {
+				$this->errorCode=self::ERROR_EMAIL_INVALID;
+			} else {
+				$this->errorCode=self::ERROR_USERNAME_INVALID;
+			}
+		else if(Yii::app()->getModule('user')->encrypting($this->password)!==$user->password)
+			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+		else if($user->status==0&&Yii::app()->getModule('user')->loginNotActiv==false)
+			$this->errorCode=self::ERROR_STATUS_NOTACTIV;
+		else if($user->status==-1)
+			$this->errorCode=self::ERROR_STATUS_BAN;
+		else {
 			$this->_id=$user->id;
-
-			$this->setState('email', $user->email);
-			$this->setState('name', $user->username);
-				
-			//$this->setState('role', '管理员');
-			//保存登录记录
-
-			$arr = array(
-				'uid' => $user->id,
-				'login_time' => strtotime('NOW'),
-				'login_ip' => Yii::app()->request->userHostAddress,
-			);
-			$model = new LoginRecord();
-			$model->attributes = $arr;
-			$model->save();
-			//LoginRecord::model()->saveAttributes($arr);
-
+			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
 		}
 		return !$this->errorCode;
 	}
-
 	public function authenticateUC()
 	{
 
