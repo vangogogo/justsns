@@ -1,28 +1,24 @@
 	<script>
 	$(function(){
-
-
 		//加入收藏
 		$('a.btn-fav').click(function(){
             var self = $(this),  
-                hasFav = self.hasClass('fav-delete') ? 1 : 0,
+            hasFav = self.hasClass('fav-delete') ? 1 : 0;
 
-                params = {
-                    op: paras = hasFav ? 'delete' : 'add',
-                    object_id: self.data('oid'),
-                    object_type: self.data('otype'),
-                };
+            params = {
+                op: paras = hasFav ? 'delete' : 'add',
+                object_id: self.data('oid'),
+                object_type: self.data('otype'),
+            };
             $.post(
-                'http://www.yiisns.com/ajax/UserCollect',
-                params, function (o) {
+                'http://www.yiisns.com/ajax/UserCollect',params, 
+                function (o) {
                     self.removeClass('stat-processing');
-
-                        if (hasFav) { 
-                            self.removeClass('fav-delete').addClass('fav-add').attr('title', '标为喜欢?');
-                        } else {
-                            self.removeClass('fav-add').addClass('fav-delete').attr('title', '取消喜欢?');
-                        }
-
+                    if (hasFav) { 
+                        self.removeClass('fav-delete').addClass('fav-add').attr('title', '标为喜欢?').data('title', '标为喜欢?');
+                    } else {
+                        self.removeClass('fav-add').addClass('fav-delete').attr('title', '取消喜欢?').data('title', '取消喜欢?');
+                    }
                 }, 'json'
             );
 		});

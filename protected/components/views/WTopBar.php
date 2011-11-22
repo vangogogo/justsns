@@ -4,8 +4,9 @@
       $this->widget('ext.bootstrap.widgets.BootTopbar',array(
         #'themeCssFile' => $array[6].'/default.css',
         'items'=>array(
-            array('label'=>'首页', 'url'=>array('/')),
-            array('label'=>'星座', 'url'=>array('/astro'), 'items'=>array(
+            array('label'=>'首页', 'url'=>'/'),
+            array('label'=>'站内应用', 'url'=>array('/app'), 'items'=>array(
+                array('label'=>'星座', 'url'=>array('/astro')),
 				array('label'=>'个人空间', 'url'=>array('/space/mine'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'好友', 'url'=>array('/friend/index'),'visible'=>!Yii::app()->user->isGuest,'linkOptions'=>array('class'=>'ico_arrow')),
 				array('label'=>'小组', 'url'=>array('/group'),'visible'=>!Yii::app()->user->isGuest),
@@ -17,6 +18,7 @@
                 array('label'=>'Yii Book', 'url'=>'http://yiibook.com/','linkOptions'=>array('target'=>'_blank')),
                 array('label'=>'Yii Demo', 'url'=>'http://yiidemo.sinaapp.com/','linkOptions'=>array('target'=>'_blank')),
             )),
+            array('label'=>'我的博客', 'url'=>'http://blog.lockphp.com','linkOptions'=>array('target'=>'_blank')),
             array('label'=>'联系我们', 'url'=>array('/site/contact')),
         ),
 		'items2'=>Yii::app()->user->isGuest?array(
