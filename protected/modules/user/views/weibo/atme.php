@@ -1,14 +1,17 @@
+<p>
 <img src='<?php echo $weibo_img;?>' alt='' title='' />
 
 <?php if(Yii::app()->user->hasFlash('sendWeibo')): ?>
-<div class="success">
+<div class="alert-message block-message info">
 <?php echo Yii::app()->user->getFlash('sendWeibo'); ?>
 </div>
 <?php else: ?>
+<div class="actions">
 
-<?php echo CHtml::link('>>转发微博',array('/user/weibo/atme','sendWeibo'=>true),array('class'=>'btn'));?>
+<?php echo CHtml::link('>>转发微博',array('/user/weibo/atme','sendWeibo'=>true),array('class'=>'btn danger large'));?>
+</div>
 <?php endif;?>
-
+</p>
 <table class="bordered-table zebra-striped mytable">
     <caption>最爱@你的人，无责任统计:<span class="random_text"><?php echo $message?></span></caption>
 
