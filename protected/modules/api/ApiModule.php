@@ -103,16 +103,7 @@ class ApiModule extends CWebModule
     */
 	public static function d($data)
 	{
-        
-        if(self::$_oauth == true)
-        {
-			echo CJSON::encode($data);
-        }
-        else
-        {
-            print_r($data);
-        }
-		exit();
+		echo CJSON::encode($data);
 	}
 
     public static function setUid($uid)

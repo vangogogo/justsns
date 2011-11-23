@@ -34,15 +34,7 @@ class OauthController extends Controller
 	        if($model->validate() && $model->login())
 	        {
                 $user_id = Yii::app()->user->id;
-                $oauth_version = $this->module->getParam('oauth_version');
-                if(!empty($oauth_version))
-                {
-                    $result = $server->xauthAccessToken($user_id);
-                }
-                else
-                {
-                    ApiModule::d(intval($user_id));
-                }
+                $result = $server->xauthAccessToken($user_id);
                 echo $result;exit();
 	        }
         }
