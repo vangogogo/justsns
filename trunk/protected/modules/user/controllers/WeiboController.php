@@ -202,12 +202,12 @@ class WeiboController extends Controller
 				}
 			}
 
-            include('saedisk.class.php');
-            $SaeDisk = new SaeDisk();
+            #include('saedisk.class.php');
+            #$SaeDisk = new SaeDisk();
 		    $file_name = "atme_{$ids_arr[0]}_{$ids_arr[1]}_{$ids_arr[2]}";
 
 
-			if($SaeDisk->file_exists($file_name))
+			if(0 AND $SaeDisk->file_exists($file_name))
 			{
 				$weibo_img = $SaeDisk->getWebUrl($file_name);
 			}
@@ -247,7 +247,7 @@ class WeiboController extends Controller
                         );
                         
                         $textAttr = array(
-                            "fontName"=>SAE_Font_MicroHei, "fontSize"=>12,  "fontColor"=>"#333333"
+                            "fontName"=>Yii_Font_MicroHei, "fontSize"=>12,  "fontColor"=>"#333333"
                         );
 
                         foreach($img_arr as $key => $one)
@@ -283,9 +283,10 @@ class WeiboController extends Controller
                     }
 
                     $image_base->save($new_filename);
-                    $image_base = new Image($new_filename);
+                    #$image_base = new Image($new_filename);
+                    $weibo_img = $this->createUrl('image',array('path'=>$file_name));
 
-                    $weibo_img = $SaeDisk->upload_file($file_name,$image_base->file,$attr);
+                    #$weibo_img = $SaeDisk->upload_file($file_name,$image_base->file,$attr);
 
                 }
 			}
@@ -419,7 +420,17 @@ class WeiboController extends Controller
         }
 
         $client->upload( $status , $pic_path);
-
-
 	}
+
+    public function actionImage()
+    {
+        $file_name = Yii::app()->request->getParam('path');
+        $tmp_path = Yii::app()->runtimePath;
+        $new_filename = $tmp_path.'/'.$file_name;
+        Yii::import('application.extensions.image.Image');
+        $image_base = new Image($new_filename);
+        $image_base->render();
+        
+        
+    }
 }

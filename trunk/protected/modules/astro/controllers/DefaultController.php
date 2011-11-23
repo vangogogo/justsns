@@ -3,7 +3,7 @@
 class DefaultController extends Controller
 {
 	#public $layout='//layouts/column2';
-
+    public $astros_list;
     public function behaviors()
     {
         return array(
@@ -15,7 +15,7 @@ class DefaultController extends Controller
     {
 	    $m_astro = new m_astro;
         $astros = $m_astro->getAstrosList();
-
+        $this->astros_list = $astros;
         if(!empty($astros))
         {
 			$keywords = '';
@@ -36,25 +36,7 @@ class DefaultController extends Controller
 
 	public function actionIndex()
 	{
-	    $m_astro = new m_astro;
-        $astros = $m_astro->getAstrosList();
-
-        if(!empty($astros))
-        {
-			$keywords = '';
-            foreach($astros as $tmp)
-            {
-                $keywords .= $tmp->astro_name.',';
-            }
-            foreach($astros as $tmp)
-            {
-                $keywords .= $tmp->astro_name_en.',';
-            }
-            $keywords .= '十二星座,astro';
-        }
-        $this->metaKeywords = $keywords;
-        $this->metaDescription = $keywords.'最新,最准确,爱情,学习,健康,幸运,对象';
-
+        $astros = $this->astros_list;
 		$this->render('index',array('astros'=>$astros));
 	}
 
