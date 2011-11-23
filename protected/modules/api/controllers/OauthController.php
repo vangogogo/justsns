@@ -109,13 +109,13 @@ class OauthController extends Controller
 			        {
                         $this->refresh();
 			        }
-                    var_dump($model->errors);
 		        }
             }
         }  
         catch (OAuthException $e)  
         {  
             $errmsg =  $e->getMessage();
+            throw new CHttpException(401,$errmsg);
             // 请求中没有包含token, 显示一个使用户可以输入token以进行验证的页面  
             // ** 你的代码 **  
         }  
@@ -124,6 +124,7 @@ class OauthController extends Controller
             $errmsg =  $e->getMessage();
             // 请求了一个错误的token 
             // ** 你的代码 **  
+            throw new CHttpException(401,$errmsg);
         }  
 
         $data = array(

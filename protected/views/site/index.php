@@ -14,29 +14,35 @@
   </div>
   <div class="row">
     <div class="span-one-third">
-      <h2>星座 Astro <span class="label success">New</span></h2>
-      <p>Engineers at Twitter have historically used almost any library they were familiar with to meet front-end requirements. Bootstrap began as an answer to the challenges that presented. With the help of many awesome folks, Bootstrap has grown significantly.</p>
-      <p>Read more on <a href="https://dev.twitter.com/blog/bootstrap-twitter">dev.twitter.com ›</a></p>
-      <p>
-        <a href="http://twitter.com/twbootstrap" class="twitter-follow-button">Follow @twbootstrap</a>
-      </p>
+      <h3>星座 Astro <span class="label important">New</span></h3>
+      <p>占星解决不了任何问题，占星师同样改变不了你的命运。只是让你了解自己，仅此。</p>
+        <a href="/astro" class="btn  small "> 前往 </a>
+      <hr/>
+      <h3>最爱@我 atme <span class="label important">HOT</span></h3>
+      <p>新浪微薄的一个简单应用，统计@你最多的人。</p>
+      <p> <a href="/user/weibo" class="btn danger small "> 去试试吧 </a></p>
     </div>
 
     <div class="span-one-third">
-      <h2>最爱@我 atme <span class="label important">NOTICE</span></h2>
-      <p>Bootstrap comes complete with compiled CSS, uncompiled, and example templates.</p>
-      <ul>
-        <li><a href="./javascript.html">Javascript plugins</a></li>
-        <li>All original .less files</li>
-        <li>Fully <a href="1.4.0/bootstrap.css">compiled</a> and <a href="1.4.0/bootstrap.min.css">minified</a> CSS</li>
-        <li>Complete styleguide documentation</li>
-        <li>Three example pages with different layouts</li>
-      </ul>
+      <h3>YIICMS <span class="label warning">!</span></h3>
+      <p>基于Yii编写的CMS系统 ,代码共享<br/>本身yiicms有些功能没有完善......好吧，我错了。</p>
+        <a href="http://blog.lockphp.com/cms" class="btn info "> 历史版本 </a>
+      <hr/>
+      <h3>YIISAE <span class="label warning">!</span></h3>
+      <p>...Yii的sae移植,学到很多,看源代码。</p>
+      <p> <a href="http://http://code.google.com/p/yii-sae/" class="btn info"> 历史版本 </a></p>
     </div>
     <div class="span-one-third">
-        <h2>浏览器支持</h2>
+        <h3>浏览器支持</h3>
         <p> 作为一个web设计者，不应顺着用户守旧的习惯。IE 已经没有前途了，或许你可以用一个更好的浏览器浏览我们的网站。<br/>感谢 <a href="https://dev.twitter.com/blog/bootstrap-twitter">dev.twitter.com ›</a> 提供的 <a href="http://twitter.github.com/bootstrap/">bootstrap</a> </p>
-        <img src="/images/browsers.png" alt="Tested and supported in Chrome, Safari, Internet Explorer, and Firefox">
+        <img src="/images/browsers.png" alt="Tested and supported in Chrome, Safari, Internet Explorer, and Firefox" />
+        <ul>
+            <li>Latest Safari</li>
+            <li>Latest Google Chrome</li>
+            <li>Firefox 4+</li>
+            <li>Internet Explorer 7+</li>
+            <li>Opera 11</li>
+        </ul>
     </div>
   </div><!-- /row -->
 </section>

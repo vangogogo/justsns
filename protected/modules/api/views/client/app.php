@@ -30,7 +30,7 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row submit">
-		<?php echo CHtml::submitButton('登录并授权'); ?>
+		<?php echo CHtml::submitButton('登录并授权',array('class'=>'btn primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

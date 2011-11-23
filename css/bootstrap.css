@@ -11,9 +11,11 @@ body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Ar
 a {text-decoration:none;color:#369;}
 a:active,a:hover {/*background-color:#E1ECF4;*/color:#333;}
 
-h2 {font-size:18px;}
+h2 {font-size:14px;font-weight:400;}
 h3 {font-size:13px;font-weight:400;}
 h4 {font-size:12px;font-weight:400;}
+
+section h3{font-size:18px;font-weight:700;}
 
 form .row {margin: 10px 0;line-height:30px;}
 form .row label,.form label {margin: 0 18px 0 0;padding: 6px 0;width:80px;}

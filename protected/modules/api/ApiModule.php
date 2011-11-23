@@ -10,6 +10,8 @@ class ApiModule extends CWebModule
     public $db_dsn;
 	public function init()
 	{
+        Yii::app()->homeUrl = array('/api');
+
         $api_url = Yii::app()->createAbsoluteUrl('/api');
 
         define('SUB_DOMAIN_api',$api_url);
@@ -104,6 +106,7 @@ class ApiModule extends CWebModule
 	public static function d($data)
 	{
 		echo CJSON::encode($data);
+        exit;
 	}
 
     public static function setUid($uid)
@@ -125,16 +128,10 @@ class ApiModule extends CWebModule
 
     public function getParam($name,$default = '')
     {
-		if($this->_debug == false)
-		{
-			$req = new OAuthRequestVerifier();
-			$value = $req->getParam($name);
-			if(empty($value))
-			{
-				$value = $default;
-			}
-		}
-		else
+		$req = new OAuthRequestVerifier();
+		$value = $req->getParam($name);
+
+		if(empty($value))
 		{
 			$value = Yii::app()->request->getParam($name,$default); 
 		}

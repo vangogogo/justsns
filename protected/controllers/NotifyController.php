@@ -191,6 +191,7 @@ class NotifyController extends Controller
 
 	public function actionShow()
 	{
+        $this->setPageTitle('短消息查看'); 
 		$msg_id = Yii::app()->request->getQuery('msg_id');
 		$model =  new Msg();
 		$msg = $model->findByPk($msg_id);
@@ -200,10 +201,6 @@ class NotifyController extends Controller
 			//请选择好友
 			throw new CHttpException(404,'你没有权限访问这个页面。');
 		}
-
-        
-
-
 		$uid = $msg->toUserId == $mid?$msg->fromUserId:$msg->toUserId;
 		$user = User::model()->findByPk($uid);
 

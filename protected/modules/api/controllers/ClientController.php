@@ -96,7 +96,7 @@ class ClientController extends Controller
         $c = $this->getLifeduTClient();
         
         $api = 'echo_api';
-        $ms  = $c->{$api}(); // done
+        $ms  = $c->echo_api(); // done
 
 
         $data = array(
