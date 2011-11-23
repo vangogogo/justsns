@@ -1,4 +1,4 @@
-.astro-thumbnail{ float:left; margin: 2px; padding:1px;  height:120px; border:1px solid #C5C5C5;}
+.astro-thumbnail{ float:left; margin: 2px; padding:1px;  height:140px; border:1px solid #C5C5C5;}
 
 .astro {float:left; width:105px; margin:8px 8px; padding:5px 12px; border:1px solid #E6E6E6; background-color:#F5F6F7; border-radius:5px 5px; -moz-border-radius:5px 5px; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; -webkit-border-bottom-left-radius:5px; -webkit-border-bottom-right-radius:5px;}
 .astro_on { border:1px solid #DDD; background:#FFF}

@@ -222,7 +222,6 @@ class LifeduTOAuth {
 	 * @return mixed
 	 */
 	function get($url, $parameters = array()) {
-        $parameters['myid'] = $_GET['myid'];
 		$response = $this->oAuthRequest($url, 'GET', $parameters);
 
 		if ($this->format === 'json' && $this->decode_json) {
@@ -237,7 +236,6 @@ class LifeduTOAuth {
 	 * @return mixed
 	 */
 	function post($url, $parameters = array() , $multi = false) {
-        $parameters['myid'] = $_GET['myid'];
 		$response = $this->oAuthRequest($url, 'POST', $parameters , $multi );
 		if ($this->format === 'json' && $this->decode_json) {
 			return json_decode($response, true);

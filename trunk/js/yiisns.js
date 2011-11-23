@@ -1,5 +1,5 @@
 $(function(){
-    $( "input:submit, button, input.btn, input.btn_w, a.btn").button();
+    $( "input:submit, button, input.btn, input.btn_w").button();
     $(".radioset").buttonset();
 
 	(function( $ ) {

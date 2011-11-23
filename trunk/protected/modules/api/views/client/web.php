@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 ?>
 
 
-<a href="<?=$aurl?>">点击这里跳转到 oauth 进行验证</a>
+<a href="<?=$aurl?>" class="btn primary">点击这里跳转到 oauth 进行验证</a>
 
 <br/>
 

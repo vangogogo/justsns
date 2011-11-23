@@ -1,6 +1,6 @@
 <?php
 
-class Msg extends CActiveRecord
+class Msg extends YiicmsActiveRecord
 {
 	/**
 	 * The followings are the available columns in table 'msg':
@@ -41,7 +41,7 @@ class Msg extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromUserId, toUserId, ctime, is_read, replyMsgId, is_new, is_del', 'numerical', 'integerOnly'=>true),
+			array('fromUserId, toUserId, is_read, replyMsgId, is_new, is_del', 'numerical', 'integerOnly'=>true),
 			array('subject', 'length', 'max'=>255),
 			array('content', 'safe'),
 			array('subject, content, toUserId', 'required'),
