@@ -113,15 +113,10 @@
 		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</h2>
 		<div>
 			<?php if(!empty($friend_list)){ ?>
-			<ul class="unstyled">
+			<ul class="media-grid unstyled">
 				<?php foreach($friend_list as $user){?>
 					<li>
                         <?php $this->Widget('WUserFace',array('uid'=>$user['id']));?>
-						<?php if(!isset($space_privacy) || $space_privacy){ ?>
-							<div class="name"><?php echo CHtml::link($user['username'],array('/space/','uid'=>$user['id']));?></div>
-						<?php }else{ ?>
-							<div class="name">{$user.id|isOnlineIcon}{$user.name}</div>
-						<?php } ?>
 					</li>
 				<?php }?>
 			</ul>

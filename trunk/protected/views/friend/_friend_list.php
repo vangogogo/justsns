@@ -1,8 +1,8 @@
-<li class="info" id="fri_<?php echo $uid?>" >
-	<div class="left" style="width:70px;">
+<li class="info row" id="fri_<?php echo $uid?>" >
+	<div class="span2">
         <?php $this->widget('WUserFace',array('uid'=>$uid,'user'=>$user));?>
 	</div>
-	<div class="left" style="width:400px; margin-right:30px;">
+	<div class="span5">
 		<p class="lh20">
 			<?php echo CHtml::link($user->getUserName(),array('/space/index','uid'=>$uid),array('id'=>'fname_'.$uid));?>
 		</p>
@@ -18,7 +18,7 @@
     <?php endif;?>
 
 	</div>
-	<div class="left" style="width:60px;">
+	<div class="span2">
 		<p class="lh20">
 			<?php echo CHtml::link('发送短信',array('/notify/write','uid'=>$uid));?>
 		</p>
@@ -32,6 +32,4 @@
 		</p>
         <?php endif;?>
 	</div>
-	<div class="clear"></div>
 </li>
-
