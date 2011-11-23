@@ -2,7 +2,7 @@
 
 class WeiboController extends Controller
 {
-	public $defaultAction = 'index';
+	public $defaultAction = 'atme';
 
     public $layout = 'user.views.weibo.layout_weibo';
 	/**
@@ -284,7 +284,7 @@ class WeiboController extends Controller
 
                     $image_base->save($new_filename);
                     #$image_base = new Image($new_filename);
-                    $weibo_img = $this->createUrl('image',array('path'=>$file_name));
+                    $weibo_img = $this->createAbsoluteUrl('image',array('path'=>$file_name));
 
                     #$weibo_img = $SaeDisk->upload_file($file_name,$image_base->file,$attr);
 
