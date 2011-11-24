@@ -17,7 +17,7 @@ else
 {
     define('SUB_DOMAIN','www.yiisns.com');
 }
-define('Yii_Font_MicroHei','/usr/share/fonts/truetype/wqy/wqy-microhei.ttc');
+define('Yii_Font_MicroHei',dirname(__FILE__).'/fonts/wqy-microhei.ttc');
 
 
 include('Ts_common.php');
