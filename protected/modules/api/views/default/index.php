@@ -28,15 +28,15 @@ $this->breadcrumbs=array(
 </th><th> 说明
 </th></tr>
 <tr>
-<td class="wiki_table_tdfirst"><a href="<?php echo Yii::app()->createAbsoluteUrl('api/oauth/authorize');?>" title="Oauth2/authorize">oauth2/authorize</a>
+<td class="wiki_table_tdfirst"><a href="<?php echo Yii::app()->createAbsoluteUrl('api/oauth/authorize');?>" title="Oauth/authorize">oauth/authorize</a>
 </td><td>请求用户授权Token
 </td></tr>
 <tr>
-<td class="wiki_table_tdfirst"><a href="<?php echo Yii::app()->createAbsoluteUrl('api/oauth/request_token');?>" title="OAuth2/access token">oauth2/access_token</a>
+<td class="wiki_table_tdfirst"><a href="<?php echo Yii::app()->createAbsoluteUrl('api/oauth/request_token');?>" title="OAuth/request token">oauth/access_token</a>
 </td><td>获取授权过的Request Token
 </td></tr>
 <tr>
-<td class="wiki_table_tdfirst"><a href="<?php echo Yii::app()->createAbsoluteUrl('api/oauth/access_token');?>" title="OAuth2/access token">oauth2/access_token</a>
+<td class="wiki_table_tdfirst"><a href="<?php echo Yii::app()->createAbsoluteUrl('api/oauth/access_token');?>" title="OAuth/access token">oauth/access_token</a>
 </td><td>获取授权过的Access Token
 </td></tr>
 </tbody></table>
