@@ -2,12 +2,15 @@
 
 class ApiModule extends CWebModule
 {
+
     private $_version = "0.1beta";
     //oauth 机制中当前验证通过的 uid，如果你想取得当前用户的id 使用ApiModule::getUid();
     static private $_uid;
     static private $_oauth;
     private $_debug = false;
     public $db_dsn;
+
+	public $connectionString,$username,$password;
 	public function init()
 	{
         Yii::app()->homeUrl = array('/api');
@@ -15,11 +18,8 @@ class ApiModule extends CWebModule
         $api_url = Yii::app()->createAbsoluteUrl('/api');
 
         define('SUB_DOMAIN_api',$api_url);
-        if(empty($this->db_dsn))
-        {
-            throw new CHttpException(401,"db_dsn can't be empty");
-        }
-        define( "DB_DSN" , $this->db_dsn );
+
+
 
 		// 设置 CHttpException 的处理 action
         Yii::app()->errorHandler->errorAction = "api/default/error";
@@ -39,7 +39,15 @@ class ApiModule extends CWebModule
 
 		require_once("oauth-php/library/OAuthServer.php");
 		require_once("oauth-php/library/OAuthStore.php");
-		require_once("oauth-php/init.php");
+		#require_once("oauth-php/init.php");
+
+		$options = array(
+			'dsn'=>$this->connectionString,
+			'username'=>$this->username,
+			'password'=>$this->password
+		);
+
+        OAuthStore::instance('PDO', $options);
     }
 
 	public function beforeControllerAction($controller, $action)

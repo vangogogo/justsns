@@ -51,7 +51,7 @@ class OauthController extends Controller
         //登陆用户  
         $user_id = Yii::app()->user->id;
         $model=new LoginForm;
-
+		$errmsg = '';
         // 取得 oauth store 和 oauth server 对象  
         $server = new OAuthServer();  
         try  

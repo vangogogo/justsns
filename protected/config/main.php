@@ -225,7 +225,9 @@ $config = array(
 			),
 		),
 		'api'=>array(
-            'db_dsn'=>'mysql://root:111111@localhost/yiisns',
+            'connectionString' => 'mysql:host=localhost;port=3306;dbname=yiisns',
+            'username' => 'root',
+            'password' => '111111',
         ),
 		'admin'=>array(
 			#"layout"=>"application.views.layouts.main",
