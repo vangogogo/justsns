@@ -18,6 +18,7 @@ if(!empty($astros))
         $time = strtotime($start_day) + 24*60*60*$i;
         $day = date('Ymd',$time);
         echo $day."\n";
+        
 	    foreach($astros as $one)
 	    {
 		    $astro_name = strtolower($one['astro_name_en']);

@@ -256,7 +256,7 @@ class WeiboController extends Controller
                             $img_url = $one['img_url'];
 
 
-                            $img_data = file_get_contents($img_url);
+                            $img_data = $this->file_get_contents($img_url);
                             $img_filename = $tmp_path.'/'.md5($img_url);
 
                             $avatra[] = file_put_contents($img_filename,$img_data);
@@ -432,5 +432,23 @@ class WeiboController extends Controller
         $image_base->render();
         
         
+    }
+    
+    public function file_get_contents($url)
+    {
+       $ch = curl_init();
+
+       curl_setopt ($ch, CURLOPT_URL, $url);
+       curl_setopt ($ch, CURLOPT_HEADER, 0);
+
+       ob_start();
+
+       curl_exec ($ch);
+       curl_close ($ch);
+       $string = ob_get_contents();
+
+       ob_end_clean();
+       
+       return $string;    
     }
 }
