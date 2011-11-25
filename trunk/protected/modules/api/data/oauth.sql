@@ -2,10 +2,6 @@
 -- version 3.1.2
 -- http://www.phpmyadmin.net
 --
--- 主机: 127.0.0.1
--- 生成日期: 2011 年 11 月 22 日 14:57
--- 服务器版本: 5.5.3
--- PHP 版本: 5.2.14
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -14,10 +10,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
---
--- 数据库: `hopeoauth`
---
 
 -- --------------------------------------------------------
 
