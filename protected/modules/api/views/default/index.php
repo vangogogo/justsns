@@ -8,6 +8,7 @@ $this->breadcrumbs=array(
 <hr/>
 <h2>文档 Document</h2>
 <a href="http://oauth.net/" class="btn info ">Oauth 官方</a>
+<a href="http://code.google.com/p/oauth-php/" class="btn info ">Oauth-php</a>
 <a href="http://open.weibo.com/wiki/Oauth" class="btn ">新浪 Oauth 解释</a>
 
 
