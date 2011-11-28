@@ -10,6 +10,7 @@ if(!empty($astros))
 	foreach($astros as $one)
 	{
 		$astro_name = strtolower($one['astro_name_en']);
+		echo $day."\n";
 		$tmp =getAstroWeek($astro_name,$day);
 		$tmp['astro_id'] = $one['astro_id'];
 		$data[] = $tmp;
@@ -54,6 +55,7 @@ function getAstroWeek($astor_name = '',$day = '')
 	}
 
 	$url = "http://vip.astro.sina.com.cn/astro/view/{$astor_name}/weekly";
+	echo $url."\n";
 	  $ch=curl_init();
 	  curl_setopt($ch,CURLOPT_URL,$url);
 	  curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
