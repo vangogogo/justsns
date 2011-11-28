@@ -98,7 +98,7 @@ $this->breadcrumbs=array(
 						'work_content'=>'工作',
 						'love_content'=>'恋爱',
 						'love_content_no'=>'恋爱(无恋人)',
-						'sex_content'=>'情感','red_content'=>'红色','black_content'=>'黑色');
+						'sex_content'=>'情感','red_content'=>'红桃日','black_content'=>'黑桃日');
 			?>
 			<ul>
 				<?php foreach($arr as $attr => $name):?>
@@ -111,7 +111,12 @@ $this->breadcrumbs=array(
 					<?php echo $week->$attr; ?>
 					</p>
 					<div class="row">
-					<label>指数：</label><div class="istar"><span class="star<?php echo $week->$star_attr ?>"></span></div>
+					<?php if($attr == 'red_content' OR $attr == 'black_content'):?>
+						<?php echo $name;?>:<?php echo $week->$star_attr;?>
+					<?php else:?>
+					<label>指数:</label><div class="istar"><span class="star<?php echo $week->$star_attr ?>"></span></div>
+					<?php endif;?>
+					
 					</div>
 				</div>
 				<?php endforeach;?>
