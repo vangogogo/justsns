@@ -30,7 +30,7 @@
       <hr/>
       <h3>YIISAE <span class="label warning">!</span></h3>
       <p>...Yii的sae移植,学到很多,看源代码。</p>
-      <p> <a href="http://http://code.google.com/p/yii-sae/" class="btn info"> 历史版本 </a></p>
+      <p> <a href="http://code.google.com/p/yii-sae/" class="btn info"> 历史版本 </a></p>
     </div>
     <div class="span-one-third">
         <h3>浏览器支持</h3>
