@@ -301,7 +301,7 @@ class WeiboController extends Controller
 				$status = "最爱at我的前三名是：{$send_weibo_text} 谢谢关心和支持！";
 				$length1 = mb_strlen($status,'UTF8');
 				#$status .= ">> 偷偷告诉你们:".$random_text;
-				$goto_url = "看看你的：http://t.cn/aB795y";
+				$goto_url = "看看你的：".$this->createAbsoluteUrl('user/weibo/atme');
 				$length2 = mb_strlen($goto_url,'UTF8');
 
 				$length_other = 140 - $length1 - $length2;
