@@ -288,6 +288,7 @@ class MTreeView extends CTreeView {
                 }
                 self::$_createUrl_ = false;
                 $arrOptions = isset($data['options']) ? $data['options'] : array();
+				return Yii::app()->createUrl($this->_url[0], $arrTemp);
                 return Yii::app()->createUrl($this->_url[0], $arrTemp, $arrOptions);
             }
         }
