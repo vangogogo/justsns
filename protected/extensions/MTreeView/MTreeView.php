@@ -124,6 +124,7 @@ class MTreeView extends CTreeView {
 
     private function queryTable() {
         $fields = $this->getFields();
+		$fields .= ",url";
         $conditions = $this->getConditions();
         switch ($this->hierModel) {
             case 'adjacency':
@@ -225,6 +226,7 @@ class MTreeView extends CTreeView {
                         continue;
             $thisref = &$refs [$data ['id']];
             $thisref ['id'] = $data ['id'];
+
             $thisref ['text'] = $this->formatTreeLinks($data ['text'], $this->processURL($this->_fields_adjacency, $data), $this->_fields_adjacency['icon'] ? $data ['icon'] : NULL, $this->_fields_adjacency['tooltip'] ? $data ['tooltip'] : NULL, $this->_fields_adjacency['alt'] ? $data['alt'] : '', $this->_fields_adjacency['options'] ? json_decode($data ['options'], true) : array());
 
             if ($data ['id_parent'] == 0) {
