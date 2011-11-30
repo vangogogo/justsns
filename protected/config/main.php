@@ -32,6 +32,7 @@ $config = array(
 		'application.extensions.yiidebugtb.*', //our extension
 
 		'application.extensions.yiicms.*', 
+		'application.modules.user.*',
 		'application.modules.user.models.*',
 		'application.modules.user.components.*',
 		'application.modules.rights.models.*',

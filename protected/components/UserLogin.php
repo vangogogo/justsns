@@ -8,6 +8,7 @@ class UserLogin extends CPortlet
 	protected function renderContent()
 	{
 		$model=$this->model;
+
 		$this->render('WUserLogin',array('model'=>$model));
 	}
 }

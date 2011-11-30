@@ -5,6 +5,11 @@ body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Ar
 .container> .sidebar{display: inline;float: left;margin-left: 40px;width: 280px;}
 .container> .content{display: inline;float: left;margin-left: 20px;width: 600px;}
 
+.container-backend{min-width:940px;padding-left:20px;padding-right:20px;zoom:1;}.container-fluid:before,.container-fluid:after{display:table;content:"";zoom:1;}
+.container-backend> .sidebar{float: left;width: 220px;}
+.container-backend> .content{margin: 0 0 0 220px;}
+
+.content> .container {width:auto;}
 .media-grid img.big {width:180px;height:180px;}
 .media-grid img.small {width:50px;height:50px;}
 
@@ -19,19 +24,22 @@ section h3{font-size:18px;font-weight:700;}
 
 form .row {margin: 10px 0;line-height:30px;}
 form .row label,.form label {margin: 0 18px 0 0;padding: 6px 0;width:80px;}
+/*
 form .input{margin-left:110px;}
-
+*/
 .menu-dropdown, .dropdown-menu {min-width:100px;}
 .errorMessage,.help-inline { padding-left: 24px; color: #FE2617;  display: inline; background: url('../images/hint.gif') no-repeat 3px;}
 textarea.t_area {width:80%;height:180px;}
 input.t_input,textarea.t_input{padding:7px;}
-
+/*
 .sidebar {width:310px;overflow:hidden;}
 .sidebar ul {width:300px;list-style:none;margin:0 auto;}
 .sidebar ul li {width:300px;height:30px;line-height:30px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;border-bottom:#DDD 1px dashed;}
-
+*/
 .btn-fav {display: inline-block;zoom: 1;padding: 0 8px 0 30px;vertical-align: middle;height: 19px;line-height: 19px;line-height: 21px;overflow: hidden;border: 1px solid #EDCEBA;margin-left: 4px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 .fav-delete, .fav-delete:link, .fav-delete:hover {background:#FFF0E2 url(../images/ic_like.png) no-repeat 8px -17px;}
 .fav-add, .fav-add:link, .fav-add:hover {background:#FFF0E2 url(../images/ic_like.png) no-repeat 8px 3px;}
 a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0E2;color: #99776B;}
 a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0E2;color: #99776B;}
+
+#mtreeview-target {min-height:400px;}
