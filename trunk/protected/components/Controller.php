@@ -83,4 +83,18 @@ class Controller extends CController
            Yii::app()->end();
        }
     }
+
+	public function render($view,$data=null,$return=false)
+	{
+		if(Yii::app()->request->isAjaxRequest)
+		{
+			parent::renderPartial($view,$data,$return,true);
+		}
+		else
+		{
+			parent::render($view,$data,$return);
+		}
+		exit;
+
+	}
 }
