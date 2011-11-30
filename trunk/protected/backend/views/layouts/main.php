@@ -32,11 +32,10 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
 )); 
 ?>
 </head>
-
 <body>
 <?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>
 
-<div class="container-fluid">
+<div class="container-backend" id="mainarea">
 
 	<div class="sidebar" id="mtreeview">
 		<?php
@@ -77,6 +76,10 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
 
 	<?php echo $content; ?>
 
+
+	</div>
+
+
 		<!-- start.footer -->
 		<div style="clear:both"></div>
 		<footer>
@@ -88,8 +91,6 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
 			</p>
 		</footer>
 		<!-- end.footer -->
-	</div>
-
 
 </div>
 </body>
