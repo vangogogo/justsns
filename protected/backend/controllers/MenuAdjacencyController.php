@@ -55,9 +55,17 @@ class MenuAdjacencyController extends Controller
 				'model'=>$this->loadModel($id),
 			),false,true);
 		else
+		{
+			$model = $this->loadModel($id);
+			if(!empty($model['url']))
+			{	
+				$url = $model['url'];
+				$this->redirect(array($url));
+			}
 			$this->render('view',array(
 				'model'=>$this->loadModel($id),
 			));
+		}
 	}
 
 	/**

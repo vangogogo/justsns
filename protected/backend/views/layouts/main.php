@@ -60,7 +60,8 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
 					'url'=>array('/menuAdjacency/view',array('id'=>'id'))
 				),
 				'template'=>'{icon}&nbsp;{text}',
-				'ajaxOptions'=>array('update'=>'#mtreeview-target')
+				#'htmlOptions'=>array('class'=>'filetree  treeview-famfamfam')
+				#'ajaxOptions'=>array('update'=>'#mtreeview-target')
 			));
 		?>
 	</div>
