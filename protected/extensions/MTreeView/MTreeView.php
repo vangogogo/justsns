@@ -362,7 +362,9 @@ class MTreeView extends CTreeView {
         $text = (self::$_encode_) ? CHtml::encode($text) : $text;
         $title = str_replace('{icon}', $img, self::$_template_);
         $title = str_replace('{text}', $text, $title);
-        $url = self::$_createUrl_ ? (strlen($url) > 0 ? Yii::app()->createUrl($url) : $url)  : $url;
+		if($url != '#')
+
+		  $url = self::$_createUrl_ ? (strlen($url) > 0 ? Yii::app()->createUrl($url) : $url)  : $url;
         $label = strlen($url) == 0 ? $title : (self::$_ajax_ ? CHtml::ajaxLink($title,$url,self::$_ajax_,$nodeOptions) : CHtml::link($title, $url, $nodeOptions));
         return CHtml::tag('span', $htmlOptions, $label);
     }

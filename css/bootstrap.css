@@ -8,6 +8,9 @@ body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Ar
 .container-backend{min-width:940px;padding-left:20px;padding-right:20px;zoom:1;}.container-fluid:before,.container-fluid:after{display:table;content:"";zoom:1;}
 .container-backend> .sidebar{float: left;width: 220px;}
 .container-backend> .content{margin: 0 0 0 220px;}
+.container-backend .row:after,.container-backend .row:before{display:none;content:"";zoom:1;}
+.container-backend .tabs:after,.container-backend .tabs:before{display:block;content:"";zoom:3;}
+
 
 .content> .container {width:auto;}
 .media-grid img.big {width:180px;height:180px;}
