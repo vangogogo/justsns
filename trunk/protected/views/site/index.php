@@ -34,7 +34,7 @@
     </div>
     <div class="span-one-third">
         <h3>浏览器支持</h3>
-        <p> 作为一个web设计者，不应顺着用户守旧的习惯。IE 已经没有前途了，或许你可以用一个更好的浏览器浏览我们的网站。<br/>感谢 <a href="https://dev.twitter.com/blog/bootstrap-twitter">dev.twitter.com ›</a> 提供的 <a href="http://twitter.github.com/bootstrap/">bootstrap</a> </p>
+        <p> 作为一个web设计者，不应顺着用户守旧的习惯。IE 已经没有前途了，或许你可以用一个更好的浏览器浏览我们的网站。<br/>感谢 <a href="#">dev.twitter.com ›</a> 提供的 <a href="http://twitter.github.com/bootstrap/">bootstrap</a> </p>
         <img src="/images/browsers.png" alt="Tested and supported in Chrome, Safari, Internet Explorer, and Firefox" />
         <ul>
             <li>Latest Safari</li>
