@@ -97,4 +97,26 @@ class Controller extends CController
 		exit;
 
 	}
+	/*
+	* 使用 bootstrap 的样式
+	*/
+	public function createWidget($className,$properties=array())
+	{
+		if($className == 'zii.widgets.grid.CGridView')
+		{
+			$className = 'ext.bootstrap.widgets.grid.BootGridView';
+		}
+		if($className == 'CActiveForm')
+		{
+			$className = 'ext.bootstrap.widgets.BootActiveForm';
+		}
+		if($className == 'zii.widgets.CDetailView')
+		{
+			$className = 'ext.bootstrap.widgets.BootDetailView';
+		}
+
+		$widget=Yii::app()->getWidgetFactory()->createWidget($this,$className,$properties);
+		$widget->init();
+		return $widget;
+	}
 }
