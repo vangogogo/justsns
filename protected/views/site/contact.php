@@ -39,10 +39,10 @@ $this->breadcrumbs=array(
 )); ?>
 <div class="form">
 	<div class="row">
-    <?php echo $form->textFieldBlock($model,'name'); ?>
-    <?php echo $form->textFieldBlock($model,'email'); ?>
-    <?php echo $form->textFieldBlock($model,'subject'); ?>
-	<?php echo $form->textAreaBlock($model,'body',array('class'=>'t_area')); ?>
+    <?php echo $form->textFieldRow($model,'name'); ?>
+    <?php echo $form->textFieldRow($model,'email'); ?>
+    <?php echo $form->textFieldRow($model,'subject'); ?>
+	<?php echo $form->textAreaRow($model,'body',array('class'=>'t_area')); ?>
 	</div>
 	<?php if(extension_loaded('gd')): ?>
 	<div class="row captcha-item">

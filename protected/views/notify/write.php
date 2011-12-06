@@ -44,9 +44,9 @@
 
         <?php endif;?>
 	    </div>
-			<?php echo $form->textFieldBlock($model,'subject',array('class'=>'span3')); ?>
+			<?php echo $form->textFieldRow($model,'subject',array('class'=>'span3')); ?>
 
-			<?php echo $form->textAreaBlock($model,'content',array('class'=>'span8','row'=>5)); ?>
+			<?php echo $form->textAreaRow($model,'content',array('class'=>'span8','row'=>5)); ?>
 
 	    <div class="row submit">
             <label></label>
