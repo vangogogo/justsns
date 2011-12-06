@@ -93,7 +93,7 @@ class WeiboForm extends User {
 		        $identity=new UserIdentity($username,$password);
 		        $identity->authenticateWeibo();
 		        //必须设置默认时间，才能多域名共享登录session
-		        #$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+		        $duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
 		        Yii::app()->user->login($identity,$duration);
 
         
