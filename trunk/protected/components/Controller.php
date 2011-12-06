@@ -19,17 +19,18 @@ class Controller extends CController
 		
 		defined('PUBLIC_URL') or define('PUBLIC_URL',Yii::app()->request->baseUrl.'/');
 		defined('THEME_URL') or define('THEME_URL',Yii::app()->theme->baseUrl.'/');
-		/*
+		
+		//前台 、 后台
 		if(!Yii::app()->user->isGuest)
 		{
-			$this->layout='application.views.layouts.column2';
+			$this->layout='//layouts/column2';
 		}
 		else
 		{
-			$this->layout='application.views.layouts.column1';
+			$this->layout='//layouts/column1';
 		}
-		$this->layout='application.views.layouts.column1';
-        */
+
+        
 	}
 
 	public function actions()
