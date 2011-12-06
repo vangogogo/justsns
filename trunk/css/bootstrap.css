@@ -1,5 +1,5 @@
 body {padding-top: 60px;}
-p {line-height:20px;}
+p {line-height:162%}
 
 body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Arial,Calibri,Trebuchet MS,Helvetica,Hiragino,STHeiti,Microsoft Jhenghei,sans-serif;color:#444}
 .container> .sidebar{display: inline;float: left;margin-left: 40px;width: 280px;}
@@ -12,10 +12,14 @@ body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Ar
 .container-backend .clearfix:after,.container-backend .clearfix:before{display:none;content:"";zoom:1;}
 .container-backend .tabs:after,.container-backend .tabs:before{display:block;content:"";zoom:3;}
 
-
+.container-fluid .buttons {background:#f5f5f5;margin-top:18px;margin-bottom:18px;padding:17px 20px 18px 150px;border-top:1px solid #ddd;-webkit-border-radius:0 0 3px 3px;-moz-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;}.actions .secondary-action{float:right;}.actions .secondary-action a{line-height:30px;}.actions .secondary-action a:hover{text-decoration:underline;}
 .content> .container {width:auto;}
+
 .media-grid img.big {width:180px;height:180px;}
 .media-grid img.small {width:50px;height:50px;}
+
+.userface-grid a{margin:0 8px 18px 4px;}
+.prefix_1 {padding:0 0 0 40px;}
 
 a {text-decoration:none;color:#369;}
 a:active,a:hover {/*background-color:#E1ECF4;*/color:#333;}
@@ -27,7 +31,7 @@ h4 {font-size:12px;font-weight:400;}
 section h3{font-size:18px;font-weight:700;}
 
 form .row {margin: 10px 0;line-height:30px;}
-form .row label,.form label {margin: 0 18px 0 0;padding: 6px 0;width:80px;}
+form .row label {margin: 0 18px 0 0;padding: 6px 0;width:100px;}
 /*
 form .input{margin-left:110px;}
 */
@@ -47,32 +51,3 @@ a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0
 a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0E2;color: #99776B;}
 
 #mtreeview-target {min-height:400px;}
-
-.column, div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span-7, div.span-8, div.span-9, div.span-10, div.span-11, div.span-12, div.span-13, div.span-14, div.span-15, div.span-16, div.span-17, div.span-18, div.span-19, div.span-20, div.span-21, div.span-22, div.span-23, div.span-24 {float:left;margin-right:10px;}
-.last, div.last {margin-right:0;}
-.span-1 {width:30px;}
-.span-2 {width:70px;}
-.span-3 {width:110px;}
-.span-4 {width:150px;}
-.span-5 {width:190px;}
-.span-6 {width:230px;}
-.span-7 {width:270px;}
-.span-8 {width:310px;}
-.span-9 {width:350px;}
-.span-10 {width:390px;}
-.span-11 {width:430px;}
-.span-12 {width:470px;}
-.span-13 {width:510px;}
-.span-14 {width:550px;}
-.span-15 {width:590px;}
-.span-16 {width:630px;}
-.span-17 {width:670px;}
-.span-18 {width:710px;}
-.span-19 {width:750px;}
-.span-20 {width:790px;}
-.span-21 {width:830px;}
-.span-22 {width:870px;}
-.span-23 {width:910px;}
-.span-24, div.span-24 {width:950px;margin-right:0;}
-
-.container-fluid .buttons {background:#f5f5f5;margin-top:18px;margin-bottom:18px;padding:17px 20px 18px 150px;border-top:1px solid #ddd;-webkit-border-radius:0 0 3px 3px;-moz-border-radius:0 0 3px 3px;border-radius:0 0 3px 3px;}.actions .secondary-action{float:right;}.actions .secondary-action a{line-height:30px;}.actions .secondary-action a:hover{text-decoration:underline;}

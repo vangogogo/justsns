@@ -21,9 +21,12 @@ class SNSUser extends YiicmsActiveRecord
 		}
 	}
 
-	public function getSpaceUrl($name = '',$title = '')
+	public function getSpaceUrl($uid = '')
 	{
-		$uid = $this->id;
+		if(empty($uid))
+		{
+			$uid = $this->primaryKey;
+		}
 		$url = Yii::app()->createUrl('/space/index',array('uid'=>$uid));
 		return $url;
 	}

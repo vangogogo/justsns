@@ -1,0 +1,34 @@
+.sidebar {width:310px;overflow:hidden;}
+.sidebar ul {width:300px;list-style:none;margin:0 auto;}
+.sidebar ul li {width:300px;height:30px;line-height:30px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;border-bottom:#DDD 1px dashed;}
+
+.groupintro {background:#F2F9FC;width:560px;padding:15px;word-break:break-all;word-wrap:break-word;}
+.groupintro img {float:left;margin-right:12px;}
+.cdate {padding:10px 20px;text-align:right;}
+
+.topic_content {width:590px;border:0;}
+.topic_content tr td {line-height:22px;padding:5px 0;text-align:left;vertical-align:top;border-top:0px;}
+.topic_content tr td h3 {font-size:14px;font-weight:normal;line-height:22px;height:22px;}
+.topic_reply {}
+.topic_reply tr td {line-height:22px;padding:10px 0;text-align:left;vertical-align:top;border-top:0;}
+.topic_reply tr td h4 {font-size:12px;font-weight:normal;line-height:20px;height:20px;background:#F2F9FC;padding:0 10px;margin: 0 0 15px 4px;}
+
+.topic_content tr td .content {width:490px;padding:10px 15px;white-space:normal;word-break:break-all;word-wrap:break-word;}
+.topic_reply tr td .content {width:440px;padding:15px;white-space:normal;word-break:break-all;word-wrap:break-word;}
+.reply_form {width:440px;height:120px;overflow-x:hidden;overflow-y:auto;margin:10px 15px;font-size:14px;line-height:26px;}
+.reply_button {width:100px;height:26px;text-align:center;margin:0 15px;}
+.operate {margin:5px 0 0 0;text-align:right;}
+.operate a:link,.operate a:visited {text-decoration:none;color:#CCC;}
+.operate a:active,.operate a:hover {text-decoration:none;color:#FFF; background:#F90;}
+
+.editable {border:0;width:100%;}
+.editable tr td {line-height:20px;padding:8px 4px;text-align:left;vertical-align:top;white-space:normal;word-break:break-all;word-wrap:break-word;}
+.editable tr td.alignr {text-align:right;}
+.editopic_title {width:100%;height:20px;}
+.editopic_content {width:100%;height:360px;overflow-x:hidden;overflow-y:auto;}
+.editgroup_title {width:100%;height:20px;}
+.editgroup_content {width:100%;height:200px;overflow-x:hidden;overflow-y:auto;}
+
+.search {background:#F2F9FC;width:280px;height:26px;margin:10px auto;padding:8px 10px;}
+.search .text {border:1px solid;border-color:#B5CCDA #DAE4EA #D9E3E9 #B5CCDA;width:205px;height:24px;line-height:24px;padding:0 5px;font-size:14px;}
+.search .button {width:60px;height:26px;background:url(/images/u148_main_bg.gif) -110px -275px no-repeat;text-indent:-999em;border:0;cursor:pointer;}

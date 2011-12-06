@@ -218,27 +218,26 @@ $config = array(
 
 	// application modules
 	'modules'=>array(
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'yiidev',
-			'generatorPaths'=>array(
-				'ext.bootstrap.gii', // Since 0.9.1
-			),
-		),
 		'api'=>array(
             'connectionString' => 'mysql:host=localhost;port=3306;dbname=yiisns',
             'username' => 'root',
             'password' => '111111',
         ),
-		'admin'=>array(
-			#"layout"=>"application.views.layouts.main",
-		),
 		'user'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),
 		'rights',
 		'group'=>array(
 			"defaultController"=>"group"
+		),
+		'shop' => array(
+			'debug' => true,
+			'loginUrl' => array('/user/auth'),
+			'currencySymbol' => '$',
+			'termsView' => array('/myprojectspecific_controller/terms'),
+			#'successView' => array('/myprojectspecific_controller/success'),
+			#'failureView' => array('/myprojectspecific_controller/failure'),
+			"layout"=>"application.views.layouts.main",
 		),
 		'gift',
         'astro',

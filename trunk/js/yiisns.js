@@ -184,7 +184,7 @@ $(function(){
 	//确认删除
 	$('.a_confirm_link').live('click', function(){
 		self = $(this);
-		message = self.attr('title');
+		message = self.data('title');
 		url = self.attr('href');
 		Confirm({
 			message: message,
@@ -213,7 +213,7 @@ $(function(){
 	
 	$('.a_alert_link').live('click', function(){
 		self = $(this);
-		message = self.attr('title');
+		message = self.data('title');
 		url = self.attr('href');
 		$.get(url, '', function(result){
 			if (result == 1) {

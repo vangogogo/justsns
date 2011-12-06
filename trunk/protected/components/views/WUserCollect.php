@@ -2,7 +2,7 @@
 	$(function(){
 		//加入收藏
 		$('a.btn-fav').click(function(){
-            var self = $(this),  
+            var self = $(this);
             hasFav = self.hasClass('fav-delete') ? 1 : 0;
 
             params = {
@@ -21,14 +21,15 @@
                     }
                 }, 'json'
             );
+			$(this).data('abc', '444?');
 		});
 
 	});
 
 	</script>
-	
+	<?php $data_title = empty($isCollect)?'标为喜欢?':'取消喜欢'; ?>
 	<span id="people_Contact_<?php echo $object_type?>_<?php echo $object_id?>">
-        <a class="btn-fav <?php echo empty($isCollect)?'fav-add':'fav-delete';?>" title="标为喜欢?" href="#collect-do" data-oid="<?php echo $object_id?>" data-otype="<?php echo $object_type?>"><?php echo empty($isCollect)?'收藏':'收藏';?></a>
+        <a class="btn-fav <?php echo empty($isCollect)?'fav-add':'fav-delete';?>" title="<?php echo $data_title?>" data-title="<?php echo $data_title?>" href="#collect-do" data-oid="<?php echo $object_id?>" data-otype="<?php echo $object_type?>">喜欢</a>
 	</span>
 
 
