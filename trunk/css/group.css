@@ -1,3 +1,9 @@
+
+.grouplist {width:100%;overflow:hidden;}
+.grouplist ul {list-style:none;}
+.grouplist ul li {float:left;margin:10px 0 5px;width:76px;height:92px;overflow:hidden;text-align:center;color:#777;}
+.grouplist ul li img {width:48px;height:48px;margin:0;padding:0;}
+
 .sidebar {width:310px;overflow:hidden;}
 .sidebar ul {width:300px;list-style:none;margin:0 auto;}
 .sidebar ul li {width:300px;height:30px;line-height:30px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;border-bottom:#DDD 1px dashed;}
