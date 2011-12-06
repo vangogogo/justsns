@@ -88,6 +88,7 @@ class ProfileController extends Controller
 	 * Change password
 	 */
 	public function actionChangepassword() {
+		$user = $this->loadUser();
 		$model = new UserChangePassword;
         $model->scenario = 'changePassword';
 		if (Yii::app()->user->id) {
@@ -126,6 +127,7 @@ class ProfileController extends Controller
 	 * Change password
 	 */
 	public function actionChangeEmail() {
+		$user = $this->loadUser();
 		$model = new UserChangePassword;
         $model->scenario = 'changePassword';
 		if (Yii::app()->user->id) {

@@ -30,12 +30,12 @@ $this->breadcrumbs=array(
 	#'htmlOptions' => array('enctype'=>'multipart/form-data'),
 )); ?>
  
-    <?php echo $form->textFieldBlock($model,'username',array('class'=>'span3')); ?>
-    <?php echo $form->passwordFieldBlock($model,'password',array('class'=>'span3')); ?>
-    <?php echo $form->checkBoxBlock($model,'rememberMe'); ?>
+    <?php echo $form->textFieldRow($model,'username',array('class'=>'span3')); ?>
+    <?php echo $form->passwordFieldRow($model,'password',array('class'=>'span3')); ?>
+    <?php echo $form->checkBoxRow($model,'rememberMe'); ?>
 
     <div class="actions">
-        <?php echo BootHtml::submitButton(UserModule::t("Login"),array('class'=>'btn primary large')); ?>
+        <?php echo CHtml::submitButton(UserModule::t("Login"),array('class'=>'btn primary large')); ?>
  <?php #echo CHtml::link(UserModule::t("Register"),Yii::app()->getModule('user')->registrationUrl); ?> | <?php echo CHtml::link(UserModule::t("Lost Password?"),Yii::app()->getModule('user')->recoveryUrl); ?>
 
 

@@ -126,7 +126,7 @@ $this->breadcrumbs=array(
 	</dd>
 
 
-
+	<?php if(!empty($month)):?>
 	<dt><span class="label important">每月运程</span> <?php #if(empty($month)) echo '暂无'; else  $this->widget('WStarRating',array('object_type'=>'astro_month','object_id'=>$month->primaryKey));?></dt>
 	<dd>
 		<div id="month-tabs">
@@ -155,6 +155,7 @@ $this->breadcrumbs=array(
 
 		</div>
 	</dd>
+	<?php endif;?>
 
 </dl>
 
