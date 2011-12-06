@@ -9,10 +9,6 @@
 class BootActiveForm extends CActiveForm
 {
 	/**
-	 * @property string the legend for the form.
-	 */
-	public $legend;
-	/**
 	 * @property string the error message type. Valid types are 'inline' and 'block'.
 	 */
 	public $errorMessageType = 'inline';
@@ -40,38 +36,21 @@ class BootActiveForm extends CActiveForm
 			$this->errorMessageCssClass = 'help-block';
 
 		parent::init();
-		echo BootHtml::openTag('fieldset');
-
-		if ($this->legend !== null)
-		{
-			echo BootHtml::openTag('legend');
-			echo BootHtml::encode($this->legend);
-			echo BootHtml::closeTag('legend');
-		}
 	}
 
 	/**
-	 * Runs the widget.
-	 */
-	public function run()
-	{
-		echo BootHtml::closeTag('fieldset');
-		parent::run();
-	}
-
-	/**
-	 * Creates an input block of a specific type.
+	 * Creates an input row of a specific type.
 	 * @param string $type the input type
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the data for list inputs
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function inputBlock($type, $model, $attribute, $data = null, $htmlOptions = array())
+	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
 	{
 		ob_start();
-		Yii::app()->controller->widget('ext.bootstrap.widgets.BootInputBlock',array(
+		Yii::app()->controller->widget('ext.bootstrap.widgets.BootInput',array(
 			'type'=>$type,
 			'form'=>$this,
 			'model'=>$model,
@@ -83,164 +62,230 @@ class BootActiveForm extends CActiveForm
 	}
 
 	/**
-	 * Renders a checkbox input block.
+	 * Renders a checkbox input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function checkBoxBlock($model, $attribute, $htmlOptions = array())
+	public function checkBoxRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('checkbox', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('checkbox', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a checkbox list input block.
+	 * Renders a checkbox list input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the list data
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function checkBoxListBlock($model, $attribute, $data = array(), $htmlOptions = array())
+	public function checkBoxListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputBlock('checkboxlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow('checkboxlist', $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
-	 * Renders a drop-down list input block.
+	 * Renders a drop-down list input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the list data
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function dropDownListBlock($model, $attribute, $data = array(), $htmlOptions = array())
+	public function dropDownListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputBlock('dropdownlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow('dropdownlist', $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
-	 * Renders a file field input block.
+	 * Renders a file field input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function fileFieldBlock($model, $attribute, $htmlOptions = array())
+	public function fileFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('filefield', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('filefield', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a password field input block.
+	 * Renders a password field input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function passwordFieldBlock($model, $attribute, $htmlOptions = array())
+	public function passwordFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('passwordfield', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('password', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a radio button input block.
+	 * Renders a radio button input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function radioButtonBlock($model, $attribute, $htmlOptions = array())
+	public function radioButtonRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('radiobutton', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('radiobutton', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a radio button list input block.
+	 * Renders a radio button list input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the list data
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function radioButtonListBlock($model, $attribute, $data = array(), $htmlOptions = array())
+	public function radioButtonListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputBlock('radiobuttonlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow('radiobuttonlist', $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
-	 * Renders a text field input block.
+	 * Renders a text field input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function textFieldBlock($model, $attribute, $htmlOptions = array())
+	public function textFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('textfield', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('textfield', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a text area input block.
+	 * Renders a text area input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function textAreaBlock($model, $attribute, $htmlOptions = array())
+	public function textAreaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('textarea', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('textarea', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a captcha block.
+	 * Renders a captcha row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 * @since 0.9.3
 	 */
-	public function captchaBlock($model, $attribute, $htmlOptions = array())
+	public function captchaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('captcha', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('captcha', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a boolean input field within a label for a model attribute.
-	 * @param string $type the input type
+	 * Renders an uneditable text field row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated toggle field
+	 * @return string the generated row
+	 * @since 0.9.5
 	 */
-	public function booleanField($type, $model, $attribute, $htmlOptions = array())
+	public function uneditableRow($model, $attribute, $htmlOptions = array())
 	{
-		if (!in_array($type, array('checkbox', 'radio')))
-			throw new CException(__CLASS__.': '.Yii::t('bootstrap','Failed to render toggle field! Type is invalid.'));
+		return $this->inputRow('uneditable', $model, $attribute, null, $htmlOptions);
+	}
 
-		if (isset($htmlOptions['label']))
+	/**
+	 * Renders a checkbox list for a model attribute.
+	 * This method is a wrapper of {@link CHtml::activeCheckBoxList}.
+	 * Please check {@link CHtml::activeCheckBoxList} for detailed information
+	 * about the parameters for this method.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $data value-label pairs used to generate the check box list.
+	 * @param array $htmlOptions additional HTML options.
+	 * @return string the generated check box list
+	 * @since 0.9.5
+	 */
+	public function checkBoxList($model, $attribute, $data, $htmlOptions = array())
+	{
+		return $this->inputsList('checkbox', $model, $attribute, $data, $htmlOptions);
+	}
+
+	/**
+	 * Renders a radio button list for a model attribute.
+	 * This method is a wrapper of {@link CHtml::activeRadioButtonList}.
+	 * Please check {@link CHtml::activeRadioButtonList} for detailed information
+	 * about the parameters for this method.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $data value-label pairs used to generate the radio button list.
+	 * @param array $htmlOptions additional HTML options.
+	 * @return string the generated radio button list
+	 * @since 0.9.5
+	 */
+	public function radioButtonList($model, $attribute, $data, $htmlOptions = array())
+	{
+		return $this->inputsList('radio', $model, $attribute, $data, $htmlOptions);
+	}
+
+	/**
+	 * Renders an input list.
+	 * @param string $type the input type. Valid types are 'checkbox' and 'radio'.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $data value-label pairs used to generate the radio button list.
+	 * @param array $htmlOptions additional HTML options.
+	 * @return string the generated input list.
+	 * @since 0.9.5
+	 */
+	protected function inputsList($type, $model, $attribute, $data, $htmlOptions = array())
+	{
+		CHtml::resolveNameID($model, $attribute, $htmlOptions);
+		$selection = CHtml::resolveValue($model, $attribute);
+
+		if ($model->hasErrors($attribute))
 		{
-			$label = $htmlOptions['label'];
-			unset($htmlOptions['label']);
+			if(isset($htmlOptions['class']))
+				$htmlOptions['class'] .= ' '.CHtml::$errorCss;
+			else
+				$htmlOptions['class'] = CHtml::$errorCss;
+		}
+
+		$name = $htmlOptions['name'];
+		unset($htmlOptions['name']);
+
+		if (array_key_exists('uncheckValue', $htmlOptions))
+		{
+			$uncheck = $htmlOptions['uncheckValue'];
+			unset($htmlOptions['uncheckValue']);
 		}
 		else
-			$label = $model->getAttributeLabel($attribute);
+			$uncheck = '';
 
-		$method = $type === 'checkbox' ? 'activeCheckBox' : 'activeRadioButton';
-		$input = BootHtml::$method($model, $attribute, $htmlOptions);
+		$hiddenOptions = isset($htmlOptions['id']) ? array('id' => CHtml::ID_PREFIX.$htmlOptions['id']) : array('id' => false);
+		$hidden = $uncheck !== null ? CHtml::hiddenField($name, $uncheck, $hiddenOptions) : '';
 
-		// todo: think about alternative ways to do this.
-		$matches = array();
-		preg_match_all('/\<[\w\d\s\"\[\]\_\=]+\/\>/i', $input, $matches);
+		unset($htmlOptions['template'], $htmlOptions['separator'], $htmlOptions['labelOptions']);
 
-		$item = $matches[0][0].BootHtml::openTag('label');
-		$item.= $matches[0][1].' '.BootHtml::tag('span', array(), $label);
-		$item.= BootHtml::closeTag('label');
+		$items = array();
+		$baseID = CHtml::getIdByName($name);
+		$id = 0;
+		$method = $type === 'checkbox' ? 'checkBox' : 'radioButton';
 
-		ob_start();
-		echo BootHtml::inputsList(array($item));
-		return ob_get_clean();
+		foreach($data as $value => $label)
+		{
+			$checked =! strcmp($value, $selection);
+			$htmlOptions['value'] = $value;
+			$htmlOptions['id'] = $baseID.'_'.$id++;
+			$option = CHtml::$method($name, $checked, $htmlOptions);
+			$items[] = '<label>'.$option.'<span>'.$label.'</span></label>';
+		}
+
+		return $hidden.'<ul class="inputs-list"><li>'.implode('</li><li>',$items).'</li></ul>';
 	}
 
 	/**
@@ -258,7 +303,7 @@ class BootActiveForm extends CActiveForm
 	public function errorSummary($models, $header = null, $footer = null, $htmlOptions = array())
 	{
 		if (!isset($htmlOptions['class']))
-			$htmlOptions['class'] = 'alert-message error'; // Bootstrap error class as default
+			$htmlOptions['class'] = 'alert-message block-message error'; // Bootstrap error class as default
 
 		return parent::errorSummary($models, $header, $footer, $htmlOptions);
 	}
@@ -284,9 +329,9 @@ class BootActiveForm extends CActiveForm
 			$htmlOptions['class'] = $this->errorMessageCssClass;
 
 		if (!$enableAjaxValidation && !$enableClientValidation)
-			return BootHtml::error($model, $attribute, $htmlOptions);
+			return $this->errorSpan($model, $attribute, $htmlOptions);
 
-		$id = BootHtml::activeId($model,$attribute);
+		$id = CHtml::activeId($model,$attribute);
 		$inputID = isset($htmlOptions['inputID']) ? $htmlOptions['inputID'] : $id;
 		unset($htmlOptions['inputID']);
 		if (!isset($htmlOptions['id']))
@@ -297,7 +342,7 @@ class BootActiveForm extends CActiveForm
 			'inputID'=>$inputID,
 			'errorID'=>$htmlOptions['id'],
 			'model'=>get_class($model),
-			'name'=>BootHtml::resolveName($model, $attribute),
+			'name'=>CHtml::resolveName($model, $attribute),
 			'enableAjaxValidation'=>$enableAjaxValidation,
 			'inputContainer'=>'div.clearfix', // Bootstrap requires this
 		);
@@ -343,19 +388,45 @@ class BootActiveForm extends CActiveForm
 				$option['clientValidation']="js:function(value, messages, attribute) {\n".implode("\n",$validators)."\n}";
 		}
 
-		$html = BootHtml::error($model, $attribute, $htmlOptions);
+		$html = $this->errorSpan($model, $attribute, $htmlOptions);
 
 		if ($html === '')
 		{
-			if(isset($htmlOptions['style']))
+			if (isset($htmlOptions['style']))
 				$htmlOptions['style'] = rtrim($htmlOptions['style'], ';').';display:none';
 			else
 				$htmlOptions['style'] = 'display:none';
 
-			$html = BootHtml::tag('span', $htmlOptions, '');
+			$html = CHtml::tag('span', $htmlOptions, '');
 		}
 
 		$this->attributes[$inputID] = $option;
 		return $html;
+	}
+
+	/**
+	 * Displays the first validation error for a model attribute.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute name
+	 * @param array $htmlOptions additional HTML attributes to be rendered in the container div tag.
+	 * This parameter has been available since version 1.0.7.
+	 * @return string the error display. Empty if no errors are found.
+	 * @see CModel::getErrors
+	 * @see errorMessageCss
+	 */
+	public static function errorSpan($model, $attribute, $htmlOptions = array())
+	{
+		CHtml::resolveName($model, $attribute);
+		$error = $model->getError($attribute);
+
+		if ($error !== null)
+		{
+			if (!isset($htmlOptions['class']))
+				$htmlOptions['class'] = 'help-inline';
+
+			return CHtml::tag('span', $htmlOptions, $error); // Bootstrap errors must be spans
+		}
+		else
+			return '';
 	}
 }
