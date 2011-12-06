@@ -9,6 +9,7 @@ body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Ar
 .container-backend> .sidebar{float: left;width: 220px;}
 .container-backend> .content{margin: 0 0 0 220px;}
 .container-backend .row:after,.container-backend .row:before{display:none;content:"";zoom:1;}
+.container-backend .clearfix:after,.container-backend .clearfix:before{display:none;content:"";zoom:1;}
 .container-backend .tabs:after,.container-backend .tabs:before{display:block;content:"";zoom:3;}
 
 
