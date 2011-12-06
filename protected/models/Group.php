@@ -690,4 +690,13 @@ class Group extends YiicmsActiveRecord
 		$count=$model->count($criteria);
 		return $count;
 	}
+
+	public function getGroupLogo()
+	{
+		if(empty($this->logo))
+		{
+			$this->logo = "/images/no-pic.jpg";
+		}
+		return $this->logo;
+	}
 }
