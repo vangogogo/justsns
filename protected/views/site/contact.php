@@ -60,7 +60,7 @@ $this->breadcrumbs=array(
 
 	<?php endif; ?>
     <div class="actions">
-        <?php echo BootHtml::submitButton('发送',array('class'=>'btn danger large')); ?>
+        <?php echo CHtml::submitButton('发送',array('class'=>'btn danger large')); ?>
     </div>
 </div><!-- form -->
 <?php $this->endWidget(); ?>

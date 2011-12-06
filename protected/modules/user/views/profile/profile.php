@@ -1,4 +1,10 @@
-<?php include('_top.php');?>
+<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Profile");
+$this->breadcrumbs=array(
+	UserModule::t("Profile") => array('/user/profile'),
+
+);
+?>
+
     <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
     <div class="successMessage">
 	    <?php echo Yii::app()->user->getFlash('profileMessage'); ?>
