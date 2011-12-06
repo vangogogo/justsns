@@ -18,6 +18,8 @@ class GroupModule extends CWebModule
 	{
 		if(parent::beforeControllerAction($controller, $action))
 		{
+	        $cs = Yii::app()->clientScript;
+	        $cs->registerCssFile('/css/group.css');
 			// this method is called before any module controller action is performed
 			// you may place customized code here
 			return true;

@@ -6,7 +6,7 @@
 	<div class="height1"></div>
 	<table class="topic_content">
 		<tr>
-			<td width="65">
+			<td width="80">
 				<?php $this->widget('WUserFace',array('uid'=>$topic['uid'])); ?>
 			</td>
 			<td>
@@ -50,10 +50,8 @@
 		<table class="topic_reply">
 			<?php foreach($post_list as $key => $post):?>
 				<tr>
-					<td width="65">
-						
-<?php $this->widget('WUserFace',array('uid'=>$post['uid'])); ?>
-
+					<td width="80">
+						<?php $this->widget('WUserFace',array('uid'=>$post['uid'])); ?>
 					</td>
 					<td>
 						<h4><?php echo friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　

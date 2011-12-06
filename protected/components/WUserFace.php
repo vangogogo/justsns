@@ -23,7 +23,8 @@ class WUserFace extends CWidget
         $avatar = $user->profile->avatar;
         $name = $user->profile->name;
 
-        $url = Yii::app()->controller->createUrl('/space/index',array('uid'=>$this->uid));
+        $url = $user->getSpaceUrl();
+
         $span_class = $this->size=='small'?'headpic50':'';
         if(!empty($avatar))
         {
@@ -41,7 +42,7 @@ class WUserFace extends CWidget
 			    $avatar = 'http://'.SUB_DOMAIN.Yii::app()->theme->baseUrl."/images/pic2.gif";
 		    }
         }
-        echo '<span class="media-grid"><a href="'.$url.'">';
+        echo '<span class="media-grid userface-grid"><a href="'.$url.'">';
         echo "<img class='thumbnail {$this->size}' src='{$avatar}' alt='{$name}' title='{$name}' />";
         echo '</a></span>';
         return ;
