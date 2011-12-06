@@ -57,6 +57,18 @@ class Group extends YiicmsActiveRecord
 		return '{{group}}';
 	}
 
+	/*
+    public function behaviors()
+    {
+        return array(
+            array(
+                'class'=>'ext.seo.components.SeoRecordBehavior',
+                'route'=>'group/group/show',
+                'params'=>array('group_id'=>$this->id, 'group_name'=>$this->name),
+            ),
+        );
+    }
+	*/
 	/**
 	 * @return array validation rules for model attributes.
 	 */
