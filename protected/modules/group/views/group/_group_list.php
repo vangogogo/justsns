@@ -1,4 +1,4 @@
-<div id="grouplist" <?php echo "class=''"?>>
+<div class="grouplist" <?php echo "class=''"?>>
 	<ul>
 		<?php foreach($group_list as $group): $url = Yii::app()->createUrl('/group/group/show',array('gid'=>$group['id']));?>
 		<li>
