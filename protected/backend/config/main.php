@@ -23,7 +23,7 @@ return array(
 
     'controllerPath' => $backend.'/controllers',
     'viewPath' => $backend.'/views',
-    'runtimePath' => $backend.'/runtime',
+    #'runtimePath' => $backend.'/runtime',
 
 
 	'theme' => 'blue',

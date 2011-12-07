@@ -21,6 +21,7 @@ class BootTopbar extends BootWidget
 
 	public $homeUrl = array('//site/index');
 
+    public $container_class = 'container';
 	public $menu_nav1 = null;
 	public $menu_nav2 = null;
 	public $activeCssClass = 'active';
@@ -199,7 +200,7 @@ class BootTopbar extends BootWidget
 		echo strtr($this->template, array(
 					'{dt}' => '<div class="topbar">',
 					'{dti}' => '<div class="topbar-inner">',
-					'{c}' => '<div class="container">',
+					'{c}' => '<div class="'.$this->container_class.'">',
 					'{title}' => CHtml::link(Yii::app()->name, 
 						$this->homeUrl, array('class' => 'brand')),
 					'{nav1}' => $this->menu_nav1,
@@ -207,7 +208,7 @@ class BootTopbar extends BootWidget
 					'{search}' => $this->search,
 					'{cdt}' => '</div> <!-- topbar -->',
 					'{cdti}' => '</div> <!-- topbar-inner -->',
-					'{cc}' => '</div> <!-- container -->',
+					'{cc}' => '</div> <!-- '.$this->container_class.' -->',
 					));
 
 		parent::run();

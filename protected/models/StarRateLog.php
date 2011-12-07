@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table '{{star_rate_log}}':
  * @property integer $star_rate_id
- * @property integer $user_id
+ * @property integer $uid
  * @property string $object_type
  * @property integer $object_id
  * @property integer $star_num
@@ -42,13 +42,13 @@ class StarRateLog extends YiicmsActiveRecord
 		// will receive user inputs.
 		return array(
 			array('object_type', 'required'),
-			array('user_id, object_id, star_num, is_delete', 'numerical', 'integerOnly'=>true),
+			array('uid, object_id, star_num, is_delete', 'numerical', 'integerOnly'=>true),
 			array('object_type', 'length', 'max'=>20),
 			array('ip', 'length', 'max'=>255),
 			array('mtime, ctime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('star_rate_id, user_id, object_type, object_id, star_num, ip, mtime, ctime, is_delete', 'safe', 'on'=>'search'),
+			array('star_rate_id, uid, object_type, object_id, star_num, ip, mtime, ctime, is_delete', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +71,7 @@ class StarRateLog extends YiicmsActiveRecord
 	{
 		return array(
 			'star_rate_id' => Yii::t('admin','Star Rate'),
-			'user_id' => Yii::t('admin','User'),
+			'uid' => Yii::t('admin','User'),
 			'object_type' => Yii::t('admin','Object Type'),
 			'object_id' => Yii::t('admin','Object'),
 			'star_num' => Yii::t('admin','Star Num'),
@@ -94,7 +94,7 @@ class StarRateLog extends YiicmsActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('star_rate_id',$this->star_rate_id);
-		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('uid',$this->uid);
 		$criteria->compare('object_type',$this->object_type,true);
 		$criteria->compare('object_id',$this->object_id);
 		$criteria->compare('star_num',$this->star_num);
@@ -124,7 +124,7 @@ class StarRateLog extends YiicmsActiveRecord
 		$criteria->order = 'ctime DESC';
         if(!empty($params))
         {
-			$criteria->compare('user_id',$params['user_id']);
+			$criteria->compare('uid',$params['uid']);
 			$criteria->compare('object_type',$params['object_type']);
 			$criteria->compare('object_id',$params['object_id']);
 			$criteria->compare('star_num',$params['star_num']);
@@ -174,7 +174,7 @@ class StarRateLog extends YiicmsActiveRecord
 	public function insertUserStar($params)
 	{
 		$model = new StarRateLog();
-		$model->user_id=$params['user_id'];
+		$model->uid=$params['uid'];
 		$model->object_type=$params['object_type'];
 		$model->object_id=$params['object_id'];
 		$model->star_num=$params['star_num'];
@@ -196,9 +196,9 @@ class StarRateLog extends YiicmsActiveRecord
 	{
 		$model = new StarRateLog();
 		$criteria=new CDbCriteria;
-		$criteria->condition='user_id=:user_id AND object_type=:object_type AND object_id=:object_id';
+		$criteria->condition='uid=:uid AND object_type=:object_type AND object_id=:object_id';
 		$criteria->params=array(
-			':user_id'=>$params['user_id'],
+			':uid'=>$params['uid'],
 			':object_type'=>$params['object_type'],
 			':object_id'=>$params['object_id'],
 		);
@@ -220,7 +220,7 @@ class StarRateLog extends YiicmsActiveRecord
 	{
 		if(empty($params))
 		{
-			$params['user_id'] = Yii::app()->user->id;
+			$params['uid'] = Yii::app()->user->id;
 		}
 		//检查是否有投票记录
 		$isExist = $this->isExist($params);
@@ -245,9 +245,9 @@ class StarRateLog extends YiicmsActiveRecord
 	{
 		$model = new StarRateLog();
 		$criteria=new CDbCriteria;
-		$criteria->condition='user_id=:user_id AND object_type=:object_type AND object_id=:object_id';
+		$criteria->condition='uid=:uid AND object_type=:object_type AND object_id=:object_id';
 		$criteria->params=array(
-			':user_id'=>$params['user_id'],
+			':uid'=>$params['uid'],
 			':object_type'=>$params['object_type'],
 			':object_id'=>$params['object_id'],
 		);

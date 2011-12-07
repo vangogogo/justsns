@@ -32,9 +32,9 @@ class WStarRating extends CStarRating
 		if(!$this->readOnly)
 		{
 			$rate_num = $this->value;
-			//根据id和id_type,user_id 去查询 star_rate_log
+			//根据id和id_type,uid 去查询 star_rate_log
 			$model = new StarRateLog();
-			$params['user_id'] = Yii::app()->user->id;
+			$params['uid'] = Yii::app()->user->id;
 			$params['object_id'] = $this->object_id;
 			$params['object_type'] = $this->object_type;
 			//$id = $this->id;
