@@ -23,7 +23,7 @@ return array(
 
     'controllerPath' => $backend.'/controllers',
     'viewPath' => $backend.'/views',
-    #'runtimePath' => $backend.'/runtime',
+    'runtimePath' => $frontend.'/runtime',
 
 
 	'theme' => 'blue',
@@ -89,7 +89,7 @@ return array(
             'allowAutoLogin'=>true,
 			'class'=>'RWebUser',
             // session 前缀,单点登录与区分前后台登录时可以用到
-            #'stateKeyPrefix'=> 'f_site',
+            'stateKeyPrefix'=> 'f_site',
 
             // 登录链接 Yii::app()->user->loginUrl
             'loginUrl'=> array('/user/login'),
@@ -119,9 +119,9 @@ return array(
         'session'=>array(
             'class' => 'CDbHttpSession',
             'connectionID' => 'db',
-            #'cookieParams' => array('domain' => '.'.ALL_DOMAIN, 'lifetime' => 0),
-            #'timeout' => 3600,
-            #'sessionName' => 'session'
+            'cookieParams' => array('domain' => '.'.ALL_DOMAIN, 'lifetime' => 0),
+            'timeout' => 3600,
+            'sessionName' => 'session'
         ),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -175,8 +175,8 @@ return array(
             //如果没有必要，不用修改缓存配置。 SAE不支持本地文件的IO处理 已经提供了memcache
             'class'=>'CFileCache',
             'directoryLevel'=>'2',
+            'keyPrefix'=>'yiisns_'
         ),
-        
 		'authManager'=>array(
 			// The type of Manager (Database)
 			'class'=>'CDbAuthManager',

@@ -30,6 +30,8 @@ $this->breadcrumbs=array(
 	#'htmlOptions' => array('enctype'=>'multipart/form-data'),
 )); ?>
  
+ <?php echo $form->errorSummary($model); ?>
+ 
     <?php echo $form->textFieldRow($model,'username',array('class'=>'span3')); ?>
     <?php echo $form->passwordFieldRow($model,'password',array('class'=>'span3')); ?>
     <?php echo $form->checkBoxRow($model,'rememberMe'); ?>
