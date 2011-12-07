@@ -7,7 +7,10 @@ $config=dirname(__FILE__).'/protected/config/main.php';
 
 // remove the following line when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);
-#defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+
+
+defined('ALL_DOMAIN') or define('ALL_DOMAIN','yiisns.com');
 
 if(!empty($_SERVER['HTTP_HOST']))
 {

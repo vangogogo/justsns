@@ -7,7 +7,9 @@ $config=dirname(__FILE__).'/protected/backend/config/main.php';
 
 // remove the following line when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);
-#defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+
+defined('ALL_DOMAIN') or define('ALL_DOMAIN','yiisns.com');
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
