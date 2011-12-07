@@ -30,17 +30,20 @@
 	</div>
 
 	<div class="content" id="mtreeview-target">
+        
+        <?php $this->widget('ext.bootstrap.widgets.BootAlert',array(
+            'id'=>'system-alert',
+            'keys'=>array('success','info','warning','error'),
+        )); ?>
 
-	<?php if (isset($this->breadcrumbs) AND !empty($this->breadcrumbs)):?>
-		<?php $this->widget('ext.bootstrap.widgets.BootCrumb',array(
-			'links'=>$this->breadcrumbs,
-			'separator'=>'/',
-		)); ?>
-	<?php endif?>
+	    <?php if (isset($this->breadcrumbs) AND !empty($this->breadcrumbs)):?>
+		    <?php $this->widget('ext.bootstrap.widgets.BootCrumb',array(
+			    'links'=>$this->breadcrumbs,
+			    'separator'=>'/',
+		    )); ?>
+	    <?php endif?>
 
-	<?php echo $content; ?>
-
-
+	    <?php echo $content; ?>
 	</div>
 
 <?php $this->endContent(); ?>

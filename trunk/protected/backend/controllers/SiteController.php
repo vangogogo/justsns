@@ -115,14 +115,14 @@ class SiteController extends Controller
 		));
 	}
 	
-	public function actionCleanCache()
+	public function actionFlushCache()
 	{
 		# code...
 
 		Yii::app()->cache->flush();	
 		$url = Yii::app()->request->urlReferrer;
 
-		//Yii::app()->user->setFlash('cleancache','缓存已清空！');
+		Yii::app()->user->setFlash('info','缓存已清空！');
 
 		$this->redirect($url);
 	}	

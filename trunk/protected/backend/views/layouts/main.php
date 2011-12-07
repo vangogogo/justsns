@@ -33,25 +33,23 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
 ?>
 </head>
 <body>
-<?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>
+<?php $this->renderDynamic('widget', 'WBackendTopBar', array(), true);//动态缓存 ?>
 
 <div class="container-backend" id="mainarea">
 
 	<?php echo $content; ?>
 
-
-		<!-- start.footer -->
-		<div style="clear:both"></div>
-		<footer>
-			<p class="pull-right"><a href="#">返回顶部</a></p>
-			<p>
-			Copyright &copy; <?php echo date('Y'); ?> by <a href="http://blog.lockphp.com" target="_blank">LockPHP</a>.
-			All Rights Reserved.
-			<?php echo Yii::powered(); ?>
-			</p>
-		</footer>
-		<!-- end.footer -->
-
+	<!-- start.footer -->
+	<div style="clear:both"></div>
+	<footer>
+		<p class="pull-right"><a href="#">返回顶部</a></p>
+		<p>
+		Copyright &copy; <?php echo date('Y'); ?> by <a href="http://blog.lockphp.com" target="_blank">LockPHP</a>.
+		All Rights Reserved.
+		<?php echo Yii::powered(); ?>
+		</p>
+	</footer>
+	<!-- end.footer -->
 </div>
 </body>
 </html>
