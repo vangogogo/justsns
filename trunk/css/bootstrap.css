@@ -1,7 +1,11 @@
-body {padding-top: 60px;}
+body {padding-top: 80px;}
 p {line-height:162%}
 
-body,input,button,select,textarea{font:12px/1.5 Lucida Grande,Microsoft Yahei,Arial,Calibri,Trebuchet MS,Helvetica,Hiragino,STHeiti,Microsoft Jhenghei,sans-serif;color:#444}
+body,input,button,select,textarea{font: Lucida Grande,Microsoft Yahei,Arial,Calibri,Trebuchet MS,Helvetica,Hiragino,STHeiti,Microsoft Jhenghei,sans-serif;color:#444}
+/*
+.topbar-inner, .topbar .fill {background: url('../images/global_nav_bg.png') repeat-x;}
+.topbar-inner a, .topbar .fill a {color:#fff}
+*/
 .container> .sidebar{display: inline;float: left;margin-left: 40px;width: 280px;}
 .container> .content{display: inline;float: left;margin-left: 20px;width: 600px;}
 
