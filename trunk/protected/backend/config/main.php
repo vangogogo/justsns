@@ -235,7 +235,7 @@ return array(
 			'install'=>true,                                     // Whether to install rights. 
 			'baseUrl'=>'/rights',                                // Base URL for Rights. Change if module is nested. 
 			'layout'=>'rights.views.layouts.main',               // Layout to use for displaying Rights. 
-			'appLayout'=>'backend.views.layouts.main',       // Application layout. 
+			'appLayout'=>'backend.views.layouts.column2',       // Application layout. 
 			#	'cssFile'=>'rights.css',                             // Style sheet file to use for Rights. 
 			'install'=>false,                                    // Whether to enable installer. 
 			'debug'=>false,                                      // Whether to enable debug mode. 
