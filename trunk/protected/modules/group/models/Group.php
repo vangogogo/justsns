@@ -457,6 +457,50 @@ class Group extends YiicmsActiveRecord
 		return $members;
 	}
 	
+	
+
+	public static function isGroupAdmin($gid,$uid)
+	{
+		$model = new GroupMember();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" 1 AND gid = :gid AND uid = :uid";
+		$criteria->params = array(':gid'=>$gid,':uid'=>$uid);
+		$member = $model->find($criteria);
+		if($member->level == 1)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public static function isGroupMember($gid,$uid)
+	{
+		$model = new GroupMember();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" 1 AND gid = :gid AND uid = :uid";
+		$criteria->params = array(':gid'=>$gid,':uid'=>$uid);
+		$member = $model->find($criteria);
+		if($member->status == 1)
+		{
+			return true;
+		}
+		return false;
+	}
+	public static function isGroupCreater($gid,$uid)
+	{
+		$model = new GroupMember();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" 1 AND gid = :gid AND uid = :uid";
+		$criteria->params = array(':gid'=>$gid,':uid'=>$uid);
+		$member = $model->find($criteria);
+		if($member->level = 3)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	
 	public function loadMember($uid)
 	{
 		$gid = $this->id;

@@ -32,6 +32,56 @@ class TopicController extends Controller
 	}
 
 	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'topicOwner + update',
+			#'groupMemeber + create', // Apply this filter only for the update action.
+			'rights',
+		);
+	}
+	
+	
+	public function filterTopicOwner($filterChain)
+	{
+		$topic=$this->loadModel();
+		// Remove the 'rights' filter if the user is updating an own post
+		// and has the permission to do so.
+
+		if(Yii::app()->user->checkAccess('Group.Topic.Update', array('uid'=>$topic->uid)))
+			$filterChain->removeAt(1);
+			
+		$filterChain->run();
+	}
+
+
+	
+	/**
+	 * Filter method for checking whether the currently logged in user
+	 * is the author of the post being accessed.
+	 */
+	public function filterGroupAdmin($filterChain)
+	{
+		$group=$this->loadModel();
+		// Remove the 'rights' filter if the user is updating an own post
+		// and has the permission to do so.
+		if(Yii::app()->user->checkAccess('小组创建者', array('uid'=>$group->uid)) OR Yii::app()->user->checkAccess('小组管理员', array('gid'=>$group->primaryKey)))
+			$filterChain->removeAt(1);
+			
+		$filterChain->run();
+	}
+	
+	/**
+	* Actions that are always allowed.
+	*/
+	public function allowedActions()
+	{
+	 	return 'index,show, suggestTags,discussion';
+	}
+	
+	/**
 	 * 新增话题
 	 */
 	public function actionCreate()
@@ -276,4 +326,29 @@ class TopicController extends Controller
 		$post = $model->addPost($params);
 		echo !empty($topic->errors)?-1:1;
 	}
+	
+	
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer the ID of the model to be loaded
+	 */
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 */
+	public function loadModel()
+	{
+		if($this->_model===null)
+		{
+			if(isset($_GET['tid']))
+			{
+				$condition='';
+				$this->_model=GroupTopic::model()->findByPk($_GET['tid'], $condition);
+			}
+			if($this->_model===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+		}
+		return $this->_model;
+	}	
 }
