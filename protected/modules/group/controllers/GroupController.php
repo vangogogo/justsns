@@ -4,6 +4,44 @@ class GroupController extends Controller
 {
 	private $_model;
 	const THREAD_PAGE_SIZE=6;
+	
+
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'groupAdmin + update,members', // Apply this filter only for the update action.
+			#'groupMemeber + update,members', // Apply this filter only for the update action.
+			'rights',
+		);
+	}
+	
+	/**
+	 * Filter method for checking whether the currently logged in user
+	 * is the author of the post being accessed.
+	 */
+	public function filterGroupAdmin($filterChain)
+	{
+		$group=$this->loadModel();
+		// Remove the 'rights' filter if the user is updating an own post
+		// and has the permission to do so.
+		if(Yii::app()->user->checkAccess('小组创建者', array('uid'=>$group->uid)) OR Yii::app()->user->checkAccess('小组管理员', array('gid'=>$group->primaryKey)))
+			$filterChain->removeAt(1);
+			
+		$filterChain->run();
+	}
+	
+	/**
+	* Actions that are always allowed.
+	*/
+	public function allowedActions()
+	{
+	 	return 'index,show, suggestTags,discussion';
+	}
+
+	
 	/**
 	 * 小组列表页
 	 */
@@ -174,4 +212,32 @@ class GroupController extends Controller
 		$data = $model->getGroupThreads($params,20);
 		$this->render('MyTopic',$data);	
 	}
+	
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer the ID of the model to be loaded
+	 */
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 */
+	public function loadModel()
+	{
+		if($this->_model===null)
+		{
+			if(isset($_GET['gid']))
+			{
+				if(Yii::app()->user->isGuest)
+					$condition='status='.Post::STATUS_PUBLISHED.' OR status='.Post::STATUS_ARCHIVED;
+				else
+					$condition='';
+				$this->_model=Group::model()->findByPk($_GET['gid'], $condition);
+			}
+			if($this->_model===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+		}
+		return $this->_model;
+	}
+	
 }

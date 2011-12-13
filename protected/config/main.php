@@ -6,7 +6,6 @@ require('DatabaseConfig.php');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 $path=dirname(dirname(dirname(__FILE__)));
-Yii::setPathOfAlias('backend', $backend);
 
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
@@ -42,8 +41,9 @@ $config = array(
 		'ext.bootstrap.components.*',
         'application.modules.astro.models.*',
 
-		'application.backend.modules.rights.models.*',
-        'application.backend.modules.rights.components.*',
+        'application.modules.rights.*',
+        'application.modules.rights.components.*',
+
 	),
 
 	// application components
@@ -200,6 +200,9 @@ $config = array(
 		'authManager'=>array(
 			// The type of Manager (Database)
 			'class'=>'CDbAuthManager',
+			'class'=>'RDbAuthManager',
+			// 默认用户角色
+			'defaultRoles'=>array('Authenticated', 'guest'),
 			// The database connection used
 			'connectionID'=>'db',
 			// The itemTable name (default:authitem)
@@ -229,7 +232,26 @@ $config = array(
 		'user'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),
-		'rights',
+		'rights'=>array(
+			'class'=>'application.modules.rights.RightsModule',
+
+			'superuserName'=>'admin',                            // Name of the role with super user privileges. 
+			'authenticatedName'=>'Authenticated',                // Name of the authenticated user role. 
+			'userIdColumn'=>'id',                                // Name of the user id column in the database. 
+			'userNameColumn'=>'username',                        // Name of the user name column in the database. 
+			'enableBizRule'=>true,                               // Whether to enable authorization item business rules. 
+			'enableBizRuleData'=>false,                          // Whether to enable data for business rules. 
+			'displayDescription'=>true,                          // Whether to use item description instead of name. 
+			'flashSuccessKey'=>'RightsSuccess',                  // Key to use for setting success flash messages. 
+			'flashErrorKey'=>'RightsError',                      // Key to use for setting error flash messages. 
+			'install'=>true,                                     // Whether to install rights. 
+			'baseUrl'=>'/rights',                                // Base URL for Rights. Change if module is nested. 
+			'layout'=>'rights.views.layouts.main',               // Layout to use for displaying Rights. 
+			'appLayout'=>'backend.views.layouts.column2',       // Application layout. 
+			#	'cssFile'=>'rights.css',                             // Style sheet file to use for Rights. 
+			'install'=>false,                                    // Whether to enable installer. 
+			'debug'=>false,                                      // Whether to enable debug mode. 
+		),
 		'group'=>array(
 			"defaultController"=>"group"
 		),

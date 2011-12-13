@@ -108,6 +108,7 @@ $(function(){
 
 //	$( "input:submit, a, button, input.btn", ".demo" ).button();
 //	$( "a", ".demo" ).click(function() { return false; });
+/*
 	$("a.thickbox").fancybox({
         
 		'scrolling'	      : 'no',
@@ -121,7 +122,7 @@ $(function(){
 		}
 		
 	});	
-
+*/
 	//AJAX全局事件
 	/*
 	$("body").bind("ajaxStart", function(){
