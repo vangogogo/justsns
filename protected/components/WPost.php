@@ -8,6 +8,7 @@ class WPost extends CWidget
 	public $items=array();
 	public $url = 'friend';
 	public $model;
+	public $action;
 
 	public function run()
 	{

@@ -290,6 +290,18 @@ class Group extends YiicmsActiveRecord
 		return $topic;
 	}
 
+	public function getGroupBoss()
+	{
+		$gid = $this->id;
+		$model = new GroupMember();
+		$criteria=new CDbCriteria;
+		$criteria->condition.=" gid = :gid AND level = 3";
+		$criteria->params[':gid']=$gid;
+		$boss=$model->with('user')->find($criteria);
+		return $boss;
+	}
+	
+	
 	public function getGroupMembers(array $params = array(),$limit = '')
 	{
 		$gid = $this->id;
@@ -382,10 +394,12 @@ class Group extends YiicmsActiveRecord
 	public function getGroupThreads(array $params = array(), $limit = 0)
 	{
 		$gid = $this->id;
-		if(!empty($gid) AND !isset($params))
+
+		if(!empty($gid))
 		{
 			$params['gid'] = $gid;
 		}
+		
 		if(empty($params['is_del']))
 		{
 			$params['is_del'] = 0;
@@ -425,6 +439,7 @@ class Group extends YiicmsActiveRecord
 			    $pages=new CPagination($total);
 			    $pages->pageSize=$pageSize?$pageSize:self::PAGE_SIZE;
 			    $pages->applyLimit($criteria);
+			    
 		    }
 
 		$models=$model->with('user','group')->findAll($criteria);
@@ -458,34 +473,36 @@ class Group extends YiicmsActiveRecord
 	}
 	
 	
-
+	// return Group::model()->isGroupAdmin($params["gid"],Yii::app()->user->id);
 	public static function isGroupAdmin($gid,$uid)
 	{
 		$model = new GroupMember();
 		$criteria=new CDbCriteria;
-		$criteria->condition.=" 1 AND gid = :gid AND uid = :uid";
+		$criteria->condition.=" status = 1 AND gid = :gid AND uid = :uid";
 		$criteria->params = array(':gid'=>$gid,':uid'=>$uid);
 		$member = $model->find($criteria);
-		if($member->level == 1)
+		if($member->level == 2)
 		{
 			return true;
 		}
 		return false;
 	}
-	
+	// return Group::model()->isGroupMember($params["gid"],Yii::app()->user->id);
 	public static function isGroupMember($gid,$uid)
 	{
+
 		$model = new GroupMember();
 		$criteria=new CDbCriteria;
-		$criteria->condition.=" 1 AND gid = :gid AND uid = :uid";
+		$criteria->condition.=" status = 1 AND gid = :gid AND uid = :uid";
 		$criteria->params = array(':gid'=>$gid,':uid'=>$uid);
 		$member = $model->find($criteria);
-		if($member->status == 1)
+		if($member->level > 0)
 		{
 			return true;
 		}
 		return false;
 	}
+	// return Group::model()->isGroupCreater($params["gid"],Yii::app()->user->id);
 	public static function isGroupCreater($gid,$uid)
 	{
 		$model = new GroupMember();
@@ -493,7 +510,7 @@ class Group extends YiicmsActiveRecord
 		$criteria->condition.=" 1 AND gid = :gid AND uid = :uid";
 		$criteria->params = array(':gid'=>$gid,':uid'=>$uid);
 		$member = $model->find($criteria);
-		if($member->level = 3)
+		if($member->level == 3)
 		{
 			return true;
 		}

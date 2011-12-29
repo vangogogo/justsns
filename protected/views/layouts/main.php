@@ -16,7 +16,7 @@
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 <?php
-	Yii::app()->bootstrap->registerBootstrap();
+	 Yii::app()->bootstrap->registerCoreCss();
 
 	$cs = Yii::app()->clientScript;
 

@@ -6,22 +6,40 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+Yii::import('zii.widgets.grid.CDataColumn');
+
 /**
  * Thanks to Simo Jokela <rBoost@gmail.com> for writing the original version of this class.
  */
-
-Yii::import('zii.widgets.grid.CDataColumn');
 class BootDataColumn extends CDataColumn
 {
+	/**
+	 * @var string the header color for sortable columns.
+	 * Valid values are: 'blue', 'green', 'red', 'yellow', 'orange' and 'purple'.
+	 * @since 0.9.6
+	 */
+	public $color;
+
 	/**
 	 * Initializes the column.
 	 */
 	public function init()
 	{
-		if (isset($this->headerHtmlOptions['class']))
-			$this->headerHtmlOptions['class'] .= ' header';
-		else
-			$this->headerHtmlOptions['class'] = 'header';
+		if ($this->grid->enableSorting && $this->sortable && $this->name !== null)
+		{
+			$class = array();
+			$class[] = 'header';
+
+			if ($this->color !== null)
+				$class[] = $this->color;
+
+			$class = implode(' ', $class);
+
+			if (isset($this->headerHtmlOptions['class']))
+				$this->headerHtmlOptions['class'] .= $class;
+			else
+				$this->headerHtmlOptions['class'] = $class;
+		}
 
 		parent::init();
 	}
@@ -33,11 +51,11 @@ class BootDataColumn extends CDataColumn
 	{
 		if ($this->grid->enableSorting && $this->sortable && $this->name !== null)
 		{
-			$sortDir = $this->grid->dataProvider->getSort()->getDirection($this->name);
+			$direction = $this->grid->dataProvider->sort->getDirection($this->name);
 
-			if ($sortDir !== null)
+			if ($direction !== null)
 			{
-				$sortCssClass = $sortDir ? 'headerSortDown' : 'headerSortUp';
+				$sortCssClass = $direction ? 'headerSortDown' : 'headerSortUp';
 				$this->headerHtmlOptions['class'] .= ' '.$sortCssClass;
 			}
 		}

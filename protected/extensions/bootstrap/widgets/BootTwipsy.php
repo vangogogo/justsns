@@ -6,11 +6,12 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-Yii::import('ext.bootstrap.widgets.BootWidget');
+Yii::import('bootstrap.widgets.BootWidget');
+
 class BootTwipsy extends BootWidget
 {
 	/**
-	 * @property string the CSS selector to use for selecting the twipsy elements.
+	 * @var string the CSS selector to use for selecting the twipsy elements.
 	 */
 	public $selector = 'a[title]';
 	
@@ -30,6 +31,6 @@ class BootTwipsy extends BootWidget
 	{
 		$id = $this->getId();
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootTwipsy($options);");
+		$this->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootTwipsy($options);");
 	}
 }

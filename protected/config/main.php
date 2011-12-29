@@ -17,7 +17,7 @@ $config = array(
 
 	'theme' => 'blue',
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log','bootstrap'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -38,7 +38,7 @@ $config = array(
 		'application.modules.rights.models.*',
         'application.modules.rights.components.*',  
 
-		'ext.bootstrap.components.*',
+		'ext.bootstrap.widgets.*',
         'application.modules.astro.models.*',
 
         'application.modules.rights.*',
@@ -206,11 +206,11 @@ $config = array(
 			// The database connection used
 			'connectionID'=>'db',
 			// The itemTable name (default:authitem)
-			'itemTable'=>'auth_item',
+			#'itemTable'=>'auth_item',
 			// The assignmentTable name (default:authassignment)
-			'assignmentTable'=>'auth_assignment',
+			#'assignmentTable'=>'auth_assignment',
 			// The itemChildTable name (default:authitemchild)
-			'itemChildTable'=>'auth_item_child',
+			#'itemChildTable'=>'auth_item_child',
 		),
 
         'image'=>array(
