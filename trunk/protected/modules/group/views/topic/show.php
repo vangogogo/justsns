@@ -24,7 +24,7 @@
 				</div>
 				<div class="height2"></div>
 				<div id="operate">
-					<?php if(!empty($isadmin)) { ?>
+					<?php if(!empty($isadmin)) : ?>
 						<?php echo CHtml::link('编辑',array('topic/edit','tid'=>$topic['id']));?> ┊ 
 						
 						<?php $array = array('dist'=>'精华','top'=>'置顶','lock'=>'锁定');?>
@@ -33,11 +33,12 @@
 						<?php }?>
 						
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
-					<?php } elseif($this->mid == $topic['uid']) { ?>
+					<?php endif; ?>
 					
+					<?php if(Yii::app()->user->checkAccess('UserUpdateOwn', array('uid'=>$topic->uid))):?>
 						<?php echo CHtml::link('编辑',array('topic/update','tid'=>$topic['id']));?> ┊
 						<?php echo CHtml::link('删除',array('topic/doDelTopic','tid'=>$topic['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?> ┊
-					<?php } ?>
+					<?php endif; ?>
 
                     <?php $this->widget('WUserCollect',array('object_id'=>$topic['id'],'object_type'=>'topic'));?>
 				</div>
@@ -72,7 +73,7 @@
 							<?php if($topic['lock'] == 1 || empty($actor_level) || 1){ ?>   <?php } else{  ?>
 							<a href="javascript:quote({$post['id']})">引用</a> ┊ 
 							<?php } ?>
-							<?php if($this->mid == $post['uid'] || $isadmin){ ?>
+							<?php if($this->mid == $post['uid']){ ?>
 								<?php //echo CHtml::link('编辑',array('topic/editPost','pid'=>$post['id']),array('class'=>'a_confirm_link'));?>
 								<?php echo CHtml::link('> 删除',array('topic/doDelPost','tid'=>$post['tid'],'pid'=>$post['id']),array('class'=>'a_confirm_link','title'=>'确认删除'));?>
 							<?php } ?>
@@ -94,7 +95,7 @@
 	</div>
     <?php endif;?>
 
-	<?php if(!Yii::app()->user->isGuest AND $post_access):?>
+	<?php if(!Yii::app()->user->isGuest AND Yii::app()->user->checkAccess('小组成员', array('gid'=>$topic->gid))):?>
 		<?php if(!empty($_GET['post'])){?>
 		<div class="color-gray">
 			<?php echo CHtml::link('继续发言',array('topic/show','tid'=>$topic['id'],'page'=>$page,'#'=>'last'),array('id'=>'last'));?>
@@ -102,7 +103,7 @@
 		<?php }else{?>
 			<h2>你的回应</h2>
 		<div class="topic_reply" id="last">
-			<?php $this->widget('WPost', array('model'=>$GroupPost,)); ?>
+			<?php $this->widget('WPost', array('model'=>$GroupPost)); ?>
 		</div>
 
 		<?php }?>

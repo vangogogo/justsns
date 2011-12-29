@@ -9,25 +9,34 @@
 class Bootstrap extends CApplicationComponent
 {
 	/**
-	 * @property string the url to the assets for this extension.
+	 * @var string the assets url for this extension.
 	 */
 	protected $_assetsUrl;
 
 	/**
+	 * Initializes the component.
+	 */
+	public function init()
+	{
+		Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
+	}
+
+	/**
 	 * Registers the Bootstrap CSS.
 	 */
-	public function registerBootstrap()
+	public function registerCoreCss()
 	{
-		Yii::app()->getClientScript()->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
+		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
 	}
 
 	/**
 	 * Registers a Bootstrap JavaScript file.
-	 * @param $fileName the file name.
+	 * @param string $fileName the file name.
+     * @param integer $position the position of the JavaScript file.
 	 */
-	public function registerScriptFile($fileName)
+	public function registerScriptFile($fileName, $position=CClientScript::POS_HEAD)
 	{
-		Yii::app()->getClientScript()->registerScriptFile($this->getAssetsUrl().'/js/'.$fileName);
+		Yii::app()->clientScript->registerScriptFile($this->getAssetsUrl().'/js/'.$fileName, $position);
 	}
 
 	/**
@@ -40,7 +49,7 @@ class Bootstrap extends CApplicationComponent
 			return $this->_assetsUrl;
 		else
 		{
-			$assetsPath = Yii::getPathOfAlias('ext.bootstrap.assets');
+			$assetsPath = Yii::getPathOfAlias('bootstrap.assets');
 
 			if (YII_DEBUG)
 				$assetsUrl = Yii::app()->assetManager->publish($assetsPath, false, -1, true);

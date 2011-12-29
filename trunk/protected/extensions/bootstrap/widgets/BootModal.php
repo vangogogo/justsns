@@ -7,11 +7,12 @@
  * @since 0.9.3
  */
 
-Yii::import('ext.bootstrap.widgets.BootWidget');
+Yii::import('bootstrap.widgets.BootWidget');
+
 class BootModal extends BootWidget
 {
 	/**
-	 * @property string the name of the container element. Defaults to 'div'.
+	 * @var string the name of the container element. Defaults to 'div'.
 	 */
 	public $tagName = 'div';
 
@@ -30,7 +31,7 @@ class BootModal extends BootWidget
 			$this->htmlOptions['id'] = $id;
 
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootModal($options);");
+        $this->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootModal($options);");
 
 		echo CHtml::openTag($this->tagName, $this->htmlOptions).PHP_EOL;
 	}

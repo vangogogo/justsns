@@ -7,26 +7,25 @@
  */
 
 Yii::import('zii.widgets.grid.CGridView');
-Yii::import('ext.bootstrap.widgets.BootDataColumn');
+Yii::import('bootstrap.widgets.BootDataColumn');
+
 class BootGridView extends CGridView
 {
 	/**
-	 * @property string the CSS class name for the container table.
+	 * @var string the CSS class name for the container table.
 	 * Defaults to 'zebra-striped'.
 	 */
 	public $itemsCssClass = 'zebra-striped';
-
 	/**
-	 * @property string the CSS class name for the pager container.
+	 * @var string the CSS class name for the pager container.
 	 * Defaults to 'pagination'.
 	 */
 	public $pagerCssClass = 'pagination';
-
 	/**
-	 * @property array the configuration for the pager.
+	 * @var array the configuration for the pager.
 	 * Defaults to <code>array('class'=>'ext.bootstrap.widgets.BootPager')</code>.
 	 */
-	public $pager = array('class'=>'ext.bootstrap.widgets.BootPager');
+	public $pager = array('class'=>'bootstrap.widgets.BootPager');
 
 	/**
 	 * Creates column objects and initializes them.
@@ -40,5 +39,25 @@ class BootGridView extends CGridView
 		parent::initColumns();
 	}
 
+	/**
+     * Creates a column based on a shortcut column specification string.
+     * @param string $text the column specification string
+     * @return BootDataColumn the column instance
+     */
+    protected function createDataColumn($text)
+    {
+        if (!preg_match('/^([\w\.]+)(:(\w*))?(:(.*))?$/', $text, $matches))
+            throw new CException(Yii::t('bootstrap','The column must be specified in the format of "Name:Type:Label", where "Type" and "Label" are optional.'));
 
+        $column = new BootDataColumn($this);
+        $column->name = $matches[1];
+
+        if (isset($matches[3]) && $matches[3] !== '')
+            $column->type = $matches[3];
+
+        if (isset($matches[5]))
+            $column->header = $matches[5];
+
+        return $column;
+    }
 }

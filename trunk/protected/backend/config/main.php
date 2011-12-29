@@ -28,7 +28,7 @@ return array(
 
 	'theme' => 'blue',
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log','bootstrap'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -49,14 +49,14 @@ return array(
 
 
 
-		'ext.bootstrap.components.*',
+		'ext.bootstrap.widgets.*',
         'application.modules.astro.models.*',
 
 		'backend.models.*',
 		'backend.components.*',
 
-		'backend.modules.rights.models.*',
-        'backend.modules.rights.components.*',  
+		'application.modules.rights.models.*',
+        'application.modules.rights.components.*',  
 	),
 
 	// application components
@@ -184,11 +184,11 @@ return array(
 			// The database connection used
 			'connectionID'=>'db',
 			// The itemTable name (default:authitem)
-			'itemTable'=>'auth_item',
+			#'itemTable'=>'auth_item',
 			// The assignmentTable name (default:authassignment)
-			'assignmentTable'=>'auth_assignment',
+			#'assignmentTable'=>'auth_assignment',
 			// The itemChildTable name (default:authitemchild)
-			'itemChildTable'=>'auth_item_child',
+			#'itemChildTable'=>'auth_item_child',
 		),
 
         'image'=>array(
@@ -214,14 +214,12 @@ return array(
             'username' => 'root',
             'password' => '111111',
         ),
-		'admin'=>array(
-			#"layout"=>"application.views.layouts.main",
-		),
+
 		'user'=>array(
 			#"layout"=>"application.views.layouts.main",
 		),
 		'rights'=>array(
-			'class'=>'backend.modules.rights.RightsModule',
+			'class'=>'application.modules.rights.RightsModule',
 
 			'superuserName'=>'admin',                            // Name of the role with super user privileges. 
 			'authenticatedName'=>'Authenticated',                // Name of the authenticated user role. 
@@ -238,13 +236,9 @@ return array(
 			'appLayout'=>'backend.views.layouts.column2',       // Application layout. 
 			#	'cssFile'=>'rights.css',                             // Style sheet file to use for Rights. 
 			'install'=>false,                                    // Whether to enable installer. 
-			'debug'=>false,                                      // Whether to enable debug mode. 
+			'debug'=>true,                                      // Whether to enable debug mode. 
 		),
-		'group'=>array(
-			"defaultController"=>"group"
-		),
-		'gift',
-        'astro',
+
 	),
     'params'=>require(dirname(__FILE__).'/params.php'),
 );

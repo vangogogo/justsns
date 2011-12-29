@@ -37,22 +37,35 @@ class TopicController extends Controller
 	public function filters()
 	{
 		return array(
-			'topicOwner + update',
-			#'groupMemeber + create', // Apply this filter only for the update action.
+			'topicOwner + update,DoDelTopic',
+			'postOwner + DoDelPost',
+			'groupMember + create,addPost', // Apply this filter only for the update action.
 			'rights',
 		);
 	}
 	
+	public function filterPostOwner($filterChain)
+	{
+		$model = new GroupPost();
+		$pid = Yii::app()->request->getQuery('pid');
+		$model = $model->loadPost($pid);
+		$uid = $model->uid;
+		// Remove the 'rights' filter if the user is updating an own post
+		// and has the permission to do so.
+		if(Yii::app()->user->checkAccess('UserUpdateOwn', array('uid'=>$uid)))
+			$filterChain->removeAt(1);
+	
+		$filterChain->run();
+	}
 	
 	public function filterTopicOwner($filterChain)
 	{
 		$topic=$this->loadModel();
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.
-
-		if(Yii::app()->user->checkAccess('Group.Topic.Update', array('uid'=>$topic->uid)))
+		if(Yii::app()->user->checkAccess('UserUpdateOwn', array('uid'=>$topic->uid)))
 			$filterChain->removeAt(1);
-			
+
 		$filterChain->run();
 	}
 
@@ -62,14 +75,15 @@ class TopicController extends Controller
 	 * Filter method for checking whether the currently logged in user
 	 * is the author of the post being accessed.
 	 */
-	public function filterGroupAdmin($filterChain)
+	public function filterGroupMember($filterChain)
 	{
-		$group=$this->loadModel();
+		$gid = Yii::app()->request->getQuery('gid');
+		
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.
-		if(Yii::app()->user->checkAccess('小组创建者', array('uid'=>$group->uid)) OR Yii::app()->user->checkAccess('小组管理员', array('gid'=>$group->primaryKey)))
+		if(Yii::app()->user->checkAccess('小组成员', array('gid'=>$gid)))
 			$filterChain->removeAt(1);
-			
+
 		$filterChain->run();
 	}
 	
@@ -165,7 +179,7 @@ class TopicController extends Controller
 		$group = Group::model()->loadGroup($gid);
 
 		//默认回复
-		$GroupPost = $this->addPost();
+		$GroupPost = new GroupPost();
 		$GroupPost->gid = $topic->gid;
 		$GroupPost->tid = $topic->id;
 		
@@ -202,8 +216,10 @@ class TopicController extends Controller
 	/**
 	 * 增加话题回复
 	 */
-	protected function addPost()
+	public function actionAddPost()
 	{
+
+				
 		$model = new GroupPost();
 
 		if(!empty($_POST['GroupPost']))
@@ -215,11 +231,10 @@ class TopicController extends Controller
 				$anchor = !empty($_GET['page'])?'&':'?';
 				$anchor .= 'post=ok#last';
 				//var_dump($auchor);die;
-				$this->refresh(true,$anchor);
-				//$this->redirect(array('show','tid'=>$topic->id));
+				#$this->refresh(true,$anchor);
+				#$this->redirect(array('show','tid'=>$post->tid));
 			}
-			else
-			return $post;
+			$this->redirect(array('show','tid'=>$post->tid,'post'=>'ok','#'=>'last'));
 		}
 		return $model;
 	}

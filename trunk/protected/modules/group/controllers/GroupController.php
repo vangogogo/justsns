@@ -3,7 +3,7 @@
 class GroupController extends Controller
 {
 	private $_model;
-	const THREAD_PAGE_SIZE=6;
+	const THREAD_PAGE_SIZE=20;
 	
 
 	/**
@@ -12,7 +12,7 @@ class GroupController extends Controller
 	public function filters()
 	{
 		return array(
-			'groupAdmin + update,members', // Apply this filter only for the update action.
+			'groupAdmin + update', // Apply this filter only for the update action.
 			#'groupMemeber + update,members', // Apply this filter only for the update action.
 			'rights',
 		);
@@ -27,7 +27,7 @@ class GroupController extends Controller
 		$group=$this->loadModel();
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.
-		if(Yii::app()->user->checkAccess('小组创建者', array('uid'=>$group->uid)) OR Yii::app()->user->checkAccess('小组管理员', array('gid'=>$group->primaryKey)))
+		if(Yii::app()->user->checkAccess('小组创建者', array('gid'=>$group->primaryKey)) OR Yii::app()->user->checkAccess('小组管理员', array('gid'=>$group->primaryKey)))
 			$filterChain->removeAt(1);
 			
 		$filterChain->run();
@@ -38,7 +38,7 @@ class GroupController extends Controller
 	*/
 	public function allowedActions()
 	{
-	 	return 'index,show, suggestTags,discussion';
+	 	return 'index,show, suggestTags,discussion,members';
 	}
 
 	
@@ -81,11 +81,11 @@ class GroupController extends Controller
 
 		//话题
 		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>Yii::app()->request->getParam('page'));
-		$d =$model->getGroupThreads($params);
+		$d =$group->getGroupThreads($params);
 
 		$threads = $d['threads'];
 		$pages = $d['pages'];
-        $page_count = $pages->getPageSize();
+        $page_count = $pages->getPageCount();
 
 		$adminList = array();
 		$memberList = array();
@@ -119,9 +119,10 @@ class GroupController extends Controller
 	 */	
 	public function actionDiscussion()
 	{
-		$model = new Group();
-
-		$group = $model->loadGroup($_GET['gid']);
+		$gid = Yii::app()->request->getQuery('gid');
+		$model =  new Group();
+		$group = $model->loadGroup($gid);
+		
 		//话题
 		$page = Yii::app()->request->getParam('page');
 		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$page);
@@ -134,11 +135,24 @@ class GroupController extends Controller
 	 */	
 	public function actionMembers()
 	{
-		$model = new Group();
-		$group = $model->loadGroup($_GET['gid']);
-		//话题
-		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$_GET['page']);
-		$data =$group->getGroupMembers($params);
+		$gid = Yii::app()->request->getQuery('gid');
+		$model =  new Group();
+		$group = $model->loadGroup($gid);
+		
+		$boss = $group->getGroupBoss();
+		$data['boss'] = $boss;	
+		//管理员
+		$params = array('pageSize'=>100,'page'=>1,'level'=>2);
+		$rs =$group->getGroupMembers($params);
+		$data['admins'] = $rs['members'];
+		
+		//普通成员
+		$page = Yii::app()->request->getQuery('page');
+		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>$page,'level'=>1);		
+		$rs =$group->getGroupMembers($params);
+		$data['members'] = $rs['members'];
+		
+		//小组信息
 		$data['group'] = $group;
 		$this->render('members',$data);
 	}
@@ -173,8 +187,9 @@ class GroupController extends Controller
 	{
 		$uid = Yii::app()->user->id;
 		
-		$model = new Group();
-		$group = $model->loadGroup($_GET['gid']);
+		$gid = Yii::app()->request->getQuery('gid');
+		$model =  new Group();
+		$group = $model->loadGroup($gid);
 
         $this->performAjaxValidation($group);
 
@@ -189,8 +204,6 @@ class GroupController extends Controller
 		}
 		
 		$data = array(
-			'owner'=>$owner,
-			'is_me'=>$is_me,
 			'group'=>$group,
 			'category_list'=>$category_list,
 		);
@@ -228,10 +241,8 @@ class GroupController extends Controller
 		{
 			if(isset($_GET['gid']))
 			{
-				if(Yii::app()->user->isGuest)
-					$condition='status='.Post::STATUS_PUBLISHED.' OR status='.Post::STATUS_ARCHIVED;
-				else
-					$condition='';
+
+				$condition='';
 				$this->_model=Group::model()->findByPk($_GET['gid'], $condition);
 			}
 			if($this->_model===null)
