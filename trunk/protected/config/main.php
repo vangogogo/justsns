@@ -136,23 +136,22 @@ $config = array(
 				#'<view:\w+>'=>'site/page',
 
 				'space/<uid:\d+>'=>'space/index',
+				'space/<udomain:\w+>'=>'space/index',
+				
 				'post/<pid:\d+>'=>'post/show',
 
 				'group/<gid:\d+>'=>'group/group/show',
 				'group/topic/<tid:\d+>'=>'group/topic/show',
+				
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
 				'group/create/<gid:\d+>'=>'group/group/create',
 				'group/<gid:\d+>/new_topic'=>'group/topic/create',
 				'group/new_group'=>'group/group/create',
-/*
-				'http://'.SUB_DOMAIN_mentor.'<_q:.*>/<controller:(book|video|course|mentor)>/<id:\d+>/'=>'mentor<_q>/<controller>/view',
-				'http://'.SUB_DOMAIN_mentor.'<_q:.*>/lecturer/<id:\d+>/'=>'mentor<_q>/lecturer/view',
-				'http://'.SUB_DOMAIN_mentor.'<_q:.*>/lecturer/<id:\d+>/board'=>'mentor<_q>/lecturer/board',
-*/
+
 				#'group/<gid:\d+>/discussion'=>'group/group/discussion',
 
 				'group/<gid:\d+>/<_resource:(discussion|members|balck|update)>/'=>'group/group/<_resource>',
-				'group/topic/<tid:\d+>/<_resource:(update)>/'=>'group/topic/<_resource>',
+				'group/topic/<tid:\d+>/<_resource:(update|addPost|doDelPost|doDelTopic)>/'=>'group/topic/<_resource>',
 
                 'astro/<astro_id:\d+>-<name>-<year:\d+>-<month:\d+>-<day:\d+>.html'=>'astro/default/astro',
                 'astro/<astro_id:\d+>-<name>.html'=>'astro/default/astro',

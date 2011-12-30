@@ -23,7 +23,7 @@ else
 define('Yii_Font_MicroHei',dirname(__FILE__).'/fonts/wqy-microhei.ttc');
 
 
-include('Ts_common.php');
+#include('Ts_common.php');
 
 require_once($yii);
 Yii::createWebApplication($config)->run();

@@ -24,7 +24,7 @@
 				</span>
 				<?php echo CHtml::link($comment['name'],array('/space','uid'=>$comment['uid']));?>
 
-				<em class="cGray2"><?php echo friendlyDate('Y-m-d H:i:s',$comment['ctime']);?></em>
+				<em class="cGray2"><?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$comment['ctime']);?></em>
 				<?php if($comment['quietly'] == 1){?><font color="red"><b>[悄悄话]</b></font><?php }?>
 			</h3>
 			

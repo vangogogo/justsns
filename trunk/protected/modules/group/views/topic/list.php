@@ -16,7 +16,7 @@
 			</td>
 			<td><?php echo CHtml::link($topic->group->name,array('space','uid'=>$topic['uid']));?></td>
 			<td><?php echo $topic['postcount']?>/<?php echo $topic['viewcount']?></td>
-			<td class="time"><?php echo friendlyDate('m-d H:i',$topic['replytime'])?></td>
+			<td class="time"><?php echo YiicmsHelper::friendlyDate('m-d H:i',$topic['replytime'])?></td>
 			<?php endforeach;?>
 			</tr>
 		<?php }else{?>

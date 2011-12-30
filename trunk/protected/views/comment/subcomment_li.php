@@ -18,7 +18,7 @@
 		?>
 		<?php if($subcomment['status'] == 1){?><span class="ml5"><?php echo $delete;?></span><?php }?>
 		<?php echo CHtml::link($subcomment['name'],array('/space','uid'=>$subcomment['uid']));?>
-		<em class="cGray2"><?php echo friendlyDate('Y-m-d H:i:s',$subcomment['ctime']);?></em>
+		<em class="cGray2"><?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$subcomment['ctime']);?></em>
 		<?php if($subcomment['quietly'] == 1){?><strong style="color:red">[悄悄话]</strong><?php }?>
 		</h3>
 		<p><?php echo $subcomment['comment'];?></p>

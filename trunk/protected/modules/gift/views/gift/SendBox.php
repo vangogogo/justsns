@@ -11,7 +11,7 @@
 					echo CHtml::encode('神秘人士');
 				else
 					 echo CHtml::link($gift['fromUsername'],array('/space/','uid'=>$gift['fromUserId']));?>
-				在<?php echo friendlyDate('Y-m-d',$gift['ctime']);?> 赠送给 
+				在<?php echo YiicmsHelper::friendlyDate('Y-m-d',$gift['ctime']);?> 赠送给 
 				<?php echo CHtml::link($gift['toUsername'],array('/space/','uid'=>$gift['toUserId']));?>
 				<br/>
 				<div class="cGray2 lh30">赠言：</div>

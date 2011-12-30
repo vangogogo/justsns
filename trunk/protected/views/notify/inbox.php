@@ -38,7 +38,7 @@
 							<td width="184">
 								<?php echo $msg_user->getSpaceUrlWithName();?>
 								<br />
-								<?php echo friendlyDate('Y-m-d H:i',$msg->ctime);?>
+								<?php echo YiicmsHelper::friendlyDate('Y-m-d H:i',$msg->ctime);?>
 							</td>
 							<td width="473">
 								<?php if($msg["is_read"]){?>

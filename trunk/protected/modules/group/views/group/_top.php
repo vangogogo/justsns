@@ -1,4 +1,4 @@
-<?php if(Yii::app()->user->checkAccess('小组管理员', array('gid'=>$group->primaryKey))):?>
+<?php if($this->module->isGroupAdmin):?>
 	<!-- 切换标签 begin  -->
 	<div class="tab-menu">
 	<?php

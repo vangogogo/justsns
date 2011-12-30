@@ -27,9 +27,9 @@
 			{:W('Report',array( 'type'=>'投票举报','appid'=>$APPINFO['APP_ID'],'url'=>'Index/pollDetail/id/'.$vote['id'],'title'=>$vote['title'],'recordId'=>$vote['id'] ))}<?php if(0 AND isAddApp('share')) {  ?><input type="button" value="分享" class="BtnShare" style="margin-left:10px;" onclick="ts_sharePop('{$vote.id}','__URL__')" id="BtnShare_{$vote.id}"/>
 			<?php } } ?></div>
 		<div>
-			<span>发起时间：<?php echo friendlyDate('Y-m-d H:i:s',$vote['ctime']);?></span><br/>
+			<span>发起时间：<?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$vote['ctime']);?></span><br/>
 			<span>已投票数：<?php echo $vote->votercount;?></span><br/>
-			<span>截止时间：<?php echo friendlyDate('Y-m-d H:i:s',$vote['expiration']) ?></span>
+			<span>截止时间：<?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$vote['expiration']) ?></span>
 		</div>
 	</div>
 	<div style="width:70%; margin:0 auto;">

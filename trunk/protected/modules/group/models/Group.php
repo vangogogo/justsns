@@ -408,7 +408,7 @@ class Group extends YiicmsActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->condition.=" 1";
 
-		$criteria->order = !empty($params['order'])?$params['order']:'replytime DESC';
+		$criteria->order = !empty($params['order'])?$params['order']:'t.ctime DESC';
 		if(!empty($limit))
 		{
 			$criteria->limit = $limit;
@@ -489,8 +489,7 @@ class Group extends YiicmsActiveRecord
 	}
 	// return Group::model()->isGroupMember($params["gid"],Yii::app()->user->id);
 	public static function isGroupMember($gid,$uid)
-	{
-
+	{		var_dump($gid);
 		$model = new GroupMember();
 		$criteria=new CDbCriteria;
 		$criteria->condition.=" status = 1 AND gid = :gid AND uid = :uid";

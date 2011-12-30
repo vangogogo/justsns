@@ -13,7 +13,7 @@
 				</div>
 				<div class="left" style="width: 67%;">
 					<h3 class="f14px"><?php echo CHtml::link($vo->subject,array('/vote/show','uid'=>$vo->uid,'id'=>$vo->id),array('class'=>'U'));?></h3>
-					<p class="cGray2">投票发起时间：<?php echo friendlyDate('Y-m-d',$vo->ctime);?></p>
+					<p class="cGray2">投票发起时间：<?php echo YiicmsHelper::friendlyDate('Y-m-d',$vo->ctime);?></p>
 					<p class="cGray2">目前投票人数：<?php echo $vo->votercount;?></p>
 					<p><span class="right">此投票由<?php echo CHtml::link($vo->username,array('/space/','uid'=>$vo->uid));?>发起。</span>
 					<?php if( $vo['expiration'] <= time() ){?>

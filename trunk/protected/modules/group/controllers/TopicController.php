@@ -76,12 +76,10 @@ class TopicController extends Controller
 	 * is the author of the post being accessed.
 	 */
 	public function filterGroupMember($filterChain)
-	{
-		$gid = Yii::app()->request->getQuery('gid');
-		
+	{		
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.
-		if(Yii::app()->user->checkAccess('小组成员', array('gid'=>$gid)))
+		if($this->module->isGroupMember)
 			$filterChain->removeAt(1);
 
 		$filterChain->run();
