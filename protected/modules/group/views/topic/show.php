@@ -1,5 +1,9 @@
 <div class="page-header">
-	<h1><?php echo $topic['title']?></h1>
+	<h1>
+	<?php
+		YiicmsHelper::CMarkdown($topic->title);
+	?>
+	</h1>
 </div>
 
 <div class="content">
@@ -10,16 +14,14 @@
 				<?php $this->widget('WUserFace',array('uid'=>$topic['uid'])); ?>
 			</td>
 			<td>
-				<h3><?php echo friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　
+				<h3><?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　
 					<a href="<?php echo $this->createUrl('/space/index',array('uid'=>$topic['uid']));?>"  class="tips">
 						<?php echo $topic->user->getUserName();?>
 					</a>
 				</h3>
 				<div class="">
 		            <?php
-			            $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
-			            echo $topic->getTopicContent();
-			            $this->endWidget();
+			            YiicmsHelper::CMarkdown($topic->getTopicContent());
 		            ?>
 				</div>
 				<div class="height2"></div>
@@ -55,18 +57,15 @@
 						<?php $this->widget('WUserFace',array('uid'=>$post['uid'])); ?>
 					</td>
 					<td>
-						<h4><?php echo friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　
+						<h4><?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>　
 							<a href="<?php echo $this->createUrl('/space/index',array('uid'=>$topic['uid']));?>"  class="tips">
 								<?php echo $post->user->getUserName();?>
 							</a>
 						</h4>
 						<div id="comment_<?php echo$post['id'];?>" class="">
 	                    <?php
-		                    $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
-		                    echo h(stripslashes($post['content']));
-		                    $this->endWidget();
+	                   		YiicmsHelper::CMarkdown($post->content);
 	                    ?>
-
 						</div>
 						<textarea id="comment_txt_<?php echo$topic['id'];?>" style="display:none;">子非鱼，焉知鱼之乐。</textarea>
 						<div id="operate_<?php echo$topic['id'];?>" class="operate">
@@ -95,7 +94,7 @@
 	</div>
     <?php endif;?>
 
-	<?php if(!Yii::app()->user->isGuest AND Yii::app()->user->checkAccess('小组成员', array('gid'=>$topic->gid))):?>
+	<?php if($this->module->isGroupMember):?>
 		<?php if(!empty($_GET['post'])){?>
 		<div class="color-gray">
 			<?php echo CHtml::link('继续发言',array('topic/show','tid'=>$topic['id'],'page'=>$page,'#'=>'last'),array('id'=>'last'));?>
@@ -105,10 +104,8 @@
 		<div class="topic_reply" id="last">
 			<?php $this->widget('WPost', array('model'=>$GroupPost)); ?>
 		</div>
-
 		<?php }?>
     <?php endif;?>
-
 </div>	
 <div class="sidebar">
 	<?php $this->widget('WGroupTopicSidebar',array('gid'=>$group['id'])); ?>

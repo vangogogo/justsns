@@ -9,9 +9,9 @@
 	<?php foreach($threads as $topic):?>
 	<tr>
 		<td>
-			<?php if($topic['top']):?><span class="zd">顶</span><?php endif;?>
-			<?php if($topic['dist']):?><span class="jh">精</span><?php endif;?>
-			<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
+			<?php if($topic['top']):?><span class="label warning">顶</span><?php endif;?>
+			<?php if($topic['dist']):?><span class="label important">精</span><?php endif;?>
+			<?php echo CHtml::link(YiicmsHelper::cutString($topic['title'],22),array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
 		</td>
 		<?php if(!isset($no_group)):?>
 		<td>
@@ -27,7 +27,7 @@
 			<?php if($topic['postcount'] > 0) echo $topic['postcount']?>
 		</td>
 		<td align="right">
-			<span class="color02"><?php echo friendlyDate('m-d H:i',$topic['replytime']?$topic['replytime']:$topic['ctime'])?></span>
+			<span class="color02"><?php echo YiicmsHelper::friendlyDate('m-d H:i',$topic['replytime']?$topic['replytime']:$topic['ctime'])?></span>
 		</td>
 	</tr>
 	<?php endforeach;?>

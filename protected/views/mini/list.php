@@ -14,7 +14,7 @@
 						<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>">
 							<strong><?php echo $vo['name'];?></strong>
 						</a>
-						<span class="time"><?php echo friendlyDate('Y-m-d H:s',$vo['ctime'])?></span>
+						<span class="time"><?php echo YiicmsHelper::friendlyDate('Y-m-d H:s',$vo['ctime'])?></span>
 					</span>
 				</h4>
 			<?php }else{?>
@@ -22,7 +22,7 @@
 					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>">
 						<strong><?php echo $vo['name']?></strong>
 					</a>
-					<span class="time"><?php echo friendlyDate('Y-m-d H:s',$vo['ctime'])?></span>|
+					<span class="time"><?php echo YiicmsHelper::friendlyDate('Y-m-d H:s',$vo['ctime'])?></span>|
 					<span>
 						<?php echo CHtml::link('更多',array('/mini/friends','uid'=>$vo['uid']));?>
 					</span>

@@ -27,9 +27,9 @@ class GroupController extends Controller
 		$group=$this->loadModel();
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.
-		if(Yii::app()->user->checkAccess('小组创建者', array('gid'=>$group->primaryKey)) OR Yii::app()->user->checkAccess('小组管理员', array('gid'=>$group->primaryKey)))
+		if($this->moduel->isGroupAdmin)
 			$filterChain->removeAt(1);
-			
+
 		$filterChain->run();
 	}
 	

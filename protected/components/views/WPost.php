@@ -1,6 +1,6 @@
 <?php $form = $this->beginWidget('CActiveForm', array(
     'id'=>'user-form',
-    'action'=>array('/group/topic/addPost','gid'=>$model->gid),
+    'action'=>array('/group/topic/addPost','tid'=>$model->tid),
     #'enableAjaxValidation'=>true,
     'enableClientValidation'=>true,
     'focus'=>array($model,'title'),

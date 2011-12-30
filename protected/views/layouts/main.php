@@ -31,7 +31,8 @@
 <?php 
 // tips
 $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
-    'selector'=>'a[title]',
+    #'selector'=>'a[title]',
+	'selector'=>'.tips',
 )); 
 ?>
 <script type="text/javascript">

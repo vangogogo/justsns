@@ -16,7 +16,7 @@
 				<div class="cGray2 lh30">
 					<div class="right">
 						楼主
-					</div><?php echo friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>
+					</div><?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$topic['ctime']);?>
 				</div>
 				<div style="line-height: 180%;" class="pb10 pt10 f14px">
 					<div id="topic_content" style="padding: 0pt 50px 0pt 0pt;">
@@ -73,7 +73,7 @@
 					<div class="right">
 				<?php $p = $_GET['page'] ? intval($_GET['page']) : 1; echo intval($p-1)*$post_pages->pageSize+($key+1) ?>楼
 					</div>
-					<?php echo friendlyDate('Y-m-d H:i:s',$post['ctime']);?>
+					<?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',$post['ctime']);?>
 				</div>
 				<div class="btmlineD pb10 pt10 f14px" style="line-height:180%;">
 				<div style="padding:0 50px 0 0; " id="reply_content">

@@ -9,6 +9,7 @@ body,input,button,select,textarea{font: Lucida Grande,Microsoft Yahei,Arial,Cali
 .topbar-inner, .topbar .fill {background: url('../images/global_nav_bg.png') repeat-x;}
 .topbar-inner a, .topbar .fill a {color:#fff}
 */
+div.clearfix {display: block;line-height:0;}
 .container> .sidebar{display: inline;float: left;margin-left: 40px;width: 280px;}
 .container> .content{display: inline;float: left;margin-left: 20px;width: 600px;}
 

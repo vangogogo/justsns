@@ -2,7 +2,19 @@
 
 class SNSUser extends YiicmsActiveRecord
 {
-
+	public $udomain;
+	public function behaviors()
+	{
+		$base = parent::behaviors();
+		$arr = array(
+			array(
+                'class'=>'ext.seo.components.SeoRecordBehavior',
+                'route'=>'space/index',
+                'params'=>array('uid'=>$this->primaryKey, 'name'=>$this->udomain),
+			),
+		);
+		return $base+$arr;
+	}
 	/**
 	 * 检查用户名是否存在
 	 */
@@ -27,6 +39,7 @@ class SNSUser extends YiicmsActiveRecord
 		{
 			$uid = $this->primaryKey;
 		}
+
 		$url = Yii::app()->createUrl('/space/index',array('uid'=>$uid));
 		return $url;
 	}
