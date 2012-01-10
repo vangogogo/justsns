@@ -231,11 +231,12 @@ class YiicmsHelper
 	* );
 	*
 	*/
-	static function cutString($str,$num)
+	static function cutString($str,$num,$charset="utf-8")
 	{
-		if(mb_strlen($str,'utf8') > $num)
+		#$num = 3 * $num;
+		if(mb_strlen($str,$charset) > $num)
 		{
-			$result = mb_substr($str,0,$num,'utf8')."...";
+			$result = mb_substr($str,0,$num,$charset)."...";
 		}
 		else
 		{
@@ -309,6 +310,16 @@ class YiicmsHelper
 	
 	static function CMarkdown($string,$purifyOutput = false)
 	{
+		$m = new CMarkdownParser;
+		$output = $m->transform($string);
+		
+		if($purifyOutput)
+		{
+			$purifier=new CHtmlPurifier;
+			$output=$purifier->purify($output);
+		}
+		return $output;
+		
 		Yii::app()->controller->beginWidget('CMarkdown', array('purifyOutput'=>$purifyOutput));
 			echo $string;
 		Yii::app()->controller->endWidget();

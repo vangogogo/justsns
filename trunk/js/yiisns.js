@@ -1,5 +1,5 @@
 $(function(){
-    $( "input:submit, button, input.btn, input.btn_w").button();
+    /*$( "input:submit, button, input.btn, input.btn_w").button();*/ //使用bootstrap后不用了
     $(".radioset").buttonset();
 
 	(function( $ ) {
@@ -182,35 +182,34 @@ $(function(){
 	 alert("ajaxStop");
 	 });
 	 */
-	//确认删除
+    
+	//确认操作
 	$('.a_confirm_link').live('click', function(){
 		self = $(this);
 		message = self.data('title');
 		url = self.attr('href');
-		Confirm({
+		Bconfirm({
 			message: message,
 			handler: function(button){
                 window.location.href=url;
-                /*
-				$.get(url, '', function(result){
-					if(result == 1)
-					{
-						//Alert('操作成功...');
-					}
-					else if($result == -1)
-					{
-						//Alert('操作失败...');
-					}
-					else
-					{
-						Alert(result)
-					}
-				});
-                */
 			}
 		});
 		return false;
 	});
+	
+	//确认操作
+	$('.a_ajax_link').live('click', function(){
+		self = $(this);
+		message = self.data('title');
+		url = self.attr('href');
+		Bconfirm({
+			message: message,
+			handler: function(button){
+                window.location.href=url;
+			}
+		});
+		return false;
+	});	
 	
 	$('.a_alert_link').live('click', function(){
 		self = $(this);
@@ -282,6 +281,44 @@ function reload(){
 	window.location.reload();
 }
 
+function Bconfirm(object){
+	var message = object.message;
+	var callback = object.handler;
+	
+	$("#dialog-confirm").remove();
+	if ($("#dialog-confirm").length == 0) {
+		$("body").append('<p id="dialog-confirm"> 加载中,请稍等...</p>');
+	}
+	
+	$("#dialog-confirm").html(message);
+	
+	$('#dialog-confirm').bootModal({
+		'title' : '消息框',
+		'backdropClose' : false,
+		'escapeClose' : false,
+		'open' : true,
+		'closeTime' : 10,
+		'openTime' : 10,
+		'buttons' : [ {
+			'label' : '确定',
+			'class' : 'btn primary',
+			'click' : function() {
+				if (typeof(callback) == "function") {
+					callback.call();
+				}
+			}
+		}, {
+			'label' : '取消',
+			'class' : 'btn',
+			'click' : function() {
+				$('#dialog-confirm').bootModal('close');
+				return false;
+			}
+		} ]
+	});
+
+	//$("#dialog-confirm").bootModal("open");
+}
 //jQuery UI 弹出框
 
 function Alert(message, title, callback){

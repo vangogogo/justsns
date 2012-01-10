@@ -1,3 +1,5 @@
+.group_form .row label {margin: 0 18px 0 0;padding: 6px 0;width: 40px;}
+.group_form .row textarea.t_area {height:380px;}
 
 .grouplist {width:100%;overflow:hidden;}
 .grouplist ul {list-style:none;}
@@ -21,7 +23,7 @@
 
 .topic_content tr td .content {width:490px;padding:10px 15px;white-space:normal;word-break:break-all;word-wrap:break-word;}
 .topic_reply tr td .content {width:440px;padding:15px;white-space:normal;word-break:break-all;word-wrap:break-word;}
-.reply_form {width:440px;height:120px;overflow-x:hidden;overflow-y:auto;margin:10px 15px;font-size:14px;line-height:26px;}
+.reply_form {width:440px;height:120px;overflow-x:hidden;overflow-y:auto;margin:10px 0px;font-size:14px;line-height:26px;}
 .reply_button {width:100px;height:26px;text-align:center;margin:0 15px;}
 .operate {margin:5px 0 0 0;text-align:right;}
 .operate a:link,.operate a:visited {text-decoration:none;color:#CCC;}

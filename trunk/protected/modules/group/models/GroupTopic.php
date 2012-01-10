@@ -192,6 +192,12 @@ class GroupTopic extends YiicmsActiveRecord
 		return $model;
 	}
 
+	public function getTopicTitle()
+	{	
+		$title = strip_tags(htmlspecialchars($this->title));
+		//TODO 缓存
+		return $title;
+	}
 	
 	public function getTopicContent()
 	{
@@ -223,6 +229,16 @@ class GroupTopic extends YiicmsActiveRecord
 			return true;
 		}
 		return false;
+	}
+	
+	public function setOption($option,$value)
+	{
+		if(!in_array($option, array('dist','top','lock'))) {
+			throw new CHttpException(404,'非法选项.');
+		}
+		$this->$option = $value;
+		$this->save();
+		return !empty($this->errors)?-1:1;
 	}
 	/**
 	 * 插入信息

@@ -11,11 +11,11 @@
                     'minLength'=>'2',
                 ),
                 'htmlOptions'=>array(
-                'class'=>'t_input'
+                'class'=>'t_search'
                 ),
             ));
             ?>
-           <input type="submit" class="btn_b hander" value="找 人" />
+           <input type="submit" class="btn btn_b hander" value="找 人" />
 			</div>
 
 <?php echo CHtml::endForm(); ?>

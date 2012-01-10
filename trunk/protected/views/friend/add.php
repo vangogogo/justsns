@@ -25,7 +25,7 @@
 	    <div class="row submit">
             <label></label>
 		    <?php echo CHtml::submitButton('加为好友',array('class'=>'btn')); ?>
-            <input type="button" class="btn_w" value="取 消" />
+            <input type="button" class="btn btn_w" value="取 消" />
 	    </div>
 
     <?php $this->endWidget(); ?>

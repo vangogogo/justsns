@@ -1,20 +1,22 @@
-<?php $form = $this->beginWidget('CActiveForm', array(
+<?php $form = $this->beginWidget('BootActiveForm', array(
     'id'=>'user-form',
     'action'=>array('/group/topic/addPost','tid'=>$model->tid),
     #'enableAjaxValidation'=>true,
     'enableClientValidation'=>true,
-    'focus'=>array($model,'title'),
+    #'focus'=>array($model,'content'),
     'clientOptions'=>array(
         'validateOnSubmit'=>true,
      ),
 )); ?>
 
-    <?php echo CHtml::errorSummary($model);?>
-    <?php echo $form->error($model,'content'); ?>
+
 
     <?php echo $form->textArea($model,'content',array('class'=>'t_input t_area reply_form'));?>
     <?php echo $form->hiddenField($model,'gid');?>
     <?php echo $form->hiddenField($model,'tid');?>
-    <br/>
+	<div class="row">
+    <?php echo CHtml::errorSummary($model);?>
+    <?php echo $form->error($model,'content'); ?>
+    </div>
     <?php echo CHtml::submitButton('加上去',array('class'=>'btn')); ?>
 <?php $this->endWidget();?>

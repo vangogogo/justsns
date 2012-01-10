@@ -5,8 +5,9 @@ $this->breadcrumbs=array(
 );
 ?>
 	<script>
+	
 	$(function() {
-		$( "#week-tabs,#month-tabs" ).tabs();
+		//$( "#week-tabs,#month-tabs" ).tabs();
 		$( "#astro_datepicker").datepicker({
             'dateFormat':'yy-mm-dd',
             'gotoCurrent':true,
@@ -17,6 +18,7 @@ $this->breadcrumbs=array(
             location.href=url;
         });
 	});
+	
 	</script>
 
 	<div class="page-header">
@@ -89,93 +91,84 @@ $this->breadcrumbs=array(
 	<dd>
 		<p><?php echo $day->content; ?></p>
 	</dd>
-
+	<?php if(!empty($week)):$model = $week;$items = '';$pre='week';?>
 	<dt><span class="label important">本周运程</span> <?php #if(empty($week) AND 0) echo '暂无'; else  $this->widget('WStarRating',array('object_type'=>'astro_week','object_id'=>$week->primaryKey));?></dt>
 	<dd>
 		<div id="week-tabs">
-			<?php $arr = array('sum_content'=>'总体',
-						'study_content'=>'学习',
-						'work_content'=>'工作',
-						'love_content'=>'恋爱',
-						'love_content_no'=>'恋爱(无恋人)',
-						'sex_content'=>'情感','red_content'=>'红桃日','black_content'=>'黑桃日');
-			?>
-			<ul>
-				<?php foreach($arr as $attr => $name):?>
-				<li><a href="#tabs-<?php echo $attr;?>"><?php echo $name;?></a></li>
-				<?php endforeach;?>
-			</ul>
-				<?php foreach($arr as $attr => $name): $star_attr = str_replace('_content','',$attr);?>
-				<div id="tabs-<?php echo $attr?>" class="ginfo">
-					<p>
-					<?php echo $week->$attr; ?>
-					</p>
-					<div class="row">
-					<?php if($attr == 'red_content' OR $attr == 'black_content'):?>
-						<?php echo $name;?>:<?php echo $week->$star_attr;?>
-					<?php else:?>
-					<label>指数:</label><div class="istar"><span class="star<?php echo $week->$star_attr ?>"></span></div>
-					<?php endif;?>
-					
-					</div>
-				</div>
-				<?php endforeach;?>
-
-		</div>
-	
-	</dd>
-
-
-	<?php if(!empty($month)):?>
-	<dt><span class="label important">每月运程</span> <?php #if(empty($month)) echo '暂无'; else  $this->widget('WStarRating',array('object_type'=>'astro_month','object_id'=>$month->primaryKey));?></dt>
-	<dd>
-		<div id="month-tabs">
-			<?php $arr = array('sum_content'=>'总体',
-						'money_content'=>'财运',
-						'love_content'=>'恋爱',
-						'relax_way'=>'放松方式',
-						'luck_way'=>'幸运星',
-					);
-			?>
-			<ul>
-				<?php foreach($arr as $attr => $name):?>
-				<li><a href="#tabs-<?php echo $attr;?>"><?php echo $name;?></a></li>
-				<?php endforeach;?>
-			</ul>
-				<?php foreach($arr as $attr => $name): $star_attr = str_replace('_content','',$attr);?>
-				<div id="tabs-<?php echo $attr?>" class="ginfo">
-					<p>
-					<?php echo $month->$attr; ?>
-					</p>
-					<div class="row">
-					<label>指数：</label><div class="istar"><span class="star<?php echo $month->$star_attr ?>"></span></div>
-					</div>
-				</div>
-				<?php endforeach;?>
-
+		<?php 
+			$arr = array(
+				'sum_content'=>'总体',
+				'study_content'=>'学习',
+				'work_content'=>'工作',
+				'love_content'=>'恋爱',
+				'love_content_no'=>'恋爱(无恋人)',
+				'sex_content'=>'情感',
+				'red_content'=>'红桃日',
+				'black_content'=>'黑桃日',
+			);
+			foreach($arr as $attr => $title)
+			{
+				$star_attr = str_replace('_content','',$attr);
+				$content = YiicmsHelper::CMarkdown($model->$attr);
+				$item = array(
+					'title'=>$title,
+					'id'=>$pre.'_'.$attr,
+					'content'=>$content,
+				);
+				$items[$title] = $item;
+			}
+		
+			$this->widget('BootTabs', array(
+		    'type'=>'tabs', // tabs or pills, defaults to tabs
+		    'tabs'=>$items
+		)); ?>
 		</div>
 	</dd>
 	<?php endif;?>
 
+	<?php if(!empty($month)):$model = $month;$items = '';$pre='month';?>
+	<dt><span class="label important">每月运程</span> <?php #if(empty($month)) echo '暂无'; else  $this->widget('WStarRating',array('object_type'=>'astro_month','object_id'=>$month->primaryKey));?></dt>
+	<dd>
+		<div id="month-tabs">
+		<?php
+		$arr = array(
+			'sum_content'=>'总体',
+			'money_content'=>'财运',
+			'love_content'=>'恋爱',
+			'relax_way'=>'放松方式',
+			'luck_way'=>'幸运星',
+		);
+		foreach($arr as $attr => $title)
+		{
+			$star_attr = str_replace('_content','',$attr);
+			$content = YiicmsHelper::CMarkdown($model->$attr);
+			$item = array(
+				'title'=>$title,
+				'id'=>$pre.'_'.$attr,
+				'content'=>$content,
+			);
+			$items[$title] = $item;
+		}
+			
+		$this->widget('BootTabs', array(
+		    'type'=>'tabs', // tabs or pills, defaults to tabs
+		    'tabs'=>$items
+		)); ?>
+		</div>
+	</dd>
+	<?php endif;?>
 </dl>
-
-
-
-
-
 </div>
 
 <div class="sidebar">
-        <?php
-            if(!empty($this->astros_list)):
-        ?>
-        <ul class="pills">
-            <?php foreach($this->astros_list as $astro):?>
-    <li <?php if($astro->primaryKey == @$_GET['astro_id']) echo 'class="active"'?>>
+	<?php if(!empty($this->astros_list)):?>
+	<ul class="pills">
+		<?php foreach($this->astros_list as $astro):?>
+		<li <?php if($astro->primaryKey == @$_GET['astro_id']) echo 'class="active"'?>>
         <a href="<?php echo $astro->getUrl();?>" title="<?php echo CHtml::encode($astro->astro_name)?> <?php echo $astro->astro_date?>"><?php echo CHtml::encode($astro->astro_name)?>
         </a><span class="astro_date2"><?php echo $astro->astro_date?></span>
-    </li>
+		</li>
         <?php endforeach;?>
-        </ul>
-        <?php endif;?>
+	</ul>
+	<?php endif;?>
 </div>

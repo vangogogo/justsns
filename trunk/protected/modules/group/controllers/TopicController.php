@@ -36,7 +36,12 @@ class TopicController extends Controller
 	 */
 	public function filters()
 	{
+		if($this->module->isGroupAdmin)
+		{
+			return array();
+		}
 		return array(
+			'groupAdmin + doSwitch',
 			'topicOwner + update,DoDelTopic',
 			'postOwner + DoDelPost',
 			'groupMember + create,addPost', // Apply this filter only for the update action.
@@ -68,7 +73,6 @@ class TopicController extends Controller
 
 		$filterChain->run();
 	}
-
 
 	
 	/**
@@ -274,16 +278,21 @@ class TopicController extends Controller
 		$model = new GroupTopic();
 		$tid = Yii::app()->request->getQuery('tid');
 		$topic = $model->loadTopic($tid);
-
+		$gid = $topic->gid;
 		$option = empty($_GET['option'])?0:$_GET['option'];
 		$value = empty($_GET['value'])?0:1;
 
-		if(!in_array($option, array('dist','top','lock'))) {
-			throw new CHttpException(404,'非法选项.');
+		$return = $topic->setOption($option,$value);
+		
+
+		if(Yii::app()->request->isAjaxRequest)
+		{
+			echo !$return?-1:1;
 		}
-		$topic->$option = $value;
-		$topic->save();
-		echo !empty($topic->errors)?-1:1;
+		else
+		{
+			$this->redirect(array('group/show','gid'=>$gid));
+		}
 	}
 
 	/**
@@ -302,7 +311,7 @@ class TopicController extends Controller
 		    echo !$return?-1:1;
         }
         else
-        {
+       {
             $this->redirect(array('group/show','gid'=>$gid));
         }
 	}

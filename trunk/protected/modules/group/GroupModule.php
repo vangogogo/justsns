@@ -63,9 +63,9 @@ class GroupModule extends CWebModule
 				if($level > 0)
 					$this->isGroupMember = true;
 				if($level > 1)
-					$this->isGroupMember = true;
+					$this->isGroupAdmin = true;
 				if($level > 2)
-					$this->isGroupMember = true;				
+					$this->isGroupBoss = true;				
 			}
 		}
 	}

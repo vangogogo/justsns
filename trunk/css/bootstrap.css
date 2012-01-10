@@ -4,7 +4,8 @@ p {line-height:162%}
 .content .alert-message p {
 margin: 0 0 1.5em;
 }
-body,input,button,select,textarea{font: Lucida Grande,Microsoft Yahei,Arial,Calibri,Trebuchet MS,Helvetica,Hiragino,STHeiti,Microsoft Jhenghei,sans-serif;color:#444}
+body,input,button,select,textarea{font: 12px Lucida Grande,Microsoft Yahei,Arial,Calibri,Trebuchet MS,Helvetica,Hiragino,STHeiti,Microsoft Jhenghei,sans-serif;color:#444}
+
 /*
 .topbar-inner, .topbar .fill {background: url('../images/global_nav_bg.png') repeat-x;}
 .topbar-inner a, .topbar .fill a {color:#fff}
@@ -46,13 +47,15 @@ form .input{margin-left:110px;}
 */
 .menu-dropdown, .dropdown-menu {min-width:100px;}
 .errorMessage,.help-inline { padding-left: 24px; color: #FE2617;  display: inline; background: url('../images/hint.gif') no-repeat 3px;}
-textarea.t_area {width:80%;height:180px;}
+textarea.t_area {width:85%;height:140px;}
 input.t_input,textarea.t_input{padding:7px;}
-/*
+.t_search {width:200px;}
+
+
 .sidebar {width:310px;overflow:hidden;}
 .sidebar ul {width:300px;list-style:none;margin:0 auto;}
 .sidebar ul li {width:300px;height:30px;line-height:30px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;border-bottom:#DDD 1px dashed;}
-*/
+
 .btn-fav {display: inline-block;zoom: 1;padding: 0 8px 0 30px;vertical-align: middle;height: 19px;line-height: 19px;line-height: 21px;overflow: hidden;border: 1px solid #EDCEBA;margin-left: 4px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 .fav-delete, .fav-delete:link, .fav-delete:hover {background:#FFF0E2 url(../images/ic_like.png) no-repeat 8px -17px;}
 .fav-add, .fav-add:link, .fav-add:hover {background:#FFF0E2 url(../images/ic_like.png) no-repeat 8px 3px;}
