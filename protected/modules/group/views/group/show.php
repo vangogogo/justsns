@@ -8,7 +8,7 @@
 		<?php echo $group['logo'];?>
 
 		<?php
-			YiicmsHelper::CMarkdown($group->intro);
+			echo YiicmsHelper::CMarkdown($group->intro);
 		?>
 
 		<div class="cdate">创建于 <?php echo YiicmsHelper::friendlyDate('m-d H:i',$group['ctime'])?></div>

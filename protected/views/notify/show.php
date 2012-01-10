@@ -32,7 +32,7 @@
 					<?php if($msg->fromUserId != Yii::app()->user->id):?>
                         <?php echo CHtml::link('回复',array('/notify/write','uid'=>$uid,'replyMsgId'=>$msg->primaryKey),array('title'=>'回复','class'=>'btn'));?>
 					<?php endif;?>
-                    <?php echo CHtml::link('删除',array('doDelMsg','msg_id'=>$msg->id),array('class'=>'btn a_confirm_link','title'=>'确认删除短信息?'))?>
+                    <?php echo CHtml::link('删除',array('doDelMsg','msg_id'=>$msg->id),array('class'=>'btn a_confirm_link','data-title'=>'确认删除短信息?'))?>
 				</p>
 			</td>
 		</tr>

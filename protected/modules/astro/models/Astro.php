@@ -154,10 +154,7 @@ class Astro extends CActiveRecord
         $criteria->params = array(':astro_id'=>$this->astro_id,':day'=>$day);
 
         $astros = AstroWeek::model()->find($criteria);
-		if(empty($astros))
-		{
-			$astros = new AstroWeek();
-		}
+
         return $astros;
     }
 

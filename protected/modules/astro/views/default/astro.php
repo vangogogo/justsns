@@ -4,8 +4,7 @@ $this->breadcrumbs=array(
         CHtml::encode($astro->astro_name),
 );
 ?>
-	<script>
-	
+<script>
 	$(function() {
 		//$( "#week-tabs,#month-tabs" ).tabs();
 		$( "#astro_datepicker").datepicker({
@@ -15,82 +14,78 @@ $this->breadcrumbs=array(
 		}).change(function() {
             var day = $(this).attr('value');
             var url = "<?php echo $_GET['astro_id'];?>-<?php echo $_GET['name'];?>-"+day+".html";
-            location.href=url;
+            redirect(url);
         });
 	});
-	
-	</script>
+</script>
 
-	<div class="page-header">
-		<h1><a href="<?php echo $astro->getUrl();?>" title="<?php echo CHtml::encode($astro->astro_name)?> <?php echo $astro->astro_date?>"><?php echo CHtml::encode($astro->astro_name)?></a> <?php echo $astro->astro_name_en;?>
-		<input type="text" id="astro_datepicker" class="t_input " style="width:70px" value="<?php echo date('Y-m-d',strtotime($d_day));?>" />
-		</h1>
+<div class="page-header">
+	<h1><a href="<?php echo $astro->getUrl();?>" title="<?php echo CHtml::encode($astro->astro_name)?> <?php echo $astro->astro_date?>"><?php echo CHtml::encode($astro->astro_name)?></a> <?php echo $astro->astro_name_en;?>
+	<input type="text" id="astro_datepicker" class="t_input " style="width:76px" value="<?php echo date('Y-m-d',strtotime($d_day));?>" />
+	<div style="float:right">
+		<?php echo CHtml::link('返回',array('/astro'),array('class'=>'btn info'));?>
 	</div>
 
-
-
-
-<div class="content">
-
-<div class="row">
-
-    <div class="span3">
-		<div class="media-grid">
-        <a href="<?php echo $astro->getUrl();?>"
-        title="<?php echo CHtml::encode($astro->astro_name)?>"> 
-        <img src="<?php echo Yii::app()->request->baseUrl.'/images/astros/'.$astro->astro_id.'.gif';?>" alt="<?php echo CHtml::encode($astro->astro_name)?>" title="<?php echo CHtml::encode($astro->astro_name.' '.$astro->astro_date)?>" class="astro-thumbnail" /> </a>
-		</div>
-
-		<div class="picInfo-more cf">
-			<div class="picInfo-more-c1">
-				<?php $this->widget('WUserCollect',array('object_id'=>$astro->primaryKey,'object_type'=>'astro'));?>
-			</div>
-		</div>
-    </div>
-    <div class="span7">
-        <h3><?php echo $week->content;?></h3>
-		<div class="row ginfo">
-			<div class="span4">
-
-				<ul class=" unstyled">
-					<li class="row">
-						
-						<span class="span1  success">爱情</span><?php $star=$day->love;; // 默认 4星. ?>
-						<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
-					</li>
-					<li class="row">
-						<span class="span1 success">工作</span><?php $star=$day->work;; // 默认 4星. ?>
-						<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
-					</li>
-					<li class="row">
-						<span class="span1 success">金钱</span><?php $star=$day->money;; // 默认 4星. ?>
-						<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
-					</li>
-					<li class="row">
-						<span class="span1 success">总体</span><?php $star=$day->sum;; // 默认 4星. ?>
-						<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
-					</li>
-				</ul>
-			</div>
-			<div class="span3">
-				<ul>
-					<li><span class="label success">幸运星座:</span> <a href="#"><?php echo $day->luck_astro;?></a></li>
-					<li><span class="label success">幸运颜色:</span> <a href="#"><?php echo $day->luck_color;?></a></li>
-					<li><span class="label success">幸运号码:</span> <a href="#"><?php echo $day->luck_num;?></a></li>
-					<li><span class="label success">健康指数:</span> <a href="#"><?php echo $day->health;?>%</a></li>
-					<li><span class="label success">事业指数:</span> <a href="#topicList"><?php echo $day->bussiness;?>%</a></li>
-				</ul>
-			</div>
-		</div>
-    </div>
-
+	</h1>
 </div>
 
+<div class="content">
+	<div class="row">
+	    <div class="span3">
+			<div class="media-grid">
+	        <a href="<?php echo $astro->getUrl();?>"
+	        title="<?php echo CHtml::encode($astro->astro_name)?>"> 
+	        <img src="<?php echo Yii::app()->request->baseUrl.'/images/astros/'.$astro->astro_id.'.gif';?>" alt="<?php echo CHtml::encode($astro->astro_name)?>" title="<?php echo CHtml::encode($astro->astro_name.' '.$astro->astro_date)?>" class="astro-thumbnail" /> </a>
+			</div>
+	
+			<div class="picInfo-more cf">
+				<div class="picInfo-more-c1">
+					<?php $this->widget('WUserCollect',array('object_id'=>$astro->primaryKey,'object_type'=>'astro'));?>
+				</div>
+			</div>
+	    </div>
+	    <div class="span7">
+			<div class="row ginfo">
+				<div class="span4">
+					<ul class="unstyled">
+						<li class="row">
+							<span class="span1  success">爱情</span><?php $star=$day->love;; // 默认 4星. ?>
+							<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
+						</li>
+						<li class="row">
+							<span class="span1 success">工作</span><?php $star=$day->work;; // 默认 4星. ?>
+							<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
+						</li>
+						<li class="row">
+							<span class="span1 success">金钱</span><?php $star=$day->money;; // 默认 4星. ?>
+							<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
+						</li>
+						<li class="row">
+							<span class="span1 success">总体</span><?php $star=$day->sum;; // 默认 4星. ?>
+							<span class="span2 istar"><span class="star<?php echo $star ?>"></span></span>
+						</li>
+					</ul>
+				</div>
+				<div class="span3">
+					<ul>
+						<li><span class="label success">幸运星座:</span> <a href="#"><?php echo $day->luck_astro;?></a></li>
+						<li><span class="label success">幸运颜色:</span> <a href="#"><?php echo $day->luck_color;?></a></li>
+						<li><span class="label success">幸运号码:</span> <a href="#"><?php echo $day->luck_num;?></a></li>
+						<li><span class="label success">健康指数:</span> <a href="#"><?php echo $day->health;?>%</a></li>
+						<li><span class="label success">事业指数:</span> <a href="#topicList"><?php echo $day->bussiness;?>%</a></li>
+					</ul>
+				</div>
+			</div>
+	    </div>
+	</div>
+
 <dl class="astro_dl">
+	<?php if(!empty($day->content)):?>
 	<dt><span class="label important">当日运程</span> <?php #if(empty($day) AND 0) echo '暂无'; else $this->widget('WStarRating',array('object_type'=>'astro_day','object_id'=>$day->primaryKey)); ?></dt>
 	<dd>
 		<p><?php echo $day->content; ?></p>
 	</dd>
+	<?php endif;?>
 	<?php if(!empty($week)):$model = $week;$items = '';$pre='week';?>
 	<dt><span class="label important">本周运程</span> <?php #if(empty($week) AND 0) echo '暂无'; else  $this->widget('WStarRating',array('object_type'=>'astro_week','object_id'=>$week->primaryKey));?></dt>
 	<dd>

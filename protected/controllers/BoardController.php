@@ -38,48 +38,40 @@ class BoardController extends Controller
 
 		$refer =  $params['refer'];
 
-		$board_content = $params['board_content'];
+		$attr = Yii::app()->request->getParam('PeopleBoard');
+
+		$board_content = $attr['board_content'];
 		if($board_content == '点击输入留言内容')
 		{
-			unset($board_content);
+			unset($attr['board_content']);
 		}
 		$uid = Yii::app()->user->id;
 
 		if(empty($uid))
 		{
 			//跳转到登陆页面
-
 		}
 		if(!empty($board_content))
 		{
+			$object_type = $attr['object_type'];
+			$object_id = $attr['object_id'];
 
-
-			$object_type = $params['object_type'];
-			$object_id = $params['object_id'];
-
-
-
-			$formash = md5($params['object_type'].'|'.$params['object_id'].'|'.$params['refer']);
-			if($formash !== $params['formash'])
+			$formash = md5($attr['object_type'].'|'.$attr['object_id'].'|'.$params['refer']);
+			if($formash !== $params['formhash'])
 			{
 				//hash对应不上，抛出异常
 			}
-
 			//发送私人短信
-			$board_pm = $_POST['board_pm'];
-			if(!empty($board_pm))
+			if(isset($params['board_pm']))
 			{
-
-
-
+				
 			}
 			else
 			{
+				$name = Yii::app()->user->name;
 				$model = new PeopleBoard();
-				$model->object_type =  $object_type;
-				$model->object_id =  $object_id;
+				$model->attributes = $attr;
 				$model->uid =  $uid;
-				$model->board_content =  $board_content;
 				$model->name =  $name;
 				$model->save();
 
@@ -118,12 +110,13 @@ class BoardController extends Controller
 	*/
 	public function actionDelete()
 	{
+		/*
 		$params = array(
 			'board_reply' => $_POST['board_reply'],
 			'object_type' => $_POST['object_type'],
 			'object_id' => $_POST['object_id'],
 		);
-
+		*/
 		$pk = $_GET['people_pk'];
 		$PeopleBoard= new PeopleBoard();
 		$model = $PeopleBoard -> findByPk($pk);

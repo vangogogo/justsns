@@ -1,25 +1,26 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
-
-
 <div class="content">
 <!--用户应用-->
 <div class="tab-menu">
-	<?php $items = array();if(!empty($apps)) foreach($apps as $vo): 
-			$one = array(
+	<?php
+	$items = array();
+	if(!empty($apps))
+	{
+		foreach($apps as $attr => $vo)
+		{
+			$item = array(
 				'label'=>$vo['name'],
 				'url'=>array('/'.$vo['enname'].'/index','uid'=>$uid),
 			);
-			$items[] = $one;
-		endforeach;
-	?>
-
-	<?php $this->widget('ext.bootstrap.widgets.menu.BootPills',array(
-		'items'=>$items,
-		'encodeLabel'=>false,
+			$items[] = $item;
+		}
+	}
+	$this->widget('BootMenu', array(
+	    'type'=>'tabs', // tabs or pills, defaults to tabs
+	    'items'=>$items
 	)); ?>
 </div>
 <!--用户应用end-->
-
 	<?php if(!empty($space_privacy)){ ?>
 	<br/>
 	<?php if($is_hide){ ?>
@@ -41,9 +42,7 @@
 				<li><a class="on feed_item" ><span>{$show_sex}的动态</span></a></li>
 			</ul>
 		</div><!-- 切换标签 end  -->
-		<div class="FList">
-			<include file="Home:feed" />
-		</div>
+
 		<div class="alR lh35"><a href='__APP__/Home/allFeed/type/all/uid/{$uid}'>查看全部动态</a></div>
 	</div><!-- 个人动态 end  -->
 
@@ -126,7 +125,7 @@
 					'htmlOptions'=>array('showSubmit'=>true,'id'=>'#message-form2')
 				)
 			);
-			// view文件位于\lifedu\protected\components\views\WPeopleBoard.php 页面端可传递参数为seClassName和head cferTitle 'htmlOptions'=>array('seClassName'=>'seBoard','head cferTitle'=>'留言板')
+			// view文件位于\protected\components\views\WPeopleBoard.php 页面端可传递参数为seClassName和head cferTitle 'htmlOptions'=>array('seClassName'=>'seBoard','head cferTitle'=>'留言板')
 	?>
 
 	<?php $this->widget('WPeopleBoard',
@@ -135,7 +134,7 @@
 					'htmlOptions'=>array()
 				)
 			);
-			// view文件位于\lifedu\protected\components\views\WPeopleBoard.php 页面端可传递参数为seClassName和head cferTitle 'htmlOptions'=>array('seClassName'=>'seBoard','head cferTitle'=>'留言板')
+			// view文件位于\protected\components\views\WPeopleBoard.php 页面端可传递参数为seClassName和head cferTitle 'htmlOptions'=>array('seClassName'=>'seBoard','head cferTitle'=>'留言板')
 	?>
 </div>
 <?php include('_right.php');?>
