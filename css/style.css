@@ -3,7 +3,7 @@ body,td,th {font-family: Arial, Verdana, Helvetica, sans-serif;font-size:12px;co
 a:link,a:visited {text-decoration:none;color:#369;}
 a:active,a:hover {/*background-color:#E1ECF4;*/color:#333;}
 img {border:0;}
-::selection {color:#333;background:#E1ECF4;}
+
 ::-moz-selection{color:#333;background:#E1ECF4;}
 
 .left {float:left;}
