@@ -182,7 +182,10 @@ $(function(){
 	 alert("ajaxStop");
 	 });
 	 */
-    
+    $('.btn_cancal').live('click', function(){
+    	$('#dialog-confirm').bootModal('close');
+    });
+
 	//确认操作
 	$('.a_confirm_link').live('click', function(){
 		self = $(this);
@@ -196,20 +199,22 @@ $(function(){
 		});
 		return false;
 	});
-	
+
 	//确认操作
 	$('.a_ajax_link').live('click', function(){
 		self = $(this);
-		message = self.data('title');
+		title = self.attr('title');
 		url = self.attr('href');
-		Bconfirm({
-			message: message,
+		
+		Bajax({
+			url: url,
+			title: title,
 			handler: function(button){
                 window.location.href=url;
 			}
 		});
 		return false;
-	});	
+	});
 	
 	$('.a_alert_link').live('click', function(){
 		self = $(this);
@@ -281,6 +286,11 @@ function reload(){
 	window.location.reload();
 }
 
+function redirect(url){
+	window.location.href=url;
+}
+
+
 function Bconfirm(object){
 	var message = object.message;
 	var callback = object.handler;
@@ -316,13 +326,42 @@ function Bconfirm(object){
 			}
 		} ]
 	});
-
-	//$("#dialog-confirm").bootModal("open");
 }
+
+function Bajax(object){
+	var message = object.message;
+	var callback = object.handler;
+	var title = object.title;
+	var url = object.url;
+	
+	$("#dialog-confirm").remove();
+	if ($("#dialog-confirm").length == 0) {
+		$("body").append('<p id="dialog-confirm"> 加载中,请稍等...</p>');
+	}
+
+	//读取数据
+	$.get(url, function(data) {
+		
+		message = data;
+
+
+		//$("#dialog-confirm").load(url);
+	
+		$("#dialog-confirm").html(message);
+		
+		$('#dialog-confirm').bootModal({
+			'title' : title,
+			'backdropClose' : false,
+			'escapeClose' : false,
+			'open' : true,
+			'closeTime' : 10,
+			'openTime' : 10,
+		});
+	});
+}
+
 //jQuery UI 弹出框
-
 function Alert(message, title, callback){
-
 	$("#dialog").dialog("destroy");
 	if ($("#dialog-message").length == 0) {
 		$("body").append('<div id="dialog-message"></div>');
@@ -492,6 +531,5 @@ function _cklogin(){
          ajax             : {
             type : "GET"
         }
-        
     }); 
 }

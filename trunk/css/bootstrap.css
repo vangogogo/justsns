@@ -1,5 +1,5 @@
-body {padding-top: 80px;}
-p {line-height:162%}
+body {padding-top: 60px;}
+body, td, th, p, table th, table td {line-height:162%}
 
 .content .alert-message p {
 margin: 0 0 1.5em;
@@ -26,6 +26,8 @@ div.clearfix {display: block;line-height:0;}
 
 .media-grid img.big {width:180px;height:180px;}
 .media-grid img.small {width:50px;height:50px;}
+
+.span1x5{width:70px;}
 
 .userface-grid a{margin:0 8px 18px 4px;}
 .prefix_1 {padding:0 0 0 40px;}
