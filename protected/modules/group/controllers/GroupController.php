@@ -13,6 +13,7 @@ class GroupController extends Controller
 	{
 		return array(
 			'groupAdmin + update', // Apply this filter only for the update action.
+			'groupMemeber + quit',
 			#'groupMemeber + update,members', // Apply this filter only for the update action.
 			'rights',
 		);
@@ -24,15 +25,23 @@ class GroupController extends Controller
 	 */
 	public function filterGroupAdmin($filterChain)
 	{
-		$group=$this->loadModel();
 		// Remove the 'rights' filter if the user is updating an own post
 		// and has the permission to do so.
-		if($this->moduel->isGroupAdmin)
+		if($this->module->isGroupAdmin)	
 			$filterChain->removeAt(1);
 
 		$filterChain->run();
 	}
 	
+	public function filterGroupMemeber($filterChain)
+	{
+		// Remove the 'rights' filter if the user is updating an own post
+		// and has the permission to do so.
+		if($this->module->isGroupMember)
+			$filterChain->removeAt(1);
+	
+		$filterChain->run();
+	}
 	/**
 	* Actions that are always allowed.
 	*/
@@ -81,6 +90,7 @@ class GroupController extends Controller
 
 		//话题
 		$params = array('pageSize'=>self::THREAD_PAGE_SIZE,'page'=>Yii::app()->request->getParam('page'));
+		$params['order'] = 't.top DESC,t.ctime DESC';
 		$d =$group->getGroupThreads($params);
 
 		$threads = $d['threads'];
@@ -155,6 +165,46 @@ class GroupController extends Controller
 		//小组信息
 		$data['group'] = $group;
 		$this->render('members',$data);
+	}
+	/**
+	 * 请求加入小组
+	 */
+	public function actionRequest_join()
+	{
+		$model = new GroupMember();
+		$data = array(
+			'model'=>$model,
+		);
+		$this->render('request_join',$data);
+	}
+	/**
+	* 退出小组
+	*/
+	public function actionQuit()
+	{
+		$group = $this->loadModel();
+		$uid = Yii::app()->user->id;
+		$member = $group->loadMember($uid);
+		$return = $member->delete();
+		if(Yii::app()->request->isAjaxRequest)
+		{
+			echo !$return?-1:1;
+		}
+		else
+		{
+			$this->redirect(array('show','tid'=>$tid,'remove'=>'ok'));
+		}
+	}
+	/**
+	* 加入小组
+	*/
+	public function actionJoin()
+	{
+		$model = new GroupMember();
+		$data = array(
+					'model'=>$model,
+		);
+		$this->render('join',$data);
 	}
 	/**
 	 * 创建小组

@@ -13,7 +13,6 @@
         <?php
             if(!empty($this->astros_list)):
                 foreach($this->astros_list as $astro):
-
         ?>
     <h3>
         <a href="<?php echo $astro->getUrl();?>" title="<?php echo CHtml::encode($astro->astro_name)?> <?php echo $astro->astro_date?>"><?php echo CHtml::encode($astro->astro_name)?>

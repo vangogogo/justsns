@@ -1,4 +1,4 @@
-<?php $form=$this->beginWidget('ext.bootstrap.widgets.BootActiveForm',array(
+<?php $form=$this->beginWidget('BootActiveForm',array(
 	'id'=>'app-form',
 	'enableAjaxValidation'=>false,
 )); ?>

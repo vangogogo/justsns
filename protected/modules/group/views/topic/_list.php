@@ -11,7 +11,7 @@
 		<td>
 			<?php if($topic['top']):?><span class="label warning">顶</span><?php endif;?>
 			<?php if($topic['dist']):?><span class="label important">精</span><?php endif;?>
-			<?php echo CHtml::link(YiicmsHelper::cutString($topic['title'],22),array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']));?>
+			<?php echo CHtml::link(YiicmsHelper::cutString($topic->getTopicTitle(),24),array('topic/show','tid'=>$topic['id']),array('title'=>$topic->getTopicTitle()));?>
 		</td>
 		<?php if(!isset($no_group)):?>
 		<td>

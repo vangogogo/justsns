@@ -5,7 +5,7 @@
 	<ul>
 		<?php foreach($new_topics as $topic):?>
 		<li>
-			<?php echo CHtml::link($topic['title'],array('topic/show','tid'=>$topic['id']),array('title'=>$topic['title']))?>
+			<?php echo CHtml::link(YiicmsHelper::cutString($topic->getTopicTitle(),22),array('topic/show','tid'=>$topic['id']),array('title'=>$topic->getTopicTitle()))?>
 			<span class="pl"> (<?php echo $topic->user->username;?>)</span>
 		</li>
 		<?php endforeach;?>

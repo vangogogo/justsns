@@ -44,6 +44,7 @@ class SpaceController extends Controller
 			'visitors' => $visitors,
 			'friend_list' => $friend_list,
 		);
+
 		$this->render('index',$data);
 	}
 

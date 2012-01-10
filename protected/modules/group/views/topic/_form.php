@@ -1,4 +1,4 @@
-<?php $form = $this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
+<?php $form = $this->beginWidget('BootActiveForm', array(
     'id'=>'user-form',
     #'enableAjaxValidation'=>true,
     'enableClientValidation'=>true,
@@ -8,10 +8,10 @@
      ),
 )); ?>
 <?php echo $form->errorSummary($model,'','',array('class'=>'alert-message block-message error'));?>
-<div class="form">
+<div class="form group_form">
     <div class="row">
 	    <?php echo $form->labelEx($model,'title'); ?>
-	    <?php echo $form->textField($model,'title',array('class'=>'t_input')); ?>
+	    <?php echo $form->textField($model,'title',array('class'=>'t_input','size'=>40,'style'=>'width:360px')); ?>
         <?php echo $form->error($model,'title'); ?>
     </div>
     <div class="row">

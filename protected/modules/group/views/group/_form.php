@@ -32,7 +32,7 @@
 	    <div class="row">
             <label></label>
         <?php echo CHtml::submitButton('确认',array('class'=>'btn'));?>
-        <input type="button" class="btn_w" onclick="history.back(-1);"value="取消" />
+        <input type="button" class="btn btn_w" onclick="history.back(-1);"value="取消" />
 	    </div>
     </div>
     <?php $this->endWidget();?>

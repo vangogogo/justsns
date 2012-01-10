@@ -18,7 +18,7 @@ $this->breadcrumbs=array(
 <p><?php #echo UserModule::t("Please fill out the following form with your login credentials:"); ?></p>
 
 <div class="form">
-<?php $form=$this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
+<?php $form=$this->beginWidget('BootActiveForm', array(
     'id'=>'login-form',
     'stacked'=>false, // should this be a stacked form?
     'errorMessageType'=>'inline', // how to display errors, inline or block?

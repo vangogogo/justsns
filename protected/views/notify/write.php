@@ -1,6 +1,6 @@
     <?php include('_top.php');?>
 
-<?php $form=$this->beginWidget('ext.bootstrap.widgets.BootActiveForm', array(
+<?php $form=$this->beginWidget('BootActiveForm', array(
     'id'=>'user-form',
     'stacked'=>false, // should this be a stacked form?
     'errorMessageType'=>'block', // how to display errors, inline or block?

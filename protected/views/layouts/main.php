@@ -16,25 +16,25 @@
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 <?php
-	 Yii::app()->bootstrap->registerCoreCss();
 
+	
 	$cs = Yii::app()->clientScript;
-
 	$cs->registerCoreScript('jquery');
 	$cs->registerCoreScript('jquery.ui');
+	
+	Yii::app()->bootstrap->registerCoreCss();
+	Yii::app()->bootstrap->registerScriptFile('jquery.ui.bootwidget.js');
+	Yii::app()->bootstrap->registerScriptFile('jquery.ui.bootmodal.js');
+	
 	$cs->registerCssFile('/css/bootstrap.css');
 
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
-    #$cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
+    #$cs->registerCssFile($cs->getCoreScriptUrl().'/jui/css/base/jquery-ui.css');
+    $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
 ?>
-
+ 
 <?php 
-// tips
-$this->widget('ext.bootstrap.widgets.BootTwipsy',array(
-    #'selector'=>'a[title]',
-	'selector'=>'.tips',
-)); 
-?>
+/*
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-20356935-1']);
@@ -45,8 +45,9 @@ $this->widget('ext.bootstrap.widgets.BootTwipsy',array(
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+*/
+?>
 </head>
-
 <body>
 <?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>
 
