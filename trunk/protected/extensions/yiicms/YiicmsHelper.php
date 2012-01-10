@@ -307,12 +307,15 @@ class YiicmsHelper
 			echo ' _showLogin';
 		}
 	}
-	
+	/**
+	 * @var string $string 内容
+	 * @var boolean $purifyOutput 是否过滤HTML
+	 * 格式化数据内容，过滤html
+	 */
 	static function CMarkdown($string,$purifyOutput = false)
 	{
 		$m = new CMarkdownParser;
 		$output = $m->transform($string);
-		
 		if($purifyOutput)
 		{
 			$purifier=new CHtmlPurifier;

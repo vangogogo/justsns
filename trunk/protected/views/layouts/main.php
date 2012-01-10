@@ -25,9 +25,8 @@
 	Yii::app()->bootstrap->registerCoreCss();
 	Yii::app()->bootstrap->registerScriptFile('jquery.ui.bootwidget.js');
 	Yii::app()->bootstrap->registerScriptFile('jquery.ui.bootmodal.js');
-	
-	$cs->registerCssFile('/css/bootstrap.css');
 
+	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/bootstrap.css');
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
     #$cs->registerCssFile($cs->getCoreScriptUrl().'/jui/css/base/jquery-ui.css');
     $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
@@ -53,7 +52,7 @@
 
 <div class="container">
 
-	<?php if (isset($this->breadcrumbs) AND !empty($this->breadcrumbs)):?>
+	<?php if (0 AND isset($this->breadcrumbs) AND !empty($this->breadcrumbs)):?>
 		<?php $this->widget('ext.bootstrap.widgets.BootCrumb',array(
 			'links'=>$this->breadcrumbs,
 			'separator'=>'/',

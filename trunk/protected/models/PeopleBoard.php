@@ -128,12 +128,10 @@ class PeopleBoard extends YiicmsActiveRecord
         if(!empty($params))
         {
 			$arr = array('uid','object_type','object_id','name');
-			foreach($arr as $one)
+			foreach($arr as $attr)
 			{
-				if(!empty($params['uid']))
-				{
-					$criteria->compare('uid',$params['uid']);
-				}
+				if(isset($params[$attr]))
+					$criteria->compare($attr,$params[$attr]);
 			}
         }
 		if(empty($params['order']))
@@ -145,7 +143,6 @@ class PeopleBoard extends YiicmsActiveRecord
             $_GET['page'] = $params['page'];
         }
 		$model = self::model();
-
 		$total= $model->count($criteria);
 		if(!empty($params['limit']))
 		{

@@ -67,7 +67,7 @@ $this->breadcrumbs=array(
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
-		 <?php echo CHtml::link('修改密码',array('profile/Changepassword'));?>
+		 <?php echo CHtml::link('修改密码',array('profile/ChangePassword'));?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
@@ -98,7 +98,8 @@ $this->breadcrumbs=array(
 ?>
 	<div class="row buttons">
         <label></label>
-		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save'),array('class'=>'btn')); ?>
+		<input type="button" class="btn btn_w btn_cancal" value="取 消" />
 	</div>
 
 <?php $this->endWidget(); ?>

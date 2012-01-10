@@ -63,7 +63,7 @@ $(function(){
             </p>
 			<p class="date">
 <?php if($ones->isDeleteAccess()):?>
-<a href="<?php echo $this->controller->createUrl('/board/Delete',array('people_pk'=>$ones->primaryKey));?>" class="a_confirm_link" data-msg="确认删除本评论吗？">删除</a>
+<a href="<?php echo $this->controller->createUrl('/board/Delete',array('people_pk'=>$ones->primaryKey));?>" class="a_confirm_link" data-title="确认删除本评论吗？">删除</a>
 <?php endif;?>
 
 <?php echo YiicmsHelper::friendlyDate('Y-m-d H:i:s',strtotime($ones['ctime'])); ?>

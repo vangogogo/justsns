@@ -16,7 +16,6 @@ class WPeopleBoard extends Portlet
 		//登录
 		$params = $this->params;
 
-
 		$model = new PeopleBoard();
 		$data = $model->findAllData($params);
 		$data['more_link'] = $params['more_link'];

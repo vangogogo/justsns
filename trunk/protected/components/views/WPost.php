@@ -8,9 +8,6 @@
         'validateOnSubmit'=>true,
      ),
 )); ?>
-
-
-
     <?php echo $form->textArea($model,'content',array('class'=>'t_input t_area reply_form'));?>
     <?php echo $form->hiddenField($model,'gid');?>
     <?php echo $form->hiddenField($model,'tid');?>

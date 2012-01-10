@@ -21,7 +21,7 @@
 				</h3>
 				<div class="">
 		            <?php
-			            YiicmsHelper::CMarkdown($topic->getTopicContent());
+			            echo YiicmsHelper::CMarkdown($topic->getTopicContent());
 		            ?>
 				</div>
 				<div class="height2"></div>
@@ -63,7 +63,7 @@
 						</h4>
 						<div id="comment_<?php echo$post['id'];?>" class="">
 	                    <?php
-	                   		YiicmsHelper::CMarkdown($post->content);
+	                   		echo YiicmsHelper::CMarkdown($post->content);
 	                    ?>
 						</div>
 						<textarea id="comment_txt_<?php echo$topic['id'];?>" style="display:none;">子非鱼，焉知鱼之乐。</textarea>

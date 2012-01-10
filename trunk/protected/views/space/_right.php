@@ -19,7 +19,7 @@
 						if(!empty($is_friend)){
 							echo CHtml::link('发短消息',array('/notify/write','uid'=>$uid),array('title'=>'发短消息'));
 						}else{
-							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友','class'=>'thickbox'));
+							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友','class'=>'a_ajax_link'));
 						}
 					}
 				?>

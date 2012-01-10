@@ -59,7 +59,7 @@ class DefaultController extends Controller
 
         $this->pageTitle = array(
             $astro->astro_name.''.$astro->astro_name_en,
-            $week->content,
+            $day->content,
             '星座起源 astro 最准确',
         ); 
 
