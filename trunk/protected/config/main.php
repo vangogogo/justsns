@@ -139,18 +139,22 @@ $config = array(
 				#'space/<udomain:\w+>'=>'space/index',
 				'post/<pid:\d+>'=>'post/show',
 
+				#我的空间
+				'group/<gid:\d+>'=>'group/group/show',
+				'space/<id:\d+>/<_resource:(mini|blog|photo)>/'=>'<_resource>/index',
+
+				#小组
 				'group/<gid:\d+>'=>'group/group/show',
 				'group/topic/<tid:\d+>'=>'group/topic/show',
-				
 				//'group/topic/tid/<tid:\d+>'=>'group/topic/view',
 				'group/create/<gid:\d+>'=>'group/group/create',
 				'group/<gid:\d+>/new_topic'=>'group/topic/create',
 				'group/new_group'=>'group/group/create',
-
 				#'group/<gid:\d+>/<_resource:(discussion|members|balck|update|requestJoin|join)>/'=>'group/group/<_resource>',
 				'group/<gid:\d+>/<_resource>/'=>'group/group/<_resource>',
 				'group/topic/<tid:\d+>/<_resource:(update|addPost|doDelPost|doDelTopic|doSwitch)>/'=>'group/topic/<_resource>',
 
+				#星座
                 'astro/<astro_id:\d+>-<name>-<year:\d+>-<month:\d+>-<day:\d+>.html'=>'astro/default/astro',
                 'astro/<astro_id:\d+>-<name>.html'=>'astro/default/astro',
                 #'astro/index.html'=>'astro/default/index',

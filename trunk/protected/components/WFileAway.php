@@ -38,8 +38,8 @@ class WFileAway extends CWidget
 		$year	 = $date[0].$date[1].$date[2].$date[3];
 		$month	= $date[4].$date[5];
 		$timestmp = mktime( 0,0,0,$month,1,$year );
-		$object = $this->data['instance'];
-		$condition = $this->data['condition'];
+		$object = @$this->data['instance'];
+		$condition = @$this->data['condition'];
 
 		if(!empty($condition))
 		{
@@ -74,7 +74,7 @@ class WFileAway extends CWidget
 		foreach($month_arr as $key)
 		{
 			$time  = $this->getMonthData($key);
-			$sql[] = "select '{$key}' as `time`,count(1) as count from  {$tableName} where {$where} ctime BETWEEN {$time[0]} AND {$time[1]}";
+			$sql[] = @"select '{$key}' as `time`,count(1) as count from  {$tableName} where {$where} ctime BETWEEN {$time[0]} AND {$time[1]}";
 			$limit_time[$key]['content'] = $key;
 		}
 

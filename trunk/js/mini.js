@@ -172,8 +172,8 @@ function replyShow(_this) {
 		_this.val("");
 	_this.css('color', '#000');
 	// _this.focus();
-	$('#image' + id).css('display', "block");
-	$('#button' + id).css('display', "block");
+	$('#image' + id).show();
+	$('#button' + id).show();
 
 }
 function replyHide(_this) {
@@ -223,7 +223,7 @@ function showMore(id, uid) {
 	{
 		$('#showMore' + id).html(str);
 		$.post(getReply_url, {
-			appid : id,
+			object_id : id,
 			uid : uid
 		}, function(text) {
 			if (text != -1) {
@@ -239,20 +239,20 @@ function showMore(id, uid) {
 	}
 }
 
-function replyComment(appid, more, mid) {
+function replyComment(object_id, more, mid) {
 	// 获得数据
 	// 评论内容
-	var content = $('#input' + appid).val();
+	var content = $('#input' + object_id).val();
 	var name = $('#name').val();
 	var page = $('#page').val();
     var js_token = 0;
 	showmore = $('#button' + id).attr('showmore');
-	$("#button" + appid).attr('readonly', true).val("loading...");
+	$("#button" + object_id).attr('readonly', true).val("loading...");
 	// 只需要直接返回新的回复html格式就可以
 	$.post(doAddReply_url, {
 		toUid : touid,
 		content : content,
-		appid : appid,
+		object_id : object_id,
 		more : showmore,
 		mid : mid,
 		page : page,
@@ -260,13 +260,13 @@ function replyComment(appid, more, mid) {
 	}, function(txt) {
 		if (txt != -1) {
 			// Alert("这里有个2");
-			$("#button" + appid).attr('readonly', false).val("回复");
-//			$('#showMore' + appid).hide();
-			$('#input' + appid).val("");
+			$("#button" + object_id).attr('readonly', false).val("回复");
+//			$('#showMore' + object_id).hide();
+			$('#input' + object_id).val("");
 			$("#button" + id).attr('showmore', false);
-//			replyHide($('#input' + appid));
-			$("#RC" + appid).append(txt);
-			$('#RC' + appid).slideDown("normal");
+//			replyHide($('#input' + object_id));
+			$("#RC" + object_id).append(txt);
+			$('#RC' + object_id).slideDown("normal");
 			deleteMouse();
 		} else {
 			Alert("心情添加失败");
@@ -286,19 +286,19 @@ function deleteMouse() {
 		$('#d-' + id).hide();
 	});
 }
-function deleteComment(id, appid, where, uid) {
+function deleteComment(id, object_id, where, uid) {
 	Confirm( {
 		message : '是否删除此评论?',
 		handler : function(button) {
 			$.post(doDeleteReply_url, {
 				id : id,
-				appid : appid
+				object_id : object_id
 			}, function(txt) {
 				if (txt != -1) {
 					if (where == 'last') {
-						$('#last' + appid).hide("slow");
+						$('#last' + object_id).hide("slow");
 					}else if (where == 'first') {
-						$('#first' + appid).hide("slow");
+						$('#first' + object_id).hide("slow");
 					} else {
 						$('#RLI' + id).hide("slow");
 					}
@@ -328,34 +328,34 @@ function fot(e) {
 }
 
 var openReply = true;
-function closeReply(appid, uid) {
+function closeReply(object_id, uid) {
 	// 获取回复数
 	if (openReply) {
 		$.post(getReplyCount_url, {
-			appid : appid
+			object_id : object_id
 		}, function(count) {
 			if (count != -1) {
 				var text = count + '回复';
-				$('#closeReply' + appid).text(text);
+				$('#closeReply' + object_id).text(text);
 			} else {
 				Alert('意外的网路异常');
 			}
 		});
 	} else {
-		$('#closeReply' + appid).text('收起回复');
+		$('#closeReply' + object_id).text('收起回复');
 	}
 
-	$('#RC' + appid).slideToggle(
+	$('#RC' + object_id).slideToggle(
 			'normal',
 			function() {
-				$('#showMore' + appid).hide();
+				$('#showMore' + object_id).hide();
 				if ("none" == $(this).css('display')) {
 					openReply = false;
 				} else {
 					// 加载全部
-					showMore(appid,uid);
+					showMore(object_id,uid);
 					openReply = true;
 				}
 			});
-	$('#RLI' + appid).slideToggle('normal');
+	$('#RLI' + object_id).slideToggle('normal');
 }

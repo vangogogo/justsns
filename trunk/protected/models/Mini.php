@@ -1,6 +1,6 @@
 <?php
 
-class Mini extends CActiveRecord
+class Mini extends YiicmsActiveRecord
 {
 	/**
 	 * The followings are the available columns in table 'mini':
@@ -46,7 +46,7 @@ class Mini extends CActiveRecord
 			array('content', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, uid, name, type, content, tagId, ctime, status, feedId', 'safe', 'on'=>'search'),
+			array('id, uid, name, type, content, tagId, ctime,mtime,is_del, status, feedId', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,13 +61,13 @@ class Mini extends CActiveRecord
 			//心情所有者
 			'user'=>array(self::BELONGS_TO, 'User', 'uid'),
 			//所有回复
-			'reply' => array(self::HAS_MANY, 'Comment', 'appid', 'condition'=>'reply.status= 0', 'order'=>'reply.ctime'),
+			'reply' => array(self::HAS_MANY, 'Comment', 'object_id', 'condition'=>'reply.status= 0', 'order'=>'reply.ctime'),
 			//第一条回复
-			'first' => array(self::HAS_ONE, 'Comment', 'appid', 'condition'=>'first.status= 0', 'order'=>'first.ctime '),
+			'first' => array(self::HAS_ONE, 'Comment', 'object_id', 'condition'=>'first.status= 0', 'order'=>'first.ctime '),
 			//最后一条回复
-			'last' => array(self::HAS_ONE, 'Comment', 'appid', 'condition'=>'last.status= 0', 'order'=>'last.ctime DESC'),
+			'last' => array(self::HAS_ONE, 'Comment', 'object_id', 'condition'=>'last.status= 0', 'order'=>'last.ctime DESC'),
 			//回复总数
-			'count' => array(self::STAT, 'Comment', 'appid', 'condition'=>'status= 0'),
+			'count' => array(self::STAT, 'Comment', 'object_id', 'condition'=>'status= 0'),
 		);
 	}
 
@@ -224,5 +224,72 @@ class Mini extends CActiveRecord
         $user->profile->mini = $mini;
         $user->profile->save();
 
+    }
+    
+
+    /**
+     * 获得数据集
+     * @param array $params
+     */
+    public function findAllData($params = array(),$limit = '')
+    {
+        $criteria = new CDbCriteria;
+        $criteria->condition = ' is_del = 0 ';
+
+        if(!empty($params))
+        {
+			$arr = array('uid');
+			foreach($arr as $attr)
+			{
+				if(isset($params[$attr]))
+					$criteria->compare($attr,$params[$attr]);
+			}
+        }
+		if(empty($params['order']))
+		{
+			$criteria->order = 'ctime DESC';
+		}
+        if(!empty($params['page']))
+        {
+            $_GET['page'] = $params['page'];
+        }
+		$model = self::model();
+		$total= $model->count($criteria);
+		if(!empty($params['limit']))
+		{
+			$criteria->limit = $params['limit'];
+			$pagecount = 0;
+			$pages = null;
+		}
+		else
+		{
+			// 分页
+			$pageSize = isset($params['pageSize'])?$params['pageSize']:self::PAGE_SIZE;
+			$pages=new CPagination($total);
+			$pages->pageSize=$pageSize;
+			$pagecount = ceil($total/$pageSize);
+			$pages->applyLimit($criteria);
+		}
+    	if(!empty($params['#']))
+		{	
+			$page_params = $_GET;
+			$page_params['#'] = $params['#'];
+			$pages->params = $page_params;			
+		}
+		
+        // 排序
+        $sort=new CSort($model);
+        $sort->applyOrder($criteria);
+
+        $models = $model->findAll($criteria);
+
+        $data = array(
+            'models'=>$models,
+            'total'=>$total,
+            'pagecount'=>$pagecount,
+            'pages'=>$pages,
+            'sort'=>$sort,
+        );
+        return $data;
     }
 }

@@ -1,11 +1,11 @@
 <?php if(!empty($mini_list)) foreach($mini_list as $vo){?>
-<div class="Fli" id="Fli<?php echo $vo['id'];?>">
+<div class="row Fli" id="Fli<?php echo $vo['id'];?>">
 	<div class="c1">
 		<?php $this->Widget('WUserFace',array('uid'=>$vo['uid']));?>
 	</div>
 	<div class="c2 bg_ico_arrow">
 		<div class="MC bg01" id="MCG<?php echo $vo['id'];?>">
-			<?php if($is_delete OR 1){?>
+			<?php if(1){?>
 				<h4 class="lh20">
 					<span class="right mt5">
 						<a id="d-<?php echo $vo['id'];?>" class="del" title="删除" href="javascript:deleteMini(<?php echo $vo['id'];?>)" style="display:none;">删除</a>
@@ -42,13 +42,13 @@
 	<div class="clear"></div>
 </div>
 <?php }?>
-<div class="baikeUserPage">
-	<?php $this->widget('CLinkPager',array('pages'=>$pages)); ?>
-</div>
 
+	<div class="pagination">
+    	<?php $this->widget('ext.bootstrap.widgets.BootPager',array('pages'=>$pages)); ?>
+	</div>
 <style>
     .c1 {float:left;width:80px;}
     .c2 {float:left;width:500px;}
     .user_img {float:left;width:80px;}
-    .Fli {margin-bottom:8px;}
+    .Fli {margin-bottom:20px; padding-bottom:12px;border-bottom: 1px solid #EEE;}
 </style>

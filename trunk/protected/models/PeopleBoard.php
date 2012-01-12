@@ -13,7 +13,7 @@
  * @property integer $view_count
  * @property string $ctime
  * @property string $mtime
- * @property integer $is_delete
+ * @property integer $is_del
  */
 class PeopleBoard extends YiicmsActiveRecord
 {
@@ -43,13 +43,13 @@ class PeopleBoard extends YiicmsActiveRecord
 		// will receive user inputs.
 		return array(
 			array('uid, object_type, object_id, name, board_content', 'required'),
-			array('uid, object_id, view_count, is_delete', 'numerical', 'integerOnly'=>true),
+			array('uid, object_id, view_count, is_del', 'numerical', 'integerOnly'=>true),
 			array('object_type', 'length', 'max'=>20),
 			array('name', 'length', 'max'=>50),
 			array('mtime, ctime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('board_id, uid, object_type, object_id, name, board_content, view_count, ctime, mtime, is_delete', 'safe', 'on'=>'search'),
+			array('board_id, uid, object_type, object_id, name, board_content, view_count, ctime, mtime, is_del', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,7 +80,7 @@ class PeopleBoard extends YiicmsActiveRecord
 			'view_count' => Yii::t('admin','View Count'),
 			'ctime' => Yii::t('admin','Create Time'),
 			'mtime' => Yii::t('admin','Update Time'),
-			'is_delete' => Yii::t('admin','Is Delete'),
+			'is_del' => Yii::t('admin','Is Delete'),
 		);
 	}
 
@@ -104,10 +104,10 @@ class PeopleBoard extends YiicmsActiveRecord
 		$criteria->compare('view_count',$this->view_count);
 		$criteria->compare('ctime',$this->ctime,true);
 		$criteria->compare('mtime',$this->mtime,true);
-		$criteria->compare('is_delete',$this->is_delete);
-		if($this->is_delete == NULL)
+		$criteria->compare('is_del',$this->is_del);
+		if($this->is_del == NULL)
 		{
-			$criteria->compare('is_delete',0);
+			$criteria->compare('is_del',0);
 		}
 
 
@@ -123,7 +123,7 @@ class PeopleBoard extends YiicmsActiveRecord
     public function findAllData($params = array(),$limit = '')
     {
         $criteria = new CDbCriteria;
-        $criteria->condition = ' is_delete = 0 ';
+        $criteria->condition = ' is_del = 0 ';
 
         if(!empty($params))
         {
@@ -153,7 +153,7 @@ class PeopleBoard extends YiicmsActiveRecord
 		else
 		{
 			// 分页
-			$pageSize = $params['pageSize']?$params['pageSize']:self::PAGE_SIZE;
+			$pageSize = isset($params['pageSize'])?$params['pageSize']:self::PAGE_SIZE;
 			$pages=new CPagination($total);
 			$pages->pageSize=$pageSize;
 			$pagecount = ceil($total/$pageSize);

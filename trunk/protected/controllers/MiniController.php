@@ -10,35 +10,21 @@ class MiniController extends Controller
 	{
 		$uid = Yii::app()->user->id;
 
+		
 		$model = new Mini();
-		//初始化
-		$criteria=new CDbCriteria;
-		$criteria->select = "{{friend}}.fuid as uid,t.*";
-		$criteria->order='id';
-		$criteria->join = "left join {{friend}} on {{friend}}.fuid = t.uid ";
-		$criteria->condition="{{friend}}.uid=:uid";
-		$criteria->params=array(':uid'=>$uid);
-
-		$gid = Yii::app()->request->getQuery('gid');
-		if(!empty($gid))
-		{
-			$criteria->join .= " left join {{friend_belong_group}} on {{friend_belong_group}}.uid = {{friend}}.uid ";
-			$criteria->addCondition('gid='.$gid);
-		}
-
-		//取得数据总数,分页显示
-		$total = $model->count($criteria);
-		$pages=new CPagination($total);
-		$pages->pageSize=self::PAGE_SIZE;
-		$pages->applyLimit($criteria);
-		//获取数据集
-		$mini_list = $model->findAll($criteria);
-
-		$data = array(
-			'mini_list'=> $mini_list,
-			'pages'=> $pages,
+		$params = array(
+			'uid'=>$uid
 		);
-
+		$data = $model->findAllData($params);
+		
+		$smile = new Smile();
+		$icon_list = $smile->getIconList();
+		
+		$date = Yii::app()->request->getQuery('date');
+		if(!empty($date))
+		{
+			$criteria = $model->fileaway($date,$criteria);
+		}
 
 		$this->render('index',$data);
 	}
@@ -59,14 +45,7 @@ class MiniController extends Controller
 
 		$mini = $model->find($criteria);
 
-		$smile = new Smile();
-		$icon_list = $smile->getIconList();
 
-		$date = Yii::app()->request->getQuery('date');
-		if(!empty($date))
-		{
-			$criteria = $model->fileaway($date,$criteria);
-		}
 
 		//取得数据总数,分页显示
 		$total = $model->count($criteria);
@@ -229,18 +208,18 @@ class MiniController extends Controller
 		$page = Yii::app()->request->getPost('page');
 		$mid = Yii::app()->request->getPost('mid');
 		$id = Yii::app()->request->getPost('id');
-		$appid = Yii::app()->request->getPost('appid');
+		$object_id = Yii::app()->request->getPost('object_id');
 		$comment = Yii::app()->request->getPost('content');
 		$quietly = Yii::app()->request->getPost('quietly');
 
 		//TODO feed 到某个提醒
 		$toUid = Yii::app()->request->getPost('toUid');
+		$toId = Yii::app()->request->getPost('toId',0);
 
-
-		$type = 'mini';
+		$object_type = 'mini';
 		$params = array(
-			'type'=>$type,
-			'appid'=>$appid,
+			'object_type'=>$object_type,
+			'object_id'=>$object_id,
 			'comment'=>$comment,
 			'toId'=>$toId,
 			'quietly'=>$quietly,
@@ -260,8 +239,9 @@ class MiniController extends Controller
 			//$data['face']=$model->user->getUserFace();
 			//echo CJSON::encode($data);
 			$data['comments'] = array($model);
-			$data['id'] = $appid;
+			$data['id'] = $object_id;
 			$data['mid'] = $mid;
+			$data['uid'] = $toUid;
 			$this->renderPartial('reply_div',$data);
 		}
 	}
@@ -275,7 +255,7 @@ class MiniController extends Controller
 	public function actionDoDeleteReply()
 	{
 		$id = Yii::app()->request->getPost('id');
-		$appid = Yii::app()->request->getPost('appid');
+		$object_id = Yii::app()->request->getPost('object_id');
 		//TODO 心情发起者也有权限
 		$model = new Comment();
 		$result = $model->deleteCommentById($id);
@@ -298,18 +278,18 @@ class MiniController extends Controller
 	public function actionGetReply()
 	{
 		$uid = Yii::app()->request->getPost('mid');
-		$appid = Yii::app()->request->getPost('appid');
+		$object_id = Yii::app()->request->getPost('object_id');
 
-		$type = 'mini';
+		$object_type = 'mini';
 
 		$params = array(
-			'type'=>$type,
-			'appid'=>$appid,
+			'object_type'=>$object_type,
+			'object_id'=>$object_id,
 			'uid'=>$uid,
 		);
 		$model = new Comment();
 		$order = 'ctime ASC';
-		$comments = $model->getComments($type,$appid,0,$order);
+		$comments = $model->getComments($object_type,$object_id,0,$order);
 		if(empty($comments))
 		{
 			echo -1;
@@ -320,7 +300,9 @@ class MiniController extends Controller
 			//剔除第一条信息
 			unset($comments[0]);
 			$data['comments'] = $comments;
-			$data['id'] = $appid;
+			$data['id'] = $object_id;
+			$data['uid'] = $uid;
+			$data['mid'] = $uid;
 			$this->renderPartial('reply_div',$data);
 		}
 	}
@@ -331,10 +313,10 @@ class MiniController extends Controller
 	public function actionGetReplyCount()
 	{
 		$uid = Yii::app()->request->getPost('mid');
-		$appid = Yii::app()->request->getPost('appid');
-		$type = 'mini';
+		$object_id = Yii::app()->request->getPost('object_id');
+		$object_type = 'mini';
 		$model = new Comment();
-		$count = $model->getCount($type,$appid);
+		$count = $model->getCount($object_type,$object_id);
 		echo $count;
 	}	
 }

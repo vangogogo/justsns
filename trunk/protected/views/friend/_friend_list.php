@@ -24,7 +24,7 @@
 		</p>
 
 		<p class="lh20">
-			<?php if($is_me) echo CHtml::link('解除关系',array('/friend/DoDelFriend','uid'=>$uid),array('class'=>'a_confirm_link','title'=>'确认解除关系?'));?>
+			<?php if($is_me) echo CHtml::link('解除关系',array('/friend/DoDelFriend','uid'=>$uid),array('class'=>'a_confirm_link','data-title'=>'确认解除关系?'));?>
 		</p>
 		<?php if(!empty($user->sina_id)):?>
 	    <p>
