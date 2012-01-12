@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+var TS = "http://www.yiisns.com";
+/*
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20356935-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+*/
+
+</script>
 	<meta charset="utf-8">
 	<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead',array(
 		'httpEquivs'=>array(
@@ -16,7 +30,6 @@
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 <?php
-
 	
 	$cs = Yii::app()->clientScript;
 	$cs->registerCoreScript('jquery');
@@ -32,20 +45,10 @@
     $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
 ?>
  
-<?php 
-/*
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-20356935-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-*/
-?>
+
+
+
+
 </head>
 <body>
 <?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>

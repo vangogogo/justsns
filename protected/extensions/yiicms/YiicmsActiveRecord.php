@@ -123,14 +123,14 @@ abstract class YiicmsActiveRecord extends CActiveRecord
 
 	public function deleteMark()
 	{
-		$this->is_delete = 1;
+		$this->is_del = 1;
 		$this->save();
 		return $this;
 	}
 
 	public function resetMark()
 	{
-		$this->is_delete = 0;
+		$this->is_del = 0;
 		$this->save();
 		return $this;
 	}
@@ -144,7 +144,7 @@ abstract class YiicmsActiveRecord extends CActiveRecord
     public function loadByPk($pk)
     {
         $model = $this->findByPk($pk);
-        if(empty($model) or $model->is_delete == 1)
+        if(empty($model) or $model->is_del == 1)
         {
             // 该文章已删除或不存在
             throw new CHttpException(404,'...你想访问的页面不存在.');

@@ -7,10 +7,10 @@
 		<li<?php if(empty($_GET['date'])) echo ' class="on"';?>>
 			<?php 
 			$text = Yii::t('sns','alldate');
-			echo CHtml::link($text,array("/$this->url",'uid'=>$_GET['uid'],'gid'=>$value['id']));?>
+			echo CHtml::link($text,array("/$this->url",'uid'=>$_GET['uid'],'gid'=>@$value['id']));?>
 		</li>
 		<?php foreach($date_list as $date => $value){?>
-		<li<?php if($date==$_GET['date']) echo ' class="on"';?>>
+		<li<?php if($date==@$_GET['date']) echo ' class="on"';?>>
 			<?php 
 			$text = $value['content'].'('.$value['count'].')';
 			echo CHtml::link($text,array("/$this->url",'uid'=>$_GET['uid'],'date'=>$date));?>

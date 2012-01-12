@@ -8,7 +8,7 @@ class Wcomment extends CWidget
 	public $items=array();
 	public $url = 'friend';
 	public $type;
-	public $appid;
+	public $object_id;
 	public $mid;
 	public $face;
 	public $role;
@@ -19,7 +19,7 @@ class Wcomment extends CWidget
 
 		$role = $data['role'];
 		$type = $data['type'];
-		$appid = $data['appid'];
+		$object_id = $data['object_id'];
 
 		switch($role)
 		{
@@ -32,7 +32,7 @@ class Wcomment extends CWidget
 		}
 
 		$model = new Comment();
-		$comments = $model->getComments($type,$appid);
+		$comments = $model->getComments($type,$object_id);
 		$data['icon_list'] = Smile::model()->findAll();
 		$data['comments'] = $comments;
 

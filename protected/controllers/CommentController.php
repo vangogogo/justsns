@@ -15,10 +15,10 @@ class CommentController extends Controller
 		$mid = $_POST['mid'];
 		$id = $_POST['id'];
 		$type = $_POST['type'];
-		$appid = $_POST['id'];
+		$object_id = $_POST['id'];
 
 		$model = new Comment();
-		$comments = $model->getComments($type,$appid);
+		$comments = $model->getComments($type,$object_id);
 
 		$data = array(
 			'comments'=>$comments,
@@ -35,7 +35,7 @@ class CommentController extends Controller
 		$type = $_POST['type'];
 
 		$model = new Comment();
-		$count = $model->getCount($type,$appid);
+		$count = $model->getCount($type,$object_id);
 
 		return $count;
 	}
@@ -47,7 +47,7 @@ class CommentController extends Controller
 		$mid = $_POST['mid'];
 		$id = $_POST['id'];
 		$type = $_POST['type'];
-		$appid = $_POST['appid'];
+		$object_id = $_POST['object_id'];
 		$comment = $_POST['comment'];
 		$quietly = $_POST['quietly'];
 		$toId = $_POST['toId'];
@@ -56,7 +56,7 @@ class CommentController extends Controller
 
 		$params = array(
 			'type'=>$type,
-			'appid'=>$appid,
+			'object_id'=>$object_id,
 			'comment'=>$comment,
 			'toId'=>$toId,
 			'quietly'=>$quietly,
@@ -94,9 +94,9 @@ class CommentController extends Controller
 	public function actionDoDelComment()
 	{
 		$id = $_POST['id'];
-		$appid = $_POST['appid'];
+		$object_id = $_POST['object_id'];
 		$params = array(
-			'id'=>$id,'appid'=>$appid,
+			'id'=>$id,'object_id'=>$object_id,
 		);
 
 		$model = new Comment();

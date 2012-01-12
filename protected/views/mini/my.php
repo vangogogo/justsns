@@ -11,6 +11,5 @@
 	<!-- 好友心情 end  -->
 </div>
 <div class="sidebar">
-	<?php if(!Yii::app()->user->isGuest) $this->widget('WFileAway',array('url'=>'mini/'.$this->action->id)); ?><!-- 好友分组 -->
+	<?php #if(!Yii::app()->user->isGuest) $this->widget('WFileAway',array('url'=>'mini/'.$this->action->id)); ?><!-- 好友分组 -->
 </div>
-

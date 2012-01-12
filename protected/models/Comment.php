@@ -1,13 +1,13 @@
 <?php
 
-class Comment extends CActiveRecord
+class Comment extends YiicmsActiveRecord
 {
 	public $face;
 	/**
 	 * The followings are the available columns in table 'comment':
 	 * @var integer $id
-	 * @var string $type
-	 * @var integer $appid
+	 * @var string $object_type
+	 * @var integer $object_id
 	 * @var string $name
 	 * @var integer $uid
 	 * @var string $comment
@@ -42,14 +42,14 @@ class Comment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('appid, uid, ctime, toId, status, quietly', 'numerical', 'integerOnly'=>true),
-			array('type', 'length', 'max'=>15),
+			array('object_id, uid, toId, status, quietly', 'numerical', 'integerOnly'=>true),
+			array('object_type', 'length', 'max'=>15),
 			array('name', 'length', 'max'=>30),
-			array('comment', 'safe'),
-			array('type, appid, name, uid, comment, ctime, status', 'required'),
+			array('comment,ctime,mtime', 'safe'),
+			array('object_type, object_id, name, uid, comment, ctime, status', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type, appid, name, uid, comment, ctime, toId, status, quietly', 'safe', 'on'=>'search'),
+			array('id, object_type, object_id, name, uid, comment, ctime, toId, status, quietly', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,8 +73,8 @@ class Comment extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
-			'type' => '类型',
-			'appid' => '类型id',
+			'object_type' => '类型',
+			'object_id' => '类型id',
 			'name' => '发表人',
 			'uid' => '发表人id',
 			'comment' => '评论内容',
@@ -98,9 +98,9 @@ class Comment extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 
-		$criteria->compare('type',$this->type,true);
+		$criteria->compare('object_type',$this->object_type,true);
 
-		$criteria->compare('appid',$this->appid);
+		$criteria->compare('object_id',$this->object_id);
 
 		$criteria->compare('name',$this->name,true);
 
@@ -146,7 +146,7 @@ class Comment extends CActiveRecord
 		$this->face = User::model()->getUserFace($this->uid);
 	}
 		
-	public function getComments($type,$appid,$page = 0,$order='ctime DESC')
+	public function getComments($object_type,$object_id,$page = 0,$order='ctime DESC')
 	{
 		$model = self::model();
 		//$comments = $model->findAll($criteria);
@@ -154,21 +154,21 @@ class Comment extends CActiveRecord
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order=$order;
-		$criteria->condition="type=:type AND appid=:appid AND status != :status AND toId = 0";
-		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
+		$criteria->condition="object_type=:object_type AND object_id=:object_id  AND is_del = :is_del AND toId = 0";
+		$criteria->params=array(':object_type'=>$object_type,':object_id'=>$object_id,':is_del'=>0);
 		$comments = $model->findAll($criteria);
 
 		return $comments;
 	}
 	
-	public function getCount($type,$appid,$page = 0)
+	public function getCount($object_type,$object_id,$page = 0)
 	{
 		$model = self::model();
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
-		$criteria->condition="type=:type AND appid=:appid AND status != :status";
-		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
+		$criteria->condition="object_type=:object_type AND object_id=:object_id AND is_del = :is_del ";
+		$criteria->params=array(':object_type'=>$object_type,':object_id'=>$object_id,':is_del'=>0);
 		$count = $model->count($criteria);
 	
 		return $count;
@@ -180,6 +180,9 @@ class Comment extends CActiveRecord
 		$comment = $model->findByAttributes($params);
 		if(!empty($comment))
 		{
+			$model = $model->deleteMark();
+			if(empty($model->errors))
+				return true;
 			$comment->status = -1;
 			return $comment->save();
 		}
@@ -191,11 +194,10 @@ class Comment extends CActiveRecord
 		$model = $this->findByPk($id);
 		if(!empty($model))
 		{
-			if($model['uid'] == Yii::app()->user->id)
-			{
-				$model->status = -1;
-				return $model->save();
-			}
+			$model = $model->deleteMark();
+			if(empty($model->errors))
+				return true;
+
 //			echo "不是本人";
 		}
 		return false;
@@ -214,12 +216,12 @@ class Comment extends CActiveRecord
 	
 	/**
 	 * 获得心情的评论，心情的评论格式不同
-	 * @param unknown_type $params
+	 * @param unknown_object_type $params
 	 */
 	public function getReplys($params)
 	{
-		$type = $params['type'];
-		$appid = $params['appid'];
+		$object_type = $params['object_type'];
+		$object_id = $params['object_id'];
 		
 		$model = self::model();
 		//$comments = $model->findAll($criteria);
@@ -227,8 +229,8 @@ class Comment extends CActiveRecord
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
-		$criteria->condition="type=:type AND appid=:appid AND status != :status";
-		$criteria->params=array(':type'=>$type,':appid'=>$appid,':status'=>-1);
+		$criteria->condition="object_type=:object_type AND object_id=:object_id AND is_del = :is_del";
+		$criteria->params=array(':object_type'=>$object_type,':object_id'=>$object_id,':is_del'=>0);
 		$comments = $model->findAll($criteria);
 		
 		return $comments;

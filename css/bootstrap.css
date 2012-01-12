@@ -11,6 +11,8 @@ body,input,button,select,textarea{font: 12px Lucida Grande,Microsoft Yahei,Arial
 .topbar-inner a, .topbar .fill a {color:#fff}
 */
 div.clearfix {display: block;line-height:0;}
+
+.right {float:right;}
 .container> .sidebar{display: inline;float: left;margin-left: 40px;width: 280px;}
 .container> .content{display: inline;float: left;margin-left: 20px;width: 600px;}
 
@@ -66,7 +68,7 @@ a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0
 
 
 .obu{margin:0 0 10px 0;width:76px;float:left;display:inline}.obu dt{margin:0;height:68px;overflow:hidden;text-align:center;line-height:16px}.obu dd{margin:0;height:55px;text-align:center;overflow:hidden}.ob{margin:0 0 10px 0;float:left;width:76px;text-align:center}.ob dt{margin:0;overflow:hidden;text-align:center;height:50px}.ob dd{margin:0;height:55px;text-align:center;overflow:hidden}.ob span{white-space:nowrap}
-
+.btmline{clear: both;}
     
 #mtreeview-target {min-height:400px;}
 

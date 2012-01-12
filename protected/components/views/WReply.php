@@ -1,4 +1,4 @@
-<div>
+<div class="row">
 	<div class="RC" id = "RC<?php echo $id;?>">
 	<?php if(!empty($first)){ ?>
 		<div class="RLI btmline" id="first<?php echo $id;?>" >
@@ -10,7 +10,7 @@
 					<span class="right mt5">
 					<?php
 						if( $uid == $first['uid'] || $mid == $uid){
-						echo "<a id= \"d-first".$first['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$first['id'].",".$first['appid'].",'first',".$mid.")\">删除</a>";
+						echo "<a id= \"d-first".$first['object_id']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$first['id'].",".$first['object_id'].",'first',".$mid.")\">删除</a>";
 						}
 					?>
 					</span>
@@ -18,7 +18,7 @@
 						<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$first['uid']));?>">
 							<strong class="name<?php echo $first['uid'];?>"><?php echo $first['name'];?></strong>
 						</a>
-						<span class="time"><?php echo date('Y-m-d H:s',$first['ctime'])?></span>
+						<span class="time"><?php echo YiicmsHelper::friendlyDate('Y-m-d H:s',$first['ctime'])?></span>
 					</span>
 				</h4>
 				<p><?php echo $first['comment'];?> <a href="javascript:reply(<?php echo $first['uid']?>,<?php echo $id;?>)" onclick="">回复</a></p>
@@ -27,9 +27,9 @@
 		</div>
 	<?php }?>
 	
-	<?php if( $count > 2 ){?>
-	 <div class="RLI btmline" id ="showMore<?php echo $id;?>"><a href="###" onclick="showMore(<?php echo $first['appid'];?>,<?php echo $mid;?>)">显示全部<?php echo $count?>条</a></div>
-	<?php }?>
+	<?php if( $count > 2 ):?>
+	 <div class="RLI btmline2" id ="showMore<?php echo $id;?>"><a href="###" onclick="showMore(<?php echo $first['object_id'];?>,<?php echo $mid;?>)">显示全部<?php echo $count?>条</a></div>
+	<?php endif;?>
 	
 	<?php if(!empty($last)){?>
 		<div class="RLI btmline" id="last<?php echo $id;?>" >
@@ -41,7 +41,7 @@
 					<span class="right mt5">
 					<?php
 						if( $uid == $last['uid'] || $mid == $uid){
-							echo "<a id= \"d-last".$last['appid']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$last['id'].",".$last['appid'].",'last',".$mid.")\">删除</a>";
+							echo "<a id= \"d-last".$last['object_id']."\" style=\"display:none;\" class=\"del\" title=\"删除\" href=\"javascript:deleteComment( ".$last['id'].",".$last['object_id'].",'last',".$mid.")\">删除</a>";
 						}
 					?>
 					</span>
@@ -49,7 +49,7 @@
 						<a href="<?php echo Yii::app()->createUrl('/space/',array('uid'=>$last['uid']));?>">
 							<strong class="name<?php echo $last['uid'];?>"><?php echo $last['name'];?></strong>
 						</a>
-						<span class="time"><?php echo date('Y-m-d H:s',$last['ctime'])?></span>
+						<span class="time"><?php echo YiicmsHelper::friendlyDate('Y-m-d H:s',$last['ctime'])?></span>
 					</span>
 				</h4>
 				<p><?php echo $last['comment'];?> <a href="javascript:reply(<?php echo $last['uid']?>,<?php echo $id;?>)" onclick="">回复</a></p>
@@ -60,7 +60,7 @@
 	</div>
 </div>
 
-<div class="Input_box" id="RLI<?php echo $id;?>" >
+<div class="row Input_box" id="RLI<?php echo $id;?>" >
 	<div class="pic" style="display:none;float:left;width:80px;" id="image<?php echo $id;?>">
          <?php $this->Widget('WUserFace',array('uid'=>$mid));?>
 	</div>

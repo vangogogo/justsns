@@ -32,7 +32,7 @@ class WReply extends CWidget
 			'uid'=>$this->uid,
 			'id'=>$this->id,
 		);
-		//这里的id 为Comment中的appid
+		//这里的id 为Comment中的object_id
 
 		$this->render('WReply',$data);
 	}
