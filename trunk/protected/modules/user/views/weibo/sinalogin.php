@@ -1,1 +1,1 @@
-<a href="<?=$aurl?>">Use Oauth to login</a>
+<a href="<?php echo $aurl;?>">Use Oauth to login</a>
