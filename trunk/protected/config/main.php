@@ -141,7 +141,7 @@ $config = array(
 
 				#我的空间
 				'group/<gid:\d+>'=>'group/group/show',
-				'space/<id:\d+>/<_resource:(mini|blog|photo)>/'=>'<_resource>/index',
+				'space/<uid:\d+>/<_resource:(mini|blog|photo)>/'=>'<_resource>/index',
 
 				#小组
 				'group/<gid:\d+>'=>'group/group/show',

@@ -1,6 +1,6 @@
 <?php if(!empty($comments)):?>
 <?php foreach($comments as $vo):?>
-<div class="RLI btmline" id="RLI<?php echo $vo['id'];?>" >
+<div class="RLI item" id="RLI<?php echo $vo['id'];?>" >
 	<div class="user_img">
         <?php $this->Widget('WUserFace',array('uid'=>$vo['uid']));?>
 	</div>
@@ -22,7 +22,6 @@
 		</h4>
 		<p><?php echo $vo['comment'];?> <a href="javascript:reply(<?php echo $vo['uid']?>,<?php echo $vo['object_id'];?>)" onclick="">回复</a></p>
 	</div>
-	<div class="c" ></div>
 </div>
 <?php endforeach;?>
 <?php endif;?>

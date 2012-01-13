@@ -61,13 +61,13 @@ class Mini extends YiicmsActiveRecord
 			//心情所有者
 			'user'=>array(self::BELONGS_TO, 'User', 'uid'),
 			//所有回复
-			'reply' => array(self::HAS_MANY, 'Comment', 'object_id', 'condition'=>'reply.status= 0', 'order'=>'reply.ctime'),
+			'reply' => array(self::HAS_MANY, 'Comment', 'object_id', 'condition'=>'reply.status= 0 AND reply.is_del=0', 'order'=>'reply.ctime'),
 			//第一条回复
-			'first' => array(self::HAS_ONE, 'Comment', 'object_id', 'condition'=>'first.status= 0', 'order'=>'first.ctime '),
+			'first' => array(self::HAS_ONE, 'Comment', 'object_id', 'condition'=>'first.status= 0 AND first.is_del=0', 'order'=>'first.ctime '),
 			//最后一条回复
-			'last' => array(self::HAS_ONE, 'Comment', 'object_id', 'condition'=>'last.status= 0', 'order'=>'last.ctime DESC'),
+			'last' => array(self::HAS_ONE, 'Comment', 'object_id', 'condition'=>'last.status= 0 AND last.is_del=0', 'order'=>'last.ctime DESC'),
 			//回复总数
-			'count' => array(self::STAT, 'Comment', 'object_id', 'condition'=>'status= 0'),
+			'count' => array(self::STAT, 'Comment', 'object_id', 'condition'=>'status= 0 AND is_del=0'),
 		);
 	}
 

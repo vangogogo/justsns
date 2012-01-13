@@ -6,7 +6,7 @@
 	<div class="c2 bg_ico_arrow">
 		<div class="MC bg01" id="MCG<?php echo $vo['id'];?>">
 			<?php if(1){?>
-				<h4 class="lh20">
+				<p class="text">
 					<span class="right mt5">
 						<a id="d-<?php echo $vo['id'];?>" class="del" title="删除" href="javascript:deleteMini(<?php echo $vo['id'];?>)" style="display:none;">删除</a>
 					</span>
@@ -16,9 +16,9 @@
 						</a>
 						<span class="time"><?php echo YiicmsHelper::friendlyDate('Y-m-d H:s',$vo['ctime'])?></span>
 					</span>
-				</h4>
+				</p>
 			<?php }else{?>
-				<h4 class="lh20">
+				<p class="text">
 					<a href="<?php echo $this->createUrl('/space/',array('uid'=>$vo['uid']));?>">
 						<strong><?php echo $vo['name']?></strong>
 					</a>
@@ -26,7 +26,7 @@
 					<span>
 						<?php echo CHtml::link('更多',array('/mini/friends','uid'=>$vo['uid']));?>
 					</span>
-				</h4>
+				</p>
 			<?php }?>
 			<p class="WB">
 				<?php echo $vo['content'];?>
@@ -39,16 +39,10 @@
 		</div>
 		<?php $this->Widget('WReply',array('uid'=>$vo->uid,'id'=>$vo->id,'count'=>$vo->count,'first'=>$vo->first,'last'=>$vo->last));?>
 	</div>
-	<div class="clear"></div>
+
 </div>
 <?php }?>
 
 	<div class="pagination">
     	<?php $this->widget('ext.bootstrap.widgets.BootPager',array('pages'=>$pages)); ?>
 	</div>
-<style>
-    .c1 {float:left;width:80px;}
-    .c2 {float:left;width:500px;}
-    .user_img {float:left;width:80px;}
-    .Fli {margin-bottom:20px; padding-bottom:12px;border-bottom: 1px solid #EEE;}
-</style>

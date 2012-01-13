@@ -5,7 +5,7 @@ body, td, th, p, table th, table td {line-height:162%}
 margin: 0 0 1.5em;
 }
 body,input,button,select,textarea{font: 12px Lucida Grande,Microsoft Yahei,Arial,Calibri,Trebuchet MS,Helvetica,Hiragino,STHeiti,Microsoft Jhenghei,sans-serif;color:#444}
-
+h1 {font-size:24px;}
 /*
 .topbar-inner, .topbar .fill {background: url('../images/global_nav_bg.png') repeat-x;}
 .topbar-inner a, .topbar .fill a {color:#fff}
@@ -31,7 +31,7 @@ div.clearfix {display: block;line-height:0;}
 
 .span1x5{width:70px;}
 
-.userface-grid a{margin:0 8px 18px 4px;}
+.userface-grid a{margin:0 8px 6px 4px;}
 .prefix_1 {padding:0 0 0 40px;}
 
 a {text-decoration:none;color:#369;}
@@ -98,3 +98,13 @@ a.btn-fav:hover, a.btn-fav:active {border-color: #EDCEBA;background-color: #FFF0
 .span-22 {width:870px;}
 .span-23 {width:910px;}
 .span-24, div.span-24 {width:950px;margin-right:0;}
+
+.c1 {float:left;width:80px;}
+.c2 {float:left;width:500px;}
+
+.Fli {margin-bottom:12px; padding-bottom:8px;border-bottom: 1px solid #EEE;}
+.c2 .row{margin-left:0px;}
+
+.c2 .text {margin: 0 0 5px 0;word-wrap: break-word;}
+.item {margin-bottom: 5px;position: relative;z-index: 0;}
+textarea.t_mini {width:96%;height:36px;	}

@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 		if(!Yii::app()->user->isGuest)
 		{
-			#$this->redirect(array('site/home'));
+			$this->redirect(array('site/home'));
 		}
 		$data = array();
 		$this->render('index',$data);

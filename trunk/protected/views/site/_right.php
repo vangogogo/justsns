@@ -1,6 +1,5 @@
 <div class="sidebar">
-
-        <?php $this->Widget('WFriendFind');?>
+	<?php #$this->Widget('WFriendFind');?>
 
 	<?php if(!isset($space_privacy) || $space_privacy){ ?>
 
@@ -31,10 +30,11 @@
 
 	<?php } ?>
 
+	<?php if(!empty($may)){ ?>
 	<div class="UserList">
 		<h2><span class="right"></span>你可能认识的人</h2>
 		<div class="ListBox">
-			<?php if(!empty($may)){ ?>
+			
 			<ul>
 				<?php foreach($may_users as $user){?>
 					<li>
@@ -43,20 +43,20 @@
 					</li>
 				<?php }?>
 			</ul>
-			<?php }?>
+			
 		</div>
 		<div class="btm"></div>
 	</div>
-
+	<?php }?>
 	
 	<div class="UserList">
 		<h2><?php if(!isset($space_privacy) || $space_privacy){ ?><span class="right">
 		<?php echo CHtml::link('>>更多',array('friend/index','uid'=>$uid),array('class'=>'cGray2'));?>
 
 		</span><?php } ?><?php if($is_me){echo '我';}else echo $owner->getUserName()?>的好友</h2>
-		<div class="ListBox">
+		<div>
 			<?php if(!empty($friend_list)){ ?>
-			<ul class="unstyled">
+			<ul class="media-grid unstyled">
 				<?php foreach($friend_list as $user){?>
 					<li>
                         <?php $this->Widget('WUserFace',array('uid'=>$user['id']));?>

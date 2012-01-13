@@ -154,7 +154,7 @@ class Comment extends YiicmsActiveRecord
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order=$order;
-		$criteria->condition="object_type=:object_type AND object_id=:object_id  AND is_del = :is_del AND toId = 0";
+		$criteria->condition="object_type=:object_type AND object_id=:object_id  AND is_del = :is_del AND toId = 0 AND status = 0";
 		$criteria->params=array(':object_type'=>$object_type,':object_id'=>$object_id,':is_del'=>0);
 		$comments = $model->findAll($criteria);
 
@@ -167,7 +167,7 @@ class Comment extends YiicmsActiveRecord
 		 //初始化
 		$criteria=new CDbCriteria;
 		$criteria->order='ctime DESC';
-		$criteria->condition="object_type=:object_type AND object_id=:object_id AND is_del = :is_del ";
+		$criteria->condition="object_type=:object_type AND object_id=:object_id AND is_del = :is_del AND status = 0";
 		$criteria->params=array(':object_type'=>$object_type,':object_id'=>$object_id,':is_del'=>0);
 		$count = $model->count($criteria);
 	

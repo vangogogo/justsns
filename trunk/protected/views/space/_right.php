@@ -34,7 +34,7 @@
 					<p>
 						<span>
 							<?php echo $owner->getUserMini();?></span><span></span><span>
-							<?php echo CHtml::link('更多',array('/mini/index','uid'=>$uid));?>
+							<?php echo CHtml::link('更多',array('mini/index','uid'=>$uid));?>
 						</span>
 					</p>
 				<?php } ?>

@@ -28,7 +28,14 @@ class MiniController extends Controller
 
 		$this->render('index',$data);
 	}
-
+	
+	/*
+	 *  显示mini详情
+	 */
+	public function actionShow()
+	{
+		
+	}
 	/**
 	 * 我的心情
 	 */
