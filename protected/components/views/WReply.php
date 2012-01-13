@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="RC" id = "RC<?php echo $id;?>">
 	<?php if(!empty($first)){ ?>
-		<div class="RLI btmline" id="first<?php echo $id;?>" >
+		<div class="RLI item" id="first<?php echo $id;?>" >
 			<div class="user_img">
                 <?php $this->Widget('WUserFace',array('uid'=>$first['uid']));?>
 			</div>
@@ -28,11 +28,11 @@
 	<?php }?>
 	
 	<?php if( $count > 2 ):?>
-	 <div class="RLI btmline2" id ="showMore<?php echo $id;?>"><a href="###" onclick="showMore(<?php echo $first['object_id'];?>,<?php echo $mid;?>)">显示全部<?php echo $count?>条</a></div>
+	 <div class="RLI item" id ="showMore<?php echo $id;?>"><a href="###" onclick="showMore(<?php echo $first['object_id'];?>,<?php echo $mid;?>)">显示全部<?php echo $count?>条</a></div>
 	<?php endif;?>
 	
 	<?php if(!empty($last)){?>
-		<div class="RLI btmline" id="last<?php echo $id;?>" >
+		<div class="RLI item" id="last<?php echo $id;?>" >
 			<div class="user_img">
                 <?php $this->Widget('WUserFace',array('uid'=>$last['uid']));?>
 			</div>

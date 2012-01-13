@@ -1,4 +1,5 @@
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl.'/css/space.css');?>
+
 <div class="content">
 <!--用户应用-->
 <div class="tab-menu">
