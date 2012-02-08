@@ -13,7 +13,6 @@ var TS = "http://www.yiisns.com";
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 */
-
 </script>
 	<meta charset="utf-8">
 	<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead',array(
@@ -39,33 +38,31 @@ var TS = "http://www.yiisns.com";
 	Yii::app()->bootstrap->registerScriptFile('jquery.ui.bootwidget.js');
 	Yii::app()->bootstrap->registerScriptFile('jquery.ui.bootmodal.js');
 
-	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/bootstrap.css');
+	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/lockphp-www.css');
+	#$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/topbar.css');
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/yiisns.js');
     #$cs->registerCssFile($cs->getCoreScriptUrl().'/jui/css/base/jquery-ui.css');
     $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/flick/jquery-ui.css');
 ?>
- 
-
-
-
 
 </head>
 <body>
 <?php $this->renderDynamic('widget', 'WTopBar', array(), true);//动态缓存 ?>
 
-<div class="container">
+<div class="container" id="body">
 
-	<?php if (0 AND isset($this->breadcrumbs) AND !empty($this->breadcrumbs)):?>
+	<?php if (1 AND isset($this->breadcrumbs) AND !empty($this->breadcrumbs)):?>
 		<?php $this->widget('ext.bootstrap.widgets.BootCrumb',array(
 			'links'=>$this->breadcrumbs,
 			'separator'=>'/',
 		)); ?>
 	<?php endif?>
-
-	<?php echo $content; ?>
 	
-	<!-- start.footer -->
-	<div style="clear:both"></div>
+	<div id="content">
+		<?php echo $content; ?>
+		<div style="clear:both"></div>
+	</div>
+
 	<footer>
 		<p class="pull-right"><a href="#">返回顶部</a></p>
 		<p>
@@ -74,7 +71,6 @@ var TS = "http://www.yiisns.com";
 		<?php echo Yii::powered(); ?>
 		</p>
 	</footer>
-	<!-- end.footer -->
 </div>
 </body>
 </html>

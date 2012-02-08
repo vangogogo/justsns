@@ -9,7 +9,7 @@
 ?>
 
 
-<table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:20px;" >
+<table width="98%" style="margin-top:20px;" >
 	<tr>
 		<td width="190" align="center" valign="top">
 			<div class="len_bbs_userpic" id="userfacediv">
@@ -19,7 +19,7 @@
 			</div>
 
 
-			<table id="tbface" width="98%" border="0" cellpadding="3" cellspacing="1" style="display:none;">
+			<table id="tbface" style="display:none;">
 				<tr>
 					<td  bgcolor="#FFFFFF">
 						<div id="">

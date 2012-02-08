@@ -22,11 +22,11 @@ $this->breadcrumbs=array(
 <div class="page-header">
 	<h1><a href="<?php echo $astro->getUrl();?>" title="<?php echo CHtml::encode($astro->astro_name)?> <?php echo $astro->astro_date?>"><?php echo CHtml::encode($astro->astro_name)?></a> <?php echo $astro->astro_name_en;?>
 	<input type="text" id="astro_datepicker" class="t_input " style="width:76px" value="<?php echo date('Y-m-d',strtotime($d_day));?>" />
-	<div style="float:right">
+	</h1>
+	<div class="pull-right">
+		<?php $this->widget('WUserCollect',array('object_id'=>$astro->primaryKey,'object_type'=>'astro'));?>
 		<?php echo CHtml::link('返回',array('/astro'),array('class'=>'btn info'));?>
 	</div>
-
-	</h1>
 </div>
 
 <div class="content">
@@ -40,7 +40,6 @@ $this->breadcrumbs=array(
 	
 			<div class="picInfo-more cf">
 				<div class="picInfo-more-c1">
-					<?php $this->widget('WUserCollect',array('object_id'=>$astro->primaryKey,'object_type'=>'astro'));?>
 				</div>
 			</div>
 	    </div>

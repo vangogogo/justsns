@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 <h1><?php echo UserModule::t("Restore"); ?></h1>
 
 <?php if(Yii::app()->user->hasFlash('recoveryMessage')): ?>
-<div class="success">
+<div class="alert-message warning fade in" data-alert="alert">
 <?php echo Yii::app()->user->getFlash('recoveryMessage'); ?>
 </div>
 <?php else: ?>
@@ -35,7 +35,7 @@ $this->breadcrumbs=array(
 	
 	<div class="row submit">
         <label></label>
-		<?php echo CHtml::submitButton(UserModule::t("Restore")); ?>
+		<?php echo CHtml::submitButton(UserModule::t("Restore"),array('class'=>'btn')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -132,7 +132,7 @@ $config = array(
                 //assets目录发布到web，使用path路径，浏览器会认为是静态文件*达到http304的目的
                 'assets/<path:.*?>'=>'site/assets',
 
-				'<_resource:(login|logout|help|contact)>'=>'site/<_resource>',
+				'<_resource:(login|logout|help|contact|about)>'=>'site/<_resource>',
 				#'<view:\w+>'=>'site/page',
 
 				'space/<uid:\d+>'=>'space/index',

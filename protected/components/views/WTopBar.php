@@ -1,9 +1,11 @@
 <!-- top_bar -->
+<div class="subnav">
 <?php
 		$array = array('adobe.com','default','flickr.com','lwis.celebrity','mtv.com','nvidia.com','vimeo.com');
       $this->widget('ext.bootstrap.widgets.BootTopbar',array(
         #'themeCssFile' => $array[6].'/default.css',
         'homeUrl'=>'/',
+        'search'=>'',
         'items'=>array(
             array('label'=>'首页', 'url'=>'/site/home'),
             array('label'=>'站内应用', 'url'=>array('/app'), 'items'=>array(
@@ -38,3 +40,4 @@
     )); 
 ?>
 <!-- /top_bar -->
+</div>

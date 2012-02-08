@@ -4,7 +4,6 @@
 			<div id="host_face" class="mid-face clearfix">
                 <?php $this->widget('WUserFace', array('uid'=>$uid,'size'=>'big')); ?><div class="clearfix">  </div>
             </div>
-            <div class="clearfix">  </div>
 			<div class="menu bg01">
 				<?php
 					if($uid == $mid){
@@ -24,7 +23,6 @@
 					}
 				?>
                 <div class="sep-line"></div>
-				<div class="clearfix">&nbsp  </div>
 			</div>
 		</div>
 		<div class="Linfo">

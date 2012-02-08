@@ -19,7 +19,7 @@ class Controller extends RController
 		
 		defined('PUBLIC_URL') or define('PUBLIC_URL',Yii::app()->request->baseUrl.'/');
 		defined('THEME_URL') or define('THEME_URL',Yii::app()->theme->baseUrl.'/');
-		
+		/*
 		//前台 、 后台
 		if(!Yii::app()->user->isGuest)
 		{
@@ -29,7 +29,7 @@ class Controller extends RController
 		{
 			$this->layout='//layouts/column1';
 		}
-
+		*/
         
 	}
 

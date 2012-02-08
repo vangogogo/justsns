@@ -146,7 +146,27 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
-
+	
+	/**
+	* Displays the about page
+	*/
+	public function actionAbout()
+	{
+		$model=new ContactForm;
+		if(isset($_POST['ContactForm']))
+		{
+			$model->attributes=$_POST['ContactForm'];
+			if($model->validate())
+			{
+				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
+				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
+				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				$this->refresh();
+			}
+		}
+		$this->render('contact',array('model'=>$model));
+	}
+	
 	/**
 	 * Displays the login page
 	 */
@@ -210,35 +230,11 @@ class SiteController extends Controller
 		//获取地区显示页面
 	public function actionGetArea()
 	{
-		/*
-		$list = $this->api->Network_getList();;
-		$arrPid = explode(',',$_POST['pid']);
-		$level  = $_POST['level'];
-
-		if($level=='init'){
-			$this->assign('arealevel',intval($_POST['arealevel']));
-			$this->assign('init','1');
-			$this->assign('arrPid',$arrPid);
-		}else{
-			if(is_array($arrPid)){
-				unset($arrPid[0]);
-				foreach ($arrPid as $v){
-					if($list[$v]['child']){
-						$list = $list[$v]['child'];
-					}
-				}
-			}
-		}
-		*/
 		$list = array();
 		$init = $arealevel = '0';
 		
-		
-		
 		$pid = Yii::app()->request->getParam('pid');
-
 		$list = area::model()->getlist();
-
 		$arrPid = explode(',',$pid);
 
 		$level  =  Yii::app()->request->getParam('level');
@@ -252,7 +248,6 @@ class SiteController extends Controller
 
 		
 		if (Yii::app()->request->isAjaxRequest){
-
 			$this->renderPartial('area',$data,'',TRUE,TRUE);
 		}
 		else
