@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 		if(!Yii::app()->user->isGuest)
 		{
-			$this->redirect(array('site/home'));
+			#$this->redirect(array('site/home'));
 		}
 		$data = array();
 		$this->render('index',$data);
@@ -40,6 +40,10 @@ class SiteController extends Controller
 	 */
 	public function actionHome()
 	{
+		if(Yii::app()->user->isGuest)
+		{
+			$this->redirect('/');
+		}
 		$notify_num = array(0);
 		$uid = Yii::app()->user->id;
 		//用户信息

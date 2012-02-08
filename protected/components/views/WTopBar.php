@@ -5,7 +5,7 @@
         #'themeCssFile' => $array[6].'/default.css',
         'homeUrl'=>'/',
         'items'=>array(
-            array('label'=>'首页', 'url'=>'/'),
+            array('label'=>'首页', 'url'=>'/site/home'),
             array('label'=>'站内应用', 'url'=>array('/app'), 'items'=>array(
                 array('label'=>'星座', 'url'=>array('/astro')),
 				array('label'=>'个人空间', 'url'=>array('/space/mine'),'visible'=>!Yii::app()->user->isGuest),

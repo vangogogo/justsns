@@ -1,29 +1,30 @@
 <div class="sidebar">
 	<div class="user_info"><!-- 用户资料 begin  -->
-		<div class="user_img">
-			<div id="host_face">
-                <?php $this->widget('WUserFace', array('uid'=>$uid,'size'=>'big')); ?>
+		<div class="alert-message block-message warning clearfix">
+			<div id="host_face" class="mid-face clearfix">
+                <?php $this->widget('WUserFace', array('uid'=>$uid,'size'=>'big')); ?><div class="clearfix">  </div>
             </div>
-			<div id="my_face" style="display:none"><img src="<?php echo $owner->getUserFace($mid,'small');?>" /></div>
+            <div class="clearfix">  </div>
 			<div class="menu bg01">
 				<?php
 					if($uid == $mid){
-						echo CHtml::link('更改头像',array('/info/face'),array('title'=>'更改头像'));
-						echo CHtml::link('隐私设置',array('/privacy'),array('title'=>'隐私设置'));
-						echo CHtml::link('修改账号',array('/account'),array('title'=>'修改账号'));
-						echo CHtml::link('修改资料',array('/info'),array('title'=>'修改资料'));
+						echo CHtml::link('更改头像',array('/info/face'),array('title'=>'更改头像'));echo "<br/>";
+						echo CHtml::link('隐私设置',array('/privacy'),array('title'=>'隐私设置'));echo "<br/>";
+						echo CHtml::link('修改账号',array('/account'),array('title'=>'修改账号'));echo "<br/>";
+						echo CHtml::link('修改资料',array('/info'),array('title'=>'修改资料'));echo "<br/>";
 					}elseif($mid){
 						#echo CHtml::link('详细资料',array('/space/detail','uid'=>$uid),array('title'=>'详细资料'));
-						echo CHtml::link('给TA留言',array('/notify/write','uid'=>$uid),array('title'=>'给TA留言'));
+						echo CHtml::link('给TA留言',array('/notify/write','uid'=>$uid),array('title'=>'给TA留言'));echo "<br/>";
 
 						if(!empty($is_friend)){
-							echo CHtml::link('发短消息',array('/notify/write','uid'=>$uid),array('title'=>'发短消息'));
+							echo CHtml::link('发短消息',array('/notify/write','uid'=>$uid),array('title'=>'发短消息'));echo "<br/>";
 						}else{
-							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友','class'=>'a_ajax_link'));
+							echo CHtml::link('加为好友',array('/friend/add','uid'=>$uid),array('title'=>'加为好友','class'=>'a_ajax_link'));echo "<br/>";
 						}
 					}
 				?>
-				<div class="c"></div>
+                <div class="sep-line"></div>
+				<div class="clearfix">&nbsp  </div>
 			</div>
 		</div>
 		<div class="Linfo">

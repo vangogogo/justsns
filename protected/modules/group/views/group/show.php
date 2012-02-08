@@ -12,7 +12,7 @@
 		?>
 
 		<div class="cdate">创建于 <?php echo YiicmsHelper::friendlyDate('m-d H:i',$group['ctime'])?></div>
-		<div class="member_op"> 
+		<div class="member_op clearfix"> 
 			<?php if($this->module->isGroupMember):?>
 				我是这个小组的成员 
 				<?php echo CHtml::link('> 退出小组',array('group/quit','gid'=>$group['id']),array('class'=>'a_confirm_link','data-title'=>'真的要退出小组吗？'));?>
