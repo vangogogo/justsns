@@ -8,6 +8,8 @@
 	</div>
 <?php }?>
 <!-- 通知列表 end  -->
+
+
 <script>
 	function agreeFri(fuid,nid){
 		Win({message:'__APP__/Friend/isAdd/uid/'+fuid+'/nid/'+nid+'/t/agree',width:392,height:220,title:'加为好友',handler:function(){ymPrompt.close();},autoClose:false,iframe:true,allowRightMenu:true});
@@ -49,12 +51,4 @@
 			 }
 		});
 	}
-
-
 </script>
-
-
-
-
-
-

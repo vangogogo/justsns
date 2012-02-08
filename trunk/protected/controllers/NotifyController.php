@@ -191,7 +191,7 @@ class NotifyController extends Controller
 
 	public function actionShow()
 	{
-        $this->setPageTitle('短消息查看'); 
+        $this->setPageTitle('私信'); 
 		$msg_id = Yii::app()->request->getQuery('msg_id');
 		$model =  new Msg();
 		$msg = $model->findByPk($msg_id);

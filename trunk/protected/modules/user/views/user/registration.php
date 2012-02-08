@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
 <h1><?php echo UserModule::t("Registration"); ?></h1>
 
 <?php if(Yii::app()->user->hasFlash('registration')): ?>
-<div class="success">
+<div class="alert-message warning fade in" data-alert="alert">
 <?php echo Yii::app()->user->getFlash('registration'); ?>
 </div>
 <?php else: ?>
@@ -99,6 +99,7 @@ $this->breadcrumbs=array(
 	<?php endif; ?>
 	
 	<div class="row submit">
+		<label></label>
 		<?php echo CHtml::submitButton(UserModule::t("Register"),array('class'=>'btn')); ?>
 	</div>
 

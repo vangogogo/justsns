@@ -1,18 +1,16 @@
-    <?php
-	    include('_top.php');
-    ?>
-	<table width="100%">
+
+	<table>
 		<tr>
 			<td width="75" valign="top"> 
                 <?php $this->widget('WUserFace', array('uid'=>$user->id)); ?>
 			</td>
 			<td valign="top">
 				<?php if($msg->toUserId == Yii::app()->user->id):?>
-				<span class="pl2">来自: <?php echo User::model()->getUserName($msg->fromUserId);?></a></span>
+				<span class="pl2">来自: <?php echo User::model()->getUserName($msg->fromUserId);?></span>
 				<?php endif;?>
 
 				<?php if($msg->fromUserId == Yii::app()->user->id):?>
-				<span class="pl2">发往: <?php echo User::model()->getUserName($msg->toUserId);?></a></span>
+				<span class="pl2">发往: <?php echo User::model()->getUserName($msg->toUserId);?></span>
 				<?php endif;?>
 				<br>
 				<span class="pl2">时间: <?php echo date('Y-m-d H:s',strtotime($msg->ctime))?></span>

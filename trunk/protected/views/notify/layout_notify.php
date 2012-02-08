@@ -1,5 +1,4 @@
 <?php $this->beginContent('//layouts/main'); ?>
-
     <?php if(!empty($this->pageTitle)):?>
 		<div class="page-header">
 			<h1><?php echo $this->pageTitle;?></h1>
@@ -14,5 +13,4 @@
 	    <br/>
 	    <h2><?php echo CHtml::link('> 前往我的好友列表',array('/friend'));?></h2>
     </div>
-
 <?php $this->endContent(); ?>

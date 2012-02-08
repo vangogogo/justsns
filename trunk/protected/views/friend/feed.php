@@ -1,5 +1,5 @@
 <div class="grid_20">
-  <table border="0" cellspacing="0" cellpadding="0" width="150">
+  <table width="150">
     <tr>
       <td height="22">在我的主页上：</td>
     </tr>

@@ -1,17 +1,16 @@
-    <?php
-	    include('_top.php');
-    ?>
 <?php
 	$cs = Yii::app()->clientScript;
     $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/msg.js');
 ?>
+
+	<?php
+		include('_top.php');
+	?>
     <?php if(!empty($msgs)):?>
 	<div class="MessageBox">
 		<div class="MList border"><!-- 好友日志 begin  -->
-
-
 				<?php echo CHtml::beginForm(); ?>
-				<table width="100%" border="0" cellspacing="0" cellpadding="3" class="olt">
+				<table class="olt">
 					<?php foreach($msgs as $msg){
 						if($msg->toUserId == Yii::app()->user->id)
 						{

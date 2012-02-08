@@ -5,7 +5,7 @@
 			array('label'=>'<span>收件箱</span>', 'url'=>array('/notify/inbox')),
 			array('label'=>'<span>发件箱</span>', 'url'=>array('/notify/outbox')),
 			array('label'=>'<span>通知</span>', 'url'=>array('/notify/index')),
-			array('label'=>'<span>写短消息</span>', 'url'=>array('/notify/write')),
+			#array('label'=>'<span>写短消息</span>', 'url'=>array('/notify/write')),
 		);
 		$this->widget('ext.bootstrap.widgets.menu.BootTabs',array(
 		'items'=>$items,
